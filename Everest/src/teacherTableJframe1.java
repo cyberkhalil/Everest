@@ -414,15 +414,6 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
     private void searchTextF1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextF1KeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_searchTextF1KeyReleased
-
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new teacherTableJframe1().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel jLabel1;

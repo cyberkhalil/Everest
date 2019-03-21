@@ -301,7 +301,7 @@ public class login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static boolean login_(String username, String password) {
-        
+
         return false;
     }
 

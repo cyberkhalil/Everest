@@ -506,13 +506,6 @@ public class AddCourseFrame extends javax.swing.JFrame {
         courseTableJframe2 ct = new courseTableJframe2();
         ct.setVisible(true);
     }//GEN-LAST:event_ShowCoursesBtnActionPerformed
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddCourseFrame().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCourseBtn;
     private javax.swing.JTextField CourseNameField;

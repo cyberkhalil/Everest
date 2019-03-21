@@ -670,13 +670,6 @@ public class EnrollFrame extends javax.swing.JFrame {
     private void CourseComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseComboBoxActionPerformed
 
     }//GEN-LAST:event_CourseComboBoxActionPerformed
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EnrollFrame().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CommitBtn;
     private javax.swing.JButton CourseBtn;

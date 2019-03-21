@@ -745,13 +745,6 @@ public class AddNewPayment extends javax.swing.JFrame {
             examComboBox.removeAllItems();
         }
     }//GEN-LAST:event_ExamRadioBtnItemStateChanged
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddNewPayment().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddPaymentBtn;
     private javax.swing.JComboBox<String> BookComboBox;
