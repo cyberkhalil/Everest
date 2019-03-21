@@ -20,16 +20,17 @@ public class mainFrameAdmin extends javax.swing.JFrame {
         WindowListener exitListener = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int confirm = JOptionPane.showOptionDialog(
-                        null, "Are You Sure to Close Application?",
+                int confirm = JOptionPane.showConfirmDialog(
+                        rootPane, "Are You Sure to Close Application?",
                         "Exit Confirmation", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE, null, null, null);
-                if (confirm == 0) {
+                        JOptionPane.QUESTION_MESSAGE);
+                if (confirm == JOptionPane.YES_OPTION) {
                     System.exit(0);
                 }
             }
         };
         this.addWindowListener(exitListener);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
