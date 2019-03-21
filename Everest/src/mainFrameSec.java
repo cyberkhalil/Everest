@@ -8,7 +8,7 @@ public class mainFrameSec extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.UserLbl.setText("The current user is "+login.CurrentUser);
+        this.UserLbl.setText("The current user is " + login.CurrentUser);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +49,7 @@ public class mainFrameSec extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
@@ -61,7 +61,7 @@ public class mainFrameSec extends javax.swing.JFrame {
         LogoutBtn.setBackground(new java.awt.Color(255, 255, 255));
         LogoutBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         LogoutBtn.setForeground(new java.awt.Color(0, 51, 153));
-        LogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logout.png"))); // NOI18N
+        LogoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
         LogoutBtn.setText("Log out");
         LogoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,16 +378,16 @@ public class mainFrameSec extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void add_studentJBActionPerformed(java.awt.event.ActionEvent evt) {
-        StudentJFrame sjf= new StudentJFrame();
+        StudentJFrame sjf = new StudentJFrame();
         sjf.setVisible(true);
     }
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-       studentTableJframe studenttableJframe = new studentTableJframe();
+        studentTableJframe studenttableJframe = new studentTableJframe();
         studenttableJframe.setVisible(true);
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-       BookJFrame bookJFrame = new BookJFrame();
+        BookJFrame bookJFrame = new BookJFrame();
         bookJFrame.setVisible(true);
     }//GEN-LAST:event_add_BookJBActionPerformed
 
@@ -407,7 +407,7 @@ public class mainFrameSec extends javax.swing.JFrame {
     }//GEN-LAST:event_AddNewPaymentActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-         login log = new login();   
+        login log = new login();
         this.setVisible(false);
         log.setVisible(true);
     }//GEN-LAST:event_LogoutBtnActionPerformed
@@ -451,7 +451,6 @@ public class mainFrameSec extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new mainFrameSec().setVisible(true);

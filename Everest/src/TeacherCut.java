@@ -7,13 +7,13 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class TeacherCut extends javax.swing.JFrame {
-    
-static double totalprice = 0;
+
+    static double totalprice = 0;
     Student student = new Student();
     Book b = new Book();
     userEntry UserEntry = new userEntry();
     Course c = new Course();
-    
+
     public TeacherCut() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -45,7 +45,7 @@ static double totalprice = 0;
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
@@ -187,7 +187,7 @@ static double totalprice = 0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculateActionPerformed
-     double price = Double.parseDouble(HourPrice.getText());
+        double price = Double.parseDouble(HourPrice.getText());
         int hoursNo = Integer.parseInt(CourseHours.getText());
         double cut = hoursNo * price;
 
@@ -195,7 +195,7 @@ static double totalprice = 0;
     }//GEN-LAST:event_CalculateActionPerformed
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
-      try {
+        try {
             double price = Double.parseDouble(HourPrice.getText());
             int hoursNo = Integer.parseInt(CourseHours.getText());
             double cut = hoursNo * price;

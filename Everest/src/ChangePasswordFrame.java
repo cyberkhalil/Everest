@@ -14,9 +14,7 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
 
     User user = new User();
     userEntry UserEntry = new userEntry();
-    
 
-    
     public ChangePasswordFrame() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -128,7 +126,7 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
@@ -314,16 +312,16 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                 String Query1 = "select userid from user where Username = ?";
                 Connection conn = login.getConnection();
                 PreparedStatement ps = conn.prepareStatement(Query1);
-                ps.setString(1,username);
+                ps.setString(1, username);
                 ResultSet rs = ps.executeQuery();
                 int id = 0;
-                while(rs.next()){
-                id = rs.getInt("userid");
+                while (rs.next()) {
+                    id = rs.getInt("userid");
                 }
                 String Query2 = "Update user set Username =? , Password =? ,Privilege =? where userid= ?";
                 PreparedStatement ps1 = conn.prepareStatement(Query2);
                 ps1.setString(1, username);
-                ps1.setString(2,user.getPassword());
+                ps1.setString(2, user.getPassword());
                 ps1.setString(3, Str);
                 ps1.setInt(4, id);
                 ps1.executeUpdate();

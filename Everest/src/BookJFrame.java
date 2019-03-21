@@ -62,7 +62,7 @@ public class BookJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
@@ -481,7 +481,7 @@ public class BookJFrame extends javax.swing.JFrame {
         try {
             Connection conn = login.getConnection();
             int stdid = Integer.parseInt(IDField.toString());
-            int bookid = Integer.parseInt(BookIDLabel.getText());            
+            int bookid = Integer.parseInt(BookIDLabel.getText());
             //-------------           
             String query = "INSERT INTO student_book (StdID, BookID) VALUES (?,?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);

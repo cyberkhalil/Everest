@@ -9,22 +9,21 @@
  * @author mohammed salah
  */
 public class payment {
-  private int paymentId;
-  private double paymentValue;
-  private String paymetDate;
 
-  
-  
-  public payment(){
-      
-  }
-   public payment(int paymentId,double paymentValue,String paymetDate){
-       this.paymentId=paymentId;
-       this.paymentValue=paymentValue;
-       this.paymetDate=paymetDate;
-       
-      
-  }
+    private int paymentId;
+    private double paymentValue;
+    private String paymetDate;
+
+    public payment() {
+
+    }
+
+    public payment(int paymentId, double paymentValue, String paymetDate) {
+        this.paymentId = paymentId;
+        this.paymentValue = paymentValue;
+        this.paymetDate = paymetDate;
+
+    }
 
     /**
      * @return the paymentId

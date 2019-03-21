@@ -34,15 +34,11 @@ public class courseTableJframe2 extends javax.swing.JFrame {
 //        String query1 = "select TeacherName from teacher where TeacherId = (select Teacher_TeacherId from course where CourseId = ?) ";
         String query2 = "select COUNT(course_id_fk) as StdNum from student_course,course where CourseId = course_id_fk ";
 
-        
-        
 //        PreparedStatement st1;
 //        ResultSet rs1;
-        
-        
         try {
             PreparedStatement st = conn.prepareStatement(query);
-           ResultSet  rs = st.executeQuery();
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 course = new Course(rs.getInt("CourseId"), rs.getString("CourseName"), rs.getString("CourseDateStart"), rs.getString("CourseDateEnd"), rs.getInt("CoursePrice"), rs.getString("HourTo"), rs.getString("HourFrom"), rs.getString("CourseDays"));
                 arrayList.add(course);
@@ -341,7 +337,7 @@ public class courseTableJframe2 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));

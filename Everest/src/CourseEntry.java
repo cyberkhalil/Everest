@@ -41,17 +41,16 @@ public class CourseEntry {
             CourseEntry.createExam(CourseName, ExamCost);
             JOptionPane.showMessageDialog(null, "Course has been added sucessfully");
             //---------------
-           // return "Successfully Data Insert";
+            // return "Successfully Data Insert";
         } catch (SQLException | HeadlessException ex) {
             System.err.println("Got an exception!");
             System.err.println(ex.getMessage());
-          //  return ex;
+            //  return ex;
         }
     }
 
-
-public static void createExam(String ExamName, double ExamPrice) {
-        try {            
+    public static void createExam(String ExamName, double ExamPrice) {
+        try {
             Connection doConnection = login.getConnection();
             String query = " insert into exam (ExamName,ExamPrice) values (?,?)";
             PreparedStatement preparedStmt1 = doConnection.prepareStatement(query);

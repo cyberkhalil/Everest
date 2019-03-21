@@ -78,7 +78,7 @@ public class StudentJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
@@ -480,7 +480,7 @@ public class StudentJFrame extends javax.swing.JFrame {
                 invoiceToPdf.invoicetopdf();
             } else if (this.GenInvoiceBox.isSelected() == false) {
                 JOptionPane.showMessageDialog(null, "new student has been added sucessfully");
-            }            
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Exception: " + e);
         }
@@ -497,7 +497,7 @@ public class StudentJFrame extends javax.swing.JFrame {
                 String book_name = rs.getString("BookName");
                 BookBox.addItem(book_name);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }

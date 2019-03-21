@@ -8,21 +8,24 @@
  *
  * @author Abdulrahmaan
  */
-public class User extends Person{
+public class User extends Person {
+
     private String username;
     private String firstname;
     private String midname;
     private String lastname;
     private String password;
     private int userId;
-    public User(){
-        
+
+    public User() {
+
     }
-    public User(int userId,String username,String password){
-        this.userId=userId;
-        this.username=username;
-        this.password=password;
-        
+
+    public User(int userId, String username, String password) {
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+
     }
 
     public String getUsername() {
@@ -78,5 +81,5 @@ public class User extends Person{
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    
+
 }

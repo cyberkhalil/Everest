@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -270,7 +271,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
@@ -338,7 +339,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
         TableModel tableModel = jTable_Display_Teachers.getModel();
         teacher_idTF.setText(tableModel.getValueAt(i, 0).toString());
         teachernameTF.setText(tableModel.getValueAt(i, 1).toString());
-        phone_numberTF.setText(tableModel.getValueAt(i, 2).toString());        
+        phone_numberTF.setText(tableModel.getValueAt(i, 2).toString());
     }//GEN-LAST:event_jTable_Display_TeachersMouseClicked
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed

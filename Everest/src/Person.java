@@ -9,19 +9,22 @@
  * @author Abdulrahmaan
  */
 public class Person {
-   private int ID;
-   private String Name;
-   private int phoneNumber;
-   public Person(){
-       
-   }
-   
-public Person(int id, String name , int phone_number ){
-    this.ID=id;
-    this.Name=name;
-    this.phoneNumber=phone_number;
-    
-}
+
+    private int ID;
+    private String Name;
+    private int phoneNumber;
+
+    public Person() {
+
+    }
+
+    public Person(int id, String name, int phone_number) {
+        this.ID = id;
+        this.Name = name;
+        this.phoneNumber = phone_number;
+
+    }
+
     /**
      * @return the ID
      */
@@ -63,6 +66,5 @@ public Person(int id, String name , int phone_number ){
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-     
-    
+
 }

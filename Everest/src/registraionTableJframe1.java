@@ -1,3 +1,4 @@
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,21 +22,21 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
+
     public ArrayList<Student> registratinList() {
         ArrayList<Student> arrayList = new ArrayList<>();
         ArrayList<String> courseList = new ArrayList<>();
         //Connection connect = null;
         Connection conn = login.getConnection();
-        
+
         //String query1 = "select CourseName from course where CourseId = (select courseID from student_course,student where student_course.StdID = student.StdID)";
-       
         try {
             String CourseName = "";
             String query = "select * from student_course,student where student_course.StdID = student.StdID ";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                student = new Student( rs.getString("StdName"), rs.getInt("StdPhoneNum"));
+                student = new Student(rs.getString("StdName"), rs.getInt("StdPhoneNum"));
                 arrayList.add(student);
             }
             String query1 = "select CourseName from course where CourseId = (select courseID from student_course,student where student_course.StdID = student.StdID)";
@@ -59,10 +60,10 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
         for (int i = 0; i < arrayList.size(); i++) {
             rObjects[0] = arrayList.get(i).getStdName();
             rObjects[1] = arrayList.get(i).getStdPhoneNum();
-            rObjects[2] = course_name;            
+            rObjects[2] = course_name;
             model.addRow(rObjects);
         }
-    } 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,7 +109,7 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
@@ -178,7 +179,7 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable_Display_RegistrationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_RegistrationMouseClicked
-      
+
     }//GEN-LAST:event_jTable_Display_RegistrationMouseClicked
 
     private void AddToCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCourseActionPerformed

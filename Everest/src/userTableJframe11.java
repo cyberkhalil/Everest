@@ -14,11 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class userTableJframe11 extends javax.swing.JFrame {
-    
+
     User user = new User();
     Hashing hashing = new Hashing();
-    
-    
+
     public userTableJframe11() {
         initComponents();
         show_user();
@@ -26,30 +25,30 @@ public class userTableJframe11 extends javax.swing.JFrame {
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
-    
+
     public ArrayList<User> teacherList() {
         ArrayList<User> arrayList = new ArrayList<User>();
-       
+
         Connection conn = login.getConnection();
         String query = "select * from user ";
         Statement st;
         ResultSet rs;
-        
+
         try {
             st = conn.createStatement();
             rs = st.executeQuery(query);
-            
+
             while (rs.next()) {
                 user = new User(rs.getInt("userid"), rs.getString("Username"), rs.getString("Password"));
                 arrayList.add(user);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(teacherTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
-    
+
     public void show_user() {
         ArrayList<User> arrayList = teacherList();
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Teachers.getModel();
@@ -58,11 +57,11 @@ public class userTableJframe11 extends javax.swing.JFrame {
             rObjects[0] = arrayList.get(i).getUserId();
             rObjects[1] = arrayList.get(i).getUsername();
             rObjects[2] = arrayList.get(i).getPassword();
-            
+
             model.addRow(rObjects);
         }
     }
-    
+
     public void excuteSQLQuery(String Query, String message) {
         Connection conn = DBConnection.establishConnection();
         Statement st;
@@ -80,7 +79,7 @@ public class userTableJframe11 extends javax.swing.JFrame {
             Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -223,7 +222,7 @@ public class userTableJframe11 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
@@ -287,7 +286,6 @@ public class userTableJframe11 extends javax.swing.JFrame {
         TableModel tableModel = jTable_Display_Teachers.getModel();
         user_idTF.setText(tableModel.getValueAt(i, 0).toString());
         usernameTF.setText(tableModel.getValueAt(i, 1).toString());
-        
 
     }//GEN-LAST:event_jTable_Display_TeachersMouseClicked
 
@@ -300,7 +298,6 @@ public class userTableJframe11 extends javax.swing.JFrame {
 //       } catch (NoSuchAlgorithmException ex) {
 //           Logger.getLogger(userTableJframe11.class.getName()).log(Level.SEVERE, null, ex);
 //       }
-
 
     }//GEN-LAST:event_updateButtonActionPerformed
 

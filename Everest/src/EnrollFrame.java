@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class EnrollFrame extends javax.swing.JFrame {
+
     double ExamPrice = 0;
     int ExamID = 0;
     double CoursePrice = 0;
@@ -470,7 +471,6 @@ public class EnrollFrame extends javax.swing.JFrame {
         }
     }
 
-
     private void SearchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBtnActionPerformed
         int ID = Integer.parseInt(IDField.getText());
         ids.clear();
@@ -622,7 +622,7 @@ public class EnrollFrame extends javax.swing.JFrame {
             ExamPanel.setVisible(true);
             ExamBtn.setText("Cancel");
         } else if (ExamPanel.isVisible() == true && examSwitch == 1) {
-             ExamBtn.setText("Enroll to an exam");
+            ExamBtn.setText("Enroll to an exam");
             int itemCount = ExamComboBox.getItemCount();
             if (itemCount > 0) {
                 for (int i = itemCount - 1; i >= 0; i--) {
@@ -631,7 +631,7 @@ public class EnrollFrame extends javax.swing.JFrame {
             }
             System.out.println("No Hello");
             ExamPanel.setVisible(false);
-            this.examSwitch = 0;            
+            this.examSwitch = 0;
         }
     }//GEN-LAST:event_ExamBtnActionPerformed
 

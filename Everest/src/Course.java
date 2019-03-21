@@ -31,18 +31,18 @@ public class Course {
 
     }
 
-    public Course(int courseId,String CourseName, String startDate, String endDate, double CoursePrice, String CourseStartHour,
+    public Course(int courseId, String CourseName, String startDate, String endDate, double CoursePrice, String CourseStartHour,
             String CourseEndHour, String CourseDays) {
-        this.courseId=courseId;
-        this.CourseName=CourseName;
-        this.startDate=startDate;
-        this.endDate=endDate;
-        this.CoursePrice=CoursePrice;
-        this.CourseStartHour=CourseStartHour;
-        this.CourseEndHour=CourseEndHour;
-        this.CourseDays=CourseDays;
+        this.courseId = courseId;
+        this.CourseName = CourseName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.CoursePrice = CoursePrice;
+        this.CourseStartHour = CourseStartHour;
+        this.CourseEndHour = CourseEndHour;
+        this.CourseDays = CourseDays;
         //this.examCost=examCost;
-      
+
     }
 
     getDate date = new getDate();
@@ -238,5 +238,5 @@ public class Course {
     public void setDiscount(double Discount) {
         this.Discount = Discount;
     }
-    
+
 }

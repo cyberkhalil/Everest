@@ -9,6 +9,7 @@
  * @author Abdulrahmaan
  */
 public class Student extends Person {
+
     private double net;
     private int StdID;
     private String StdName;
@@ -48,7 +49,7 @@ public class Student extends Person {
 
     public Student(int id, String name, int phone_number, String payment_method) {
         super(id, name, phone_number);
-        this.paymentMethod = payment_method;        
+        this.paymentMethod = payment_method;
     }
 
     public Student(String name, int phone_number) {

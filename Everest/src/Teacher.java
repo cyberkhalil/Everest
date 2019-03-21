@@ -8,18 +8,20 @@
  *
  * @author Abdulrahmaan
  */
-public class Teacher extends Person{
+public class Teacher extends Person {
+
     private int TeacherID;
     private String TeacherName;
     private int TeacherPhoneNumber;
-    
-    public Teacher(){
-        
+
+    public Teacher() {
+
     }
-     public Teacher(int TeacherID,String Teacher_name,int Teacher_phone_number){
-       this.TeacherName=Teacher_name;
-       this.TeacherPhoneNumber=Teacher_phone_number;
-       this.TeacherID=TeacherID;
+
+    public Teacher(int TeacherID, String Teacher_name, int Teacher_phone_number) {
+        this.TeacherName = Teacher_name;
+        this.TeacherPhoneNumber = Teacher_phone_number;
+        this.TeacherID = TeacherID;
     }
 
     public int getTeacherID() {

@@ -5,7 +5,6 @@ public class Book {
     private String BookName;
     private double price;
     //private double discount;
-   
 
     public int getBookId() {
         return BookId;
@@ -16,16 +15,16 @@ public class Book {
     }
 
     public Book(int BookId, String BookName, double price) {
-     this.BookId=BookId;
-     this.BookName=BookName;
-     this.price=price;
+        this.BookId = BookId;
+        this.BookName = BookName;
+        this.price = price;
 
-       }
-    
+    }
+
     public Book(int BookId, String BookName) {
-     this.BookId=BookId;
-     this.BookName=BookName;   
-       }
+        this.BookId = BookId;
+        this.BookName = BookName;
+    }
 
     public void setBookId(int BookId) {
         this.BookId = BookId;

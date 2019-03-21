@@ -62,13 +62,13 @@ public class BookTable2 extends javax.swing.JFrame {
         for (int i = 0; i < arrayList.size(); i++) {
             try {
                 String query1 = "select StdName from student where StdID =(select student_id_fk from book where BookId = ?  AND student_id_fk IS NOT NULL)";
-                PreparedStatement ps1 = conn.prepareStatement(query1); 
+                PreparedStatement ps1 = conn.prepareStatement(query1);
                 ps1.setInt(1, arrayList.get(i).getBookId());
                 ResultSet rs1 = ps1.executeQuery();
                 while (rs1.next()) {
                     stdName = rs1.getString("StdName");
                     StdName.add(stdName);
-                    System.out.println(stdName);                    
+                    System.out.println(stdName);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,7 +141,7 @@ public class BookTable2 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));

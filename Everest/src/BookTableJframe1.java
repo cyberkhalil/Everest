@@ -41,7 +41,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
             while (rs.next()) {
                 BookId = rs.getInt("BookId");
                 BookName = rs.getString("BookName");
-                price = rs.getDouble("Price");                
+                price = rs.getDouble("Price");
                 book = new Book(BookId, BookName, price);
                 //System.out.println(BookId + " " + BookName + " " + price + " " + stdID);
                 arrayList.add(book);
@@ -56,7 +56,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
         ArrayList<Book> arrayList = booktList();
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Book.getModel();
         Object[] rObjects = new Object[4];
-        for (int i = 0; i < arrayList.size(); i++) {            
+        for (int i = 0; i < arrayList.size(); i++) {
             rObjects[0] = arrayList.get(i).getBookId();
             rObjects[1] = arrayList.get(i).getBookName();
             rObjects[2] = arrayList.get(i).getPrice();
@@ -268,7 +268,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));

@@ -10,7 +10,7 @@ public class DBConnection {
     public static Connection establishConnection() {
         String db = "everest";
         String url = "jdbc:mysql://localhost:3306/";
-//        String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
+        String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
         try {
             connection = DriverManager.getConnection(url + db, "test", "test");
         } catch (SQLException exception) {

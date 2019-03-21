@@ -69,7 +69,7 @@ public class paymentTableJFrame extends javax.swing.JFrame {
     public void show_payment() {
         ArrayList<payment> arrayList = paymentList(SearchJF.getText());
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Payment.getModel();
-        model.setColumnIdentifiers(new Object[]{"Payment ID", "payment Value", "payment Time", "Student Name","Student ID"});
+        model.setColumnIdentifiers(new Object[]{"Payment ID", "payment Value", "payment Time", "Student Name", "Student ID"});
         Object[] rObjects = new Object[5];
         model.setRowCount(0);
         for (int i = 0; i < arrayList.size(); i++) {
@@ -328,7 +328,7 @@ public class paymentTableJFrame extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
@@ -389,8 +389,8 @@ public class paymentTableJFrame extends javax.swing.JFrame {
         payment_idTF.setText(tableModel.getValueAt(i, 0).toString());
         paymentValueTF.setText(tableModel.getValueAt(i, 1).toString());
         paymentTimeTF.setText(tableModel.getValueAt(i, 2).toString());
-        student_nameTF.setText(tableModel.getValueAt(i, 3).toString());       
-        
+        student_nameTF.setText(tableModel.getValueAt(i, 3).toString());
+
     }//GEN-LAST:event_jTable_Display_PaymentMouseClicked
     private void student_nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_nameTFActionPerformed
 

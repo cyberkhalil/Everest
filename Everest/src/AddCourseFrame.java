@@ -1,3 +1,4 @@
+
 import javax.swing.JFrame;
 
 public class AddCourseFrame extends javax.swing.JFrame {
@@ -74,7 +75,7 @@ public class AddCourseFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 51, 153));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N

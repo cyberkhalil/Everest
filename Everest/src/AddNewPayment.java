@@ -93,7 +93,7 @@ public class AddNewPayment extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/26814457_2075513939393983_2848345987902986793_n.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
@@ -435,17 +435,17 @@ public class AddNewPayment extends javax.swing.JFrame {
             double paymentvalue = Double.parseDouble(paymentValue.getText());
             int ItemID = this.getItemID(Item, id);
             double Net = 0;
-            int PayID = 0;            
+            int PayID = 0;
             String ItemPaymentsAreCompleted = "";
             if (Item.equals("Book")) {
                 String Bookname = BookComboBox.getSelectedItem().toString();
-                
+
             } else if (Item.equals("Course")) {
                 String Coursename = courseComboBox.getSelectedItem().toString();
-                
+
             } else if (Item.equals("Exam")) {
                 String Examname = examComboBox.getSelectedItem().toString();
-                
+
             }
             if (ItemPaymentsAreCompleted.equals("Yes")) {
                 JOptionPane.showMessageDialog(null, "Selected Item is Already Paid");
@@ -563,7 +563,6 @@ public class AddNewPayment extends javax.swing.JFrame {
             Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_AddPaymentBtnActionPerformed
-
 
     public int getItemID(String item, int std) {
         int id = 0;
