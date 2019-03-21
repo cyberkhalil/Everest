@@ -395,7 +395,7 @@ public class StudentJFrame extends javax.swing.JFrame {
 
     private void AddStdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStdBtnActionPerformed
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             double discountValue = Double.parseDouble(DiscountField.getText());
             String studentName = StudentName.getText();
             int student_phone_num = Integer.parseInt(StudentPhoneNum1.getText());
@@ -487,7 +487,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AddStdBtnActionPerformed
     public void addBook() {
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query = "select BookName from book where student_id_fk IS NULL";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -504,7 +504,7 @@ public class StudentJFrame extends javax.swing.JFrame {
 
     public String getItemName(String item, int id) {
         String name = "";
-        Connection conn = Login.getConnection();
+        Connection conn = DBConnection.getConnection();
         try {
             if (item.equals("Book")) {
                 String query1 = "select BookName from book where BookId = ?";
@@ -548,7 +548,7 @@ public class StudentJFrame extends javax.swing.JFrame {
 
     public void addCourse() {
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select CourseName from course";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement1 = conn.prepareStatement(query1);
@@ -565,7 +565,7 @@ public class StudentJFrame extends javax.swing.JFrame {
 
     public void addExam() {
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select ExamName from exam";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement1 = conn.prepareStatement(query1);
@@ -617,7 +617,7 @@ public class StudentJFrame extends javax.swing.JFrame {
         if (CourseCheckBox.isSelected()) {
             courseName.setEnabled(true);
             try {
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 String Coursename = courseName.getSelectedItem().toString();
                 String query = "select CoursePrice from course where CourseName =?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -637,7 +637,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CourseCheckBoxActionPerformed
     private int getExamID(String ExamName) {
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query = "select ExamID from exam where ExamName =?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, ExamName);
@@ -655,7 +655,7 @@ public class StudentJFrame extends javax.swing.JFrame {
         if (ExamCheckBox.isSelected()) {
             ExamBox.setEnabled(true);
             try {
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 String ExamName = ExamBox.getSelectedItem().toString();
                 String query = "select ExamPrice,ExamID from exam where ExamName =?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -684,7 +684,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     private void BookBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookBoxActionPerformed
         if (BookCheckBox.isSelected()) {
             try {
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 String bookname = BookBox.getSelectedItem().toString();
                 String query = "select Price,BookId from book where BookName =?";
                 PreparedStatement ps = conn.prepareStatement(query);

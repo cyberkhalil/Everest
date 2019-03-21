@@ -2,7 +2,9 @@
 
 DROP DATABASE If EXISTS everest;
 CREATE SCHEMA everest;
+create user if not exists 'test'@'localhost' identified by 'test';
 USE everest;
+GRANT ALL PRIVILEGES ON * . * TO 'test'@'localhost';
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;

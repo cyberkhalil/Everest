@@ -1,7 +1,6 @@
 
 import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,10 +17,6 @@ public class Login extends javax.swing.JFrame {
     mainFrameSec mFS = new mainFrameSec();
     static String CurrentUser;
     static String privilege;
-
-    public static Connection getConnection() {
-        return DBConnection.getConnection();
-    }
 
     public Login() {
         initComponents();
@@ -88,9 +83,7 @@ public class Login extends javax.swing.JFrame {
         LoginBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         LoginBtn.setForeground(new java.awt.Color(0, 51, 153));
         LoginBtn.setText("Login");
-        LoginBtn.addActionListener((java.awt.event.ActionEvent evt) -> {
-            LoginBtnActionPerformed(evt);
-        });
+        LoginBtn.addActionListener(this::LoginBtnActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
@@ -222,7 +215,8 @@ public class Login extends javax.swing.JFrame {
             String query = "select * from user where Username =? ";
 
             // create the mysql insert preparedstatement
-            PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+            PreparedStatement preparedStatement
+                    = DBConnection.getConnection().prepareStatement(query);
             preparedStatement.setString(1, user);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
@@ -266,14 +260,15 @@ public class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
+
             DBConnection.establishConnection();
+            java.awt.EventQueue.invokeLater(() -> {
+                new Login().setVisible(true);
+            });
+
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error in MySQL Connection"
                     + "\n Please check if the MySQL database is running ..");
         }
-        java.awt.EventQueue.invokeLater(() -> {
-            new Login().setVisible(true);
-        });
-
     }
 }

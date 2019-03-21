@@ -15,7 +15,7 @@ import javax.swing.table.TableModel;
 public class studentTableJframe extends javax.swing.JFrame {
 
     Student student;
-    Connection conn = Login.getConnection();
+    Connection conn = DBConnection.getConnection();
 
     public studentTableJframe() {
         initComponents();

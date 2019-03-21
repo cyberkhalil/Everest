@@ -20,7 +20,7 @@ public class DBConnection {
         String url = "jdbc:mysql://localhost:3306/";
         String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
         try {
-            connection = DriverManager.getConnection(url + db, "test", "test");
+            connection = DriverManager.getConnection(url + db + unicode, "test", "test");
             isConnected = true;
         } catch (SQLException exception) {
             isConnected = false;

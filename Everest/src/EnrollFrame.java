@@ -1,6 +1,5 @@
 
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -293,7 +292,7 @@ public class EnrollFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     public void getID(int IDNum) {
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             int StdID = 0;
             String query1 = "select StdID from student where IDCardNum = ?";
             PreparedStatement ps = conn.prepareStatement(query1);
@@ -315,7 +314,7 @@ public class EnrollFrame extends javax.swing.JFrame {
     public int getCourseCount() {
         int courseNum = 0;
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select count(CourseName) as courseNum from course";
             PreparedStatement ps = conn.prepareStatement(query1);
             ResultSet rs = ps.executeQuery();
@@ -335,7 +334,7 @@ public class EnrollFrame extends javax.swing.JFrame {
     public int getExamCount() {
         int examNum = 0;
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select count(ExamName) as examNum from exam";
             PreparedStatement ps = conn.prepareStatement(query1);
             ResultSet rs = ps.executeQuery();
@@ -356,7 +355,7 @@ public class EnrollFrame extends javax.swing.JFrame {
         try {
             int i = 0;
             String CourseName = "";
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select CourseName from course";
             PreparedStatement ps = conn.prepareStatement(query1);
             ResultSet rs = ps.executeQuery();
@@ -377,7 +376,7 @@ public class EnrollFrame extends javax.swing.JFrame {
     public void getExamName() {
         try {
             String ExamName = "";
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             String query1 = "select ExamName from exam";
             PreparedStatement ps = conn.prepareStatement(query1);
             ResultSet rs = ps.executeQuery();
@@ -403,7 +402,7 @@ public class EnrollFrame extends javax.swing.JFrame {
             } else if (CourseComboBox.getItemCount() < 1) {
                 double CoursePrice = 0;
                 int CourseId = 0;
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 String bookname = CourseComboBox.getSelectedItem().toString();
                 String query = "select CoursePrice,CourseId from course where CourseName = ?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -429,7 +428,7 @@ public class EnrollFrame extends javax.swing.JFrame {
                 }
             } else if (CourseComboBox.getItemCount() < 1) {
 
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 String bookname = ExamComboBox.getSelectedItem().toString();
                 String query = "select ExamPrice,ExamID from exam where ExamName =?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -488,7 +487,7 @@ public class EnrollFrame extends javax.swing.JFrame {
 
     private void CommitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommitBtnActionPerformed
         try {
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             if (courseSwitch == 1) {
                 int stdid = Integer.parseInt(StdIDComboBox.getSelectedItem().toString());
                 int CourseID = Integer.parseInt(CourseLabel.getText());
@@ -538,7 +537,7 @@ public class EnrollFrame extends javax.swing.JFrame {
                         CourseName = CourseComboBox.getSelectedItem().toString();
                         if (courseSwitch == 1) {
                             if (CourseName != null) {
-                                Connection conn = Login.getConnection();
+                                Connection conn = DBConnection.getConnection();
                                 String query = "select CoursePrice,CourseId from course where CourseName = ?";
                                 PreparedStatement ps = conn.prepareStatement(query);
                                 ps.setString(1, CourseName);
@@ -577,7 +576,7 @@ public class EnrollFrame extends javax.swing.JFrame {
                         ExamName = ExamComboBox.getSelectedItem().toString();
                         if (examSwitch == 1) {
                             if (ExamName != null) {
-                                Connection conn = Login.getConnection();
+                                Connection conn = DBConnection.getConnection();
                                 String query = "select ExamPrice,ExamID from exam where ExamName = ?";
                                 PreparedStatement ps = conn.prepareStatement(query);
                                 ps.setString(1, ExamName);

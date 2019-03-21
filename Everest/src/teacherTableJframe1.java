@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
 
 public class teacherTableJframe1 extends javax.swing.JFrame {
 
-    Connection conn = Login.getConnection();
+    Connection conn = DBConnection.getConnection();
     Teacher teacher;
     Course course;
     String course_name = null;
@@ -30,7 +30,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
     public ArrayList<Teacher> teacherList() {
         ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
 
-        Connection conn = Login.getConnection();
+        Connection conn = DBConnection.getConnection();
         String query = "select * from teacher ";
         String query1 = "select CourseName from teacher,course where TeacherId=Teacher_TeacherId";
         Statement st;
@@ -386,7 +386,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
         try {
             String query = "select * from teacher where TeacherName=?";
             //Connection connect = null;
-            Connection conn = Login.getConnection();
+            Connection conn = DBConnection.getConnection();
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString(1, searchTextF1.getText());
             ResultSet rs;

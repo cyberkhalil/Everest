@@ -310,7 +310,7 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                 NormalUserRadioButton.setActionCommand("Normal User");
                 String Str = buttonGroup1.getSelection().getActionCommand();
                 String Query1 = "select userid from user where Username = ?";
-                Connection conn = Login.getConnection();
+                Connection conn = DBConnection.getConnection();
                 PreparedStatement ps = conn.prepareStatement(Query1);
                 ps.setString(1, username);
                 ResultSet rs = ps.executeQuery();
