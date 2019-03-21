@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import com.mysql.cj.Messages;
@@ -45,11 +44,12 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * A BufferRow implementation that holds one row packet from a server-side prepared statement (which is re-used by the driver,
- * and thus saves memory allocations), and tries when possible to avoid allocations to break out the results as individual byte[]s.
- * Rows from a server-side prepared statement are encoded differently, so we have different ways of finding where each column is, and
+ * A BufferRow implementation that holds one row packet from a server-side prepared statement (which
+ * is re-used by the driver, and thus saves memory allocations), and tries when possible to avoid
+ * allocations to break out the results as individual byte[]s. Rows from a server-side prepared
+ * statement are encoded differently, so we have different ways of finding where each column is, and
  * unpacking them.
- * 
+ *
  * (this isn't possible when doing things like reading floating point values).
  */
 public class BinaryBufferRow extends AbstractBufferRow {
@@ -126,7 +126,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
                 if (length == 0) {
                     this.rowFromServer.skipBytes(StringSelfDataType.STRING_LENENC);
                 } else if (length == -1) {
-                    throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[] { type, i + 1, this.metadata.getFields().length }),
+                    throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[]{type, i + 1, this.metadata.getFields().length}),
                             this.exceptionInterceptor);
                 } else {
                     int curPosition = this.rowFromServer.getPosition();
@@ -163,7 +163,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
                 if (length == 0) {
                     return this.rowFromServer.readBytes(StringSelfDataType.STRING_LENENC);
                 } else if (length == -1) {
-                    throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[] { type, index + 1, this.metadata.getFields().length }),
+                    throw ExceptionFactory.createException(Messages.getString("MysqlIO.97", new Object[]{type, index + 1, this.metadata.getFields().length}),
                             this.exceptionInterceptor);
                 } else {
                     return this.rowFromServer.readBytes(StringLengthDataType.STRING_FIXED, length);
@@ -188,9 +188,8 @@ public class BinaryBufferRow extends AbstractBufferRow {
     }
 
     /**
-     * Unpacks the bitmask at the head of the row packet that tells us what
-     * columns hold null values, and sets the "home" position directly after the
-     * bitmask.
+     * Unpacks the bitmask at the head of the row packet that tells us what columns hold null
+     * values, and sets the "home" position directly after the bitmask.
      */
     private void setupIsNullBitmask() {
         if (this.isNull != null) {
@@ -216,7 +215,8 @@ public class BinaryBufferRow extends AbstractBufferRow {
             this.isNull[i] = ((nullBitMask[nullMaskPos] & bit) != 0);
 
             if (((bit <<= 1) & 255) == 0) {
-                bit = 1; /* To next byte */
+                bit = 1;
+                /* To next byte */
 
                 nullMaskPos++;
             }
@@ -224,7 +224,8 @@ public class BinaryBufferRow extends AbstractBufferRow {
     }
 
     /**
-     * Implementation of getValue() based on the underlying Buffer object. Delegate to superclass for decoding.
+     * Implementation of getValue() based on the underlying Buffer object. Delegate to superclass
+     * for decoding.
      */
     @Override
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {
@@ -238,7 +239,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
                 length = (int) this.rowFromServer.readInteger(IntegerDataType.INT_LENENC);
             } else if (length == -1) {
                 throw ExceptionFactory.createException(
-                        Messages.getString("MysqlIO.97", new Object[] { type, columnIndex + 1, this.metadata.getFields().length }), this.exceptionInterceptor);
+                        Messages.getString("MysqlIO.97", new Object[]{type, columnIndex + 1, this.metadata.getFields().length}), this.exceptionInterceptor);
             }
         }
         return getValueFromBytes(columnIndex, this.rowFromServer.getByteBuffer(), this.rowFromServer.getPosition(), length, vf);
@@ -272,7 +273,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
                 this.rowFromServer.writeBytes(StringSelfDataType.STRING_LENENC, value);
             } else if (length == -1) {
                 throw ExceptionFactory.createException(
-                        Messages.getString("MysqlIO.97", new Object[] { type, columnIndex + 1, this.metadata.getFields().length }), this.exceptionInterceptor);
+                        Messages.getString("MysqlIO.97", new Object[]{type, columnIndex + 1, this.metadata.getFields().length}), this.exceptionInterceptor);
             } else {
                 // write leading zeroes if value length < required length
                 if (length != value.length) {

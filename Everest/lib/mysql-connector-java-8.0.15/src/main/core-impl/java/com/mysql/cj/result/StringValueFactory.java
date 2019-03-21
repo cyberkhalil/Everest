@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -39,6 +38,7 @@ import com.mysql.cj.util.StringUtils;
  * A {@link com.mysql.cj.result.ValueFactory} implementation to create strings.
  */
 public class StringValueFactory implements ValueFactory<String> {
+
     private String encoding;
 
     public StringValueFactory() {
@@ -49,14 +49,12 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from date fields. The fields are formatted in a YYYY-mm-dd format. A point-in-time is not calculated.
-     * 
-     * @param year
-     *            year
-     * @param month
-     *            month
-     * @param day
-     *            day
+     * Create a string from date fields. The fields are formatted in a YYYY-mm-dd format. A
+     * point-in-time is not calculated.
+     *
+     * @param year year
+     * @param month month
+     * @param day day
      * @return string
      */
     public String createFromDate(int year, int month, int day) {
@@ -65,16 +63,13 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from time fields. The fields are formatted in a HH:MM:SS[.nnnnnnnnn] format. A point-in-time is not calculated.
-     * 
-     * @param hours
-     *            hours
-     * @param minutes
-     *            minutes
-     * @param seconds
-     *            seconds
-     * @param nanos
-     *            nanoseconds
+     * Create a string from time fields. The fields are formatted in a HH:MM:SS[.nnnnnnnnn] format.
+     * A point-in-time is not calculated.
+     *
+     * @param hours hours
+     * @param minutes minutes
+     * @param seconds seconds
+     * @param nanos nanoseconds
      * @return string
      */
     public String createFromTime(int hours, int minutes, int seconds, int nanos) {
@@ -85,23 +80,17 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from time fields. The fields are formatted by concatening the result of {@link #createFromDate(int,int,int)} and {@link
+     * Create a string from time fields. The fields are formatted by concatening the result of
+     * {@link #createFromDate(int,int,int)} and {@link
      * #createFromTime(int,int,int,int)}. A point-in-time is not calculated.
-     * 
-     * @param year
-     *            year
-     * @param month
-     *            month
-     * @param day
-     *            day
-     * @param hours
-     *            hours
-     * @param minutes
-     *            minutes
-     * @param seconds
-     *            seconds
-     * @param nanos
-     *            nanoseconds
+     *
+     * @param year year
+     * @param month month
+     * @param day day
+     * @param hours hours
+     * @param minutes minutes
+     * @param seconds seconds
+     * @param nanos nanoseconds
      * @return string
      */
     public String createFromTimestamp(int year, int month, int day, int hours, int minutes, int seconds, int nanos) {
@@ -125,15 +114,13 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Interpret the given byte array as a string. This value factory needs to know the encoding to interpret the string. The default (null) will interpet the
-     * byte array using the platform encoding.
-     * 
-     * @param bytes
-     *            byte array
-     * @param offset
-     *            offset
-     * @param length
-     *            data length in bytes
+     * Interpret the given byte array as a string. This value factory needs to know the encoding to
+     * interpret the string. The default (null) will interpet the byte array using the platform
+     * encoding.
+     *
+     * @param bytes byte array
+     * @param offset offset
+     * @param length data length in bytes
      * @return string
      */
     public String createFromBytes(byte[] bytes, int offset, int length) {

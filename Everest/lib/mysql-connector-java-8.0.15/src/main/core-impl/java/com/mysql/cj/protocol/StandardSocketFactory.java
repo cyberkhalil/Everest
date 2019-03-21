@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.Closeable;
@@ -45,32 +44,46 @@ import com.mysql.cj.conf.PropertySet;
  */
 public class StandardSocketFactory implements SocketFactory {
 
-    /** The hostname to connect to */
+    /**
+     * The hostname to connect to
+     */
     protected String host = null;
 
-    /** The port number to connect to */
+    /**
+     * The port number to connect to
+     */
     protected int port = 3306;
 
-    /** The underlying TCP/IP socket to use */
+    /**
+     * The underlying TCP/IP socket to use
+     */
     protected Socket rawSocket = null;
 
-    /** The wrapper for underlying TCP/IP socket */
+    /**
+     * The wrapper for underlying TCP/IP socket
+     */
     protected Socket sslSocket = null;
 
-    /** The remaining login time in milliseconds. Initial value set from defined DriverManager.setLoginTimeout() */
+    /**
+     * The remaining login time in milliseconds. Initial value set from defined
+     * DriverManager.setLoginTimeout()
+     */
     protected int loginTimeoutCountdown = 0;
 
-    /** Time when last Login Timeout check occurred */
+    /**
+     * Time when last Login Timeout check occurred
+     */
     protected long loginTimeoutCheckTimestamp = System.currentTimeMillis();
 
-    /** Backup original Socket timeout to be restored after handshake */
+    /**
+     * Backup original Socket timeout to be restored after handshake
+     */
     protected int socketTimeoutBackup = 0;
 
     /**
      * Create the raw socket.
      *
-     * @param props
-     *            properties available to affect behaviour during socket creation.
+     * @param props properties available to affect behaviour during socket creation.
      * @return socket
      */
     protected Socket createSocket(PropertySet props) {
@@ -78,17 +91,13 @@ public class StandardSocketFactory implements SocketFactory {
     }
 
     /**
-     * Configures socket properties based on properties from the connection
-     * (tcpNoDelay, snd/rcv buf, traffic class, etc).
-     * 
-     * @param sock
-     *            socket
-     * @param pset
-     *            properties
-     * @throws SocketException
-     *             if an error occurs
-     * @throws IOException
-     *             if an error occurs
+     * Configures socket properties based on properties from the connection (tcpNoDelay, snd/rcv
+     * buf, traffic class, etc).
+     *
+     * @param sock socket
+     * @param pset properties
+     * @throws SocketException if an error occurs
+     * @throws IOException if an error occurs
      */
     private void configureSocket(Socket sock, PropertySet pset) throws SocketException, IOException {
         sock.setTcpNoDelay(pset.getBooleanProperty(PropertyKey.tcpNoDelay).getValue());
@@ -197,9 +206,8 @@ public class StandardSocketFactory implements SocketFactory {
 
     /**
      * Decrements elapsed time since last reset from login timeout count down.
-     * 
-     * @throws SocketException
-     *             If the login timeout is reached or exceeded.
+     *
+     * @throws SocketException If the login timeout is reached or exceeded.
      */
     protected void resetLoginTimeCountdown() throws SocketException {
         if (this.loginTimeoutCountdown > 0) {
@@ -214,9 +222,8 @@ public class StandardSocketFactory implements SocketFactory {
 
     /**
      * Validates the connection/socket timeout that must really be used.
-     * 
-     * @param expectedTimeout
-     *            The timeout to validate.
+     *
+     * @param expectedTimeout The timeout to validate.
      * @return The timeout to be used.
      */
     protected int getRealTimeout(int expectedTimeout) {

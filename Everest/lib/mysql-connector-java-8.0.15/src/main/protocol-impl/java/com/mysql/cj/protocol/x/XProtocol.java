@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import static java.util.stream.Collectors.toMap;
@@ -99,7 +98,9 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
 
     private MessageReader<XMessageHeader, XMessage> reader;
     private MessageSender<XMessage> sender;
-    /** We take responsibility of the socket as the managed resource. We close it when we're done. */
+    /**
+     * We take responsibility of the socket as the managed resource. We close it when we're done.
+     */
     private Closeable managedResource;
     private ProtocolEntityFactory<Field, XMessage> fieldFactory;
     private String metadataCharacterSet;
@@ -168,12 +169,11 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
     }
 
     /**
-     * Set a capability of current session. Must be done before authentication ({@link #changeUser(String, String, String)}).
-     * 
-     * @param name
-     *            capability name
-     * @param value
-     *            capability value
+     * Set a capability of current session. Must be done before authentication
+     * ({@link #changeUser(String, String, String)}).
+     *
+     * @param name capability name
+     * @param value capability value
      */
     public void setCapability(String name, Object value) {
         ((XServerCapabilities) getServerSession().getCapabilities()).setCapability(name, value);
@@ -238,9 +238,9 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
         this.serverSession.setCapabilities(readServerCapabilities());
 
         // Override common SSL properties with xdevapi ones to provide unified logic in ExportControlled via common SSL properties
-        RuntimeProperty<XdevapiSslMode> xdevapiSslMode = this.propertySet.<XdevapiSslMode> getEnumProperty(PropertyKey.xdevapiSSLMode);
+        RuntimeProperty<XdevapiSslMode> xdevapiSslMode = this.propertySet.<XdevapiSslMode>getEnumProperty(PropertyKey.xdevapiSSLMode);
         if (xdevapiSslMode.isExplicitlySet()) {
-            this.propertySet.<SslMode> getEnumProperty(PropertyKey.sslMode).setValue(SslMode.valueOf(xdevapiSslMode.getValue().toString()));
+            this.propertySet.<SslMode>getEnumProperty(PropertyKey.sslMode).setValue(SslMode.valueOf(xdevapiSslMode.getValue().toString()));
         }
         RuntimeProperty<String> sslTrustStoreUrl = this.propertySet.getStringProperty(PropertyKey.xdevapiSSLTrustStoreUrl);
         if (sslTrustStoreUrl.isExplicitlySet()) {
@@ -256,8 +256,7 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
         }
 
         // TODO WL#9925 will redefine other SSL connection properties for X Protocol
-
-        RuntimeProperty<SslMode> sslMode = this.propertySet.<SslMode> getEnumProperty(PropertyKey.sslMode);
+        RuntimeProperty<SslMode> sslMode = this.propertySet.<SslMode>getEnumProperty(PropertyKey.sslMode);
 
         if (sslMode.getValue() == SslMode.PREFERRED) { // PREFERRED mode is not applicable to X Protocol
             sslMode.setValue(SslMode.REQUIRED);
@@ -447,7 +446,7 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
             ArrayList<Field> metadata = new ArrayList<>(fromServer.size());
             fromServer.forEach(col -> metadata.add(this.fieldFactory.createFromMessage(new XMessage(col))));
 
-            return new DefaultColumnDefinition(metadata.toArray(new Field[] {}));
+            return new DefaultColumnDefinition(metadata.toArray(new Field[]{}));
         } catch (IOException e) {
             throw new XProtocolError(e.getMessage(), e);
         }
@@ -471,8 +470,9 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
     }
 
     /**
-     * Signal the intent to start processing a new command. A session supports processing a single command at a time. Results are reading lazily from the
-     * wire. It is necessary to flush any pending result before starting a new command. This method performs the flush if necessary.
+     * Signal the intent to start processing a new command. A session supports processing a single
+     * command at a time. Results are reading lazily from the wire. It is necessary to flush any
+     * pending result before starting a new command. This method performs the flush if necessary.
      */
     protected void newCommand() {
         if (this.currentResultStreamer != null) {
@@ -500,12 +500,10 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
 
     /**
      *
-     * @param filterParams
-     *            {@link FilterParams}
-     * @param callbacks
-     *            {@link ResultListener}
-     * @param errorFuture
-     *            the {@link CompletableFuture} to complete exceptionally if the request fails
+     * @param filterParams {@link FilterParams}
+     * @param callbacks {@link ResultListener}
+     * @param errorFuture the {@link CompletableFuture} to complete exceptionally if the request
+     * fails
      */
     public void asyncFind(FilterParams filterParams, ResultListener<StatementExecuteOk> callbacks, CompletableFuture<?> errorFuture) {
         newCommand();
@@ -580,7 +578,7 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
      * Get the capabilities from the server.
      * <p>
      * <b>NOTE:</b> This must be called before authentication.
-     * 
+     *
      * @return capabilities mapped by name
      */
     public ServerCapabilities readServerCapabilities() {

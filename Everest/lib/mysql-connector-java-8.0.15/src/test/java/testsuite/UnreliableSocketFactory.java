@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite;
 
 import java.io.Closeable;
@@ -51,15 +50,17 @@ import com.mysql.cj.conf.PropertySet;
 import com.mysql.cj.protocol.StandardSocketFactory;
 
 /**
- * Configure "socketFactory" to use this class in your JDBC URL, and it will operate as normal, unless you map some host aliases to actual IP addresses, and
- * then have the test driver call hangOnConnect/Read/Write() which simulate the given failure condition for the host with the <b>alias</b> argument, and will
- * honor connect or socket timeout properties.
- * 
+ * Configure "socketFactory" to use this class in your JDBC URL, and it will operate as normal,
+ * unless you map some host aliases to actual IP addresses, and then have the test driver call
+ * hangOnConnect/Read/Write() which simulate the given failure condition for the host with the
+ * <b>alias</b> argument, and will honor connect or socket timeout properties.
+ *
  * You can also cause a host to be immediately-downed by calling downHost() with an alias.
- * 
+ *
  * ATTENTION! This class is *NOT* thread safe.
  */
 public class UnreliableSocketFactory extends StandardSocketFactory {
+
     public static final String STATUS_UNKNOWN = "?";
     public static final String STATUS_CONNECTED = "/";
     public static final String STATUS_FAILED = "\\";
@@ -441,6 +442,7 @@ public class UnreliableSocketFactory extends StandardSocketFactory {
     }
 
     static class HangingInputStream extends InputStream {
+
         final InputStream underlyingInputStream;
         final PropertySet propSet;
         final String aliasedHostname;

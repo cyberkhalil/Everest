@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.fail;
@@ -48,6 +47,7 @@ import com.mysql.cj.xdevapi.Session;
 import testsuite.TestUtils;
 
 public class Ipv6SupportTest extends DevApiBaseTestCase {
+
     List<String> ipv6Addrs;
     String testUser = "testIPv6User";
 
@@ -73,8 +73,9 @@ public class Ipv6SupportTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests the creation of {@link Session}s referencing the host by its IPv6. This feature was introduced in MySQL 5.7.17 and requires a server started
-     * with the option "mysqlx-bind-address=*" (future versions may set this value by default).
+     * Tests the creation of {@link Session}s referencing the host by its IPv6. This feature was
+     * introduced in MySQL 5.7.17 and requires a server started with the option
+     * "mysqlx-bind-address=*" (future versions may set this value by default).
      */
     @Test
     public void testIpv6SupportInSession() {
@@ -83,8 +84,8 @@ public class Ipv6SupportTest extends DevApiBaseTestCase {
         Assume.assumeTrue("Server version 5.7.17 or higher is required.", mysqlVersionMeetsMinimum(ServerVersion.parseVersion("5.7.17")));
 
         // Although per specification IPv6 addresses must be enclosed by square brackets, we actually support them directly.
-        String[] urls = new String[] { "mysqlx://%s:%s@%s:%d", "mysqlx://%s:%s@[%s]:%d", "mysqlx://%s:%s@(address=%s:%d)", "mysqlx://%s:%s@(address=[%s]:%d)",
-                "mysqlx://%s:%s@address=(host=%s)(port=%d)", "mysqlx://%s:%s@address=(host=[%s])(port=%d)" };
+        String[] urls = new String[]{"mysqlx://%s:%s@%s:%d", "mysqlx://%s:%s@[%s]:%d", "mysqlx://%s:%s@(address=%s:%d)", "mysqlx://%s:%s@(address=[%s]:%d)",
+            "mysqlx://%s:%s@address=(host=%s)(port=%d)", "mysqlx://%s:%s@address=(host=[%s])(port=%d)"};
 
         int port = getTestPort();
 

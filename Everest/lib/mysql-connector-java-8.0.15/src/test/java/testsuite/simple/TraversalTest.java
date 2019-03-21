@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.ResultSet;
@@ -42,7 +41,7 @@ public class TraversalTest extends BaseTestCase {
 
     /**
      * Creates a new TraversalTest object.
-     * 
+     *
      * @param name
      */
     public TraversalTest(String name) {
@@ -51,7 +50,7 @@ public class TraversalTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

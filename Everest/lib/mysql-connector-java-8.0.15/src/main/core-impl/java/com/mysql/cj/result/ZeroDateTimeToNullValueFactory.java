@@ -26,16 +26,15 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 /**
  * A decorating value factory which translates zero date/time values into NULL.
- * 
- * @param <T>
- *            value type
+ *
+ * @param <T> value type
  */
 public class ZeroDateTimeToNullValueFactory<T> extends BaseDecoratingValueFactory<T> {
+
     public ZeroDateTimeToNullValueFactory(ValueFactory<T> targetVf) {
         super(targetVf);
     }

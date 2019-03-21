@@ -394,7 +394,7 @@ public class BookJFrame extends javax.swing.JFrame {
             }
         }
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query = "select BookName from book where Bought = 'No'";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement = conn.prepareStatement(query);
@@ -414,7 +414,7 @@ public class BookJFrame extends javax.swing.JFrame {
             if (BookNameComboBox.getItemCount() < 1) {
                 System.out.println("Data Cleared");
             } else {
-                Connection conn = login.getConnection();
+                Connection conn = Login.getConnection();
                 bookname = BookNameComboBox.getSelectedItem().toString();
                 String query = "select Price,BookId from book where BookName =?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -434,7 +434,7 @@ public class BookJFrame extends javax.swing.JFrame {
 
     public void getID(int IDNum) {
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             int StdID = 0;
             String query1 = "select StdID from student where IDCardNum = ?";
             PreparedStatement ps = conn.prepareStatement(query1);
@@ -457,7 +457,7 @@ public class BookJFrame extends javax.swing.JFrame {
     private void BookNameComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_BookNameComboBoxItemStateChanged
         try {
             if (Bookswitch == 0) {
-                Connection conn = login.getConnection();
+                Connection conn = Login.getConnection();
                 String bookname = BookNameComboBox.getSelectedItem().toString();
                 String query = "select Price,BookId from book where BookName =?";
                 PreparedStatement ps = conn.prepareStatement(query);
@@ -479,7 +479,7 @@ public class BookJFrame extends javax.swing.JFrame {
 
     private void CommitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CommitBtnActionPerformed
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             int stdid = Integer.parseInt(IDField.toString());
             int bookid = Integer.parseInt(BookIDLabel.getText());
             //-------------           

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.sql.Connection;
@@ -55,10 +54,11 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#73663 (19479242), utf8mb4 does not work for connector/j >=5.1.13
-     * 
-     * This test is only run when character_set_server=utf8mb4 and collation-server set to one of utf8mb4 collations (it's better to test two configurations:
-     * with default utf8mb4_general_ci and one of non-default, say utf8mb4_bin)
-     * 
+     *
+     * This test is only run when character_set_server=utf8mb4 and collation-server set to one of
+     * utf8mb4 collations (it's better to test two configurations: with default utf8mb4_general_ci
+     * and one of non-default, say utf8mb4_bin)
+     *
      * @throws Exception
      */
     public void testBug73663() throws Exception {
@@ -85,6 +85,7 @@ public class CharsetRegressionTest extends BaseTestCase {
      * Statement interceptor used to implement preceding test.
      */
     public static class Bug73663QueryInterceptor extends BaseQueryInterceptor {
+
         @Override
         public <T extends Resultset> T preProcess(Supplier<String> str, Query interceptedQuery) {
             String sql = str.get();
@@ -97,7 +98,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#72630 (18758686), NullPointerException during handshake in some situations
-     * 
+     *
      * @throws Exception
      */
     public void testBug72630() throws Exception {
@@ -142,7 +143,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#25504578, CONNECT FAILS WHEN CONNECTIONCOLLATION=ISO-8859-13
-     * 
+     *
      * @throws Exception
      */
     public void testBug25504578() throws Exception {
@@ -156,7 +157,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#81196 (23227334), CONNECTOR/J NOT FOLLOWING DATABASE CHARACTER SET.
-     * 
+     *
      * @throws Exception
      */
     public void testBug81196() throws Exception {
@@ -166,7 +167,7 @@ public class CharsetRegressionTest extends BaseTestCase {
 
             createTable("testBug81196", //"TestDb.TestTable",
                     "(`id` int AUTO_INCREMENT NOT NULL, `name` varchar(50)  NULL," + "CONSTRAINT `PK_LastViewedMatch_id` PRIMARY KEY  (`id`))"
-                            + " ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci");
+                    + " ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci");
 
             Properties p = new Properties();
 

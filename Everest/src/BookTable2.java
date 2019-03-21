@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
 
 public class BookTable2 extends javax.swing.JFrame {
 
-    Connection conn = login.getConnection();
+    Connection conn = Login.getConnection();
     Book book;
     int BookId = 0;
     String BookName = null;
@@ -82,7 +82,7 @@ public class BookTable2 extends javax.swing.JFrame {
     }
 
     public void excuteSQLQuery(String Query, String message) {
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         Statement st;
         try {
             st = conn.createStatement();

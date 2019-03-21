@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.util;
 
 /**
  * EscapeTokenizer breaks up an SQL statement into SQL and escape code parts.
  */
 public class EscapeTokenizer {
+
     private static final char CHR_ESCAPE = '\\';
     private static final char CHR_SGL_QUOTE = '\'';
     private static final char CHR_DBL_QUOTE = '"';
@@ -55,9 +55,8 @@ public class EscapeTokenizer {
 
     /**
      * Creates a new EscapeTokenizer object.
-     * 
-     * @param source
-     *            the string to tokenize
+     *
+     * @param source the string to tokenize
      */
     public EscapeTokenizer(String source) {
         this.source = source;
@@ -67,7 +66,7 @@ public class EscapeTokenizer {
 
     /**
      * Does this tokenizer have more tokens available?
-     * 
+     *
      * @return if this tokenizer has more tokens available
      */
     public synchronized boolean hasMoreTokens() {
@@ -76,7 +75,7 @@ public class EscapeTokenizer {
 
     /**
      * Returns the next token
-     * 
+     *
      * @return the next token.
      */
     public synchronized String nextToken() {
@@ -179,9 +178,10 @@ public class EscapeTokenizer {
     }
 
     /**
-     * Returns true if a variable reference was found. Note that this information isn't accurate until finishing to
-     * process all tokens from source String. It also can't be used as per token basis.
-     * 
+     * Returns true if a variable reference was found. Note that this information isn't accurate
+     * until finishing to process all tokens from source String. It also can't be used as per token
+     * basis.
+     *
      * @return true if a variable reference was found.
      */
     public boolean sawVariableUse() {

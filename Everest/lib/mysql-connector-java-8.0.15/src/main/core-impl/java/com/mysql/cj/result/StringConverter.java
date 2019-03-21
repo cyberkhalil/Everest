@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import com.mysql.cj.Constants;
@@ -40,13 +39,15 @@ import com.mysql.cj.util.LogUtils;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * A string converter facilitates "indirect" conversions of values from strings to other non-string types. A byte array is interpreted as a string in the given
- * character set and then inspected to guess that the actual type may be. After this, it is decoded as that type and sent to the value factory.
- * 
- * @param <T>
- *            value type
+ * A string converter facilitates "indirect" conversions of values from strings to other non-string
+ * types. A byte array is interpreted as a string in the given character set and then inspected to
+ * guess that the actual type may be. After this, it is decoded as that type and sent to the value
+ * factory.
+ *
+ * @param <T> value type
  */
 public class StringConverter<T> extends BaseDecoratingValueFactory<T> {
+
     private String encoding;
     private boolean emptyStringsConvertToZero = false;
     private ProfilerEventHandler eventSink;
@@ -58,9 +59,8 @@ public class StringConverter<T> extends BaseDecoratingValueFactory<T> {
 
     /**
      * Should empty strings be treated as "0"?
-     * 
-     * @param val
-     *            value
+     *
+     * @param val value
      */
     public void setEmptyStringsConvertToZero(boolean val) {
         this.emptyStringsConvertToZero = val;
@@ -78,7 +78,7 @@ public class StringConverter<T> extends BaseDecoratingValueFactory<T> {
         }
 
         String message = Messages.getString("ResultSet.CostlyConversion",
-                new Object[] { this.targetVf.getTargetTypeName(), -1, "<unknown>", "<unknown>", "<unknown>", "<unknown>", "<unknown>", "<unknown>" });
+                new Object[]{this.targetVf.getTargetTypeName(), -1, "<unknown>", "<unknown>", "<unknown>", "<unknown>", "<unknown>", "<unknown>"});
 
         this.eventSink.consumeEvent(new ProfilerEventImpl(ProfilerEvent.TYPE_WARN, "", "<unknown>", -1, -1, -1, System.currentTimeMillis(), 0,
                 Constants.MILLIS_I18N, null, LogUtils.findCallingClassAndMethod(new Throwable()), message));
@@ -128,7 +128,7 @@ public class StringConverter<T> extends BaseDecoratingValueFactory<T> {
                 && s.charAt(4) == '-' && s.charAt(7) == '-' && s.charAt(10) == ' ' && s.charAt(13) == ':' && s.charAt(16) == ':') {
             return stringInterpreter.decodeTimestamp(bytes, 0, bytes.length, vf);
         }
-        throw new DataConversionException(Messages.getString("ResultSet.UnableToInterpretString", new Object[] { s }));
+        throw new DataConversionException(Messages.getString("ResultSet.UnableToInterpretString", new Object[]{s}));
     }
 
     @Override

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.time.LocalTime;
@@ -39,6 +38,7 @@ import com.mysql.cj.exceptions.DataReadException;
  * A value factory to create {@link LocalTime} instances.
  */
 public class LocalTimeValueFactory extends DefaultValueFactory<LocalTime> {
+
     private WarningListener warningListener;
 
     public LocalTimeValueFactory() {
@@ -52,7 +52,7 @@ public class LocalTimeValueFactory extends DefaultValueFactory<LocalTime> {
     @Override
     public LocalTime createFromTime(int hours, int minutes, int seconds, int nanos) {
         if (hours < 0 || hours >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { "" + hours + ":" + minutes + ":" + seconds }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{"" + hours + ":" + minutes + ":" + seconds}));
         }
         return LocalTime.of(hours, minutes, seconds, nanos);
     }
@@ -60,7 +60,7 @@ public class LocalTimeValueFactory extends DefaultValueFactory<LocalTime> {
     @Override
     public LocalTime createFromTimestamp(int year, int month, int day, int hours, int minutes, int seconds, int nanos) {
         if (this.warningListener != null) {
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { getTargetTypeName() }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{getTargetTypeName()}));
         }
         // truncate date information
         return createFromTime(hours, minutes, seconds, nanos);

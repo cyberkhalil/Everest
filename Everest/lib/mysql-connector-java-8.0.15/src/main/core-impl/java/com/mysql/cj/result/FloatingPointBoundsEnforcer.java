@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -37,11 +36,11 @@ import com.mysql.cj.exceptions.NumberOutOfRange;
 
 /**
  * A decorating value factory to enforce floating point range limits.
- * 
- * @param <T>
- *            value type
+ *
+ * @param <T> value type
  */
 public class FloatingPointBoundsEnforcer<T> extends BaseDecoratingValueFactory<T> {
+
     private double min;
     private double max;
 
@@ -54,7 +53,7 @@ public class FloatingPointBoundsEnforcer<T> extends BaseDecoratingValueFactory<T
     @Override
     public T createFromLong(long l) {
         if (l < this.min || l > this.max) {
-            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[] { l, this.targetVf.getTargetTypeName() }));
+            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[]{l, this.targetVf.getTargetTypeName()}));
         }
         return this.targetVf.createFromLong(l);
     }
@@ -62,7 +61,7 @@ public class FloatingPointBoundsEnforcer<T> extends BaseDecoratingValueFactory<T
     @Override
     public T createFromBigInteger(BigInteger i) {
         if (new BigDecimal(i).compareTo(BigDecimal.valueOf(this.min)) < 0 || new BigDecimal(i).compareTo(BigDecimal.valueOf(this.max)) > 0) {
-            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[] { i, this.targetVf.getTargetTypeName() }));
+            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[]{i, this.targetVf.getTargetTypeName()}));
         }
         return this.targetVf.createFromBigInteger(i);
     }
@@ -70,7 +69,7 @@ public class FloatingPointBoundsEnforcer<T> extends BaseDecoratingValueFactory<T
     @Override
     public T createFromDouble(double d) {
         if (d < this.min || d > this.max) {
-            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[] { d, this.targetVf.getTargetTypeName() }));
+            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[]{d, this.targetVf.getTargetTypeName()}));
         }
         return this.targetVf.createFromDouble(d);
     }
@@ -78,7 +77,7 @@ public class FloatingPointBoundsEnforcer<T> extends BaseDecoratingValueFactory<T
     @Override
     public T createFromBigDecimal(BigDecimal d) {
         if (d.compareTo(BigDecimal.valueOf(this.min)) < 0 || d.compareTo(BigDecimal.valueOf(this.max)) > 0) {
-            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[] { d, this.targetVf.getTargetTypeName() }));
+            throw new NumberOutOfRange(Messages.getString("ResultSet.NumberOutOfRange", new Object[]{d, this.targetVf.getTargetTypeName()}));
         }
         return this.targetVf.createFromBigDecimal(d);
     }

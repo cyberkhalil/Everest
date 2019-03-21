@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf.url;
 
 import java.util.ArrayList;
@@ -44,6 +43,7 @@ import com.mysql.cj.conf.HostInfo;
 import com.mysql.cj.conf.PropertyKey;
 
 public class ReplicationConnectionUrl extends ConnectionUrl {
+
     private static final String TYPE_MASTER = "MASTER";
     private static final String TYPE_SLAVE = "SLAVE";
 
@@ -51,12 +51,12 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     private List<HostInfo> slaveHosts = new ArrayList<>();
 
     /**
-     * Constructs an instance of {@link ReplicationConnectionUrl}, performing all the required initializations.
-     * 
-     * @param connStrParser
-     *            a {@link ConnectionUrlParser} instance containing the parsed version of the original connection string
-     * @param info
-     *            the connection arguments map
+     * Constructs an instance of {@link ReplicationConnectionUrl}, performing all the required
+     * initializations.
+     *
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
+     * the original connection string
+     * @param info the connection arguments map
      */
     public ReplicationConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {
         super(connStrParser, info);
@@ -101,16 +101,13 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Constructs an instance of a {@link ReplicationConnectionUrl} based on a list of master hosts, a list of slave hosts and a global set of properties
-     * instead of connection string parsing.
+     * Constructs an instance of a {@link ReplicationConnectionUrl} based on a list of master hosts,
+     * a list of slave hosts and a global set of properties instead of connection string parsing.
      * {@link ConnectionUrl} instances created by this process are not cached.
-     * 
-     * @param masters
-     *            the master hosts list to use in this connection string
-     * @param slaves
-     *            the slave hosts list to use in this connection string
-     * @param properties
-     *            the properties common to all hosts
+     *
+     * @param masters the master hosts list to use in this connection string
+     * @param slaves the slave hosts list to use in this connection string
+     * @param properties the properties common to all hosts
      */
     public ReplicationConnectionUrl(List<HostInfo> masters, List<HostInfo> slaves, Map<String, String> properties) {
         this.originalConnStr = ConnectionUrl.Type.REPLICATION_CONNECTION.getScheme() + "//**internally_generated**" + System.currentTimeMillis() + "**";
@@ -125,10 +122,10 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns an existing master host info with the same host:port part or spawns a new isolated host info based on this connection URL if none was found.
-     * 
-     * @param hostPortPair
-     *            the host:port part to search for
+     * Returns an existing master host info with the same host:port part or spawns a new isolated
+     * host info based on this connection URL if none was found.
+     *
+     * @param hostPortPair the host:port part to search for
      * @return the existing host info or a new independent one
      */
     public HostInfo getMasterHostOrSpawnIsolated(String hostPortPair) {
@@ -137,7 +134,7 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
 
     /**
      * Returns the list of master hosts.
-     * 
+     *
      * @return the list of master hosts.
      */
     public List<HostInfo> getMastersList() {
@@ -146,7 +143,7 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
 
     /**
      * Returns a list of this connection URL master hosts in the form of host:port pairs.
-     * 
+     *
      * @return a list of this connection URL master hosts in the form of host:port pairs
      */
     public List<String> getMastersListAsHostPortPairs() {
@@ -154,11 +151,11 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port pairs in the corresponding hosts list. Isolated host info
-     * elements are spawned for the missing elements.
-     * 
-     * @param hostPortPairs
-     *            a list of host:port pairs
+     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port
+     * pairs in the corresponding hosts list. Isolated host info elements are spawned for the
+     * missing elements.
+     *
+     * @param hostPortPairs a list of host:port pairs
      * @return a list of {@link HostInfo} instances corresponding to the given host:port pairs
      */
     public List<HostInfo> getMasterHostsListFromHostPortPairs(Collection<String> hostPortPairs) {
@@ -166,10 +163,10 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns an existing slave host info with the same host:port part or spawns a new isolated host info based on this connection URL if none was found.
-     * 
-     * @param hostPortPair
-     *            the host:port part to search for
+     * Returns an existing slave host info with the same host:port part or spawns a new isolated
+     * host info based on this connection URL if none was found.
+     *
+     * @param hostPortPair the host:port part to search for
      * @return the existing host info or a new independent one
      */
     public HostInfo getSlaveHostOrSpawnIsolated(String hostPortPair) {
@@ -178,7 +175,7 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
 
     /**
      * Returns the list of slave hosts.
-     * 
+     *
      * @return the list of slave hosts.
      */
     public List<HostInfo> getSlavesList() {
@@ -187,7 +184,7 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
 
     /**
      * Returns a list of this connection URL master hosts in the form of host:port pairs.
-     * 
+     *
      * @return a list of this connection URL master hosts in the form of host:port pairs
      */
     public List<String> getSlavesListAsHostPortPairs() {
@@ -195,11 +192,11 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port pairs in the corresponding hosts list. Isolated host info
-     * elements are spawned for the missing elements.
-     * 
-     * @param hostPortPairs
-     *            a list of host:port pairs
+     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port
+     * pairs in the corresponding hosts list. Isolated host info elements are spawned for the
+     * missing elements.
+     *
+     * @param hostPortPairs a list of host:port pairs
      * @return a list of {@link HostInfo} instances corresponding to the given host:port pairs
      */
     public List<HostInfo> getSlaveHostsListFromHostPortPairs(Collection<String> hostPortPairs) {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.io.Serializable;
@@ -165,13 +164,12 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
     }
 
     /**
-     * Set the value of a property from a string value.
-     * It involves the {@link PropertyDefinition#parseObject(String, ExceptionInterceptor)} to validate and parse the string.
-     * 
-     * @param value
-     *            value
-     * @param exceptionInterceptor
-     *            exception interceptor
+     * Set the value of a property from a string value. It involves the
+     * {@link PropertyDefinition#parseObject(String, ExceptionInterceptor)} to validate and parse
+     * the string.
+     *
+     * @param value value
+     * @param exceptionInterceptor exception interceptor
      */
     public void setValueInternal(String value, ExceptionInterceptor exceptionInterceptor) {
         setValueInternal(getPropertyDefinition().parseObject(value, exceptionInterceptor), value, exceptionInterceptor);
@@ -179,13 +177,10 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
 
     /**
      * Internal method for setting property value; ignoring the RUNTIME_NOT_MODIFIABLE flag.
-     * 
-     * @param value
-     *            value
-     * @param valueAsString
-     *            value represented by String
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param value value
+     * @param valueAsString value represented by String
+     * @param exceptionInterceptor exception interceptor
      */
     public void setValueInternal(T value, String valueAsString, ExceptionInterceptor exceptionInterceptor) {
         if (getPropertyDefinition().isRangeBased()) {
@@ -197,13 +192,10 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
 
     /**
      * For range-based property, checks that value fit into range given by PropertyDefinition.
-     * 
-     * @param val
-     *            value
-     * @param valueAsString
-     *            value represented by String
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param val value
+     * @param valueAsString value represented by String
+     * @param exceptionInterceptor exception interceptor
      */
     protected void checkRange(T val, String valueAsString, ExceptionInterceptor exceptionInterceptor) {
         // no-op for not range-based properties
@@ -221,7 +213,7 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
             invokeListeners();
         } else {
             throw ExceptionFactory.createException(PropertyNotModifiableException.class,
-                    Messages.getString("ConnectionProperties.dynamicChangeIsNotAllowed", new Object[] { "'" + getPropertyDefinition().getName() + "'" }));
+                    Messages.getString("ConnectionProperties.dynamicChangeIsNotAllowed", new Object[]{"'" + getPropertyDefinition().getName() + "'"}));
         }
     }
 }

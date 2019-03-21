@@ -26,15 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 /**
- * Represents protocol specific result set,
- * eg., for native protocol, a ProtocolText::Resultset or ProtocolBinary::Resultset entity.
- * 
- * See:
- * http://dev.mysql.com/doc/internals/en/com-query-response.html#packet-ProtocolText::Resultset
+ * Represents protocol specific result set, eg., for native protocol, a ProtocolText::Resultset or
+ * ProtocolBinary::Resultset entity.
+ *
+ * See: http://dev.mysql.com/doc/internals/en/com-query-response.html#packet-ProtocolText::Resultset
  * http://dev.mysql.com/doc/internals/en/binary-protocol-resultset.html
  *
  */
@@ -42,14 +40,13 @@ public interface Resultset extends ProtocolEntity {
 
     public enum Concurrency {
         /**
-         * The constant indicating the concurrency mode for a
-         * <code>Resultset</code> object that may NOT be updated.
+         * The constant indicating the concurrency mode for a <code>Resultset</code> object that may
+         * NOT be updated.
          */
         READ_ONLY(java.sql.ResultSet.CONCUR_READ_ONLY),
-
         /**
-         * The constant indicating the concurrency mode for a
-         * <code>Resultset</code> object that may be updated.
+         * The constant indicating the concurrency mode for a <code>Resultset</code> object that may
+         * be updated.
          */
         UPDATABLE(java.sql.ResultSet.CONCUR_UPDATABLE);
 
@@ -76,22 +73,19 @@ public interface Resultset extends ProtocolEntity {
 
     public enum Type {
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
-         * whose cursor may move only forward.
+         * The constant indicating the type for a <code>Resultset</code> object whose cursor may
+         * move only forward.
          */
         FORWARD_ONLY(java.sql.ResultSet.TYPE_FORWARD_ONLY),
-
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
-         * that is scrollable but generally not sensitive to changes to the data
-         * that underlies the <code>Resultset</code>.
+         * The constant indicating the type for a <code>Resultset</code> object that is scrollable
+         * but generally not sensitive to changes to the data that underlies the
+         * <code>Resultset</code>.
          */
         SCROLL_INSENSITIVE(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE),
-
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
-         * that is scrollable and generally sensitive to changes to the data
-         * that underlies the <code>Resultset</code>.
+         * The constant indicating the type for a <code>Resultset</code> object that is scrollable
+         * and generally sensitive to changes to the data that underlies the <code>Resultset</code>.
          */
         SCROLL_SENSITIVE(java.sql.ResultSet.TYPE_SCROLL_SENSITIVE);
 
@@ -116,13 +110,12 @@ public interface Resultset extends ProtocolEntity {
     }
 
     /**
-     * Sometimes the driver doesn't have metadata before consuming the result set rows (because it's cached),
-     * or need to coerce the metadata returned by queries into that required by the particular specification
-     * (eg metadata returned by metadata queries into that required by the JDBC specification).
-     * So it can call this to set it after the fact.
-     * 
-     * @param metadata
-     *            field-level metadata for the result set
+     * Sometimes the driver doesn't have metadata before consuming the result set rows (because it's
+     * cached), or need to coerce the metadata returned by queries into that required by the
+     * particular specification (eg metadata returned by metadata queries into that required by the
+     * JDBC specification). So it can call this to set it after the fact.
+     *
+     * @param metadata field-level metadata for the result set
      */
     void setColumnDefinition(ColumnDefinition metadata);
 
@@ -130,7 +123,7 @@ public interface Resultset extends ProtocolEntity {
 
     /**
      * Does the result set contain rows, or is it the result of a DDL or DML statement?
-     * 
+     *
      * @return true if result set contains rows
      */
     boolean hasRows();
@@ -144,53 +137,47 @@ public interface Resultset extends ProtocolEntity {
 
     /**
      * The id (used when profiling) to identify us
-     * 
+     *
      * @return result id
      */
     int getResultId();
 
     /**
-     * @param nextResultset
-     *            Sets the next result set in the result set chain for multiple result sets.
+     * @param nextResultset Sets the next result set in the result set chain for multiple result
+     * sets.
      */
     void setNextResultset(Resultset nextResultset);
 
     /**
-     * Returns the next ResultSet in a multi-resultset "chain", if any,
-     * null if none exists.
-     * 
+     * Returns the next ResultSet in a multi-resultset "chain", if any, null if none exists.
+     *
      * @return the next Resultset
      */
     Resultset getNextResultset();
 
     /**
-     * Clears the reference to the next result set in a multi-result set
-     * "chain".
+     * Clears the reference to the next result set in a multi-result set "chain".
      */
     void clearNextResultset();
 
     /**
-     * Returns the update count for this result set (if one exists), otherwise
-     * -1.
-     * 
-     * @return return the update count for this result set (if one exists), otherwise
-     *         -1.
+     * Returns the update count for this result set (if one exists), otherwise -1.
+     *
+     * @return return the update count for this result set (if one exists), otherwise -1.
      */
     long getUpdateCount();
 
     /**
-     * Returns the AUTO_INCREMENT value for the DDL/DML statement which created
-     * this result set.
-     * 
-     * @return the AUTO_INCREMENT value for the DDL/DML statement which created
-     *         this result set.
+     * Returns the AUTO_INCREMENT value for the DDL/DML statement which created this result set.
+     *
+     * @return the AUTO_INCREMENT value for the DDL/DML statement which created this result set.
      */
     long getUpdateID();
 
     /**
-     * Returns the server informational message returned from a DDL or DML
-     * statement (if any), or null if none.
-     * 
+     * Returns the server informational message returned from a DDL or DML statement (if any), or
+     * null if none.
+     *
      * @return the server informational message
      */
     String getServerInfo();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static com.mysql.cj.xdevapi.Expression.expr;
@@ -221,7 +220,6 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
 
         // TODO check later whether it's possible; for now placeholders are of Scalar type only
         //assertEquals(1, this.collection.find("y = :y").bind("y", nestedDoc).execute().count());
-
         // literal won't match JSON docs
         assertEquals(0, this.collection.find("y = :y").bind("y", "{\"z\": 100}").execute().count());
 
@@ -274,10 +272,10 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Tests fix for BUG#24471057, UPDATE FAILS WHEN THE NEW VALUE IS OF TYPE DBDOC WHICH HAS ARRAY IN IT.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#24471057, UPDATE FAILS WHEN THE NEW VALUE IS OF TYPE DBDOC WHICH HAS ARRAY
+     * IN IT.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug24471057() throws Exception {
@@ -480,7 +478,6 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
         assertNull(doc2.get("country"));
 
         // Using expressions
-
         this.collection.modify("_id = :id").patch("{\"zip\": address.zip-300000, \"street\": CONCAT($.name, '''s street: ', $.address.street)}").bind("id", "2")
                 .execute();
 
@@ -500,10 +497,10 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Tests fix for BUG#27185332, WL#11210:ERROR IS THROWN WHEN NESTED EMPTY DOCUMENTS ARE INSERTED TO COLLECTION.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#27185332, WL#11210:ERROR IS THROWN WHEN NESTED EMPTY DOCUMENTS ARE INSERTED
+     * TO COLLECTION.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug27185332() throws Exception {

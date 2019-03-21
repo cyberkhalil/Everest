@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.sql.SQLException;
@@ -45,6 +44,7 @@ import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.util.StringUtils;
 
 public class LoadBalancedAutoCommitInterceptor implements QueryInterceptor {
+
     private int matchingAfterStatementCount = 0;
     private int matchingAfterStatementThreshold = 0;
     private String matchingAfterStatementRegex;

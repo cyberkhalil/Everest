@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.sql.SQLException;
@@ -37,6 +36,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ReplicationConnectionGroupManager {
+
     private static HashMap<String, ReplicationConnectionGroup> GROUP_MAP = new HashMap<>();
 
     private static com.mysql.cj.jdbc.jmx.ReplicationGroupManager mbean = new com.mysql.cj.jdbc.jmx.ReplicationGroupManager();

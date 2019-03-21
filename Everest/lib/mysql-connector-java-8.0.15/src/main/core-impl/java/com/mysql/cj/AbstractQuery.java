@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.ArrayList;
@@ -49,51 +48,78 @@ import com.mysql.cj.protocol.Resultset.Type;
 //TODO should not be protocol-specific
 public abstract class AbstractQuery implements Query {
 
-    /** Used to generate IDs when profiling. */
+    /**
+     * Used to generate IDs when profiling.
+     */
     static int statementCounter = 1;
 
     public NativeSession session = null;
 
-    /** Used to identify this statement when profiling. */
+    /**
+     * Used to identify this statement when profiling.
+     */
     protected int statementId;
 
-    /** Should we profile? */
+    /**
+     * Should we profile?
+     */
     protected boolean profileSQL = false;
 
     protected RuntimeProperty<Integer> maxAllowedPacket;
 
-    /** The character encoding to use (if available) */
+    /**
+     * The character encoding to use (if available)
+     */
     protected String charEncoding = null;
 
-    /** Mutex to prevent race between returning query results and noticing that query has been timed-out or cancelled. */
+    /**
+     * Mutex to prevent race between returning query results and noticing that query has been
+     * timed-out or cancelled.
+     */
     protected Object cancelTimeoutMutex = new Object();
 
     private CancelStatus cancelStatus = CancelStatus.NOT_CANCELED;
 
-    /** The timeout for a query */
+    /**
+     * The timeout for a query
+     */
     protected int timeoutInMillis = 0;
 
-    /** Holds batched commands */
+    /**
+     * Holds batched commands
+     */
     protected List<Object> batchedArgs;
 
     protected boolean useCursorFetch = false;
 
-    /** The type of this result set (scroll sensitive or in-sensitive) */
+    /**
+     * The type of this result set (scroll sensitive or in-sensitive)
+     */
     protected Resultset.Type resultSetType = Type.FORWARD_ONLY;
 
-    /** The number of rows to fetch at a time (currently ignored) */
+    /**
+     * The number of rows to fetch at a time (currently ignored)
+     */
     protected int fetchSize = 0;
 
-    /** If profiling, where should events go to? */
+    /**
+     * If profiling, where should events go to?
+     */
     protected ProfilerEventHandler eventSink = null;
 
-    /** Currently executing a statement? */
+    /**
+     * Currently executing a statement?
+     */
     protected final AtomicBoolean statementExecuting = new AtomicBoolean(false);
 
-    /** The catalog in use */
+    /**
+     * The catalog in use
+     */
     protected String currentCatalog = null;
 
-    /** Has clearWarnings() been called? */
+    /**
+     * Has clearWarnings() been called?
+     */
     protected boolean clearWarningsCalled = false;
 
     public AbstractQuery(NativeSession sess) {

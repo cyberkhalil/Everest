@@ -14,7 +14,7 @@ import javax.swing.table.TableModel;
 
 public class courseTableJframe2 extends javax.swing.JFrame {
 
-    Connection conn = login.getConnection();
+    Connection conn = Login.getConnection();
     Course course;
     int Student_num = 0;
 

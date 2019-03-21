@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 import java.net.BindException;
@@ -70,15 +69,11 @@ public class ExceptionFactory {
     }
 
     /**
-     * 
-     * @param clazz
-     *            exception class
-     * @param message
-     *            message
-     * @param interceptor
-     *            exception interceptor
-     * @param <T>
-     *            {@link CJException}
+     *
+     * @param clazz exception class
+     * @param message message
+     * @param interceptor exception interceptor
+     * @param <T> {@link CJException}
      * @return {@link CJException} instance
      */
     public static <T extends CJException> T createException(Class<T> clazz, String message, ExceptionInterceptor interceptor) {
@@ -92,7 +87,6 @@ public class ExceptionFactory {
         //        return interceptedEx;
         //    }
         //}
-
         return sqlEx;
     }
 
@@ -134,17 +128,12 @@ public class ExceptionFactory {
     }
 
     /**
-     * 
-     * @param clazz
-     *            exception class
-     * @param message
-     *            message
-     * @param cause
-     *            exception caused this one
-     * @param interceptor
-     *            exception interceptor
-     * @param <T>
-     *            {@link CJException}
+     *
+     * @param clazz exception class
+     * @param message message
+     * @param cause exception caused this one
+     * @param interceptor exception interceptor
+     * @param <T> {@link CJException}
      * @return {@link CJException} instance
      */
     public static <T extends CJException> T createException(Class<T> clazz, String message, Throwable cause, ExceptionInterceptor interceptor) {
@@ -158,7 +147,6 @@ public class ExceptionFactory {
         //        return interceptedEx;
         //    }
         //}
-
         return sqlEx;
     }
 
@@ -175,24 +163,18 @@ public class ExceptionFactory {
         //        return interceptedEx;
         //    }
         //}
-
         return sqlEx;
     }
 
     /**
-     * Creates a communications link failure message to be used in CommunicationsException
-     * that (hopefully) has some better information and suggestions based on heuristics.
-     * 
-     * @param propertySet
-     *            property set
-     * @param serverSession
-     *            server session
-     * @param packetSentTimeHolder
-     *            packetSentTimeHolder
-     * @param packetReceivedTimeHolder
-     *            packetReceivedTimeHolder
-     * @param underlyingException
-     *            underlyingException
+     * Creates a communications link failure message to be used in CommunicationsException that
+     * (hopefully) has some better information and suggestions based on heuristics.
+     *
+     * @param propertySet property set
+     * @param serverSession server session
+     * @param packetSentTimeHolder packetSentTimeHolder
+     * @param packetReceivedTimeHolder packetReceivedTimeHolder
+     * @param underlyingException underlyingException
      * @return message
      */
     public static String createLinkFailureMessageBasedOnHeuristics(PropertySet propertySet, ServerSession serverSession,
@@ -264,11 +246,11 @@ public class ExceptionFactory {
         if (dueToTimeout == DUE_TO_TIMEOUT_TRUE || dueToTimeout == DUE_TO_TIMEOUT_MAYBE) {
 
             if (lastPacketReceivedTimeMs != 0) {
-                Object[] timingInfo = { Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs) };
+                Object[] timingInfo = {Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs)};
                 exceptionMessageBuf.append(Messages.getString("CommunicationsException.ServerPacketTimingInfo", timingInfo));
             } else {
                 exceptionMessageBuf.append(
-                        Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[] { Long.valueOf(timeSinceLastPacketSentMs) }));
+                        Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv", new Object[]{Long.valueOf(timeSinceLastPacketSentMs)}));
             }
 
             if (timeoutMessageBuf != null) {
@@ -301,11 +283,11 @@ public class ExceptionFactory {
             if (propertySet.getBooleanProperty(PropertyKey.maintainTimeStats).getValue() && !propertySet.getBooleanProperty(PropertyKey.paranoid).getValue()) {
                 exceptionMessageBuf.append("\n\n");
                 if (lastPacketReceivedTimeMs != 0) {
-                    Object[] timingInfo = { Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs) };
+                    Object[] timingInfo = {Long.valueOf(timeSinceLastPacketReceivedMs), Long.valueOf(timeSinceLastPacketSentMs)};
                     exceptionMessageBuf.append(Messages.getString("CommunicationsException.ServerPacketTimingInfo", timingInfo));
                 } else {
                     exceptionMessageBuf.append(Messages.getString("CommunicationsException.ServerPacketTimingInfoNoRecv",
-                            new Object[] { Long.valueOf(timeSinceLastPacketSentMs) }));
+                            new Object[]{Long.valueOf(timeSinceLastPacketSentMs)}));
                 }
             }
         }

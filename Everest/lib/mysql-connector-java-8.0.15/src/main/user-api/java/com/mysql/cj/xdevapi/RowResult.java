@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.List;
@@ -35,23 +34,24 @@ import java.util.List;
  * A result exposing a set of rows from a SELECT query.
  */
 public interface RowResult extends FetchResult<Row> {
+
     /**
      * Count of columns.
-     * 
+     *
      * @return count
      */
     int getColumnCount();
 
     /**
      * Metadata.
-     * 
+     *
      * @return list of result {@link Column} objects
      */
     List<Column> getColumns();
 
     /**
      * Names of columns.
-     * 
+     *
      * @return list of result column names
      */
     List<String> getColumnNames();

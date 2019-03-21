@@ -16,7 +16,7 @@ public class userEntry {
 
     public String createUser(User u, String str1, String str2, String Str3) {
         try {
-            Connection connect = login.getConnection();
+            Connection connect = Login.getConnection();
             String query = " insert into user (Username,Password,Privilege)"
                     + " values (?,?,?)";
             // create the mysql insert preparedstatement
@@ -35,7 +35,7 @@ public class userEntry {
 
     public void createStudent(Student s, String name, int ID, int phone, String paymentMethod, double paid, double totalprice, double discount, double net) {
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query = " insert into Student(StdName,IDCardNum,StdPhoneNum,paymentMethod,AddedBy,discount)"
                     + " values (?,?,?,?,?,?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class userEntry {
             preparedStmt.setInt(2, ID);
             preparedStmt.setInt(3, s.getPhoneNumber());
             preparedStmt.setString(4, s.getPaymentMethod());
-            preparedStmt.setString(5, login.CurrentUser);
+            preparedStmt.setString(5, Login.CurrentUser);
             preparedStmt.setDouble(6, s.getDiscount());
             preparedStmt.execute();
 
@@ -82,7 +82,7 @@ public class userEntry {
 
     public int getItemID(String item, int std) {
         int id = 0;
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         try {
             if (item.equals("Book")) {
                 String query1 = "select BookId from book where student_id_fk = ?";
@@ -126,7 +126,7 @@ public class userEntry {
 
     public int getMaxPaymentID() {
         int paymentID = 0;
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         try {
             String query1 = "select max(PaymentNo)as id from payments";
             PreparedStatement ps = conn.prepareStatement(query1);
@@ -145,7 +145,7 @@ public class userEntry {
 
     public void addItem(String Item, int ItemID) {
         ItemID = 0;
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         int paymentID = this.getMaxPaymentID();
         try {
             String query2 = "insert into payment_item (PaymentID,Item,ItemID) values (?,?,?)";
@@ -162,7 +162,7 @@ public class userEntry {
 
     public void createBook(Book b) {
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query = " insert into book (BookId,BookName,price)"
                     + " values (?,?,?)";
             // create the mysql insert preparedstatement
@@ -182,7 +182,7 @@ public class userEntry {
 
     public String addToStudentCourse(int str1, int str3) {
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query = " insert into student_course (student_id_fk,course_id_fk)"
                     + " values (?,?)";
             // create the mysql insert preparedstatement

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.internal;
 
 import static org.junit.Assert.fail;
@@ -62,9 +61,11 @@ import testsuite.TestUtils;
  * Base class for tests of X DevAPI and X Protocol client internal components.
  */
 public class InternalXBaseTestCase {
+
     /**
-     * The default character set used to interpret metadata. Use <i>latin1</i> - MySQL's default. This value is provided by higher layers above the protocol so
-     * we avoid issues by using only ASCII characters for metadata in these tests.
+     * The default character set used to interpret metadata. Use <i>latin1</i> - MySQL's default.
+     * This value is provided by higher layers above the protocol so we avoid issues by using only
+     * ASCII characters for metadata in these tests.
      */
     protected static final String DEFAULT_METADATA_CHARSET = "latin1";
 
@@ -133,7 +134,7 @@ public class InternalXBaseTestCase {
         XProtocol protocol = createTestProtocol();
         XMessageBuilder messageBuilder = (XMessageBuilder) protocol.getMessageBuilder();
 
-        AuthMech authMech = protocol.getPropertySet().<AuthMech> getEnumProperty(PropertyKey.xdevapiAuth).getValue();
+        AuthMech authMech = protocol.getPropertySet().<AuthMech>getEnumProperty(PropertyKey.xdevapiAuth).getValue();
         boolean overTLS = ((XServerCapabilities) protocol.getServerSession().getCapabilities()).getTls();
 
         // Choose the best default auth mechanism.
@@ -247,10 +248,10 @@ public class InternalXBaseTestCase {
     }
 
     /**
-     * Checks if the MySQL version we are connected to meets the minimum {@link ServerVersion} provided.
-     * 
-     * @param version
-     *            the minimum {@link ServerVersion} accepted
+     * Checks if the MySQL version we are connected to meets the minimum {@link ServerVersion}
+     * provided.
+     *
+     * @param version the minimum {@link ServerVersion} accepted
      * @return true or false according to versions comparison
      */
     protected boolean mysqlVersionMeetsMinimum(ServerVersion version) {

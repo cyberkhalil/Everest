@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.IOException;
@@ -37,37 +36,29 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 public interface ProtocolEntityReader<T extends ProtocolEntity, M extends Message> {
 
     /**
-     * 
-     * @param sf
-     *            {@link ProtocolEntityFactory} instance
+     *
+     * @param sf {@link ProtocolEntityFactory} instance
      * @return {@link ProtocolEntity} instance
-     * @throws IOException
-     *             if an error occurs
+     * @throws IOException if an error occurs
      */
     default T read(ProtocolEntityFactory<T, M> sf) throws IOException {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, "Not allowed");
     }
 
     /**
-     * Reads one result set off of the wire, if the result is actually an
-     * update count, creates an update-count only result set.
-     * 
-     * @param maxRows
-     *            the maximum number of rows to read (-1 means all rows)
-     * @param streamResults
-     *            should the driver leave the results on the wire,
-     *            and read them only when needed?
-     * @param resultPacket
-     *            the first packet of information in the result set
-     * @param metadata
-     *            use this metadata instead of the one provided on wire
-     * @param protocolEntityFactory
-     *            {@link ProtocolEntityFactory} instance
-     * 
+     * Reads one result set off of the wire, if the result is actually an update count, creates an
+     * update-count only result set.
+     *
+     * @param maxRows the maximum number of rows to read (-1 means all rows)
+     * @param streamResults should the driver leave the results on the wire, and read them only when
+     * needed?
+     * @param resultPacket the first packet of information in the result set
+     * @param metadata use this metadata instead of the one provided on wire
+     * @param protocolEntityFactory {@link ProtocolEntityFactory} instance
+     *
      * @return a result set that either represents the rows, or an update count
-     * 
-     * @throws IOException
-     *             if an error occurs while reading the rows
+     *
+     * @throws IOException if an error occurs while reading the rows
      */
     default T read(int maxRows, boolean streamResults, M resultPacket, ColumnDefinition metadata, ProtocolEntityFactory<T, M> protocolEntityFactory)
             throws IOException {

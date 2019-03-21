@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.io.IOException;
@@ -61,19 +60,22 @@ import com.mysql.cj.x.protobuf.Mysqlx.ServerMessages;
 import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
 
 /**
- * Asynchronous low-level message reader for Protocol buffers encoded messages delivered by X Protocol.
- * The <i>MessageReader</i> will generally be used in one of two ways (See note regarding exceptions for Error messages):
+ * Asynchronous low-level message reader for Protocol buffers encoded messages delivered by X
+ * Protocol. The <i>MessageReader</i> will generally be used in one of two ways (See note regarding
+ * exceptions for Error messages):
  * <ul>
- * <li>The next message type is known and it's an error to read any other type of message. The caller will generally call the reader like so:
- * 
+ * <li>The next message type is known and it's an error to read any other type of message. The
+ * caller will generally call the reader like so:
+ *
  * <pre>
  * MessageType msg = reader.readPayload(null, 0, ServerMessages.Type.THE_TYPE_VALUE);
  * </pre>
- * 
+ *
  * </li>
- * <li>The next message type is not known and the caller must conditionally decide what to do based on the type of the next message. The {@link
+ * <li>The next message type is not known and the caller must conditionally decide what to do based
+ * on the type of the next message. The {@link
  * #readHeader()} method supports this use case. The caller will generally call the reader like so:
- * 
+ *
  * <pre>
  * XMessageHeader header = reader.readHeader();
  * if (header.getMessageType() == ServerMessages.Type.TYPE_1_VALUE) {
@@ -84,26 +86,32 @@ import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
  *     // do something with msg2
  * }
  * </pre>
- * 
+ *
  * </li>
  * </ul>
  * <p>
- * If the <i>MessageReader</i> encounters an <i>Error</i> message, it will throw a {@link XProtocolError} exception to indicate that an error was returned from
- * the server.
+ * If the <i>MessageReader</i> encounters an <i>Error</i> message, it will throw a
+ * {@link XProtocolError} exception to indicate that an error was returned from the server.
  * </p>
  * <p>
- * All external interaction should know about message <i>types</i> listed in com.mysql.cj.x.protobuf.Mysqlx.ServerMessages.
+ * All external interaction should know about message <i>types</i> listed in
+ * com.mysql.cj.x.protobuf.Mysqlx.ServerMessages.
  * </p>
  * TODO: write about async usage
  */
 public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessage> {
+
     private static int READ_AHEAD_DEPTH = 10;
 
     CompletedRead currentReadResult;
-    /** Dynamic buffer to store the message body. */
+    /**
+     * Dynamic buffer to store the message body.
+     */
     ByteBuffer messageBuf;
     private PropertySet propertySet;
-    /** The channel that we operate on. */
+    /**
+     * The channel that we operate on.
+     */
     SocketConnection sc;
 
     CompletionHandler<Integer, Void> headerCompletionHandler = new HeaderCompletionHandler();
@@ -112,22 +120,30 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
     RuntimeProperty<Integer> asyncTimeout;
 
     /**
-     * The current <code>MessageListener</code>. This is set to <code>null</code> immediately following the listener's indicator that it is done reading
-     * messages. It is set again when the next message is read and the next <code>MessageListener</code> is taken from the queue.
+     * The current <code>MessageListener</code>. This is set to <code>null</code> immediately
+     * following the listener's indicator that it is done reading messages. It is set again when the
+     * next message is read and the next <code>MessageListener</code> is taken from the queue.
      */
     MessageListener<XMessage> currentMessageListener;
-    /** Queue of <code>MessageListener</code>s waiting to process messages. */
+    /**
+     * Queue of <code>MessageListener</code>s waiting to process messages.
+     */
     private BlockingQueue<MessageListener<XMessage>> messageListenerQueue = new LinkedBlockingQueue<>();
 
     BlockingQueue<CompletedRead> pendingCompletedReadQueue = new LinkedBlockingQueue<>(READ_AHEAD_DEPTH);
 
     CompletableFuture<XMessageHeader> pendingMsgHeader;
-    /** Lock to protect the pending message. */
+    /**
+     * Lock to protect the pending message.
+     */
     Object pendingMsgMonitor = new Object();
-    /** Have we been signalled to stop after the next message? */
+    /**
+     * Have we been signalled to stop after the next message?
+     */
     boolean stopAfterNextMessage = false;
 
     private static class CompletedRead {
+
         public XMessageHeader header = null;
         public GeneratedMessageV3 message = null;
 
@@ -161,18 +177,21 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
     }
 
     /**
-     * Get the current or next {@link MessageListener}. This method works according to the following algorithm:
+     * Get the current or next {@link MessageListener}. This method works according to the following
+     * algorithm:
      * <ul>
-     * <li>If there's a "current" {@link MessageListener} (indicated on last dispatch that it wanted more messages), it is returned.</li>
-     * <li>If there's no current {@link MessageListener}, the queue is checked for the next one. If there's one in the queue, it is returned.</li>
-     * <li>If there's no current and none in the queue, we either return <code>null</code> if <code>block</code> is <code>false</code> or wait for one to be put
-     * in the queue if <code>block</code> is true.</li>
+     * <li>If there's a "current" {@link MessageListener} (indicated on last dispatch that it wanted
+     * more messages), it is returned.</li>
+     * <li>If there's no current {@link MessageListener}, the queue is checked for the next one. If
+     * there's one in the queue, it is returned.</li>
+     * <li>If there's no current and none in the queue, we either return <code>null</code> if
+     * <code>block</code> is <code>false</code> or wait for one to be put in the queue if
+     * <code>block</code> is true.</li>
      * </ul>
      * <P>
      * This method assigns to "current" the returned message listener.
      *
-     * @param block
-     *            whether to block waiting for a <code>MessageListener</code>
+     * @param block whether to block waiting for a <code>MessageListener</code>
      * @return the new current <code>MessageListener</code>
      */
     MessageListener<XMessage> getMessageListener(boolean block) {
@@ -192,7 +211,8 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
         }
 
         /**
-         * Handler for "read completed" event. Consume the header data in header.headerBuf and initiate the reading of the message body.
+         * Handler for "read completed" event. Consume the header data in header.headerBuf and
+         * initiate the reading of the message body.
          */
         @Override
         public void completed(Integer bytesRead, Void attachment) {
@@ -260,7 +280,8 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
         }
 
         /**
-         * Read and consume the message body and dispatch the message to the current/next {@link MessageListener}.
+         * Read and consume the message body and dispatch the message to the current/next
+         * {@link MessageListener}.
          */
         @Override
         public void completed(Integer bytesRead, Void attachment) {
@@ -327,11 +348,9 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
 
         /**
          * Parse a message.
-         * 
-         * @param messageClass
-         *            class extending {@link GeneratedMessageV3}
-         * @param buf
-         *            message buffer
+         *
+         * @param messageClass class extending {@link GeneratedMessageV3}
+         * @param buf message buffer
          * @return {@link GeneratedMessageV3}
          */
         private GeneratedMessageV3 parseMessage(Class<? extends GeneratedMessageV3> messageClass, ByteBuffer buf) {
@@ -421,8 +440,9 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
     }
 
     /**
-     * Peek into the pending message for it's class/type. This method blocks until a message is available. A message will not become available to peek until
-     * there are no pending message listeners on this reader.
+     * Peek into the pending message for it's class/type. This method blocks until a message is
+     * available. A message will not become available to peek until there are no pending message
+     * listeners on this reader.
      *
      * @return the header of the next message to be delivered
      */
@@ -487,11 +507,11 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
 
     /**
      * Synchronously read a single message and propagate any errors to the current thread.
-     * 
-     * @param <T>
-     *            GeneratedMessage type
+     *
+     * @param <T> GeneratedMessage type
      */
     private static final class SyncXMessageListener<T extends GeneratedMessageV3> implements MessageListener<XMessage> {
+
         private CompletableFuture<XMessage> future;
         private Class<T> expectedClass;
         List<Notice> notices = null;

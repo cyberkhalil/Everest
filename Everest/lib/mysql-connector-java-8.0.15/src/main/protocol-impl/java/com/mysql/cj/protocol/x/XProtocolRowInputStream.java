@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.NoSuchElementException;
@@ -35,11 +34,14 @@ import com.mysql.cj.protocol.ColumnDefinition;
 import com.mysql.cj.result.RowList;
 
 public class XProtocolRowInputStream implements RowList {
+
     private ColumnDefinition metadata;
     private XProtocol protocol;
     private boolean isDone = false;
     private int position = -1;
-    /** XProtocolRow */
+    /**
+     * XProtocolRow
+     */
     private XProtocolRow next; // TODO document
 
     public XProtocolRowInputStream(ColumnDefinition metadata, XProtocol protocol) {

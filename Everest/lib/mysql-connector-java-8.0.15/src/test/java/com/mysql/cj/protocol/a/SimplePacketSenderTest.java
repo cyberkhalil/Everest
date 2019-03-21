@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import static org.junit.Assert.assertEquals;
@@ -42,6 +41,7 @@ import org.junit.Test;
  * Tests for simple/direct packet sender.
  */
 public class SimplePacketSenderTest extends PacketSenderTestBase {
+
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private SimplePacketSender sender = new SimplePacketSender(new BufferedOutputStream(this.outputStream));
 
@@ -97,8 +97,10 @@ public class SimplePacketSenderTest extends PacketSenderTestBase {
             int offset = 0;
             byte[] sentPacket = this.outputStream.toByteArray();
             // size of ALL packets written to output stream
-            int sizeOfAllPackets = (NativeConstants.HEADER_LENGTH * multiPackets) + // header for each full packet + one leftover
-                    (NativeConstants.MAX_PACKET_SIZE * (multiPackets - 1)) + // FULL packet payloads
+            int sizeOfAllPackets = (NativeConstants.HEADER_LENGTH * multiPackets)
+                    + // header for each full packet + one leftover
+                    (NativeConstants.MAX_PACKET_SIZE * (multiPackets - 1))
+                    + // FULL packet payloads
                     leftoverPacketLen;
             assertEquals(sizeOfAllPackets, sentPacket.length);
 
@@ -121,7 +123,8 @@ public class SimplePacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * Test the case where the packet size is a multiple of the max packet size. We need to send an extra empty packet to signal that the payload is complete.
+     * Test the case where the packet size is a multiple of the max packet size. We need to send an
+     * extra empty packet to signal that the payload is complete.
      */
     @Test
     public void packetSizeMultipleOfMaxTest() throws IOException {
@@ -139,7 +142,8 @@ public class SimplePacketSenderTest extends PacketSenderTestBase {
             int offset = 0;
             byte[] sentPacket = this.outputStream.toByteArray();
             // size of ALL packets written to output stream
-            int sizeOfAllPackets = (NativeConstants.HEADER_LENGTH * (multiple + 1)) + // header for each full packet + one empty
+            int sizeOfAllPackets = (NativeConstants.HEADER_LENGTH * (multiple + 1))
+                    + // header for each full packet + one empty
                     (NativeConstants.MAX_PACKET_SIZE * multiple); // FULL packet payloads
             assertEquals(sizeOfAllPackets, sentPacket.length);
             // check that `multiple' packets are sent plus one empty packet

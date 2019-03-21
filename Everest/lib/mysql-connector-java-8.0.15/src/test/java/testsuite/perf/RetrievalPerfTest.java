@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.perf;
 
 import com.mysql.cj.MysqlConnection;
@@ -37,15 +36,15 @@ import testsuite.BaseTestCase;
  * Simplistic test for performance regression.
  */
 public class RetrievalPerfTest extends BaseTestCase {
+
     private static final int NUM_TESTS = 10000;
 
     private static final int NUM_ROWS = 80;
 
     /**
      * Constructor for RetrievalPerfTest.
-     * 
-     * @param name
-     *            name of the test to run
+     *
+     * @param name name of the test to run
      */
     public RetrievalPerfTest(String name) {
         super(name);
@@ -53,9 +52,8 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Runs all tests.
-     * 
-     * @param args
-     *            ignored
+     *
+     * @param args ignored
      */
     public static void main(String[] args) {
         new RetrievalPerfTest("testRetrievalMyIsam").run();
@@ -82,9 +80,8 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval from the query cache
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testRetrievalCached() throws Exception {
         if (!((MysqlConnection) this.conn).getSession().getServerSession().isQueryCacheEnabled()) {
@@ -131,9 +128,8 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval from HEAP tables
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testRetrievalHeap() throws Exception {
         double fullBegin = System.currentTimeMillis();
@@ -175,9 +171,8 @@ public class RetrievalPerfTest extends BaseTestCase {
 
     /**
      * Tests retrieval speed from MyISAM type tables
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testRetrievalMyIsam() throws Exception {
         double fullBegin = System.currentTimeMillis();

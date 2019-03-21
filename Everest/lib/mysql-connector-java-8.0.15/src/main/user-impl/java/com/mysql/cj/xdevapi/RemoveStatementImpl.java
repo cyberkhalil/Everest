@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.concurrent.CompletableFuture;
@@ -41,12 +40,13 @@ import com.mysql.cj.protocol.x.XMessageBuilder;
  * {@link RemoveStatement} implementation.
  */
 public class RemoveStatementImpl extends FilterableStatement<RemoveStatement, Result> implements RemoveStatement {
+
     private MysqlxSession mysqlxSession;
 
     /* package private */ RemoveStatementImpl(MysqlxSession mysqlxSession, String schema, String collection, String criteria) {
         super(new DocFilterParams(schema, collection));
         if (criteria == null || criteria.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("RemoveStatement.0", new String[] { "criteria" }));
+            throw new XDevAPIError(Messages.getString("RemoveStatement.0", new String[]{"criteria"}));
         }
         this.filterParams.setCriteria(criteria);
         this.mysqlxSession = mysqlxSession;
@@ -54,13 +54,13 @@ public class RemoveStatementImpl extends FilterableStatement<RemoveStatement, Re
 
     public Result execute() {
         StatementExecuteOk ok = this.mysqlxSession
-                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDelete(this.filterParams));
+                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDelete(this.filterParams));
         return new UpdateResult(ok);
     }
 
     public CompletableFuture<Result> executeAsync() {
         CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession
-                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDelete(this.filterParams));
+                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDelete(this.filterParams));
         return okF.thenApply(ok -> new UpdateResult(ok));
     }
 }

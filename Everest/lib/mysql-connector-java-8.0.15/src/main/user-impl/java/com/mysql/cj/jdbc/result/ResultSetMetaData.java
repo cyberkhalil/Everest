@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.result;
 
 import java.sql.SQLException;
@@ -42,9 +41,11 @@ import com.mysql.cj.jdbc.exceptions.SQLError;
 import com.mysql.cj.result.Field;
 
 /**
- * A ResultSetMetaData object can be used to find out about the types and properties of the columns in a ResultSet
+ * A ResultSetMetaData object can be used to find out about the types and properties of the columns
+ * in a ResultSet
  */
 public class ResultSetMetaData implements java.sql.ResultSetMetaData {
+
     private static int clampedGetLength(Field f) {
         long fieldLength = f.getLength();
 
@@ -66,18 +67,13 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
 
     /**
      * Initialize for a result with a tuple set and a field descriptor set
-     * 
-     * @param session
-     *            this {@link Session}
-     * 
-     * @param fields
-     *            the array of field descriptors
-     * @param useOldAliasBehavior
-     *            'useOldAliasMetadataBehavior' property value
-     * @param treatYearAsDate
-     *            'yearIsDateType' property value
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param session this {@link Session}
+     *
+     * @param fields the array of field descriptors
+     * @param useOldAliasBehavior 'useOldAliasMetadataBehavior' property value
+     * @param treatYearAsDate 'yearIsDateType' property value
+     * @param exceptionInterceptor exception interceptor
      */
     public ResultSetMetaData(Session session, Field[] fields, boolean useOldAliasBehavior, boolean treatYearAsDate, ExceptionInterceptor exceptionInterceptor) {
         this.session = session;
@@ -98,16 +94,13 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
 
     /**
      * What's the Java character encoding name for the given column?
-     * 
-     * @param column
-     *            the first column is 1, the second is 2, etc.
-     * 
-     * @return the Java character encoding name for the given column, or null if
-     *         no Java character encoding maps to the MySQL character set for
-     *         the given column.
-     * 
-     * @throws SQLException
-     *             if an invalid column index is given.
+     *
+     * @param column the first column is 1, the second is 2, etc.
+     *
+     * @return the Java character encoding name for the given column, or null if no Java character
+     * encoding maps to the MySQL character set for the given column.
+     *
+     * @throws SQLException if an invalid column index is given.
      */
     public String getColumnCharacterEncoding(int column) throws SQLException {
         return getField(column).getEncoding();
@@ -115,14 +108,12 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
 
     /**
      * What's the MySQL character set name for the given column?
-     * 
-     * @param column
-     *            the first column is 1, the second is 2, etc.
-     * 
+     *
+     * @param column the first column is 1, the second is 2, etc.
+     *
      * @return the MySQL character set name for the given column
-     * 
-     * @throws SQLException
-     *             if an invalid column index is given.
+     *
+     * @throws SQLException if an invalid column index is given.
      */
     public String getColumnCharacterSet(int column) throws SQLException {
         int index = getField(column).getCollationIndex();
@@ -207,14 +198,12 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
 
     /**
      * Returns the field instance for the given column index
-     * 
-     * @param columnIndex
-     *            the column number to retrieve a field instance for
-     * 
+     *
+     * @param columnIndex the column number to retrieve a field instance for
+     *
      * @return the field instance for the given column index
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     protected Field getField(int columnIndex) throws SQLException {
         if ((columnIndex < 1) || (columnIndex > this.fields.length)) {
@@ -252,13 +241,11 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
     }
 
     /**
-     * Returns amount of correction that should be applied to the precision
-     * value.
+     * Returns amount of correction that should be applied to the precision value.
      *
      * Different versions of MySQL report different precision values.
-     * 
-     * @param f
-     *            field
+     *
+     * @param f field
      *
      * @return the amount to adjust precision value by.
      */
@@ -429,7 +416,7 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
             // This works for classes that aren't actually wrapping anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.exceptionInterceptor);
         }
     }

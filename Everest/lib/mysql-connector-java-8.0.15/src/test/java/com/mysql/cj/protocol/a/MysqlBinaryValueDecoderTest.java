@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +43,7 @@ import com.mysql.cj.result.ValueFactory;
  * Tests for {@link MysqlBinaryValueDecoder}.
  */
 public class MysqlBinaryValueDecoderTest {
+
     private MysqlBinaryValueDecoder valueDecoder = new MysqlBinaryValueDecoder();
 
     @Test
@@ -51,11 +51,11 @@ public class MysqlBinaryValueDecoderTest {
         ValueFactory<String> vf = new StringValueFactory();
         String decoded;
 
-        byte[] intTrivial = new byte[] { 1, 0, 0, 0 };
+        byte[] intTrivial = new byte[]{1, 0, 0, 0};
         decoded = this.valueDecoder.decodeInt4(intTrivial, 0, 4, vf);
         assertEquals("1", decoded);
 
-        byte[] intOffset1 = new byte[] { 0x7F, 0x12, 0x34, 0x56, 0x78 };
+        byte[] intOffset1 = new byte[]{0x7F, 0x12, 0x34, 0x56, 0x78};
         decoded = this.valueDecoder.decodeInt4(intOffset1, 1, 4, vf);
         assertEquals("2018915346", decoded);
     }
@@ -97,7 +97,7 @@ public class MysqlBinaryValueDecoderTest {
         // big-endian version of 2^64-1 (aka Long.MAX_VALUE * 2 + 1)
         byte[] be = BigInteger.valueOf(Long.MAX_VALUE).multiply(new BigInteger("2")).add(new BigInteger("1")).toByteArray();
         // uppermost byte is sign byte
-        byte[] unsignedInt8Max = new byte[] { be[8], be[7], be[6], be[5], be[4], be[3], be[2], be[1] };
+        byte[] unsignedInt8Max = new byte[]{be[8], be[7], be[6], be[5], be[4], be[3], be[2], be[1]};
         assertEquals(8, unsignedInt8Max.length);
         decoded = this.valueDecoder.decodeUInt8(unsignedInt8Max, 0, 8, vf);
         assertEquals("18446744073709551615", decoded);

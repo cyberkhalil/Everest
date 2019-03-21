@@ -26,17 +26,16 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 /**
- * A decorating value factory which "rounds" zero date/time values into defaults. All fields are set to their lowest permissible value. e.g. 0000-00-00 is
- * returned as 0001-01-01.
- * 
- * @param <T>
- *            value type
+ * A decorating value factory which "rounds" zero date/time values into defaults. All fields are set
+ * to their lowest permissible value. e.g. 0000-00-00 is returned as 0001-01-01.
+ *
+ * @param <T> value type
  */
 public class ZeroDateTimeToDefaultValueFactory<T> extends BaseDecoratingValueFactory<T> {
+
     public ZeroDateTimeToDefaultValueFactory(ValueFactory<T> targetVf) {
         super(targetVf);
     }

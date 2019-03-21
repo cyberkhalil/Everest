@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.jmx;
 
 import java.lang.management.ManagementFactory;
@@ -41,6 +40,7 @@ import com.mysql.cj.jdbc.ha.ReplicationConnectionGroup;
 import com.mysql.cj.jdbc.ha.ReplicationConnectionGroupManager;
 
 public class ReplicationGroupManager implements ReplicationGroupManagerMBean {
+
     private boolean isJmxRegistered = false;
 
     public synchronized void registerJmx() throws SQLException {

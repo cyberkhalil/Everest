@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.LinkedList;
@@ -34,6 +33,7 @@ import java.util.LinkedList;
 import com.mysql.cj.util.StringUtils;
 
 public class AppendingBatchVisitor implements BatchVisitor {
+
     LinkedList<byte[]> statementComponents = new LinkedList<>();
 
     public BatchVisitor append(byte[] values) {

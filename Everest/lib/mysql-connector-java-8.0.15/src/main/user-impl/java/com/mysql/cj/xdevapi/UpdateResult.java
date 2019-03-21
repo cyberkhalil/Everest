@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Iterator;
@@ -38,13 +37,13 @@ import com.mysql.cj.protocol.x.StatementExecuteOk;
  * A result from a statement that doesn't return a set of rows.
  */
 public class UpdateResult implements Result {
+
     protected StatementExecuteOk ok;
 
     /**
      * Create a new result.
      *
-     * @param ok
-     *            the response from the server
+     * @param ok the response from the server
      */
     public UpdateResult(StatementExecuteOk ok) {
         this.ok = ok;

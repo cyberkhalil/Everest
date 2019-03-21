@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import java.util.List;
@@ -44,11 +43,9 @@ public class ResultsetRowsStatic extends AbstractResultsetRows implements Result
 
     /**
      * Creates a new RowDataStatic object.
-     * 
-     * @param rows
-     *            list of {@link Row} instances
-     * @param columnDefinition
-     *            {@link ColumnDefinition} for this result set
+     *
+     * @param rows list of {@link Row} instances
+     * @param columnDefinition {@link ColumnDefinition} for this result set
      */
     @SuppressWarnings("unchecked")
     public ResultsetRowsStatic(List<? extends Row> rows, ColumnDefinition columnDefinition) {

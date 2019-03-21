@@ -26,24 +26,25 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * A class implements the <code>ValueFactory&lt;T&gt;</code> interface to create value instances from intermediate forms.
+ * A class implements the <code>ValueFactory&lt;T&gt;</code> interface to create value instances
+ * from intermediate forms.
  * <p>
- * A <code>ValueFactory</code> implementation is responsible for creating instance of a single type, supplying a value for the type parameter <tt>T</tt>. If an
- * instance cannot be created from the intermediate form, an {@link java.lang.UnsupportedOperationException} can be thrown.
- * 
- * @param <T>
- *            value type
+ * A <code>ValueFactory</code> implementation is responsible for creating instance of a single type,
+ * supplying a value for the type parameter <tt>T</tt>. If an instance cannot be created from the
+ * intermediate form, an {@link java.lang.UnsupportedOperationException} can be thrown.
+ *
+ * @param <T> value type
  *
  * @since 6.0
  */
 public interface ValueFactory<T> {
+
     T createFromDate(int year, int month, int day);
 
     T createFromTime(int hours, int minutes, int seconds, int nanos);
@@ -64,14 +65,14 @@ public interface ValueFactory<T> {
 
     /**
      * Create result value from intermediate null value.
-     * 
+     *
      * @return {@link T} object
      */
     T createFromNull();
 
     /**
      * Get the actual class name of {@link T} parameter.
-     * 
+     *
      * @return class name
      */
     String getTargetTypeName();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.ByteArrayOutputStream;
@@ -58,10 +57,11 @@ import com.mysql.cj.util.TimeUtil;
 import com.mysql.cj.util.Util;
 
 //TODO should not be protocol-specific
-
 public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPreparedQueryBindValue> {
 
-    /** Charset encoder used to escape if needed, such as Yen sign in SJIS */
+    /**
+     * Charset encoder used to escape if needed, such as Yen sign in SJIS
+     */
     private CharsetEncoder charsetEncoder;
 
     private SimpleDateFormat ddf;
@@ -216,7 +216,6 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
             if (this.session.getServerSession().isNoBackslashEscapesSet() || (escapeForMBChars && CharsetMapping.isMultibyteCharset(this.charEncoding))) {
 
                 // Send as hex
-
                 ByteArrayOutputStream bOut = new ByteArrayOutputStream((x.length * 2) + 3);
                 bOut.write('x');
                 bOut.write('\'');
@@ -262,11 +261,13 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                 byte b = x[i];
 
                 switch (b) {
-                    case 0: /* Must be escaped for 'mysql' */
+                    case 0:
+                        /* Must be escaped for 'mysql' */
                         bOut.write('\\');
                         bOut.write('0');
                         break;
-                    case '\n': /* Must be escaped for logs */
+                    case '\n':
+                        /* Must be escaped for logs */
                         bOut.write('\\');
                         bOut.write('n');
                         break;
@@ -282,11 +283,13 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                         bOut.write('\\');
                         bOut.write('\'');
                         break;
-                    case '"': /* Better safe than sorry */
+                    case '"':
+                        /* Better safe than sorry */
                         bOut.write('\\');
                         bOut.write('"');
                         break;
-                    case '\032': /* This gives problems on Win32 */
+                    case '\032':
+                        /* This gives problems on Win32 */
                         bOut.write('\\');
                         bOut.write('Z');
                         break;
@@ -424,7 +427,7 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
     public void setDouble(int parameterIndex, double x) {
         if (!this.session.getPropertySet().getBooleanProperty(PropertyKey.allowNanAndInf).getValue()
                 && (x == Double.POSITIVE_INFINITY || x == Double.NEGATIVE_INFINITY || Double.isNaN(x))) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[] { x }),
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[]{x}),
                     this.session.getExceptionInterceptor());
         }
         setValue(parameterIndex, StringUtils.fixDecimalExponent(String.valueOf(x)), MysqlType.DOUBLE);
@@ -462,7 +465,6 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                 boolean useLength = this.useStreamLengthsInPrepStmts.getValue();
 
                 // Ignore "clobCharacterEncoding" because utf8 should be used this time.
-
                 if (useLength && (length != -1)) {
                     c = new char[(int) length];  // can't take more than Integer.MAX_VALUE
 
@@ -536,16 +538,17 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
             //
             // Note: buf.append(char) is _faster_ than appending in blocks, because the block append requires a System.arraycopy().... go figure...
             //
-
             for (int i = 0; i < stringLength; ++i) {
                 char c = x.charAt(i);
 
                 switch (c) {
-                    case 0: /* Must be escaped for 'mysql' */
+                    case 0:
+                        /* Must be escaped for 'mysql' */
                         buf.append('\\');
                         buf.append('0');
                         break;
-                    case '\n': /* Must be escaped for logs */
+                    case '\n':
+                        /* Must be escaped for logs */
                         buf.append('\\');
                         buf.append('n');
                         break;
@@ -561,13 +564,15 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                         buf.append('\\');
                         buf.append('\'');
                         break;
-                    case '"': /* Better safe than sorry */
+                    case '"':
+                        /* Better safe than sorry */
                         if (this.session.getServerSession().useAnsiQuotedIdentifiers()) {
                             buf.append('\\');
                         }
                         buf.append('"');
                         break;
-                    case '\032': /* This gives problems on Win32 */
+                    case '\032':
+                        /* This gives problems on Win32 */
                         buf.append('\\');
                         buf.append('Z');
                         break;
@@ -638,16 +643,17 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                 //
                 // Note: buf.append(char) is _faster_ than appending in blocks, because the block append requires a System.arraycopy().... go figure...
                 //
-
                 for (int i = 0; i < stringLength; ++i) {
                     char c = x.charAt(i);
 
                     switch (c) {
-                        case 0: /* Must be escaped for 'mysql' */
+                        case 0:
+                            /* Must be escaped for 'mysql' */
                             buf.append('\\');
                             buf.append('0');
                             break;
-                        case '\n': /* Must be escaped for logs */
+                        case '\n':
+                            /* Must be escaped for logs */
                             buf.append('\\');
                             buf.append('n');
                             break;
@@ -663,13 +669,15 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
                             buf.append('\\');
                             buf.append('\'');
                             break;
-                        case '"': /* Better safe than sorry */
+                        case '"':
+                            /* Better safe than sorry */
                             if (this.session.getServerSession().useAnsiQuotedIdentifiers()) {
                                 buf.append('\\');
                             }
                             buf.append('"');
                             break;
-                        case '\032': /* This gives problems on Win32 */
+                        case '\032':
+                            /* This gives problems on Win32 */
                             buf.append('\\');
                             buf.append('Z');
                             break;
@@ -714,13 +722,17 @@ public class ClientPreparedQueryBindings extends AbstractQueryBindings<ClientPre
             char c = x.charAt(i);
 
             switch (c) {
-                case 0: /* Must be escaped for 'mysql' */
-                case '\n': /* Must be escaped for logs */
+                case 0:
+                /* Must be escaped for 'mysql' */
+                case '\n':
+                /* Must be escaped for logs */
                 case '\r':
                 case '\\':
                 case '\'':
-                case '"': /* Better safe than sorry */
-                case '\032': /* This gives problems on Win32 */
+                case '"':
+                /* Better safe than sorry */
+                case '\032':
+                    /* This gives problems on Win32 */
                     needsHexEscape = true;
                     break;
             }

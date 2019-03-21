@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.Connection;
@@ -151,7 +150,6 @@ public class MysqlXAConnection extends MysqlPooledConnection implements XAConnec
         //
         // We don't attempt to maintain state to check for TMNOFLAGS "outside" of a scan
         //
-
         if (!startRscan) {
             return new Xid[0];
         }

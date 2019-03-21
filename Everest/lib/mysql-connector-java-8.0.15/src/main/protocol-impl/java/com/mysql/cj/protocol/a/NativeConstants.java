@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 /**
@@ -35,9 +34,13 @@ package com.mysql.cj.protocol.a;
  */
 public class NativeConstants {
 
-    /** Maximum size of MySQL packet payload. */
+    /**
+     * Maximum size of MySQL packet payload.
+     */
     public static final int MAX_PACKET_SIZE = 256 * 256 * 256 - 1;
-    /** Size of MySQL packet header (payload size + packet sequence ID). */
+    /**
+     * Size of MySQL packet header (payload size + packet sequence ID).
+     */
     public static final int HEADER_LENGTH = 4;
     public static final int SEED_LENGTH = 20;
 
@@ -97,12 +100,14 @@ public class NativeConstants {
     public static final int COM_RESET_CONNECTION = 31;
 
     /**
-     * Used to indicate that the server sent no field-level character set information, so the driver should use the connection-level character encoding instead.
+     * Used to indicate that the server sent no field-level character set information, so the driver
+     * should use the connection-level character encoding instead.
      */
     public static final int NO_CHARSET_INFO = -1;
 
     /**
-     * Basic protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/integer.html
+     * Basic protocol data types as they are defined in
+     * http://dev.mysql.com/doc/internals/en/integer.html
      *
      */
     public enum IntegerDataType {
@@ -111,32 +116,26 @@ public class NativeConstants {
          * 1 byte Protocol::FixedLengthInteger
          */
         INT1,
-
         /**
          * 2 byte Protocol::FixedLengthInteger
          */
         INT2,
-
         /**
          * 3 byte Protocol::FixedLengthInteger
          */
         INT3,
-
         /**
          * 4 byte Protocol::FixedLengthInteger
          */
         INT4,
-
         /**
          * 6 byte Protocol::FixedLengthInteger
          */
         INT6,
-
         /**
          * 8 byte Protocol::FixedLengthInteger
          */
         INT8,
-
         /**
          * Length-Encoded Integer Type
          */
@@ -144,47 +143,44 @@ public class NativeConstants {
     }
 
     /**
-     * Basic protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/string.html
-     * which require explicit length specification.
+     * Basic protocol data types as they are defined in
+     * http://dev.mysql.com/doc/internals/en/string.html which require explicit length
+     * specification.
      *
      */
     public static enum StringLengthDataType {
 
         /**
-         * Protocol::FixedLengthString
-         * Fixed-length strings have a known, hardcoded length.
+         * Protocol::FixedLengthString Fixed-length strings have a known, hardcoded length.
          */
         STRING_FIXED,
-
         /**
-         * Protocol::VariableLengthString
-         * The length of the string is determined by another field or is calculated at runtime
+         * Protocol::VariableLengthString The length of the string is determined by another field or
+         * is calculated at runtime
          */
         STRING_VAR;
     }
 
     /**
-     * Basic self-describing protocol data types as they are defined in http://dev.mysql.com/doc/internals/en/string.html
+     * Basic self-describing protocol data types as they are defined in
+     * http://dev.mysql.com/doc/internals/en/string.html
      *
      */
     public static enum StringSelfDataType {
 
         /**
-         * Protocol::NulTerminatedString
-         * Strings that are terminated by a [00] byte.
+         * Protocol::NulTerminatedString Strings that are terminated by a [00] byte.
          */
         STRING_TERM,
-
         /**
-         * Protocol::LengthEncodedString
-         * A length encoded string is a string that is prefixed with length encoded integer describing the length of the string.
-         * It is a special case of Protocol::VariableLengthString
+         * Protocol::LengthEncodedString A length encoded string is a string that is prefixed with
+         * length encoded integer describing the length of the string. It is a special case of
+         * Protocol::VariableLengthString
          */
         STRING_LENENC,
-
         /**
-         * Protocol::RestOfPacketString
-         * If a string is the last component of a packet, its length can be calculated from the overall packet length minus the current position.
+         * Protocol::RestOfPacketString If a string is the last component of a packet, its length
+         * can be calculated from the overall packet length minus the current position.
          */
         STRING_EOF;
     }

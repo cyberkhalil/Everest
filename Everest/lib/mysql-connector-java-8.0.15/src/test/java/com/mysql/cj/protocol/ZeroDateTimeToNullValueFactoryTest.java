@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import static org.junit.Assert.assertEquals;
@@ -59,22 +58,22 @@ public class ZeroDateTimeToNullValueFactoryTest extends CommonAsserts {
         assertThrows(DataReadException.class,
                 "The value '-1:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
-                    @Override
-                    public Void call() throws Exception {
-                        vf.createFromTime(-1, 0, 0, 0);
-                        return null;
-                    }
-                });
+            @Override
+            public Void call() throws Exception {
+                vf.createFromTime(-1, 0, 0, 0);
+                return null;
+            }
+        });
 
         assertThrows(DataReadException.class,
                 "The value '44:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
-                    @Override
-                    public Void call() throws Exception {
-                        vf.createFromTime(44, 0, 0, 0);
-                        return null;
-                    }
-                });
+            @Override
+            public Void call() throws Exception {
+                vf.createFromTime(44, 0, 0, 0);
+                return null;
+            }
+        });
 
         assertEquals(LocalDateTime.of(1970, 1, 1, 1, 1, 1, 1), vf.createFromTime(1, 1, 1, 1));
 

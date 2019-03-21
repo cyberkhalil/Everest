@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.List;
@@ -62,22 +61,21 @@ public class SessionImpl implements Session {
 
     /**
      * Constructor.
-     * 
-     * @param hostInfo
-     *            {@link HostInfo} instance
+     *
+     * @param hostInfo {@link HostInfo} instance
      */
     public SessionImpl(HostInfo hostInfo) {
         PropertySet pset = new DefaultPropertySet();
         pset.initializeProperties(hostInfo.exposeAsProperties());
         this.session = new MysqlxSession(hostInfo, pset);
         this.defaultSchemaName = hostInfo.getDatabase();
-        this.xbuilder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        this.xbuilder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
     }
 
     public SessionImpl(XProtocol prot) {
         this.session = new MysqlxSession(prot);
         this.defaultSchemaName = prot.defaultSchemaName;
-        this.xbuilder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        this.xbuilder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
     }
 
     protected SessionImpl() {
@@ -149,7 +147,7 @@ public class SessionImpl implements Session {
     @Override
     public String setSavepoint(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.sendMessage(this.xbuilder.buildSqlStatement("SAVEPOINT " + StringUtils.quoteIdentifier(name, true)));
@@ -159,7 +157,7 @@ public class SessionImpl implements Session {
     @Override
     public void rollbackTo(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.sendMessage(this.xbuilder.buildSqlStatement("ROLLBACK TO " + StringUtils.quoteIdentifier(name, true)));
@@ -168,7 +166,7 @@ public class SessionImpl implements Session {
     @Override
     public void releaseSavepoint(String name) {
         if (name == null || name.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("XSession.0", new String[] { "name" }));
+            throw new XDevAPIError(Messages.getString("XSession.0", new String[]{"name"}));
         }
 
         this.session.sendMessage(this.xbuilder.buildSqlStatement("RELEASE SAVEPOINT " + StringUtils.quoteIdentifier(name, true)));
@@ -204,7 +202,6 @@ public class SessionImpl implements Session {
         }
 
         // TODO modify for multi-host connections
-
         return sb.toString();
 
     }

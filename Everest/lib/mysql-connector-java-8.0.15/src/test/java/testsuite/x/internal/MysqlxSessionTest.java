@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.internal;
 
 import static org.junit.Assert.assertEquals;
@@ -63,6 +62,7 @@ import com.mysql.cj.xdevapi.FilterParams;
  * Tests for (internal) session-level APIs against X Plugin via X Protocol.
  */
 public class MysqlxSessionTest extends InternalXBaseTestCase {
+
     private MysqlxSession session;
 
     @Before
@@ -85,7 +85,7 @@ public class MysqlxSessionTest extends InternalXBaseTestCase {
             return;
         }
         String collName = "toBeCreatedAndDropped";
-        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
         try {
             this.session.sendMessage(builder.buildDropCollection(getTestDatabase(), collName));
         } catch (XProtocolError e) {
@@ -113,7 +113,7 @@ public class MysqlxSessionTest extends InternalXBaseTestCase {
         if (!this.isSetForXTests) {
             return;
         }
-        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
         ValueFactory<String> svf = new StringValueFactory();
         String collName = "test_get_objects";
         try {
@@ -126,7 +126,7 @@ public class MysqlxSessionTest extends InternalXBaseTestCase {
 
         this.session.sendMessage(builder.buildCreateCollection(getTestDatabase(), collName));
 
-        Set<String> strTypes = Arrays.stream(new DbObjectType[] { DbObjectType.COLLECTION }).map(DatabaseObject.DbObjectType::toString)
+        Set<String> strTypes = Arrays.stream(new DbObjectType[]{DbObjectType.COLLECTION}).map(DatabaseObject.DbObjectType::toString)
                 .collect(Collectors.toSet());
         Predicate<com.mysql.cj.result.Row> rowFiler = r -> (strTypes).contains(r.getValue(1, svf));
         Function<com.mysql.cj.result.Row, String> rowToName = r -> r.getValue(0, svf);
@@ -145,7 +145,7 @@ public class MysqlxSessionTest extends InternalXBaseTestCase {
         if (!this.isSetForXTests) {
             return;
         }
-        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
         String collName = "testInterleavedResults";
         try {
             this.session.sendMessage(builder.buildDropCollection(getTestDatabase(), collName));
@@ -198,7 +198,7 @@ public class MysqlxSessionTest extends InternalXBaseTestCase {
         if (!this.isSetForXTests) {
             return;
         }
-        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage> getMessageBuilder();
+        XMessageBuilder builder = (XMessageBuilder) this.session.<XMessage>getMessageBuilder();
         List<Integer> ints = this.session.query(builder.buildSqlStatement("select 2 union select 1"), null, r -> r.getValue(0, new IntegerValueFactory()),
                 Collectors.toList());
         assertEquals(2, ints.size());

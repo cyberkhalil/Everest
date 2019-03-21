@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.lang.reflect.InvocationHandler;
@@ -64,20 +63,21 @@ import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.mysql.cj.util.Util;
 
 /**
- * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that load balances requests across a series of MySQL JDBC connections, where the
- * balancing
- * takes place at transaction commit.
- * 
+ * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that load balances requests
+ * across a series of MySQL JDBC connections, where the balancing takes place at transaction commit.
+ *
  * Therefore, for this to work (at all), you must use transactions, even if only reading data.
- * 
- * This implementation will invalidate connections that it detects have had communication errors when processing a request. Problematic hosts will be added to a
- * global blacklist for loadBalanceBlacklistTimeout ms, after which they will be removed from the blacklist and made eligible once again to be selected for new
- * connections.
- * 
- * This implementation is thread-safe, but it's questionable whether sharing a connection instance amongst threads is a good idea, given that transactions are
- * scoped to connections in JDBC.
+ *
+ * This implementation will invalidate connections that it detects have had communication errors
+ * when processing a request. Problematic hosts will be added to a global blacklist for
+ * loadBalanceBlacklistTimeout ms, after which they will be removed from the blacklist and made
+ * eligible once again to be selected for new connections.
+ *
+ * This implementation is thread-safe, but it's questionable whether sharing a connection instance
+ * amongst threads is a good idea, given that transactions are scoped to connections in JDBC.
  */
 public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implements PingTarget {
+
     private ConnectionGroup connectionGroup = null;
     private long connectionGroupProxyID = 0;
 
@@ -102,16 +102,14 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     private LoadBalanceExceptionChecker exceptionChecker;
 
-    private static Class<?>[] INTERFACES_TO_PROXY = new Class<?>[] { LoadBalancedConnection.class, JdbcConnection.class };
+    private static Class<?>[] INTERFACES_TO_PROXY = new Class<?>[]{LoadBalancedConnection.class, JdbcConnection.class};
 
     /**
      * Static factory to create {@link LoadBalancedConnection} instances.
-     * 
-     * @param connectionUrl
-     *            The connection URL containing the hosts in a load-balance setup.
+     *
+     * @param connectionUrl The connection URL containing the hosts in a load-balance setup.
      * @return A {@link LoadBalancedConnection} proxy.
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     public static LoadBalancedConnection createProxyInstance(LoadbalanceConnectionUrl connectionUrl) throws SQLException {
         LoadBalancedConnectionProxy connProxy = new LoadBalancedConnectionProxy(connectionUrl);
@@ -119,12 +117,11 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a proxy for java.sql.Connection that routes requests between the hosts in the connection URL.
-     * 
-     * @param connectionUrl
-     *            The connection URL containing the hosts to load balance.
-     * @throws SQLException
-     *             if an error occurs
+     * Creates a proxy for java.sql.Connection that routes requests between the hosts in the
+     * connection URL.
+     *
+     * @param connectionUrl The connection URL containing the hosts to load balance.
+     * @throws SQLException if an error occurs
      */
     public LoadBalancedConnectionProxy(LoadbalanceConnectionUrl connectionUrl) throws SQLException {
         super();
@@ -138,7 +135,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
         try {
             enableJMX = Boolean.parseBoolean(enableJMXAsString);
         } catch (Exception e) {
-            throw SQLError.createSQLException(Messages.getString("MultihostConnection.badValueForHaEnableJMX", new Object[] { enableJMXAsString }),
+            throw SQLError.createSQLException(Messages.getString("MultihostConnection.badValueForHaEnableJMX", new Object[]{enableJMXAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -169,7 +166,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
             this.retriesAllDown = Integer.parseInt(retriesAllDownAsString);
         } catch (NumberFormatException nfe) {
             throw SQLError.createSQLException(
-                    Messages.getString("LoadBalancedConnectionProxy.badValueForRetriesAllDown", new Object[] { retriesAllDownAsString }),
+                    Messages.getString("LoadBalancedConnectionProxy.badValueForRetriesAllDown", new Object[]{retriesAllDownAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -178,7 +175,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
             this.globalBlacklistTimeout = Integer.parseInt(blacklistTimeoutAsString);
         } catch (NumberFormatException nfe) {
             throw SQLError.createSQLException(
-                    Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceBlacklistTimeout", new Object[] { blacklistTimeoutAsString }),
+                    Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceBlacklistTimeout", new Object[]{blacklistTimeoutAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -187,7 +184,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
             this.hostRemovalGracePeriod = Integer.parseInt(hostRemovalGracePeriodAsString);
         } catch (NumberFormatException nfe) {
             throw SQLError.createSQLException(Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceHostRemovalGracePeriod",
-                    new Object[] { hostRemovalGracePeriodAsString }), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
+                    new Object[]{hostRemovalGracePeriodAsString}), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
         String strategy = props.getProperty(PropertyKey.ha_loadBalanceStrategy.getKeyName(), "random");
@@ -206,7 +203,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
                     this.balancer = (BalanceStrategy) Class.forName(strategy).newInstance();
             }
         } catch (Throwable t) {
-            throw SQLError.createSQLException(Messages.getString("InvalidLoadBalanceStrategy", new Object[] { strategy }),
+            throw SQLError.createSQLException(Messages.getString("InvalidLoadBalanceStrategy", new Object[]{strategy}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, t, null);
         }
 
@@ -215,7 +212,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
             Integer.parseInt(autoCommitSwapThresholdAsString);
         } catch (NumberFormatException nfe) {
             throw SQLError.createSQLException(Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceAutoCommitStatementThreshold",
-                    new Object[] { autoCommitSwapThresholdAsString }), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
+                    new Object[]{autoCommitSwapThresholdAsString}), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
         String autoCommitSwapRegex = props.getProperty(PropertyKey.loadBalanceAutoCommitStatementRegex.getKeyName(), "");
@@ -224,7 +221,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
                 "".matches(autoCommitSwapRegex);
             } catch (Exception e) {
                 throw SQLError.createSQLException(
-                        Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceAutoCommitStatementRegex", new Object[] { autoCommitSwapRegex }),
+                        Messages.getString("LoadBalancedConnectionProxy.badValueForLoadBalanceAutoCommitStatementRegex", new Object[]{autoCommitSwapRegex}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
             }
         }
@@ -245,11 +242,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Wraps this object with a new load balanced Connection instance.
-     * 
-     * @return
-     *         The connection object instance that wraps 'this'.
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @return The connection object instance that wraps 'this'.
+     * @throws SQLException if an error occurs
      */
     @Override
     JdbcConnection getNewWrapperForThisAsConnection() throws SQLException {
@@ -258,9 +253,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Propagates the connection proxy down through all live connections.
-     * 
-     * @param proxyConn
-     *            The top level connection in the multi-host connections chain.
+     *
+     * @param proxyConn The top level connection in the multi-host connections chain.
      */
     @Override
     protected void propagateProxyDown(JdbcConnection proxyConn) {
@@ -275,10 +269,10 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Consults the registered LoadBalanceExceptionChecker if the given exception should trigger a connection fail-over.
-     * 
-     * @param t
-     *            The Exception instance to check.
+     * Consults the registered LoadBalanceExceptionChecker if the given exception should trigger a
+     * connection fail-over.
+     *
+     * @param t The Exception instance to check.
      * @return true if the given exception should trigger a connection fail-over
      */
     @Override
@@ -296,11 +290,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Closes specified connection and removes it from required mappings.
-     * 
-     * @param conn
-     *            connection
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn connection
+     * @throws SQLException if an error occurs
      */
     @Override
     synchronized void invalidateConnection(JdbcConnection conn) throws SQLException {
@@ -324,10 +316,10 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Picks the "best" connection to use for the next transaction based on the BalanceStrategy in use.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Picks the "best" connection to use for the next transaction based on the BalanceStrategy in
+     * use.
+     *
+     * @throws SQLException if an error occurs
      */
     @Override
     public synchronized void pickNewConnection() throws SQLException {
@@ -381,14 +373,12 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a new physical connection for the given {@link HostInfo} and updates required internal mappings and statistics for that connection.
-     * 
-     * @param hostInfo
-     *            The host info instance.
-     * @return
-     *         The new Connection instance.
-     * @throws SQLException
-     *             if an error occurs
+     * Creates a new physical connection for the given {@link HostInfo} and updates required
+     * internal mappings and statistics for that connection.
+     *
+     * @param hostInfo The host info instance.
+     * @return The new Connection instance.
+     * @throws SQLException if an error occurs
      */
     @Override
     public synchronized ConnectionImpl createConnectionForHost(HostInfo hostInfo) throws SQLException {
@@ -426,15 +416,13 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a new physical connection for the given host:port info. If the this connection's connection URL knows about this host:port then its host info is
-     * used, otherwise a new host info based on current connection URL defaults is spawned.
-     * 
-     * @param hostPortPair
-     *            The host:port pair identifying the host to connect to.
-     * @return
-     *         The new Connection instance.
-     * @throws SQLException
-     *             if an error occurs
+     * Creates a new physical connection for the given host:port info. If the this connection's
+     * connection URL knows about this host:port then its host info is used, otherwise a new host
+     * info based on current connection URL defaults is spawned.
+     *
+     * @param hostPortPair The host:port pair identifying the host to connect to.
+     * @return The new Connection instance.
+     * @throws SQLException if an error occurs
      */
     public synchronized ConnectionImpl createConnectionForHost(String hostPortPair) throws SQLException {
         for (HostInfo hi : this.hostsList) {
@@ -522,9 +510,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Proxies method invocation on the java.sql.Connection interface, trapping "close", "isClosed" and "commit/rollback" to switch connections for load
-     * balancing.
-     * This is the continuation of MultiHostConnectionProxy#invoke(Object, Method, Object[]).
+     * Proxies method invocation on the java.sql.Connection interface, trapping "close", "isClosed"
+     * and "commit/rollback" to switch connections for load balancing. This is the continuation of
+     * MultiHostConnectionProxy#invoke(Object, Method, Object[]).
      */
     @Override
     public synchronized Object invokeMore(Object proxy, Method method, Object[] args) throws Throwable {
@@ -599,9 +587,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Pings live connections.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     @Override
     public synchronized void doPing() throws SQLException {
@@ -667,11 +654,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Adds a host to the blacklist with the given timeout.
-     * 
-     * @param host
-     *            The host to be blacklisted.
-     * @param timeout
-     *            The blacklist timeout for this entry.
+     *
+     * @param host The host to be blacklisted.
+     * @param timeout The blacklist timeout for this entry.
      */
     public void addToGlobalBlacklist(String host, long timeout) {
         if (isGlobalBlacklistEnabled()) {
@@ -683,9 +668,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Adds a host to the blacklist.
-     * 
-     * @param host
-     *            The host to be blacklisted.
+     *
+     * @param host The host to be blacklisted.
      */
     public void addToGlobalBlacklist(String host) {
         addToGlobalBlacklist(host, System.currentTimeMillis() + this.globalBlacklistTimeout);
@@ -693,7 +677,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Checks if host blacklist management was enabled.
-     * 
+     *
      * @return true if host blacklist management was enabled
      */
     public boolean isGlobalBlacklistEnabled() {
@@ -701,10 +685,10 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Returns a local hosts blacklist, while cleaning up expired records from the global blacklist, or a blacklist with the hosts to be removed.
-     * 
-     * @return
-     *         A local hosts blacklist.
+     * Returns a local hosts blacklist, while cleaning up expired records from the global blacklist,
+     * or a blacklist with the hosts to be removed.
+     *
+     * @return A local hosts blacklist.
      */
     public synchronized Map<String, Long> getGlobalBlacklist() {
         if (!isGlobalBlacklistEnabled()) {
@@ -754,11 +738,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Removes a host from the host list, allowing it some time to be released gracefully if needed.
-     * 
-     * @param hostPortPair
-     *            The host to be removed.
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair The host to be removed.
+     * @throws SQLException if an error occurs
      */
     public void removeHostWhenNotInUse(String hostPortPair) throws SQLException {
         if (this.hostRemovalGracePeriod <= 0) {
@@ -794,11 +776,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Removes a host from the host list.
-     * 
-     * @param hostPortPair
-     *            The host to be removed.
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair The host to be removed.
+     * @throws SQLException if an error occurs
      */
     public synchronized void removeHost(String hostPortPair) throws SQLException {
         if (this.connectionGroup != null) {
@@ -834,9 +814,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
 
     /**
      * Adds a host to the hosts list.
-     * 
-     * @param hostPortPair
-     *            The host to be added.
+     *
+     * @param hostPortPair The host to be added.
      * @return true if host was added and false if the host list already contains it
      */
     public synchronized boolean addHost(String hostPortPair) {
@@ -896,10 +875,12 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * A LoadBalancedConnection proxy that provides null-functionality. It can be used as a replacement of the <b>null</b> keyword in the places where a
-     * LoadBalancedConnection object cannot be effectively <b>null</b> because that would be a potential source of NPEs.
+     * A LoadBalancedConnection proxy that provides null-functionality. It can be used as a
+     * replacement of the <b>null</b> keyword in the places where a LoadBalancedConnection object
+     * cannot be effectively <b>null</b> because that would be a potential source of NPEs.
      */
     private static class NullLoadBalancedConnectionProxy implements InvocationHandler {
+
         public NullLoadBalancedConnectionProxy() {
         }
 

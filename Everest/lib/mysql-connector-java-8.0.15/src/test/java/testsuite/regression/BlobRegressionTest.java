@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.io.ByteArrayInputStream;
@@ -51,11 +50,11 @@ import testsuite.BaseTestCase;
  * Tests fixes for BLOB handling.
  */
 public class BlobRegressionTest extends BaseTestCase {
+
     /**
      * Creates a new BlobRegressionTest.
-     * 
-     * @param name
-     *            name of the test to run
+     *
+     * @param name name of the test to run
      */
     public BlobRegressionTest(String name) {
         super(name);
@@ -63,7 +62,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -94,7 +93,7 @@ public class BlobRegressionTest extends BaseTestCase {
         //
         // Test mid-point insertion
         //
-        blob.setBytes(4, new byte[] { 2, 2, 2, 2 });
+        blob.setBytes(4, new byte[]{2, 2, 2, 2});
 
         byte[] newBlobData = blob.getBytes(1L, (int) blob.length());
 
@@ -105,7 +104,7 @@ public class BlobRegressionTest extends BaseTestCase {
         //
         // Test end-point insertion
         //
-        blob.setBytes(32, new byte[] { 2, 2, 2, 2 });
+        blob.setBytes(32, new byte[]{2, 2, 2, 2});
 
         assertTrue("Blob length should be 3 larger", blob.length() == (blobData.length + 3));
 
@@ -113,9 +112,8 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * http://bugs.mysql.com/bug.php?id=22891
-     * 
-     * @throws Exception
-     *             ...
+     *
+     * @throws Exception ...
      */
     public void testUpdateLongBlobGT16M() throws Exception {
         byte[] blobData = new byte[18 * 1024 * 1024]; // 18M blob
@@ -204,11 +202,10 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests BUG#8096 where emulated locators corrupt binary data when using
-     * server-side prepared statements.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests BUG#8096 where emulated locators corrupt binary data when using server-side prepared
+     * statements.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug8096() throws Exception {
         int dataSize = 256;
@@ -272,11 +269,10 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9040 - PreparedStatement.addBatch() doesn't work with
-     * server-side prepared statements and streaming BINARY data.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#9040 - PreparedStatement.addBatch() doesn't work with server-side prepared
+     * statements and streaming BINARY data.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug9040() throws Exception {
 
@@ -305,9 +301,8 @@ public class BlobRegressionTest extends BaseTestCase {
 
         createTable(tableName, "(field1 TEXT)");
 
-        this.pstmt = this.conn.prepareStatement("INSERT INTO " +
-
-                tableName + " VALUES (?)");
+        this.pstmt = this.conn.prepareStatement("INSERT INTO "
+                + tableName + " VALUES (?)");
         this.pstmt.setCharacterStream(1, new StringReader(""), 0);
         this.pstmt.executeUpdate();
 
@@ -338,9 +333,8 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#20453671 - CLOB.POSITION() API CALL WITH CLOB INPUT RETURNS EXCEPTION
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20453671() throws Exception {
         this.rs = this.stmt.executeQuery("select 'abcd', 'a', 'b', 'c', 'd', 'e'");
@@ -369,11 +363,10 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20453712 - CLOB.SETSTRING() WITH VALID INPUT RETURNS EXCEPTION
-     * server-side prepared statements and streaming BINARY data.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#20453712 - CLOB.SETSTRING() WITH VALID INPUT RETURNS EXCEPTION server-side
+     * prepared statements and streaming BINARY data.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20453712() throws Exception {
         final String s1 = "NewClobData";
@@ -412,7 +405,7 @@ public class BlobRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#23535571 - EXCESSIVE MEMORY USAGE WHEN ENABLEPACKETDEBUG=TRUE
-     * 
+     *
      * @throws Exception
      */
     public void testBug23535571() throws Exception {

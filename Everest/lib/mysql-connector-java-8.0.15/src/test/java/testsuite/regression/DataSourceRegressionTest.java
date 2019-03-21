@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.io.ByteArrayInputStream;
@@ -87,9 +86,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Creates a new DataSourceRegressionTest suite for the given test name
-     * 
-     * @param name
-     *            the name of the testcase to run.
+     *
+     * @param name the name of the testcase to run.
      */
     public DataSourceRegressionTest(String name) {
         super(name);
@@ -97,7 +95,7 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -105,11 +103,10 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Sets up this test, calling registerDataSource() to bind a DataSource into
-     * JNDI, using the FSContext JNDI provider from Sun
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     * Sets up this test, calling registerDataSource() to bind a DataSource into JNDI, using the
+     * FSContext JNDI provider from Sun
+     *
+     * @throws Exception if an error occurs.
      */
     @Override
     public void setUp() throws Exception {
@@ -119,9 +116,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Un-binds the DataSource, and cleans up the filesystem
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     @Override
     public void tearDown() throws Exception {
@@ -134,11 +130,9 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4808- Calling .close() twice on a PooledConnection
-     * causes NPE.
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     * Tests fix for BUG#4808- Calling .close() twice on a PooledConnection causes NPE.
+     *
+     * @throws Exception if an error occurs.
      */
     public void testBug4808() throws Exception {
         MysqlConnectionPoolDataSource ds = new MysqlConnectionPoolDataSource();
@@ -151,9 +145,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#3848, port # alone parsed incorrectly
-     * 
-     * @throws Exception
-     *             ...
+     *
+     * @throws Exception ...
      */
     public void testBug3848() throws Exception {
         String jndiName = "/testBug3848";
@@ -210,11 +203,9 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests that we can get a connection from the DataSource bound in JNDI
-     * during test setup
-     * 
-     * @throws Exception
-     *             if an error occurs
+     * Tests that we can get a connection from the DataSource bound in JNDI during test setup
+     *
+     * @throws Exception if an error occurs
      */
     public void testBug3920() throws Exception {
         String jndiName = "/testBug3920";
@@ -286,25 +277,23 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19169 - ConnectionProperties (and thus some
-     * subclasses) are not serializable, even though some J2EE containers
-     * expect them to be.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#19169 - ConnectionProperties (and thus some subclasses) are not
+     * serializable, even though some J2EE containers expect them to be.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug19169() throws Exception {
         MysqlDataSource toSerialize = new MysqlDataSource();
 
-        toSerialize.<PropertyDefinitions.ZeroDatetimeBehavior> getProperty(PropertyKey.zeroDateTimeBehavior)
+        toSerialize.<PropertyDefinitions.ZeroDatetimeBehavior>getProperty(PropertyKey.zeroDateTimeBehavior)
                 .setValue(PropertyDefinitions.ZeroDatetimeBehavior.CONVERT_TO_NULL);
 
-        toSerialize.<String> getProperty(PropertyKey.ha_loadBalanceStrategy).setValue("test_lb_strategy");
+        toSerialize.<String>getProperty(PropertyKey.ha_loadBalanceStrategy).setValue("test_lb_strategy");
 
         boolean testBooleanFlag = !toSerialize.getBooleanProperty(PropertyKey.allowLoadLocalInfile).getValue();
-        toSerialize.<Boolean> getProperty(PropertyKey.allowLoadLocalInfile).setValue(testBooleanFlag);
+        toSerialize.<Boolean>getProperty(PropertyKey.allowLoadLocalInfile).setValue(testBooleanFlag);
 
-        RuntimeProperty<Integer> bscs = toSerialize.<Integer> getProperty(PropertyKey.blobSendChunkSize);
+        RuntimeProperty<Integer> bscs = toSerialize.<Integer>getProperty(PropertyKey.blobSendChunkSize);
         int testIntFlag = bscs.getValue() + 1;
         ((AbstractRuntimeProperty<?>) bscs).setValueInternal(String.valueOf(testIntFlag), null);
 
@@ -324,11 +313,10 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20242 - MysqlValidConnectionChecker for JBoss doesn't
-     * work with MySQLXADataSources.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#20242 - MysqlValidConnectionChecker for JBoss doesn't work with
+     * MySQLXADataSources.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20242() throws Exception {
         try {
@@ -351,12 +339,11 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * This method is separated from the rest of the example since you normally
-     * would NOT register a JDBC driver in your code. It would likely be
-     * configered into your naming and directory service using some GUI.
-     * 
-     * @throws Exception
-     *             if an error occurs
+     * This method is separated from the rest of the example since you normally would NOT register a
+     * JDBC driver in your code. It would likely be configered into your naming and directory
+     * service using some GUI.
+     *
+     * @throws Exception if an error occurs
      */
     private void createJNDIContext() throws Exception {
         this.tempDir = File.createTempFile("jnditest", null);
@@ -438,11 +425,10 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#16791 - NullPointerException in MysqlDataSourceFactory
-     * due to Reference containing RefAddrs with null content.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#16791 - NullPointerException in MysqlDataSourceFactory due to Reference
+     * containing RefAddrs with null content.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug16791() throws Exception {
         MysqlDataSource myDs = new MysqlDataSource();
@@ -473,10 +459,9 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#32101 - When using a connection from our ConnectionPoolDataSource,
-     * some Connection.prepareStatement() methods would return null instead of
-     * a prepared statement.
-     * 
+     * Tests fix for BUG#32101 - When using a connection from our ConnectionPoolDataSource, some
+     * Connection.prepareStatement() methods would return null instead of a prepared statement.
+     *
      * @throws Exception
      */
     public void testBug32101() throws Exception {
@@ -527,10 +512,10 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#72890 - Java jdbc driver returns incorrect return code when it's part of XA transaction
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#72890 - Java jdbc driver returns incorrect return code when it's part of XA
+     * transaction
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug72890() throws Exception {
         MysqlXADataSource myDs = new MysqlXADataSource();
@@ -575,11 +560,11 @@ public class DataSourceRegressionTest extends BaseTestCase {
 
             XAException xaEx = assertThrows(XAException.class, "Undetermined error occurred in the underlying Connection - check your data for consistency",
                     new Callable<Void>() {
-                        public Void call() throws Exception {
-                            xaRes.commit(xid, false);
-                            return null;
-                        }
-                    });
+                public Void call() throws Exception {
+                    xaRes.commit(xid, false);
+                    return null;
+                }
+            });
             assertEquals("XAException error code", XAException.XAER_RMFAIL, xaEx.errorCode);
 
             dbConn.close();

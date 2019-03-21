@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.Serializable;
@@ -48,11 +47,11 @@ import com.mysql.cj.util.Util;
 import testsuite.BaseTestCase;
 
 public class UtilsTest extends BaseTestCase {
+
     /**
      * Creates a new UtilsTest.
-     * 
-     * @param name
-     *            the name of the test
+     *
+     * @param name the name of the test
      */
     public UtilsTest(String name) {
         super(name);
@@ -60,7 +59,7 @@ public class UtilsTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -69,7 +68,7 @@ public class UtilsTest extends BaseTestCase {
 
     /**
      * Tests Util.isJdbcInterface()
-     * 
+     *
      * @throws Exception
      */
     public void testIsJdbcInterface() throws Exception {
@@ -78,12 +77,12 @@ public class UtilsTest extends BaseTestCase {
         assertTrue(Util.isJdbcInterface(StatementImpl.class));
         assertTrue(Util.isJdbcInterface(JdbcStatement.class));
         assertTrue(Util.isJdbcInterface(ResultSetImpl.class));
-        JdbcStatement s = (JdbcStatement) Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[] { JdbcStatement.class },
+        JdbcStatement s = (JdbcStatement) Proxy.newProxyInstance(this.getClass().getClassLoader(), new Class<?>[]{JdbcStatement.class},
                 new InvocationHandler() {
-                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        return null;
-                    }
-                });
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                return null;
+            }
+        });
         assertTrue(Util.isJdbcInterface(s.getClass()));
 
         // Classes not implementing JDBC interfaces.
@@ -94,7 +93,7 @@ public class UtilsTest extends BaseTestCase {
 
     /**
      * Tests Util.isJdbcPackage()
-     * 
+     *
      * @throws Exception
      */
     public void testIsJdbcPackage() throws Exception {
@@ -119,7 +118,7 @@ public class UtilsTest extends BaseTestCase {
 
     /**
      * Tests Util.isJdbcPackage()
-     * 
+     *
      * @throws Exception
      */
     public void testGetImplementedInterfaces() throws Exception {
@@ -135,7 +134,7 @@ public class UtilsTest extends BaseTestCase {
         ifaces = Util.getImplementedInterfaces(ConnectionImpl.class);
         assertEquals(3, ifaces.length);
         List<Class<?>> ifacesList = Arrays.asList(ifaces);
-        for (Class<?> clazz : new Class<?>[] { JdbcConnection.class, Serializable.class }) {
+        for (Class<?> clazz : new Class<?>[]{JdbcConnection.class, Serializable.class}) {
             assertTrue(ifacesList.contains(clazz));
         }
     }

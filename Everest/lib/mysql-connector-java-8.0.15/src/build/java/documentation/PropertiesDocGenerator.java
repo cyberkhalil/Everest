@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package documentation;
 
 import java.util.HashMap;
@@ -46,13 +45,14 @@ public class PropertiesDocGenerator {
     }
 
     static class XmlMap {
+
         protected Map<Integer, Map<String, PropertyDefinition<?>>> ordered = new TreeMap<>();
         protected Map<String, PropertyDefinition<?>> alpha = new TreeMap<>();
     }
 
     /**
      * Returns a description of the connection properties as an XML document.
-     * 
+     *
      * @return the connection properties as an XML document.
      */
     public static String exposeAsXml() {

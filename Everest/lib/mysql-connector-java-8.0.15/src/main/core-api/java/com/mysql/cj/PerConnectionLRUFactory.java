@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Set;
@@ -41,6 +40,7 @@ public class PerConnectionLRUFactory implements CacheAdapterFactory<String, Pars
     }
 
     class PerConnectionLRU implements CacheAdapter<String, ParseInfo> {
+
         private final int cacheSqlLimit;
         private final LRUCache<String, ParseInfo> cache;
         private final Object syncMutex;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Arrays;
@@ -44,19 +43,16 @@ import com.mysql.cj.result.RowList;
  * {@link RowResult} implementation.
  */
 public class RowResultImpl extends AbstractDataResult<Row> implements RowResult {
+
     private ColumnDefinition metadata;
 
     /**
      * Constructor.
-     * 
-     * @param metadata
-     *            {@link ColumnDefinition} object to use for new rows.
-     * @param defaultTimeZone
-     *            {@link TimeZone} object representing the default time zone
-     * @param rows
-     *            {@link RowList} provided by c/J core
-     * @param completer
-     *            supplier for completion task
+     *
+     * @param metadata {@link ColumnDefinition} object to use for new rows.
+     * @param defaultTimeZone {@link TimeZone} object representing the default time zone
+     * @param rows {@link RowList} provided by c/J core
+     * @param completer supplier for completion task
      */
     public RowResultImpl(ColumnDefinition metadata, TimeZone defaultTimeZone, RowList rows, Supplier<StatementExecuteOk> completer) {
         super(rows, completer, new RowFactory(metadata, defaultTimeZone));

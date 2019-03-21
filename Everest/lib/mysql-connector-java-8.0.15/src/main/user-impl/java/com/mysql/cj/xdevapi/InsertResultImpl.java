@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import com.mysql.cj.protocol.x.StatementExecuteOk;
@@ -39,8 +38,7 @@ public class InsertResultImpl extends UpdateResult implements InsertResult {
     /**
      * Create a new result.
      *
-     * @param ok
-     *            the response from the server
+     * @param ok the response from the server
      */
     public InsertResultImpl(StatementExecuteOk ok) {
         super(ok);

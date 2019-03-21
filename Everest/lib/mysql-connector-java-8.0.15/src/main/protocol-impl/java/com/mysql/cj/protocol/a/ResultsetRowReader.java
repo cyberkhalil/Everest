@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -55,14 +54,11 @@ public class ResultsetRowReader implements ProtocolEntityReader<ResultsetRow, Na
     }
 
     /**
-     * Retrieve one row from the MySQL server. Note: this method is not
-     * thread-safe, but it is only called from methods that are guarded by
-     * synchronizing on this object.
-     * 
-     * @param sf
-     *            ProtocolEntityFactory
-     * @throws IOException
-     *             if an error occurs
+     * Retrieve one row from the MySQL server. Note: this method is not thread-safe, but it is only
+     * called from methods that are guarded by synchronizing on this object.
+     *
+     * @param sf ProtocolEntityFactory
+     * @throws IOException if an error occurs
      */
     @Override
     public ResultsetRow read(ProtocolEntityFactory<ResultsetRow, NativePacketPayload> sf) throws IOException {

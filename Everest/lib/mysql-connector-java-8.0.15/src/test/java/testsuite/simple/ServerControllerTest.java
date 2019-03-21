@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import com.mysql.cj.admin.ServerController;
@@ -43,9 +42,8 @@ public class ServerControllerTest extends BaseTestCase {
 
     /**
      * Creates a ServerControllerTest testcase.
-     * 
-     * @param name
-     *            the name of the test to run.
+     *
+     * @param name the name of the test to run.
      */
     public ServerControllerTest(String name) {
         super(name);
@@ -55,7 +53,7 @@ public class ServerControllerTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -64,12 +62,10 @@ public class ServerControllerTest extends BaseTestCase {
 
     /**
      * Demonstrates usage of the ServerController class.
-     * 
-     * This test is only run if the property
-     * 'com.mysql.jdbc.test.ServerController.basedir' is set.
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     *
+     * This test is only run if the property 'com.mysql.jdbc.test.ServerController.basedir' is set.
+     *
+     * @throws Exception if an error occurs.
      */
     public void testServerController() throws Exception {
 

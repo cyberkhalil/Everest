@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -42,7 +41,9 @@ import com.mysql.cj.util.StringUtils;
  */
 public class TracingPacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 
-    /** Max number of bytes to dump when tracing the protocol */
+    /**
+     * Max number of bytes to dump when tracing the protocol
+     */
     private final static int MAX_PACKET_DUMP_LENGTH = 1024;
 
     private MessageReader<NativePacketHeader, NativePacketPayload> packetReader;

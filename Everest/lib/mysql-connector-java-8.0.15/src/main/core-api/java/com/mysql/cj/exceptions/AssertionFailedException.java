@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 import com.mysql.cj.Messages;
@@ -40,12 +39,10 @@ public class AssertionFailedException extends CJException {
 
     /**
      * Convenience method.
-     * 
-     * @param ex
-     *            the exception that should never have been thrown.
+     *
+     * @param ex the exception that should never have been thrown.
      * @return {@link AssertionFailedException}
-     * @throws AssertionFailedException
-     *             for the exception ex.
+     * @throws AssertionFailedException for the exception ex.
      */
     public static AssertionFailedException shouldNotHappen(Exception ex) throws AssertionFailedException {
         throw new AssertionFailedException(ex);
@@ -56,29 +53,27 @@ public class AssertionFailedException extends CJException {
      *
      * <P>
      * Typical use is as follows:
-     * 
+     *
      * <PRE>
      * if (something == null) {
      *     throw AssertionFailedException.shouldNotHappen("Something cannot be null");
      * }
      * </PRE>
      *
-     * @param assertion
-     *            message
-     * @return the exception. exception should be thrown by the caller to satisfy compiler checks for data-flow, etc
-     * @throws AssertionFailedException
-     *             if exception occurs
+     * @param assertion message
+     * @return the exception. exception should be thrown by the caller to satisfy compiler checks
+     * for data-flow, etc
+     * @throws AssertionFailedException if exception occurs
      */
     public static AssertionFailedException shouldNotHappen(String assertion) throws AssertionFailedException {
         return new AssertionFailedException(assertion);
     }
 
     /**
-     * Creates an AssertionFailedException for the given exception that should
-     * never have been thrown.
-     * 
-     * @param ex
-     *            the exception that should never have been thrown.
+     * Creates an AssertionFailedException for the given exception that should never have been
+     * thrown.
+     *
+     * @param ex the exception that should never have been thrown.
      */
     public AssertionFailedException(Exception ex) {
         super(Messages.getString("AssertionFailedException.0") + ex.toString() + Messages.getString("AssertionFailedException.1"), ex);
@@ -86,11 +81,10 @@ public class AssertionFailedException extends CJException {
 
     /**
      * Creates an AssertionFailedException for the reason given.
-     * 
-     * @param assertion
-     *            a description of the assertion that failed
+     *
+     * @param assertion a description of the assertion that failed
      */
     public AssertionFailedException(String assertion) {
-        super(Messages.getString("AssertionFailedException.2", new Object[] { assertion }));
+        super(Messages.getString("AssertionFailedException.2", new Object[]{assertion}));
     }
 }

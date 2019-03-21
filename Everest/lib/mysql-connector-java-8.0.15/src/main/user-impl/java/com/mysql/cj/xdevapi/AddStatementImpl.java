@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.io.IOException;
@@ -45,6 +44,7 @@ import com.mysql.cj.protocol.x.XMessage;
 import com.mysql.cj.protocol.x.XMessageBuilder;
 
 public class AddStatementImpl implements AddStatement {
+
     private MysqlxSession mysqlxSession;
     private String schemaName;
     private String collectionName;
@@ -90,7 +90,7 @@ public class AddStatementImpl implements AddStatement {
             StatementExecuteOk ok = new StatementExecuteOk(0, null, Collections.emptyList(), Collections.emptyList());
             return new AddResultImpl(ok);
         }
-        StatementExecuteOk ok = this.mysqlxSession.sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder())
+        StatementExecuteOk ok = this.mysqlxSession.sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder())
                 .buildDocInsert(this.schemaName, this.collectionName, serializeDocs(), this.upsert));
         return new AddResultImpl(ok);
     }
@@ -100,7 +100,7 @@ public class AddStatementImpl implements AddStatement {
             StatementExecuteOk ok = new StatementExecuteOk(0, null, Collections.emptyList(), Collections.emptyList());
             return CompletableFuture.completedFuture(new AddResultImpl(ok));
         }
-        CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession.asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder())
+        CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession.asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder())
                 .buildDocInsert(this.schemaName, this.collectionName, serializeDocs(), this.upsert));
         return okF.thenApply(ok -> new AddResultImpl(ok));
     }

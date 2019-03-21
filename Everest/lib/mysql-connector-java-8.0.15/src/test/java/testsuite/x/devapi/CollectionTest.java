@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -381,30 +380,30 @@ public class CollectionTest extends BaseCollectionTestCase {
         // ET_2 Create an index specifying SPATIAL as the index type for a non spatial data type
         assertThrows(XProtocolError.class, "ERROR 3106 \\(HY000\\) 'Spatial index on virtual generated column' is not supported for generated columns.",
                 new Callable<Void>() {
-                    public Void call() throws Exception {
-                        CollectionTest.this.collection.createIndex("myIndex",
-                                "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(10)\"}], \"type\":\"SPATIAL\"}");
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                CollectionTest.this.collection.createIndex("myIndex",
+                        "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(10)\"}], \"type\":\"SPATIAL\"}");
+                return null;
+            }
+        });
 
         if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
             this.collection.createIndex("myIndex",
                     "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
-                            + " \"type\":\"INDEX\"}");
+                    + " \"type\":\"INDEX\"}");
             validateIndex("myIndex", this.collectionName, "gj", false, true, false, 1, 32);
             this.collection.dropIndex("myIndex");
         } else {
             // ET_3 Create an index specifying INDEX as the index type for a spatial data type
             assertThrows(XProtocolError.class, "ERROR 1170 \\(42000\\) BLOB/TEXT column .+_gj_r_.+ used in key specification without a key length",
                     new Callable<Void>() {
-                        public Void call() throws Exception {
-                            CollectionTest.this.collection.createIndex("myIndex",
-                                    "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
-                                            + " \"type\":\"INDEX\"}");
-                            return null;
-                        }
-                    });
+                public Void call() throws Exception {
+                    CollectionTest.this.collection.createIndex("myIndex",
+                            "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
+                            + " \"type\":\"INDEX\"}");
+                    return null;
+                }
+            });
         }
 
         // NPE checks

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.util.ArrayList;
@@ -37,17 +36,19 @@ import com.mysql.cj.util.StringUtils;
 import testsuite.BaseTestCase;
 
 /**
- * Tests new StringUtils functions in the driver: public static String sanitizeProcOrFuncName(String src) and public static List splitDBdotName(String src,
- * String cat, String quotId, boolean isNoBslashEscSet)
- * 
- * By the time sanitizeProcOrFuncName is called we should only have DB.SP as src, ie. SP/FUNC name is already sanitized during the process!
+ * Tests new StringUtils functions in the driver: public static String sanitizeProcOrFuncName(String
+ * src) and public static List splitDBdotName(String src, String cat, String quotId, boolean
+ * isNoBslashEscSet)
+ *
+ * By the time sanitizeProcOrFuncName is called we should only have DB.SP as src, ie. SP/FUNC name
+ * is already sanitized during the process!
  */
 public class SplitDBdotNameTest extends BaseTestCase {
+
     /**
      * Constructor for SplitDBdotNameTest.
-     * 
-     * @param name
-     *            the name of the test to run.
+     *
+     * @param name the name of the test to run.
      */
     public SplitDBdotNameTest(String name) {
         super(name);
@@ -55,7 +56,7 @@ public class SplitDBdotNameTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -64,9 +65,8 @@ public class SplitDBdotNameTest extends BaseTestCase {
 
     /**
      * Tests sanitation and SplitDBdotName
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testSplit() throws Exception {
         String src = null;

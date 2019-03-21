@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import com.mysql.cj.exceptions.CJOperationNotSupportedException;
@@ -35,9 +34,8 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 public interface ProtocolEntityFactory<T, M extends Message> {
 
     /**
-     * 
-     * @param message
-     *            {@link Message} instance
+     *
+     * @param message {@link Message} instance
      * @return T
      */
     default T createFromMessage(M message) {
@@ -58,9 +56,8 @@ public interface ProtocolEntityFactory<T, M extends Message> {
 
     /**
      * Create object from protocol entity.
-     * 
-     * @param protocolEntity
-     *            the {@link ProtocolEntity} to create from
+     *
+     * @param protocolEntity the {@link ProtocolEntity} to create from
      * @return a new ProtocolEntity
      */
     default T createFromProtocolEntity(ProtocolEntity protocolEntity) {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +43,7 @@ import com.mysql.cj.xdevapi.Collection;
 import com.mysql.cj.xdevapi.XDevAPIError;
 
 public class TransactionTest extends DevApiBaseTestCase {
+
     protected Collection collection;
 
     @Before
@@ -121,7 +121,6 @@ public class TransactionTest extends DevApiBaseTestCase {
         }
 
         // Test for rollbackTo
-
         this.session.startTransaction();
         if (!mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.5"))) {
             this.collection.add("{\"_id\": \"2\"}").execute(); // Requires manual _id.
@@ -199,7 +198,6 @@ public class TransactionTest extends DevApiBaseTestCase {
         assertEquals(2, this.collection.find().execute().count());
 
         // Test for releaseSavepoint
-
         this.session.startTransaction();
         if (!mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.5"))) {
             this.collection.add("{\"_id\": \"5\"}").execute(); // Requires manual _id.

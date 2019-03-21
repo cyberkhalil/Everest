@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import com.mysql.cj.exceptions.ExceptionInterceptor;
@@ -82,7 +81,8 @@ public class ByteArrayRow extends AbstractResultsetRow {
     }
 
     /**
-     * Implementation of getValue() based on the underlying byte array. Delegate to superclass for decoding.
+     * Implementation of getValue() based on the underlying byte array. Delegate to superclass for
+     * decoding.
      */
     @Override
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {

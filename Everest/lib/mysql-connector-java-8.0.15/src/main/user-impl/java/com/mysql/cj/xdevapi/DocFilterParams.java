@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Arrays;
@@ -42,11 +41,9 @@ public class DocFilterParams extends AbstractFilterParams {
 
     /**
      * Constructor.
-     * 
-     * @param schemaName
-     *            Schema name
-     * @param collectionName
-     *            Collection name
+     *
+     * @param schemaName Schema name
+     * @param collectionName Collection name
      */
     public DocFilterParams(String schemaName, String collectionName) {
         super(schemaName, collectionName, false);
@@ -54,9 +51,8 @@ public class DocFilterParams extends AbstractFilterParams {
 
     /**
      * Parse projection expressions into X Protocol Projection objects.
-     * 
-     * @param docProjection
-     *            projection expression
+     *
+     * @param docProjection projection expression
      */
     public void setFields(Expression docProjection) {
         this.fields = Collections.singletonList(Projection.newBuilder().setSource(new ExprParser(docProjection.getExpressionString(), false).parse()).build());

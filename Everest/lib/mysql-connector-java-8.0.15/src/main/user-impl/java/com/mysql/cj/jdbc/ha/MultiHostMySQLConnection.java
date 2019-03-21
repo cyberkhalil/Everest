@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.sql.Blob;
@@ -63,22 +62,26 @@ import com.mysql.cj.jdbc.result.ResultSetInternalMethods;
 
 /**
  * Each instance of MultiHostMySQLConnection is coupled with a MultiHostConnectionProxy instance.
- * 
- * While this class implements MySQLConnection directly, MultiHostConnectionProxy does the same but via a dynamic proxy.
- * 
- * Most of the methods in this class refer directly to the active connection from its MultiHostConnectionProxy pair, providing a non-proxied access to the
- * current active connection managed by this multi-host structure. The remaining methods either implement some local behavior or refer to the proxy itself
- * instead of the sub-connection.
- * 
- * Referring to the higher level proxy connection is needed when some operation needs to be extended to all open sub-connections existing in this multi-host
- * structure as opposed to just refer to the active current connection, such as with close() which is most likely required to close all sub-connections as
- * well.
+ *
+ * While this class implements MySQLConnection directly, MultiHostConnectionProxy does the same but
+ * via a dynamic proxy.
+ *
+ * Most of the methods in this class refer directly to the active connection from its
+ * MultiHostConnectionProxy pair, providing a non-proxied access to the current active connection
+ * managed by this multi-host structure. The remaining methods either implement some local behavior
+ * or refer to the proxy itself instead of the sub-connection.
+ *
+ * Referring to the higher level proxy connection is needed when some operation needs to be extended
+ * to all open sub-connections existing in this multi-host structure as opposed to just refer to the
+ * active current connection, such as with close() which is most likely required to close all
+ * sub-connections as well.
  */
 public class MultiHostMySQLConnection implements JdbcConnection {
 
     /**
-     * thisAsProxy holds the proxy (MultiHostConnectionProxy or one of its subclasses) this connection is associated with.
-     * It is used as a gateway to the current active sub-connection managed by this multi-host structure or as a target to where some of the methods implemented
+     * thisAsProxy holds the proxy (MultiHostConnectionProxy or one of its subclasses) this
+     * connection is associated with. It is used as a gateway to the current active sub-connection
+     * managed by this multi-host structure or as a target to where some of the methods implemented
      * here in this class refer to.
      */
     protected MultiHostConnectionProxy thisAsProxy;
@@ -692,7 +695,7 @@ public class MultiHostMySQLConnection implements JdbcConnection {
             // This works for classes that aren't actually wrapping anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }

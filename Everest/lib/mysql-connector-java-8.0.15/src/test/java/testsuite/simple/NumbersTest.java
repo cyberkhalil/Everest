@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.SQLException;
@@ -34,11 +33,12 @@ import java.sql.SQLException;
 import testsuite.BaseTestCase;
 
 public class NumbersTest extends BaseTestCase {
+
     private static final long TEST_BIGINT_VALUE = 6147483647L;
 
     /**
      * Creates a new NumbersTest object.
-     * 
+     *
      * @param name
      */
     public NumbersTest(String name) {
@@ -47,7 +47,7 @@ public class NumbersTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

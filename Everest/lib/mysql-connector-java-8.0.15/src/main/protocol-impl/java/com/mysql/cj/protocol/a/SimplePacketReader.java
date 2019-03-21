@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -39,8 +38,8 @@ import com.mysql.cj.protocol.MessageReader;
 import com.mysql.cj.protocol.SocketConnection;
 
 /**
- * Simple implementation of {@link MessageReader} which handles the receiving of logical MySQL packets from the provided socket input stream.
- * Multi-packets are handled outside of this reader.
+ * Simple implementation of {@link MessageReader} which handles the receiving of logical MySQL
+ * packets from the provided socket input stream. Multi-packets are handled outside of this reader.
  */
 public class SimplePacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 
@@ -107,7 +106,7 @@ public class SimplePacketReader implements MessageReader<NativePacketHeader, Nat
             // Read the data from the server
             int numBytesRead = this.socketConnection.getMysqlInput().readFully(buf.getByteBuffer(), 0, packetLength);
             if (numBytesRead != packetLength) {
-                throw new IOException(Messages.getString("PacketReader.1", new Object[] { packetLength, numBytesRead }));
+                throw new IOException(Messages.getString("PacketReader.1", new Object[]{packetLength, numBytesRead}));
             }
             return buf;
 

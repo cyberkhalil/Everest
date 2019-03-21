@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.SQLException;
@@ -51,6 +50,7 @@ import com.mysql.cj.protocol.PacketSentTimeHolder;
 import testsuite.BaseTestCase;
 
 public class ExceptionsTest extends BaseTestCase {
+
     static String TEST_MESSAGE = "Test message";
     static String TEST_SQL_STATE = "Test SQLState";
 
@@ -64,11 +64,11 @@ public class ExceptionsTest extends BaseTestCase {
         assertThrows(SQLException.class,
                 "Communications link failure\n\nThe last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.",
                 new Callable<Void>() {
-                    public Void call() throws Exception {
-                        new NonRegisteringDriver().connect("jdbc:mysql://wrongurl?user=usr", null);
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                new NonRegisteringDriver().connect("jdbc:mysql://wrongurl?user=usr", null);
+                return null;
+            }
+        });
         assertThrows(SQLException.class, ".*Can't find configuration template named 'wrongvalue'", new Callable<Void>() {
             public Void call() throws Exception {
                 new NonRegisteringDriver().connect(dbUrl + "&useConfigs=wrongvalue", null);
@@ -78,11 +78,11 @@ public class ExceptionsTest extends BaseTestCase {
         assertThrows(SQLException.class,
                 "The connection property 'useServerPrepStmts' acceptable values are: 'TRUE', 'FALSE', 'YES' or 'NO'\\. The value 'wrongvalue' is not acceptable\\.",
                 new Callable<Void>() {
-                    public Void call() throws Exception {
-                        new NonRegisteringDriver().getPropertyInfo(dbUrl + "&useServerPrepStmts=wrongvalue", null);
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                new NonRegisteringDriver().getPropertyInfo(dbUrl + "&useServerPrepStmts=wrongvalue", null);
+                return null;
+            }
+        });
 
     }
 

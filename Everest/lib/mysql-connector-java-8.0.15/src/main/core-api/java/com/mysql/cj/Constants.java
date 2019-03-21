@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import com.mysql.cj.conf.PropertyDefinitions;
@@ -35,6 +34,7 @@ import com.mysql.cj.conf.PropertyDefinitions;
  * Represents various constants used in the driver.
  */
 public class Constants {
+
     /**
      * Avoids allocation of empty byte[] when representing 0-length strings.
      */
@@ -45,9 +45,9 @@ public class Constants {
      */
     public final static String MILLIS_I18N = Messages.getString("Milliseconds");
 
-    public final static byte[] SLASH_STAR_SPACE_AS_BYTES = new byte[] { (byte) '/', (byte) '*', (byte) ' ' };
+    public final static byte[] SLASH_STAR_SPACE_AS_BYTES = new byte[]{(byte) '/', (byte) '*', (byte) ' '};
 
-    public final static byte[] SPACE_STAR_SLASH_SPACE_AS_BYTES = new byte[] { (byte) ' ', (byte) '*', (byte) '/', (byte) ' ' };
+    public final static byte[] SPACE_STAR_SLASH_SPACE_AS_BYTES = new byte[]{(byte) ' ', (byte) '*', (byte) '/', (byte) ' '};
 
     public static final String JVM_VENDOR = System.getProperty(PropertyDefinitions.SYSP_java_vendor);
     public static final String JVM_VERSION = System.getProperty(PropertyDefinitions.SYSP_java_version);

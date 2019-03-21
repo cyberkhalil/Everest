@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -37,6 +36,7 @@ import java.nio.ByteBuffer;
  * A value factory for creating float values.
  */
 public class FloatValueFactory extends DefaultValueFactory<Float> {
+
     @Override
     public Float createFromBigInteger(BigInteger i) {
         return (float) i.doubleValue();

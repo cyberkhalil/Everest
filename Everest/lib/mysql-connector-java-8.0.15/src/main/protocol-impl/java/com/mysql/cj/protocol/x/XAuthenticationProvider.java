@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.nio.channels.ClosedChannelException;
@@ -65,7 +64,7 @@ public class XAuthenticationProvider implements AuthenticationProvider<XMessage>
     @Override
     public void changeUser(ServerSession serverSession, String userName, String password, String database) {
         boolean overTLS = ((XServerCapabilities) this.protocol.getServerSession().getCapabilities()).getTls();
-        RuntimeProperty<AuthMech> authMechProp = this.protocol.getPropertySet().<AuthMech> getEnumProperty(PropertyKey.xdevapiAuth);
+        RuntimeProperty<AuthMech> authMechProp = this.protocol.getPropertySet().<AuthMech>getEnumProperty(PropertyKey.xdevapiAuth);
         List<AuthMech> tryAuthMech;
         if (overTLS || authMechProp.isExplicitlySet()) {
             tryAuthMech = Arrays.asList(authMechProp.getValue());

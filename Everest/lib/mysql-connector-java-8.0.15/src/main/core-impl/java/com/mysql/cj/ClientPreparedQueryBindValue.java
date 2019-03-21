@@ -26,28 +26,32 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.InputStream;
 
 //TODO should not be protocol-specific
-
 public class ClientPreparedQueryBindValue implements BindValue {
 
-    /** NULL indicator */
+    /**
+     * NULL indicator
+     */
     protected boolean isNull;
 
     protected boolean isStream = false;
 
     protected MysqlType parameterType = MysqlType.NULL;
 
-    /** The value to store */
+    /**
+     * The value to store
+     */
     public Object value;
 
     protected long streamLength;
 
-    /** has this parameter been set? */
+    /**
+     * has this parameter been set?
+     */
     protected boolean isSet = false;
 
     public ClientPreparedQueryBindValue() {

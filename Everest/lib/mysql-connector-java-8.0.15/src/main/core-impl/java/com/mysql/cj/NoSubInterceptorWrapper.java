@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Properties;
@@ -39,7 +38,8 @@ import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.protocol.ServerSession;
 
 /**
- * Wraps query interceptors during driver startup so that they don't produce different result sets than we expect.
+ * Wraps query interceptors during driver startup so that they don't produce different result sets
+ * than we expect.
  */
 public class NoSubInterceptorWrapper implements QueryInterceptor {
 

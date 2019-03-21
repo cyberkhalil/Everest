@@ -26,27 +26,27 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 public interface Warning {
+
     /**
      * Get warning level.
-     * 
+     *
      * @return Warning level
      */
     int getLevel();
 
     /**
      * Get warning code.
-     * 
+     *
      * @return Warning code
      */
     long getCode();
 
     /**
      * Get warning message.
-     * 
+     *
      * @return Warning message
      */
     String getMessage();

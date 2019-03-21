@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import javax.transaction.xa.Xid;
@@ -99,7 +98,9 @@ public class MysqlXid implements Xid {
     @Override
     public int getFormatId() {
         return this.myFormatId;
-    };
+    }
+
+    ;
 
     @Override
     public byte[] getGlobalTransactionId() {

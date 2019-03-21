@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.SQLException;
@@ -64,7 +63,6 @@ public class SuspendableXAConnection extends MysqlPooledConnection implements XA
         // TODO: check for same GTRID, but different BQUALs...MySQL doesn't allow this yet
 
         // Note, we don't need to check for XIDs here, because MySQL itself will complain with a XAER_NOTA if need be.
-
         XAConnection conn = XIDS_TO_PHYSICAL_CONNECTIONS.get(xid);
 
         if (conn == null) {
@@ -168,7 +166,6 @@ public class SuspendableXAConnection extends MysqlPooledConnection implements XA
         //
         // Emulate join, by using resume on the same physical connection
         //
-
         this.currentXAResource.start(xid, XAResource.TMRESUME);
     }
 

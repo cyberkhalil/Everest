@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.List;
@@ -37,8 +36,9 @@ import java.util.List;
 public interface AddResult extends Result {
 
     /**
-     * Get a list of document ids generated in the server for the documents added by collection.add().
-     * 
+     * Get a list of document ids generated in the server for the documents added by
+     * collection.add().
+     *
      * @return all generated document ids
      */
     List<String> getGeneratedIds();

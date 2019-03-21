@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Slf4JLogger implements Log {
+
     private Logger log;
 
     public Slf4JLogger(String name) {

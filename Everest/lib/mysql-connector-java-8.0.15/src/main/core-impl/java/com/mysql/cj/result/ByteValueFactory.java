@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -36,6 +35,7 @@ import java.math.BigInteger;
  * A value factory for creating byte values.
  */
 public class ByteValueFactory extends DefaultValueFactory<Byte> {
+
     @Override
     public Byte createFromBigInteger(BigInteger i) {
         return (byte) i.intValue();

@@ -26,23 +26,21 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 /**
  * Represents the item of XPLUGIN_STMT_LIST_OBJECTS operation result.
  */
 public class DatabaseObjectDescription {
+
     private String objectName;
     private DatabaseObject.DbObjectType objectType;
 
     /**
      * Constructor.
-     * 
-     * @param name
-     *            database object name
-     * @param type
-     *            database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
+     *
+     * @param name database object name
+     * @param type database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
      */
     public DatabaseObjectDescription(String name, String type) {
         this.objectName = name;
@@ -51,7 +49,7 @@ public class DatabaseObjectDescription {
 
     /**
      * Get database object name.
-     * 
+     *
      * @return database object name
      */
     public String getObjectName() {
@@ -60,7 +58,7 @@ public class DatabaseObjectDescription {
 
     /**
      * Get database object type
-     * 
+     *
      * @return {@link DatabaseObject.DbObjectType}
      */
     public DatabaseObject.DbObjectType getObjectType() {

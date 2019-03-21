@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package instrumentation;
 
 import java.lang.reflect.Method;
@@ -150,23 +149,23 @@ public class TranslateExceptions {
         instrumentJdbcMethods(clazz, java.sql.CallableStatement.class, false, EXCEPTION_INTERCEPTOR_GETTER);
         instrumentJdbcMethods(clazz, JdbcStatement.class, true, EXCEPTION_INTERCEPTOR_GETTER);
         // non-JDBC
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkIsOutputParam", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkParameterIndexBounds", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkReadOnlyProcedure", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("convertGetProcedureColumnsToInternalDescriptors", new CtClass[] { ctResultSet }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkIsOutputParam", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkParameterIndexBounds", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkReadOnlyProcedure", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("convertGetProcedureColumnsToInternalDescriptors", new CtClass[]{ctResultSet}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("determineParameterTypes", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("fakeParameterTypes", new CtClass[] { CtClass.booleanType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("fixParameterName", new CtClass[] { ctString }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateParameterMap", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getNamedParamIndex", new CtClass[] { ctString, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("determineParameterTypes", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("fakeParameterTypes", new CtClass[]{CtClass.booleanType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("fixParameterName", new CtClass[]{ctString}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateParameterMap", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getNamedParamIndex", new CtClass[]{ctString, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getOutputParameters", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("mapOutputParameterIndexToRsIndex", new CtClass[] { CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getOutputParameters", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("mapOutputParameterIndexToRsIndex", new CtClass[]{CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("retrieveOutParams", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setInOutParamsOnServer", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setOutParams", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("retrieveOutParams", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setInOutParamsOnServer", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setOutParams", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         /*
@@ -208,17 +207,17 @@ public class TranslateExceptions {
         instrumentJdbcMethods(clazz, JdbcConnection.class, false, EXCEPTION_INTERCEPTOR_GETTER);
         // non-JDBC
         catchRuntimeException(clazz,
-                clazz.getDeclaredMethod("clientPrepareStatement", new CtClass[] { ctString, CtClass.intType, CtClass.intType, CtClass.booleanType }),
+                clazz.getDeclaredMethod("clientPrepareStatement", new CtClass[]{ctString, CtClass.intType, CtClass.intType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("createNewIO", new CtClass[] { CtClass.booleanType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getMetaData", new CtClass[] { CtClass.booleanType, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("createNewIO", new CtClass[]{CtClass.booleanType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getMetaData", new CtClass[]{CtClass.booleanType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("handleAutoCommitDefaults", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setSavepoint", new CtClass[] { ctMysqlSavepoint }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("versionMeetsMinimum", new CtClass[] { CtClass.intType, CtClass.intType, CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("handleAutoCommitDefaults", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setSavepoint", new CtClass[]{ctMysqlSavepoint}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("versionMeetsMinimum", new CtClass[]{CtClass.intType, CtClass.intType, CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("rollbackNoChecks", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setupServerForTruncationChecks", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("rollbackNoChecks", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setupServerForTruncationChecks", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         // com.mysql.cj.jdbc.LoadBalancedMySQLConnection extends MultiHostMySQLConnection implements LoadBalancedConnection
@@ -240,11 +239,11 @@ public class TranslateExceptions {
         clazz = pool.get(ConnectionWrapper.class.getName());
         instrumentJdbcMethods(clazz, JdbcConnection.class, false, EXCEPTION_INTERCEPTOR_MEMBER);
         // non-JDBC
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("clientPrepare", new CtClass[] { ctString }), EXCEPTION_INTERCEPTOR_MEMBER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("clientPrepare", new CtClass[] { ctString, CtClass.intType, CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("clientPrepare", new CtClass[]{ctString}), EXCEPTION_INTERCEPTOR_MEMBER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("clientPrepare", new CtClass[]{ctString, CtClass.intType, CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_MEMBER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setClientInfo", new CtClass[] { ctString, ctString }), EXCEPTION_INTERCEPTOR_MEMBER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setClientInfo", new CtClass[] { ctProperties }), EXCEPTION_INTERCEPTOR_MEMBER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setClientInfo", new CtClass[]{ctString, ctString}), EXCEPTION_INTERCEPTOR_MEMBER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setClientInfo", new CtClass[]{ctProperties}), EXCEPTION_INTERCEPTOR_MEMBER);
         clazz.writeFile(args[0]);
 
         /*
@@ -297,36 +296,36 @@ public class TranslateExceptions {
         instrumentJdbcMethods(clazz, java.sql.PreparedStatement.class, false, EXCEPTION_INTERCEPTOR_GETTER);
         instrumentJdbcMethods(clazz, JdbcStatement.class, true, EXCEPTION_INTERCEPTOR_GETTER);
         // non-JDBC
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("asSql", new CtClass[] { CtClass.booleanType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkBounds", new CtClass[] { CtClass.intType, CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkReadOnlySafeStatement", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeBatchedInserts", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeBatchSerially", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("asSql", new CtClass[]{CtClass.booleanType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkBounds", new CtClass[]{CtClass.intType, CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkReadOnlySafeStatement", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeBatchedInserts", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeBatchSerially", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
         catchRuntimeException(clazz,
                 clazz.getDeclaredMethod("executeInternal",
-                        new CtClass[] { CtClass.intType, ctMessageBody, CtClass.booleanType, CtClass.booleanType, ctColumnDefinition, CtClass.booleanType }),
+                        new CtClass[]{CtClass.intType, ctMessageBody, CtClass.booleanType, CtClass.booleanType, ctColumnDefinition, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executePreparedBatchAsMultiStatement", new CtClass[] { CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executePreparedBatchAsMultiStatement", new CtClass[]{CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[] { CtClass.booleanType, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[]{CtClass.booleanType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[] { ctQueryBindings, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[]{ctQueryBindings, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateMultiStatementForBatch", new CtClass[] { CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateMultiStatementForBatch", new CtClass[]{CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBytesRepresentation", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBytesRepresentationForBatch", new CtClass[] { CtClass.intType, CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBytesRepresentation", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBytesRepresentationForBatch", new CtClass[]{CtClass.intType, CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getParameterBindings", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("initializeFromParseInfo", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("isNull", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("isSelectQuery", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("prepareBatchedInsertSQL", new CtClass[] { ctJdbcConnection, CtClass.intType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getParameterBindings", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("initializeFromParseInfo", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("isNull", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("isSelectQuery", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("prepareBatchedInsertSQL", new CtClass[]{ctJdbcConnection, CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
         catchRuntimeException(clazz,
-                clazz.getDeclaredMethod("setBytes", new CtClass[] { CtClass.intType, ctByteArray, CtClass.booleanType, CtClass.booleanType }),
+                clazz.getDeclaredMethod("setBytes", new CtClass[]{CtClass.intType, ctByteArray, CtClass.booleanType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setRetrieveGeneratedKeys", new CtClass[] { CtClass.booleanType }), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setRetrieveGeneratedKeys", new CtClass[]{CtClass.booleanType}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         /*
@@ -336,20 +335,20 @@ public class TranslateExceptions {
         instrumentJdbcMethods(clazz, java.sql.PreparedStatement.class, false, EXCEPTION_INTERCEPTOR_GETTER);
         instrumentJdbcMethods(clazz, JdbcStatement.class, true, EXCEPTION_INTERCEPTOR_GETTER);
         // non-JDBC
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBinding", new CtClass[] { CtClass.intType, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBinding", new CtClass[]{CtClass.intType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
         catchRuntimeException(clazz,
                 clazz.getDeclaredMethod("executeInternal",
-                        new CtClass[] { CtClass.intType, ctMessageBody, CtClass.booleanType, CtClass.booleanType, ctColumnDefinition, CtClass.booleanType }),
+                        new CtClass[]{CtClass.intType, ctMessageBody, CtClass.booleanType, CtClass.booleanType, ctColumnDefinition, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
         //catchRuntimeException(clazz, clazz.getDeclaredMethod("canRewriteAsMultiValueInsertAtSqlLevel", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("realClose", new CtClass[] { CtClass.booleanType, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("realClose", new CtClass[]{CtClass.booleanType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("serverExecute", new CtClass[] { CtClass.intType, CtClass.booleanType, ctColumnDefinition }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("serverExecute", new CtClass[]{CtClass.intType, CtClass.booleanType, ctColumnDefinition}),
                 EXCEPTION_INTERCEPTOR_GETTER);
         //catchRuntimeException(clazz, clazz.getDeclaredMethod("serverLongData", new CtClass[] { CtClass.intType, ctServerPreparedQueryBindValue }),
         //        EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("serverPrepare", new CtClass[] { ctString }), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("serverPrepare", new CtClass[]{ctString}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         /*
@@ -363,7 +362,7 @@ public class TranslateExceptions {
         // com.mysql.cj.jdbc.UpdatableResultSet extends ResultSetImpl
         clazz = pool.get(UpdatableResultSet.class.getName());
         instrumentJdbcMethods(clazz, ResultSetInternalMethods.class, false, EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateStatements", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("generateStatements", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         /*
@@ -389,34 +388,34 @@ public class TranslateExceptions {
         clazz = pool.get(StatementImpl.class.getName());
         instrumentJdbcMethods(clazz, JdbcStatement.class, false, EXCEPTION_INTERCEPTOR_GETTER);
         // non-JDBC
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("createResultSetUsingServerFetch", new CtClass[] { ctString }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("doPingInstead", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeInternal", new CtClass[] { ctString, CtClass.booleanType }), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("createResultSetUsingServerFetch", new CtClass[]{ctString}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("doPingInstead", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeInternal", new CtClass[]{ctString, CtClass.booleanType}), EXCEPTION_INTERCEPTOR_GETTER);
         catchRuntimeException(clazz,
-                clazz.getDeclaredMethod("executeBatchUsingMultiQueries", new CtClass[] { CtClass.booleanType, CtClass.intType, CtClass.intType }),
+                clazz.getDeclaredMethod("executeBatchUsingMultiQueries", new CtClass[]{CtClass.booleanType, CtClass.intType, CtClass.intType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[] { ctString, CtClass.booleanType, CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeUpdateInternal", new CtClass[]{ctString, CtClass.booleanType, CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeSimpleNonQuery", new CtClass[] { ctJdbcConnection, ctString }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("executeSimpleNonQuery", new CtClass[]{ctJdbcConnection, ctString}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("generatePingResultSet", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBatchedGeneratedKeys", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBatchedGeneratedKeys", new CtClass[] { ctStatement }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getGeneratedKeysInternal", new CtClass[] { CtClass.longType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLastInsertID", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLongUpdateCount", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getOpenResultSetCount", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getResultSetInternal", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("processMultiCountsAndKeys", new CtClass[] { ctStatementImpl, CtClass.intType, ctLongArray }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("generatePingResultSet", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBatchedGeneratedKeys", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBatchedGeneratedKeys", new CtClass[]{ctStatement}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getGeneratedKeysInternal", new CtClass[]{CtClass.longType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLastInsertID", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLongUpdateCount", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getOpenResultSetCount", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getResultSetInternal", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("processMultiCountsAndKeys", new CtClass[]{ctStatementImpl, CtClass.intType, ctLongArray}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("removeOpenResultSet", new CtClass[] { ctResultSetInternalMethods }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("removeOpenResultSet", new CtClass[]{ctResultSetInternalMethods}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("resetCancelledState", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setHoldResultsOpenOverClose", new CtClass[] { CtClass.booleanType }),
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("resetCancelledState", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setHoldResultsOpenOverClose", new CtClass[]{CtClass.booleanType}),
                 EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setResultSetConcurrency", new CtClass[] { CtClass.intType }), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("useServerFetch", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkCancelTimeout", new CtClass[] {}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setResultSetConcurrency", new CtClass[]{CtClass.intType}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("useServerFetch", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("checkCancelTimeout", new CtClass[]{}), EXCEPTION_INTERCEPTOR_GETTER);
         clazz.writeFile(args[0]);
 
         /*
@@ -441,18 +440,18 @@ public class TranslateExceptions {
         // MysqlDataSource extends JdbcPropertySetImpl implements DataSource, Referenceable, Serializable, JdbcPropertySet
         clazz = pool.get(MysqlDataSource.class.getName());
         instrumentJdbcMethods(clazz, javax.sql.DataSource.class);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getStringRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setStringRuntimeProperty", new CtClass[] { ctString, ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBooleanRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setBooleanRuntimeProperty", new CtClass[] { ctString, CtClass.booleanType }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getIntegerRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setIntegerRuntimeProperty", new CtClass[] { ctString, CtClass.intType }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLongRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setLongRuntimeProperty", new CtClass[] { ctString, CtClass.longType }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getMemorySizeRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setMemorySizeRuntimeProperty", new CtClass[] { ctString, CtClass.intType }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("getEnumRuntimeProperty", new CtClass[] { ctString }), null);
-        catchRuntimeException(clazz, clazz.getDeclaredMethod("setEnumRuntimeProperty", new CtClass[] { ctString, ctString }), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getStringRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setStringRuntimeProperty", new CtClass[]{ctString, ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getBooleanRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setBooleanRuntimeProperty", new CtClass[]{ctString, CtClass.booleanType}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getIntegerRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setIntegerRuntimeProperty", new CtClass[]{ctString, CtClass.intType}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getLongRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setLongRuntimeProperty", new CtClass[]{ctString, CtClass.longType}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getMemorySizeRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setMemorySizeRuntimeProperty", new CtClass[]{ctString, CtClass.intType}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("getEnumRuntimeProperty", new CtClass[]{ctString}), null);
+        catchRuntimeException(clazz, clazz.getDeclaredMethod("setEnumRuntimeProperty", new CtClass[]{ctString, ctString}), null);
         clazz.writeFile(args[0]);
 
         /*
@@ -541,7 +540,7 @@ public class TranslateExceptions {
          * com.mysql.cj.jdbc.MysqlXAException extends javax.transaction.xa.XAException
          */
 
-        /*
+ /*
          * These classes have no implementations in c/J:
          * 
          * java.sql.Array
@@ -626,17 +625,13 @@ public class TranslateExceptions {
 
     /**
      * Instruments methods of cjClazz defined in jdbcClass.
-     * 
-     * @param cjClazz
-     *            CtClass to be instrumented.
-     * @param jdbcClass
-     *            Class from JDBC specification where methods descriptors to be get.
-     * @param declaredMethodsOnly
-     *            true - instrument methods declared in this class, false - also instrument inherited methods
-     * @param exceptionInterceptorStr
-     *            exception interceptor reference as a string
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @param cjClazz CtClass to be instrumented.
+     * @param jdbcClass Class from JDBC specification where methods descriptors to be get.
+     * @param declaredMethodsOnly true - instrument methods declared in this class, false - also
+     * instrument inherited methods
+     * @param exceptionInterceptorStr exception interceptor reference as a string
+     * @throws Exception if an error occurs
      */
     private static void instrumentJdbcMethods(CtClass cjClazz, Class<?> jdbcClass, boolean declaredMethodsOnly, String exceptionInterceptorStr)
             throws Exception {

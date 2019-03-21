@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -76,6 +75,7 @@ import com.mysql.cj.xdevapi.SqlStatement;
 import com.mysql.cj.xdevapi.XDevAPIError;
 
 public class SessionTest extends DevApiBaseTestCase {
+
     @Before
     public void setupCollectionTest() {
         setupTestSession();
@@ -124,8 +124,8 @@ public class SessionTest extends DevApiBaseTestCase {
             final String testUriPattern = "mysqlx://testUserN:testUserN@%s:%s/%s?xdevapi.auth=%s";
 
             // Check if the default schema is correctly sent when using different authentication mechanisms.
-            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[] { "PLAIN", "MYSQL41", "SHA256_MEMORY" }
-                    : new String[] { "PLAIN", "MYSQL41" };
+            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[]{"PLAIN", "MYSQL41", "SHA256_MEMORY"}
+                    : new String[]{"PLAIN", "MYSQL41"};
             for (String authMech : authMechs) {
                 final String testCase = "Testing default schema provided in authentication mecanism '" + authMech + "'.";
 
@@ -179,10 +179,10 @@ public class SessionTest extends DevApiBaseTestCase {
             final String testUriPattern3 = "mysqlx://testUserN:testUserN@address=(host=%s)(port=%s)(xdevapi.auth=%s)";
 
             // Check if not setting a default schema works correctly when using different authentication mechanisms.
-            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[] { "PLAIN", "MYSQL41", "SHA256_MEMORY" }
-                    : new String[] { "PLAIN", "MYSQL41" };
+            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[]{"PLAIN", "MYSQL41", "SHA256_MEMORY"}
+                    : new String[]{"PLAIN", "MYSQL41"};
             for (String authMech : authMechs) {
-                for (String testUriPattern : new String[] { testUriPattern1, testUriPattern2, testUriPattern3 }) {
+                for (String testUriPattern : new String[]{testUriPattern1, testUriPattern2, testUriPattern3}) {
                     // Test using a connection String.
                     final String testUri = String.format(testUriPattern, getTestHost(), getTestPort(), authMech);
                     final String testCase = "Testing no default schema with authentication mecanism '" + authMech + "' and URI '" + testUri + "'.";
@@ -233,8 +233,8 @@ public class SessionTest extends DevApiBaseTestCase {
             final String testUriPattern = "mysqlx://testUserN:testUserN@%s:%s/%s?xdevapi.auth=%s";
 
             // Check if the default schema is correctly sent when using different authentication mechanisms.
-            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[] { "PLAIN", "MYSQL41", "SHA256_MEMORY" }
-                    : new String[] { "PLAIN", "MYSQL41" };
+            String[] authMechs = mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.4")) ? new String[]{"PLAIN", "MYSQL41", "SHA256_MEMORY"}
+                    : new String[]{"PLAIN", "MYSQL41"};
             for (String authMech : authMechs) {
                 final String testCase = "Testing missing default schema provided in authentication mecanism '" + authMech + "'.";
 
@@ -347,9 +347,8 @@ public class SessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests fix for Bug#21690043, CONNECT FAILS WHEN PASSWORD IS BLANK.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug21690043() {
@@ -413,7 +412,6 @@ public class SessionTest extends DevApiBaseTestCase {
 
         // TODO SqlUpdateResult throws FeatureNotAvailableException("Not a multi-result");
         //res.nextResult();
-
         assertThrows(FeatureNotAvailableException.class, "No data", new Callable<Void>() {
             public Void call() throws Exception {
                 res.fetchAll();
@@ -526,7 +524,8 @@ public class SessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug #27652379, NPE FROM GETSESSION(PROPERTIES) WHEN HOST PARAMETER IS GIVEN IN SMALL LETTER.
+     * Tests fix for Bug #27652379, NPE FROM GETSESSION(PROPERTIES) WHEN HOST PARAMETER IS GIVEN IN
+     * SMALL LETTER.
      */
     @Test
     public void testBug27652379() throws Exception {
@@ -1107,7 +1106,7 @@ public class SessionTest extends DevApiBaseTestCase {
             return;
         }
 
-        for (String path : new String[] { null, "\\\\.\\pipe\\MySQL80" }) {
+        for (String path : new String[]{null, "\\\\.\\pipe\\MySQL80"}) {
             String url = this.baseUrl + makeParam(PropertyKey.socketFactory, "com.mysql.cj.protocol.NamedPipeSocketFactory");
             if (path != null) {
                 url += makeParam(PropertyKey.PATH, path);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import com.mysql.cj.exceptions.ExceptionFactory;
@@ -46,8 +45,8 @@ public class IntegerProperty extends AbstractRuntimeProperty<Integer> {
         if ((val.intValue() < getPropertyDefinition().getLowerBound()) || (val.intValue() > getPropertyDefinition().getUpperBound())) {
             throw ExceptionFactory.createException(WrongArgumentException.class,
                     "The connection property '" + getPropertyDefinition().getName() + "' only accepts integer values in the range of "
-                            + getPropertyDefinition().getLowerBound() + " - " + getPropertyDefinition().getUpperBound() + ", the value '"
-                            + (valueAsString == null ? val.intValue() : valueAsString) + "' exceeds this range.",
+                    + getPropertyDefinition().getLowerBound() + " - " + getPropertyDefinition().getUpperBound() + ", the value '"
+                    + (valueAsString == null ? val.intValue() : valueAsString) + "' exceeds this range.",
                     exceptionInterceptor);
         }
     }

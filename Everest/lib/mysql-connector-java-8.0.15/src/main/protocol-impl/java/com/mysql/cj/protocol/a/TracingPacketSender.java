@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -39,6 +38,7 @@ import com.mysql.cj.util.StringUtils;
  * A decorating {@link MessageSender} which traces all sent packets to the provided logger.
  */
 public class TracingPacketSender implements MessageSender<NativePacketPayload> {
+
     private MessageSender<NativePacketPayload> packetSender;
     private String host;
     private long serverThreadId;
@@ -57,13 +57,10 @@ public class TracingPacketSender implements MessageSender<NativePacketPayload> {
 
     /**
      * Log the packet details to the provided logger.
-     * 
-     * @param packet
-     *            packet as bytes
-     * @param packetLen
-     *            packet length
-     * @param packetSequence
-     *            sequence index
+     *
+     * @param packet packet as bytes
+     * @param packetLen packet length
+     * @param packetSequence sequence index
      */
     private void logPacket(byte[] packet, int packetLen, byte packetSequence) {
         StringBuilder traceMessageBuf = new StringBuilder();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.BufferedInputStream;
@@ -46,19 +45,26 @@ import com.mysql.cj.jdbc.result.ResultSetImpl;
 import com.mysql.cj.result.Field;
 
 /**
- * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB is a built-in type that stores a Binary Large Object
- * as a column value in a row of a database table. The driver implements Blob using an SQL locator(BLOB), which means that a Blob object contains a logical
- * pointer to the SQL BLOB data rather than the data itself. A Blob object is valid for the duration of the transaction in which is was created. Methods in
- * the interfaces ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a programmer to access an SQL BLOB value. The Blob
- * interface provides methods for getting the length of an SQL BLOB (Binary Large Object) value, for materializing a BLOB value on the client, and for
- * determining the position of a pattern of bytes within a BLOB value. This class is new in the JDBC 2.0 API.
+ * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB
+ * is a built-in type that stores a Binary Large Object as a column value in a row of a database
+ * table. The driver implements Blob using an SQL locator(BLOB), which means that a Blob object
+ * contains a logical pointer to the SQL BLOB data rather than the data itself. A Blob object is
+ * valid for the duration of the transaction in which is was created. Methods in the interfaces
+ * ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a
+ * programmer to access an SQL BLOB value. The Blob interface provides methods for getting the
+ * length of an SQL BLOB (Binary Large Object) value, for materializing a BLOB value on the client,
+ * and for determining the position of a pattern of bytes within a BLOB value. This class is new in
+ * the JDBC 2.0 API.
  */
 public class BlobFromLocator implements java.sql.Blob {
+
     private List<String> primaryKeyColumns = null;
 
     private List<String> primaryKeyValues = null;
 
-    /** The ResultSet that created this BLOB */
+    /**
+     * The ResultSet that created this BLOB
+     */
     private ResultSetImpl creatorResultSet;
 
     private String blobColumnName = null;
@@ -75,15 +81,11 @@ public class BlobFromLocator implements java.sql.Blob {
 
     /**
      * Creates an updatable BLOB that can update in-place
-     * 
-     * @param creatorResultSetToSet
-     *            result set
-     * @param blobColumnIndex
-     *            column index
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param creatorResultSetToSet result set
+     * @param blobColumnIndex column index
+     * @param exceptionInterceptor exception interceptor
+     * @throws SQLException if an error occurs
      */
     public BlobFromLocator(ResultSetImpl creatorResultSetToSet, int blobColumnIndex, ExceptionInterceptor exceptionInterceptor) throws SQLException {
         this.exceptionInterceptor = exceptionInterceptor;
@@ -497,6 +499,7 @@ public class BlobFromLocator implements java.sql.Blob {
     }
 
     class LocatorInputStream extends InputStream {
+
         long currentPositionInBlob = 0;
 
         long length = 0;
@@ -516,7 +519,7 @@ public class BlobFromLocator implements java.sql.Blob {
 
             if (pos + len > blobLength) {
                 throw SQLError.createSQLException(
-                        Messages.getString("Blob.invalidStreamLength", new Object[] { Long.valueOf(blobLength), Long.valueOf(pos), Long.valueOf(len) }),
+                        Messages.getString("Blob.invalidStreamLength", new Object[]{Long.valueOf(blobLength), Long.valueOf(pos), Long.valueOf(len)}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, BlobFromLocator.this.exceptionInterceptor);
             }
 

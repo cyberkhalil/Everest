@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.util;
 
 import java.io.IOException;
@@ -51,6 +50,7 @@ import com.mysql.cj.exceptions.WrongArgumentException;
  * Timezone conversion routines and other time related methods
  */
 public class TimeUtil {
+
     static final TimeZone GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 
     // Mappings from TimeZone identifications (prefixed by type: Windows, TZ name, MetaZone, TZ alias, ...), to standard TimeZone Ids
@@ -96,12 +96,10 @@ public class TimeUtil {
 
     /**
      * Returns the 'official' Java timezone name for the given timezone
-     * 
-     * @param timezoneStr
-     *            the 'common' timezone name
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * 
+     *
+     * @param timezoneStr the 'common' timezone name
+     * @param exceptionInterceptor exception interceptor
+     *
      * @return the Java timezone name for the given timezone
      */
     public static String getCanonicalTimezone(String timezoneStr, ExceptionInterceptor exceptionInterceptor) {
@@ -130,21 +128,22 @@ public class TimeUtil {
         }
 
         throw ExceptionFactory.createException(InvalidConnectionAttributeException.class,
-                Messages.getString("TimeUtil.UnrecognizedTimezoneId", new Object[] { timezoneStr }), exceptionInterceptor);
+                Messages.getString("TimeUtil.UnrecognizedTimezoneId", new Object[]{timezoneStr}), exceptionInterceptor);
     }
 
     /**
-     * Return a new Timestamp object which value is adjusted according to known DATE, DATETIME or TIMESTAMP field precision.
-     * 
-     * @param ts
-     *            an original Timestamp object, not modified by this method
-     * @param fsp
-     *            value in the range from 0 to 6 specifying fractional seconds precision
-     * @param serverRoundFracSecs
-     *            Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
-     *            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
-     *            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
-     * @return A new Timestamp object cloned from original ones and then rounded or truncated according to required fsp value
+     * Return a new Timestamp object which value is adjusted according to known DATE, DATETIME or
+     * TIMESTAMP field precision.
+     *
+     * @param ts an original Timestamp object, not modified by this method
+     * @param fsp value in the range from 0 to 6 specifying fractional seconds precision
+     * @param serverRoundFracSecs Flag indicating whether rounding or truncation occurs on server
+     * when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part into a column
+     * having the same type but fewer fractional digits: true means rounding, false means
+     * truncation. The proper value should be detected by analyzing sql_mode server variable for
+     * TIME_TRUNCATE_FRACTIONAL presence.
+     * @return A new Timestamp object cloned from original ones and then rounded or truncated
+     * according to required fsp value
      */
     public static Timestamp adjustTimestampNanosPrecision(Timestamp ts, int fsp, boolean serverRoundFracSecs) {
         if (fsp < 0 || fsp > 6) {
@@ -170,13 +169,12 @@ public class TimeUtil {
     }
 
     /**
-     * Return a string representation of a fractional seconds part. This method assumes that all Timestamp adjustments are already done before,
-     * thus no rounding is needed, only a proper "0" padding to be done.
-     * 
-     * @param nanos
-     *            fractional seconds value
-     * @param fsp
-     *            required fractional part length
+     * Return a string representation of a fractional seconds part. This method assumes that all
+     * Timestamp adjustments are already done before, thus no rounding is needed, only a proper "0"
+     * padding to be done.
+     *
+     * @param nanos fractional seconds value
+     * @param fsp required fractional part length
      * @return fractional seconds part as a string
      */
     public static String formatNanos(int nanos, int fsp) {
@@ -216,9 +214,8 @@ public class TimeUtil {
 
     /**
      * Loads a properties file that contains all kinds of time zone mappings.
-     * 
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param exceptionInterceptor exception interceptor
      */
     private static void loadTimeZoneMappings(ExceptionInterceptor exceptionInterceptor) {
         timeZoneMappings = new Properties();
@@ -256,14 +253,11 @@ public class TimeUtil {
 
     /**
      * Used in prepared statements
-     * 
-     * @param dt
-     *            DateTime string
-     * @param toTime
-     *            true if get Time pattern
+     *
+     * @param dt DateTime string
+     * @param toTime true if get Time pattern
      * @return pattern
-     * @throws IOException
-     *             if an error occurs
+     * @throws IOException if an error occurs
      */
     public static final String getDateTimePattern(String dt, boolean toTime) throws IOException {
         //
@@ -429,8 +423,8 @@ public class TimeUtil {
     private static final char getSuccessor(char c, int n) {
         return ((c == 'y') && (n == 2)) ? 'X'
                 : (((c == 'y') && (n < 4)) ? 'y' : ((c == 'y') ? 'M' : (((c == 'M') && (n == 2)) ? 'Y'
-                        : (((c == 'M') && (n < 3)) ? 'M' : ((c == 'M') ? 'd' : (((c == 'd') && (n < 2)) ? 'd' : ((c == 'd') ? 'H' : (((c == 'H') && (n < 2))
-                                ? 'H'
-                                : ((c == 'H') ? 'm' : (((c == 'm') && (n < 2)) ? 'm' : ((c == 'm') ? 's' : (((c == 's') && (n < 2)) ? 's' : 'W'))))))))))));
+                                        : (((c == 'M') && (n < 3)) ? 'M' : ((c == 'M') ? 'd' : (((c == 'd') && (n < 2)) ? 'd' : ((c == 'd') ? 'H' : (((c == 'H') && (n < 2))
+                                                                                ? 'H'
+                                                                                : ((c == 'H') ? 'm' : (((c == 'm') && (n < 2)) ? 'm' : ((c == 'm') ? 's' : (((c == 's') && (n < 2)) ? 's' : 'W'))))))))))));
     }
 }

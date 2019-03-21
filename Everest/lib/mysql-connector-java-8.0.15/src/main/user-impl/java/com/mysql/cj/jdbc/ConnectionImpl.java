@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.Serializable;
@@ -98,11 +97,13 @@ import com.mysql.cj.util.StringUtils;
 import com.mysql.cj.util.Util;
 
 /**
- * A Connection represents a session with a specific database. Within the context of a Connection, SQL statements are executed and results are returned.
- * 
+ * A Connection represents a session with a specific database. Within the context of a Connection,
+ * SQL statements are executed and results are returned.
+ *
  * <P>
- * A Connection's database is able to provide information describing its tables, its supported SQL grammar, its stored procedures, the capabilities of this
- * connection, etc. This information is obtained with the getMetaData method.
+ * A Connection's database is able to provide information describing its tables, its supported SQL
+ * grammar, its stored procedures, the capabilities of this connection, etc. This information is
+ * obtained with the getMetaData method.
  * </p>
  */
 public class ConnectionImpl implements JdbcConnection, SessionEventListener, Serializable {
@@ -154,11 +155,12 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Used as a key for caching callable statements which (may) depend on
-     * current catalog...In 5.0.x, they don't (currently), but stored procedure
-     * names soon will, so current catalog is a (hidden) component of the name.
+     * Used as a key for caching callable statements which (may) depend on current catalog...In
+     * 5.0.x, they don't (currently), but stored procedure names soon will, so current catalog is a
+     * (hidden) component of the name.
      */
     static class CompoundCacheKey {
+
         final String componentOne;
 
         final String componentTwo;
@@ -196,17 +198,18 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * The mapping between MySQL charset names and Java charset names.
-     * Initialized by loadCharacterSetMapping()
+     * The mapping between MySQL charset names and Java charset names. Initialized by
+     * loadCharacterSetMapping()
      */
     public static Map<?, ?> charsetMap;
 
-    /** Default logger class name */
+    /**
+     * Default logger class name
+     */
     protected static final String DEFAULT_LOGGER_CLASS = StandardLogger.class.getName();
 
     /**
-     * Map mysql transaction isolation level name to
-     * java.sql.Connection.TRANSACTION_XXX
+     * Map mysql transaction isolation level name to java.sql.Connection.TRANSACTION_XXX
      */
     private static Map<String, Integer> mapTransIsolationNameToValue = null;
 
@@ -229,12 +232,10 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Creates a connection instance.
-     * 
-     * @param hostInfo
-     *            {@link HostInfo} instance
+     *
+     * @param hostInfo {@link HostInfo} instance
      * @return new {@link ConnectionImpl} instance
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     public static JdbcConnection getInstance(HostInfo hostInfo) throws SQLException {
         return new ConnectionImpl(hostInfo);
@@ -243,10 +244,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     private static final Random random = new Random();
 
     /**
-     * @param url
-     *            connection URL
-     * @param hostList
-     *            hosts list
+     * @param url connection URL
+     * @param hostList hosts list
      * @return index in a host list
      */
     protected static synchronized int getNextRoundRobinHostIndex(String url, List<?> hostList) {
@@ -271,56 +270,80 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
         return s1 != null && s1.equals(s2);
     }
 
-    /** A cache of SQL to parsed prepared statement parameters. */
+    /**
+     * A cache of SQL to parsed prepared statement parameters.
+     */
     private CacheAdapter<String, ParseInfo> cachedPreparedStatementParams;
 
-    /** The database we're currently using (called Catalog in JDBC terms). */
+    /**
+     * The database we're currently using (called Catalog in JDBC terms).
+     */
     private String database = null;
 
-    /** Internal DBMD to use for various database-version specific features */
+    /**
+     * Internal DBMD to use for various database-version specific features
+     */
     private DatabaseMetaData dbmd = null;
 
     private NativeSession session = null;
 
-    /** Is this connection associated with a global tx? */
+    /**
+     * Is this connection associated with a global tx?
+     */
     private boolean isInGlobalTx = false;
 
-    /** isolation level */
+    /**
+     * isolation level
+     */
     private int isolationLevel = java.sql.Connection.TRANSACTION_READ_COMMITTED;
 
-    /** When did the master fail? */
-    //	private long masterFailTimeMillis = 0L;
-
     /**
-     * An array of currently open statements.
-     * Copy-on-write used here to avoid ConcurrentModificationException when statements unregister themselves while we iterate over the list.
+     * When did the master fail?
+     */
+    //	private long masterFailTimeMillis = 0L;
+    /**
+     * An array of currently open statements. Copy-on-write used here to avoid
+     * ConcurrentModificationException when statements unregister themselves while we iterate over
+     * the list.
      */
     private final CopyOnWriteArrayList<JdbcStatement> openStatements = new CopyOnWriteArrayList<>();
 
     private LRUCache<CompoundCacheKey, CallableStatement.CallableStatementParamInfo> parsedCallableStatementCache;
 
-    /** The password we used */
+    /**
+     * The password we used
+     */
     private String password = null;
 
-    /** Point of origin where this Connection was created */
+    /**
+     * Point of origin where this Connection was created
+     */
     private String pointOfOrigin;
 
-    /** Properties for this connection specified by user */
+    /**
+     * Properties for this connection specified by user
+     */
     protected Properties props = null;
 
-    /** Are we in read-only mode? */
+    /**
+     * Are we in read-only mode?
+     */
     private boolean readOnly = false;
 
-    /** Cache of ResultSet metadata */
+    /**
+     * Cache of ResultSet metadata
+     */
     protected LRUCache<String, CachedResultSetMetaData> resultSetMetadataCache;
 
     /**
-     * The type map for UDTs (not implemented, but used by some third-party
-     * vendors, most notably IBM WebSphere)
+     * The type map for UDTs (not implemented, but used by some third-party vendors, most notably
+     * IBM WebSphere)
      */
     private Map<String, Class<?>> typeMap;
 
-    /** The user we're connected as */
+    /**
+     * The user we're connected as
+     */
     private String user = null;
 
     private LRUCache<String, Boolean> serverSideStatementCheckCache;
@@ -331,7 +354,6 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     private String origHostToConnectTo;
 
     // we don't want to be able to publicly clone this...
-
     private int origPortToConnectTo;
 
     /*
@@ -370,11 +392,10 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Creates a connection to a MySQL Server.
-     * 
-     * @param hostInfo
-     *            the {@link HostInfo} instance that contains the host, user and connections attributes for this connection
-     * @exception SQLException
-     *                if a database access error occurs
+     *
+     * @param hostInfo the {@link HostInfo} instance that contains the host, user and connections
+     * attributes for this connection
+     * @exception SQLException if a database access error occurs
      */
     public ConnectionImpl(HostInfo hostInfo) throws SQLException {
 
@@ -468,8 +489,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
             throw SQLError
                     .createSQLException(
                             this.propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? Messages.getString("Connection.0")
-                                    : Messages.getString("Connection.1",
-                                            new Object[] { this.session.getHostInfo().getHost(), this.session.getHostInfo().getPort() }),
+                            : Messages.getString("Connection.1",
+                                    new Object[]{this.session.getHostInfo().getHost(), this.session.getHostInfo().getPort()}),
                             MysqlErrorNumbers.SQL_STATE_COMMUNICATION_LINK_FAILURE, ex, getExceptionInterceptor());
         }
 
@@ -493,7 +514,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     @Override
     public void initializeSafeQueryInterceptors() throws SQLException {
         this.queryInterceptors = Util
-                .<QueryInterceptor> loadClasses(this.propertySet.getStringProperty(PropertyKey.queryInterceptors).getStringValue(),
+                .<QueryInterceptor>loadClasses(this.propertySet.getStringProperty(PropertyKey.queryInterceptors).getStringValue(),
                         "MysqlIo.BadQueryInterceptor", getExceptionInterceptor())
                 .stream().map(o -> new NoSubInterceptorWrapper(o.init(this, this.props, this.session.getLog()))).collect(Collectors.toList());
     }
@@ -588,8 +609,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Set transaction isolation level to the value received from server if any.
-     * Is called by connectionInit(...)
+     * Set transaction isolation level to the value received from server if any. Is called by
+     * connectionInit(...)
      */
     private void checkTransactionIsolationLevel() {
         String s = this.session.getServerSession().getServerVariable("transaction_isolation");
@@ -732,9 +753,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
     /**
      * Closes all currently open statements.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void closeAllOpenStatements() throws SQLException {
         SQLException postponedException = null;
@@ -904,7 +924,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
             // We've really failed!
             SQLException chainedEx = SQLError.createSQLException(
                     Messages.getString("Connection.UnableToConnectWithRetries",
-                            new Object[] { this.propertySet.getIntegerProperty(PropertyKey.maxReconnects).getValue() }),
+                            new Object[]{this.propertySet.getIntegerProperty(PropertyKey.maxReconnects).getValue()}),
                     MysqlErrorNumbers.SQL_STATE_UNABLE_TO_CONNECT_TO_DATASOURCE, connectionException, getExceptionInterceptor());
             throw chainedEx;
         }
@@ -1031,14 +1051,14 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
 
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 SQLException sqlEx = SQLError.createSQLException(
-                        Messages.getString("Connection.CantFindCacheFactory", new Object[] { parseInfoCacheFactory, PropertyKey.parseInfoCacheFactory }),
+                        Messages.getString("Connection.CantFindCacheFactory", new Object[]{parseInfoCacheFactory, PropertyKey.parseInfoCacheFactory}),
                         getExceptionInterceptor());
                 sqlEx.initCause(e);
 
                 throw sqlEx;
             } catch (Exception e) {
                 SQLException sqlEx = SQLError.createSQLException(
-                        Messages.getString("Connection.CantLoadCacheFactory", new Object[] { parseInfoCacheFactory, PropertyKey.parseInfoCacheFactory }),
+                        Messages.getString("Connection.CantLoadCacheFactory", new Object[]{parseInfoCacheFactory, PropertyKey.parseInfoCacheFactory}),
                         getExceptionInterceptor());
                 sqlEx.initCause(e);
 
@@ -1123,10 +1143,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
      * <p>
      * <b>Note:</b> MySQL's notion of catalogs are individual databases.
      * </p>
-     * 
+     *
      * @return the current catalog name or null
-     * @exception SQLException
-     *                if a database access error occurs
+     * @exception SQLException if a database access error occurs
      */
     @Override
     public String getCatalog() throws SQLException {
@@ -1153,12 +1172,11 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * NOT JDBC-Compliant, but clients can use this method to determine how long
-     * this connection has been idle. This time (reported in milliseconds) is
-     * updated once a query has completed.
-     * 
-     * @return number of ms that this connection has been idle, 0 if the driver
-     *         is busy retrieving results.
+     * NOT JDBC-Compliant, but clients can use this method to determine how long this connection has
+     * been idle. This time (reported in milliseconds) is updated once a query has completed.
+     *
+     * @return number of ms that this connection has been idle, 0 if the driver is busy retrieving
+     * results.
      */
     @Override
     public long getIdleFor() {
@@ -1226,7 +1244,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         this.isolationLevel = intTI.intValue();
                         return this.isolationLevel;
                     }
-                    throw SQLError.createSQLException(Messages.getString("Connection.12", new Object[] { s }), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR,
+                    throw SQLError.createSQLException(Messages.getString("Connection.12", new Object[]{s}), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR,
                             getExceptionInterceptor());
                 }
                 throw SQLError.createSQLException(Messages.getString("Connection.13"), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR, getExceptionInterceptor());
@@ -1279,11 +1297,10 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Sets varying properties that depend on server information. Called once we
-     * have connected to the server.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     * Sets varying properties that depend on server information. Called once we have connected to
+     * the server.
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void initializePropsFromServer() throws SQLException {
         String connectionInterceptorClasses = this.propertySet.getStringProperty(PropertyKey.connectionLifecycleInterceptors).getStringValue();
@@ -1293,7 +1310,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
         if (connectionInterceptorClasses != null) {
             try {
                 this.connectionLifecycleInterceptors = Util
-                        .<ConnectionLifecycleInterceptor> loadClasses(
+                        .<ConnectionLifecycleInterceptor>loadClasses(
                                 this.propertySet.getStringProperty(PropertyKey.connectionLifecycleInterceptors).getStringValue(),
                                 "Connection.badLifecycleInterceptor", getExceptionInterceptor())
                         .stream().map(o -> o.init(this, this.props, this.session.getLog())).collect(Collectors.toList());
@@ -1338,16 +1355,15 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
         //
         // Server can do this more efficiently for us
         //
-
         setupServerForTruncationChecks();
     }
 
     /**
-     * Resets a default auto-commit value of 0 to 1, as required by JDBC specification.
-     * Takes into account that the default auto-commit value of 0 may have been changed on the server via init_connect.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     * Resets a default auto-commit value of 0 to 1, as required by JDBC specification. Takes into
+     * account that the default auto-commit value of 0 may have been changed on the server via
+     * init_connect.
+     *
+     * @throws SQLException if a database access error occurs
      */
     private void handleAutoCommitDefaults() throws SQLException {
         boolean resetAutoCommitDefault = false;
@@ -1921,7 +1937,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                             int indexOfError153 = msg.indexOf("153");
 
                             if (indexOfError153 != -1) {
-                                throw SQLError.createSQLException(Messages.getString("Connection.22", new Object[] { savepoint.getSavepointName() }),
+                                throw SQLError.createSQLException(Messages.getString("Connection.22", new Object[]{savepoint.getSavepointName()}),
                                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, errno, getExceptionInterceptor());
                             }
                         }
@@ -2075,17 +2091,14 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * A sub-space of this Connection's database may be selected by setting a
-     * catalog name. If the driver does not support catalogs, it will silently
-     * ignore this request
+     * A sub-space of this Connection's database may be selected by setting a catalog name. If the
+     * driver does not support catalogs, it will silently ignore this request
      * <p>
      * <b>Note:</b> MySQL's notion of catalogs are individual databases.
      * </p>
-     * 
-     * @param catalog
-     *            the database for this connection to use
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @param catalog the database for this connection to use
+     * @throws SQLException if a database access error occurs
      */
     @Override
     public void setCatalog(final String catalog) throws SQLException {
@@ -2267,7 +2280,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         break;
 
                     default:
-                        throw SQLError.createSQLException(Messages.getString("Connection.25", new Object[] { level }),
+                        throw SQLError.createSQLException(Messages.getString("Connection.25", new Object[]{level}),
                                 MysqlErrorNumbers.SQL_STATE_DRIVER_NOT_CAPABLE, getExceptionInterceptor());
                 }
 
@@ -2508,6 +2521,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     private static class NetworkTimeoutSetter implements Runnable {
+
         private final WeakReference<JdbcConnection> connRef;
         private final int milliseconds;
 
@@ -2606,7 +2620,7 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
                         }
                     }
                 } catch (ClassCastException cce) {
-                    throw SQLError.createSQLException(Messages.getString("Connection.ClientInfoNotImplemented", new Object[] { clientInfoProvider }),
+                    throw SQLError.createSQLException(Messages.getString("Connection.ClientInfoNotImplemented", new Object[]{clientInfoProvider}),
                             MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                 }
 

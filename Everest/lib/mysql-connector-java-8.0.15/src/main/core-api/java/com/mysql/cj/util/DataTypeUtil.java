@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.util;
 
 /**
@@ -36,13 +35,10 @@ public class DataTypeUtil {
 
     /**
      * Interpret a BIT value as a long.
-     * 
-     * @param bytes
-     *            byte buffer
-     * @param offset
-     *            offset in buffer
-     * @param length
-     *            number of bytes to use
+     *
+     * @param bytes byte buffer
+     * @param offset offset in buffer
+     * @param length number of bytes to use
      * @return long value
      */
     public static long bitToLong(byte[] bytes, int offset, int length) {

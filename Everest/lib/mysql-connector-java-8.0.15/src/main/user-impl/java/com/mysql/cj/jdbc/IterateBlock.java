@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.SQLException;
@@ -35,6 +34,7 @@ import java.util.Iterator;
 import com.mysql.cj.jdbc.DatabaseMetaData.IteratorWithCleanup;
 
 public abstract class IterateBlock<T> {
+
     IteratorWithCleanup<T> iteratorWithCleanup;
     Iterator<T> javaIterator;
     boolean stopIterating = false;

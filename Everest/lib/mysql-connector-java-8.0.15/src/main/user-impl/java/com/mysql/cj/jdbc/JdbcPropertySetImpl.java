@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.DriverPropertyInfo;
@@ -50,7 +49,7 @@ public class JdbcPropertySetImpl extends DefaultPropertySet implements JdbcPrope
         // Adjust max rows
         if (getIntegerProperty(PropertyKey.maxRows).getValue() == 0) {
             // adjust so that it will become MysqlDefs.MAX_ROWS in execSQL()
-            super.<Integer> getProperty(PropertyKey.maxRows).setValue(Integer.valueOf(-1), null);
+            super.<Integer>getProperty(PropertyKey.maxRows).setValue(Integer.valueOf(-1), null);
         }
 
         //
@@ -66,7 +65,7 @@ public class JdbcPropertySetImpl extends DefaultPropertySet implements JdbcPrope
 
         if (getBooleanProperty(PropertyKey.useCursorFetch).getValue()) {
             // assume server-side prepared statements are wanted because they're required for this functionality
-            super.<Boolean> getProperty(PropertyKey.useServerPrepStmts).setValue(true);
+            super.<Boolean>getProperty(PropertyKey.useServerPrepStmts).setValue(true);
         }
     }
 

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.ArrayList;
@@ -48,6 +47,7 @@ import com.mysql.cj.x.protobuf.MysqlxExpr.Operator;
  * Serializer utility for dealing with X Protocol expression trees.
  */
 public class ExprUnparser {
+
     /**
      * List of operators which will be serialized as infix operators.
      */
@@ -69,12 +69,10 @@ public class ExprUnparser {
     //             throw new IllegalArgumentException("Unknown type tag: " + e.getType());
     //     }
     // }
-
     /**
      * Scalar to string.
-     * 
-     * @param e
-     *            {@link Scalar}
+     *
+     * @param e {@link Scalar}
      * @return scalar string
      */
     static String scalarToString(Scalar e) {
@@ -98,9 +96,8 @@ public class ExprUnparser {
 
     /**
      * JSON document path to string.
-     * 
-     * @param items
-     *            list of {@link DocumentPathItem} objects
+     *
+     * @param items list of {@link DocumentPathItem} objects
      * @return JSON document path string
      */
     static String documentPathToString(List<DocumentPathItem> items) {
@@ -129,9 +126,8 @@ public class ExprUnparser {
 
     /**
      * Column identifier (or JSON path) to string.
-     * 
-     * @param e
-     *            {@link ColumnIdentifier}
+     *
+     * @param e {@link ColumnIdentifier}
      * @return Column identifier or JSON path string.
      */
     static String columnIdentifierToString(ColumnIdentifier e) {
@@ -153,9 +149,8 @@ public class ExprUnparser {
 
     /**
      * Function call to string.
-     * 
-     * @param e
-     *            {@link FunctionCall}
+     *
+     * @param e {@link FunctionCall}
      * @return Function call string
      */
     static String functionCallToString(FunctionCall e) {
@@ -174,10 +169,10 @@ public class ExprUnparser {
     }
 
     /**
-     * Create a string from a list of (already stringified) parameters. Surround by parens and separate by commas.
-     * 
-     * @param params
-     *            list of param strings
+     * Create a string from a list of (already stringified) parameters. Surround by parens and
+     * separate by commas.
+     *
+     * @param params list of param strings
      * @return param list string
      */
     static String paramListToString(List<String> params) {
@@ -194,10 +189,10 @@ public class ExprUnparser {
     }
 
     /**
-     * Convert an operator to a string. Includes special cases for chosen infix operators (AND, OR) and special forms such as LIKE and BETWEEN.
-     * 
-     * @param e
-     *            {@link Operator}
+     * Convert an operator to a string. Includes special cases for chosen infix operators (AND, OR)
+     * and special forms such as LIKE and BETWEEN.
+     *
+     * @param e {@link Operator}
      * @return Operator string
      */
     static String operatorToString(Operator e) {
@@ -244,9 +239,8 @@ public class ExprUnparser {
 
     /**
      * Escape a string literal.
-     * 
-     * @param s
-     *            literal
+     *
+     * @param s literal
      * @return escaped literal
      */
     public static String escapeLiteral(String s) {
@@ -255,9 +249,8 @@ public class ExprUnparser {
 
     /**
      * Quote a named identifier.
-     * 
-     * @param ident
-     *            identifier
+     *
+     * @param ident identifier
      * @return quoted identifier
      */
     public static String quoteIdentifier(String ident) {
@@ -270,9 +263,8 @@ public class ExprUnparser {
 
     /**
      * Quote a JSON document field key.
-     * 
-     * @param key
-     *            key
+     *
+     * @param key key
      * @return quoted key
      */
     public static String quoteJsonKey(String key) {
@@ -281,9 +273,8 @@ public class ExprUnparser {
 
     /**
      * Quote a JSON document path member.
-     * 
-     * @param member
-     *            path member
+     *
+     * @param member path member
      * @return quoted path member
      */
     public static String quoteDocumentPathMember(String member) {
@@ -295,9 +286,8 @@ public class ExprUnparser {
 
     /**
      * Serialize an expression to a string.
-     * 
-     * @param e
-     *            {@link Expr}
+     *
+     * @param e {@link Expr}
      * @return string expression
      */
     public static String exprToString(Expr e) {

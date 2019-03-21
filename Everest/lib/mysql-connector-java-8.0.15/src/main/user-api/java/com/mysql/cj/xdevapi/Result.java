@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Iterator;
@@ -35,23 +34,24 @@ import java.util.Iterator;
  * Base result.
  */
 public interface Result {
+
     /**
      * Get the count of affected items from manipulation statements.
-     * 
+     *
      * @return count
      */
     long getAffectedItemsCount();
 
     /**
      * Count of warnings generated during statement execution.
-     * 
+     *
      * @return count
      */
     int getWarningsCount();
 
     /**
      * Warnings generated during statement execution.
-     * 
+     *
      * @return iterator over warnings
      */
     Iterator<Warning> getWarnings();

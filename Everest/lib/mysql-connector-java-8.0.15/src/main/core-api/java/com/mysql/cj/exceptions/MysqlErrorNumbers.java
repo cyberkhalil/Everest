@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 import java.util.HashMap;
@@ -1368,10 +1367,9 @@ public final class MysqlErrorNumbers {
 
     /**
      * Map MySQL error codes to SQL-99 error codes
-     * 
-     * @param errno
-     *            the MySQL error code
-     * 
+     *
+     * @param errno the MySQL error code
+     *
      * @return the corresponding SQL-99 error code
      */
     public static String mysqlToSqlState(int errno) {

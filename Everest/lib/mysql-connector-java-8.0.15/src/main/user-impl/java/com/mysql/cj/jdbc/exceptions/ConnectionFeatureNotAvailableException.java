@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.exceptions;
 
 import com.mysql.cj.Messages;
@@ -35,8 +34,8 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.protocol.PacketSentTimeHolder;
 
 /**
- * Thrown when a client requests a connection-level feature that isn't available for this particular distribution of Connector/J (currently only used by code
- * that is export-controlled).
+ * Thrown when a client requests a connection-level feature that isn't available for this particular
+ * distribution of Connector/J (currently only used by code that is export-controlled).
  */
 public class ConnectionFeatureNotAvailableException extends CommunicationsException {
 

@@ -26,19 +26,19 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.nio.channels.CompletionHandler;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Base class that propagates any error to the given future allowing only implementation of the success callback.
- * 
- * @param <T>
- *            result type
+ * Base class that propagates any error to the given future allowing only implementation of the
+ * success callback.
+ *
+ * @param <T> result type
  */
 public class ErrorToFutureCompletionHandler<T> implements CompletionHandler<T, Void> {
+
     private CompletableFuture<?> future;
     private Runnable successCallback;
 

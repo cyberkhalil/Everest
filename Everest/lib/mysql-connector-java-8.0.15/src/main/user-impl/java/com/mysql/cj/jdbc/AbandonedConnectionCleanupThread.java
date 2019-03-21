@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.lang.ref.PhantomReference;
@@ -43,10 +42,13 @@ import com.mysql.cj.MysqlConnection;
 import com.mysql.cj.protocol.NetworkResources;
 
 /**
- * This class implements a thread that is responsible for closing abandoned MySQL connections, i.e., connections that are not explicitly closed.
- * There is only one instance of this class and there is a single thread to do this task. This thread's executor is statically referenced in this same class.
+ * This class implements a thread that is responsible for closing abandoned MySQL connections, i.e.,
+ * connections that are not explicitly closed. There is only one instance of this class and there is
+ * a single thread to do this task. This thread's executor is statically referenced in this same
+ * class.
  */
 public class AbandonedConnectionCleanupThread implements Runnable {
+
     private static final Set<ConnectionFinalizerPhantomReference> connectionFinalizerPhantomRefs = ConcurrentHashMap.newKeySet();
     private static final ReferenceQueue<MysqlConnection> referenceQueue = new ReferenceQueue<>();
 
@@ -108,9 +110,11 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * Checks if the thread's context ClassLoader is active. This is usually true but some application managers implement a life-cycle mechanism in their
-     * ClassLoaders that is linked to the corresponding application's life-cycle. As such, a stopped/ended application will have a ClassLoader unable to load
-     * anything and, eventually, they throw an exception when trying to do so. When this happens, this thread has no point in being alive anymore.
+     * Checks if the thread's context ClassLoader is active. This is usually true but some
+     * application managers implement a life-cycle mechanism in their ClassLoaders that is linked to
+     * the corresponding application's life-cycle. As such, a stopped/ended application will have a
+     * ClassLoader unable to load anything and, eventually, they throw an exception when trying to
+     * do so. When this happens, this thread has no point in being alive anymore.
      */
     private void checkThreadContextClassLoader() {
         try {
@@ -123,7 +127,7 @@ public class AbandonedConnectionCleanupThread implements Runnable {
 
     /**
      * Checks if the context ClassLoaders from this and the caller thread are the same.
-     * 
+     *
      * @return true if both threads share the same context ClassLoader, false otherwise
      */
     private static boolean consistentClassLoaders() {
@@ -141,10 +145,10 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * Shuts down this thread either checking or not the context ClassLoaders from the involved threads.
-     * 
-     * @param checked
-     *            does a checked shutdown if true, unchecked otherwise
+     * Shuts down this thread either checking or not the context ClassLoaders from the involved
+     * threads.
+     *
+     * @param checked does a checked shutdown if true, unchecked otherwise
      */
     private static void shutdown(boolean checked) {
         if (checked && !consistentClassLoaders()) {
@@ -156,23 +160,25 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * Performs a checked shutdown, i.e., the context ClassLoaders from this and the caller thread are checked for consistency prior to performing the shutdown
-     * operation.
+     * Performs a checked shutdown, i.e., the context ClassLoaders from this and the caller thread
+     * are checked for consistency prior to performing the shutdown operation.
      */
     public static void checkedShutdown() {
         shutdown(true);
     }
 
     /**
-     * Performs an unchecked shutdown, i.e., the shutdown is performed independently of the context ClassLoaders from the involved threads.
+     * Performs an unchecked shutdown, i.e., the shutdown is performed independently of the context
+     * ClassLoaders from the involved threads.
      */
     public static void uncheckedShutdown() {
         shutdown(false);
     }
 
     /**
-     * Returns true if the working thread is alive. It is alive if it was initialized successfully and wasn't shutdown yet.
-     * 
+     * Returns true if the working thread is alive. It is alive if it was initialized successfully
+     * and wasn't shutdown yet.
+     *
      * @return true if the working thread is alive; false otherwise.
      */
     public static boolean isAlive() {
@@ -185,12 +191,11 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * Tracks the finalization of a {@link MysqlConnection} object and keeps a reference to its {@link NetworkResources} so that they can be later released.
-     * 
-     * @param conn
-     *            the Connection object to track for finalization
-     * @param io
-     *            the network resources to close on the connection finalization
+     * Tracks the finalization of a {@link MysqlConnection} object and keeps a reference to its
+     * {@link NetworkResources} so that they can be later released.
+     *
+     * @param conn the Connection object to track for finalization
+     * @param io the network resources to close on the connection finalization
      */
     protected static void trackConnection(MysqlConnection conn, NetworkResources io) {
         threadRefLock.lock();
@@ -205,10 +210,10 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * Release resources from the given {@link ConnectionFinalizerPhantomReference} and remove it from the references set.
-     * 
-     * @param reference
-     *            the {@link ConnectionFinalizerPhantomReference} to finalize.
+     * Release resources from the given {@link ConnectionFinalizerPhantomReference} and remove it
+     * from the references set.
+     *
+     * @param reference the {@link ConnectionFinalizerPhantomReference} to finalize.
      */
     private static void finalizeResource(ConnectionFinalizerPhantomReference reference) {
         try {
@@ -220,10 +225,12 @@ public class AbandonedConnectionCleanupThread implements Runnable {
     }
 
     /**
-     * {@link PhantomReference} subclass to track {@link MysqlConnection} objects finalization.
-     * This class holds a reference to the Connection's {@link NetworkResources} so they it can be later closed.
+     * {@link PhantomReference} subclass to track {@link MysqlConnection} objects finalization. This
+     * class holds a reference to the Connection's {@link NetworkResources} so they it can be later
+     * closed.
      */
     private static class ConnectionFinalizerPhantomReference extends PhantomReference<MysqlConnection> {
+
         private NetworkResources networkResources;
 
         ConnectionFinalizerPhantomReference(MysqlConnection conn, NetworkResources networkResources, ReferenceQueue<? super MysqlConnection> refQueue) {

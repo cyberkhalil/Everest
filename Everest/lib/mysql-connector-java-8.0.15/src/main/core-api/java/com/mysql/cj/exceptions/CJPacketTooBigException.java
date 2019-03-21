@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 import com.mysql.cj.Messages;
@@ -56,14 +55,12 @@ public class CJPacketTooBigException extends CJException {
 
     /**
      * Creates a new CJPacketTooBigException object.
-     * 
-     * @param packetSize
-     *            the size of the packet that was going to be sent
-     * @param maximumPacketSize
-     *            the maximum size the server will accept
+     *
+     * @param packetSize the size of the packet that was going to be sent
+     * @param maximumPacketSize the maximum size the server will accept
      */
     public CJPacketTooBigException(long packetSize, long maximumPacketSize) {
-        super(Messages.getString("PacketTooBigException.0", new Object[] { packetSize, maximumPacketSize }));
+        super(Messages.getString("PacketTooBigException.0", new Object[]{packetSize, maximumPacketSize}));
     }
 
 }

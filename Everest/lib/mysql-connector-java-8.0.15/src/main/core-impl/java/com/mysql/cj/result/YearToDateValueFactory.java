@@ -26,16 +26,15 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 /**
  * A value factory which converts MySQL YEAR values to Dates.
- * 
- * @param <T>
- *            value type
+ *
+ * @param <T> value type
  */
 public class YearToDateValueFactory<T> extends BaseDecoratingValueFactory<T> {
+
     public YearToDateValueFactory(ValueFactory<T> targetVf) {
         super(targetVf);
     }

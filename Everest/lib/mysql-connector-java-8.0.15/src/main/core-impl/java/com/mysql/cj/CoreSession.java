@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.net.SocketAddress;
@@ -62,16 +61,22 @@ public abstract class CoreSession implements Session {
     protected PropertySet propertySet;
     protected ExceptionInterceptor exceptionInterceptor;
 
-    /** The logger we're going to use */
+    /**
+     * The logger we're going to use
+     */
     protected transient Log log;
 
-    /** Null logger shared by all connections at startup */
+    /**
+     * Null logger shared by all connections at startup
+     */
     protected static final Log NULL_LOGGER = new NullLogger(Log.LOGGER_INSTANCE_NAME);
 
     protected transient Protocol<? extends Message> protocol;
     protected MessageBuilder<? extends Message> messageBuilder;
 
-    /** The point in time when this connection was created */
+    /**
+     * The point in time when this connection was created
+     */
     protected long connectionCreationTimeMillis = 0;
     protected HostInfo hostInfo = null;
 
@@ -83,10 +88,14 @@ public abstract class CoreSession implements Session {
     protected RuntimeProperty<Boolean> autoReconnectForPools;
     protected RuntimeProperty<Boolean> maintainTimeStats;
 
-    /** The max-rows setting for current session */
+    /**
+     * The max-rows setting for current session
+     */
     protected int sessionMaxRows = -1;
 
-    /** The event sink to use for profiling */
+    /**
+     * The event sink to use for profiling
+     */
     private ProfilerEventHandler eventSink;
 
     public CoreSession(HostInfo hostInfo, PropertySet propSet) {
@@ -110,14 +119,12 @@ public abstract class CoreSession implements Session {
     }
 
     /**
-     * Change user as given by parameters. This implementation only supports calling this during the initial handshake.
-     * 
-     * @param user
-     *            user name
-     * @param password
-     *            password
-     * @param database
-     *            database name
+     * Change user as given by parameters. This implementation only supports calling this during the
+     * initial handshake.
+     *
+     * @param user user name
+     * @param password password
+     * @param database database name
      */
     public void changeUser(String user, String password, String database) {
         // reset maxRows to default value
@@ -141,7 +148,7 @@ public abstract class CoreSession implements Session {
 
     /**
      * Returns the log mechanism that should be used to log information from/for this Session.
-     * 
+     *
      * @return the Log instance to use for logging messages.
      */
     public Log getLog() {

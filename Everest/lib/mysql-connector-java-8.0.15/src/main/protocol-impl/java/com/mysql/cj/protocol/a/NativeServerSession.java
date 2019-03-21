@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.util.HashMap;
@@ -55,12 +54,16 @@ public class NativeServerSession implements ServerSession {
     public static final int SERVER_STATUS_LAST_ROW_SENT = 128; // The server status for 'last-row-sent'
     public static final int SERVER_QUERY_WAS_SLOW = 2048;
 
-    public static final int CLIENT_LONG_PASSWORD = 0x00000001; /* new more secure passwords */
+    public static final int CLIENT_LONG_PASSWORD = 0x00000001;
+    /* new more secure passwords */
     public static final int CLIENT_FOUND_ROWS = 0x00000002;
-    public static final int CLIENT_LONG_FLAG = 0x00000004; /* Get all column flags */
+    public static final int CLIENT_LONG_FLAG = 0x00000004;
+    /* Get all column flags */
     public static final int CLIENT_CONNECT_WITH_DB = 0x00000008;
-    public static final int CLIENT_COMPRESS = 0x00000020; /* Can use compression protcol */
-    public static final int CLIENT_LOCAL_FILES = 0x00000080; /* Can use LOAD DATA LOCAL */
+    public static final int CLIENT_COMPRESS = 0x00000020;
+    /* Can use compression protcol */
+    public static final int CLIENT_LOCAL_FILES = 0x00000080;
+    /* Can use LOAD DATA LOCAL */
     public static final int CLIENT_PROTOCOL_41 = 0x00000200; // for > 4.1.1
     public static final int CLIENT_INTERACTIVE = 0x00000400;
     public static final int CLIENT_SSL = 0x00000800;
@@ -85,7 +88,9 @@ public class NativeServerSession implements ServerSession {
     private long clientParam = 0;
     private boolean hasLongColumnInfo = false;
 
-    /** The map of server variables that we retrieve at connection init. */
+    /**
+     * The map of server variables that we retrieve at connection init.
+     */
     private Map<String, String> serverVariables = new HashMap<>();
 
     public Map<Integer, String> indexToCustomMysqlCharset = null;
@@ -99,24 +104,30 @@ public class NativeServerSession implements ServerSession {
     private int metadataCollationIndex;
 
     /**
-     * The character set we want results and result metadata returned in (null ==
-     * results in any charset, metadata in UTF-8).
+     * The character set we want results and result metadata returned in (null == results in any
+     * charset, metadata in UTF-8).
      */
     private String characterSetResultsOnServer = null;
 
     /**
-     * The (Java) encoding used to interpret error messages received from the server.
-     * We use character_set_results (since MySQL 5.5) if it is not null or UTF-8 otherwise.
+     * The (Java) encoding used to interpret error messages received from the server. We use
+     * character_set_results (since MySQL 5.5) if it is not null or UTF-8 otherwise.
      */
     private String errorMessageEncoding = "Cp1252"; // to begin with, changes after we talk to the server
 
-    /** Are we in autoCommit mode? */
+    /**
+     * Are we in autoCommit mode?
+     */
     private boolean autoCommit = true;
 
-    /** The timezone of the server */
+    /**
+     * The timezone of the server
+     */
     private TimeZone serverTimeZone = null;
 
-    /** c.f. getDefaultTimeZone(). this value may be overridden during connection initialization */
+    /**
+     * c.f. getDefaultTimeZone(). this value may be overridden during connection initialization
+     */
     private TimeZone defaultTimeZone = TimeZone.getDefault();
 
     public NativeServerSession(PropertySet propertySet) {
@@ -300,11 +311,9 @@ public class NativeServerSession implements ServerSession {
 
     /**
      * Should SET AUTOCOMMIT be sent to server if we are going to set autoCommitFlag in driver
-     * 
-     * @param autoCommitFlag
-     *            autocommit status we are going to set in driver
-     * @param elideSetAutoCommitsFlag
-     *            'elideSetAutoCommits' property value
+     *
+     * @param autoCommitFlag autocommit status we are going to set in driver
+     * @param elideSetAutoCommitsFlag 'elideSetAutoCommits' property value
      * @return true if SET AUTOCOMMIT to be sent
      */
     public boolean isSetNeededForAutoCommitMode(boolean autoCommitFlag, boolean elideSetAutoCommitsFlag) {
@@ -356,7 +365,6 @@ public class NativeServerSession implements ServerSession {
         int res = 1;
 
         // if we can get it by charsetIndex just doing it
-
         // getting charset name from dynamic maps in connection; we do it before checking against static maps because custom charset on server can be mapped
         // to index from our static map key's diapason 
         if (this.indexToCustomMysqlCharset != null) {
@@ -411,7 +419,7 @@ public class NativeServerSession implements ServerSession {
                 }
 
             } catch (ArrayIndexOutOfBoundsException outOfBoundsEx) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.11", new Object[] { charsetIndex }));
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.11", new Object[]{charsetIndex}));
             }
 
             // Punt
@@ -500,7 +508,7 @@ public class NativeServerSession implements ServerSession {
 
     /**
      * Is the server in a sql_mode that does not allow us to use \\ to escape things?
-     * 
+     *
      * @return Returns the noBackslashEscapes.
      */
     public boolean isNoBackslashEscapesSet() {

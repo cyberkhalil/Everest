@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.lang.reflect.InvocationHandler;
@@ -38,11 +37,13 @@ import com.mysql.cj.jdbc.ConnectionImpl;
 import com.mysql.cj.jdbc.JdbcConnection;
 
 /**
- * A balancing strategy that starts at a random point, and then advances in the list (wrapping around) for each new pickConnection() call.
- * 
+ * A balancing strategy that starts at a random point, and then advances in the list (wrapping
+ * around) for each new pickConnection() call.
+ *
  * The initial point selection, and subsequent point selections are blacklist-aware.
  */
 public class SequentialBalanceStrategy implements BalanceStrategy {
+
     private int currentHostIndex = -1;
 
     public SequentialBalanceStrategy() {

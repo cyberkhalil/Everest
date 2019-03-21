@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import com.mysql.cj.exceptions.ExceptionFactory;
@@ -66,7 +65,7 @@ public class LongPropertyDefinition extends AbstractPropertyDefinition<Long> {
 
     /**
      * Creates instance of LongProperty.
-     * 
+     *
      * @return RuntimeProperty
      */
     @Override

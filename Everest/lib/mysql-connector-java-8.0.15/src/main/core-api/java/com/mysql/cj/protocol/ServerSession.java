@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.util.Map;
@@ -35,9 +34,9 @@ import java.util.TimeZone;
 import com.mysql.cj.ServerVersion;
 
 /**
- * Keeps the effective states of server/session variables,
- * contains methods for initial retrieving of these states and for their actualization.
- * 
+ * Keeps the effective states of server/session variables, contains methods for initial retrieving
+ * of these states and for their actualization.
+ *
  */
 public interface ServerSession {
 
@@ -71,19 +70,16 @@ public interface ServerSession {
 
     /**
      * Sets new server status (from response) without saving it's old state
-     * 
-     * @param statusFlags
-     *            server status flags
+     *
+     * @param statusFlags server status flags
      */
     void setStatusFlags(int statusFlags);
 
     /**
      * Sets new server status (from response)
-     * 
-     * @param statusFlags
-     *            new server status flags
-     * @param saveOldStatusFlags
-     *            true if old server status flags should be preserved
+     *
+     * @param statusFlags new server status flags
+     * @param saveOldStatusFlags true if old server status flags should be preserved
      */
     void setStatusFlags(int statusFlags, boolean saveOldStatusFlags);
 
@@ -92,31 +88,33 @@ public interface ServerSession {
     void setOldStatusFlags(int statusFlags);
 
     /**
-     * 
+     *
      * @return Collation index which server provided in handshake greeting packet
      */
     int getServerDefaultCollationIndex();
 
     /**
      * Stores collation index which server provided in handshake greeting packet.
-     * 
-     * @param serverDefaultCollationIndex
-     *            collation index
+     *
+     * @param serverDefaultCollationIndex collation index
      */
     void setServerDefaultCollationIndex(int serverDefaultCollationIndex);
 
     /**
-     * 
-     * @return TRANSACTION_NOT_STARTED, TRANSACTION_IN_PROGRESS, TRANSACTION_STARTED or TRANSACTION_COMPLETED
+     *
+     * @return TRANSACTION_NOT_STARTED, TRANSACTION_IN_PROGRESS, TRANSACTION_STARTED or
+     * TRANSACTION_COMPLETED
      */
     int getTransactionState();
 
     boolean inTransactionOnServer();
 
     /**
-     * Server will only open a cursor and set this flag if it can, otherwise it punts and goes back to mysql_store_results() behavior.
-     * 
-     * @return SERVER_STATUS_CURSOR_EXISTS <a href=http://dev.mysql.com/doc/internals/en/status-flags.html>status flag</a> value.
+     * Server will only open a cursor and set this flag if it can, otherwise it punts and goes back
+     * to mysql_store_results() behavior.
+     *
+     * @return SERVER_STATUS_CURSOR_EXISTS
+     * <a href=http://dev.mysql.com/doc/internals/en/status-flags.html>status flag</a> value.
      */
     boolean cursorExists();
 
@@ -144,9 +142,8 @@ public interface ServerSession {
 
     /**
      * Does the server send back extra column info?
-     * 
-     * @param hasLongColumnInfo
-     *            flag
+     *
+     * @param hasLongColumnInfo flag
      */
     void setHasLongColumnInfo(boolean hasLongColumnInfo);
 
@@ -162,27 +159,24 @@ public interface ServerSession {
 
     /**
      * Get the version of the MySQL server we are talking to.
-     * 
+     *
      * @return {@link ServerVersion}
      */
     ServerVersion getServerVersion();
 
     /**
-     * Is the version of the MySQL server we are connected to the given
-     * version?
-     * 
-     * @param version
-     *            the version to check for
-     * 
-     * @return true if the version of the MySQL server we are connected is the
-     *         given version
+     * Is the version of the MySQL server we are connected to the given version?
+     *
+     * @param version the version to check for
+     *
+     * @return true if the version of the MySQL server we are connected is the given version
      */
     boolean isVersion(ServerVersion version);
 
     /**
-     * 
-     * @return the server's default character set name according to collation index from server greeting,
-     *         or value of 'character_set_server' variable if there is no mapping for that index
+     *
+     * @return the server's default character set name according to collation index from server
+     * greeting, or value of 'character_set_server' variable if there is no mapping for that index
      */
     String getServerDefaultCharset();
 
@@ -195,13 +189,10 @@ public interface ServerSession {
     int getMaxBytesPerChar(Integer charsetIndex, String javaCharsetName);
 
     /**
-     * Returns the Java character encoding name for the given MySQL server
-     * collation index
-     * 
-     * @param collationIndex
-     *            collation index
-     * @return the Java character encoding name for the given MySQL server
-     *         collation index
+     * Returns the Java character encoding name for the given MySQL server collation index
+     *
+     * @param collationIndex collation index
+     * @return the Java character encoding name for the given MySQL server collation index
      */
     String getEncodingForIndex(int collationIndex);
 
@@ -221,7 +212,7 @@ public interface ServerSession {
 
     /**
      * Is the server configured to use lower-case table names only?
-     * 
+     *
      * @return true if lower_case_table_names is 'on'
      */
     boolean isLowerCaseTableNames();
@@ -249,8 +240,8 @@ public interface ServerSession {
     void setServerTimeZone(TimeZone serverTimeZone);
 
     /**
-     * The default time zone used to marshall date/time values to/from the server. This is used when getDate(), etc methods are called without a calendar
-     * argument.
+     * The default time zone used to marshall date/time values to/from the server. This is used when
+     * getDate(), etc methods are called without a calendar argument.
      *
      * @return The server time zone (which may be user overridden in a connection property)
      */

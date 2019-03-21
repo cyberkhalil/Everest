@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import com.mysql.cj.jdbc.exceptions.SQLError;
@@ -34,11 +33,11 @@ import com.mysql.cj.jdbc.exceptions.SQLError;
 import testsuite.BaseTestCase;
 
 public class ExceptionSubclassesTest extends BaseTestCase {
+
     /**
      * Creates a new ExceptionSubclassesTest.
-     * 
-     * @param name
-     *            the name of the test
+     *
+     * @param name the name of the test
      */
     public ExceptionSubclassesTest(String name) {
         super(name);

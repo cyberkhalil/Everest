@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import static org.junit.Assert.assertEquals;
@@ -37,6 +36,7 @@ import com.mysql.cj.protocol.MessageSender;
  * Common functionality for packet sender tests.
  */
 public class PacketSenderTestBase {
+
     /**
      * Get a no-op packet sender that can be used when testing decorators.
      */

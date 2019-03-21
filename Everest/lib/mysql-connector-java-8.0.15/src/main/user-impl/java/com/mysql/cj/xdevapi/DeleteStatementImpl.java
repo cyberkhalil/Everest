@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.concurrent.CompletableFuture;
@@ -40,6 +39,7 @@ import com.mysql.cj.protocol.x.XMessageBuilder;
  * {@link DeleteStatement} implementation.
  */
 public class DeleteStatementImpl extends FilterableStatement<DeleteStatement, Result> implements DeleteStatement {
+
     private MysqlxSession mysqlxSession;
 
     /* package private */ DeleteStatementImpl(MysqlxSession mysqlxSession, String schema, String table) {
@@ -49,13 +49,13 @@ public class DeleteStatementImpl extends FilterableStatement<DeleteStatement, Re
 
     public Result execute() {
         StatementExecuteOk ok = this.mysqlxSession
-                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDelete(this.filterParams));
+                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDelete(this.filterParams));
         return new UpdateResult(ok);
     }
 
     public CompletableFuture<Result> executeAsync() {
         CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession
-                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDelete(this.filterParams));
+                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDelete(this.filterParams));
         return okF.thenApply(ok -> new UpdateResult(ok));
     }
 }

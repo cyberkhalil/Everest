@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.function.Supplier;
@@ -41,11 +40,9 @@ public class DocResultImpl extends AbstractDataResult<DbDoc> implements DocResul
 
     /**
      * Constructor.
-     * 
-     * @param rows
-     *            {@link RowList} object
-     * @param completer
-     *            Supplier of X Protocol StatementExecuteOk object.
+     *
+     * @param rows {@link RowList} object
+     * @param completer Supplier of X Protocol StatementExecuteOk object.
      */
     public DocResultImpl(RowList rows, Supplier<StatementExecuteOk> completer) {
         super(rows, completer, new DbDocFactory());

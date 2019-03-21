@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.Closeable;
@@ -47,10 +46,12 @@ import com.mysql.cj.conf.RuntimeProperty;
  * A socket factory for named pipes (on Windows)
  */
 public class NamedPipeSocketFactory implements SocketFactory {
+
     /**
      * A socket that encapsulates named pipes on Windows
      */
     class NamedPipeSocket extends Socket {
+
         private boolean isClosed = false;
 
         private RandomAccessFile namedPipeFile;
@@ -106,6 +107,7 @@ public class NamedPipeSocketFactory implements SocketFactory {
      * Enables OutputStream-type functionality for a RandomAccessFile
      */
     class RandomAccessFileInputStream extends InputStream {
+
         RandomAccessFile raFile;
 
         RandomAccessFileInputStream(RandomAccessFile file) {
@@ -157,6 +159,7 @@ public class NamedPipeSocketFactory implements SocketFactory {
      * Enables OutputStream-type functionality for a RandomAccessFile
      */
     class RandomAccessFileOutputStream extends OutputStream {
+
         RandomAccessFile raFile;
 
         RandomAccessFileOutputStream(RandomAccessFile file) {

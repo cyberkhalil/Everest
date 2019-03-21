@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.util.LinkedList;
@@ -44,7 +43,9 @@ public abstract class AbstractProtocol<M extends Message> implements Protocol<M>
 
     protected PropertySet propertySet;
 
-    /** The logger we're going to use */
+    /**
+     * The logger we're going to use
+     */
     protected transient Log log;
 
     protected ExceptionInterceptor exceptionInterceptor;

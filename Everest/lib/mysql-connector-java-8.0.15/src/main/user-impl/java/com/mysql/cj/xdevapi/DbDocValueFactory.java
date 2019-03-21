@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.io.IOException;
@@ -41,6 +40,7 @@ import com.mysql.cj.util.StringUtils;
  * A {@link ValueFactory} implementation to create {@link DbDoc}s.
  */
 public class DbDocValueFactory extends DefaultValueFactory<DbDoc> {
+
     private String encoding;
 
     /**
@@ -51,17 +51,17 @@ public class DbDocValueFactory extends DefaultValueFactory<DbDoc> {
 
     /**
      * Constructor.
-     * 
-     * @param encoding
-     *            Java encoding name
+     *
+     * @param encoding Java encoding name
      */
     public DbDocValueFactory(String encoding) {
         this.encoding = encoding;
     }
 
     /**
-     * Interpret the given byte array as a string. This value factory needs to know the encoding to interpret the string. The default (null) will interpret the
-     * byte array using the platform encoding.
+     * Interpret the given byte array as a string. This value factory needs to know the encoding to
+     * interpret the string. The default (null) will interpret the byte array using the platform
+     * encoding.
      */
     @Override
     public DbDoc createFromBytes(byte[] bytes, int offset, int length) {

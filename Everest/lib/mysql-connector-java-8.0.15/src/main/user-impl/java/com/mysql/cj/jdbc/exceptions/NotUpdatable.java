@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.exceptions;
 
 import java.sql.SQLException;
@@ -42,10 +41,10 @@ public class NotUpdatable extends SQLException {
     private static final long serialVersionUID = 6004153665887216929L;
 
     /**
-     * Create a new NotUpdatable exception. Append the given reason to the not updatable message if the reason is not null.
-     * 
-     * @param reason
-     *            message for this exception.
+     * Create a new NotUpdatable exception. Append the given reason to the not updatable message if
+     * the reason is not null.
+     *
+     * @param reason message for this exception.
      */
     public NotUpdatable(String reason) {
         super(reason + Messages.getString("NotUpdatable.1"), MysqlErrorNumbers.SQL_STATE_GENERAL_ERROR);

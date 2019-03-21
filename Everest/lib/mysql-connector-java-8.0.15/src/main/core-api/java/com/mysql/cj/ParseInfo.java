@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.UnsupportedEncodingException;
@@ -38,11 +37,12 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * Represents the "parsed" state of a prepared query, with the statement broken up into its static and dynamic (where parameters are bound) parts.
+ * Represents the "parsed" state of a prepared query, with the statement broken up into its static
+ * and dynamic (where parameters are bound) parts.
  */
 public class ParseInfo {
 
-    protected static final String[] ON_DUPLICATE_KEY_UPDATE_CLAUSE = new String[] { "ON", "DUPLICATE", "KEY", "UPDATE" };
+    protected static final String[] ON_DUPLICATE_KEY_UPDATE_CLAUSE = new String[]{"ON", "DUPLICATE", "KEY", "UPDATE"};
 
     private char firstStmtChar = 0;
 
@@ -125,7 +125,6 @@ public class ParseInfo {
 
             // we're not trying to be real pedantic here, but we'd like to  skip comments at the beginning of statements, as frameworks such as Hibernate
             // use them to aid in debugging
-
             this.statementStartPos = findStartOfStatement(sql);
 
             for (i = this.statementStartPos; i < this.statementLength; ++i) {
@@ -216,7 +215,7 @@ public class ParseInfo {
 
                 if (!inQuotes && !inQuotedId) {
                     if ((c == '?')) {
-                        endpointList.add(new int[] { lastParmEnd, i });
+                        endpointList.add(new int[]{lastParmEnd, i});
                         lastParmEnd = i + 1;
 
                         if (this.isOnDuplicateKeyUpdate && i > this.locationOfOnDuplicateKeyUpdate) {
@@ -249,7 +248,7 @@ public class ParseInfo {
                 this.foundLoadData = false;
             }
 
-            endpointList.add(new int[] { lastParmEnd, this.statementLength });
+            endpointList.add(new int[]{lastParmEnd, this.statementLength});
             this.staticSql = new byte[endpointList.size()][];
             this.hasPlaceholders = this.staticSql.length > 1;
 
@@ -274,7 +273,7 @@ public class ParseInfo {
                 }
             }
         } catch (StringIndexOutOfBoundsException oobEx) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.62", new Object[] { sql }), oobEx,
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.62", new Object[]{sql}), oobEx,
                     session.getExceptionInterceptor());
         }
 
@@ -377,9 +376,8 @@ public class ParseInfo {
 
     /**
      * Returns a ParseInfo for a multi-value INSERT for a batch of size numBatch (without parsing!).
-     * 
-     * @param numBatch
-     *            number of batched parameters
+     *
+     * @param numBatch number of batched parameters
      * @return {@link ParseInfo}
      */
     public synchronized ParseInfo getParseInfoForBatch(int numBatch) {
@@ -393,14 +391,12 @@ public class ParseInfo {
     }
 
     /**
-     * Returns a preparable SQL string for the number of batched parameters; used by server-side prepared statements
-     * when re-writing batch INSERTs.
-     * 
-     * @param numBatch
-     *            number of batched parameters
+     * Returns a preparable SQL string for the number of batched parameters; used by server-side
+     * prepared statements when re-writing batch INSERTs.
+     *
+     * @param numBatch number of batched parameters
      * @return SQL string
-     * @throws UnsupportedEncodingException
-     *             if an error occurs
+     * @throws UnsupportedEncodingException if an error occurs
      */
     public String getSqlForBatch(int numBatch) throws UnsupportedEncodingException {
         ParseInfo batchInfo = getParseInfoForBatch(numBatch);
@@ -410,10 +406,9 @@ public class ParseInfo {
 
     /**
      * Used for filling in the SQL for getPreparedSql() - for debugging
-     * 
+     *
      * @return sql string
-     * @throws UnsupportedEncodingException
-     *             if an error occurs
+     * @throws UnsupportedEncodingException if an error occurs
      */
     public String getSqlForBatch() throws UnsupportedEncodingException {
         int size = 0;
@@ -438,17 +433,14 @@ public class ParseInfo {
     }
 
     /**
-     * Builds a ParseInfo for the given batch size, without parsing. We use
-     * a visitor pattern here, because the if {}s make computing a size for the
-     * resultant byte[][] make this too complex, and we don't necessarily want to
-     * use a List for this, because the size can be dynamic, and thus we'll not be
-     * able to guess a good initial size for an array-based list, and it's not
+     * Builds a ParseInfo for the given batch size, without parsing. We use a visitor pattern here,
+     * because the if {}s make computing a size for the resultant byte[][] make this too complex,
+     * and we don't necessarily want to use a List for this, because the size can be dynamic, and
+     * thus we'll not be able to guess a good initial size for an array-based list, and it's not
      * efficient to convert a LinkedList to an array.
-     * 
-     * @param numBatch
-     *            number of batched parameters
-     * @param visitor
-     *            visitor
+     *
+     * @param numBatch number of batched parameters
+     * @param visitor visitor
      */
     private void buildInfoForBatch(int numBatch, BatchVisitor visitor) {
         if (!this.hasPlaceholders) {
@@ -461,7 +453,6 @@ public class ParseInfo {
             }
 
             // Without placeholders, only the values segment of the query needs repeating.
-
             final byte[] headStaticSql = this.batchHead.staticSql[0];
             visitor.append(headStaticSql).increment();
 
@@ -484,7 +475,6 @@ public class ParseInfo {
         }
 
         // Placeholders require assembling all the parts in each segment of the query and repeat them as needed.
-
         // Add the head section except the last part.
         final byte[][] headStaticSql = this.batchHead.staticSql;
         final int headStaticSqlLength = headStaticSql.length;

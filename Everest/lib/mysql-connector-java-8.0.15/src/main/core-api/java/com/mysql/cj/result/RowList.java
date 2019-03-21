@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.util.Iterator;
@@ -41,14 +40,13 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 public interface RowList extends Iterator<Row> {
 
     /**
-     * What's returned for the size of a row list when its size can not be
-     * determined.
+     * What's returned for the size of a row list when its size can not be determined.
      */
     public static final int RESULT_SET_SIZE_UNKNOWN = -1;
 
     /**
      * Optionally iterate backwards on the list.
-     * 
+     *
      * @return {@link Row}
      */
     default Row previous() {
@@ -57,11 +55,10 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Optionally retrieve Row at index <i>n</i>.
-     * 
+     *
      * Only works on non dynamic row lists.
-     * 
-     * @param n
-     *            row number
+     *
+     * @param n row number
      * @return {@link Row}
      */
     default Row get(int n) {
@@ -70,7 +67,7 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Returns the current position.
-     * 
+     *
      * @return the current row number
      */
     default int getPosition() {
@@ -79,7 +76,7 @@ public interface RowList extends Iterator<Row> {
 
     /**
      * Only works on non dynamic row lists.
-     * 
+     *
      * @return the size of this row list
      */
     default int size() {

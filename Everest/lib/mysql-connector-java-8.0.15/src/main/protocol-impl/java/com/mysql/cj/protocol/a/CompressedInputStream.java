@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.EOFException;
@@ -43,19 +42,30 @@ import com.mysql.cj.util.StringUtils;
  * Used to de-compress packets from the MySQL server when protocol-level compression is turned on.
  */
 public class CompressedInputStream extends InputStream {
-    /** The packet data after it has been un-compressed */
+
+    /**
+     * The packet data after it has been un-compressed
+     */
     private byte[] buffer;
 
-    /** The stream we are reading from the server */
+    /**
+     * The stream we are reading from the server
+     */
     private InputStream in;
 
-    /** The ZIP inflater used to un-compress packets */
+    /**
+     * The ZIP inflater used to un-compress packets
+     */
     private Inflater inflater;
 
-    /** Connection property reference */
+    /**
+     * Connection property reference
+     */
     private RuntimeProperty<Boolean> traceProtocol;
 
-    /** Connection logger */
+    /**
+     * Connection logger
+     */
     private Log log;
 
     /**
@@ -63,19 +73,17 @@ public class CompressedInputStream extends InputStream {
      */
     private byte[] packetHeaderBuffer = new byte[7];
 
-    /** The position we are reading from */
+    /**
+     * The position we are reading from
+     */
     private int pos = 0;
 
     /**
-     * Creates a new CompressedInputStream that reads the given stream from the
-     * server.
-     * 
-     * @param streamFromServer
-     *            original server InputStream
-     * @param traceProtocol
-     *            "traceProtocol" property
-     * @param log
-     *            logger
+     * Creates a new CompressedInputStream that reads the given stream from the server.
+     *
+     * @param streamFromServer original server InputStream
+     * @param traceProtocol "traceProtocol" property
+     * @param log logger
      */
     public CompressedInputStream(InputStream streamFromServer, RuntimeProperty<Boolean> traceProtocol, Log log) {
         this.traceProtocol = traceProtocol;
@@ -104,11 +112,9 @@ public class CompressedInputStream extends InputStream {
     }
 
     /**
-     * Retrieves and un-compressed (if necessary) the next packet from the
-     * server.
-     * 
-     * @throws IOException
-     *             if an I/O error occurs
+     * Retrieves and un-compressed (if necessary) the next packet from the server.
+     *
+     * @throws IOException if an I/O error occurs
      */
     private void getNextPacketFromServer() throws IOException {
         byte[] uncompressedData = null;
@@ -194,14 +200,12 @@ public class CompressedInputStream extends InputStream {
     }
 
     /**
-     * Determines if another packet needs to be read from the server to be able
-     * to read numBytes from the stream.
-     * 
-     * @param numBytes
-     *            the number of bytes to be read
-     * 
-     * @throws IOException
-     *             if an I/O error occors.
+     * Determines if another packet needs to be read from the server to be able to read numBytes
+     * from the stream.
+     *
+     * @param numBytes the number of bytes to be read
+     *
+     * @throws IOException if an I/O error occors.
      */
     private void getNextPacketIfRequired(int numBytes) throws IOException {
         if ((this.buffer == null) || ((this.pos + numBytes) > this.buffer.length)) {

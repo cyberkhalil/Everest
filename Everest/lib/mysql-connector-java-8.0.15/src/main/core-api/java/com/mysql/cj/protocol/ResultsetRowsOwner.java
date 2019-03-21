@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import com.mysql.cj.MysqlConnection;
@@ -46,7 +45,7 @@ public interface ResultsetRowsOwner {
 
     /**
      * StackTrace generated where ResultSet was created... used when profiling
-     * 
+     *
      * @return string representation of a stack trace
      */
     String getPointOfOrigin();

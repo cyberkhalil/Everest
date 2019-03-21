@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.InputStream;
@@ -96,23 +95,25 @@ import com.mysql.cj.util.StringUtils;
 import com.mysql.cj.util.Util;
 
 /**
- * A SQL Statement is pre-compiled and stored in a PreparedStatement object. This object can then be used to efficiently execute this statement multiple times.
- * 
+ * A SQL Statement is pre-compiled and stored in a PreparedStatement object. This object can then be
+ * used to efficiently execute this statement multiple times.
+ *
  * <p>
- * <B>Note:</B> The setXXX methods for setting IN parameter values must specify types that are compatible with the defined SQL type of the input parameter. For
- * instance, if the IN parameter has SQL type Integer, then setInt should be used.
+ * <B>Note:</B> The setXXX methods for setting IN parameter values must specify types that are
+ * compatible with the defined SQL type of the input parameter. For instance, if the IN parameter
+ * has SQL type Integer, then setInt should be used.
  * </p>
- * 
+ *
  * <p>
- * If arbitrary parameter type conversions are required, then the setObject method should be used with a target SQL type.
+ * If arbitrary parameter type conversions are required, then the setObject method should be used
+ * with a target SQL type.
  * </p>
  */
 public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl implements JdbcPreparedStatement {
 
     /**
-     * Does the batch (if any) contain "plain" statements added by
-     * Statement.addBatch(String)?
-     * 
+     * Does the batch (if any) contain "plain" statements added by Statement.addBatch(String)?
+     *
      * If so, we can't re-write it to use multi-value or multi-queries.
      */
     protected boolean batchHasPlainStatements = false;
@@ -134,16 +135,12 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Creates a prepared statement instance
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL for this statement
-     * @param catalog
-     *            the catalog/database this statement should be issued against
+     *
+     * @param conn the connection creating this statement
+     * @param sql the SQL for this statement
+     * @param catalog the catalog/database this statement should be issued against
      * @return ClientPreparedStatement
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     protected static ClientPreparedStatement getInstance(JdbcConnection conn, String sql, String catalog) throws SQLException {
         return new ClientPreparedStatement(conn, sql, catalog);
@@ -151,18 +148,13 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Creates a prepared statement instance
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL for this statement
-     * @param catalog
-     *            the catalog/database this statement should be issued against
-     * @param cachedParseInfo
-     *            already created parseInfo or null.
+     *
+     * @param conn the connection creating this statement
+     * @param sql the SQL for this statement
+     * @param catalog the catalog/database this statement should be issued against
+     * @param cachedParseInfo already created parseInfo or null.
      * @return ClientPreparedStatement instance
-     * @throws SQLException
-     *             if a database access error occurs
+     * @throws SQLException if a database access error occurs
      */
     protected static ClientPreparedStatement getInstance(JdbcConnection conn, String sql, String catalog, ParseInfo cachedParseInfo) throws SQLException {
         return new ClientPreparedStatement(conn, sql, catalog, cachedParseInfo);
@@ -175,14 +167,11 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Constructor used by server-side prepared statements
-     * 
-     * @param conn
-     *            the connection that created us
-     * @param catalog
-     *            the catalog in use when we were created
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn the connection that created us
+     * @param catalog the catalog in use when we were created
+     *
+     * @throws SQLException if an error occurs
      */
     protected ClientPreparedStatement(JdbcConnection conn, String catalog) throws SQLException {
         super(conn, catalog);
@@ -194,16 +183,12 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Constructor for the PreparedStatement class.
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL for this statement
-     * @param catalog
-     *            the catalog/database this statement should be issued against
-     * 
-     * @throws SQLException
-     *             if a database error occurs.
+     *
+     * @param conn the connection creating this statement
+     * @param sql the SQL for this statement
+     * @param catalog the catalog/database this statement should be issued against
+     *
+     * @throws SQLException if a database error occurs.
      */
     public ClientPreparedStatement(JdbcConnection conn, String sql, String catalog) throws SQLException {
         this(conn, sql, catalog, null);
@@ -211,18 +196,13 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Creates a new PreparedStatement object.
-     * 
-     * @param conn
-     *            the connection creating this statement
-     * @param sql
-     *            the SQL for this statement
-     * @param catalog
-     *            the catalog/database this statement should be issued against
-     * @param cachedParseInfo
-     *            already created parseInfo or null.
-     * 
-     * @throws SQLException
-     *             if a database access error occurs
+     *
+     * @param conn the connection creating this statement
+     * @param sql the SQL for this statement
+     * @param catalog the catalog/database this statement should be issued against
+     * @param cachedParseInfo already created parseInfo or null.
+     *
+     * @throws SQLException if a database access error occurs
      */
     public ClientPreparedStatement(JdbcConnection conn, String sql, String catalog, ParseInfo cachedParseInfo) throws SQLException {
         this(conn, catalog);
@@ -248,7 +228,7 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Returns this PreparedStatement represented as a string.
-     * 
+     *
      * @return this PreparedStatement represented as a string.
      */
     @Override
@@ -314,10 +294,10 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Check to see if the statement is safe for read-only slaves after failover.
-     * 
+     *
      * @return true if safe for read-only.
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected boolean checkReadOnlySafeStatement() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -459,16 +439,14 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * Rewrites the already prepared statement into a multi-statement
-     * query of 'statementsPerBatch' values and executes the entire batch
-     * using this new statement.
-     * 
-     * @param batchTimeout
-     *            timeout for the batch execution
+     * Rewrites the already prepared statement into a multi-statement query of 'statementsPerBatch'
+     * values and executes the entire batch using this new statement.
+     *
+     * @param batchTimeout timeout for the batch execution
      * @return update counts in the same fashion as executeBatch()
-     * 
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     *
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected long[] executePreparedBatchAsMultiStatement(int batchTimeout) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -657,16 +635,14 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * Rewrites the already prepared statement into a multi-value insert
-     * statement of 'statementsPerBatch' values and executes the entire batch
-     * using this new statement.
-     * 
-     * @param batchTimeout
-     *            timeout for the batch execution
+     * Rewrites the already prepared statement into a multi-value insert statement of
+     * 'statementsPerBatch' values and executes the entire batch using this new statement.
+     *
+     * @param batchTimeout timeout for the batch execution
      * @return update counts in the same fashion as executeBatch()
-     * 
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     *
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected long[] executeBatchedInserts(int batchTimeout) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -703,8 +679,8 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
             try {
                 try {
-                    batchedStatement = /* FIXME -if we ever care about folks proxying our JdbcConnection */
-                            prepareBatchedInsertSQL(locallyScopedConn, numValuesPerBatch);
+                    batchedStatement
+                            = /* FIXME -if we ever care about folks proxying our JdbcConnection */ prepareBatchedInsertSQL(locallyScopedConn, numValuesPerBatch);
 
                     timeoutTask = startQueryTimer(batchedStatement, batchTimeout);
 
@@ -795,12 +771,10 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Executes the current batch of statements by executing them one-by-one.
-     * 
-     * @param batchTimeout
-     *            timeout for the batch execution
+     *
+     * @param batchTimeout timeout for the batch execution
      * @return a list of update counts
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     protected long[] executeBatchSerially(int batchTimeout) throws SQLException {
 
@@ -899,29 +873,21 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * Actually execute the prepared statement. This is here so server-side
-     * PreparedStatements can re-use most of the code from this class.
-     * 
-     * @param <M>
-     *            extends {@link Message}
-     * 
-     * @param maxRowsToRetrieve
-     *            the max number of rows to return
-     * @param sendPacket
-     *            the packet to send
-     * @param createStreamingResultSet
-     *            should a 'streaming' result set be created?
-     * @param queryIsSelectOnly
-     *            is this query doing a SELECT?
-     * @param metadata
-     *            use this metadata instead of the one provided on wire
-     * @param isBatch
-     *            is this a batch query?
-     * 
+     * Actually execute the prepared statement. This is here so server-side PreparedStatements can
+     * re-use most of the code from this class.
+     *
+     * @param <M> extends {@link Message}
+     *
+     * @param maxRowsToRetrieve the max number of rows to return
+     * @param sendPacket the packet to send
+     * @param createStreamingResultSet should a 'streaming' result set be created?
+     * @param queryIsSelectOnly is this query doing a SELECT?
+     * @param metadata use this metadata instead of the one provided on wire
+     * @param isBatch is this a batch query?
+     *
      * @return the results as a ResultSet
-     * 
-     * @throws SQLException
-     *             if an error occurs.
+     *
+     * @throws SQLException if an error occurs.
      */
     protected <M extends Message> ResultSetInternalMethods executeInternal(int maxRowsToRetrieve, M sendPacket, boolean createStreamingResultSet,
             boolean queryIsSelectOnly, ColumnDefinition metadata, boolean isBatch) throws SQLException {
@@ -963,7 +929,7 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
                 return rs;
             } catch (NullPointerException npe) {
                 checkClosed(); // we can't synchronize ourselves against async connection-close due to deadlock issues, so this is the next best thing for
-                              // this particular corner case.
+                // this particular corner case.
 
                 throw npe;
             }
@@ -1060,16 +1026,13 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Added to allow batch-updates
-     * 
-     * @param bindings
-     *            bindings object
-     * @param isReallyBatch
-     *            is it a batched statement?
-     * 
+     *
+     * @param bindings bindings object
+     * @param isReallyBatch is it a batched statement?
+     *
      * @return the update count
-     * 
-     * @throws SQLException
-     *             if a database error occurs
+     *
+     * @throws SQLException if a database error occurs
      */
     protected long executeUpdateInternal(QueryBindings<?> bindings, boolean isReallyBatch) throws SQLException {
 
@@ -1137,15 +1100,14 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * Returns a prepared statement for the number of batched parameters, used when re-writing batch INSERTs.
-     * 
-     * @param localConn
-     *            the connection creating this statement
-     * @param numBatches
-     *            number of entries in a batch
+     * Returns a prepared statement for the number of batched parameters, used when re-writing batch
+     * INSERTs.
+     *
+     * @param localConn the connection creating this statement
+     * @param numBatches number of entries in a batch
      * @return new ClientPreparedStatement
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected ClientPreparedStatement prepareBatchedInsertSQL(JdbcConnection localConn, int numBatches) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1173,14 +1135,12 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
 
     /**
      * Get bytes representation for a parameter in a statement batch.
-     * 
-     * @param parameterIndex
-     *            parameter index
-     * @param commandIndex
-     *            index in a batched args
+     *
+     * @param parameterIndex parameter index
+     * @param commandIndex index in a batched args
      * @return bytes
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected byte[] getBytesRepresentationForBatch(int parameterIndex, int commandIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1384,9 +1344,9 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * For calling stored functions, this will be -1 as Connector/J does not count
-     * the first '?' parameter marker, but JDBC counts it * as 1, otherwise it will return 0
-     * 
+     * For calling stored functions, this will be -1 as Connector/J does not count the first '?'
+     * parameter marker, but JDBC counts it * as 1, otherwise it will return 0
+     *
      * @return offset
      */
     protected int getParameterIndexOffset() {
@@ -1401,7 +1361,7 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
             } else if (paramIndex > ((PreparedQuery<?>) this.query).getParameterCount()) {
                 throw SQLError.createSQLException(
                         Messages.getString("PreparedStatement.51") + paramIndex + Messages.getString("PreparedStatement.52")
-                                + ((PreparedQuery<?>) this.query).getParameterCount() + Messages.getString("PreparedStatement.53"),
+                        + ((PreparedQuery<?>) this.query).getParameterCount() + Messages.getString("PreparedStatement.53"),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.exceptionInterceptor);
             } else if (parameterIndexOffset == -1 && paramIndex == 1) {
                 throw SQLError.createSQLException(Messages.getString("PreparedStatement.63"), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
@@ -1654,18 +1614,15 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
     }
 
     /**
-     * Set a parameter to a Java String value. The driver converts this to a SQL
-     * VARCHAR or LONGVARCHAR value with introducer _utf8 (depending on the
-     * arguments size relative to the driver's limits on VARCHARs) when it sends
-     * it to the database. If charset is set as utf8, this method just call setString.
-     * 
-     * @param parameterIndex
-     *            the first parameter is 1...
-     * @param x
-     *            the parameter value
-     * 
-     * @exception SQLException
-     *                if a database access error occurs
+     * Set a parameter to a Java String value. The driver converts this to a SQL VARCHAR or
+     * LONGVARCHAR value with introducer _utf8 (depending on the arguments size relative to the
+     * driver's limits on VARCHARs) when it sends it to the database. If charset is set as utf8,
+     * this method just call setString.
+     *
+     * @param parameterIndex the first parameter is 1...
+     * @param x the parameter value
+     *
+     * @exception SQLException if a database access error occurs
      */
     @Override
     public void setNString(int parameterIndex, String x) throws SQLException {
@@ -1990,7 +1947,6 @@ public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl imp
             }
 
             // we can't rely on the default mapping for JDBC's ResultSet.getObject() for numerics, they're not one-to-one with PreparedStatement.setObject
-
             switch (((PreparedQuery<?>) ClientPreparedStatement.this.query).getQueryBindings().getBindValues()[parameterIndex - 1].getMysqlType()) {
                 case TINYINT:
                 case TINYINT_UNSIGNED:

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.InputStream;
@@ -43,7 +42,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * Interface to allow PreparedStatement implementations to expose their parameter bindings to QueryInterceptors.
+ * Interface to allow PreparedStatement implementations to expose their parameter bindings to
+ * QueryInterceptors.
  */
 public interface ParameterBindings {
 

@@ -27,7 +27,7 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
         ArrayList<Student> arrayList = new ArrayList<>();
         ArrayList<String> courseList = new ArrayList<>();
         //Connection connect = null;
-        Connection conn = login.getConnection();
+        Connection conn = DBConnection.getConnection();
 
         //String query1 = "select CourseName from course where CourseId = (select courseID from student_course,student where student_course.StdID = student.StdID)";
         try {

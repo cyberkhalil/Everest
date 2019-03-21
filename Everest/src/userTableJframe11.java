@@ -29,7 +29,7 @@ public class userTableJframe11 extends javax.swing.JFrame {
     public ArrayList<User> teacherList() {
         ArrayList<User> arrayList = new ArrayList<User>();
 
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         String query = "select * from user ";
         Statement st;
         ResultSet rs;
@@ -63,7 +63,7 @@ public class userTableJframe11 extends javax.swing.JFrame {
     }
 
     public void excuteSQLQuery(String Query, String message) {
-        Connection conn = DBConnection.establishConnection();
+        Connection conn = DBConnection.getConnection();
         Statement st;
         try {
             st = conn.createStatement();

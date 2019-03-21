@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.result;
 
 import java.io.ByteArrayInputStream;
@@ -126,23 +125,33 @@ import com.mysql.cj.util.StringUtils;
 
 public class ResultSetImpl extends NativeResultset implements ResultSetInternalMethods, WarningListener {
 
-    /** Counter used to generate IDs for profiling. */
+    /**
+     * Counter used to generate IDs for profiling.
+     */
     static int resultCounter = 1;
 
-    /** The catalog that was in use when we were created */
+    /**
+     * The catalog that was in use when we were created
+     */
     protected String catalog = null;
 
-    /** Keep track of columns accessed */
+    /**
+     * Keep track of columns accessed
+     */
     protected boolean[] columnUsed = null;
 
-    /** The Connection instance that created us */
+    /**
+     * The Connection instance that created us
+     */
     protected volatile JdbcConnection connection;
 
     protected NativeSession session = null;
 
     private long connectionId = 0;
 
-    /** The current row #, -1 == before start of result set */
+    /**
+     * The current row #, -1 == before start of result set
+     */
     protected int currentRow = -1; // Cursor to current row;
 
     protected ProfilerEventHandler eventSink = null;
@@ -150,22 +159,30 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     Calendar fastDefaultCal = null;
     Calendar fastClientCal = null;
 
-    /** The direction to fetch rows (always FETCH_FORWARD) */
+    /**
+     * The direction to fetch rows (always FETCH_FORWARD)
+     */
     protected int fetchDirection = FETCH_FORWARD;
 
-    /** The number of rows to fetch in one go... */
+    /**
+     * The number of rows to fetch in one go...
+     */
     protected int fetchSize = 0;
 
     /**
-     * First character of the query that created this result set...Used to determine whether or not to parse server info messages in certain
-     * circumstances.
+     * First character of the query that created this result set...Used to determine whether or not
+     * to parse server info messages in certain circumstances.
      */
     protected char firstCharOfQuery;
 
-    /** Has this result set been closed? */
+    /**
+     * Has this result set been closed?
+     */
     protected boolean isClosed = false;
 
-    /** The statement that created us */
+    /**
+     * The statement that created us
+     */
     private com.mysql.cj.jdbc.StatementImpl owningStatement;
 
     /**
@@ -173,20 +190,28 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
      */
     private String pointOfOrigin;
 
-    /** Are we tracking items for profileSQL? */
+    /**
+     * Are we tracking items for profileSQL?
+     */
     protected boolean profileSQL = false;
 
-    /** Are we read-only or updatable? */
+    /**
+     * Are we read-only or updatable?
+     */
     protected int resultSetConcurrency = 0;
 
-    /** Are we scroll-sensitive/insensitive? */
+    /**
+     * Are we scroll-sensitive/insensitive?
+     */
     protected int resultSetType = 0;
 
     JdbcPreparedStatement statementUsedForFetchingRows;
 
     protected boolean useUsageAdvisor = false;
 
-    /** The warning chain */
+    /**
+     * The warning chain
+     */
     protected java.sql.SQLWarning warningChain = null;
 
     protected java.sql.Statement wrapperStatement;
@@ -222,13 +247,10 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Create a result set for an executeUpdate statement.
-     * 
-     * @param ok
-     *            {@link OkPacket}
-     * @param conn
-     *            the Connection that created us.
-     * @param creatorStmt
-     *            the Statement that created us.
+     *
+     * @param ok {@link OkPacket}
+     * @param conn the Connection that created us.
+     * @param creatorStmt the Statement that created us.
      */
     public ResultSetImpl(OkPacket ok, JdbcConnection conn, StatementImpl creatorStmt) {
         super(ok);
@@ -246,16 +268,12 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Creates a new ResultSet object.
-     * 
-     * @param tuples
-     *            actual row data
-     * @param conn
-     *            the Connection that created us.
-     * @param creatorStmt
-     *            the Statement that created us.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param tuples actual row data
+     * @param conn the Connection that created us.
+     * @param creatorStmt the Statement that created us.
+     *
+     * @throws SQLException if an error occurs
      */
     public ResultSetImpl(ResultsetRows tuples, JdbcConnection conn, StatementImpl creatorStmt) throws SQLException {
         this.connection = conn;
@@ -285,7 +303,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
         this.binaryStreamValueFactory = new BinaryStreamValueFactory();
 
         this.zeroDateTimeBehavior = this.connection
-                .getPropertySet().<PropertyDefinitions.ZeroDatetimeBehavior> getEnumProperty(PropertyKey.zeroDateTimeBehavior).getValue();
+                .getPropertySet().<PropertyDefinitions.ZeroDatetimeBehavior>getEnumProperty(PropertyKey.zeroDateTimeBehavior).getValue();
         this.defaultDateValueFactory = decorateDateTimeValueFactory(new SqlDateValueFactory(null, this.session.getServerSession().getDefaultTimeZone(), this),
                 this.zeroDateTimeBehavior);
         this.defaultTimeValueFactory = decorateDateTimeValueFactory(new SqlTimeValueFactory(null, this.session.getServerSession().getDefaultTimeZone(), this),
@@ -457,11 +475,10 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Ensures that the result set is not closed
-     * 
+     *
      * @return connection
-     * 
-     * @throws SQLException
-     *             if the result set is closed
+     *
+     * @throws SQLException if the result set is closed
      */
     protected final JdbcConnection checkClosed() throws SQLException {
         JdbcConnection c = this.connection;
@@ -476,24 +493,22 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Checks if columnIndex is within the number of columns in this result set.
-     * 
-     * @param columnIndex
-     *            the index to check
-     * 
-     * @throws SQLException
-     *             if the index is out of bounds
+     *
+     * @param columnIndex the index to check
+     *
+     * @throws SQLException if the index is out of bounds
      */
     protected final void checkColumnBounds(int columnIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
             if ((columnIndex < 1)) {
                 throw SQLError.createSQLException(
                         Messages.getString("ResultSet.Column_Index_out_of_range_low",
-                                new Object[] { Integer.valueOf(columnIndex), Integer.valueOf(this.columnDefinition.getFields().length) }),
+                                new Object[]{Integer.valueOf(columnIndex), Integer.valueOf(this.columnDefinition.getFields().length)}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             } else if ((columnIndex > this.columnDefinition.getFields().length)) {
                 throw SQLError.createSQLException(
                         Messages.getString("ResultSet.Column_Index_out_of_range_high",
-                                new Object[] { Integer.valueOf(columnIndex), Integer.valueOf(this.columnDefinition.getFields().length) }),
+                                new Object[]{Integer.valueOf(columnIndex), Integer.valueOf(this.columnDefinition.getFields().length)}),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
 
@@ -504,11 +519,9 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Ensures that the cursor is positioned on a valid row and that the result
-     * set is not closed
-     * 
-     * @throws SQLException
-     *             if the result set is not in a valid state for traversal
+     * Ensures that the cursor is positioned on a valid row and that the result set is not closed
+     *
+     * @throws SQLException if the result set is not in a valid state for traversal
      */
     protected void checkRowPos() throws SQLException {
         checkClosed();
@@ -564,14 +577,13 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
      * /**
      * TODO: Required by JDBC spec
      */
-    /*
+ /*
      * protected void finalize() throws Throwable {
      * if (!this.isClosed) {
      * realClose(false);
      * }
      * }
      */
-
     @Override
     public int findColumn(String columnName) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -608,13 +620,10 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Decorate a date/time value factory to implement zeroDateTimeBehavior.
-     * 
-     * @param vf
-     *            value factory
-     * @param zeroDateTimeBehavior
-     *            CONVERT_TO_NULL, EXCEPTION or ROUND
-     * @param <T>
-     *            value type
+     *
+     * @param vf value factory
+     * @param zeroDateTimeBehavior CONVERT_TO_NULL, EXCEPTION or ROUND
+     * @param <T> value type
      * @return value
      */
     private static <T> ValueFactory<T> decorateDateTimeValueFactory(ValueFactory<T> vf, PropertyDefinitions.ZeroDatetimeBehavior zeroDateTimeBehavior) {
@@ -631,19 +640,17 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Get a non-string value from a row. All requests to obtain non-string values should use this method. This method implements the "indirect" conversion of
-     * values that are returned as strings from the server. This is an expensive conversion which first requires interpreting the value as a string in it's
-     * given character set and converting it to an ASCII string which can then be parsed as a numeric/date value.
-     * 
-     * @param columnIndex
-     *            column index
-     * @param vf
-     *            value factory
-     * @param <T>
-     *            value type
+     * Get a non-string value from a row. All requests to obtain non-string values should use this
+     * method. This method implements the "indirect" conversion of values that are returned as
+     * strings from the server. This is an expensive conversion which first requires interpreting
+     * the value as a string in it's given character set and converting it to an ASCII string which
+     * can then be parsed as a numeric/date value.
+     *
+     * @param columnIndex column index
+     * @param vf value factory
+     * @param <T> value type
      * @return value
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     private <T> T getNonStringValueFromRow(int columnIndex, ValueFactory<T> vf) throws SQLException {
         Field f = this.columnDefinition.getFields()[columnIndex - 1];
@@ -658,16 +665,12 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Get a Date of Timestamp value from a row. This implements the "yearIsDateType=true" behavior.
-     * 
-     * @param columnIndex
-     *            column index
-     * @param vf
-     *            value factory
-     * @param <T>
-     *            value type
+     *
+     * @param columnIndex column index
+     * @param vf value factory
+     * @param <T> value type
      * @return value
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     private <T> T getDateOrTimestampValueFromRow(int columnIndex, ValueFactory<T> vf) throws SQLException {
         Field f = this.columnDefinition.getFields()[columnIndex - 1];
@@ -906,7 +909,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
             return new BigInteger(stringVal);
         } catch (NumberFormatException nfe) {
             throw SQLError.createSQLException(
-                    Messages.getString("ResultSet.Bad_format_for_BigInteger", new Object[] { Integer.valueOf(columnIndex), stringVal }),
+                    Messages.getString("ResultSet.Bad_format_for_BigInteger", new Object[]{Integer.valueOf(columnIndex), stringVal}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }
@@ -955,7 +958,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
         if (this.padCharsWithSpace && stringVal != null && f.getMysqlTypeId() == MysqlType.FIELD_TYPE_STRING) {
             int maxBytesPerChar = this.session.getServerSession().getMaxBytesPerChar(f.getCollationIndex(), f.getEncoding());
-            int fieldLength = (int) f.getLength() /* safe, bytes in a CHAR <= 1024 */ / maxBytesPerChar; /* safe, this will never be 0 */
+            int fieldLength = (int) f.getLength() /* safe, bytes in a CHAR <= 1024 */ / maxBytesPerChar;
+            /* safe, this will never be 0 */
             return StringUtils.padString(stringVal, fieldLength);
         }
 
@@ -1275,7 +1279,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                         return new BigDecimal(stringVal);
                     } catch (NumberFormatException ex) {
                         throw SQLError.createSQLException(
-                                Messages.getString("ResultSet.Bad_format_for_BigDecimal", new Object[] { stringVal, Integer.valueOf(columnIndex) }),
+                                Messages.getString("ResultSet.Bad_format_for_BigDecimal", new Object[]{stringVal, Integer.valueOf(columnIndex)}),
                                 MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                     }
                 }
@@ -1557,7 +1561,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                         val = new BigDecimal(stringVal);
                     } catch (NumberFormatException ex) {
                         throw SQLError.createSQLException(
-                                Messages.getString("ResultSet.Bad_format_for_BigDecimal", new Object[] { stringVal, Integer.valueOf(columnIndex) }),
+                                Messages.getString("ResultSet.Bad_format_for_BigDecimal", new Object[]{stringVal, Integer.valueOf(columnIndex)}),
                                 MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                     }
 
@@ -1836,17 +1840,17 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * The <i>prev</i> method is not part of JDBC, but because of the architecture of this driver it is possible to move both forward and backward within the
-     * result set.
-     * 
+     * The <i>prev</i> method is not part of JDBC, but because of the architecture of this driver it
+     * is possible to move both forward and backward within the result set.
+     *
      * <p>
-     * If an input stream from the previous row is open, it is implicitly closed. The ResultSet's warning chain is cleared when a new row is read
+     * If an input stream from the previous row is open, it is implicitly closed. The ResultSet's
+     * warning chain is cleared when a new row is read
      * </p>
-     * 
+     *
      * @return true if the new current is valid; false if there are no more rows
-     * 
-     * @exception java.sql.SQLException
-     *                if a database access error occurs
+     *
+     * @exception java.sql.SQLException if a database access error occurs
      */
     public boolean prev() throws java.sql.SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -1904,7 +1908,6 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                 if (this.useUsageAdvisor) {
 
                     // Report on result set closed by driver instead of application
-
                     if (!calledExplicitly) {
                         this.eventSink.consumeEvent(new ProfilerEventImpl(ProfilerEvent.TYPE_WARN, "",
                                 (this.owningStatement == null) ? "N/A" : this.owningStatement.getCurrentCatalog(), this.connectionId,
@@ -1915,7 +1918,6 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                     if (this.rowData instanceof ResultsetRowsStatic) {
 
                         // Report on possibly too-large result sets
-
                         int resultSetSizeThreshold = locallyScopedConn.getPropertySet().getIntegerProperty(PropertyKey.resultSetSizeThreshold).getValue();
                         if (this.rowData.size() > resultSetSizeThreshold) {
                             this.eventSink.consumeEvent(new ProfilerEventImpl(ProfilerEvent.TYPE_WARN, "",
@@ -1923,7 +1925,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                                     this.connectionId, (this.owningStatement == null) ? (-1) : this.owningStatement.getId(), this.resultId,
                                     System.currentTimeMillis(), 0, Constants.MILLIS_I18N, null, this.pointOfOrigin,
                                     Messages.getString("ResultSet.Too_Large_Result_Set",
-                                            new Object[] { Integer.valueOf(this.rowData.size()), Integer.valueOf(resultSetSizeThreshold) })));
+                                            new Object[]{Integer.valueOf(this.rowData.size()), Integer.valueOf(resultSetSizeThreshold)})));
                         }
 
                         if (!isLast() && !isAfterLast() && (this.rowData.size() != 0)) {
@@ -1933,14 +1935,13 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                                     this.connectionId, (this.owningStatement == null) ? (-1) : this.owningStatement.getId(), this.resultId,
                                     System.currentTimeMillis(), 0, Constants.MILLIS_I18N, null, this.pointOfOrigin,
                                     Messages.getString("ResultSet.Possible_incomplete_traversal_of_result_set",
-                                            new Object[] { Integer.valueOf(getRow()), Integer.valueOf(this.rowData.size()) })));
+                                            new Object[]{Integer.valueOf(getRow()), Integer.valueOf(this.rowData.size())})));
                         }
                     }
 
                     //
                     // Report on any columns that were selected but not referenced
                     //
-
                     if (this.columnUsed.length > 0 && !this.rowData.wasEmpty()) {
                         StringBuilder buf = new StringBuilder(Messages.getString("ResultSet.The_following_columns_were_never_referenced"));
 
@@ -2074,7 +2075,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     @Override
     public void setFetchSize(int rows) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
-            if (rows < 0) { /* || rows > getMaxRows() */
+            if (rows < 0) {
+                /* || rows > getMaxRows() */
                 throw SQLError.createSQLException(Messages.getString("ResultSet.Value_must_be_between_0_and_getMaxRows()_66"),
                         MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
             }
@@ -2107,9 +2109,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Sets the concurrency
-     * 
-     * @param concurrencyFlag
-     *            CONCUR_UPDATABLE or CONCUR_READONLY
+     *
+     * @param concurrencyFlag CONCUR_UPDATABLE or CONCUR_READONLY
      */
     public synchronized void setResultSetConcurrency(int concurrencyFlag) {
         try {
@@ -2123,10 +2124,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Sets the result set type
-     * 
-     * @param typeFlag
-     *            SCROLL_SENSITIVE or SCROLL_INSENSITIVE (we only support
-     *            SCROLL_INSENSITIVE)
+     *
+     * @param typeFlag SCROLL_SENSITIVE or SCROLL_INSENSITIVE (we only support SCROLL_INSENSITIVE)
      */
     public synchronized void setResultSetType(int typeFlag) {
         try {
@@ -2140,9 +2139,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
 
     /**
      * Sets server info (if any)
-     * 
-     * @param info
-     *            the server info message
+     *
+     * @param info the server info message
      */
     public void setServerInfo(String info) {
         try {
@@ -2667,7 +2665,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
             // This works for classes that aren't actually wrapping anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }

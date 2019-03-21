@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf.url;
 
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
@@ -46,15 +45,16 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 public class XDevAPIConnectionUrl extends ConnectionUrl {
+
     private static final int DEFAULT_PORT = 33060;
 
     /**
-     * Constructs an instance of {@link XDevAPIConnectionUrl}, performing all the required initializations.
-     * 
-     * @param connStrParser
-     *            a {@link ConnectionUrlParser} instance containing the parsed version of the original connection string
-     * @param info
-     *            the connection arguments map
+     * Constructs an instance of {@link XDevAPIConnectionUrl}, performing all the required
+     * initializations.
+     *
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
+     * the original connection string
+     * @param info the connection arguments map
      */
     public XDevAPIConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {
         super(connStrParser, info);
@@ -79,11 +79,11 @@ public class XDevAPIConnectionUrl extends ConnectionUrl {
             } else {
                 if (!user.equals(hi.getUser()) || !password.equals(hi.getPassword())) {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("ConnectionString.14", new Object[] { Type.XDEVAPI_SESSION.getScheme() }));
+                            Messages.getString("ConnectionString.14", new Object[]{Type.XDEVAPI_SESSION.getScheme()}));
                 }
                 if (hasPriority ^ hi.getHostProperties().containsKey(PropertyKey.PRIORITY.getKeyName())) {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("ConnectionString.15", new Object[] { Type.XDEVAPI_SESSION.getScheme() }));
+                            Messages.getString("ConnectionString.15", new Object[]{Type.XDEVAPI_SESSION.getScheme()}));
                 }
             }
             if (hasPriority) {
@@ -91,11 +91,11 @@ public class XDevAPIConnectionUrl extends ConnectionUrl {
                     int priority = Integer.parseInt(hi.getProperty(PropertyKey.PRIORITY.getKeyName()));
                     if (priority < 0 || priority > 100) {
                         throw ExceptionFactory.createException(WrongArgumentException.class,
-                                Messages.getString("ConnectionString.16", new Object[] { Type.XDEVAPI_SESSION.getScheme() }));
+                                Messages.getString("ConnectionString.16", new Object[]{Type.XDEVAPI_SESSION.getScheme()}));
                     }
                 } catch (NumberFormatException e) {
                     throw ExceptionFactory.createException(WrongArgumentException.class,
-                            Messages.getString("ConnectionString.16", new Object[] { Type.XDEVAPI_SESSION.getScheme() }));
+                            Messages.getString("ConnectionString.16", new Object[]{Type.XDEVAPI_SESSION.getScheme()}));
                 }
             }
         }
@@ -103,7 +103,7 @@ public class XDevAPIConnectionUrl extends ConnectionUrl {
         // Sort the hosts list according to their priority settings.
         if (hasPriority) {
             this.hosts.sort(
-                    Comparator.<HostInfo, Integer> comparing(hi -> Integer.parseInt(hi.getHostProperties().get(PropertyKey.PRIORITY.getKeyName()))).reversed());
+                    Comparator.<HostInfo, Integer>comparing(hi -> Integer.parseInt(hi.getHostProperties().get(PropertyKey.PRIORITY.getKeyName()))).reversed());
         }
     }
 

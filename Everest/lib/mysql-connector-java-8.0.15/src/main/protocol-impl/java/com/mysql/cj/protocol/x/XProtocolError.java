@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import com.mysql.cj.exceptions.CJException;
@@ -36,6 +35,7 @@ import com.mysql.cj.x.protobuf.Mysqlx.Error;
  * An Error returned from X Plugin.
  */
 public class XProtocolError extends CJException {
+
     private static final long serialVersionUID = 6991120628391138584L;
 
     /**
@@ -63,9 +63,8 @@ public class XProtocolError extends CJException {
 
     /**
      * Format the error message's contents into a complete error description for the exception.
-     * 
-     * @param msg
-     *            {@link Error}
+     *
+     * @param msg {@link Error}
      * @return string error message
      */
     private static String getFullErrorDescription(Error msg) {

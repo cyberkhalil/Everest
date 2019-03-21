@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite;
 
 import java.net.Inet6Address;
@@ -42,13 +41,12 @@ import java.util.List;
 /**
  * Utility functions to use in tests.
  */
-
 public class TestUtils {
+
     /**
      * Percent-encode all occurrence of the the percent sign (%) in the given string.
-     * 
-     * @param strToEncode
-     *            the string to encode
+     *
+     * @param strToEncode the string to encode
      * @return the encoded string
      */
     public static String encodePercent(String strToEncode) {
@@ -57,7 +55,7 @@ public class TestUtils {
 
     /**
      * Get all IPv6 addresses defined in local network adapters.
-     * 
+     *
      * @return a list of {@link Inet6Address}s
      */
     public static List<Inet6Address> getIpv6List() {
@@ -80,12 +78,11 @@ public class TestUtils {
 
     /**
      * Checks if there is a server socket listening in the given host and port.
-     * 
-     * @param host
-     *            the host where to look for the server socket
-     * @param port
-     *            the expected port the server is listening
-     * @return true if there is a server socket listening in the given address and port, false otherwise
+     *
+     * @param host the host where to look for the server socket
+     * @param port the expected port the server is listening
+     * @return true if there is a server socket listening in the given address and port, false
+     * otherwise
      */
     public static boolean serverListening(String hostName, int port) {
         try {
@@ -97,12 +94,11 @@ public class TestUtils {
 
     /**
      * Checks if there is a server socket listening in the given address and port.
-     * 
-     * @param addr
-     *            the address where to look for the server socket
-     * @param port
-     *            the expected port the server is listening
-     * @return true if there is a server socket listening in the given address and port, false otherwise
+     *
+     * @param addr the address where to look for the server socket
+     * @param port the expected port the server is listening
+     * @return true if there is a server socket listening in the given address and port, false
+     * otherwise
      */
     public static boolean serverListening(InetAddress addr, int port) {
         Socket s = null;

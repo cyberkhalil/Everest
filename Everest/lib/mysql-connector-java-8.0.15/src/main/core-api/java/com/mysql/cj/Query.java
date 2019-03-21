@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public interface Query {
 
     /**
      * Returns the query id used when profiling
-     * 
+     *
      * @return id
      */
     int getId();
@@ -67,11 +66,10 @@ public interface Query {
     void addBatch(Object batch);
 
     /**
-     * Get the batched args as added by the addBatch method(s).
-     * The list is unmodifiable and might contain any combination of String,
-     * ClientPreparedQueryBindings, or ServerPreparedQueryBindings depending on how the parameters were
-     * batched.
-     * 
+     * Get the batched args as added by the addBatch method(s). The list is unmodifiable and might
+     * contain any combination of String, ClientPreparedQueryBindings, or
+     * ServerPreparedQueryBindings depending on how the parameters were batched.
+     *
      * @return an unmodifiable List of batched args
      */
     List<Object> getBatchedArgs();

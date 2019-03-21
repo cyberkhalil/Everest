@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 /**
@@ -50,28 +49,28 @@ public interface DatabaseObject {
 
     /**
      * Retrieve the session owning the given schema object.
-     * 
+     *
      * @return {@link Session}
      */
     Session getSession();
 
     /**
      * Retrieve the schema owning this database object.
-     * 
+     *
      * @return {@link Schema}
      */
     Schema getSchema();
 
     /**
      * Retrieve the name of the database object represented by the Java object.
-     * 
+     *
      * @return name
      */
     String getName();
 
     /**
      * Query the existence of this database object.
-     * 
+     *
      * @return {@link DbObjectStatus}
      */
     DbObjectStatus existsInDatabase();

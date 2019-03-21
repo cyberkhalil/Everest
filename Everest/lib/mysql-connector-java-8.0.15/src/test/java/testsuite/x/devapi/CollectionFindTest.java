@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static com.mysql.cj.xdevapi.Expression.expr;
@@ -369,7 +368,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
         // TODO: this is a known problem on the server with JSON value types (with IS NULL too)
         // docs = this.collection.find("$.c IS TRUE AND $.c IS NOT FALSE").execute();
         // docs.next();
-
         docs = this.collection.find("$.b IN (1,100) AND $.b NOT IN (2, 200)").execute();
         docs.next();
 
@@ -387,7 +385,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
         if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.2"))) {
 
             // cont_in
-
             docs = this.collection.find("$.b IN [100,101,102]").execute();
             assertEquals(1, docs.count());
 
@@ -410,7 +407,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             assertEquals(1, docs.count());
 
             // not_cont_in
-
             docs = this.collection.find("3 not in [1, 2, 4]").execute();
             assertEquals(1, docs.count());
 
@@ -605,7 +601,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             /*
              * 1. Shared Lock in both sessions.
              */
-
             // session2.lockShared() returns data immediately.
             session1.startTransaction();
             col1.find("_id = '1'").lockShared().execute();
@@ -669,7 +664,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             /*
              * 2. Shared Lock in first session and exclusive lock in second.
              */
-
             // session2.lockExclusive() blocks until session1 ends.
             session1.startTransaction();
             col1.find("_id = '1'").lockShared().execute();
@@ -677,7 +671,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             // session2.startTransaction();
             // res = col2.find("_id < '3'").lockExclusive().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = col2.find("_id < '3'").lockExclusive().executeAsync();
             final CompletableFuture<DocResult> fr1 = futRes;
@@ -734,7 +727,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             /*
              * 3. Exclusive Lock in first session and shared lock in second.
              */
-
             // session2.lockShared() blocks until session1 ends.
             session1.startTransaction();
             col1.find("_id = '1'").lockExclusive().execute();
@@ -742,7 +734,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             // session2.startTransaction();
             // res = col2.find("_id < '3'").lockShared().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = col2.find("_id < '3'").lockShared().executeAsync();
             final CompletableFuture<DocResult> fr3 = futRes;
@@ -799,7 +790,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             /*
              * 4. Exclusive Lock in both sessions.
              */
-
             // session2.lockExclusive() blocks until session1 ends.
             session1.startTransaction();
             col1.find("_id = '1'").lockExclusive().execute();
@@ -807,7 +797,6 @@ public class CollectionFindTest extends BaseCollectionTestCase {
             // session2.startTransaction();
             // res = col2.find("_id < '3'").lockExclusive().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = col2.find("_id < '3'").lockExclusive().executeAsync();
             final CompletableFuture<DocResult> fr5 = futRes;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.util;
 
 import java.io.IOException;
@@ -58,6 +57,7 @@ import com.mysql.cj.exceptions.WrongArgumentException;
  * Various utility methods for the driver.
  */
 public class Util {
+
     private static int jvmVersion = 8; // use default base version supported
 
     private static int jvmUpdateNumber = -1;
@@ -102,9 +102,8 @@ public class Util {
 
     /**
      * Checks whether the given server version string is a MySQL Community edition
-     * 
-     * @param serverVersion
-     *            full server version string
+     *
+     * @param serverVersion full server version string
      * @return true if version does not contain "enterprise", "commercial" or "advanced"
      */
     public static boolean isCommunityEdition(String serverVersion) {
@@ -113,9 +112,8 @@ public class Util {
 
     /**
      * Checks whether the given server version string is a MySQL Enterprise edition
-     * 
-     * @param serverVersion
-     *            full server version string
+     *
+     * @param serverVersion full server version string
      * @return true if version contains "enterprise", "commercial" or "advanced"
      */
     public static boolean isEnterpriseEdition(String serverVersion) {
@@ -124,12 +122,10 @@ public class Util {
 
     /**
      * Converts a nested exception into a nicer message
-     * 
-     * @param ex
-     *            the exception to expand into a message.
-     * 
-     * @return a message containing the exception, the message (if any), and a
-     *         stacktrace.
+     *
+     * @param ex the exception to expand into a message.
+     *
+     * @return a message containing the exception, the message (if any), and a stacktrace.
      */
     public static String stackTraceToString(Throwable ex) {
         StringBuilder traceBuf = new StringBuilder();
@@ -174,15 +170,12 @@ public class Util {
     }
 
     /**
-     * Handles constructing new instance with the given constructor and wrapping
-     * (or not, as required) the exceptions that could possibly be generated
-     * 
-     * @param ctor
-     *            constructor
-     * @param args
-     *            arguments for constructor
-     * @param exceptionInterceptor
-     *            exception interceptor
+     * Handles constructing new instance with the given constructor and wrapping (or not, as
+     * required) the exceptions that could possibly be generated
+     *
+     * @param ctor constructor
+     * @param args arguments for constructor
+     * @param exceptionInterceptor exception interceptor
      * @return object
      */
     public static Object handleNewInstance(Constructor<?> ctor, Object[] args, ExceptionInterceptor exceptionInterceptor) {
@@ -206,16 +199,15 @@ public class Util {
 
     /**
      * Does a network interface exist locally with the given hostname?
-     * 
-     * @param hostname
-     *            the hostname (or IP address in string form) to check
-     * @return true if it exists, false if no, or unable to determine due to VM
-     *         version support of java.net.NetworkInterface
+     *
+     * @param hostname the hostname (or IP address in string form) to check
+     * @return true if it exists, false if no, or unable to determine due to VM version support of
+     * java.net.NetworkInterface
      */
     public static boolean interfaceExists(String hostname) {
         try {
             Class<?> networkInterfaceClass = Class.forName("java.net.NetworkInterface");
-            return networkInterfaceClass.getMethod("getByName", (Class[]) null).invoke(networkInterfaceClass, new Object[] { hostname }) != null;
+            return networkInterfaceClass.getMethod("getByName", (Class[]) null).invoke(networkInterfaceClass, new Object[]{hostname}) != null;
         } catch (Throwable t) {
             return false;
         }
@@ -287,21 +279,23 @@ public class Util {
             }
 
         } catch (Throwable t) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString(errorMessageKey, new Object[] { className }), t,
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString(errorMessageKey, new Object[]{className}), t,
                     exceptionInterceptor);
         }
 
         return instances;
     }
 
-    /** Cache for the JDBC interfaces already verified */
+    /**
+     * Cache for the JDBC interfaces already verified
+     */
     private static final ConcurrentMap<Class<?>, Boolean> isJdbcInterfaceCache = new ConcurrentHashMap<>();
 
     /**
-     * Recursively checks for interfaces on the given class to determine if it implements a java.sql, javax.sql or com.mysql.cj.jdbc interface.
-     * 
-     * @param clazz
-     *            The class to investigate.
+     * Recursively checks for interfaces on the given class to determine if it implements a
+     * java.sql, javax.sql or com.mysql.cj.jdbc interface.
+     *
+     * @param clazz The class to investigate.
      * @return boolean
      */
     public static boolean isJdbcInterface(Class<?> clazz) {
@@ -341,9 +335,8 @@ public class Util {
 
     /**
      * Check if the package name is a known JDBC package.
-     * 
-     * @param packageName
-     *            The package name to check.
+     *
+     * @param packageName The package name to check.
      * @return boolean
      */
     public static boolean isJdbcPackage(String packageName) {
@@ -351,17 +344,18 @@ public class Util {
                 && (packageName.startsWith("java.sql") || packageName.startsWith("javax.sql") || packageName.startsWith("com.mysql.cj.jdbc"));
     }
 
-    /** Cache for the implemented interfaces searched. */
+    /**
+     * Cache for the implemented interfaces searched.
+     */
     private static final ConcurrentMap<Class<?>, Class<?>[]> implementedInterfacesCache = new ConcurrentHashMap<>();
 
     /**
-     * Retrieves a list with all interfaces implemented by the given class. If possible gets this information from a cache instead of navigating through the
-     * object hierarchy. Results are stored in a cache for future reference.
-     * 
-     * @param clazz
-     *            The class from which the interface list will be retrieved.
-     * @return
-     *         An array with all the interfaces for the given class.
+     * Retrieves a list with all interfaces implemented by the given class. If possible gets this
+     * information from a cache instead of navigating through the object hierarchy. Results are
+     * stored in a cache for future reference.
+     *
+     * @param clazz The class from which the interface list will be retrieved.
+     * @return An array with all the interfaces for the given class.
      */
     public static Class<?>[] getImplementedInterfaces(Class<?> clazz) {
         Class<?>[] implementedInterfaces = Util.implementedInterfacesCache.get(clazz);
@@ -386,11 +380,9 @@ public class Util {
 
     /**
      * Computes the number of seconds elapsed since the given time in milliseconds.
-     * 
-     * @param timeInMillis
-     *            The past instant in milliseconds.
-     * @return
-     *         The number of seconds, truncated, elapsed since timeInMillis.
+     *
+     * @param timeInMillis The past instant in milliseconds.
+     * @return The number of seconds, truncated, elapsed since timeInMillis.
      */
     public static long secondsSinceMillis(long timeInMillis) {
         return (System.currentTimeMillis() - timeInMillis) / 1000;
@@ -398,9 +390,8 @@ public class Util {
 
     /**
      * Converts long to int, truncating to maximum/minimum value if needed.
-     * 
-     * @param longValue
-     *            long value
+     *
+     * @param longValue long value
      * @return int value
      */
     public static int truncateAndConvertToInt(long longValue) {
@@ -409,9 +400,8 @@ public class Util {
 
     /**
      * Converts long[] to int[], truncating to maximum/minimum value if needed.
-     * 
-     * @param longArray
-     *            log values
+     *
+     * @param longArray log values
      * @return int values
      */
     public static int[] truncateAndConvertToInt(long[] longArray) {
@@ -424,11 +414,10 @@ public class Util {
     }
 
     /**
-     * Returns the package name of the given class.
-     * Using clazz.getPackage().getName() is not an alternative because under some class loaders the method getPackage() just returns null.
-     * 
-     * @param clazz
-     *            the Class from which to get the package name
+     * Returns the package name of the given class. Using clazz.getPackage().getName() is not an
+     * alternative because under some class loaders the method getPackage() just returns null.
+     *
+     * @param clazz the Class from which to get the package name
      * @return the package name
      */
     public static String getPackageName(Class<?> clazz) {
@@ -442,29 +431,23 @@ public class Util {
 
     /**
      * Checks if the JVM is running on Windows Operating System.
-     * 
-     * @return
-     *         <code>true</code> if currently running on Windows, <code>false</code> otherwise.
+     *
+     * @return <code>true</code> if currently running on Windows, <code>false</code> otherwise.
      */
     public static boolean isRunningOnWindows() {
         return StringUtils.indexOfIgnoreCase(Constants.OS_NAME, "WINDOWS") != -1;
     }
 
     /**
-     * Reads length bytes from reader into buf. Blocks until enough input is
-     * available
-     * 
-     * @param reader
-     *            {@link Reader}
-     * @param buf
-     *            char array to read into
-     * @param length
-     *            number of chars to read
-     * 
+     * Reads length bytes from reader into buf. Blocks until enough input is available
+     *
+     * @param reader {@link Reader}
+     * @param buf char array to read into
+     * @param length number of chars to read
+     *
      * @return the actual number of chars read
-     * 
-     * @throws IOException
-     *             if an error occurs
+     *
+     * @throws IOException if an error occurs
      */
     public static int readFully(Reader reader, char[] buf, int length) throws IOException {
         int numCharsRead = 0;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.List;
@@ -41,9 +40,8 @@ public class SqlUpdateResult extends UpdateResult implements SqlResult {
 
     /**
      * Constructor.
-     * 
-     * @param ok
-     *            {@link StatementExecuteOk} instance.
+     *
+     * @param ok {@link StatementExecuteOk} instance.
      */
     public SqlUpdateResult(StatementExecuteOk ok) {
         super(ok);

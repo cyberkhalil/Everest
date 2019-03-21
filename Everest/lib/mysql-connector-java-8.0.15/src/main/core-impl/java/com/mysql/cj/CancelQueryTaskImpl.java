@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.TimerTask;
@@ -39,11 +38,10 @@ import com.mysql.cj.protocol.a.NativeMessageBuilder;
 import com.mysql.cj.util.StringUtils;
 
 //TODO should not be protocol-specific
-
 /**
- * Thread used to implement query timeouts...Eventually we could be more
- * efficient and have one thread with timers, but this is a straightforward
- * and simple way to implement a feature that isn't used all that often.
+ * Thread used to implement query timeouts...Eventually we could be more efficient and have one
+ * thread with timers, but this is a straightforward and simple way to implement a feature that
+ * isn't used all that often.
  */
 public class CancelQueryTaskImpl extends TimerTask implements CancelQueryTask {
 

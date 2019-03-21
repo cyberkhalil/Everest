@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.IOException;
@@ -36,7 +35,8 @@ import java.util.Arrays;
 import com.mysql.cj.log.Log;
 
 /**
- * A non-blocking buffered input stream. Reads more if it can, won't block to fill the buffer, only blocks to satisfy a request of read(byte[])
+ * A non-blocking buffered input stream. Reads more if it can, won't block to fill the buffer, only
+ * blocks to satisfy a request of read(byte[])
  */
 public class ReadAheadInputStream extends InputStream {
 
@@ -57,12 +57,12 @@ public class ReadAheadInputStream extends InputStream {
     private void fill(int readAtLeastTheseManyBytes) throws IOException {
         checkClosed();
 
-        this.currentPosition = 0; /* no mark: throw away the buffer */
+        this.currentPosition = 0;
+        /* no mark: throw away the buffer */
 
         this.endOfCurrentData = this.currentPosition;
 
         // Read at least as many bytes as the caller wants, but don't block to fill the whole buffer (like java.io.BufferdInputStream does)
-
         int bytesToRead = Math.min(this.buf.length - this.currentPosition, readAtLeastTheseManyBytes);
 
         int bytesAvailable = this.underlyingStream.available();
@@ -70,7 +70,6 @@ public class ReadAheadInputStream extends InputStream {
         if (bytesAvailable > bytesToRead) {
 
             // Great, there's more available, let's grab those bytes too! (read-ahead)
-
             bytesToRead = Math.min(this.buf.length - this.currentPosition, bytesAvailable);
         }
 

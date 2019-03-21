@@ -22,7 +22,7 @@ public class CourseEntry {
         try {
             //---------
             //Connection conn = null;
-            Connection doConnection = login.getConnection();
+            Connection doConnection = Login.getConnection();
 
             String query = " insert into course (CourseName,CourseDateStart,CoursePrice,"
                     + "CourseDays,HourFrom ,HourTo,CourseDateEnd)"
@@ -51,7 +51,7 @@ public class CourseEntry {
 
     public static void createExam(String ExamName, double ExamPrice) {
         try {
-            Connection doConnection = login.getConnection();
+            Connection doConnection = Login.getConnection();
             String query = " insert into exam (ExamName,ExamPrice) values (?,?)";
             PreparedStatement preparedStmt1 = doConnection.prepareStatement(query);
             preparedStmt1.setString(1, ExamName);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.ByteArrayInputStream;
@@ -78,6 +77,7 @@ import testsuite.BaseTestCase;
 import testsuite.regression.ConnectionRegressionTest.CountingReBalanceStrategy;
 
 public class StatementsTest extends BaseTestCase {
+
     private static final int MAX_COLUMN_LENGTH = 255;
 
     private static final int MAX_COLUMNS_TO_TEST = 40;
@@ -86,7 +86,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -95,7 +95,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Creates a new StatementsTest object.
-     * 
+     *
      * @param name
      */
     public StatementsTest(String name) {
@@ -315,9 +315,9 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Tests all variants of numerical types (signed/unsigned) for correct
-     * operation when used as return values from a prepared statement.
-     * 
+     * Tests all variants of numerical types (signed/unsigned) for correct operation when used as
+     * return values from a prepared statement.
+     *
      * @throws Exception
      */
     public void testBinaryResultSetNumericTypes() throws Exception {
@@ -424,9 +424,8 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests stored procedure functionality
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     *
+     * @throws Exception if an error occurs.
      */
     public void testCallableStatement() throws Exception {
         CallableStatement cStmt = null;
@@ -519,7 +518,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             cancelStmt.setQueryTimeout(0);
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
@@ -564,7 +562,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
             assertTrue(this.rs.next());
@@ -591,7 +588,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
             assertTrue(this.rs.next());
@@ -635,7 +631,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
             assertTrue(this.rs.next());
@@ -662,7 +657,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
             assertTrue(this.rs.next());
@@ -706,7 +700,6 @@ public class StatementsTest extends BaseTestCase {
             }
 
             // Make sure we can still use the connection...
-
             this.rs = cancelStmt.executeQuery("SELECT 1");
 
             assertTrue(this.rs.next());
@@ -939,7 +932,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests multiple statement support
-     * 
+     *
      * @throws Exception
      */
     public void testMultiStatements() throws Exception {
@@ -999,9 +992,8 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests that NULLs and '' work correctly.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     public void testNulls() throws SQLException {
         try {
@@ -1145,7 +1137,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setObject()
-     * 
+     *
      * @throws Exception
      */
     public void testSetObject() throws Exception {
@@ -1167,7 +1159,7 @@ public class StatementsTest extends BaseTestCase {
 
         this.pstmt.setObject(1, "1000", Types.DECIMAL);
         this.pstmt.setObject(2, "2000", Types.VARCHAR);
-        this.pstmt.setObject(3, new byte[] { 0 }, Types.BLOB);
+        this.pstmt.setObject(3, new byte[]{0}, Types.BLOB);
         this.pstmt.setObject(4, new java.util.Date(currentTime), Types.DATE);
         this.pstmt.setObject(5, "2000-01-01 23-59-59", Types.TIMESTAMP);
         this.pstmt.setObject(6, "11:22:33", Types.TIME);
@@ -1190,7 +1182,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setObject(...SQLType...)
-     * 
+     *
      * @throws Exception
      */
     public void testSetObjectWithMysqlType() throws Exception {
@@ -1213,7 +1205,7 @@ public class StatementsTest extends BaseTestCase {
 
         this.pstmt.setObject(1, "1000", MysqlType.DECIMAL);
         this.pstmt.setObject(2, "2000", MysqlType.VARCHAR);
-        this.pstmt.setObject(3, new byte[] { 0 }, MysqlType.BLOB);
+        this.pstmt.setObject(3, new byte[]{0}, MysqlType.BLOB);
         this.pstmt.setObject(4, new java.util.Date(currentTime), MysqlType.DATE);
         this.pstmt.setObject(5, "2000-01-01 23-59-59", MysqlType.TIMESTAMP);
         this.pstmt.setObject(6, "11:22:33", MysqlType.TIME);
@@ -1369,9 +1361,9 @@ public class StatementsTest extends BaseTestCase {
 
             createTable("rewriteBatchTypes",
                     "(internalOrder int, f1 tinyint null, " + "f2 smallint null, f3 int null, f4 bigint null, "
-                            + "f5 decimal(8, 2) null, f6 float null, f7 double null, " + "f8 varchar(255) null, f9 text null, f10 blob null, f11 blob null, "
-                            + (versionMeetsMinimum(5, 6, 4) ? "f12 datetime(3) null, f13 time(3) null, f14 date null)"
-                                    : "f12 datetime null, f13 time null, f14 date null)"));
+                    + "f5 decimal(8, 2) null, f6 float null, f7 double null, " + "f8 varchar(255) null, f9 text null, f10 blob null, f11 blob null, "
+                    + (versionMeetsMinimum(5, 6, 4) ? "f12 datetime(3) null, f13 time(3) null, f14 date null)"
+                    : "f12 datetime null, f13 time null, f14 date null)"));
 
             for (int i = 0; i < 1000; i++) {
                 differentTypes[i][0] = Math.random() < .5 ? null : new Byte((byte) (Math.random() * 127));
@@ -1431,7 +1423,6 @@ public class StatementsTest extends BaseTestCase {
             int idx = 0;
 
             // We need to format this ourselves, since we have to strip the nanos off of TIMESTAMPs, so .equals() doesn't really work...
-
             SimpleDateFormat sdf = TimeUtil.getSimpleDateFormat(null, "''yyyy-MM-dd HH:mm:ss''", null, null);
 
             while (this.rs.next()) {
@@ -1602,11 +1593,11 @@ public class StatementsTest extends BaseTestCase {
             this.pstmt.setString(1, "A");
             this.pstmt.setInt(2, 1);
 
-            char[] cArray = { 'A', 'B', 'C' };
+            char[] cArray = {'A', 'B', 'C'};
             Reader r = new CharArrayReader(cArray);
             this.pstmt.setCharacterStream(3, r, cArray.length);
 
-            byte[] bArray = { 'D', 'E', 'F' };
+            byte[] bArray = {'D', 'E', 'F'};
             ByteArrayInputStream bais = new ByteArrayInputStream(bArray);
             this.pstmt.setBinaryStream(4, bais, bArray.length);
 
@@ -1617,7 +1608,7 @@ public class StatementsTest extends BaseTestCase {
             assertEquals("ABC", this.rs.getString(1));
             assertEquals("DEF", this.rs.getString(2));
 
-            char[] ucArray = { 'C', 'E', 'S', 'U' };
+            char[] ucArray = {'C', 'E', 'S', 'U'};
             this.pstmt.setString(1, "CESU");
             this.pstmt.setInt(2, 3);
             Reader ucReader = new CharArrayReader(ucArray);
@@ -1774,7 +1765,6 @@ public class StatementsTest extends BaseTestCase {
          * }
          * }
          */
-
         try {
             Properties props = new Properties();
             props.setProperty(PropertyKey.queryInterceptors.getKeyName(), ServerStatusDiffInterceptor.class.getName());
@@ -1794,10 +1784,10 @@ public class StatementsTest extends BaseTestCase {
 
         java.util.Date now = new java.util.Date();
 
-        Object[] valuesToTest = new Object[] { new Byte(Byte.MIN_VALUE), new Short(Short.MIN_VALUE), new Integer(Integer.MIN_VALUE), new Long(Long.MIN_VALUE),
-                new Double(Double.MIN_VALUE), "\u4E2D\u6587", new BigDecimal(Math.PI), null, // to test isNull
-                now // to test serialization
-        };
+        Object[] valuesToTest = new Object[]{new Byte(Byte.MIN_VALUE), new Short(Short.MIN_VALUE), new Integer(Integer.MIN_VALUE), new Long(Long.MIN_VALUE),
+            new Double(Double.MIN_VALUE), "\u4E2D\u6587", new BigDecimal(Math.PI), null, // to test isNull
+            now // to test serialization
+    };
 
         StringBuilder statementText = new StringBuilder("SELECT ?");
 
@@ -1865,7 +1855,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNCharacterStream()
-     * 
+     *
      * @throws Exception
      */
     public void testGetNCharacterStream() throws Exception {
@@ -1884,7 +1874,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNClob()
-     * 
+     *
      * @throws Exception
      */
     public void testGetNClob() throws Exception {
@@ -1917,7 +1907,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.getNString()
-     * 
+     *
      * @throws Exception
      */
     public void testGetNString() throws Exception {
@@ -1932,7 +1922,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNCharacterSteam()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNCharacterStream() throws Exception {
@@ -1979,7 +1969,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNCharacterSteam()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNCharacterStreamServer() throws Exception {
@@ -2017,7 +2007,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNClob()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNClob() throws Exception {
@@ -2070,7 +2060,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNClob()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNClobServer() throws Exception {
@@ -2122,7 +2112,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for PreparedStatement.setNString()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNString() throws Exception {
@@ -2171,7 +2161,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ServerPreparedStatement.setNString()
-     * 
+     *
      * @throws Exception
      */
     public void testSetNStringServer() throws Exception {
@@ -2209,7 +2199,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNCharacterStream()
-     * 
+     *
      * @throws Exception
      */
     public void testUpdateNCharacterStream() throws Exception {
@@ -2268,7 +2258,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNClob()
-     * 
+     *
      * @throws Exception
      */
     public void testUpdateNClob() throws Exception {
@@ -2335,7 +2325,7 @@ public class StatementsTest extends BaseTestCase {
 
     /**
      * Tests for ResultSet.updateNString()
-     * 
+     *
      * @throws Exception
      */
     public void testUpdateNString() throws Exception {
@@ -2403,7 +2393,7 @@ public class StatementsTest extends BaseTestCase {
             portNumber = "3306";
         }
 
-        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[] { "first", "second" }, props);
+        Connection conn2 = this.getUnreliableLoadBalancedConnection(new String[]{"first", "second"}, props);
         try {
             conn2.createNClob();
         } catch (SQLException e) {
@@ -2524,9 +2514,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for Statement.executeLargeUpdate(String).
-     * Validate update count returned and generated keys.
-     * Case: without requesting generated keys.
+     * Test for Statement.executeLargeUpdate(String). Validate update count returned and generated
+     * keys. Case: without requesting generated keys.
      */
     public void testStmtExecuteLargeUpdateNoGeneratedKeys() throws Exception {
         createTable("testExecuteLargeUpdate", "(id BIGINT AUTO_INCREMENT PRIMARY KEY, n INT)");
@@ -2538,19 +2527,17 @@ public class StatementsTest extends BaseTestCase {
         final Statement stmtTmp = this.stmt;
         assertThrows(SQLException.class, "Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate\\(\\), "
                 + "Statement.executeLargeUpdate\\(\\) or Connection.prepareStatement\\(\\).", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        stmtTmp.getGeneratedKeys();
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                stmtTmp.getGeneratedKeys();
+                return null;
+            }
+        });
     }
 
     /**
-     * Test for Statement.executeLargeUpdate(String, _).
-     * Validate update count returned and generated keys.
-     * Case 1: explicitly requesting generated keys.
-     * Case 2: requesting generated keys by defining column indexes.
-     * Case 3: requesting generated keys by defining column names.
+     * Test for Statement.executeLargeUpdate(String, _). Validate update count returned and
+     * generated keys. Case 1: explicitly requesting generated keys. Case 2: requesting generated
+     * keys by defining column indexes. Case 3: requesting generated keys by defining column names.
      */
     public void testStmtExecuteLargeUpdate() throws Exception {
         createTable("testExecuteLargeUpdate", "(id BIGINT AUTO_INCREMENT PRIMARY KEY, n INT)");
@@ -2565,10 +2552,10 @@ public class StatementsTest extends BaseTestCase {
                             Statement.RETURN_GENERATED_KEYS);
                     break;
                 case 2:
-                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new int[] { 1 });
+                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new int[]{1});
                     break;
                 case 3:
-                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new String[] { "id" });
+                    count = this.stmt.executeLargeUpdate("INSERT INTO testExecuteLargeUpdate (n) VALUES (1), (2), (3), (4), (5)", new String[]{"id"});
                     break;
             }
             assertEquals(tstCase, 5, count);
@@ -2591,8 +2578,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for PreparedStatement.executeLargeBatch().
-     * Validate update count returned and generated keys.
+     * Test for PreparedStatement.executeLargeBatch(). Validate update count returned and generated
+     * keys.
      */
     public void testPrepStmtExecuteLargeBatch() throws Exception {
         /*
@@ -2685,9 +2672,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for PreparedStatement.executeLargeUpdate().
-     * Validate update count returned and generated keys.
-     * Case: without requesting generated keys.
+     * Test for PreparedStatement.executeLargeUpdate(). Validate update count returned and generated
+     * keys. Case: without requesting generated keys.
      */
     public void testPrepStmtExecuteLargeUpdateNoGeneratedKeys() throws Exception {
         createTable("testExecuteLargeUpdate", "(id BIGINT AUTO_INCREMENT PRIMARY KEY, n INT)");
@@ -2706,17 +2692,16 @@ public class StatementsTest extends BaseTestCase {
         final Statement stmtTmp = this.pstmt;
         assertThrows(SQLException.class, "Generated keys not requested. You need to specify Statement.RETURN_GENERATED_KEYS to Statement.executeUpdate\\(\\), "
                 + "Statement.executeLargeUpdate\\(\\) or Connection.prepareStatement\\(\\).", new Callable<Void>() {
-                    public Void call() throws Exception {
-                        stmtTmp.getGeneratedKeys();
-                        return null;
-                    }
-                });
+            public Void call() throws Exception {
+                stmtTmp.getGeneratedKeys();
+                return null;
+            }
+        });
     }
 
     /**
-     * Test for PreparedStatement.executeLargeUpdate().
-     * Validate update count returned and generated keys.
-     * Case: explicitly requesting generated keys.
+     * Test for PreparedStatement.executeLargeUpdate(). Validate update count returned and generated
+     * keys. Case: explicitly requesting generated keys.
      */
     public void testPrepStmtExecuteLargeUpdateExplicitGeneratedKeys() throws Exception {
         createTable("testExecuteLargeUpdate", "(id BIGINT AUTO_INCREMENT PRIMARY KEY, n INT)");
@@ -2748,8 +2733,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for CallableStatement.executeLargeBatch().
-     * Validate update count returned and generated keys.
+     * Test for CallableStatement.executeLargeBatch(). Validate update count returned and generated
+     * keys.
      */
     public void testCallStmtExecuteLargeBatch() throws Exception {
         /*
@@ -2853,8 +2838,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for CallableStatement.executeLargeUpdate().
-     * Validate update count returned and generated keys.
+     * Test for CallableStatement.executeLargeUpdate(). Validate update count returned and generated
+     * keys.
      */
     public void testCallStmtExecuteLargeUpdate() throws Exception {
         createTable("testExecuteLargeUpdate", "(id BIGINT AUTO_INCREMENT PRIMARY KEY, n INT)");
@@ -2891,8 +2876,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.executeLargeBatch().
-     * Validate update count returned and generated keys.
+     * Test for (Server)PreparedStatement.executeLargeBatch(). Validate update count returned and
+     * generated keys.
      */
     public void testServerPrepStmtExecuteLargeBatch() throws Exception {
         /*
@@ -3025,8 +3010,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for PreparedStatement.setObject().
-     * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
+     * Test for PreparedStatement.setObject(). Validate new methods as well as support for the types
+     * java.time.Local[Date][Time] and java.time.Offset[Date]Time.
      */
     public void testPrepStmtSetObjectAndNewSupportedTypes() throws Exception {
         /*
@@ -3047,15 +3032,16 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE,
+     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testPrepStmtSetObjectAndNewUnsupportedTypes() throws Exception {
         checkUnsupportedTypesBehavior(this.conn.prepareStatement("SELECT ?"));
     }
 
     /**
-     * Test for CallableStatement.setObject().
-     * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
+     * Test for CallableStatement.setObject(). Validate new methods as well as support for the types
+     * java.time.Local[Date][Time] and java.time.Offset[Date]Time.
      */
     public void testCallStmtSetObjectAndNewSupportedTypes() throws Exception {
         /*
@@ -3080,7 +3066,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for CallableStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for CallableStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE,
+     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testCallStmtSetObjectAndNewUnsupportedTypes() throws Exception {
         createProcedure("testUnsupportedTypesProc", "(OUT param VARCHAR(20)) BEGIN SELECT 1; END");
@@ -3088,8 +3075,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.setObject().
-     * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
+     * Test for (Server)PreparedStatement.setObject(). Validate new methods as well as support for
+     * the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
      */
     public void testServPrepStmtSetObjectAndNewSupportedTypes() throws Exception {
         /*
@@ -3112,7 +3099,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for (Server)PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE,
+     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testServPrepStmtSetObjectAndNewUnsupportedTypes() throws Exception {
         Connection testConn = getConnectionWithProps("useServerPrepStmts=true");
@@ -3121,14 +3109,11 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Helper method for *SetObject* tests.
-     * Insert data into the given PreparedStatement, or any of its subclasses, with the following structure:
-     * 1 - `id` INT
-     * 2 - `d` DATE (or any kind of *CHAR)
-     * 3 - `t` TIME (or any kind of *CHAR)
-     * 4 - `dt` DATETIME (or any kind of *CHAR)
-     * 5 - `ts` TIMESTAMP (or any kind of *CHAR)
-     * 
+     * Helper method for *SetObject* tests. Insert data into the given PreparedStatement, or any of
+     * its subclasses, with the following structure: 1 - `id` INT 2 - `d` DATE (or any kind of
+     * *CHAR) 3 - `t` TIME (or any kind of *CHAR) 4 - `dt` DATETIME (or any kind of *CHAR) 5 - `ts`
+     * TIMESTAMP (or any kind of *CHAR)
+     *
      * @param prepStmt
      * @return the row count of inserted records.
      * @throws Exception
@@ -3228,16 +3213,14 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Helper method for *SetObject* tests.
-     * Validate the test data contained in the given ResultSet with following structure:
-     * 1 - `id` INT
-     * 2 - `d` DATE (or any kind of *CHAR)
-     * 3 - `t` TIME (or any kind of *CHAR)
-     * 4 - `dt` DATETIME (or any kind of *CHAR)
-     * 5 - `ts` TIMESTAMP (or any kind of *CHAR)
-     * 
-     * Additionally validate support for the types java.time.Local[Date][Time] in ResultSet.getObject().
-     * 
+     * Helper method for *SetObject* tests. Validate the test data contained in the given ResultSet
+     * with following structure: 1 - `id` INT 2 - `d` DATE (or any kind of *CHAR) 3 - `t` TIME (or
+     * any kind of *CHAR) 4 - `dt` DATETIME (or any kind of *CHAR) 5 - `ts` TIMESTAMP (or any kind
+     * of *CHAR)
+     *
+     * Additionally validate support for the types java.time.Local[Date][Time] in
+     * ResultSet.getObject().
+     *
      * @param tableName
      * @param expectedRowCount
      * @throws Exception
@@ -3286,14 +3269,10 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Helper method for *SetObject* tests.
-     * Insert data into the given PreparedStatement, or any of its subclasses, with the following structure:
-     * 1 - `id` INT
-     * 2 - `ot1` VARCHAR
-     * 3 - `ot2` BLOB
-     * 4 - `odt1` VARCHAR
-     * 5 - `odt2` BLOB
-     * 
+     * Helper method for *SetObject* tests. Insert data into the given PreparedStatement, or any of
+     * its subclasses, with the following structure: 1 - `id` INT 2 - `ot1` VARCHAR 3 - `ot2` BLOB 4
+     * - `odt1` VARCHAR 5 - `odt2` BLOB
+     *
      * @param prepStmt
      * @return the row count of inserted records.
      * @throws Exception
@@ -3323,16 +3302,13 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Helper method for *SetObject* tests.
-     * Validate the test data contained in the given ResultSet with following structure:
-     * 1 - `id` INT
-     * 2 - `ot1` VARCHAR
-     * 3 - `ot2` BLOB
-     * 4 - `odt1` VARCHAR
-     * 5 - `odt2` BLOB
-     * 
-     * Additionally validate support for the types java.time.Offset[Date]Time in ResultSet.getObject().
-     * 
+     * Helper method for *SetObject* tests. Validate the test data contained in the given ResultSet
+     * with following structure: 1 - `id` INT 2 - `ot1` VARCHAR 3 - `ot2` BLOB 4 - `odt1` VARCHAR 5
+     * - `odt2` BLOB
+     *
+     * Additionally validate support for the types java.time.Offset[Date]Time in
+     * ResultSet.getObject().
+     *
      * @param tableName
      * @param expectedRowCount
      * @throws Exception
@@ -3364,10 +3340,10 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Helper method for *SetObject* tests.
-     * Check unsupported types behavior for the given PreparedStatement with a single placeholder. If this is a CallableStatement then the placeholder must
-     * coincide with a parameter named `param`.
-     * 
+     * Helper method for *SetObject* tests. Check unsupported types behavior for the given
+     * PreparedStatement with a single placeholder. If this is a CallableStatement then the
+     * placeholder must coincide with a parameter named `param`.
+     *
      * @param prepStmt
      */
     private void checkUnsupportedTypesBehavior(final PreparedStatement prepStmt) {
@@ -3556,7 +3532,8 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for CallableStatement.registerOutParameter(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for CallableStatement.registerOutParameter(), unsupported SQL types TIME_WITH_TIMEZONE,
+     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testCallStmtRegisterOutParameterNewUnsupportedTypes() throws Exception {
         createProcedure("testUnsupportedTypesProc", "(OUT param VARCHAR(20)) BEGIN SELECT 1; END");

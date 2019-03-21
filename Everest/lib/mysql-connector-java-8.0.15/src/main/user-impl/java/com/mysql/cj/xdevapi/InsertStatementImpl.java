@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.List;
@@ -39,6 +38,7 @@ import com.mysql.cj.protocol.x.XMessage;
 import com.mysql.cj.protocol.x.XMessageBuilder;
 
 public class InsertStatementImpl implements InsertStatement {
+
     private MysqlxSession mysqlxSession;
     private String schemaName;
     private String tableName;
@@ -60,13 +60,13 @@ public class InsertStatementImpl implements InsertStatement {
 
     public InsertResult execute() {
         StatementExecuteOk ok = this.mysqlxSession.sendMessage(
-                ((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildRowInsert(this.schemaName, this.tableName, this.insertParams));
+                ((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildRowInsert(this.schemaName, this.tableName, this.insertParams));
         return new InsertResultImpl(ok);
     }
 
     public CompletableFuture<InsertResult> executeAsync() {
         CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession.asyncSendMessage(
-                ((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildRowInsert(this.schemaName, this.tableName, this.insertParams));
+                ((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildRowInsert(this.schemaName, this.tableName, this.insertParams));
         return okF.thenApply(ok -> new InsertResultImpl(ok));
     }
 

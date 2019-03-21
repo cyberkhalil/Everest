@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Arrays;
@@ -49,6 +48,7 @@ import com.mysql.cj.result.ValueFactory;
  * {@link Schema} implementation.
  */
 public class SchemaImpl implements Schema {
+
     private MysqlxSession mysqlxSession;
     private XMessageBuilder xbuilder;
     private Session session;
@@ -59,7 +59,7 @@ public class SchemaImpl implements Schema {
         this.mysqlxSession = mysqlxSession;
         this.session = session;
         this.name = name;
-        this.xbuilder = (XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder();
+        this.xbuilder = (XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder();
     }
 
     public Session getSession() {
@@ -87,7 +87,7 @@ public class SchemaImpl implements Schema {
     }
 
     public List<Collection> getCollections(String pattern) {
-        Set<String> strTypes = Arrays.stream(new DbObjectType[] { DbObjectType.COLLECTION }).map(DatabaseObject.DbObjectType::toString)
+        Set<String> strTypes = Arrays.stream(new DbObjectType[]{DbObjectType.COLLECTION}).map(DatabaseObject.DbObjectType::toString)
                 .collect(Collectors.toSet());
         Predicate<com.mysql.cj.result.Row> rowFiler = r -> (strTypes).contains(r.getValue(1, this.svf));
         Function<com.mysql.cj.result.Row, String> rowToName = r -> r.getValue(0, this.svf);
@@ -101,7 +101,7 @@ public class SchemaImpl implements Schema {
     }
 
     public List<Table> getTables(String pattern) {
-        Set<String> strTypes = Arrays.stream(new DbObjectType[] { DbObjectType.TABLE, DbObjectType.VIEW, DbObjectType.COLLECTION_VIEW })
+        Set<String> strTypes = Arrays.stream(new DbObjectType[]{DbObjectType.TABLE, DbObjectType.VIEW, DbObjectType.COLLECTION_VIEW})
                 .map(DatabaseObject.DbObjectType::toString).collect(Collectors.toSet());
         Predicate<com.mysql.cj.result.Row> rowFiler = r -> (strTypes).contains(r.getValue(1, this.svf));
         Function<com.mysql.cj.result.Row, String> rowToName = r -> r.getValue(0, this.svf);

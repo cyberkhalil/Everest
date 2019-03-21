@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.io.UnsupportedEncodingException;
@@ -43,8 +42,7 @@ import com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType;
 public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
 
     /**
-     * Content-type used in type mapping.
-     * c.f. mysqlx_resultset.proto
+     * Content-type used in type mapping. c.f. mysqlx_resultset.proto
      */
     private static final int XPROTOCOL_COLUMN_BYTES_CONTENT_TYPE_GEOMETRY = 0x0001;
     private static final int XPROTOCOL_COLUMN_BYTES_CONTENT_TYPE_JSON = 0x0002;
@@ -75,10 +73,8 @@ public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
     /**
      * Convert a X Protocol {@link ColumnMetaData} message to a C/J {@link Field} object.
      *
-     * @param col
-     *            the message from the server
-     * @param characterSet
-     *            the encoding of the strings in the message
+     * @param col the message from the server
+     * @param characterSet the encoding of the strings in the message
      * @return {@link Field}
      */
     private Field columnMetaDataToField(ColumnMetaData col, String characterSet) {
@@ -175,15 +171,13 @@ public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
     }
 
     /**
-     * Map a X Protocol type code from `ColumnMetaData.FieldType' to a MySQL type constant. These are the only types that will be present in
-     * {@link XProtocolRow}
-     * results.
+     * Map a X Protocol type code from `ColumnMetaData.FieldType' to a MySQL type constant. These
+     * are the only types that will be present in {@link XProtocolRow} results.
      *
-     * @param type
-     *            the type as the ColumnMetaData.FieldType
-     * @param contentType
-     *            the inner type
-     * @return A <b>FIELD_TYPE</b> constant from {@link MysqlType} corresponding to the combination of input parameters.
+     * @param type the type as the ColumnMetaData.FieldType
+     * @param contentType the inner type
+     * @return A <b>FIELD_TYPE</b> constant from {@link MysqlType} corresponding to the combination
+     * of input parameters.
      */
     private int xProtocolTypeToMysqlType(FieldType type, int contentType) {
         switch (type) {

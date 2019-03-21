@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import com.google.protobuf.ByteString;
@@ -38,6 +37,7 @@ import com.mysql.cj.result.ValueFactory;
 import com.mysql.cj.x.protobuf.MysqlxResultset.Row;
 
 public class XProtocolRow implements com.mysql.cj.result.Row {
+
     private ColumnDefinition metadata;
     private Row rowMessage;
     private boolean wasNull = false;
@@ -87,7 +87,6 @@ public class XProtocolRow implements com.mysql.cj.result.Row {
             //case MysqlType.FIELD_TYPE_GEOMETRY:
             //mysqlTypeToDecoderFunction.put(MysqlType.FIELD_TYPE_GEOMETRY, instance::decodeGeometry);
             //break;
-
             case MysqlType.FIELD_TYPE_JSON:
                 this.wasNull = false;
                 // TODO: do we need to really do anything special with JSON? just return correct stuff with getObject() I guess

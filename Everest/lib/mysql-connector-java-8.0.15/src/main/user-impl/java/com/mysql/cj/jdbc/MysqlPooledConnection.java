@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.Connection;
@@ -46,8 +45,8 @@ import com.mysql.cj.exceptions.ExceptionInterceptor;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 /**
- * This class is used to wrap and return a physical connection within a logical handle. It also registers and notifies ConnectionEventListeners of any
- * ConnectionEvents
+ * This class is used to wrap and return a physical connection within a logical handle. It also
+ * registers and notifies ConnectionEventListeners of any ConnectionEvents
  */
 public class MysqlPooledConnection implements PooledConnection {
 
@@ -77,9 +76,8 @@ public class MysqlPooledConnection implements PooledConnection {
 
     /**
      * Construct a new MysqlPooledConnection and set instance variables
-     * 
-     * @param connection
-     *            physical connection to db
+     *
+     * @param connection physical connection to db
      */
     public MysqlPooledConnection(com.mysql.cj.jdbc.JdbcConnection connection) {
         this.logicalHandle = null;
@@ -140,9 +138,9 @@ public class MysqlPooledConnection implements PooledConnection {
     }
 
     /**
-     * Invoked by the container (not the client), and should close the physical
-     * connection. This will be called if the pool is destroyed or the
-     * connectionEventListener receives a connectionErrorOccurred event.
+     * Invoked by the container (not the client), and should close the physical connection. This
+     * will be called if the pool is destroyed or the connectionEventListener receives a
+     * connectionErrorOccurred event.
      */
     @Override
     public synchronized void close() throws SQLException {
@@ -162,16 +160,12 @@ public class MysqlPooledConnection implements PooledConnection {
     }
 
     /**
-     * Notifies all registered ConnectionEventListeners of ConnectionEvents.
-     * Instantiates a new ConnectionEvent which wraps sqlException and invokes
-     * either connectionClose or connectionErrorOccurred on listener as
-     * appropriate.
-     * 
-     * @param eventType
-     *            value indicating whether connectionClosed or
-     *            connectionErrorOccurred called
-     * @param sqlException
-     *            the exception being thrown
+     * Notifies all registered ConnectionEventListeners of ConnectionEvents. Instantiates a new
+     * ConnectionEvent which wraps sqlException and invokes either connectionClose or
+     * connectionErrorOccurred on listener as appropriate.
+     *
+     * @param eventType value indicating whether connectionClosed or connectionErrorOccurred called
+     * @param sqlException the exception being thrown
      */
     protected synchronized void callConnectionEventListeners(int eventType, SQLException sqlException) {
 

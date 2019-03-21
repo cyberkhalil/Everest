@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package documentation;
 
 import java.util.HashMap;
@@ -49,7 +48,6 @@ public class ErrorMappingsDocGenerator {
         Map<Object, String> mysqlErrorNumbersToNames = new HashMap<>();
 
         //      Integer errorNumber = null;
-
         // 
         // First create a list of all 'known' error numbers that are mapped.
         //

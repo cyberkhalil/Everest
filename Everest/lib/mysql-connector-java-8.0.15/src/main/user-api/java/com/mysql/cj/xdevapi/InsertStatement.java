@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Arrays;
@@ -36,20 +35,19 @@ import java.util.List;
  * A statement INSERTing new row(s) into a table.
  */
 public interface InsertStatement extends Statement<InsertStatement, InsertResult> {
+
     /**
      * Add a row (sequence of values) to this statement.
-     * 
-     * @param values
-     *            list of values to insert
+     *
+     * @param values list of values to insert
      * @return {@link InsertStatement}
      */
     InsertStatement values(List<Object> values);
 
     /**
      * Add a row (sequence of values) to this statement.
-     * 
-     * @param values
-     *            one or more values to insert
+     *
+     * @param values one or more values to insert
      * @return {@link InsertStatement}
      */
     default InsertStatement values(Object... values) {

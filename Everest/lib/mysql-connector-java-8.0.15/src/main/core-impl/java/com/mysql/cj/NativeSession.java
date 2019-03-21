@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.IOException;
@@ -102,7 +101,8 @@ public class NativeSession extends CoreSession implements Serializable {
     private CacheAdapter<String, Map<String, String>> serverConfigCache;
 
     /**
-     * Actual collation index to mysql charset name map of user defined charsets for given server URLs.
+     * Actual collation index to mysql charset name map of user defined charsets for given server
+     * URLs.
      */
     private static final Map<String, Map<Integer, String>> customIndexToCharsetMapByUrl = new HashMap<>();
 
@@ -112,23 +112,31 @@ public class NativeSession extends CoreSession implements Serializable {
     private static final Map<String, Map<String, Integer>> customCharsetToMblenMapByUrl = new HashMap<>();
 
     /**
-     * If a CharsetEncoder is required for escaping. Needed for SJIS and related
-     * problems with \u00A5.
+     * If a CharsetEncoder is required for escaping. Needed for SJIS and related problems with
+     * \u00A5.
      */
     private boolean requiresEscapingEncoder;
 
-    /** When did the last query finish? */
+    /**
+     * When did the last query finish?
+     */
     private long lastQueryFinishedTime = 0;
 
-    /** Does this connection need to be tested? */
+    /**
+     * Does this connection need to be tested?
+     */
     private boolean needsPing = false;
 
     private NativeMessageBuilder commandBuilder = new NativeMessageBuilder(); // TODO use shared builder
 
-    /** Has this session been closed? */
+    /**
+     * Has this session been closed?
+     */
     private boolean isClosed = true;
 
-    /** Why was this session implicitly closed, if known? (for diagnostics) */
+    /**
+     * Why was this session implicitly closed, if known? (for diagnostics)
+     */
     private Throwable forceClosedReason;
 
     private CopyOnWriteArrayList<WeakReference<SessionEventListener>> listeners = new CopyOnWriteArrayList<>();
@@ -260,7 +268,7 @@ public class NativeSession extends CoreSession implements Serializable {
 
     /**
      * Used by MiniAdmin to shutdown a MySQL server
-     * 
+     *
      */
     public void shutdownServer() {
         if (versionMeetsMinimum(5, 7, 9)) {
@@ -290,7 +298,7 @@ public class NativeSession extends CoreSession implements Serializable {
     /**
      * Returns the packet used for sending data (used by PreparedStatement) with position set to 0.
      * Guarded by external synchronization on a mutex.
-     * 
+     *
      * @return A packet to send data with
      */
     public NativePacketPayload getSharedSendPacket() {
@@ -419,7 +427,7 @@ public class NativeSession extends CoreSession implements Serializable {
                 this.characterEncoding.setValue(CharsetMapping.getJavaEncodingForMysqlCharset(oldEncoding));
 
                 if (this.characterEncoding.getValue() == null) {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.5", new Object[] { oldEncoding }),
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.5", new Object[]{oldEncoding}),
                             getExceptionInterceptor());
                 }
 
@@ -430,18 +438,16 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Sets up client character set. This must be done before any further communication with the server!
-     * 
-     * @param dontCheckServerMatch
-     *            if true then send the SET NAMES query even if server charset already matches the new value
-     * @return true if this routine actually configured the client character
-     *         set, or false if the driver needs to use 'older' methods to
-     *         detect the character set, as it is connected to a MySQL server
-     *         older than 4.1.0
-     * @throws CJException
-     *             if an exception happens while sending 'SET NAMES' to the
-     *             server, or the server sends character set information that
-     *             the client doesn't know about.
+     * Sets up client character set. This must be done before any further communication with the
+     * server!
+     *
+     * @param dontCheckServerMatch if true then send the SET NAMES query even if server charset
+     * already matches the new value
+     * @return true if this routine actually configured the client character set, or false if the
+     * driver needs to use 'older' methods to detect the character set, as it is connected to a
+     * MySQL server older than 4.1.0
+     * @throws CJException if an exception happens while sending 'SET NAMES' to the server, or the
+     * server sends character set information that the client doesn't know about.
      */
     public boolean configureClientCharacterSet(boolean dontCheckServerMatch) {
         String realJavaEncoding = this.characterEncoding.getValue();
@@ -477,7 +483,7 @@ public class NativeSession extends CoreSession implements Serializable {
                         this.characterEncoding.setValue(realJavaEncoding);
                     } else {
                         throw ExceptionFactory.createException(
-                                Messages.getString("Connection.6", new Object[] { this.protocol.getServerSession().getServerDefaultCollationIndex() }),
+                                Messages.getString("Connection.6", new Object[]{this.protocol.getServerSession().getServerDefaultCollationIndex()}),
                                 getExceptionInterceptor());
                     }
                 }
@@ -499,7 +505,7 @@ public class NativeSession extends CoreSession implements Serializable {
                     this.characterEncoding.setValue(realJavaEncoding);
                 } else {
                     throw ExceptionFactory.createException(
-                            Messages.getString("Connection.6", new Object[] { this.protocol.getServerSession().getServerDefaultCollationIndex() }),
+                            Messages.getString("Connection.6", new Object[]{this.protocol.getServerSession().getServerDefaultCollationIndex()}),
                             getExceptionInterceptor());
                 }
             }
@@ -520,7 +526,7 @@ public class NativeSession extends CoreSession implements Serializable {
 
                     if (dontCheckServerMatch || !this.protocol.getServerSession().characterSetNamesMatches("utf8")
                             || (!this.protocol.getServerSession().characterSetNamesMatches("utf8mb4")) || (connectionCollationSuffix.length() > 0
-                                    && !connectionCollation.equalsIgnoreCase(this.protocol.getServerSession().getServerVariable("collation_server")))) {
+                            && !connectionCollation.equalsIgnoreCase(this.protocol.getServerSession().getServerVariable("collation_server")))) {
 
                         sendCommand(this.commandBuilder.buildComQuery(null, "SET NAMES " + utf8CharsetName + connectionCollationSuffix), false, 0);
 
@@ -529,7 +535,7 @@ public class NativeSession extends CoreSession implements Serializable {
                     }
 
                     this.characterEncoding.setValue(realJavaEncoding);
-                } /* not utf-8 */else {
+                } /* not utf-8 */ else {
                     String mysqlCharsetName = connectionCollationSuffix.length() > 0 ? connectionCollationCharset : CharsetMapping
                             .getMysqlCharsetForJavaEncoding(realJavaEncoding.toUpperCase(Locale.ENGLISH), getServerSession().getServerVersion());
 
@@ -581,7 +587,6 @@ public class NativeSession extends CoreSession implements Serializable {
             // We know how to deal with any charset coming back from the database, so tell the server not to do conversion if the user hasn't 'forced' a
             // result-set character set
             //
-
             String onServer = this.protocol.getServerSession().getServerVariable("character_set_results");
             if (characterSetResults.getValue() == null) {
 
@@ -618,9 +623,8 @@ public class NativeSession extends CoreSession implements Serializable {
                 //
                 // Only change the value if needed
                 //
-
                 if (mysqlEncodingName == null) {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.7", new Object[] { charsetResults }),
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.7", new Object[]{charsetResults}),
                             getExceptionInterceptor());
                 }
 
@@ -654,8 +658,8 @@ public class NativeSession extends CoreSession implements Serializable {
         }
 
         /**
-         * Check if we need a CharsetEncoder for escaping codepoints that are
-         * transformed to backslash (0x5c) in the connection encoding.
+         * Check if we need a CharsetEncoder for escaping codepoints that are transformed to
+         * backslash (0x5c) in the connection encoding.
          */
         try {
             CharsetEncoder enc = Charset.forName(this.characterEncoding.getValue()).newEncoder();
@@ -740,11 +744,11 @@ public class NativeSession extends CoreSession implements Serializable {
                 }
             } catch (ClassNotFoundException e) {
                 throw ExceptionFactory.createException(Messages.getString("Connection.CantFindCacheFactory",
-                        new Object[] { getPropertySet().getStringProperty(PropertyKey.parseInfoCacheFactory).getValue(), PropertyKey.parseInfoCacheFactory }),
+                        new Object[]{getPropertySet().getStringProperty(PropertyKey.parseInfoCacheFactory).getValue(), PropertyKey.parseInfoCacheFactory}),
                         e, getExceptionInterceptor());
             } catch (InstantiationException | IllegalAccessException | CJException e) {
                 throw ExceptionFactory.createException(Messages.getString("Connection.CantLoadCacheFactory",
-                        new Object[] { getPropertySet().getStringProperty(PropertyKey.parseInfoCacheFactory).getValue(), PropertyKey.parseInfoCacheFactory }),
+                        new Object[]{getPropertySet().getStringProperty(PropertyKey.parseInfoCacheFactory).getValue(), PropertyKey.parseInfoCacheFactory}),
                         e, getExceptionInterceptor());
             }
         }
@@ -754,13 +758,11 @@ public class NativeSession extends CoreSession implements Serializable {
     private final static String SERVER_VERSION_STRING_VAR_NAME = "server_version_string";
 
     /**
-     * Loads the result of 'SHOW VARIABLES' into the serverVariables field so
-     * that the driver can configure itself.
-     * 
-     * @param syncMutex
-     *            synchronization mutex
-     * @param version
-     *            driver version string
+     * Loads the result of 'SHOW VARIABLES' into the serverVariables field so that the driver can
+     * configure itself.
+     *
+     * @param syncMutex synchronization mutex
+     * @param version driver version string
      */
     public void loadServerVariables(Object syncMutex, String version) {
 
@@ -894,8 +896,8 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Builds the map needed for 4.1.0 and newer servers that maps field-level
-     * charset/collation info to a java character encoding name.
+     * Builds the map needed for 4.1.0 and newer servers that maps field-level charset/collation
+     * info to a java character encoding name.
      */
     public void buildCollationMapping() {
 
@@ -1068,9 +1070,8 @@ public class NativeSession extends CoreSession implements Serializable {
 
     /**
      * Get the variable value from server.
-     * 
-     * @param varName
-     *            server variable name
+     *
+     * @param varName server variable name
      * @return server variable value
      */
     public String queryServerVariable(String varName) {
@@ -1096,31 +1097,21 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Send a query to the server. Returns one of the ResultSet objects.
-     * To ensure that Statement's queries are serialized, calls to this method
-     * should be enclosed in a connection mutex synchronized block.
-     * 
-     * @param <T>
-     *            extends {@link Resultset}
-     * @param callingQuery
-     *            {@link Query} object
-     * @param query
-     *            the SQL statement to be executed
-     * @param maxRows
-     *            rows limit
-     * @param packet
-     *            {@link NativePacketPayload}
-     * @param streamResults
-     *            whether a stream result should be created
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
-     * @param catalog
-     *            database name
-     * @param cachedMetadata
-     *            use this metadata instead of the one provided on wire
-     * @param isBatch
-     *            is it a batch query
-     * 
+     * Send a query to the server. Returns one of the ResultSet objects. To ensure that Statement's
+     * queries are serialized, calls to this method should be enclosed in a connection mutex
+     * synchronized block.
+     *
+     * @param <T> extends {@link Resultset}
+     * @param callingQuery {@link Query} object
+     * @param query the SQL statement to be executed
+     * @param maxRows rows limit
+     * @param packet {@link NativePacketPayload}
+     * @param streamResults whether a stream result should be created
+     * @param resultSetFactory {@link ProtocolEntityFactory}
+     * @param catalog database name
+     * @param cachedMetadata use this metadata instead of the one provided on wire
+     * @param isBatch is it a batch query
+     *
      * @return a ResultSet holding the results
      */
     public <T extends Resultset> T execSQL(Query callingQuery, String query, int maxRows, NativePacketPayload packet, boolean streamResults,

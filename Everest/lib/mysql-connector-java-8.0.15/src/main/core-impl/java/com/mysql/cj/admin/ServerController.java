@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.admin;
 
 import java.io.File;
@@ -55,25 +54,21 @@ public class ServerController {
     /**
      * Where is the config file located?
      */
-
     public static final String DEFAULTS_FILE_KEY = "defaults-file";
 
     /**
      * What is the name of the executable to run?
      */
-
     public static final String EXECUTABLE_NAME_KEY = "executable";
 
     /**
      * What is the path to the mysql server executable (if not standard?)
      */
-
     public static final String EXECUTABLE_PATH_KEY = "executablePath";
 
     /**
      * The default executable to run
      */
-
     /**
      * The process representing the MySQL server
      */
@@ -88,36 +83,30 @@ public class ServerController {
      * The system properties
      */
     //private Properties systemProps = null;
-
     /**
      * Creates a ServerController with the directory for the MySQL server.
-     * 
+     *
      * The 'datadir' is set to the same directory.
-     * 
-     * @param baseDir
-     *            the base directory for the MySQL server.
+     *
+     * @param baseDir the base directory for the MySQL server.
      */
     public ServerController(String baseDir) {
         setBaseDir(baseDir);
     }
 
     /**
-     * Creates a server controller for the MySQL server with the given basedir
-     * and datadir.
-     * 
-     * @param basedir
-     *            the basedir to use when starting MySQL.
-     * @param datadir
-     *            the datadir to use when starting MySQL.
+     * Creates a server controller for the MySQL server with the given basedir and datadir.
+     *
+     * @param basedir the basedir to use when starting MySQL.
+     * @param datadir the datadir to use when starting MySQL.
      */
     public ServerController(String basedir, String datadir) {
     }
 
     /**
      * Sets the basedir to use when starting MySQL.
-     * 
-     * @param baseDir
-     *            the basedir to use when starting MySQL.
+     *
+     * @param baseDir the basedir to use when starting MySQL.
      */
     public void setBaseDir(String baseDir) {
         getServerProps().setProperty(BASEDIR_KEY, baseDir);
@@ -125,22 +114,18 @@ public class ServerController {
 
     /**
      * Sets the data to use when starting MySQL.
-     * 
-     * @param dataDir
-     *            the basedir to use when starting MySQL.
+     *
+     * @param dataDir the basedir to use when starting MySQL.
      */
     public void setDataDir(String dataDir) {
         getServerProps().setProperty(DATADIR_KEY, dataDir);
     }
 
     /**
-     * Starts the server, returning a java.lang.Process instance that represents
-     * the mysql server.
-     * 
-     * @return Process a java.lang.Process instance representing the mysql
-     *         server process.
-     * @throws IOException
-     *             if an error occurs while starting the mysql server.
+     * Starts the server, returning a java.lang.Process instance that represents the mysql server.
+     *
+     * @return Process a java.lang.Process instance representing the mysql server process.
+     * @throws IOException if an error occurs while starting the mysql server.
      */
     public Process start() throws IOException {
         if (this.serverProcess != null) {
@@ -153,12 +138,10 @@ public class ServerController {
 
     /**
      * Stops the server (if started)
-     * 
-     * @param forceIfNecessary
-     *            use forceStop if mysqladmin doesn't shut the server down
-     * 
-     * @throws IOException
-     *             if an error occurs while stopping the server
+     *
+     * @param forceIfNecessary use forceStop if mysqladmin doesn't shut the server down
+     *
+     * @throws IOException if an error occurs while stopping the server
      */
     public void stop(boolean forceIfNecessary) throws IOException {
         if (this.serverProcess != null) {
@@ -172,7 +155,6 @@ public class ServerController {
             }
 
             //String defaultsFilePath = getServerProps().getProperty(DEFAULTS_FILE_KEY);
-
             pathBuf.append("bin");
             pathBuf.append(File.separator);
             pathBuf.append("mysqladmin shutdown");
@@ -209,9 +191,8 @@ public class ServerController {
     }
 
     /**
-     * Returns the list of properties that will be used to start/control the
-     * server.
-     * 
+     * Returns the list of properties that will be used to start/control the server.
+     *
      * @return Properties the list of properties.
      */
     public synchronized Properties getServerProps() {
@@ -223,9 +204,9 @@ public class ServerController {
     }
 
     /**
-     * Returns the full commandline used to start the mysql server, including
-     * and arguments to be passed to the server process.
-     * 
+     * Returns the full commandline used to start the mysql server, including and arguments to be
+     * passed to the server process.
+     *
      * @return String the commandline used to start the mysql server.
      */
     private String getCommandLine() {
@@ -237,7 +218,7 @@ public class ServerController {
 
     /**
      * Returns the fully-qualifed path to the 'mysqld' executable
-     * 
+     *
      * @return String the path to the server executable.
      */
     private String getFullExecutablePath() {
@@ -277,9 +258,9 @@ public class ServerController {
     }
 
     /**
-     * Builds the list of command-line arguments that will be passed to the
-     * mysql server to be started.
-     * 
+     * Builds the list of command-line arguments that will be passed to the mysql server to be
+     * started.
+     *
      * @return String the list of command-line arguments.
      */
     private String buildOptionalCommandLine() {
@@ -312,10 +293,9 @@ public class ServerController {
 
     /**
      * Returns true if the property does not belong as a command-line argument
-     * 
-     * @param propName
-     *            property name
-     * 
+     *
+     * @param propName property name
+     *
      * @return boolean if the property should not be a command-line argument.
      */
     private boolean isNonCommandLineArgument(String propName) {
@@ -324,7 +304,7 @@ public class ServerController {
 
     /**
      * Is this ServerController running on a Windows operating system?
-     * 
+     *
      * @return boolean if this ServerController is running on Windows
      */
     private boolean runningOnWindows() {

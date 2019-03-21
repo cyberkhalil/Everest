@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.Collections;
@@ -37,9 +36,11 @@ import com.mysql.cj.protocol.ProtocolEntity;
 import com.mysql.cj.protocol.Warning;
 
 /**
- * The returned information from a successfully executed statement. All fields are optional and may be <i>null</i>.
+ * The returned information from a successfully executed statement. All fields are optional and may
+ * be <i>null</i>.
  */
 public class StatementExecuteOk implements ProtocolEntity, QueryResult {
+
     private long rowsAffected;
     private Long lastInsertId;
     private List<String> generatedIds;

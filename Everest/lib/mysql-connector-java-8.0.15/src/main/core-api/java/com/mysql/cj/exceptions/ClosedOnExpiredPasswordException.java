@@ -26,13 +26,12 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 /**
- * Equivalent to SQLSTATE ER_MUST_CHANGE_PASSWORD_LOGIN = 1862
- * "Your password has expired. To log in you must change it using a client that supports expired passwords."
- * 
+ * Equivalent to SQLSTATE ER_MUST_CHANGE_PASSWORD_LOGIN = 1862 "Your password has expired. To log in
+ * you must change it using a client that supports expired passwords."
+ *
  * Server closes connection when this failure happens.
  */
 public class ClosedOnExpiredPasswordException extends CJException {

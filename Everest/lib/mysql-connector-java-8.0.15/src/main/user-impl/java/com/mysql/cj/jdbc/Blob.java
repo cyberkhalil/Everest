@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.ByteArrayInputStream;
@@ -46,12 +45,16 @@ import com.mysql.cj.protocol.WatchableOutputStream;
 import com.mysql.cj.protocol.WatchableStream;
 
 /**
- * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB is a built-in type that stores a Binary Large Object
- * as a column value in a row of a database table. The driver implements Blob using an SQL locator(BLOB), which means that a Blob object contains a logical
- * pointer to the SQL BLOB data rather than the data itself. A Blob object is valid for the duration of the transaction in which is was created. Methods in
- * the interfaces ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a programmer to access an SQL BLOB value. The Blob
- * interface provides methods for getting the length of an SQL BLOB (Binary Large Object) value, for materializing a BLOB value on the client, and for
- * determining the position of a pattern of bytes within a BLOB value. This class is new in the JDBC 2.0 API.
+ * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB
+ * is a built-in type that stores a Binary Large Object as a column value in a row of a database
+ * table. The driver implements Blob using an SQL locator(BLOB), which means that a Blob object
+ * contains a logical pointer to the SQL BLOB data rather than the data itself. A Blob object is
+ * valid for the duration of the transaction in which is was created. Methods in the interfaces
+ * ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a
+ * programmer to access an SQL BLOB value. The Blob interface provides methods for getting the
+ * length of an SQL BLOB (Binary Large Object) value, for materializing a BLOB value on the client,
+ * and for determining the position of a pattern of bytes within a BLOB value. This class is new in
+ * the JDBC 2.0 API.
  */
 public class Blob implements java.sql.Blob, OutputStreamWatcher {
 
@@ -59,17 +62,17 @@ public class Blob implements java.sql.Blob, OutputStreamWatcher {
     // This is a real brain-dead implementation of BLOB. Once I add streamability to the I/O for MySQL this will be more efficiently implemented
     // (except for the position() method, ugh).
     //
-
-    /** The binary data that makes up this BLOB */
+    /**
+     * The binary data that makes up this BLOB
+     */
     private byte[] binaryData = null;
     private boolean isClosed = false;
     private ExceptionInterceptor exceptionInterceptor;
 
     /**
      * Creates a Blob without data
-     * 
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param exceptionInterceptor exception interceptor
      */
     Blob(ExceptionInterceptor exceptionInterceptor) {
         setBinaryData(Constants.EMPTY_BYTE_ARRAY);
@@ -78,11 +81,9 @@ public class Blob implements java.sql.Blob, OutputStreamWatcher {
 
     /**
      * Creates a BLOB encapsulating the given binary data
-     * 
-     * @param data
-     *            data to fill the Blob
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param data data to fill the Blob
+     * @param exceptionInterceptor exception interceptor
      */
     public Blob(byte[] data, ExceptionInterceptor exceptionInterceptor) {
         setBinaryData(data);
@@ -91,13 +92,10 @@ public class Blob implements java.sql.Blob, OutputStreamWatcher {
 
     /**
      * Creates an updatable BLOB that can update in-place (not implemented yet).
-     * 
-     * @param data
-     *            data to fill the Blob
-     * @param creatorResultSetToSet
-     *            result set
-     * @param columnIndexToSet
-     *            column index
+     *
+     * @param data data to fill the Blob
+     * @param creatorResultSetToSet result set
+     * @param columnIndexToSet column index
      */
     Blob(byte[] data, ResultSetInternalMethods creatorResultSetToSet, int columnIndexToSet) {
         setBinaryData(data);
@@ -239,7 +237,6 @@ public class Blob implements java.sql.Blob, OutputStreamWatcher {
         }
 
         // TODO: Do this without copying byte[]s by maintaining some end pointer on the original data
-
         byte[] newData = new byte[(int) len];
         System.arraycopy(getBinaryData(), 0, newData, 0, (int) len);
         this.binaryData = newData;

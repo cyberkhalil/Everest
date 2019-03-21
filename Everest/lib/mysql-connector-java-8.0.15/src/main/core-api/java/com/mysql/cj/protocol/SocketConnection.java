@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.BufferedOutputStream;
@@ -47,19 +46,13 @@ public interface SocketConnection {
 
     /**
      * Connect to the MySQL server and setup a stream connection.
-     * 
-     * @param host
-     *            the hostname to connect to
-     * @param port
-     *            the port number that the server is listening on
-     * @param propertySet
-     *            the PropertySet with required connection options
-     * @param exceptionInterceptor
-     *            exception interceptor
-     * @param log
-     *            logger
-     * @param loginTimeout
-     *            the driver login time limit in milliseconds
+     *
+     * @param host the hostname to connect to
+     * @param port the port number that the server is listening on
+     * @param propertySet the PropertySet with required connection options
+     * @param exceptionInterceptor exception interceptor
+     * @param log logger
+     * @param loginTimeout the driver login time limit in milliseconds
      */
     void connect(String host, int port, PropertySet propertySet, ExceptionInterceptor exceptionInterceptor, Log log, int loginTimeout);
 
@@ -71,7 +64,7 @@ public interface SocketConnection {
 
     /**
      * Returns the host this IO is connected to
-     * 
+     *
      * @return host name
      */
     String getHost();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.jdbc;
 
 import java.io.Closeable;
@@ -39,7 +38,8 @@ import com.mysql.cj.protocol.SocketFactory;
 import com.mysql.cj.protocol.StandardSocketFactory;
 
 /**
- * Wraps the legacy com.mysql.jdbc.SocketFactory implementations so they can be used as {@link SocketFactory}
+ * Wraps the legacy com.mysql.jdbc.SocketFactory implementations so they can be used as
+ * {@link SocketFactory}
  */
 public class SocketFactoryWrapper extends StandardSocketFactory implements SocketFactory {
 
@@ -51,7 +51,7 @@ public class SocketFactoryWrapper extends StandardSocketFactory implements Socke
         this.socketFactory = (com.mysql.jdbc.SocketFactory) legacyFactory;
     }
 
-    @SuppressWarnings({ "deprecation", "unchecked" })
+    @SuppressWarnings({"deprecation", "unchecked"})
     @Override
     public <T extends Closeable> T connect(String hostname, int portNumber, PropertySet pset, int loginTimeout) throws IOException {
         this.rawSocket = this.socketFactory.connect(hostname, portNumber, pset.exposeAsProperties());

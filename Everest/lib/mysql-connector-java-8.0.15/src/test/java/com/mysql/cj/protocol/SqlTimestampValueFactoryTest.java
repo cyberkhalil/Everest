@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +43,7 @@ import com.mysql.cj.result.SqlTimestampValueFactory;
  * Note: Timestamp.toString() is not locale-specific and is appropriate for use in these tests.
  */
 public class SqlTimestampValueFactoryTest {
+
     /**
      * Test basic timestamp creation.
      */
@@ -56,7 +56,8 @@ public class SqlTimestampValueFactoryTest {
     }
 
     /**
-     * Test that the default date (1970-01-01) is correctly assigned to the timestamp when only the time is given.
+     * Test that the default date (1970-01-01) is correctly assigned to the timestamp when only the
+     * time is given.
      */
     @Test
     public void testTimestampFromTime() {

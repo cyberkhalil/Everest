@@ -26,18 +26,17 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Map;
 
 /**
  * The <b>object</b> representation of a JSON document.
- * 
+ *
  * <p>
  * JSON document examples:
  * </p>
- * 
+ *
  * <pre>
  *   {}
  *   or
@@ -49,13 +48,14 @@ import java.util.Map;
  * <b>key</b> is a JSON <b>string</b>.
  * </p>
  * <p>
- * <b>value</b> is any one of JSON <b>object</b>, <b>array</b>, <b>number</b>, <b>string</b>, true, false, null.
+ * <b>value</b> is any one of JSON <b>object</b>, <b>array</b>, <b>number</b>, <b>string</b>, true,
+ * false, null.
  * </p>
- * 
+ *
  * <p>
  * Example of a valid JSON document:
  * </p>
- * 
+ *
  * <pre>
  * {
  * "field1" : "value 1",
@@ -75,16 +75,18 @@ import java.util.Map;
  * "field7" : ["arr1", 3, true, false, null, [], {}]
  * }
  * </pre>
- * 
- * To create {@link DbDoc} from existing string representation you could use the JsonParser.parseDoc(java.io.StringReader) method:
- * 
+ *
+ * To create {@link DbDoc} from existing string representation you could use the
+ * JsonParser.parseDoc(java.io.StringReader) method:
+ *
  * <pre>
  * DbDoc doc = JsonParser.parseDoc(new StringReader(&quot;{\&quot;key1\&quot; : \&quot;value1\&quot;}&quot;));
  * </pre>
- * 
- * To construct a JSON document you can use the DbDoc, JsonString, JsonNumber, JsonArray, or JsonLiteral method. To get
- * a JSON string representation use the toString() method. For example, to get the document shown above:
- * 
+ *
+ * To construct a JSON document you can use the DbDoc, JsonString, JsonNumber, JsonArray, or
+ * JsonLiteral method. To get a JSON string representation use the toString() method. For example,
+ * to get the document shown above:
+ *
  * <pre>
  * DbDoc doc = new DbDocImpl().add(&quot;field1&quot;, new JsonString().setValue(&quot;value 1&quot;)).add(&quot;field2&quot;, new JsonNumber().setValue(&quot;12345.44E22&quot;))
  *         .add(&quot;field3&quot;, JsonLiteral.TRUE).add(&quot;field4&quot;, JsonLiteral.FALSE).add(&quot;field5&quot;, JsonLiteral.NULL)
@@ -94,7 +96,7 @@ import java.util.Map;
  *                         .add(&quot;inner field 6&quot;, new JsonArray()).add(&quot;inner field 7&quot;, new DbDocImpl()))
  *         .add(&quot;field7&quot;, new JsonArray().addValue(new JsonString().setValue(&quot;arr1&quot;)).addValue(new JsonNumber().setValue(&quot;3&quot;)).addValue(JsonLiteral.TRUE)
  *                 .addValue(JsonLiteral.FALSE).addValue(JsonLiteral.NULL).addValue(new JsonArray()).addValue(new DbDocImpl()));
- * 
+ *
  * doc.toString();
  * </pre>
  */
@@ -102,11 +104,9 @@ public interface DbDoc extends JsonValue, Map<String, JsonValue> {
 
     /**
      * Add {@link JsonValue} to the top-level document hierarchy.
-     * 
-     * @param key
-     *            field key
-     * @param val
-     *            field value
+     *
+     * @param key field key
+     * @param val field value
      * @return {@link DbDoc}
      */
     DbDoc add(String key, JsonValue val);

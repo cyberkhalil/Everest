@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package instrumentation;
 
 import java.util.Collection;
@@ -48,6 +47,7 @@ import javassist.CtNewMethod;
 import javassist.bytecode.DuplicateMemberException;
 
 public class AddMethods {
+
     private static boolean verbose = false;
 
     public static void main(String[] args) throws Exception {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.util.Properties;
@@ -68,11 +67,10 @@ public interface PropertySet {
     <T extends Enum<T>> RuntimeProperty<T> getEnumProperty(PropertyKey key);
 
     /**
-     * Initializes the property set with driver properties that come from URL or passed to
-     * the driver manager.
-     * 
-     * @param props
-     *            properties
+     * Initializes the property set with driver properties that come from URL or passed to the
+     * driver manager.
+     *
+     * @param props properties
      */
     void initializeProperties(Properties props);
 

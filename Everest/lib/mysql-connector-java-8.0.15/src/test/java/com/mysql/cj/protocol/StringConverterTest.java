@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import static org.junit.Assert.assertEquals;
@@ -41,17 +40,18 @@ import com.mysql.cj.result.StringValueFactory;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * Tests for {@link StringConverter}. Here we exercise the weird/wacky ways that we and/or JDBC allow retrieving data from columns other than the matching
- * types.
+ * Tests for {@link StringConverter}. Here we exercise the weird/wacky ways that we and/or JDBC
+ * allow retrieving data from columns other than the matching types.
  */
 public class StringConverterTest {
+
     private StringConverter<String> stringConverter = new StringConverter<>(null, new StringValueFactory());
 
     @Test
     public void testEmptyStringException() {
         this.stringConverter.setEmptyStringsConvertToZero(false);
         try {
-            this.stringConverter.createFromBytes(new byte[] {}, 0, 0);
+            this.stringConverter.createFromBytes(new byte[]{}, 0, 0);
             fail("Empty string should not convert to anything");
         } catch (DataConversionException ex) {
             // expected
@@ -61,7 +61,7 @@ public class StringConverterTest {
     @Test
     public void testEmptyStringToZero() {
         this.stringConverter.setEmptyStringsConvertToZero(true);
-        assertEquals("0", this.stringConverter.createFromBytes(new byte[] {}, 0, 0));
+        assertEquals("0", this.stringConverter.createFromBytes(new byte[]{}, 0, 0));
     }
 
     @Test

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.ArrayList;
@@ -48,9 +47,8 @@ import com.mysql.cj.result.RowList;
 
 /**
  * Base class for data set results.
- * 
- * @param <T>
- *            Result entry type
+ *
+ * @param <T> Result entry type
  */
 public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<T> {
 
@@ -60,18 +58,17 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     protected Supplier<StatementExecuteOk> completer;
     protected StatementExecuteOk ok;
     protected ProtocolEntityFactory<T, XMessage> rowToData;
-    /** List of all elements. <code>null</code> until requested via {@link #fetchAll()}. */
+    /**
+     * List of all elements. <code>null</code> until requested via {@link #fetchAll()}.
+     */
     protected List<T> all;
 
     /**
      * Constructor.
-     * 
-     * @param rows
-     *            {@link RowList} object
-     * @param completer
-     *            Supplier for StatementExecuteOk object
-     * @param rowToData
-     *            {@link ProtocolEntityFactory}
+     *
+     * @param rows {@link RowList} object
+     * @param completer Supplier for StatementExecuteOk object
+     * @param rowToData {@link ProtocolEntityFactory}
      */
     public AbstractDataResult(RowList rows, Supplier<StatementExecuteOk> completer, ProtocolEntityFactory<T, XMessage> rowToData) {
         this.rows = rows;
@@ -94,7 +91,7 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
 
     /**
      * Create a list of all elements in the result forcing internal buffering.
-     * 
+     *
      * @return list of result elements
      */
     public List<T> fetchAll() {
@@ -112,7 +109,7 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
 
     /**
      * Return the number of items in this result. Forces internal buffering of the entire result.
-     * 
+     *
      * @return number of elements in result
      */
     public long count() {
@@ -125,8 +122,9 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     }
 
     /**
-     * Get StatementExecuteOk object finalizing the result transfer. Forces internal buffering of the entire result.
-     * 
+     * Get StatementExecuteOk object finalizing the result transfer. Forces internal buffering of
+     * the entire result.
+     *
      * @return StatementExecuteOk object
      */
     public StatementExecuteOk getStatementExecuteOk() {
@@ -135,8 +133,8 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     }
 
     /**
-     * Finish the result streaming. This happens if a new command is started or the warnings/etc are requested. This is safe to call multiple times and only has
-     * an effect the first time.
+     * Finish the result streaming. This happens if a new command is started or the warnings/etc are
+     * requested. This is safe to call multiple times and only has an effect the first time.
      */
     public void finishStreaming() {
         if (this.ok == null) {
@@ -148,8 +146,9 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     }
 
     /**
-     * Number of warnings generated during statement execution. This method forces internal buffering of the result.
-     * 
+     * Number of warnings generated during statement execution. This method forces internal
+     * buffering of the result.
+     *
      * @return number of warnings
      */
     public int getWarningsCount() {
@@ -157,8 +156,9 @@ public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<
     }
 
     /**
-     * Warnings generated during statement execution. This method forces internal buffering of the result.
-     * 
+     * Warnings generated during statement execution. This method forces internal buffering of the
+     * result.
+     *
      * @return iterator over warnings
      */
     public Iterator<Warning> getWarnings() {

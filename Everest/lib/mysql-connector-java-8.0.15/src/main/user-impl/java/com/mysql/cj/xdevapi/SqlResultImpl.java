@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Iterator;
@@ -40,14 +39,15 @@ import com.mysql.cj.protocol.ResultStreamer;
  * Result of {@link SqlStatement#execute()}.
  */
 public class SqlResultImpl implements SqlResult, ResultStreamer {
+
     private Supplier<SqlResult> resultStream;
     private SqlResult currentResult;
 
     /**
      * Constructor.
-     * 
-     * @param resultStream
-     *            Supplies the result stream depending on query type. Could be {@link SqlDataResult}, {@link SqlUpdateResult} etc.
+     *
+     * @param resultStream Supplies the result stream depending on query type. Could be
+     * {@link SqlDataResult}, {@link SqlUpdateResult} etc.
      */
     public SqlResultImpl(Supplier<SqlResult> resultStream) {
         this.resultStream = resultStream;

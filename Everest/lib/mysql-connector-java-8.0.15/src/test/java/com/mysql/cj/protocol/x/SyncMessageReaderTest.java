@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import static org.junit.Assert.assertEquals;
@@ -57,6 +56,7 @@ import com.mysql.cj.x.protobuf.Mysqlx.ServerMessages;
  * Tests for {@link SyncMessageReader}.
  */
 public class SyncMessageReaderTest {
+
     private SyncMessageReader reader;
 
     private static final byte[] okMsgPacket = serializeMessage(Ok.newBuilder().build(), ServerMessages.Type.OK_VALUE);
@@ -127,7 +127,8 @@ public class SyncMessageReaderTest {
     }
 
     /**
-     * This is a 'mini'-stress test that encompasses the check of <i>clearHeader()</i> being called correctly.
+     * This is a 'mini'-stress test that encompasses the check of <i>clearHeader()</i> being called
+     * correctly.
      */
     @Test
     public void testSeveralMessages() throws IOException {
@@ -168,18 +169,20 @@ public class SyncMessageReaderTest {
     }
 
     /**
-     * Verification test to help prevent bugs in the typecode/class/parser mapping tables. We check that all classes that are mapped have a parser.
-     * 
+     * Verification test to help prevent bugs in the typecode/class/parser mapping tables. We check
+     * that all classes that are mapped have a parser.
+     *
      * @todo Test in the other direction also
      */
     @Test
     public void testMappingTables() throws InvalidProtocolBufferException {
         for (Map.Entry<Class<? extends GeneratedMessageV3>, Integer> entry : MessageConstants.MESSAGE_CLASS_TO_TYPE.entrySet()) {
-            /* int type = */entry.getValue();
+            /* int type = */
+            entry.getValue();
             Class<? extends GeneratedMessageV3> messageClass = entry.getKey();
             Parser<? extends GeneratedMessageV3> parser = MessageConstants.MESSAGE_CLASS_TO_PARSER.get(messageClass);
             assertNotNull(parser);
-            GeneratedMessageV3 partiallyParsed = parser.parsePartialFrom(new byte[] {});
+            GeneratedMessageV3 partiallyParsed = parser.parsePartialFrom(new byte[]{});
             assertEquals("Parsed class should equal the class that mapped to it via type tag", messageClass, partiallyParsed.getClass());
         }
     }

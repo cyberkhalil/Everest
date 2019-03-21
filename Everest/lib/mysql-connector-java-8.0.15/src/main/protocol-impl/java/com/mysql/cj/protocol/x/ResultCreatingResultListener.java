@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.ArrayList;
@@ -45,10 +44,10 @@ import com.mysql.cj.result.RowList;
 /**
  * Create an entire (buffered) result from the data fed to this result listener.
  *
- * @param <RES_T>
- *            The type of result that will be created (and posted to the future)
+ * @param <RES_T> The type of result that will be created (and posted to the future)
  */
 public class ResultCreatingResultListener<RES_T> implements ResultListener<StatementExecuteOk> {
+
     private ColumnDefinition metadata;
     private List<Row> rows = new ArrayList<>();
     private Function<ColumnDefinition, BiFunction<RowList, Supplier<StatementExecuteOk>, RES_T>> resultCtor;

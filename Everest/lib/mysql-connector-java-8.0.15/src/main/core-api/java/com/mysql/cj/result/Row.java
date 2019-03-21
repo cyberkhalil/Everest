@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import com.mysql.cj.Messages;
@@ -37,27 +36,24 @@ import com.mysql.cj.protocol.ProtocolEntity;
 import com.mysql.cj.protocol.ValueDecoder;
 
 public interface Row extends ProtocolEntity {
+
     /**
-     * Retrieve a value for the given column. This is the main facility to access values from the Row
-     * involving {@link ValueDecoder} and {@link ValueFactory} chain. Metadata <i>must</i> be set via
-     * Row constructor or {@link #setMetadata(ColumnDefinition)} call before calling this method to allow
-     * correct columnIndex boundaries check and data type recognition.
+     * Retrieve a value for the given column. This is the main facility to access values from the
+     * Row involving {@link ValueDecoder} and {@link ValueFactory} chain. Metadata <i>must</i> be
+     * set via Row constructor or {@link #setMetadata(ColumnDefinition)} call before calling this
+     * method to allow correct columnIndex boundaries check and data type recognition.
      *
-     * @param <T>
-     *            type to decode to
-     * @param columnIndex
-     *            index of column to retrieve value from (0-indexed, not JDBC 1-indexed)
-     * @param vf
-     *            value factory used to create the return value after decoding
+     * @param <T> type to decode to
+     * @param columnIndex index of column to retrieve value from (0-indexed, not JDBC 1-indexed)
+     * @param vf value factory used to create the return value after decoding
      * @return The return value from the value factory
      */
     <T> T getValue(int columnIndex, ValueFactory<T> vf);
 
     /**
      * Set metadata to enable getValue functionality.
-     * 
-     * @param columnDefinition
-     *            {@link ColumnDefinition}
+     *
+     * @param columnDefinition {@link ColumnDefinition}
      * @return {@link Row}
      */
     default Row setMetadata(ColumnDefinition columnDefinition) {
@@ -65,12 +61,12 @@ public interface Row extends ProtocolEntity {
     }
 
     /**
-     * Returns the value at the given column as a byte array.
-     * The bytes represent the raw values returned by the server.
-     * 
-     * @param columnIndex
-     *            index of column (starting at 0) to return from.
-     * @return the value for the given column; if the value is SQL <code>NULL</code>, the value returned is <code>null</code>
+     * Returns the value at the given column as a byte array. The bytes represent the raw values
+     * returned by the server.
+     *
+     * @param columnIndex index of column (starting at 0) to return from.
+     * @return the value for the given column; if the value is SQL <code>NULL</code>, the value
+     * returned is <code>null</code>
      */
     default byte[] getBytes(int columnIndex) {
         // TODO check that "if the value is SQL NULL, the value returned is null" is correctly implemented
@@ -79,11 +75,9 @@ public interface Row extends ProtocolEntity {
 
     /**
      * Sets the given byte array as a raw column value (only works currently with ByteArrayRow).
-     * 
-     * @param columnIndex
-     *            index of the column (starting at 0) to set to.
-     * @param value
-     *            the (raw) value to set
+     *
+     * @param columnIndex index of the column (starting at 0) to set to.
+     * @param value the (raw) value to set
      */
     default void setBytes(int columnIndex, byte[] value) {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, Messages.getString("OperationNotSupportedException.0"));
@@ -91,17 +85,16 @@ public interface Row extends ProtocolEntity {
 
     /**
      * Check whether a column is NULL and update the 'wasNull' status.
-     * 
-     * @param columnIndex
-     *            of the column value (starting at 0) to check.
-     * 
+     *
+     * @param columnIndex of the column value (starting at 0) to check.
+     *
      * @return true if the column value is NULL, false if not.
      */
     boolean getNull(int columnIndex);
 
     /**
      * Was the last value retrieved a NULL value?
-     * 
+     *
      * @return true if the last retrieved value was NULL.
      */
     boolean wasNull();

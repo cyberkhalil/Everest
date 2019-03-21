@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.Map;
@@ -41,13 +40,18 @@ import com.mysql.cj.protocol.ServerSession;
 public class XServerSession implements ServerSession {
 
     XServerCapabilities serverCapabilities = null;
-    /** Server-assigned client-id. */
+    /**
+     * Server-assigned client-id.
+     */
     private long clientId = -1;
 
-    /** The timezone of the server */
+    /**
+     * The timezone of the server
+     */
     //private TimeZone serverTimeZone = null;
-
-    /** c.f. getDefaultTimeZone(). this value may be overridden during connection initialization */
+    /**
+     * c.f. getDefaultTimeZone(). this value may be overridden during connection initialization
+     */
     private TimeZone defaultTimeZone = TimeZone.getDefault();
 
     @Override

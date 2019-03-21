@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.util.HashMap;
@@ -43,19 +42,26 @@ public class DefaultColumnDefinition implements ColumnDefinition {
 
     protected Field[] fields;
 
-    /** Map column names (and all of their permutations) to column indices */
+    /**
+     * Map column names (and all of their permutations) to column indices
+     */
     private Map<String, Integer> columnLabelToIndex = null;
 
     /**
-     * The above map is a case-insensitive tree-map, it can be slow, this caches lookups into that map, because the other alternative is to create new
-     * object instances for every call to findColumn()....
+     * The above map is a case-insensitive tree-map, it can be slow, this caches lookups into that
+     * map, because the other alternative is to create new object instances for every call to
+     * findColumn()....
      */
     private Map<String, Integer> columnToIndexCache = new HashMap<>();
 
-    /** Map of fully-specified column names to column indices */
+    /**
+     * Map of fully-specified column names to column indices
+     */
     private Map<String, Integer> fullColumnNameToIndex = null;
 
-    /** Map column names (and all of their permutations) to column indices */
+    /**
+     * Map column names (and all of their permutations) to column indices
+     */
     private Map<String, Integer> columnNameToIndex = null;
 
     private boolean builtIndexMapping = false;
@@ -196,7 +202,6 @@ public class DefaultColumnDefinition implements ColumnDefinition {
         }
 
         // Try this inefficient way, now
-
         for (int i = 0; i < this.fields.length; i++) {
             if (this.fields[i].getName().equalsIgnoreCase(columnName)) {
                 return i + indexBase;
@@ -209,11 +214,10 @@ public class DefaultColumnDefinition implements ColumnDefinition {
     }
 
     /**
-     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT
-     * exist in this ColumnDefinition.
-     * This check is used for making a decision about whether we want to force a
-     * buffer row (better for rows with large fields).
-     * 
+     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in
+     * this ColumnDefinition. This check is used for making a decision about whether we want to
+     * force a buffer row (better for rows with large fields).
+     *
      * @return true if this ColumnDefinition has large fields
      */
     public boolean hasLargeFields() {

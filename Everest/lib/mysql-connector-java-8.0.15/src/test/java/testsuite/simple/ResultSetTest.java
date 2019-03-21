@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.InputStream;
@@ -73,7 +72,7 @@ public class ResultSetTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -183,7 +182,7 @@ public class ResultSetTest extends BaseTestCase {
             for (int i = 0; i < numCols; i++) {
                 assertEquals(
                         "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                        + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                         numChars, this.rs.getString(i + 1).length());
             }
         }
@@ -194,7 +193,7 @@ public class ResultSetTest extends BaseTestCase {
             for (int i = 0; i < numCols; i++) {
                 assertEquals(
                         "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                        + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                         numChars, this.rs.getString(i + 1).length());
             }
         }
@@ -205,7 +204,7 @@ public class ResultSetTest extends BaseTestCase {
             for (int i = 0; i < numCols; i++) {
                 assertEquals(
                         "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                        + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                         numChars, this.rs.getString(i + 1).length());
             }
         }
@@ -217,12 +216,12 @@ public class ResultSetTest extends BaseTestCase {
                 if (this.rs.getRow() != 3) {
                     assertTrue(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars != this.rs.getString(i + 1).length());
                 } else {
                     assertEquals(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars, this.rs.getString(i + 1).length());
                 }
             }
@@ -235,12 +234,12 @@ public class ResultSetTest extends BaseTestCase {
                 if (this.rs.getRow() != 3) {
                     assertTrue(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars != this.rs.getString(i + 1).length());
                 } else {
                     assertEquals(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars, this.rs.getString(i + 1).length());
                 }
             }
@@ -253,12 +252,12 @@ public class ResultSetTest extends BaseTestCase {
                 if (this.rs.getRow() != 3) {
                     assertTrue(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars != this.rs.getString(i + 1).length());
                 } else {
                     assertEquals(
                             "For column '" + this.rs.getMetaData().getColumnName(i + 1) + "' of collation "
-                                    + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
+                            + ((com.mysql.cj.jdbc.result.ResultSetMetaData) this.rs.getMetaData()).getColumnCharacterEncoding(i + 1),
                             numChars, this.rs.getString(i + 1).length());
                 }
             }
@@ -405,8 +404,8 @@ public class ResultSetTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Updatable)ResultSet.[update|get]Object().
-     * Note: ResultSet.getObject() is covered in methods TestJDBC42Statemet.validateTestData[Local|Offset]DTTypes.
+     * Test for (Updatable)ResultSet.[update|get]Object(). Note: ResultSet.getObject() is covered in
+     * methods TestJDBC42Statemet.validateTestData[Local|Offset]DTTypes.
      */
     public void testUpdResultSetUpdateObjectAndNewSupportedTypes() throws Exception {
         /*
@@ -704,7 +703,8 @@ public class ResultSetTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Updatable)ResultSet.updateObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for (Updatable)ResultSet.updateObject(), unsupported SQL types TIME_WITH_TIMEZONE,
+     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testUpdResultSetUpdateObjectAndNewUnsupportedTypes() throws SQLException {
         createTable("testUnsupportedTypes", "(id INT PRIMARY KEY, col VARCHAR(20))");
@@ -716,7 +716,6 @@ public class ResultSetTest extends BaseTestCase {
         /*
          * Unsupported SQL types TIME_WITH_TIMEZONE and TIMESTAMP_WITH_TIMEZONE.
          */
-
         assertTrue(this.rs.next());
 
         final ResultSet rsTmp = this.rs;
@@ -1008,14 +1007,14 @@ public class ResultSetTest extends BaseTestCase {
         assertThrows(NotUpdatable.class, null, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateBytes(1, new byte[] {});
+                rsTmp.updateBytes(1, new byte[]{});
                 return null;
             }
         });
         assertThrows(NotUpdatable.class, null, new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                rsTmp.updateBytes("f1", new byte[] {});
+                rsTmp.updateBytes("f1", new byte[]{});
                 return null;
             }
         });

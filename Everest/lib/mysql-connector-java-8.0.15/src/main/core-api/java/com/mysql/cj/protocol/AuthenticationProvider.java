@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import com.mysql.cj.CharsetMapping;
@@ -44,31 +43,26 @@ public interface AuthenticationProvider<M extends Message> {
 
     /**
      * Re-authenticates as the given user and password
-     * 
-     * @param serverSession
-     *            {@link ServerSession} object
-     * @param userName
-     *            user name
-     * @param password
-     *            password
-     * @param database
-     *            db name
+     *
+     * @param serverSession {@link ServerSession} object
+     * @param userName user name
+     * @param password password
+     * @param database db name
      */
     void changeUser(ServerSession serverSession, String userName, String password, String database);
 
     String getEncodingForHandshake();
 
     /**
-     * Get the MySQL collation index for the handshake packet. A single byte will be added to the packet corresponding to the collation index
-     * found for the requested Java encoding name.
-     * 
-     * If the index is &gt; 255 which may be valid at some point in the future, an exception will be thrown. At the time of this implementation
-     * the index cannot be &gt; 255 and only the COM_CHANGE_USER rpc, not the handshake response, can handle a value &gt; 255.
-     * 
-     * @param enc
-     *            The Java encoding name used to lookup the collation index
-     * @param sv
-     *            server version
+     * Get the MySQL collation index for the handshake packet. A single byte will be added to the
+     * packet corresponding to the collation index found for the requested Java encoding name.
+     *
+     * If the index is &gt; 255 which may be valid at some point in the future, an exception will be
+     * thrown. At the time of this implementation the index cannot be &gt; 255 and only the
+     * COM_CHANGE_USER rpc, not the handshake response, can handle a value &gt; 255.
+     *
+     * @param enc The Java encoding name used to lookup the collation index
+     * @param sv server version
      * @return collation index
      */
     static byte getCharsetForHandshake(String enc, ServerVersion sv) {
@@ -80,7 +74,7 @@ public interface AuthenticationProvider<M extends Message> {
             charsetIndex = CharsetMapping.MYSQL_COLLATION_INDEX_utf8;
         }
         if (charsetIndex > 255) {
-            throw ExceptionFactory.createException(Messages.getString("MysqlIO.113", new Object[] { enc }));
+            throw ExceptionFactory.createException(Messages.getString("MysqlIO.113", new Object[]{enc}));
         }
         return (byte) charsetIndex;
     }

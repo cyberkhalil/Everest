@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.integration.jboss;
 
 import java.io.Serializable;
@@ -50,7 +49,6 @@ public final class MysqlValidConnectionChecker implements ValidConnectionChecker
     public SQLException isValidConnection(Connection conn) {
 
         // Use "/* ping */ SELECT 1" which will send pings across multi-connections too in case the connection was "wrapped" by Jboss in any way...
-
         Statement pingStatement = null;
 
         try {

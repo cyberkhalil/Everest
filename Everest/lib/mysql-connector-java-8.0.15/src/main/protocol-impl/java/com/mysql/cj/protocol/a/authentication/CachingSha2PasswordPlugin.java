@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.authentication;
 
 import java.security.DigestException;
@@ -47,6 +46,7 @@ import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.util.StringUtils;
 
 public class CachingSha2PasswordPlugin extends Sha256PasswordPlugin {
+
     public static String PLUGIN_NAME = "caching_sha2_password";
 
     public enum AuthStage {
@@ -83,7 +83,7 @@ public class CachingSha2PasswordPlugin extends Sha256PasswordPlugin {
 
         if (this.password == null || this.password.length() == 0 || fromServer == null) {
             // no password
-            NativePacketPayload bresp = new NativePacketPayload(new byte[] { 0 });
+            NativePacketPayload bresp = new NativePacketPayload(new byte[]{0});
             toServer.add(bresp);
 
         } else {
@@ -142,7 +142,7 @@ public class CachingSha2PasswordPlugin extends Sha256PasswordPlugin {
                         this.publicKeyRequested = false;
                     } else {
                         // build and send Public Key Retrieval packet
-                        NativePacketPayload bresp = new NativePacketPayload(new byte[] { 2 }); // was 1 in sha256_password
+                        NativePacketPayload bresp = new NativePacketPayload(new byte[]{2}); // was 1 in sha256_password
                         toServer.add(bresp);
                         this.publicKeyRequested = true;
                     }

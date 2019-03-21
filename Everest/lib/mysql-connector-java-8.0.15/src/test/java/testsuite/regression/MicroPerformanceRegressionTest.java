@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.sql.Date;
@@ -39,9 +38,11 @@ import java.util.Map;
 import testsuite.BaseTestCase;
 
 /**
- * Microperformance benchmarks to track increase/decrease in performance of core methods in the driver over time.
+ * Microperformance benchmarks to track increase/decrease in performance of core methods in the
+ * driver over time.
  */
 public class MicroPerformanceRegressionTest extends BaseTestCase {
+
     private static double[] scaleFactorSamples = new double[5];
 
     private static double scaleFactor = 0.0;
@@ -89,7 +90,7 @@ public class MicroPerformanceRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -98,10 +99,8 @@ public class MicroPerformanceRegressionTest extends BaseTestCase {
 
     /**
      * Tests result set accessors performance.
-     * 
-     * @throws Exception
-     *             if the performance of these methods does not meet
-     *             expectations.
+     *
+     * @throws Exception if the performance of these methods does not meet expectations.
      */
     public void testResultSetAccessors() throws Exception {
         createTable("marktest", "(intField INT, floatField DOUBLE, timeField TIME, datetimeField DATETIME, stringField VARCHAR(64))");
@@ -241,7 +240,6 @@ public class MicroPerformanceRegressionTest extends BaseTestCase {
         double getPrepareStmtAvgMs = (double) (currentTimeMillis() - start) / numPrepares;
 
         // checkTime("Connection.prepareStatement()", getPrepareStmtAvgMs);
-
         PreparedStatement pStmt = this.conn.prepareStatement("INSERT INTO marktest VALUES (?, ?, ?, ?, ?)");
 
         System.out.println(pStmt.toString());

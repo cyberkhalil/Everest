@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.ByteArrayInputStream;
@@ -52,6 +51,7 @@ import com.mysql.cj.util.StringUtils;
  * Simplistic implementation of java.sql.Clob for MySQL Connector/J
  */
 public class Clob implements java.sql.Clob, OutputStreamWatcher, WriterWatcher {
+
     private String charData;
     private ExceptionInterceptor exceptionInterceptor;
 
@@ -120,7 +120,7 @@ public class Clob implements java.sql.Clob, OutputStreamWatcher, WriterWatcher {
     @Override
     public long position(String stringToFind, long startPos) throws SQLException {
         if (startPos < 1) {
-            throw SQLError.createSQLException(Messages.getString("Clob.8", new Object[] { startPos }), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
+            throw SQLError.createSQLException(Messages.getString("Clob.8", new Object[]{startPos}), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
                     this.exceptionInterceptor);
         }
 

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.sql.SQLException;
@@ -50,9 +49,8 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Creates a new UtilsRegressionTest.
-     * 
-     * @param name
-     *            the name of the test
+     *
+     * @param name the name of the test
      */
     public UtilsRegressionTest(String name) {
         super(name);
@@ -60,7 +58,7 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -69,9 +67,8 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Tests all TimeZone mappings supported.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testTimeZones() throws Exception {
         /*
@@ -85,7 +82,6 @@ public class UtilsRegressionTest extends BaseTestCase {
         Map<String, String> tzMap = new HashMap<>();
 
         // GENERATED CODE STARTS HERE
-
         // Windows Zones:
         tzMap.put("AUS Central Daylight Time", "Australia/Darwin");
         tzMap.put("AUS Central Standard Time", "Australia/Darwin");
@@ -562,7 +558,6 @@ public class UtilsRegressionTest extends BaseTestCase {
         tzMap.put("WITA", "Asia/Makassar");
 
         // GENERATED CODE ENDS HERE
-
         for (String key : tzMap.keySet()) {
             assertEquals("Custom time Zone '" + key + "' mapping", tzMap.get(key), TimeUtil.getCanonicalTimezone(key, null));
         }
@@ -580,9 +575,8 @@ public class UtilsRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#70436 - Incorrect mapping of windows timezone to Olson timezone.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug70436() throws Exception {
         assertEquals("Asia/Yerevan", TimeUtil.getCanonicalTimezone("Caucasus Standard Time", null));
@@ -590,7 +584,8 @@ public class UtilsRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#82115 - Some exceptions are intercepted twice or fail to set the init cause.
+     * Tests fix for Bug#82115 - Some exceptions are intercepted twice or fail to set the init
+     * cause.
      */
     public void testBug82115() throws Exception {
         Exception ex = SQLError.createSQLException("ORIGINAL_EXCEPTION", "0", new Exception("ORIGINAL_CAUSE"), null);

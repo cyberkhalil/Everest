@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 /**
- * A warning listener is notified of warnings as they happen throughout the driver. They can be queued for consumption by JDBC clients, thrown as exceptions, or
- * ignored.
+ * A warning listener is notified of warnings as they happen throughout the driver. They can be
+ * queued for consumption by JDBC clients, thrown as exceptions, or ignored.
  */
 public interface WarningListener {
+
     void warningEncountered(String warning);
 }

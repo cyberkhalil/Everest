@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import static org.junit.Assert.assertNotEquals;
@@ -76,55 +75,65 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 /**
- * Tests a PooledConnection implementation provided by a JDBC driver. Test case provided by Johnny Macchione from bug database record BUG#884. According to
- * the JDBC 2.0 specification:
- * 
+ * Tests a PooledConnection implementation provided by a JDBC driver. Test case provided by Johnny
+ * Macchione from bug database record BUG#884. According to the JDBC 2.0 specification:
+ *
  * <p>
- * "Each call to PooledConnection.getConnection() must return a newly constructed Connection object that exhibits the default Connection behavior. Only the most
- * recent Connection object produced from a particular PooledConnection is open. An existing Connection object is automatically closed, if the getConnection()
- * method of its associated Pooled-Connection is called again, before it has been explicitly closed by the application. This gives the application server a way
- * to �take away� a Connection from the application if it wishes, and give it out to someone else. This capability will not likely be used frequently in
- * practice."
+ * "Each call to PooledConnection.getConnection() must return a newly constructed Connection object
+ * that exhibits the default Connection behavior. Only the most recent Connection object produced
+ * from a particular PooledConnection is open. An existing Connection object is automatically
+ * closed, if the getConnection() method of its associated Pooled-Connection is called again, before
+ * it has been explicitly closed by the application. This gives the application server a way to
+ * �take away� a Connection from the application if it wishes, and give it out to someone else. This
+ * capability will not likely be used frequently in practice."
  * </p>
- * 
+ *
  * <p>
- * "When the application calls Connection.close(), an event is triggered that tells the connection pool it can recycle the physical database connection. In
- * other words, the event signals the connection pool that the PooledConnection object which originally produced the Connection object generating the event can
- * be put back in the connection pool."
+ * "When the application calls Connection.close(), an event is triggered that tells the connection
+ * pool it can recycle the physical database connection. In other words, the event signals the
+ * connection pool that the PooledConnection object which originally produced the Connection object
+ * generating the event can be put back in the connection pool."
  * </p>
- * 
+ *
  * <p>
- * "A Connection-EventListener will also be notified when a fatal error occurs, so that it can make a note not to put a bad PooledConnection object back in the
- * cache when the application finishes using it. When an error occurs, the ConnectionEventListener is notified by the JDBC driver, just before the driver throws
- * an SQLException to the application to notify it of the same error. Note that automatic closing of a Connection object as discussed in the previous section
- * does not generate a connection close event."
+ * "A Connection-EventListener will also be notified when a fatal error occurs, so that it can make
+ * a note not to put a bad PooledConnection object back in the cache when the application finishes
+ * using it. When an error occurs, the ConnectionEventListener is notified by the JDBC driver, just
+ * before the driver throws an SQLException to the application to notify it of the same error. Note
+ * that automatic closing of a Connection object as discussed in the previous section does not
+ * generate a connection close event."
  * </p>
  * The JDBC 3.0 specification states the same in other words:
- * 
+ *
  * <p>
- * "The Connection.close method closes the logical handle, but the physical connection is maintained. The connection pool manager is notified that the
- * underlying PooledConnection object is now available for reuse. If the application attempts to reuse the logical handle, the Connection implementation throws
- * an SQLException."
+ * "The Connection.close method closes the logical handle, but the physical connection is
+ * maintained. The connection pool manager is notified that the underlying PooledConnection object
+ * is now available for reuse. If the application attempts to reuse the logical handle, the
+ * Connection implementation throws an SQLException."
  * </p>
- * 
+ *
  * <p>
- * "For a given PooledConnection object, only the most recently produced logical Connection object will be valid. Any previously existing Connection object is
- * automatically closed when the associated PooledConnection.getConnection method is called. Listeners (connection pool managers) are not notified in this case.
- * This gives the application server a way to take a connection away from a client. This is an unlikely scenario but may be useful if the application server is
- * trying to force an orderly shutdown."
+ * "For a given PooledConnection object, only the most recently produced logical Connection object
+ * will be valid. Any previously existing Connection object is automatically closed when the
+ * associated PooledConnection.getConnection method is called. Listeners (connection pool managers)
+ * are not notified in this case. This gives the application server a way to take a connection away
+ * from a client. This is an unlikely scenario but may be useful if the application server is trying
+ * to force an orderly shutdown."
  * </p>
- * 
+ *
  * <p>
- * "A connection pool manager shuts down a physical connection by calling the method PooledConnection.close. This method is typically called only in certain
- * circumstances: when the application server is undergoing an orderly shutdown, when the connection cache is being reinitialized, or when the application
- * server receives an event indicating that an unrecoverable error has occurred on the connection."
+ * "A connection pool manager shuts down a physical connection by calling the method
+ * PooledConnection.close. This method is typically called only in certain circumstances: when the
+ * application server is undergoing an orderly shutdown, when the connection cache is being
+ * reinitialized, or when the application server receives an event indicating that an unrecoverable
+ * error has occurred on the connection."
  * </p>
- * Even though the specification isn't clear about it, I think it is no use
- * generating a close event when calling the method PooledConnection.close(),
- * even if a logical Connection is open for this PooledConnection, bc the
- * PooledConnection will obviously not be returned to the pool.
+ * Even though the specification isn't clear about it, I think it is no use generating a close event
+ * when calling the method PooledConnection.close(), even if a logical Connection is open for this
+ * PooledConnection, bc the PooledConnection will obviously not be returned to the pool.
  */
 public final class PooledConnectionRegressionTest extends BaseTestCase {
+
     private ConnectionPoolDataSource cpds;
 
     // Count nb of closeEvent.
@@ -135,7 +144,7 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Creates a new instance of ProgressPooledConnectionTest
-     * 
+     *
      * @param testname
      */
     public PooledConnectionRegressionTest(String testname) {
@@ -144,7 +153,7 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Set up test case before a test is run.
-     * 
+     *
      * @throws Exception
      */
     @Override
@@ -164,7 +173,7 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -190,8 +199,8 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#7136 ... Statement.getConnection() returning physical
-     * connection instead of logical connection.
+     * Tests fix for BUG#7136 ... Statement.getConnection() returning physical connection instead of
+     * logical connection.
      */
     public void testBug7136() {
         final ConnectionEventListener conListener = new ConnectionListener();
@@ -208,7 +217,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
             Connection connFromStatement = _conn.createStatement().getConnection();
 
             // This should generate a close event.
-
             connFromStatement.close();
 
             assertEquals("One close event should've been registered", 1, this.closeEventCount);
@@ -220,7 +228,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
             Connection connFromPreparedStatement = _conn.prepareStatement("SELECT 1").getConnection();
 
             // This should generate a close event.
-
             connFromPreparedStatement.close();
 
             assertEquals("One close event should've been registered", 1, this.closeEventCount);
@@ -239,8 +246,8 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test the nb of closeEvents generated when a Connection is reclaimed. No
-     * event should be generated in that case.
+     * Test the nb of closeEvents generated when a Connection is reclaimed. No event should be
+     * generated in that case.
      */
     public void testConnectionReclaim() {
         final ConnectionEventListener conListener = new ConnectionListener();
@@ -297,9 +304,8 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
     /**
      * Tests that PacketTooLargeException doesn't clober the connection.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testPacketTooLargeException() throws Exception {
         final ConnectionEventListener conListener = new ConnectionListener();
@@ -338,9 +344,8 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test the nb of closeEvents generated by a PooledConnection. A
-     * JDBC-compliant driver should only generate 1 closeEvent each time
-     * connection.close() is called.
+     * Test the nb of closeEvents generated by a PooledConnection. A JDBC-compliant driver should
+     * only generate 1 closeEvent each time connection.close() is called.
      */
     public void testCloseEvent() {
         final ConnectionEventListener conListener = new ConnectionListener();
@@ -385,13 +390,18 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
      * Listener for PooledConnection events.
      */
     protected final class ConnectionListener implements ConnectionEventListener {
-        /** */
+
+        /**
+         *
+         */
         public void connectionClosed(ConnectionEvent event) {
             PooledConnectionRegressionTest.this.closeEventCount++;
             System.out.println(PooledConnectionRegressionTest.this.closeEventCount + " - Connection closed.");
         }
 
-        /** */
+        /**
+         *
+         */
         public void connectionErrorOccurred(ConnectionEvent event) {
             PooledConnectionRegressionTest.this.connectionErrorEventCount++;
             System.out.println("Connection error: " + event.getSQLException());
@@ -399,11 +409,10 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#35489 - Prepared statements from pooled connections
-     * cause NPE when closed() under JDBC4
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#35489 - Prepared statements from pooled connections cause NPE when closed()
+     * under JDBC4
+     *
+     * @throws Exception if the test fails
      */
     public void testBug35489() throws Exception {
         MysqlConnectionPoolDataSource pds = new MysqlConnectionPoolDataSource();
@@ -436,22 +445,22 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         assertEquals(PreparedStatementWrapper.class, cw.clientPrepare("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1").getClass());
         assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", Statement.RETURN_GENERATED_KEYS).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", new int[] { 1 }).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", new String[] { "1" }).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", new int[]{1}).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", new String[]{"1"}).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.clientPrepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).getClass());
         assertEquals(PreparedStatementWrapper.class,
                 cw.clientPrepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY, ResultSet.CLOSE_CURSORS_AT_COMMIT).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1").getClass());
         assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", Statement.RETURN_GENERATED_KEYS).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", new int[] { 1 }).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", new String[] { "1" }).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", new int[]{1}).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", new String[]{"1"}).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.serverPrepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).getClass());
         assertEquals(PreparedStatementWrapper.class,
                 cw.serverPrepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY, ResultSet.CLOSE_CURSORS_AT_COMMIT).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1").getClass());
         assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", Statement.RETURN_GENERATED_KEYS).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", new int[] { 1 }).getClass());
-        assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", new String[] { "1" }).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", new int[]{1}).getClass());
+        assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", new String[]{"1"}).getClass());
         assertEquals(PreparedStatementWrapper.class, cw.prepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY).getClass());
         assertEquals(PreparedStatementWrapper.class,
                 cw.prepareStatement("SELECT 1", ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY, ResultSet.CLOSE_CURSORS_AT_COMMIT).getClass());
@@ -470,13 +479,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
         assertThrows(SQLFeatureNotSupportedException.class, new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createArrayOf(String.class.getName(), new Object[] {}).getClass();
+                cw.createArrayOf(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
         assertThrows(SQLFeatureNotSupportedException.class, new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createStruct(String.class.getName(), new Object[] {}).getClass();
+                cw.createStruct(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
@@ -553,7 +562,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.getMetadataSafeStatement();
         //        cw.getMultiHostSafeProxy();
         //        cw.resetServerState();
-
         cw.setCatalog(this.dbName);
         cw.setFailedOver(false);
         cw.setHoldability(ResultSet.CLOSE_CURSORS_AT_COMMIT);
@@ -575,7 +583,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.unwrap(iface);
         //        cw.initializeResultsMetadataFromCache(sql, cachedMetaData, resultSet);
         //        cw.getCachedMetaData(sql);
-
         cw.setAutoCommit(false);
         cw.setTransactionIsolation(Connection.TRANSACTION_READ_UNCOMMITTED);
         assertEquals(Connection.TRANSACTION_READ_UNCOMMITTED, cw.getTransactionIsolation());
@@ -597,7 +604,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.unregisterStatement(this.stmt);
         //        cw.decachePreparedStatement(this.pstmt);
         //        cw.recachePreparedStatement(this.pstmt);
-
         // TODO find a way to test following methods
         //        cw.clearHasTriedMaster();
         //        cw.clearWarnings();
@@ -606,7 +612,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.createNewIO(isForReconnect);
         //        cw.changeUser(userName, newPassword);
         //        cw.checkClosed();
-
         cw.close();
         assertEquals(26, cw.getActiveStatementCount()); // TODO why are they still active? Active statements should be cleaned when connection is returned to pool.
         checkConnectionReturnedToPool(cw);
@@ -620,7 +625,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.cleanup(whyCleanedUp);
         //        cw.abort(executor);
         //        cw.abortInternal();
-
     }
 
     @SuppressWarnings("deprecation")
@@ -651,13 +655,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.clientPrepareStatement("SELECT 1", new int[] { 1 });
+                cw.clientPrepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.clientPrepareStatement("SELECT 1", new String[] { "1" });
+                cw.clientPrepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -687,13 +691,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.serverPrepareStatement("SELECT 1", new int[] { 1 });
+                cw.serverPrepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.serverPrepareStatement("SELECT 1", new String[] { "1" });
+                cw.serverPrepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -723,13 +727,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.prepareStatement("SELECT 1", new int[] { 1 });
+                cw.prepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.prepareStatement("SELECT 1", new String[] { "1" });
+                cw.prepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -784,13 +788,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createArrayOf(String.class.getName(), new Object[] {}).getClass();
+                cw.createArrayOf(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createStruct(String.class.getName(), new Object[] {}).getClass();
+                cw.createStruct(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
@@ -958,7 +962,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.getMetadataSafeStatement();
         //        cw.getMultiHostSafeProxy();
         //        cw.resetServerState();
-
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             @SuppressWarnings("synthetic-access")
             public Void call() throws Exception {
@@ -994,7 +997,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.unwrap(iface);
         //        cw.initializeResultsMetadataFromCache(sql, cachedMetaData, resultSet);
         //        cw.getCachedMetaData(sql);
-
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
                 cw.setAutoCommit(false);
@@ -1098,13 +1100,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.clientPrepareStatement("SELECT 1", new int[] { 1 });
+                cw.clientPrepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.clientPrepareStatement("SELECT 1", new String[] { "1" });
+                cw.clientPrepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -1134,13 +1136,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.serverPrepareStatement("SELECT 1", new int[] { 1 });
+                cw.serverPrepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.serverPrepareStatement("SELECT 1", new String[] { "1" });
+                cw.serverPrepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -1170,13 +1172,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.prepareStatement("SELECT 1", new int[] { 1 });
+                cw.prepareStatement("SELECT 1", new int[]{1});
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.prepareStatement("SELECT 1", new String[] { "1" });
+                cw.prepareStatement("SELECT 1", new String[]{"1"});
                 return null;
             }
         });
@@ -1231,13 +1233,13 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
 
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createArrayOf(String.class.getName(), new Object[] {}).getClass();
+                cw.createArrayOf(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
-                cw.createStruct(String.class.getName(), new Object[] {}).getClass();
+                cw.createStruct(String.class.getName(), new Object[]{}).getClass();
                 return null;
             }
         });
@@ -1420,7 +1422,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.getMetadataSafeStatement();
         //        cw.getMultiHostSafeProxy();
         //        cw.resetServerState();
-
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             @SuppressWarnings("synthetic-access")
             public Void call() throws Exception {
@@ -1456,7 +1457,6 @@ public final class PooledConnectionRegressionTest extends BaseTestCase {
         //        cw.unwrap(iface);
         //        cw.initializeResultsMetadataFromCache(sql, cachedMetaData, resultSet);
         //        cw.getCachedMetaData(sql);
-
         assertThrows(SQLNonTransientConnectionException.class, "Logical handle no longer valid", new Callable<Void>() {
             public Void call() throws Exception {
                 cw.setAutoCommit(false);

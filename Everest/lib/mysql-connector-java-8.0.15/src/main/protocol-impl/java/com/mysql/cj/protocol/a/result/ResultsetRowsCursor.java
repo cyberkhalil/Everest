@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import java.util.ArrayList;
@@ -44,9 +43,10 @@ import com.mysql.cj.protocol.a.NativeProtocol;
 import com.mysql.cj.result.Row;
 
 /**
- * Model for result set data backed by a cursor (see http://dev.mysql.com/doc/refman/5.7/en/cursors.html and
- * SERVER_STATUS_CURSOR_EXISTS flag description on http://dev.mysql.com/doc/internals/en/status-flags.html).
- * Only works for forward-only result sets (but still works with updatable concurrency).
+ * Model for result set data backed by a cursor (see
+ * http://dev.mysql.com/doc/refman/5.7/en/cursors.html and SERVER_STATUS_CURSOR_EXISTS flag
+ * description on http://dev.mysql.com/doc/internals/en/status-flags.html). Only works for
+ * forward-only result sets (but still works with updatable concurrency).
  */
 public class ResultsetRowsCursor extends AbstractResultsetRows implements ResultsetRows {
 
@@ -56,8 +56,8 @@ public class ResultsetRowsCursor extends AbstractResultsetRows implements Result
     private List<Row> fetchedRows;
 
     /**
-     * Where we are positionaly in the entire result set, used mostly to
-     * facilitate easy 'isBeforeFirst()' and 'isFirst()' methods.
+     * Where we are positionaly in the entire result set, used mostly to facilitate easy
+     * 'isBeforeFirst()' and 'isFirst()' methods.
      */
     private int currentPositionInEntireResult = BEFORE_START_OF_ROWS;
 
@@ -80,11 +80,9 @@ public class ResultsetRowsCursor extends AbstractResultsetRows implements Result
 
     /**
      * Creates a new cursor-backed row provider.
-     * 
-     * @param ioChannel
-     *            connection to the server.
-     * @param columnDefinition
-     *            field-level metadata for the results that this cursor covers.
+     *
+     * @param ioChannel connection to the server.
+     * @param columnDefinition field-level metadata for the results that this cursor covers.
      */
     public ResultsetRowsCursor(NativeProtocol ioChannel, ColumnDefinition columnDefinition) {
         this.currentPositionInEntireResult = BEFORE_START_OF_ROWS;
@@ -160,7 +158,6 @@ public class ResultsetRowsCursor extends AbstractResultsetRows implements Result
         }
 
         // Okay, no rows _yet_, so fetch 'em
-
         fetchMoreRows();
 
         return this.fetchedRows.size() > 0;

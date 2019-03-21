@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.ResultSet;
@@ -106,14 +105,14 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
             ResultSet rs = executeMetadataQuery(pStmt);
             ((com.mysql.cj.jdbc.result.ResultSetInternalMethods) rs).getColumnDefinition()
-                    .setFields(new Field[] { new Field("", "TABLE_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
-                            new Field("", "TABLE_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 1),
-                            new Field("", "TABLE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
-                            new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
-                            new Field("", "GRANTOR", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 77),
-                            new Field("", "GRANTEE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 77),
-                            new Field("", "PRIVILEGE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
-                            new Field("", "IS_GRANTABLE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 3) });
+                    .setFields(new Field[]{new Field("", "TABLE_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
+                new Field("", "TABLE_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 1),
+                new Field("", "TABLE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
+                new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
+                new Field("", "GRANTOR", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 77),
+                new Field("", "GRANTEE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 77),
+                new Field("", "PRIVILEGE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 64),
+                new Field("", "IS_GRANTABLE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 3)});
 
             return rs;
         } finally {
@@ -237,7 +236,7 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
         if (catalog != null) {
             conditionBuf.append(
                     "information_schema".equalsIgnoreCase(catalog) || "performance_schema".equalsIgnoreCase(catalog) || !StringUtils.hasWildcards(catalog)
-                            ? " TABLE_SCHEMA = ?" : " TABLE_SCHEMA LIKE ?");
+                    ? " TABLE_SCHEMA = ?" : " TABLE_SCHEMA LIKE ?");
         }
         if (tableName != null) {
             if (conditionBuf.length() > 0) {
@@ -370,7 +369,6 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
         catalog = this.pedantic ? catalog : StringUtils.unQuoteIdentifier(catalog, this.quotedId);
 
         //CASCADE, SET NULL, SET DEFAULT, RESTRICT, NO ACTION
-
         StringBuilder sqlBuf = new StringBuilder(
                 "SELECT A.REFERENCED_TABLE_SCHEMA AS PKTABLE_CAT, NULL AS PKTABLE_SCHEM, A.REFERENCED_TABLE_NAME AS PKTABLE_NAME,");
         sqlBuf.append(" A.REFERENCED_COLUMN_NAME AS PKCOLUMN_NAME, A.TABLE_SCHEMA AS FKTABLE_CAT, NULL AS FKTABLE_SCHEM, A.TABLE_NAME AS FKTABLE_NAME,");
@@ -571,12 +569,12 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
             ResultSet rs = executeMetadataQuery(pStmt);
             ((com.mysql.cj.jdbc.result.ResultSetInternalMethods) rs).getColumnDefinition()
-                    .setFields(new Field[] { new Field("", "TABLE_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "TABLE_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 0),
-                            new Field("", "TABLE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32),
-                            new Field("", "KEY_SEQ", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5),
-                            new Field("", "PK_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32) });
+                    .setFields(new Field[]{new Field("", "TABLE_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "TABLE_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 0),
+                new Field("", "TABLE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32),
+                new Field("", "KEY_SEQ", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5),
+                new Field("", "PK_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32)});
 
             return rs;
         } finally {
@@ -902,14 +900,14 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
             ResultSet rs = executeMetadataQuery(pStmt);
             ((com.mysql.cj.jdbc.result.ResultSetInternalMethods) rs).getColumnDefinition()
-                    .setFields(new Field[] { new Field("", "SCOPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5),
-                            new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32),
-                            new Field("", "DATA_TYPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 5),
-                            new Field("", "TYPE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 16),
-                            new Field("", "COLUMN_SIZE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 16),
-                            new Field("", "BUFFER_LENGTH", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 16),
-                            new Field("", "DECIMAL_DIGITS", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 16),
-                            new Field("", "PSEUDO_COLUMN", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5) });
+                    .setFields(new Field[]{new Field("", "SCOPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5),
+                new Field("", "COLUMN_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 32),
+                new Field("", "DATA_TYPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 5),
+                new Field("", "TYPE_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 16),
+                new Field("", "COLUMN_SIZE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 16),
+                new Field("", "BUFFER_LENGTH", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.INT, 16),
+                new Field("", "DECIMAL_DIGITS", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 16),
+                new Field("", "PSEUDO_COLUMN", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 5)});
 
             return rs;
         } finally {
@@ -954,7 +952,7 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
         // TYPE_NAME
         sqlBuf.append(
                 "UPPER(CASE WHEN LOCATE('UNSIGNED', UPPER(DATA_TYPE)) != 0 AND LOCATE('UNSIGNED', UPPER(DATA_TYPE)) = 0 THEN CONCAT(DATA_TYPE, ' UNSIGNED') "
-                        + "ELSE DATA_TYPE END) AS `TYPE_NAME`,");
+                + "ELSE DATA_TYPE END) AS `TYPE_NAME`,");
 
         // PRECISION int => precision
         sqlBuf.append("NUMERIC_PRECISION AS `PRECISION`, ");
@@ -1032,10 +1030,9 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
     /**
      * Getter to DatabaseMetaData.function* constants.
-     * 
-     * @param constant
-     *            the constant id from DatabaseMetaData fields to return.
-     * 
+     *
+     * @param constant the constant id from DatabaseMetaData fields to return.
+     *
      * @return one of the java.sql.DatabaseMetaData#function* fields.
      */
     protected int getFunctionConstant(FunctionConstant constant) {
@@ -1100,12 +1097,12 @@ public class DatabaseMetaDataUsingInfoSchema extends DatabaseMetaData {
 
             ResultSet rs = executeMetadataQuery(pStmt);
             ((com.mysql.cj.jdbc.result.ResultSetInternalMethods) rs).getColumnDefinition()
-                    .setFields(new Field[] { new Field("", "FUNCTION_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "FUNCTION_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "FUNCTION_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "REMARKS", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
-                            new Field("", "FUNCTION_TYPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 6),
-                            new Field("", "SPECIFIC_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255) });
+                    .setFields(new Field[]{new Field("", "FUNCTION_CAT", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "FUNCTION_SCHEM", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "FUNCTION_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "REMARKS", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255),
+                new Field("", "FUNCTION_TYPE", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.SMALLINT, 6),
+                new Field("", "SPECIFIC_NAME", this.getMetadataCollationIndex(), this.getMetadataEncoding(), MysqlType.CHAR, 255)});
 
             return rs;
         } finally {

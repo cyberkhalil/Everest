@@ -26,106 +26,98 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 /**
  * A statement representing a set of document modifications.
  */
 public interface ModifyStatement extends Statement<ModifyStatement, Result> {
+
     /**
      * Add/replace the order specification for this statement.
-     * 
-     * @param sortFields
-     *            sort expression
+     *
+     * @param sortFields sort expression
      * @return {@link ModifyStatement}
      */
     ModifyStatement sort(String... sortFields);
 
     /**
      * Add/replace the document limit for this statement.
-     * 
-     * @param numberOfRows
-     *            limit
+     *
+     * @param numberOfRows limit
      * @return {@link ModifyStatement}
      */
     ModifyStatement limit(long numberOfRows);
 
     /**
-     * Add an update to the statement setting the field as the document path to the given value for all documents matching the search criteria.
-     * 
-     * @param docPath
-     *            document path to the given value
-     * @param value
-     *            value to set
+     * Add an update to the statement setting the field as the document path to the given value for
+     * all documents matching the search criteria.
+     *
+     * @param docPath document path to the given value
+     * @param value value to set
      * @return {@link ModifyStatement}
      */
     ModifyStatement set(String docPath, Object value);
 
     /**
-     * Add an update to the statement setting the field, if it exists at the document path, to the given value.
-     * 
-     * @param docPath
-     *            document path to the given value
-     * @param value
-     *            value to set
+     * Add an update to the statement setting the field, if it exists at the document path, to the
+     * given value.
+     *
+     * @param docPath document path to the given value
+     * @param value value to set
      * @return {@link ModifyStatement}
      */
     ModifyStatement change(String docPath, Object value);
 
     /**
      * Nullify the given fields.
-     * 
-     * @param fields
-     *            one or more field names
+     *
+     * @param fields one or more field names
      * @return {@link ModifyStatement}
      */
     ModifyStatement unset(String... fields);
 
     /**
-     * Takes in a patch object and applies it on all documents matching the modify() filter, using the JSON_MERGE_PATCH() function.
-     * Please note that {@link DbDoc} does not support expressions as a field values, please use {@link #patch(String)} method if you need
-     * such functionality.
-     * 
-     * @param document
-     *            patch object
+     * Takes in a patch object and applies it on all documents matching the modify() filter, using
+     * the JSON_MERGE_PATCH() function. Please note that {@link DbDoc} does not support expressions
+     * as a field values, please use {@link #patch(String)} method if you need such functionality.
+     *
+     * @param document patch object
      * @return {@link ModifyStatement}
      */
     ModifyStatement patch(DbDoc document);
 
     /**
-     * Takes in a document patch and applies it on all documents matching the modify() filter, using the JSON_MERGE_PATCH() function.
-     * A document patch is similar to a JSON object, with the key difference that document field values can be nested expressions in addition to literal values.
+     * Takes in a document patch and applies it on all documents matching the modify() filter, using
+     * the JSON_MERGE_PATCH() function. A document patch is similar to a JSON object, with the key
+     * difference that document field values can be nested expressions in addition to literal
+     * values.
      * <br>
      * Example:<br>
      * collection.modify("_id = :id")<br>
-     * .patch("{\"zip\": address.zip-300000, \"street\": CONCAT($.name, '''s street: ', $.address.street)}")<br>
+     * .patch("{\"zip\": address.zip-300000, \"street\": CONCAT($.name, '''s street: ',
+     * $.address.street)}")<br>
      * .bind("id", "2").execute();
-     * 
-     * @param document
-     *            patch object
+     *
+     * @param document patch object
      * @return {@link ModifyStatement}
      */
     ModifyStatement patch(String document);
 
     /**
      * Insert a value into the specified array.
-     * 
-     * @param field
-     *            document path to the array field
-     * @param value
-     *            value to insert
+     *
+     * @param field document path to the array field
+     * @param value value to insert
      * @return {@link ModifyStatement}
      */
     ModifyStatement arrayInsert(String field, Object value);
 
     /**
      * Append a value to the specified array.
-     * 
-     * @param field
-     *            document path to the array field
-     * @param value
-     *            value to append
+     *
+     * @param field document path to the array field
+     * @param value value to append
      * @return {@link ModifyStatement}
      */
     ModifyStatement arrayAppend(String field, Object value);

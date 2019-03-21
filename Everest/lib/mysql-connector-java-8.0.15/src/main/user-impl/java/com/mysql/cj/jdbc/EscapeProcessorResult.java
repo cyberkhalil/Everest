@@ -26,14 +26,15 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 /**
- * Wraps output from EscapeProcessor, to help prevent multiple passes over the query string, to detect characters such as '@' (defining/using a variable),
- * which are used further up the call stack to handle failover.
+ * Wraps output from EscapeProcessor, to help prevent multiple passes over the query string, to
+ * detect characters such as '@' (defining/using a variable), which are used further up the call
+ * stack to handle failover.
  */
 class EscapeProcessorResult {
+
     boolean callingStoredFunction = false;
 
     String escapedSql;

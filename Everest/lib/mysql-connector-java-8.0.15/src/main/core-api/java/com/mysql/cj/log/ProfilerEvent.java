@@ -26,10 +26,10 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 public interface ProfilerEvent {
+
     /**
      * A Profiler warning event
      */
@@ -67,7 +67,7 @@ public interface ProfilerEvent {
 
     /**
      * Returns the event type flag
-     * 
+     *
      * @return the event type flag
      */
     byte getEventType();
@@ -76,71 +76,70 @@ public interface ProfilerEvent {
 
     /**
      * Returns the duration of the event in milliseconds
-     * 
+     *
      * @return the duration of the event in milliseconds
      */
     long getEventDuration();
 
     /**
      * Returns the units for getEventDuration()
-     * 
+     *
      * @return name of duration units
      */
     String getDurationUnits();
 
     /**
      * Returns the id of the connection in use when this event was created.
-     * 
+     *
      * @return the connection in use
      */
     long getConnectionId();
 
     /**
      * Returns the id of the result set in use when this event was created.
-     * 
+     *
      * @return the result set in use
      */
     int getResultSetId();
 
     /**
      * Returns the id of the statement in use when this event was created.
-     * 
+     *
      * @return the statement in use
      */
     int getStatementId();
 
     /**
      * Returns the optional message for this event
-     * 
+     *
      * @return the message stored in this event
      */
     String getMessage();
 
     /**
-     * Returns the time (in System.currentTimeMillis() form) when this event was
-     * created
-     * 
+     * Returns the time (in System.currentTimeMillis() form) when this event was created
+     *
      * @return the time this event was created
      */
     long getEventCreationTime();
 
     /**
      * Returns the catalog in use
-     * 
+     *
      * @return the catalog in use
      */
     String getCatalog();
 
     /**
      * Returns the description of when this event was created.
-     * 
+     *
      * @return a description of when this event was created.
      */
     String getEventCreationPointAsString();
 
     /**
      * Creates a binary representation of this event.
-     * 
+     *
      * @return a binary representation of this event
      */
     byte[] pack();

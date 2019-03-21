@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class AddNewPayment extends javax.swing.JFrame {
 
-    Connection conn = login.getConnection();
+    Connection conn = Login.getConnection();
     ArrayList<Integer> ids = new ArrayList<>();
     userEntry us = new userEntry();
 

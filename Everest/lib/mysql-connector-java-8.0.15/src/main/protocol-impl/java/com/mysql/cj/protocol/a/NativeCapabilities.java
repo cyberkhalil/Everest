@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import com.mysql.cj.ServerVersion;
@@ -150,7 +149,7 @@ public class NativeCapabilities implements ServerCapabilities {
     }
 
     /**
-     * 
+     *
      * @return Collation index which server provided in handshake greeting packet
      */
     public int getServerDefaultCollationIndex() {
@@ -159,9 +158,8 @@ public class NativeCapabilities implements ServerCapabilities {
 
     /**
      * Stores collation index which server provided in handshake greeting packet.
-     * 
-     * @param serverDefaultCollationIndex
-     *            server default collation index
+     *
+     * @param serverDefaultCollationIndex server default collation index
      */
     public void setServerDefaultCollationIndex(int serverDefaultCollationIndex) {
         this.serverDefaultCollationIndex = serverDefaultCollationIndex;

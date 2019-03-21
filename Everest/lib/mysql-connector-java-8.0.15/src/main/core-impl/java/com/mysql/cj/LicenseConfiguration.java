@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Map;
@@ -34,20 +33,19 @@ import java.util.Map;
 import com.mysql.cj.exceptions.CJException;
 
 /**
- * Used in commercially-licensed clients that require connections to commercially-licensed servers as part of the licensing terms.
+ * Used in commercially-licensed clients that require connections to commercially-licensed servers
+ * as part of the licensing terms.
  */
 public class LicenseConfiguration {
 
     /**
-     * Used in commercially-licensed clients that require connections to
-     * commercially-licensed servers as part of the licensing terms.
-     * 
-     * @param serverVariables
-     *            a Map of the output of 'show variables' from the server we're
-     *            connecting to.
-     * 
-     * @throws CJException
-     *             if commercial license is required, but not found
+     * Used in commercially-licensed clients that require connections to commercially-licensed
+     * servers as part of the licensing terms.
+     *
+     * @param serverVariables a Map of the output of 'show variables' from the server we're
+     * connecting to.
+     *
+     * @throws CJException if commercial license is required, but not found
      */
     public static void checkLicenseType(Map<String, String> serverVariables) {
         // we don't check anything by default

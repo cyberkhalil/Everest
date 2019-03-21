@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.SQLClientInfoException;
@@ -38,12 +37,14 @@ import java.util.Map.Entry;
 import java.util.Properties;
 
 /**
- * An implementation of ClientInfoProvider that exposes the client info as a comment prepended to all statements issued by the driver.
- * 
- * Client information is <i>never</i> read from the server with this implementation, it is always cached locally.
+ * An implementation of ClientInfoProvider that exposes the client info as a comment prepended to
+ * all statements issued by the driver.
+ *
+ * Client information is <i>never</i> read from the server with this implementation, it is always
+ * cached locally.
  */
-
 public class CommentClientInfoProvider implements ClientInfoProvider {
+
     private Properties clientInfo;
 
     @Override

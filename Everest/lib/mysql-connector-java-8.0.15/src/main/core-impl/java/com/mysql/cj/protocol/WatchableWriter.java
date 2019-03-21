@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.CharArrayWriter;
@@ -35,6 +34,7 @@ import java.io.CharArrayWriter;
  * A java.io.Writer used to write unicode data into Blobs and Clobs
  */
 public class WatchableWriter extends CharArrayWriter {
+
     private WriterWatcher watcher;
 
     /**
@@ -51,8 +51,7 @@ public class WatchableWriter extends CharArrayWriter {
     }
 
     /**
-     * @param watcher
-     *            {@link WriterWatcher}
+     * @param watcher {@link WriterWatcher}
      */
     public void setWatcher(WriterWatcher watcher) {
         this.watcher = watcher;

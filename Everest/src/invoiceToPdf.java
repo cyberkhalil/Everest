@@ -16,7 +16,7 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 public class invoiceToPdf {
 
-    static Connection Conn = login.getConnection();
+    static Connection Conn = Login.getConnection();
 
     public static void main(String[] args) {
         try {

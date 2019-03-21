@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 import java.util.Iterator;
@@ -38,10 +37,11 @@ import com.mysql.cj.log.Log;
 import com.mysql.cj.util.Util;
 
 public class ExceptionInterceptorChain implements ExceptionInterceptor {
+
     List<ExceptionInterceptor> interceptors;
 
     public ExceptionInterceptorChain(String interceptorClasses, Properties props, Log log) {
-        this.interceptors = Util.<ExceptionInterceptor> loadClasses(interceptorClasses, "Connection.BadExceptionInterceptor", this).stream()
+        this.interceptors = Util.<ExceptionInterceptor>loadClasses(interceptorClasses, "Connection.BadExceptionInterceptor", this).stream()
                 .map(o -> o.init(props, log)).collect(Collectors.toList());
     }
 

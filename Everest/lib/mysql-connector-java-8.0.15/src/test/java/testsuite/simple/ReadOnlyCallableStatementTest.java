@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.CallableStatement;
@@ -39,6 +38,7 @@ import com.mysql.cj.conf.PropertyKey;
 import testsuite.BaseTestCase;
 
 public class ReadOnlyCallableStatementTest extends BaseTestCase {
+
     public ReadOnlyCallableStatementTest(String name) {
         super(name);
     }

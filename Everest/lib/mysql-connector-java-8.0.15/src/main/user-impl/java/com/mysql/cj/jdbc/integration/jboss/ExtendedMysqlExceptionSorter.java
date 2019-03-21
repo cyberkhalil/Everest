@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.integration.jboss;
 
 import java.sql.SQLException;
@@ -34,7 +33,8 @@ import java.sql.SQLException;
 import org.jboss.resource.adapter.jdbc.vendor.MySQLExceptionSorter;
 
 /**
- * Exception sorter used for JBoss to make recovery of downed/stale connections work more consistently.
+ * Exception sorter used for JBoss to make recovery of downed/stale connections work more
+ * consistently.
  */
 public final class ExtendedMysqlExceptionSorter extends MySQLExceptionSorter {
 

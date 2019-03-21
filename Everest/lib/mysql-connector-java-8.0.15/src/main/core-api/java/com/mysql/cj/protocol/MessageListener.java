@@ -26,16 +26,14 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 /**
  * Sink for messages that are read asynchonously from the socket.
  *
  * Return whether the listener is done receiving messages.
- * 
- * @param <M>
- *            Message type
+ *
+ * @param <M> Message type
  */
 public interface MessageListener<M extends Message> extends ProtocolEntityFactory<Boolean, M> {
 

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.io.IOException;
@@ -49,20 +48,30 @@ import com.mysql.cj.x.protobuf.Mysqlx.Error;
 import com.mysql.cj.x.protobuf.Mysqlx.ServerMessages;
 
 /**
- * Synchronous-only implementation of {@link MessageReader}. This implementation wraps an {@link java.io.InputStream}.
+ * Synchronous-only implementation of {@link MessageReader}. This implementation wraps an
+ * {@link java.io.InputStream}.
  */
 public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage> {
-    /** Stream as a source of messages. */
+
+    /**
+     * Stream as a source of messages.
+     */
     private FullReadInputStream inputStream;
 
     private XMessageHeader header;
 
-    /** Queue of <code>MessageListener</code>s waiting to process messages. */
+    /**
+     * Queue of <code>MessageListener</code>s waiting to process messages.
+     */
     BlockingQueue<MessageListener<XMessage>> messageListenerQueue = new LinkedBlockingQueue<>();
 
-    /** Lock to protect the pending message. */
+    /**
+     * Lock to protect the pending message.
+     */
     Object dispatchingThreadMonitor = new Object();
-    /** Lock to protect async reads from sync ones. */
+    /**
+     * Lock to protect async reads from sync ones.
+     */
     Object waitingSyncOperationMonitor = new Object();
 
     Thread dispatchingThread = null;
@@ -196,10 +205,12 @@ public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage
     }
 
     private class ListenersDispatcher implements Runnable {
+
         /**
-         * The timeout value for queue.poll(timeout, unit) defining the time after that we close and unregister the dispatching thread.
-         * On the other hand, the bigger timeout value allows to keep dispatcher thread running while multiple concurrent asynchronous
-         * read operations are pending, thus avoiding the delays for new dispatching threads creation.
+         * The timeout value for queue.poll(timeout, unit) defining the time after that we close and
+         * unregister the dispatching thread. On the other hand, the bigger timeout value allows to
+         * keep dispatcher thread running while multiple concurrent asynchronous read operations are
+         * pending, thus avoiding the delays for new dispatching threads creation.
          */
         private static final long POLL_TIMEOUT = 100; // TODO expose via connection property
         boolean started = false;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.time.LocalDateTime;
@@ -60,7 +59,7 @@ public class LocalDateTimeValueFactory extends DefaultValueFactory<LocalDateTime
     @Override
     public LocalDateTime createFromTime(int hours, int minutes, int seconds, int nanos) {
         if (hours < 0 || hours >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { "" + hours + ":" + minutes + ":" + seconds }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{"" + hours + ":" + minutes + ":" + seconds}));
         }
         return createFromTimestamp(1970, 1, 1, hours, minutes, seconds, nanos);
     }

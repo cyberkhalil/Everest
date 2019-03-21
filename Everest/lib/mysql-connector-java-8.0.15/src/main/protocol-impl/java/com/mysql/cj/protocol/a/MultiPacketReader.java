@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -37,9 +36,8 @@ import com.mysql.cj.protocol.MessageReader;
 import com.mysql.cj.protocol.a.NativeConstants.StringLengthDataType;
 
 /**
- * A {@link MessageReader} which reads a full packet
- * built from sequence of it's on-wire parts.
- * See http://dev.mysql.com/doc/internals/en/sending-more-than-16mbyte.html
+ * A {@link MessageReader} which reads a full packet built from sequence of it's on-wire parts. See
+ * http://dev.mysql.com/doc/internals/en/sending-more-than-16mbyte.html
  */
 public class MultiPacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 

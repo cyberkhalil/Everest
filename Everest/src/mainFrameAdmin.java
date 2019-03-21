@@ -574,7 +574,7 @@ public class mainFrameAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_AddUserBtnActionPerformed
 
     private void LogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBtnActionPerformed
-        login log = new login();
+        Login log = new Login();
         this.setVisible(false);
         log.setVisible(true);
     }//GEN-LAST:event_LogOutBtnActionPerformed

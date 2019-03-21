@@ -26,15 +26,16 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.jdbc;
 
 import java.sql.SQLException;
 
 /**
- * Backwards compatibility to support apps that call <code>Class.forName("com.mysql.jdbc.Driver");</code>.
+ * Backwards compatibility to support apps that call
+ * <code>Class.forName("com.mysql.jdbc.Driver");</code>.
  */
 public class Driver extends com.mysql.cj.jdbc.Driver {
+
     public Driver() throws SQLException {
         super();
     }

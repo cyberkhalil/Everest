@@ -199,7 +199,7 @@ public class TeacherCut extends javax.swing.JFrame {
             double price = Double.parseDouble(HourPrice.getText());
             int hoursNo = Integer.parseInt(CourseHours.getText());
             double cut = hoursNo * price;
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query = "update teacher set CourseHours=? ,HourPrice=?,TotalPrice=? where TeacherName=?";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setInt(1, hoursNo);

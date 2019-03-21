@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.lang.reflect.Proxy;
@@ -61,15 +60,19 @@ import com.mysql.cj.jdbc.result.CachedResultSetMetaData;
 import com.mysql.cj.jdbc.result.ResultSetInternalMethods;
 
 /**
- * This class serves as a wrapper for the connection object. It is returned to the application server which may wrap it again and then return it to the
- * application client in response to dataSource.getConnection().
- * 
- * All method invocations are forwarded to underlying connection unless the close method was previously called, in which case a SQLException is thrown. The
- * close method performs a 'logical close' on the connection.
- * 
- * All SQL exceptions thrown by the physical connection are intercepted and sent to connectionEvent listeners before being thrown to client.
+ * This class serves as a wrapper for the connection object. It is returned to the application
+ * server which may wrap it again and then return it to the application client in response to
+ * dataSource.getConnection().
+ *
+ * All method invocations are forwarded to underlying connection unless the close method was
+ * previously called, in which case a SQLException is thrown. The close method performs a 'logical
+ * close' on the connection.
+ *
+ * All SQL exceptions thrown by the physical connection are intercepted and sent to connectionEvent
+ * listeners before being thrown to client.
  */
 public class ConnectionWrapper extends WrapperBase implements JdbcConnection {
+
     protected JdbcConnection mc = null;
 
     private String invalidHandleStr = "Logical handle no longer valid";
@@ -85,16 +88,12 @@ public class ConnectionWrapper extends WrapperBase implements JdbcConnection {
 
     /**
      * Construct a new LogicalHandle and set instance variables
-     * 
-     * @param mysqlPooledConnection
-     *            reference to object that instantiated this object
-     * @param mysqlConnection
-     *            physical connection to db
-     * @param forXa
-     *            is it for XA connection?
-     * 
-     * @throws SQLException
-     *             if an error occurs.
+     *
+     * @param mysqlPooledConnection reference to object that instantiated this object
+     * @param mysqlConnection physical connection to db
+     * @param forXa is it for XA connection?
+     *
+     * @throws SQLException if an error occurs.
      */
     public ConnectionWrapper(MysqlPooledConnection mysqlPooledConnection, JdbcConnection mysqlConnection, boolean forXa) throws SQLException {
         super(mysqlPooledConnection);
@@ -307,11 +306,11 @@ public class ConnectionWrapper extends WrapperBase implements JdbcConnection {
     }
 
     /**
-     * The physical connection is not actually closed. the physical connection is closed when the application server calls mysqlPooledConnection.close(). this
-     * object is de-referenced by the pooled connection each time mysqlPooledConnection.getConnection() is called by app server.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * The physical connection is not actually closed. the physical connection is closed when the
+     * application server calls mysqlPooledConnection.close(). this object is de-referenced by the
+     * pooled connection each time mysqlPooledConnection.getConnection() is called by app server.
+     *
+     * @throws SQLException if an error occurs
      */
     @Override
     public void close() throws SQLException {
@@ -1028,14 +1027,14 @@ public class ConnectionWrapper extends WrapperBase implements JdbcConnection {
             Object cachedUnwrapped = this.unwrappedInterfaces.get(iface);
 
             if (cachedUnwrapped == null) {
-                cachedUnwrapped = Proxy.newProxyInstance(this.mc.getClass().getClassLoader(), new Class<?>[] { iface },
+                cachedUnwrapped = Proxy.newProxyInstance(this.mc.getClass().getClassLoader(), new Class<?>[]{iface},
                         new ConnectionErrorFiringInvocationHandler(this.mc));
                 this.unwrappedInterfaces.put(iface, cachedUnwrapped);
             }
 
             return iface.cast(cachedUnwrapped);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.exceptionInterceptor);
         }
     }

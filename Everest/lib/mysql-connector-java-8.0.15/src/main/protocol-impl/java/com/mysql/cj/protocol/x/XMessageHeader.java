@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.nio.ByteBuffer;
@@ -35,10 +34,15 @@ import java.nio.ByteOrder;
 import com.mysql.cj.protocol.MessageHeader;
 
 public class XMessageHeader implements MessageHeader {
+
     private ByteBuffer headerBuf;
-    /** Type tag of the message to read (indicates parser to use). */
+    /**
+     * Type tag of the message to read (indicates parser to use).
+     */
     private int messageType = -1;
-    /** Size of the message that will be read. */
+    /**
+     * Size of the message that will be read.
+     */
     private int messageSize = -1;
 
     public XMessageHeader() {

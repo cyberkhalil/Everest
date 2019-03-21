@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.util.Hashtable;
@@ -44,6 +43,7 @@ import com.mysql.cj.conf.PropertyKey;
  * Factory class for MysqlDataSource objects
  */
 public class MysqlDataSourceFactory implements ObjectFactory {
+
     /**
      * The class name for a standard MySQL DataSource.
      */
@@ -57,7 +57,6 @@ public class MysqlDataSourceFactory implements ObjectFactory {
     /**
      * The class name for a MysqlXADataSource
      */
-
     protected final static String XA_DATA_SOURCE_CLASS_NAME = MysqlXADataSource.class.getName();
 
     @Override
@@ -72,7 +71,7 @@ public class MysqlDataSourceFactory implements ObjectFactory {
             try {
                 dataSource = (MysqlDataSource) Class.forName(className).newInstance();
             } catch (Exception ex) {
-                throw new RuntimeException(Messages.getString("MysqlDataSourceFactory.0", new Object[] { className, ex.toString() }));
+                throw new RuntimeException(Messages.getString("MysqlDataSourceFactory.0", new Object[]{className, ex.toString()}));
             }
 
             int portNumber = 3306;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.ResultSet;
@@ -41,9 +40,10 @@ import testsuite.BaseTestCase;
  * Tests for updatable result sets
  */
 public class UpdatabilityTest extends BaseTestCase {
+
     /**
      * Creates a new UpdatabilityTest object.
-     * 
+     *
      * @param name
      */
     public UpdatabilityTest(String name) {
@@ -52,7 +52,7 @@ public class UpdatabilityTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -76,9 +76,8 @@ public class UpdatabilityTest extends BaseTestCase {
 
     /**
      * Tests if aliased tables work as updatable result sets.
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testAliasedTables() throws Exception {
         Statement scrollableStmt = null;
@@ -116,11 +115,10 @@ public class UpdatabilityTest extends BaseTestCase {
     }
 
     /**
-     * Tests that the driver does not let you update result sets that come from
-     * tables that don't have primary keys
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Tests that the driver does not let you update result sets that come from tables that don't
+     * have primary keys
+     *
+     * @throws SQLException if an error occurs
      */
     public void testBogusTable() throws SQLException {
         this.stmt.executeUpdate("DROP TABLE IF EXISTS BOGUS_UPDATABLE");
@@ -152,11 +150,10 @@ public class UpdatabilityTest extends BaseTestCase {
     }
 
     /**
-     * Tests that the driver does not let you update result sets that come from
-     * queries that haven't selected all primary keys
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Tests that the driver does not let you update result sets that come from queries that haven't
+     * selected all primary keys
+     *
+     * @throws SQLException if an error occurs
      */
     public void testMultiKeyTable() throws SQLException {
         this.stmt.executeUpdate("DROP TABLE IF EXISTS MULTI_UPDATABLE");

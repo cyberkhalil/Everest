@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.io.IOException;
@@ -44,6 +43,7 @@ import com.mysql.cj.protocol.x.XMessageBuilder;
 import com.mysql.cj.protocol.x.XProtocolError;
 
 public class CollectionImpl implements Collection {
+
     private MysqlxSession mysqlxSession;
     private XMessageBuilder xbuilder;
     private SchemaImpl schema;
@@ -53,7 +53,7 @@ public class CollectionImpl implements Collection {
         this.mysqlxSession = mysqlxSession;
         this.schema = schema;
         this.name = name;
-        this.xbuilder = (XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder();
+        this.xbuilder = (XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder();
     }
 
     public Session getSession() {
@@ -184,10 +184,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result replaceOne(String id, DbDoc doc) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (doc == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "doc" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"doc"}));
         }
         return modify("_id = :id").set("$", doc).bind("id", id).execute();
     }
@@ -195,10 +195,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result replaceOne(String id, String jsonString) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (jsonString == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "jsonString" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"jsonString"}));
         }
         try {
             return replaceOne(id, JsonParser.parseDoc(new StringReader(jsonString)));
@@ -210,10 +210,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result addOrReplaceOne(String id, DbDoc doc) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (doc == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "doc" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"doc"}));
         }
         if (doc.get("_id") == null) {
             doc.add("_id", new JsonString().setValue(id));
@@ -226,10 +226,10 @@ public class CollectionImpl implements Collection {
     @Override
     public Result addOrReplaceOne(String id, String jsonString) {
         if (id == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "id" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"id"}));
         }
         if (jsonString == null) {
-            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[] { "jsonString" }));
+            throw new XDevAPIError(Messages.getString("CreateTableStatement.0", new String[]{"jsonString"}));
         }
         try {
             return addOrReplaceOne(id, JsonParser.parseDoc(new StringReader(jsonString)));

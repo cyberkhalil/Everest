@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import javax.transaction.xa.XAException;
@@ -35,6 +34,7 @@ import javax.transaction.xa.XAException;
  * The stock XAException class isn't too friendly (i.e. no error messages), so we extend it a bit.
  */
 class MysqlXAException extends XAException {
+
     private static final long serialVersionUID = -9075817535836563004L;
 
     private String message;

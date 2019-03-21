@@ -26,42 +26,38 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import com.mysql.cj.result.Field;
 import com.mysql.cj.result.Row;
 
 public interface ResultListener<OK extends ProtocolEntity> {
+
     /**
      * Called when metadata is available.
-     * 
-     * @param metadata
-     *            list of {@link Field} objects
+     *
+     * @param metadata list of {@link Field} objects
      */
     void onMetadata(ColumnDefinition metadata);
 
     /**
      * Called when row is available.
-     * 
-     * @param r
-     *            {@link Row}
+     *
+     * @param r {@link Row}
      */
     void onRow(Row r);
 
     /**
      * Called when result processing is complete. No additional notifications will be delivered.
-     * 
-     * @param ok
-     *            {@link ProtocolEntity}
+     *
+     * @param ok {@link ProtocolEntity}
      */
     void onComplete(OK ok);
 
     /**
      * Called when an exception occurs. No additional notifications will be delivered.
-     * 
-     * @param t
-     *            {@link Throwable}
+     *
+     * @param t {@link Throwable}
      */
     void onException(Throwable t);
 }

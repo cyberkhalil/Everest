@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 public interface WatchableStream {
@@ -35,7 +34,9 @@ public interface WatchableStream {
 
     int size();
 
-    byte toByteArray()[];
+    byte toByteArray  ()
+
+    [];
 
     void write(byte b[], int off, int len);
 

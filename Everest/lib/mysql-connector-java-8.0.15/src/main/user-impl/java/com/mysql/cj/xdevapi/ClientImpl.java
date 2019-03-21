@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.io.IOException;
@@ -56,6 +55,7 @@ import com.mysql.cj.protocol.x.XProtocol;
 import com.mysql.cj.util.StringUtils;
 
 public class ClientImpl implements Client {
+
     boolean isClosed = false;
 
     private ConnectionUrl connUrl = null;

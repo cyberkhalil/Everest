@@ -26,16 +26,16 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 /**
  * Implementors of this class must be able to provide a database URL.
  */
 public interface DatabaseUrlContainer {
+
     /**
      * Returns the original database URL that produced this connection string.
-     * 
+     *
      * @return the original database URL
      */
     String getDatabaseUrl();

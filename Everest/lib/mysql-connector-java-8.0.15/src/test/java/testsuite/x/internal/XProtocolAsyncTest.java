@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.internal;
 
 import static org.junit.Assert.assertEquals;
@@ -58,6 +57,7 @@ import com.mysql.cj.xdevapi.DocFilterParams;
  */
 @Category(testsuite.x.AsyncTests.class)
 public class XProtocolAsyncTest extends InternalXBaseTestCase {
+
     private XProtocol protocol;
     private XMessageBuilder messageBuilder;
 
@@ -80,6 +80,7 @@ public class XProtocolAsyncTest extends InternalXBaseTestCase {
      * Helper class to hold values across threads and closures.
      */
     public static class ValueHolder<T> implements Consumer<T>, Supplier<T> {
+
         T val;
 
         public void accept(T t) {
@@ -99,7 +100,7 @@ public class XProtocolAsyncTest extends InternalXBaseTestCase {
         String collName = createTempTestCollection(this.protocol);
 
         String json = "{'_id': '85983efc2a9a11e5b345feff819cdc9f', 'testVal': 1, 'insertedBy': 'Jess'}".replaceAll("'", "\"");
-        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[] { json }), false), 0);
+        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[]{json}), false), 0);
         this.protocol.readQueryResult();
 
         final ValueHolder<ColumnDefinition> metadataHolder = new ValueHolder<>();

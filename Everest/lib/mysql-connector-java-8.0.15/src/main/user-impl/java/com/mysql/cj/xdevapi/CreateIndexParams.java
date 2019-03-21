@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.io.IOException;
@@ -41,18 +40,20 @@ import com.mysql.cj.exceptions.AssertionFailedException;
  * Internally-used object passing index creation parameters to XMessageBuilder.
  */
 public class CreateIndexParams {
+
     private String indexName;
-    /** One of INDEX or SPATIAL. Default is INDEX and may be omitted. **/
+    /**
+     * One of INDEX or SPATIAL. Default is INDEX and may be omitted. *
+     */
     private String indexType = "INDEX";
     private List<IndexField> fields = new ArrayList<>();
 
     /**
      * Constructor.
-     * 
-     * @param indexName
-     *            index name
-     * @param indexDefinition
-     *            special JSON document containing index definition; see {@link Collection#createIndex(String, DbDoc)} description
+     *
+     * @param indexName index name
+     * @param indexDefinition special JSON document containing index definition; see
+     * {@link Collection#createIndex(String, DbDoc)} description
      */
     public CreateIndexParams(String indexName, DbDoc indexDefinition) {
         init(indexName, indexDefinition);
@@ -60,15 +61,14 @@ public class CreateIndexParams {
 
     /**
      * Constructor.
-     * 
-     * @param indexName
-     *            index name
-     * @param jsonIndexDefinition
-     *            special JSON document containing index definition; see {@link Collection#createIndex(String, String)} description
+     *
+     * @param indexName index name
+     * @param jsonIndexDefinition special JSON document containing index definition; see
+     * {@link Collection#createIndex(String, String)} description
      */
     public CreateIndexParams(String indexName, String jsonIndexDefinition) {
         if (jsonIndexDefinition == null || jsonIndexDefinition.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[] { "jsonIndexDefinition" }));
+            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[]{"jsonIndexDefinition"}));
         }
         try {
             init(indexName, JsonParser.parseDoc(new StringReader(jsonIndexDefinition)));
@@ -79,10 +79,10 @@ public class CreateIndexParams {
 
     private void init(String idxName, DbDoc indexDefinition) {
         if (idxName == null || idxName.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[] { "indexName" }));
+            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[]{"indexName"}));
         }
         if (indexDefinition == null) {
-            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[] { "indexDefinition" }));
+            throw new XDevAPIError(Messages.getString("CreateIndexParams.0", new String[]{"indexDefinition"}));
         }
 
         this.indexName = idxName;
@@ -128,7 +128,7 @@ public class CreateIndexParams {
 
     /**
      * Get index name.
-     * 
+     *
      * @return index name
      */
     public String getIndexName() {
@@ -137,7 +137,7 @@ public class CreateIndexParams {
 
     /**
      * Get index type.
-     * 
+     *
      * @return index type
      */
     public String getIndexType() {
@@ -146,7 +146,7 @@ public class CreateIndexParams {
 
     /**
      * Get index fields.
-     * 
+     *
      * @return List of {@link IndexField} objects
      */
     public List<IndexField> getFields() {
@@ -154,44 +154,56 @@ public class CreateIndexParams {
     }
 
     /**
-     * Internally used object parsed from indexDefinition; see {@link Collection#createIndex(String, DbDoc)} description.
+     * Internally used object parsed from indexDefinition; see
+     * {@link Collection#createIndex(String, DbDoc)} description.
      */
     public static class IndexField {
 
-        /** The full document path to the document member or field to be indexed **/
+        /**
+         * The full document path to the document member or field to be indexed *
+         */
         private String field;
 
         /**
-         * One of the supported SQL column types to map the field into.
-         * For numeric types, the optional UNSIGNED keyword may follow. For
-         * the TEXT type, the length to consider for indexing may be added.
-         **/
+         * One of the supported SQL column types to map the field into. For numeric types, the
+         * optional UNSIGNED keyword may follow. For the TEXT type, the length to consider for
+         * indexing may be added.
+         *
+         */
         private String type;
 
-        /** (optional) true if the field is required to exist in the document. defaults to false, except for GEOJSON where it defaults to true **/
+        /**
+         * (optional) true if the field is required to exist in the document. defaults to false,
+         * except for GEOJSON where it defaults to true *
+         */
         private boolean required = false;
 
-        /** (optional) special option flags for use when decoding GEOJSON data **/
+        /**
+         * (optional) special option flags for use when decoding GEOJSON data *
+         */
         private Integer options = null;
 
-        /** (optional) srid value for use when decoding GEOJSON data **/
+        /**
+         * (optional) srid value for use when decoding GEOJSON data *
+         */
         private Integer srid = null;
 
         /**
          * Constructor.
-         * 
-         * @param indexField
-         *            a special JSON document, part of indexDefinition document, consisting of the following fields:
-         *            <ul>
-         *            <li>field: string, the full document path to the document member or field to be indexed</li>
-         *            <li>type: string, one of the supported SQL column types to map the field into. For numeric types, the optional UNSIGNED
-         *            keyword may follow. For the TEXT type, the length to consider for indexing may be added. Type descriptions are case insensitive.</li>
-         *            <li>required: bool, (optional) true if the field is required to exist in the document. Defaults to false, except for GEOJSON where it
-         *            defaults
-         *            to true</li>
-         *            <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
-         *            <li>srid: int, (optional) srid value for use when decoding GEOJSON data</li>
-         *            </ul>
+         *
+         * @param indexField a special JSON document, part of indexDefinition document, consisting
+         * of the following fields:
+         * <ul>
+         * <li>field: string, the full document path to the document member or field to be
+         * indexed</li>
+         * <li>type: string, one of the supported SQL column types to map the field into. For
+         * numeric types, the optional UNSIGNED keyword may follow. For the TEXT type, the length to
+         * consider for indexing may be added. Type descriptions are case insensitive.</li>
+         * <li>required: bool, (optional) true if the field is required to exist in the document.
+         * Defaults to false, except for GEOJSON where it defaults to true</li>
+         * <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
+         * <li>srid: int, (optional) srid value for use when decoding GEOJSON data</li>
+         * </ul>
          */
         public IndexField(DbDoc indexField) {
             for (String key : indexField.keySet()) {
@@ -266,7 +278,7 @@ public class CreateIndexParams {
 
         /**
          * Get the full document path to the document member or field to be indexed.
-         * 
+         *
          * @return field string
          */
         public String getField() {
@@ -275,7 +287,7 @@ public class CreateIndexParams {
 
         /**
          * Get column type.
-         * 
+         *
          * @return column type
          */
         public String getType() {
@@ -284,7 +296,7 @@ public class CreateIndexParams {
 
         /**
          * Is the field required to exist in the document?
-         * 
+         *
          * @return true if required
          */
         public boolean isRequired() {
@@ -293,7 +305,7 @@ public class CreateIndexParams {
 
         /**
          * Get options for decoding GEOJSON data.
-         * 
+         *
          * @return options
          */
         public Integer getOptions() {
@@ -302,7 +314,7 @@ public class CreateIndexParams {
 
         /**
          * Get srid for decoding GEOJSON data.
-         * 
+         *
          * @return srid
          */
         public Integer getSrid() {

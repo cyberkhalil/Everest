@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import com.mysql.cj.MysqlType;
@@ -35,6 +34,7 @@ import com.mysql.cj.MysqlType;
  * Utilities to manipulate MySQL protocol-specific formats.
  */
 public class NativeUtils {
+
     private NativeUtils() {
     }
 
@@ -62,10 +62,9 @@ public class NativeUtils {
 
     /**
      * Get the length of a binary-encoded value of the given type.
-     * 
-     * @param type
-     *            type
-     * 
+     *
+     * @param type type
+     *
      * @return the length (&gt;0), 0 for a length-prefixed type, or -1 for unknown
      */
     public static int getBinaryEncodedLength(int type) {

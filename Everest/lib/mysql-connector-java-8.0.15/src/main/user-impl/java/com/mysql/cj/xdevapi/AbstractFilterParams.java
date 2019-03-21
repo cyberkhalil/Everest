@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Arrays;
@@ -46,6 +45,7 @@ import com.mysql.cj.x.protobuf.MysqlxExpr.Expr;
  * Abstract implementation of {@link FilterParams}.
  */
 public abstract class AbstractFilterParams implements FilterParams {
+
     protected Collection collection;
     protected Long limit;
     protected Long offset;
@@ -68,13 +68,10 @@ public abstract class AbstractFilterParams implements FilterParams {
 
     /**
      * Constructor.
-     * 
-     * @param schemaName
-     *            Schema name
-     * @param collectionName
-     *            Collection name
-     * @param isRelational
-     *            Are relational columns identifiers allowed?
+     *
+     * @param schemaName Schema name
+     * @param collectionName Collection name
+     * @param isRelational Are relational columns identifiers allowed?
      */
     public AbstractFilterParams(String schemaName, String collectionName, boolean isRelational) {
         this.collection = ExprUtil.buildCollection(schemaName, collectionName);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.sql.Date;
@@ -44,6 +43,7 @@ import com.mysql.cj.exceptions.WrongArgumentException;
  * A value factory for creating {@link java.sql.Date} values.
  */
 public class SqlDateValueFactory extends DefaultValueFactory<Date> {
+
     private WarningListener warningListener;
     // cached per instance to avoid re-creation on every create*() call
     private Calendar cal;
@@ -86,7 +86,7 @@ public class SqlDateValueFactory extends DefaultValueFactory<Date> {
     public Date createFromTime(int hours, int minutes, int seconds, int nanos) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[] { "java.sql.Date" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[]{"java.sql.Date"}));
         }
 
         synchronized (this.cal) {
@@ -108,7 +108,7 @@ public class SqlDateValueFactory extends DefaultValueFactory<Date> {
     public Date createFromTimestamp(int year, int month, int day, int hours, int minutes, int seconds, int nanos) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Date" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Date"}));
         }
 
         // truncate any time information

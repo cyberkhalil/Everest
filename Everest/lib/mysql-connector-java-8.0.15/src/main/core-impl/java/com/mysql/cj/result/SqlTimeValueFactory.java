@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.sql.Time;
@@ -41,10 +40,11 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * A value factory to create {@link java.sql.Time} instances. As with other date/time types, a time zone is necessary to interpret the
- * time values returned from the server.
+ * A value factory to create {@link java.sql.Time} instances. As with other date/time types, a time
+ * zone is necessary to interpret the time values returned from the server.
  */
 public class SqlTimeValueFactory extends DefaultValueFactory<Time> {
+
     private WarningListener warningListener;
     // cached per instance to avoid re-creation on every create*() call
     private Calendar cal;
@@ -67,7 +67,7 @@ public class SqlTimeValueFactory extends DefaultValueFactory<Time> {
     @Override
     public Time createFromTime(int hours, int minutes, int seconds, int nanos) {
         if (hours < 0 || hours >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { "" + hours + ":" + minutes + ":" + seconds }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{"" + hours + ":" + minutes + ":" + seconds}));
         }
 
         synchronized (this.cal) {
@@ -87,7 +87,7 @@ public class SqlTimeValueFactory extends DefaultValueFactory<Time> {
     public Time createFromTimestamp(int year, int month, int day, int hours, int minutes, int seconds, int nanos) {
         if (this.warningListener != null) {
             // TODO: need column context
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { "java.sql.Time" }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{"java.sql.Time"}));
         }
 
         // truncate date information

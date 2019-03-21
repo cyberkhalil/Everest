@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 /**
@@ -37,8 +36,9 @@ public class CJException extends RuntimeException {
     private static final long serialVersionUID = -8618536991444733607L;
 
     /**
-     * We can't override the {@link Throwable#detailMessage} directly because it has a private accessibility,
-     * thus for that need we use this protected variable and override {@link #getMessage()}
+     * We can't override the {@link Throwable#detailMessage} directly because it has a private
+     * accessibility, thus for that need we use this protected variable and override
+     * {@link #getMessage()}
      */
     protected String exceptionMessage;
 

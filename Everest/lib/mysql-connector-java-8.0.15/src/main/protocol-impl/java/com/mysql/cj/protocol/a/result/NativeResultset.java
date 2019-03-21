@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import java.util.HashMap;
@@ -40,29 +39,42 @@ import com.mysql.cj.result.Row;
 
 public class NativeResultset implements Resultset {
 
-    /** The metadata for this result set */
+    /**
+     * The metadata for this result set
+     */
     protected ColumnDefinition columnDefinition;
 
-    /** The actual rows */
+    /**
+     * The actual rows
+     */
     protected ResultsetRows rowData;
 
     protected Resultset nextResultset = null;
 
-    /** The id (used when profiling) to identify us */
+    /**
+     * The id (used when profiling) to identify us
+     */
     protected int resultId;
 
-    /** How many rows were affected by UPDATE/INSERT/DELETE? */
+    /**
+     * How many rows were affected by UPDATE/INSERT/DELETE?
+     */
     protected long updateCount;
 
-    /** Value generated for AUTO_INCREMENT columns */
+    /**
+     * Value generated for AUTO_INCREMENT columns
+     */
     protected long updateId = -1;
 
     /**
-     * Any info message from the server that was created while generating this result set (if 'info parsing' is enabled for the connection).
+     * Any info message from the server that was created while generating this result set (if 'info
+     * parsing' is enabled for the connection).
      */
     protected String serverInfo = null;
 
-    /** Pointer to current row data */
+    /**
+     * Pointer to current row data
+     */
     protected Row thisRow = null; // Values for current row
 
     public NativeResultset() {
@@ -70,9 +82,8 @@ public class NativeResultset implements Resultset {
 
     /**
      * Create a result set for an executeUpdate statement.
-     * 
-     * @param ok
-     *            {@link OkPacket}
+     *
+     * @param ok {@link OkPacket}
      */
     public NativeResultset(OkPacket ok) {
         this.updateCount = ok.getUpdateCount();
@@ -137,8 +148,8 @@ public class NativeResultset implements Resultset {
     }
 
     /**
-     * We can't do this ourselves, otherwise the contract for
-     * Statement.getMoreResults() won't work correctly.
+     * We can't do this ourselves, otherwise the contract for Statement.getMoreResults() won't work
+     * correctly.
      */
     public synchronized void clearNextResultset() {
         // TODO release resources of nextResultset, close streamer

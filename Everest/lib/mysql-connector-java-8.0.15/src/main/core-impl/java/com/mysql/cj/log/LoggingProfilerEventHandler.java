@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 /**
  * A profile event handler that just logs to the standard logging mechanism of the driver.
  */
 public class LoggingProfilerEventHandler implements ProfilerEventHandler {
+
     private Log logger;
 
     public LoggingProfilerEventHandler() {

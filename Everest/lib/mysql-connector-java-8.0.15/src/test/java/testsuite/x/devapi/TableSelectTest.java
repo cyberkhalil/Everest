@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -187,9 +186,8 @@ public class TableSelectTest extends BaseTableTestCase {
 
     /**
      * Tests fix for Bug#22931433, GETTING VALUE OF BIT COLUMN RESULTS IN EXCEPTION.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     @Test
     public void testBug22931433() {
@@ -602,7 +600,6 @@ public class TableSelectTest extends BaseTableTestCase {
             /*
              * 1. Shared Lock in both sessions.
              */
-
             // session2.lockShared() returns data immediately.
             session1.startTransaction();
             table1.select("_id").where("_id = '1'").lockShared().execute();
@@ -666,7 +663,6 @@ public class TableSelectTest extends BaseTableTestCase {
             /*
              * 2. Shared Lock in first session and exclusive lock in second.
              */
-
             // session2.lockExclusive() blocks until session1 ends.
             session1.startTransaction();
             table1.select("_id").where("_id = '1'").lockShared().execute();
@@ -674,7 +670,6 @@ public class TableSelectTest extends BaseTableTestCase {
             // session2.startTransaction();
             // res = table2.select("_id").where("_id < '3'").lockExclusive().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = table2.select("_id").where("_id < '3'").lockExclusive().executeAsync();
             final CompletableFuture<RowResult> fr1 = futRes;
@@ -731,7 +726,6 @@ public class TableSelectTest extends BaseTableTestCase {
             /*
              * 3. Exclusive Lock in first session and shared lock in second.
              */
-
             // session2.lockShared() blocks until session1 ends.
             session1.startTransaction();
             table1.select("_id").where("_id = '1'").lockExclusive().execute();
@@ -739,7 +733,6 @@ public class TableSelectTest extends BaseTableTestCase {
             // session2.startTransaction();
             // res = table2.select("_id").where("_id < '3'").lockShared().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = table2.select("_id").where("_id < '3'").lockShared().executeAsync();
             final CompletableFuture<RowResult> fr3 = futRes;
@@ -796,7 +789,6 @@ public class TableSelectTest extends BaseTableTestCase {
             /*
              * 4. Exclusive Lock in both sessions.
              */
-
             // session2.lockExclusive() blocks until session1 ends.
             session1.startTransaction();
             table1.select("_id").where("_id = '1'").lockExclusive().execute();
@@ -804,7 +796,6 @@ public class TableSelectTest extends BaseTableTestCase {
             // session2.startTransaction();
             // res = table2.select("_id").where("_id < '3'").lockExclusive().execute(); (Can't test)
             // session2.rollback();
-
             session2.startTransaction();
             futRes = table2.select("_id").where("_id < '3'").lockExclusive().executeAsync();
             final CompletableFuture<RowResult> fr5 = futRes;

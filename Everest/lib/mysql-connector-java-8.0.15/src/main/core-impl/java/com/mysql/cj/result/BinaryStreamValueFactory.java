@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.io.ByteArrayInputStream;
@@ -36,6 +35,7 @@ import java.io.InputStream;
  * A value factory for a raw stream of bytes from the value.
  */
 public class BinaryStreamValueFactory extends DefaultValueFactory<InputStream> {
+
     @Override
     public InputStream createFromBytes(byte[] bytes, int offset, int length) {
         return new ByteArrayInputStream(bytes, offset, length);

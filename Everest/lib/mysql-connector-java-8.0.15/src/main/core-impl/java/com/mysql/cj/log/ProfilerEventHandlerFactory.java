@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 import com.mysql.cj.Session;
@@ -37,9 +36,8 @@ public class ProfilerEventHandlerFactory {
 
     /**
      * Returns the ProfilerEventHandler that handles profiler events for the given session.
-     * 
-     * @param sess
-     *            the session to handle events for
+     *
+     * @param sess the session to handle events for
      * @return the {@link ProfilerEventHandler} that handles profiler events
      */
     public static synchronized ProfilerEventHandler getInstance(Session sess) {

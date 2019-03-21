@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.BufferedOutputStream;
@@ -35,10 +34,11 @@ import java.io.IOException;
 import com.mysql.cj.protocol.MessageSender;
 
 /**
- * Simple implementation of {@link MessageSender} which handles the transmission of logical MySQL packets to the provided output stream. Large packets will be
- * split into multiple chunks.
+ * Simple implementation of {@link MessageSender} which handles the transmission of logical MySQL
+ * packets to the provided output stream. Large packets will be split into multiple chunks.
  */
 public class SimplePacketSender implements MessageSender<NativePacketPayload> {
+
     private BufferedOutputStream outputStream;
 
     public SimplePacketSender(BufferedOutputStream outputStream) {

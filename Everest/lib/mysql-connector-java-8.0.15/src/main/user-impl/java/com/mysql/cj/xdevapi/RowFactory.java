@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.TimeZone;
@@ -40,16 +39,15 @@ import com.mysql.cj.protocol.x.XMessage;
  * Create {@link Row} objects from internal row representation.
  */
 public class RowFactory implements ProtocolEntityFactory<Row, XMessage> {
+
     private ColumnDefinition metadata;
     private TimeZone defaultTimeZone;
 
     /**
      * Constructor.
-     * 
-     * @param metadata
-     *            {@link ColumnDefinition} object to use for new rows.
-     * @param defaultTimeZone
-     *            {@link TimeZone} object representing the default time zone
+     *
+     * @param metadata {@link ColumnDefinition} object to use for new rows.
+     * @param defaultTimeZone {@link TimeZone} object representing the default time zone
      */
     public RowFactory(ColumnDefinition metadata, TimeZone defaultTimeZone) {
         this.metadata = metadata;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import com.mysql.cj.CharsetMapping;
@@ -34,13 +33,13 @@ import com.mysql.cj.MysqlType;
 import com.mysql.cj.result.Field;
 
 public class ColumnImpl implements Column {
+
     private Field field;
 
     /**
      * Constructor.
-     * 
-     * @param f
-     *            {@link Field} object
+     *
+     * @param f {@link Field} object
      */
     public ColumnImpl(Field f) {
         this.field = f;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.admin;
 
 import java.sql.SQLException;
@@ -42,16 +41,15 @@ import com.mysql.cj.jdbc.exceptions.SQLError;
  * Utility functions for admin functionality from Java.
  */
 public class MiniAdmin {
+
     private JdbcConnection conn;
 
     /**
      * Create a new MiniAdmin using the given connection
-     * 
-     * @param conn
-     *            the existing connection to use.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param conn the existing connection to use.
+     *
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(java.sql.Connection conn) throws SQLException {
         if (conn == null) {
@@ -68,39 +66,32 @@ public class MiniAdmin {
 
     /**
      * Create a new MiniAdmin, connecting using the given JDBC URL.
-     * 
-     * @param jdbcUrl
-     *            the JDBC URL to use
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param jdbcUrl the JDBC URL to use
+     *
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(String jdbcUrl) throws SQLException {
         this(jdbcUrl, new Properties());
     }
 
     /**
-     * Create a new MiniAdmin, connecting using the given JDBC URL and
-     * properties
-     * 
-     * @param jdbcUrl
-     *            the JDBC URL to use
-     * @param props
-     *            the properties to use when connecting
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Create a new MiniAdmin, connecting using the given JDBC URL and properties
+     *
+     * @param jdbcUrl the JDBC URL to use
+     * @param props the properties to use when connecting
+     *
+     * @throws SQLException if an error occurs
      */
     public MiniAdmin(String jdbcUrl, Properties props) throws SQLException {
         this.conn = (JdbcConnection) (new Driver().connect(jdbcUrl, props));
     }
 
     /**
-     * Shuts down the MySQL server at the other end of the connection that this
-     * MiniAdmin was created from/for.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Shuts down the MySQL server at the other end of the connection that this MiniAdmin was
+     * created from/for.
+     *
+     * @throws SQLException if an error occurs
      */
     public void shutdown() throws SQLException {
         this.conn.shutdownServer();

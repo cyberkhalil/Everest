@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.sql.ResultSetMetaData;
@@ -37,11 +36,11 @@ import testsuite.BaseTestCase;
  * Tests various number-handling issues that have arisen in the JDBC driver at one time or another.
  */
 public class NumbersRegressionTest extends BaseTestCase {
+
     /**
      * Constructor for NumbersRegressionTest.
-     * 
-     * @param name
-     *            the test name
+     *
+     * @param name the test name
      */
     public NumbersRegressionTest(String name) {
         super(name);
@@ -49,12 +48,10 @@ public class NumbersRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases
-     * 
-     * @param args
-     *            command-line args
-     * 
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @param args command-line args
+     *
+     * @throws Exception if any errors occur
      */
     public static void main(String[] args) {
         junit.textui.TestRunner.run(NumbersRegressionTest.class);
@@ -62,9 +59,8 @@ public class NumbersRegressionTest extends BaseTestCase {
 
     /**
      * Tests that BIGINT retrieval works correctly
-     * 
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @throws Exception if any errors occur
      */
     public void testBigInt() throws Exception {
         createTable("bigIntRegression", "(val BIGINT NOT NULL)");
@@ -90,9 +86,8 @@ public class NumbersRegressionTest extends BaseTestCase {
 
     /**
      * Tests correct type assignment for MySQL FLOAT and REAL datatypes.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testFloatsAndReals() throws Exception {
         createTable("floatsAndReals", "(floatCol FLOAT, realCol REAL, doubleCol DOUBLE)");
@@ -116,11 +111,10 @@ public class NumbersRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests that ResultSetMetaData precision and scale methods work correctly
-     * for all numeric types.
-     * 
-     * @throws Exception
-     *             if any errors occur
+     * Tests that ResultSetMetaData precision and scale methods work correctly for all numeric
+     * types.
+     *
+     * @throws Exception if any errors occur
      */
     public void testPrecisionAndScale() throws Exception {
         testPrecisionForType("TINYINT", 8, -1, false);
@@ -204,9 +198,8 @@ public class NumbersRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#5729, UNSIGNED BIGINT returned incorrectly
-     * 
-     * @throws Exception
-     *             if the test fails
+     *
+     * @throws Exception if the test fails
      */
     public void testBug5729() throws Exception {
         String valueAsString = "1095923280000";
@@ -221,11 +214,10 @@ public class NumbersRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#8484 - ResultSet.getBigDecimal() throws exception when
-     * rounding would need to occur to set scale.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#8484 - ResultSet.getBigDecimal() throws exception when rounding would need
+     * to occur to set scale.
+     *
+     * @throws Exception if the test fails
      * @deprecated
      */
     @Deprecated

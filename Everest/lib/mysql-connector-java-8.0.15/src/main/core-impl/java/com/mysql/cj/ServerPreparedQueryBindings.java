@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.InputStream;
@@ -49,15 +48,16 @@ import com.mysql.cj.util.StringUtils;
 import com.mysql.cj.util.TimeUtil;
 
 //TODO should not be protocol-specific
-
 public class ServerPreparedQueryBindings extends AbstractQueryBindings<ServerPreparedQueryBindValue> {
 
-    /** Do we need to send/resend types to the server? */
+    /**
+     * Do we need to send/resend types to the server?
+     */
     private AtomicBoolean sendTypesToServer = new AtomicBoolean(false);
 
     /**
-     * Flag indicating whether or not the long parameters have been 'switched' back to normal parameters.
-     * We cannot execute() if clearParameters() has not been called in this case.
+     * Flag indicating whether or not the long parameters have been 'switched' back to normal
+     * parameters. We cannot execute() if clearParameters() has not been called in this case.
      */
     private boolean longParameterSwitchDetected = false;
 
@@ -88,13 +88,11 @@ public class ServerPreparedQueryBindings extends AbstractQueryBindings<ServerPre
     }
 
     /**
-     * Returns the structure representing the value that (can be)/(is)
-     * bound at the given parameter index.
-     * 
-     * @param parameterIndex
-     *            0-based
-     * @param forLongData
-     *            is this for a stream?
+     * Returns the structure representing the value that (can be)/(is) bound at the given parameter
+     * index.
+     *
+     * @param parameterIndex 0-based
+     * @param forLongData is this for a stream?
      * @return ServerPreparedQueryBindValue
      */
     public ServerPreparedQueryBindValue getBinding(int parameterIndex, boolean forLongData) {
@@ -330,7 +328,7 @@ public class ServerPreparedQueryBindings extends AbstractQueryBindings<ServerPre
     public void setDouble(int parameterIndex, double x) {
         if (!this.session.getPropertySet().getBooleanProperty(PropertyKey.allowNanAndInf).getValue()
                 && (x == Double.POSITIVE_INFINITY || x == Double.NEGATIVE_INFINITY || Double.isNaN(x))) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[] { x }),
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("PreparedStatement.64", new Object[]{x}),
                     this.session.getExceptionInterceptor());
         }
         ServerPreparedQueryBindValue binding = getBinding(parameterIndex, false);

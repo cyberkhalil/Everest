@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.exceptions;
 
 import java.sql.SQLDataException;
@@ -45,9 +44,11 @@ import com.mysql.cj.protocol.PacketSentTimeHolder;
 import com.mysql.cj.util.Util;
 
 /**
- * SQLError is a utility class that maps MySQL error codes to SQL error codes as is required by the JDBC spec.
+ * SQLError is a utility class that maps MySQL error codes to SQL error codes as is required by the
+ * JDBC spec.
  */
 public class SQLError {
+
     /*
      * SQL State Class SQLNonTransientException Subclass 08
      * SQLNonTransientConnectionException 22 SQLDataException 23
@@ -58,7 +59,6 @@ public class SQLError {
      * SQLTransientConnectionException 40 SQLTransactionRollbackException N/A
      * SQLTimeoutException
      */
-
     public static SQLException createSQLException(String message, String sqlState, ExceptionInterceptor interceptor) {
         return createSQLException(message, sqlState, 0, interceptor);
     }
@@ -186,11 +186,9 @@ public class SQLError {
 
     /**
      * Run exception through an ExceptionInterceptor chain.
-     * 
-     * @param exInterceptor
-     *            exception interceptor
-     * @param sqlEx
-     *            cause
+     *
+     * @param exInterceptor exception interceptor
+     * @param sqlEx cause
      * @return SQLException
      */
     private static SQLException runThroughExceptionInterceptor(ExceptionInterceptor exInterceptor, SQLException sqlEx) {
@@ -205,31 +203,29 @@ public class SQLError {
     }
 
     /**
-     * Create a BatchUpdateException taking in consideration the JDBC version in use. For JDBC version prior to 4.2 the updates count array has int elements
-     * while JDBC 4.2 and beyond uses long values.
-     * 
-     * @param underlyingEx
-     *            underlying exception
-     * @param updateCounts
-     *            update counts of completed queries in this batch
-     * @param interceptor
-     *            exception interceptor
+     * Create a BatchUpdateException taking in consideration the JDBC version in use. For JDBC
+     * version prior to 4.2 the updates count array has int elements while JDBC 4.2 and beyond uses
+     * long values.
+     *
+     * @param underlyingEx underlying exception
+     * @param updateCounts update counts of completed queries in this batch
+     * @param interceptor exception interceptor
      * @return SQLException
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     public static SQLException createBatchUpdateException(SQLException underlyingEx, long[] updateCounts, ExceptionInterceptor interceptor)
             throws SQLException {
         // TODO should not throw SQLException
         SQLException newEx = (SQLException) Util.getInstance("java.sql.BatchUpdateException",
-                new Class<?>[] { String.class, String.class, int.class, long[].class, Throwable.class },
-                new Object[] { underlyingEx.getMessage(), underlyingEx.getSQLState(), underlyingEx.getErrorCode(), updateCounts, underlyingEx }, interceptor);
+                new Class<?>[]{String.class, String.class, int.class, long[].class, Throwable.class},
+                new Object[]{underlyingEx.getMessage(), underlyingEx.getSQLState(), underlyingEx.getErrorCode(), updateCounts, underlyingEx}, interceptor);
         return runThroughExceptionInterceptor(interceptor, newEx);
     }
 
     /**
-     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC version in use.
-     * 
+     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC
+     * version in use.
+     *
      * @return SQLException
      */
     public static SQLException createSQLFeatureNotSupportedException() {
@@ -237,17 +233,14 @@ public class SQLError {
     }
 
     /**
-     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC version in use.
-     * 
-     * @param message
-     *            error message
-     * @param sqlState
-     *            sqlState
-     * @param interceptor
-     *            exception interceptor
+     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC
+     * version in use.
+     *
+     * @param message error message
+     * @param sqlState sqlState
+     * @param interceptor exception interceptor
      * @return SQLException
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     public static SQLException createSQLFeatureNotSupportedException(String message, String sqlState, ExceptionInterceptor interceptor) throws SQLException {
         SQLException newEx = new SQLFeatureNotSupportedException(message, sqlState);

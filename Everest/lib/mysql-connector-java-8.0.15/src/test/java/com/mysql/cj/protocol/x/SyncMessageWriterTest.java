@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import static org.junit.Assert.assertEquals;
@@ -48,6 +47,7 @@ import com.mysql.cj.x.protobuf.MysqlxSession.AuthenticateStart;
 import com.mysql.cj.x.protobuf.MysqlxSession.Reset;
 
 public class SyncMessageWriterTest {
+
     private ByteArrayOutputStream outputStream;
     private SyncMessageSender writer;
 

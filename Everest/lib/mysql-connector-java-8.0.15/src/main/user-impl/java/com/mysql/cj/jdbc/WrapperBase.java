@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.lang.reflect.InvocationHandler;
@@ -44,15 +43,14 @@ import com.mysql.cj.util.Util;
  * Base class for all wrapped instances created by LogicalHandle
  */
 abstract class WrapperBase {
+
     protected MysqlPooledConnection pooledConnection;
 
     /**
      * Fires connection error event if required, before re-throwing exception
-     * 
-     * @param sqlEx
-     *            the SQLException that has occurred
-     * @throws SQLException
-     *             (rethrown)
+     *
+     * @param sqlEx the SQLException that has occurred
+     * @throws SQLException (rethrown)
      */
     protected void checkAndFireConnectionError(SQLException sqlEx) throws SQLException {
         if (this.pooledConnection != null) {
@@ -73,6 +71,7 @@ abstract class WrapperBase {
     }
 
     protected class ConnectionErrorFiringInvocationHandler implements InvocationHandler {
+
         Object invokeOn = null;
 
         public ConnectionErrorFiringInvocationHandler(Object toInvokeOn) {
@@ -105,14 +104,12 @@ abstract class WrapperBase {
         }
 
         /**
-         * Recursively checks for interfaces on the given object to determine
-         * if it implements a java.sql interface, and if so, proxies the
-         * instance so that we can catch and fire SQL errors.
-         * 
-         * @param toProxy
-         *            object to be proxied
-         * @param clazz
-         *            desired class
+         * Recursively checks for interfaces on the given object to determine if it implements a
+         * java.sql interface, and if so, proxies the instance so that we can catch and fire SQL
+         * errors.
+         *
+         * @param toProxy object to be proxied
+         * @param clazz desired class
          * @return proxy object
          */
         private Object proxyIfInterfaceIsJdbc(Object toProxy, Class<?> clazz) {

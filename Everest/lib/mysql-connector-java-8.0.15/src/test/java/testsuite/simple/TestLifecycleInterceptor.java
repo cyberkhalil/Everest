@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.SQLException;
@@ -38,6 +37,7 @@ import com.mysql.cj.jdbc.interceptors.ConnectionLifecycleInterceptor;
 import com.mysql.cj.log.Log;
 
 public class TestLifecycleInterceptor implements ConnectionLifecycleInterceptor {
+
     static int transactionsBegun = 0;
     static int transactionsCompleted = 0;
 

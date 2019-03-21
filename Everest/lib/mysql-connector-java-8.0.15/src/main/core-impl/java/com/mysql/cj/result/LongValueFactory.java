@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -38,6 +37,7 @@ import com.mysql.cj.util.DataTypeUtil;
  * A value factory for creating long values.
  */
 public class LongValueFactory extends DefaultValueFactory<Long> {
+
     @Override
     public Long createFromBigInteger(BigInteger i) {
         return i.longValue();

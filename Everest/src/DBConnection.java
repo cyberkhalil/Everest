@@ -5,16 +5,26 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    public static Connection connection = null;
+    private static boolean isConnected = false;
+    private static Connection connection;
 
-    public static Connection establishConnection() {
+    public static Connection getConnection() {
+        if (isConnected) {
+            return connection;
+        }
+        return null;
+    }
+
+    public static Connection establishConnection() throws SQLException {
         String db = "everest";
         String url = "jdbc:mysql://localhost:3306/";
         String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
         try {
             connection = DriverManager.getConnection(url + db, "test", "test");
+            isConnected = true;
         } catch (SQLException exception) {
-            exception.printStackTrace();
+            isConnected = false;
+            throw exception;
         }
         return connection;
     }

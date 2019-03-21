@@ -11,7 +11,7 @@ public class TeacherEntry {
     public String createTeacher(Teacher t, String str1, int int2, int int3) {
         try {
             //Connection conn = null;
-            Connection connect = login.getConnection();
+            Connection connect = Login.getConnection();
             String query = " insert into teacher (TeacherName,TeacherPhoneNumber)"
                     + " values (?,?)";
             // create the mysql insert preparedstatement

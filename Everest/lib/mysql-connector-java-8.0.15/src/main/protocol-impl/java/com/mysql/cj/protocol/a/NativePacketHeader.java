@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.nio.ByteBuffer;
@@ -34,9 +33,9 @@ import java.nio.ByteBuffer;
 import com.mysql.cj.protocol.MessageHeader;
 
 /**
- * Represents the legacy protocol packet header, consisting of
- * 3-bytes payload_length and 1-byte sequence_id.
- * 
+ * Represents the legacy protocol packet header, consisting of 3-bytes payload_length and 1-byte
+ * sequence_id.
+ *
  * see http://dev.mysql.com/doc/internals/en/mysql-packet.html
  */
 public class NativePacketHeader implements MessageHeader {

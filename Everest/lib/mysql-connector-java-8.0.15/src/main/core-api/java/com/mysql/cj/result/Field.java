@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import com.mysql.cj.CharsetMapping;
@@ -121,21 +120,15 @@ public class Field {
     }
 
     /**
-     * Used by prepared statements to re-use result set data conversion methods
-     * when generating bound parameter retrieval instance for statement interceptors.
+     * Used by prepared statements to re-use result set data conversion methods when generating
+     * bound parameter retrieval instance for statement interceptors.
      *
-     * @param tableName
-     *            not used
-     * @param columnName
-     *            not used
-     * @param collationIndex
-     *            the MySQL collation/character set index
-     * @param encoding
-     *            encoding of data in this field
-     * @param mysqlType
-     *            {@link MysqlType}
-     * @param length
-     *            length in characters or bytes (for BINARY data).
+     * @param tableName not used
+     * @param columnName not used
+     * @param collationIndex the MySQL collation/character set index
+     * @param encoding encoding of data in this field
+     * @param mysqlType {@link MysqlType}
+     * @param length length in characters or bytes (for BINARY data).
      */
     public Field(String tableName, String columnName, int collationIndex, String encoding, MysqlType mysqlType, int length) {
 
@@ -168,7 +161,7 @@ public class Field {
 
                 break;
             default:
-                // ignoring charsets for non-string types
+            // ignoring charsets for non-string types
         }
     }
 
@@ -282,8 +275,7 @@ public class Field {
     /**
      * Is this field _definitely_ not writable?
      *
-     * @return true if this field can not be written to in an INSERT/UPDATE
-     *         statement.
+     * @return true if this field can not be written to in an INSERT/UPDATE statement.
      */
     public boolean isReadOnly() {
         return this.originalColumnName.length() == 0 && this.originalTableName.length() == 0;

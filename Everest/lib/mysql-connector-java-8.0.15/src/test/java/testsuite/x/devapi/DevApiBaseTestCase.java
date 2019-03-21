@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import java.lang.reflect.Field;
@@ -47,6 +46,7 @@ import testsuite.x.internal.InternalXBaseTestCase;
  * Utilities for Dev API tests.
  */
 public class DevApiBaseTestCase extends InternalXBaseTestCase {
+
     /**
      * Session for use in tests.
      */

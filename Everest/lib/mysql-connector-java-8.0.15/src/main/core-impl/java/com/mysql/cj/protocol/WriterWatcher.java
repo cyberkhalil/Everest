@@ -26,19 +26,18 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 /**
- * Objects that want to be notified of lifecycle events on a WatchableWriter should implement this interface, and register themselves with setWatcher() on the
- * WatchableWriter instance.
+ * Objects that want to be notified of lifecycle events on a WatchableWriter should implement this
+ * interface, and register themselves with setWatcher() on the WatchableWriter instance.
  */
 public interface WriterWatcher {
+
     /**
      * Called when the Writer being watched has .close() called
-     * 
-     * @param out
-     *            WatchableWriter instance
+     *
+     * @param out WatchableWriter instance
      */
     void writerClosed(WatchableWriter out);
 }

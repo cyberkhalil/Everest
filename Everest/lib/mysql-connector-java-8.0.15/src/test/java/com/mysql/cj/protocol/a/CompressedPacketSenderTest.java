@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +43,7 @@ import org.junit.Test;
 import com.mysql.cj.protocol.MessageSender;
 
 public class CompressedPacketSenderTest extends PacketSenderTestBase {
+
     private ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     private MessageSender<NativePacketPayload> sender = new CompressedPacketSender(new BufferedOutputStream(this.outputStream));
 
@@ -51,6 +51,7 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
      * Test utility to transform a buffer containing compressed packets into a sequence of payloads.
      */
     static class CompressedPackets {
+
         byte[] packetData;
         private ByteArrayOutputStream decompressedStream;
 
@@ -124,7 +125,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * Test the situation where a single packet is split into two and the second part doesn't exceed the capacity of the second compressed packet.
+     * Test the situation where a single packet is split into two and the second part doesn't exceed
+     * the capacity of the second compressed packet.
      */
     @Test
     public void basicTwoPartSplitPacketTest() throws IOException {
@@ -169,8 +171,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * Test the situation where a single packet is split into two and the second part exceeds the capacity of the second compressed packet requiring a third
-     * compressed packet.
+     * Test the situation where a single packet is split into two and the second part exceeds the
+     * capacity of the second compressed packet requiring a third compressed packet.
      */
     @Test
     public void twoPacketToThreeCompressedPacketNoBoundary() throws IOException {
@@ -197,7 +199,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * This tests that the splitting of MySQL packets includes an additional empty packet to signal the end of the multi-packet sequence.
+     * This tests that the splitting of MySQL packets includes an additional empty packet to signal
+     * the end of the multi-packet sequence.
      */
     @Test
     public void twoPacketToThreeWithEmptyUncompressedPacket() throws IOException {
@@ -221,7 +224,6 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
         assertTrue(packets.nextPayload());
 
         // third packet includes remaining 8 bytes of data and the blank header for the third mysql packet
-
         // last packet is uncompressed
         // payload is: 4 (bumped from first packet) + 4 (bumped from second packet) bytes + empty header (4)
         assertEquals(12, packets.compressedPayloadLen);

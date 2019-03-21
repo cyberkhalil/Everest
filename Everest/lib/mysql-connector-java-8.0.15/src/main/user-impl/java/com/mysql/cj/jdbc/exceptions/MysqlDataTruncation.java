@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.exceptions;
 
 import java.sql.DataTruncation;
@@ -44,21 +43,14 @@ public class MysqlDataTruncation extends DataTruncation {
 
     /**
      * Creates a new MysqlDataTruncation exception/warning.
-     * 
-     * @param message
-     *            the message from the server
-     * @param index
-     *            of column or parameter
-     * @param parameter
-     *            was a parameter?
-     * @param read
-     *            was truncated on read?
-     * @param dataSize
-     *            size requested
-     * @param transferSize
-     *            size actually used
-     * @param vendorErrorCode
-     *            MySQL error code
+     *
+     * @param message the message from the server
+     * @param index of column or parameter
+     * @param parameter was a parameter?
+     * @param read was truncated on read?
+     * @param dataSize size requested
+     * @param transferSize size actually used
+     * @param vendorErrorCode MySQL error code
      */
     public MysqlDataTruncation(String message, int index, boolean parameter, boolean read, int dataSize, int transferSize, int vendorErrorCode) {
         super(index, parameter, read, dataSize, transferSize);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.security.DigestException;
@@ -183,10 +182,10 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
 
     public XMessage buildCreateCollection(String schemaName, String collectionName) {
         if (schemaName == null) {
-            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[] { "schemaName" }));
+            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[]{"schemaName"}));
         }
         if (collectionName == null) {
-            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[] { "collectionName" }));
+            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[]{"collectionName"}));
         }
         return new XMessage(buildXpluginCommand(XpluginStatementCommand.XPLUGIN_STMT_CREATE_COLLECTION,
                 Any.newBuilder().setType(Any.Type.OBJECT)
@@ -199,10 +198,10 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
     public XMessage buildDropCollection(String schemaName, String collectionName) {
         // TODO this works for tables too
         if (schemaName == null) {
-            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[] { "schemaName" }));
+            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[]{"schemaName"}));
         }
         if (collectionName == null) {
-            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[] { "collectionName" }));
+            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[]{"collectionName"}));
         }
         return new XMessage(buildXpluginCommand(XpluginStatementCommand.XPLUGIN_STMT_DROP_COLLECTION,
                 Any.newBuilder().setType(Any.Type.OBJECT)
@@ -222,18 +221,16 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
      * | some_view           | VIEW       |
      * | xprotocol_test_test | TABLE      |
      * </pre>
-     * 
+     *
      * .
-     * 
-     * @param schemaName
-     *            schema name
-     * @param pattern
-     *            object name pattern
+     *
+     * @param schemaName schema name
+     * @param pattern object name pattern
      * @return XMessage
      */
     public XMessage buildListObjects(String schemaName, String pattern) {
         if (schemaName == null) {
-            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[] { "schemaName" }));
+            throw new XProtocolError(Messages.getString("CreateTableStatement.0", new String[]{"schemaName"}));
         }
 
         Builder obj = com.mysql.cj.x.protobuf.MysqlxDatatypes.Object.newBuilder()
@@ -279,7 +276,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
      * |---------------------+---------------|
      * | warnings            | 1             |
      * </pre>
-     * 
+     *
      * @return XMessage
      */
     public XMessage buildListNotices() {
@@ -327,17 +324,14 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
                                 .addFld(ObjectField.newBuilder().setKey("name").setValue(ExprUtil.buildAny(indexName)))
                                 .addFld(ObjectField.newBuilder().setKey("collection").setValue(ExprUtil.buildAny(collectionName)))
                                 .addFld(ObjectField.newBuilder().setKey("schema").setValue(ExprUtil.buildAny(schemaName)))
-
                         ).build()));
     }
 
     /**
      * Build a <i>StmtExecute</i> message for an xplugin command.
      *
-     * @param command
-     *            the xplugin command to send
-     * @param args
-     *            the arguments to the command
+     * @param command the xplugin command to send
+     * @param args the arguments to the command
      * @return {@link StmtExecute}
      */
     private StmtExecute buildXpluginCommand(XpluginStatementCommand command, Any... args) {
@@ -353,9 +347,8 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
 
     /**
      * Build a <i>StmtExecute</i> message for a SQL statement.
-     * 
-     * @param statement
-     *            SQL statement string
+     *
+     * @param statement SQL statement string
      * @return {@link XMessage} wrapping {@link StmtExecute}
      */
     public XMessage buildSqlStatement(String statement) {
@@ -364,11 +357,9 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
 
     /**
      * Build a <i>StmtExecute</i> message for a SQL statement.
-     * 
-     * @param statement
-     *            SQL statement string
-     * @param args
-     *            list of {@link Object} arguments
+     *
+     * @param statement SQL statement string
+     * @param args list of {@link Object} arguments
      * @return {@link XMessage} wrapping {@link StmtExecute}
      */
     public XMessage buildSqlStatement(String statement, List<Object> args) {
@@ -384,19 +375,14 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
     }
 
     /**
-     * Apply the given filter params to the builder object (represented by the method args). Abstract the process of setting the filter params on the operation
-     * message builder.
+     * Apply the given filter params to the builder object (represented by the method args).
+     * Abstract the process of setting the filter params on the operation message builder.
      *
-     * @param filterParams
-     *            the filter params to apply
-     * @param setOrder
-     *            the "builder.addAllOrder()" method reference
-     * @param setLimit
-     *            the "builder.setLimit()" method reference
-     * @param setCriteria
-     *            the "builder.setCriteria()" method reference
-     * @param setArgs
-     *            the "builder.addAllArgs()" method reference
+     * @param filterParams the filter params to apply
+     * @param setOrder the "builder.addAllOrder()" method reference
+     * @param setLimit the "builder.setLimit()" method reference
+     * @param setCriteria the "builder.setCriteria()" method reference
+     * @param setArgs the "builder.addAllArgs()" method reference
      */
     @SuppressWarnings("unchecked")
     private static void applyFilterParams(FilterParams filterParams, Consumer<List<Order>> setOrder, Consumer<Limit> setLimit, Consumer<Expr> setCriteria,
@@ -427,9 +413,9 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
     public XMessage buildSha256MemoryAuthContinue(String user, String password, byte[] nonce, String database) {
         // TODO: encoding for all this?
         String encoding = "UTF8";
-        byte[] databaseBytes = database == null ? new byte[] {} : StringUtils.getBytes(database, encoding);
-        byte[] userBytes = user == null ? new byte[] {} : StringUtils.getBytes(user, encoding);
-        byte[] passwordBytes = password == null || password.length() == 0 ? new byte[] {} : StringUtils.getBytes(password, encoding);
+        byte[] databaseBytes = database == null ? new byte[]{} : StringUtils.getBytes(database, encoding);
+        byte[] userBytes = user == null ? new byte[]{} : StringUtils.getBytes(user, encoding);
+        byte[] passwordBytes = password == null || password.length() == 0 ? new byte[]{} : StringUtils.getBytes(password, encoding);
 
         byte[] hashedPassword = passwordBytes;
         try {
@@ -461,9 +447,9 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
     public XMessage buildMysql41AuthContinue(String user, String password, byte[] salt, String database) {
         // TODO: encoding for all this?
         String encoding = "UTF8";
-        byte[] userBytes = user == null ? new byte[] {} : StringUtils.getBytes(user, encoding);
-        byte[] passwordBytes = password == null || password.length() == 0 ? new byte[] {} : StringUtils.getBytes(password, encoding);
-        byte[] databaseBytes = database == null ? new byte[] {} : StringUtils.getBytes(database, encoding);
+        byte[] userBytes = user == null ? new byte[]{} : StringUtils.getBytes(user, encoding);
+        byte[] passwordBytes = password == null || password.length() == 0 ? new byte[]{} : StringUtils.getBytes(password, encoding);
+        byte[] databaseBytes = database == null ? new byte[]{} : StringUtils.getBytes(database, encoding);
 
         byte[] hashedPassword = passwordBytes;
         if (password != null && password.length() > 0) {
@@ -510,7 +496,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
         };
         try {
             // now we create the client object we use which can handle PLAIN mechanism for "X Protocol" to "serverName"
-            String[] mechanisms = new String[] { "PLAIN" };
+            String[] mechanisms = new String[]{"PLAIN"};
             String authorizationId = database == null || database.trim().length() == 0 ? null : database; // as per protocol spec
             String protocol = "X Protocol";
             Map<String, ?> props = null;
@@ -549,7 +535,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
         };
         try {
             // now we create the client object we use which can handle EXTERNAL mechanism for "X Protocol" to "serverName"
-            String[] mechanisms = new String[] { "EXTERNAL" };
+            String[] mechanisms = new String[]{"EXTERNAL"};
             String authorizationId = database == null || database.trim().length() == 0 ? null : database; // as per protocol spec
             String protocol = "X Protocol";
             Map<String, ?> props = null;

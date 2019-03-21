@@ -183,7 +183,7 @@ public class AddTeacherFrame extends javax.swing.JFrame {
 
     private void AddTeacherBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddTeacherBtnActionPerformed
         try {
-            Connection connect = login.getConnection();
+            Connection connect = Login.getConnection();
             String TeacherName = TeacherNameField.getText();
             int PhoneNumber = Integer.parseInt(PhoneNumberField.getText());
             String SelectedCourse = String.valueOf(CourseBox.getSelectedItem());
@@ -202,7 +202,7 @@ public class AddTeacherFrame extends javax.swing.JFrame {
     private void addCourses() {
         try {
             //Connection connect = null;
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             String query1 = "select courseName from course";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement1 = conn.prepareStatement(query1);

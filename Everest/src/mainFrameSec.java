@@ -1,5 +1,10 @@
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 public class mainFrameSec extends javax.swing.JFrame {
 
@@ -8,7 +13,21 @@ public class mainFrameSec extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.UserLbl.setText("The current user is " + login.CurrentUser);
+        this.UserLbl.setText("The current user is " + Login.CurrentUser);
+        WindowListener exitListener = new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirm = JOptionPane.showConfirmDialog(
+                        rootPane, "Are You Sure to Close Application?",
+                        "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        };
+        this.addWindowListener(exitListener);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -407,7 +426,7 @@ public class mainFrameSec extends javax.swing.JFrame {
     }//GEN-LAST:event_AddNewPaymentActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-        login log = new login();
+        Login log = new Login();
         this.setVisible(false);
         log.setVisible(true);
     }//GEN-LAST:event_LogoutBtnActionPerformed

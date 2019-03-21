@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.sql.Timestamp;
@@ -40,18 +39,18 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * Value factory to create {@link java.sql.Timestamp} instances. Timestamp instances are created from fields returned from the db without a timezone. In order
- * to create a <i>point-in-time</i>, a time zone must be provided to interpret the fields.
+ * Value factory to create {@link java.sql.Timestamp} instances. Timestamp instances are created
+ * from fields returned from the db without a timezone. In order to create a <i>point-in-time</i>, a
+ * time zone must be provided to interpret the fields.
  */
 public class SqlTimestampValueFactory extends DefaultValueFactory<Timestamp> {
+
     // cached per instance to avoid re-creation on every create*() call
     private Calendar cal;
 
     /**
-     * @param calendar
-     *            Calendar used to interpret the fields.
-     * @param tz
-     *            The time zone used to interpret the fields.
+     * @param calendar Calendar used to interpret the fields.
+     * @param tz The time zone used to interpret the fields.
      */
     public SqlTimestampValueFactory(Calendar calendar, TimeZone tz) {
         if (calendar != null) {
@@ -81,7 +80,7 @@ public class SqlTimestampValueFactory extends DefaultValueFactory<Timestamp> {
     @Override
     public Timestamp createFromTime(int hours, int minutes, int seconds, int nanos) {
         if (hours < 0 || hours >= 24) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[] { "" + hours + ":" + minutes + ":" + seconds }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidTimeValue", new Object[]{"" + hours + ":" + minutes + ":" + seconds}));
         }
 
         return createFromTimestamp(1970, 1, 1, hours, minutes, seconds, nanos);

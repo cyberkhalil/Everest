@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -62,7 +61,7 @@ public class BindTest extends BaseCollectionTestCase {
         assertEquals(3, this.collection.count());
 
         assertTrue(this.collection.find("x = 3").execute().hasNext());
-        this.collection.remove("x = ?").bind(new Object[] { 3 }).execute();
+        this.collection.remove("x = ?").bind(new Object[]{3}).execute();
         assertEquals(2, this.collection.count());
         assertFalse(this.collection.find("x = 3").execute().hasNext());
     }
@@ -84,7 +83,7 @@ public class BindTest extends BaseCollectionTestCase {
 
         assertEquals(3, this.collection.count());
 
-        assertTrue(this.collection.find("x = ?").bind(new Object[] { 3 }).execute().hasNext());
+        assertTrue(this.collection.find("x = ?").bind(new Object[]{3}).execute().hasNext());
         Map<String, Object> params = new HashMap<>();
         params.put("thePlaceholder", 3);
         this.collection.remove("x = :thePlaceholder").bind(params).execute();

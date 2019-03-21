@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.sql.SQLException;
@@ -39,6 +38,7 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 public class ReplicationMySQLConnection extends MultiHostMySQLConnection implements ReplicationConnection {
+
     public ReplicationMySQLConnection(MultiHostConnectionProxy proxy) {
         super(proxy);
     }
@@ -236,7 +236,6 @@ public class ReplicationMySQLConnection extends MultiHostMySQLConnection impleme
      * }
      * }
      */
-
     @Override
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
         // This works for classes that aren't actually wrapping anything
@@ -249,7 +248,7 @@ public class ReplicationMySQLConnection extends MultiHostMySQLConnection impleme
             // This works for classes that aren't actually wrapping anything
             return iface.cast(this);
         } catch (ClassCastException cce) {
-            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[] { iface.toString() }),
+            throw SQLError.createSQLException(Messages.getString("Common.UnableToUnwrap", new Object[]{iface.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
         }
     }

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.util.Arrays;
@@ -71,7 +70,7 @@ public class BooleanPropertyDefinition extends AbstractPropertyDefinition<Boolea
 
     /**
      * Creates instance of BooleanProperty.
-     * 
+     *
      * @return RuntimeProperty
      */
     @Override
@@ -85,7 +84,7 @@ public class BooleanPropertyDefinition extends AbstractPropertyDefinition<Boolea
         } catch (Exception e) {
             throw ExceptionFactory.createException(
                     Messages.getString("PropertyDefinition.1",
-                            new Object[] { name, StringUtils.stringArrayToString(getBooleanAllowableValues(), "'", "', '", "' or '", "'"), value }),
+                            new Object[]{name, StringUtils.stringArrayToString(getBooleanAllowableValues(), "'", "', '", "' or '", "'"), value}),
                     e, exceptionInterceptor);
         }
     }

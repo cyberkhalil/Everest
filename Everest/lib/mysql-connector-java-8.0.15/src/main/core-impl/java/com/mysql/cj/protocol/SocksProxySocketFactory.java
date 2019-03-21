@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.net.InetSocketAddress;
@@ -37,7 +36,8 @@ import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
 
 /**
- * A socket factory used to create sockets connecting through a SOCKS proxy. The socket still supports all the same TCP features as the "standard" socket.
+ * A socket factory used to create sockets connecting through a SOCKS proxy. The socket still
+ * supports all the same TCP features as the "standard" socket.
  */
 public class SocksProxySocketFactory extends StandardSocketFactory {
 

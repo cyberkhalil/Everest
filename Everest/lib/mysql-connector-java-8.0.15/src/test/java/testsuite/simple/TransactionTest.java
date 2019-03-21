@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.sql.SQLException;
@@ -34,13 +33,14 @@ import java.sql.SQLException;
 import testsuite.BaseTestCase;
 
 public class TransactionTest extends BaseTestCase {
+
     private static final double DOUBLE_CONST = 25.4312;
 
     private static final double EPSILON = .0000001;
 
     /**
      * Creates a new TransactionTest object.
-     * 
+     *
      * @param name
      */
     public TransactionTest(String name) {
@@ -49,7 +49,7 @@ public class TransactionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

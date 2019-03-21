@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import com.mysql.cj.MysqlType;
@@ -65,7 +64,6 @@ public class ColumnDefinitionReader implements ProtocolEntityReader<ColumnDefini
         boolean checkEOF = !this.protocol.getServerSession().isEOFDeprecated();
 
         // Read in the column information
-
         fields = new Field[(int) columnCount];
 
         for (int i = 0; i < columnCount; i++) {
@@ -82,12 +80,10 @@ public class ColumnDefinitionReader implements ProtocolEntityReader<ColumnDefini
 
     /**
      * Unpacks the Field information from the given packet.
-     * 
-     * @param packet
-     *            the packet containing the field information
-     * @param characterSetMetadata
-     *            encoding of the metadata in the packet
-     * 
+     *
+     * @param packet the packet containing the field information
+     * @param characterSetMetadata encoding of the metadata in the packet
+     *
      * @return the unpacked field
      */
     protected Field unpackField(NativePacketPayload packet, String characterSetMetadata) {

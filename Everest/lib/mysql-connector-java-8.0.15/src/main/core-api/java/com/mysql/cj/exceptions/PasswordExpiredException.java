@@ -26,13 +26,12 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 /**
- * Equivalent to SQLSTATE ER_MUST_CHANGE_PASSWORD = 1820
- * "You must SET PASSWORD before executing this statement"
- * 
+ * Equivalent to SQLSTATE ER_MUST_CHANGE_PASSWORD = 1820 "You must SET PASSWORD before executing
+ * this statement"
+ *
  * Server entered to sandbox morde when this failure happens.
  */
 public class PasswordExpiredException extends CJException {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.TimeZone;
@@ -48,6 +47,7 @@ import com.mysql.cj.xdevapi.SqlResult;
 import com.mysql.cj.xdevapi.SqlUpdateResult;
 
 public class SqlResultMessageListener implements MessageListener<XMessage> {
+
     private static enum ResultType {
         UPDATE, DATA
     }

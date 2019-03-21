@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import static org.junit.Assert.assertEquals;
@@ -108,7 +107,8 @@ public class ExprParserTest {
     }
 
     /**
-     * Check that a string parses and is reconstituted as a string that we expect. Futher we parse the canonical version to make sure it doesn't change.
+     * Check that a string parses and is reconstituted as a string that we expect. Futher we parse
+     * the canonical version to make sure it doesn't change.
      */
     private void checkParseRoundTrip(String input, String expected) {
         if (expected == null) {
@@ -436,12 +436,12 @@ public class ExprParserTest {
 
         Iterator<ObjectField> fields = proj.getSource().getObject().getFldList().iterator();
 
-        Arrays.stream(new String[][] { new String[] { "a", "\"value for a\"" }, new String[] { "b", "(1 + 1)" }, new String[] { "c", ":0" },
-                new String[] { "d", "$.member[22]" }, new String[] { "e", "{'nested':\"doc\"}" } }).forEach(pair -> {
-                    ObjectField f = fields.next();
-                    assertEquals(pair[0], f.getKey());
-                    assertEquals(pair[1], ExprUnparser.exprToString(f.getValue()));
-                });
+        Arrays.stream(new String[][]{new String[]{"a", "\"value for a\""}, new String[]{"b", "(1 + 1)"}, new String[]{"c", ":0"},
+        new String[]{"d", "$.member[22]"}, new String[]{"e", "{'nested':\"doc\"}"}}).forEach(pair -> {
+            ObjectField f = fields.next();
+            assertEquals(pair[0], f.getKey());
+            assertEquals(pair[1], ExprUnparser.exprToString(f.getValue()));
+        });
         assertFalse(fields.hasNext());
     }
 

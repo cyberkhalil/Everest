@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.util;
 
 import java.util.Map;
@@ -37,6 +36,7 @@ import com.mysql.cj.CacheAdapter;
 import com.mysql.cj.CacheAdapterFactory;
 
 public class PerVmServerConfigCacheFactory implements CacheAdapterFactory<String, Map<String, String>> {
+
     static final ConcurrentHashMap<String, Map<String, String>> serverConfigByUrl = new ConcurrentHashMap<>();
 
     private static final CacheAdapter<String, Map<String, String>> serverConfigCache = new CacheAdapter<String, Map<String, String>>() {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.IOException;
@@ -38,7 +37,6 @@ import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.util.TestUtils;
 
 //TODO should not be protocol-specific
-
 public class ServerPreparedQueryTestcaseGenerator extends ServerPreparedQuery {
 
     public ServerPreparedQueryTestcaseGenerator(NativeSession sess) {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.io.IOException;
@@ -49,6 +48,7 @@ import com.mysql.cj.protocol.SerializingBufferWriter;
  * Asynchronous message writer.
  */
 public class AsyncMessageSender implements MessageSender<XMessage> {
+
     /**
      * Header length of X Protocol packet.
      */
@@ -86,7 +86,7 @@ public class AsyncMessageSender implements MessageSender<XMessage> {
         int payloadSize = size + 1;
         // we check maxAllowedPacket against payloadSize as that's considered the "packet size" (not including 4 byte size header)
         if (this.maxAllowedPacket > 0 && payloadSize > this.maxAllowedPacket) {
-            throw new CJPacketTooBigException(Messages.getString("PacketTooBigException.1", new Object[] { size, this.maxAllowedPacket }));
+            throw new CJPacketTooBigException(Messages.getString("PacketTooBigException.1", new Object[]{size, this.maxAllowedPacket}));
         }
         // for debugging
         //System.err.println("Initiating write of message (size=" + payloadSize + ", tag=" + com.mysql.cj.mysqlx.protobuf.Mysqlx.ClientMessages.Type.valueOf(type) + ")");
@@ -109,11 +109,10 @@ public class AsyncMessageSender implements MessageSender<XMessage> {
     }
 
     /**
-     * Allow overwriting the channel once the writer has been established. Required for SSL/TLS connections when the encryption doesn't start until we send the
-     * capability flag to X Plugin.
-     * 
-     * @param channel
-     *            {@link AsynchronousSocketChannel}
+     * Allow overwriting the channel once the writer has been established. Required for SSL/TLS
+     * connections when the encryption doesn't start until we send the capability flag to X Plugin.
+     *
+     * @param channel {@link AsynchronousSocketChannel}
      */
     public void setChannel(AsynchronousSocketChannel channel) {
         this.bufferWriter.setChannel(channel);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.math.BigDecimal;
@@ -43,6 +42,7 @@ import com.mysql.cj.result.ValueFactory;
  * Tests for {@link FloatingPointBoundsEnforcer}
  */
 public class FloatingPointBoundsEnforcerTest {
+
     ValueFactory<String> rawStringVf = new StringValueFactory();
     ValueFactory<String> enforcing100Vf = new FloatingPointBoundsEnforcer<>(this.rawStringVf, -100, 100);
 

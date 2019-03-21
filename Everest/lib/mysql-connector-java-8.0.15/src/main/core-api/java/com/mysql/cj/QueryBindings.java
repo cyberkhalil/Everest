@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.InputStream;
@@ -57,7 +56,7 @@ public interface QueryBindings<T extends BindValue> {
     void setBindValues(T[] bindValues);
 
     /**
-     * 
+     *
      * @return true if bind values had long data
      */
     boolean clearBindValues();
@@ -79,7 +78,6 @@ public interface QueryBindings<T extends BindValue> {
     void setValue(int paramIndex, String val, MysqlType type);
 
     // Array getArray(int parameterIndex);
-
     void setAsciiStream(int parameterIndex, InputStream x);
 
     void setAsciiStream(int parameterIndex, InputStream x, int length);
@@ -87,15 +85,12 @@ public interface QueryBindings<T extends BindValue> {
     void setAsciiStream(int parameterIndex, InputStream x, long length);
 
     // InputStream getAsciiStream(int parameterIndex);
-
     void setBigDecimal(int parameterIndex, BigDecimal x);
 
     // BigDecimal getBigDecimal(int parameterIndex);
-
     void setBigInteger(int parameterIndex, BigInteger x);
 
     // BigInteger getBigInteger(int parameterIndex);
-
     void setBinaryStream(int parameterIndex, InputStream x);
 
     void setBinaryStream(int parameterIndex, InputStream x, int length);
@@ -103,7 +98,6 @@ public interface QueryBindings<T extends BindValue> {
     void setBinaryStream(int parameterIndex, InputStream x, long length);
 
     // InputStream getBinaryStream(int parameterIndex);
-
     void setBlob(int parameterIndex, java.sql.Blob x);
 
     void setBlob(int parameterIndex, InputStream inputStream);
@@ -111,15 +105,12 @@ public interface QueryBindings<T extends BindValue> {
     void setBlob(int parameterIndex, InputStream inputStream, long length);
 
     // java.sql.Blob getBlob(int parameterIndex);
-
     void setBoolean(int parameterIndex, boolean x);
 
     // boolean getBoolean(int parameterIndex);
-
     void setByte(int parameterIndex, byte x);
 
     // byte getByte(int parameterIndex);
-
     void setBytes(int parameterIndex, byte[] x);
 
     void setBytes(int parameterIndex, byte[] x, boolean checkForIntroducer, boolean escapeForMBChars);
@@ -129,7 +120,6 @@ public interface QueryBindings<T extends BindValue> {
     void setBytesNoEscapeNoQuotes(int parameterIndex, byte[] parameterAsBytes);
 
     // byte[] getBytes(int parameterIndex);
-
     void setCharacterStream(int parameterIndex, Reader reader);
 
     void setCharacterStream(int parameterIndex, Reader reader, int length);
@@ -137,7 +127,6 @@ public interface QueryBindings<T extends BindValue> {
     void setCharacterStream(int parameterIndex, Reader reader, long length);
 
     // Reader getCharacterStream(int parameterIndex);
-
     void setClob(int i, Clob x);
 
     void setClob(int parameterIndex, Reader reader);
@@ -145,35 +134,28 @@ public interface QueryBindings<T extends BindValue> {
     void setClob(int parameterIndex, Reader reader, long length);
 
     // Clob getClob(int parameterIndex);
-
     void setDate(int parameterIndex, Date x);
 
     void setDate(int parameterIndex, Date x, Calendar cal);
 
     // Date getDate(int parameterIndex);
-
     void setDouble(int parameterIndex, double x);
 
     // double getDouble(int parameterIndex)
-
     void setFloat(int parameterIndex, float x);
 
     // float getFloat(int parameterIndex);
-
     void setInt(int parameterIndex, int x);
 
     // int getInt(int parameterIndex);
-
     void setLong(int parameterIndex, long x);
 
     // long getLong(int parameterIndex);
-
     void setNCharacterStream(int parameterIndex, Reader value);
 
     void setNCharacterStream(int parameterIndex, Reader reader, long length);
 
     // Reader getNCharacterStream(int parameterIndex);
-
     void setNClob(int parameterIndex, Reader reader);
 
     void setNClob(int parameterIndex, Reader reader, long length);
@@ -181,13 +163,11 @@ public interface QueryBindings<T extends BindValue> {
     void setNClob(int parameterIndex, NClob value);
 
     // Reader getNClob(int parameterIndex);
-
     void setNString(int parameterIndex, String x);
 
     void setNull(int parameterIndex);
 
     // boolean isNull(int parameterIndex);
-
     void setObject(int parameterIndex, Object parameterObj);
 
     void setObject(int parameterIndex, Object parameterObj, MysqlType targetMysqlType);
@@ -195,23 +175,18 @@ public interface QueryBindings<T extends BindValue> {
     void setObject(int parameterIndex, Object parameterObj, MysqlType targetMysqlType, int scaleOrLength);
 
     // Object getObject(int parameterIndex);
-
     // Ref getRef(int parameterIndex);
-
     void setShort(int parameterIndex, short x);
 
     // short getShort(int parameterIndex);
-
     void setString(int parameterIndex, String x);
 
     // String getString(int parameterIndex);
-
     void setTime(int parameterIndex, Time x);
 
     void setTime(int parameterIndex, Time x, Calendar cal);
 
     // Time getTime(int parameterIndex);
-
     void setTimestamp(int parameterIndex, Timestamp x, Calendar cal);
 
     void setTimestamp(int parameterIndex, Timestamp x);
@@ -219,7 +194,5 @@ public interface QueryBindings<T extends BindValue> {
     void setTimestamp(int parameterIndex, Timestamp x, Calendar targetCalendar, int fractionalLength);
 
     // Timestamp getTimestamp(int parameterIndex);
-
     // URL getURL(int parameterIndex);
-
 }

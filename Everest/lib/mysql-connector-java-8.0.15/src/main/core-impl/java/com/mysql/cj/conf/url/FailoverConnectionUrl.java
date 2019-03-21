@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf.url;
 
 import java.util.Properties;
@@ -35,13 +34,14 @@ import com.mysql.cj.conf.ConnectionUrl;
 import com.mysql.cj.conf.ConnectionUrlParser;
 
 public class FailoverConnectionUrl extends ConnectionUrl {
+
     /**
-     * Constructs an instance of {@link FailoverConnectionUrl}, performing all the required initializations.
-     * 
-     * @param connStrParser
-     *            a {@link ConnectionUrlParser} instance containing the parsed version of the original connection string
-     * @param info
-     *            the connection arguments map
+     * Constructs an instance of {@link FailoverConnectionUrl}, performing all the required
+     * initializations.
+     *
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
+     * the original connection string
+     * @param info the connection arguments map
      */
     public FailoverConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {
         super(connStrParser, info);

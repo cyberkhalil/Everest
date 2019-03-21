@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 import java.util.Date;
@@ -71,8 +70,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String durationUnits;
 
     /**
-     * The hostname the event occurred on (as an index into a dictionary, used
-     * by 'remote' profilers for efficiency)?
+     * The hostname the event occurred on (as an index into a dictionary, used by 'remote' profilers
+     * for efficiency)?
      */
     protected int hostNameIndex;
 
@@ -82,8 +81,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String hostName;
 
     /**
-     * The catalog the event occurred on (as an index into a dictionary, used by
-     * 'remote' profilers for efficiency)?
+     * The catalog the event occurred on (as an index into a dictionary, used by 'remote' profilers
+     * for efficiency)?
      */
     protected int catalogIndex;
 
@@ -93,14 +92,13 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String catalog;
 
     /**
-     * Where was the event created (as an index into a dictionary, used by
-     * 'remote' profilers for efficiency)?
+     * Where was the event created (as an index into a dictionary, used by 'remote' profilers for
+     * efficiency)?
      */
     protected int eventCreationPointIndex;
 
     /**
-     * Where was the event created (as a string description of the
-     * eventCreationPoint)?
+     * Where was the event created (as a string description of the eventCreationPoint)?
      */
     protected String eventCreationPointDesc;
 
@@ -111,31 +109,19 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Creates a new profiler event
-     * 
-     * @param eventType
-     *            the event type (from the constants TYPE_????)
-     * @param hostName
-     *            the hostname where the event occurs
-     * @param catalog
-     *            the catalog in use
-     * @param connectionId
-     *            the connection id (-1 if N/A)
-     * @param statementId
-     *            the statement id (-1 if N/A)
-     * @param resultSetId
-     *            the result set id (-1 if N/A)
-     * @param eventCreationTime
-     *            when was the event created?
-     * @param eventDuration
-     *            how long did the event last?
-     * @param durationUnits
-     *            time units user for eventDuration
-     * @param eventCreationPointDesc
-     *            event creation point as a string
-     * @param eventCreationPoint
-     *            event creation point as a Throwable
-     * @param message
-     *            optional message
+     *
+     * @param eventType the event type (from the constants TYPE_????)
+     * @param hostName the hostname where the event occurs
+     * @param catalog the catalog in use
+     * @param connectionId the connection id (-1 if N/A)
+     * @param statementId the statement id (-1 if N/A)
+     * @param resultSetId the result set id (-1 if N/A)
+     * @param eventCreationTime when was the event created?
+     * @param eventDuration how long did the event last?
+     * @param durationUnits time units user for eventDuration
+     * @param eventCreationPointDesc event creation point as a string
+     * @param eventCreationPoint event creation point as a Throwable
+     * @param message optional message
      */
     public ProfilerEventImpl(byte eventType, String hostName, String catalog, long connectionId, int statementId, int resultSetId, long eventCreationTime,
             long eventDuration, String durationUnits, String eventCreationPointDesc, String eventCreationPoint, String message) {
@@ -156,7 +142,7 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Returns a representation of this event as a String.
-     * 
+     *
      * @return a String representation of this event.
      */
     @Override
@@ -221,9 +207,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
 
     /**
      * Unpacks a binary representation of this event.
-     * 
-     * @param buf
-     *            the binary representation of this event
+     *
+     * @param buf the binary representation of this event
      * @return the unpacked Event
      */
     public static ProfilerEvent unpack(byte[] buf) {

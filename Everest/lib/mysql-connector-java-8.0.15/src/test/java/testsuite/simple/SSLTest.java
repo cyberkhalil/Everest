@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import testsuite.BaseTestCase;
@@ -35,11 +34,11 @@ import testsuite.BaseTestCase;
  * Tests SSL functionality in the driver.
  */
 public class SSLTest extends BaseTestCase {
+
     /**
      * Constructor for SSLTest.
-     * 
-     * @param name
-     *            the name of the test to run.
+     *
+     * @param name the name of the test to run.
      */
     public SSLTest(String name) {
         super(name);
@@ -59,7 +58,7 @@ public class SSLTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -68,9 +67,8 @@ public class SSLTest extends BaseTestCase {
 
     /**
      * Tests SSL Connection
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     public void testConnect() throws Exception {
         System.out.println("<<<<<<<<<<< Look for SSL debug output >>>>>>>>>>>");

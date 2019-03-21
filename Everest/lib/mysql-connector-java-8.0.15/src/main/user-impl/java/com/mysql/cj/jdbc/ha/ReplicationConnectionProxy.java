@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.lang.reflect.InvocationTargetException;
@@ -49,10 +48,12 @@ import com.mysql.cj.jdbc.JdbcStatement;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 /**
- * Connection that opens two connections, one two a replication master, and another to one or more slaves, and decides to use master when the connection is not
- * read-only, and use slave(s) when the connection is read-only.
+ * Connection that opens two connections, one two a replication master, and another to one or more
+ * slaves, and decides to use master when the connection is not read-only, and use slave(s) when the
+ * connection is read-only.
  */
 public class ReplicationConnectionProxy extends MultiHostConnectionProxy implements PingTarget {
+
     private ReplicationConnection thisAsReplicationConnection;
 
     protected boolean enableJMX = false;
@@ -73,27 +74,24 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
     /**
      * Static factory to create {@link ReplicationConnection} instances.
-     * 
-     * @param connectionUrl
-     *            The connection URL containing the hosts in a replication setup.
+     *
+     * @param connectionUrl The connection URL containing the hosts in a replication setup.
      * @return A {@link ReplicationConnection} proxy.
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     public static ReplicationConnection createProxyInstance(ReplicationConnectionUrl connectionUrl) throws SQLException {
         ReplicationConnectionProxy connProxy = new ReplicationConnectionProxy(connectionUrl);
         return (ReplicationConnection) java.lang.reflect.Proxy.newProxyInstance(ReplicationConnection.class.getClassLoader(),
-                new Class<?>[] { ReplicationConnection.class, JdbcConnection.class }, connProxy);
+                new Class<?>[]{ReplicationConnection.class, JdbcConnection.class}, connProxy);
     }
 
     /**
-     * Creates a proxy for java.sql.Connection that routes requests to a load-balanced connection of master servers or a load-balanced connection of slave
-     * servers. Each sub-connection is created with its own set of independent properties.
-     * 
-     * @param connectionUrl
-     *            The connection URL containing the hosts in a replication setup.
-     * @throws SQLException
-     *             if an error occurs
+     * Creates a proxy for java.sql.Connection that routes requests to a load-balanced connection of
+     * master servers or a load-balanced connection of slave servers. Each sub-connection is created
+     * with its own set of independent properties.
+     *
+     * @param connectionUrl The connection URL containing the hosts in a replication setup.
+     * @throws SQLException if an error occurs
      */
     private ReplicationConnectionProxy(ReplicationConnectionUrl connectionUrl) throws SQLException {
         super();
@@ -108,7 +106,7 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
         try {
             this.enableJMX = Boolean.parseBoolean(enableJMXAsString);
         } catch (Exception e) {
-            throw SQLError.createSQLException(Messages.getString("MultihostConnection.badValueForHaEnableJMX", new Object[] { enableJMXAsString }),
+            throw SQLError.createSQLException(Messages.getString("MultihostConnection.badValueForHaEnableJMX", new Object[]{enableJMXAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -117,7 +115,7 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
             this.allowMasterDownConnections = Boolean.parseBoolean(allowMasterDownConnectionsAsString);
         } catch (Exception e) {
             throw SQLError.createSQLException(
-                    Messages.getString("ReplicationConnectionProxy.badValueForAllowMasterDownConnections", new Object[] { enableJMXAsString }),
+                    Messages.getString("ReplicationConnectionProxy.badValueForAllowMasterDownConnections", new Object[]{enableJMXAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -126,7 +124,7 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
             this.allowSlaveDownConnections = Boolean.parseBoolean(allowSlaveDownConnectionsAsString);
         } catch (Exception e) {
             throw SQLError.createSQLException(
-                    Messages.getString("ReplicationConnectionProxy.badValueForAllowSlaveDownConnections", new Object[] { allowSlaveDownConnectionsAsString }),
+                    Messages.getString("ReplicationConnectionProxy.badValueForAllowSlaveDownConnections", new Object[]{allowSlaveDownConnectionsAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -136,7 +134,7 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
         } catch (Exception e) {
             throw SQLError.createSQLException(
-                    Messages.getString("ReplicationConnectionProxy.badValueForReadFromMasterWhenNoSlaves", new Object[] { readFromMasterWhenNoSlavesAsString }),
+                    Messages.getString("ReplicationConnectionProxy.badValueForReadFromMasterWhenNoSlaves", new Object[]{readFromMasterWhenNoSlavesAsString}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, null);
         }
 
@@ -197,9 +195,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
     /**
      * Wraps this object with a new replication Connection instance.
-     * 
-     * @return
-     *         The connection object instance that wraps 'this'.
+     *
+     * @return The connection object instance that wraps 'this'.
      */
     @Override
     JdbcConnection getNewWrapperForThisAsConnection() throws SQLException {
@@ -208,9 +205,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
     /**
      * Propagates the connection proxy down through all live connections.
-     * 
-     * @param proxyConn
-     *            The top level connection in the multi-host connections chain.
+     *
+     * @param proxyConn The top level connection in the multi-host connections chain.
      */
     @Override
     protected void propagateProxyDown(JdbcConnection proxyConn) {
@@ -224,9 +220,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
     /**
      * Has no use in replication connections. Always return <code>false</code>.
-     * 
-     * @param t
-     *            The Exception instance to check.
+     *
+     * @param t The Exception instance to check.
      */
     @Override
     boolean shouldExceptionTriggerConnectionSwitch(Throwable t) {
@@ -243,7 +238,7 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
 
     /**
      * Checks if current connection is the slaves l/b connection.
-     * 
+     *
      * @return true if current connection is the slaves l/b connection
      */
     public boolean isSlavesConnection() {
@@ -302,8 +297,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Proxies method invocation on the java.sql.Connection interface.
-     * This is the continuation of MultiHostConnectionProxy#invoke(Object, Method, Object[]).
+     * Proxies method invocation on the java.sql.Connection interface. This is the continuation of
+     * MultiHostConnectionProxy#invoke(Object, Method, Object[]).
      */
     @Override
     Object invokeMore(Object proxy, Method method, Object[] args) throws Throwable {
@@ -339,14 +334,14 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Checks if this connection is in a state capable to invoke the provided method. If the connection is in an inconsistent state, i.e. it has no hosts for
-     * both sub-connections, then throw an invalid transaction state exception. Nevertheless, the methods defined in the ReplicationConnection interface will be
-     * allowed as they are the only way to leave from an empty hosts lists situation.
-     * 
-     * @param method
-     *            method
-     * @throws Throwable
-     *             if an error occurs
+     * Checks if this connection is in a state capable to invoke the provided method. If the
+     * connection is in an inconsistent state, i.e. it has no hosts for both sub-connections, then
+     * throw an invalid transaction state exception. Nevertheless, the methods defined in the
+     * ReplicationConnection interface will be allowed as they are the only way to leave from an
+     * empty hosts lists situation.
+     *
+     * @param method method
+     * @throws Throwable if an error occurs
      */
     private void checkConnectionCapabilityForMethod(Method method) throws Throwable {
         if (this.masterHosts.isEmpty() && this.slaveHosts.isEmpty() && !ReplicationConnection.class.isAssignableFrom(method.getDeclaringClass())) {

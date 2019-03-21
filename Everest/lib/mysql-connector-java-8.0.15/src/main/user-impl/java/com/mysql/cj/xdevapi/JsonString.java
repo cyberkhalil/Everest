@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.HashMap;
@@ -50,7 +49,7 @@ public class JsonString implements JsonValue {
 
     /**
      * Get internal unescaped JsonString value.
-     * 
+     *
      * @return internal string value
      */
     public String getString() {
@@ -59,9 +58,8 @@ public class JsonString implements JsonValue {
 
     /**
      * Set JsonString value.
-     * 
-     * @param value
-     *            string value
+     *
+     * @param value string value
      * @return this JsonString
      */
     public JsonString setValue(String value) {
@@ -71,7 +69,7 @@ public class JsonString implements JsonValue {
 
     /**
      * Get escaped JsonString value.
-     * 
+     *
      * @return string value
      */
     @Override

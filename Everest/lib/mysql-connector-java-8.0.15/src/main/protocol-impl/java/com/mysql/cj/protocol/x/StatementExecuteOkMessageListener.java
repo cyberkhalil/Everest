@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.concurrent.CompletableFuture;
@@ -40,9 +39,11 @@ import com.mysql.cj.x.protobuf.MysqlxResultset.FetchDone;
 import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
 
 /**
- * Async message reader accumulating the status necessary to produce a {@link StatementExecuteOk} result.
+ * Async message reader accumulating the status necessary to produce a {@link StatementExecuteOk}
+ * result.
  */
 public class StatementExecuteOkMessageListener implements MessageListener<XMessage> {
+
     private StatementExecuteOkBuilder builder = new StatementExecuteOkBuilder();
     private CompletableFuture<StatementExecuteOk> future = new CompletableFuture<>();
 
@@ -56,18 +57,23 @@ public class StatementExecuteOkMessageListener implements MessageListener<XMessa
         Class<? extends GeneratedMessageV3> msgClass = (Class<? extends GeneratedMessageV3>) message.getMessage().getClass();
         if (Frame.class.equals(msgClass)) {
             this.builder.addNotice(Notice.getInstance(message));
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
         } else if (StmtExecuteOk.class.equals(msgClass)) {
             this.future.complete(this.builder.build());
-            return true; /* done reading? */
+            return true;
+            /* done reading? */
         } else if (Error.class.equals(msgClass)) {
             this.future.completeExceptionally(new XProtocolError(Error.class.cast(message.getMessage())));
-            return true; /* done reading? */
+            return true;
+            /* done reading? */
         } else if (FetchDone.class.equals(msgClass)) {
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
         }
         this.future.completeExceptionally(new WrongArgumentException("Unhandled msg class (" + msgClass + ") + msg=" + message.getMessage()));
-        return true; /* done reading? */
+        return true;
+        /* done reading? */
     }
 
     public void error(Throwable ex) {

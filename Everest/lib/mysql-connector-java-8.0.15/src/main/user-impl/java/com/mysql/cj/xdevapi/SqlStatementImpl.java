@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.ArrayList;
@@ -41,17 +40,16 @@ import com.mysql.cj.exceptions.FeatureNotAvailableException;
  * {@link SqlStatement} implementation.
  */
 public class SqlStatementImpl implements SqlStatement {
+
     private MysqlxSession mysqlxSession;
     private String sql;
     private List<Object> args = new ArrayList<>();
 
     /**
      * Constructor.
-     * 
-     * @param mysqlxSession
-     *            {@link com.mysql.cj.Session} instance.
-     * @param sql
-     *            SQL statement string.
+     *
+     * @param mysqlxSession {@link com.mysql.cj.Session} instance.
+     * @param sql SQL statement string.
      */
     public SqlStatementImpl(MysqlxSession mysqlxSession, String sql) {
         this.mysqlxSession = mysqlxSession;

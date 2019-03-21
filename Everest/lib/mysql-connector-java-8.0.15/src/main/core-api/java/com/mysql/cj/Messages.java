@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.text.MessageFormat;
@@ -50,7 +49,6 @@ public class Messages {
         // Overly-pedantic here, some appserver and JVM combos don't deal well with the no-args version, others don't deal well with the three-arg version, so
         // we need to try both :(
         //
-
         try {
             temp = ResourceBundle.getBundle(BUNDLE_NAME, Locale.getDefault(), Messages.class.getClassLoader());
         } catch (Throwable t) {
@@ -69,9 +67,8 @@ public class Messages {
 
     /**
      * Returns the localized message for the given message key
-     * 
-     * @param key
-     *            the message key
+     *
+     * @param key the message key
      * @return The localized message for the key
      */
     public static String getString(String key) {

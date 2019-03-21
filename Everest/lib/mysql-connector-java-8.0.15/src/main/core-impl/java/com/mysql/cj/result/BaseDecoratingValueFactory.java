@@ -26,20 +26,20 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * A base class for value factory decorators. The default behavior of all methods is to delegate to the underlying value factory. Subclasses are expected to
- * override one or more creation functions to override or augment the behavior of the underlying value factory.
- * 
- * @param <T>
- *            value type
+ * A base class for value factory decorators. The default behavior of all methods is to delegate to
+ * the underlying value factory. Subclasses are expected to override one or more creation functions
+ * to override or augment the behavior of the underlying value factory.
+ *
+ * @param <T> value type
  */
 public abstract class BaseDecoratingValueFactory<T> implements ValueFactory<T> {
+
     /**
      * The target value factory that the decorator delegates to.
      */

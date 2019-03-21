@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.Connection;
@@ -64,12 +63,10 @@ public class MysqlXADataSource extends MysqlDataSource implements javax.sql.XADa
 
     /**
      * Wraps a connection as a 'fake' XAConnection
-     * 
-     * @param conn
-     *            connection to wrap
+     *
+     * @param conn connection to wrap
      * @return {@link XAConnection}
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     private XAConnection wrapConnection(Connection conn) throws SQLException {
         if (getBooleanProperty(PropertyKey.pinGlobalTxToPhysicalConnection).getValue()

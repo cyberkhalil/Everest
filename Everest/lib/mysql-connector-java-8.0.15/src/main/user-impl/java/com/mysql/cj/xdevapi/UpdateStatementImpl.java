@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.Map;
@@ -41,6 +40,7 @@ import com.mysql.cj.protocol.x.XMessageBuilder;
  * {@link UpdateStatement} implementation.
  */
 public class UpdateStatementImpl extends FilterableStatement<UpdateStatement, Result> implements UpdateStatement {
+
     private MysqlxSession mysqlxSession;
     private UpdateParams updateParams = new UpdateParams();
 
@@ -51,13 +51,13 @@ public class UpdateStatementImpl extends FilterableStatement<UpdateStatement, Re
 
     public Result execute() {
         StatementExecuteOk ok = this.mysqlxSession
-                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildRowUpdate(this.filterParams, this.updateParams));
+                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildRowUpdate(this.filterParams, this.updateParams));
         return new UpdateResult(ok);
     }
 
     public CompletableFuture<Result> executeAsync() {
         CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession
-                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildRowUpdate(this.filterParams, this.updateParams));
+                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildRowUpdate(this.filterParams, this.updateParams));
         return okF.thenApply(ok -> new UpdateResult(ok));
     }
 

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x;
 
 import java.util.Properties;
@@ -36,6 +35,7 @@ import com.mysql.cj.xdevapi.Session;
 import com.mysql.cj.xdevapi.SessionFactory;
 
 public abstract class BaseXDevAPITestCase {
+
     protected String baseUrl = System.getProperty(PropertyDefinitions.SYSP_testsuite_url_mysqlx);
     protected boolean isSetForXTests = this.baseUrl != null && this.baseUrl.length() > 0;
     protected SessionFactory f = new SessionFactory();

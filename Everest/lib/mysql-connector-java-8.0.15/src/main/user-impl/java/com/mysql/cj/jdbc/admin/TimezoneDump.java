@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.admin;
 
 import java.sql.DriverManager;
@@ -35,9 +34,11 @@ import java.sql.ResultSet;
 import com.mysql.cj.util.TimeUtil;
 
 /**
- * Dumps the timezone of the MySQL server represented by the JDBC url given on the commandline (or localhost/test if none provided).
+ * Dumps the timezone of the MySQL server represented by the JDBC url given on the commandline (or
+ * localhost/test if none provided).
  */
 public class TimezoneDump {
+
     private static final String DEFAULT_URL = "jdbc:mysql:///test";
 
     /**
@@ -49,11 +50,9 @@ public class TimezoneDump {
 
     /**
      * Entry point for program when called from the command line.
-     * 
-     * @param args
-     *            command-line args. Arg 1 is JDBC URL.
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @param args command-line args. Arg 1 is JDBC URL.
+     * @throws Exception if any errors occur
      */
     public static void main(String[] args) throws Exception {
         String jdbcUrl = DEFAULT_URL;

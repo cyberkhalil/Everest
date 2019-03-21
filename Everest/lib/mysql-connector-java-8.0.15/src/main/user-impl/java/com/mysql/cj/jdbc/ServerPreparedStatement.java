@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.IOException;
@@ -72,30 +71,28 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     private boolean hasOnDuplicateKeyUpdate = false;
 
-    /** Has this prepared statement been marked invalid? */
+    /**
+     * Has this prepared statement been marked invalid?
+     */
     private boolean invalid = false;
 
-    /** If this statement has been marked invalid, what was the reason? */
+    /**
+     * If this statement has been marked invalid, what was the reason?
+     */
     private CJException invalidationException;
 
     protected boolean isCached = false;
 
     /**
      * Creates a prepared statement instance
-     * 
-     * @param conn
-     *            the connection creating us.
-     * @param sql
-     *            the SQL containing the statement to prepare.
-     * @param catalog
-     *            the catalog in use when we were created.
-     * @param resultSetType
-     *            ResultSet type
-     * @param resultSetConcurrency
-     *            ResultSet concurrency
+     *
+     * @param conn the connection creating us.
+     * @param sql the SQL containing the statement to prepare.
+     * @param catalog the catalog in use when we were created.
+     * @param resultSetType ResultSet type
+     * @param resultSetConcurrency ResultSet concurrency
      * @return new ServerPreparedStatement
-     * @throws SQLException
-     *             If an error occurs
+     * @throws SQLException If an error occurs
      */
     protected static ServerPreparedStatement getInstance(JdbcConnection conn, String sql, String catalog, int resultSetType, int resultSetConcurrency)
             throws SQLException {
@@ -104,20 +101,14 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
     /**
      * Creates a new ServerPreparedStatement object.
-     * 
-     * @param conn
-     *            the connection creating us.
-     * @param sql
-     *            the SQL containing the statement to prepare.
-     * @param catalog
-     *            the catalog in use when we were created.
-     * @param resultSetType
-     *            ResultSet type
-     * @param resultSetConcurrency
-     *            ResultSet concurrency
-     * 
-     * @throws SQLException
-     *             If an error occurs
+     *
+     * @param conn the connection creating us.
+     * @param sql the SQL containing the statement to prepare.
+     * @param catalog the catalog in use when we were created.
+     * @param resultSetType ResultSet type
+     * @param resultSetConcurrency ResultSet concurrency
+     *
+     * @throws SQLException If an error occurs
      */
     protected ServerPreparedStatement(JdbcConnection conn, String sql, String catalog, int resultSetType, int resultSetConcurrency) throws SQLException {
         super(conn, catalog);
@@ -338,7 +329,6 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
                                     ServerPreparedQueryBindValue[] parameterBindings = ((ServerPreparedQuery) this.query).getQueryBindings().getBindValues();
 
                                     // We need to check types each time, as the user might have bound different types in each addBatch()
-
                                     if (previousBindValuesForBatch != null) {
                                         for (int j = 0; j < parameterBindings.length; j++) {
                                             if (parameterBindings[j].bufferType != previousBindValuesForBatch[j].bufferType) {
@@ -452,16 +442,14 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Returns the structure representing the value that (can be)/(is)
-     * bound at the given parameter index.
-     * 
-     * @param parameterIndex
-     *            1-based
-     * @param forLongData
-     *            is this for a stream?
+     * Returns the structure representing the value that (can be)/(is) bound at the given parameter
+     * index.
+     *
+     * @param parameterIndex 1-based
+     * @param forLongData is this for a stream?
      * @return {@link ServerPreparedQueryBindValue}
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected ServerPreparedQueryBindValue getBinding(int parameterIndex, boolean forLongData) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -519,7 +507,6 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
                 // This will leak server resources, but if we don't do this, we'll deadlock (potentially, because there's no guarantee when, what order, and
                 // what concurrency finalizers will be called with). Well-behaved programs won't rely on finalizers to clean up their statements.
                 //
-
                 CJException exceptionDuringClose = null;
 
                 if (calledExplicitly && !this.connection.isClosed()) {
@@ -550,11 +537,9 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Used by Connection when auto-reconnecting to retrieve 'lost' prepared
-     * statements.
-     * 
-     * @throws CJException
-     *             if an error occurs.
+     * Used by Connection when auto-reconnecting to retrieve 'lost' prepared statements.
+     *
+     * @throws CJException if an error occurs.
      */
     protected void rePrepare() {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -598,34 +583,30 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Tells the server to execute this prepared statement with the current
-     * parameter bindings.
-     * 
+     * Tells the server to execute this prepared statement with the current parameter bindings.
+     *
      * <pre>
      *    -   Server gets the command 'COM_EXECUTE' to execute the
      *        previously         prepared query. If there is any param markers;
      *  then client will send the data in the following format:
-     * 
+     *
      *  [COM_EXECUTE:1]
      *  [STMT_ID:4]
      *  [NULL_BITS:(param_count+7)/8)]
      *  [TYPES_SUPPLIED_BY_CLIENT(0/1):1]
      *  [[length]data]
      *  [[length]data] .. [[length]data].
-     * 
+     *
      *  (Note: Except for string/binary types; all other types will not be
      *  supplied with length field)
      * </pre>
-     * 
-     * @param maxRowsToRetrieve
-     *            rows limit
-     * @param createStreamingResultSet
-     *            should c/J create a streaming result?
-     * @param metadata
-     *            use this metadata instead of the one provided on wire
+     *
+     * @param maxRowsToRetrieve rows limit
+     * @param createStreamingResultSet should c/J create a streaming result?
+     * @param metadata use this metadata instead of the one provided on wire
      * @return result set
-     * @throws SQLException
-     *             if a database access error occurs or this method is called on a closed PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is called on a closed
+     * PreparedStatement
      */
     protected ResultSetInternalMethods serverExecute(int maxRowsToRetrieve, boolean createStreamingResultSet, ColumnDefinition metadata) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -771,7 +752,6 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
                             }
 
                             // If we ended up here as a multi-statement, we're not working with a server prepared statement
-
                             if (batchedStatement instanceof ServerPreparedStatement) {
                                 ServerPreparedQueryBindValue asBound = ((ServerPreparedStatement) batchedStatement).getBinding(batchedParamIndex, false);
                                 asBound.bufferType = paramArg[j].bufferType;
@@ -781,7 +761,7 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
 
                             break;
                         default:
-                            throw new IllegalArgumentException(Messages.getString("ServerPreparedStatement.26", new Object[] { batchedParamIndex }));
+                            throw new IllegalArgumentException(Messages.getString("ServerPreparedStatement.26", new Object[]{batchedParamIndex}));
                     }
                 }
             }

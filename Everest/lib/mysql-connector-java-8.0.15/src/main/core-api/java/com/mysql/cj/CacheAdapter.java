@@ -26,12 +26,12 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Set;
 
 public interface CacheAdapter<K, V> {
+
     V get(K key);
 
     void put(K key, V value);

@@ -26,13 +26,11 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import com.mysql.cj.util.StringUtils;
 
 //TODO should not be protocol-specific
-
 public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQueryBindings> {
 
     public ClientPreparedQuery(NativeSession sess) {
@@ -40,9 +38,9 @@ public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQue
     }
 
     /**
-     * Computes the maximum parameter set size, and entire batch size given
-     * the number of arguments in the batch.
-     * 
+     * Computes the maximum parameter set size, and entire batch size given the number of arguments
+     * in the batch.
+     *
      */
     @Override
     protected long[] computeMaxParameterSetSizeAndBatchSize(int numBatchedArgs) {
@@ -81,7 +79,6 @@ public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQue
             // This is a little naive, because the ?s will be replaced but it gives us some padding, and is less housekeeping to ignore them. We're looking
             // for a "fuzzy" value here anyway
             //
-
             if (this.parseInfo.getValuesClause() != null) {
                 sizeOfParameterSet += this.parseInfo.getValuesClause().length() + 1;
             } else {
@@ -95,12 +92,11 @@ public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQue
             }
         }
 
-        return new long[] { maxSizeOfParameterSet, sizeOfEntireBatch };
+        return new long[]{maxSizeOfParameterSet, sizeOfEntireBatch};
     }
 
     /**
-     * @param parameterIndex
-     *            parameter index
+     * @param parameterIndex parameter index
      * @return bytes
      */
     public byte[] getBytesRepresentation(int parameterIndex) {
@@ -128,11 +124,9 @@ public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQue
 
     /**
      * Get bytes representation for a parameter in a statement batch.
-     * 
-     * @param parameterIndex
-     *            parameter index
-     * @param commandIndex
-     *            command index
+     *
+     * @param parameterIndex parameter index
+     * @param commandIndex command index
      * @return bytes
      */
     public byte[] getBytesRepresentationForBatch(int parameterIndex, int commandIndex) {

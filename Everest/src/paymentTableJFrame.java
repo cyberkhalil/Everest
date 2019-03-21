@@ -35,7 +35,7 @@ public class paymentTableJFrame extends javax.swing.JFrame {
         ArrayList<payment> arrayList = new ArrayList<payment>();
         arrayList1 = new ArrayList<String>();
 
-        Connection conn = login.getConnection();
+        Connection conn = Login.getConnection();
         String qe = "SELECT StdID,StdName,IDCardNum FROM student";
         Statement st;
         ResultSet rs;
@@ -400,7 +400,7 @@ public class paymentTableJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_paymentValueTFActionPerformed
     private void updateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBActionPerformed
         try {
-            Connection conn = login.getConnection();
+            Connection conn = Login.getConnection();
             //  int paymentID = Integer.parseInt(payment_idTF.getText());
             double paymentValue = Double.parseDouble(paymentValueTF.getText());
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());

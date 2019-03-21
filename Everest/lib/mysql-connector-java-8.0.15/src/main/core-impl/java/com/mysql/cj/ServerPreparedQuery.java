@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.IOException;
@@ -59,19 +58,24 @@ import com.mysql.cj.util.LogUtils;
 import com.mysql.cj.util.StringUtils;
 
 //TODO should not be protocol-specific
-
 public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQueryBindings> {
 
     public static final int BLOB_STREAM_READ_BUF_SIZE = 8192;
     public static final byte OPEN_CURSOR_FLAG = 1;
 
-    /** The ID that the server uses to identify this PreparedStatement */
+    /**
+     * The ID that the server uses to identify this PreparedStatement
+     */
     private long serverStatementId;
 
-    /** Field-level metadata for parameters */
+    /**
+     * Field-level metadata for parameters
+     */
     private Field[] parameterFields;
 
-    /** Field-level metadata for result sets. From statement prepare. */
+    /**
+     * Field-level metadata for result sets. From statement prepare.
+     */
     private ColumnDefinition resultFields;
 
     protected RuntimeProperty<Boolean> gatherPerfMetrics;
@@ -106,11 +110,9 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * 
-     * @param sql
-     *            query string
-     * @throws IOException
-     *             if an i/o error occurs
+     *
+     * @param sql query string
+     * @throws IOException if an i/o error occurs
      */
     public void serverPrepare(String sql) throws IOException {
         this.session.checkClosed();
@@ -177,16 +179,11 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * @param <T>
-     *            extends {@link Resultset}
-     * @param maxRowsToRetrieve
-     *            rows limit
-     * @param createStreamingResultSet
-     *            should c/J create a streaming result?
-     * @param metadata
-     *            use this metadata instead of the one provided on wire
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     * @param <T> extends {@link Resultset}
+     * @param maxRowsToRetrieve rows limit
+     * @param createStreamingResultSet should c/J create a streaming result?
+     * @param metadata use this metadata instead of the one provided on wire
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      * @return T instance
      */
     public <T extends Resultset> T serverExecute(int maxRowsToRetrieve, boolean createStreamingResultSet, ColumnDefinition metadata,
@@ -234,7 +231,6 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
             }
 
             // Okay, we've got all "newly"-bound streams, so reset server-side state to clear out previous bindings
-
             serverResetStatement();
         }
 
@@ -252,7 +248,6 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
         //
         // store the parameter values
         //
-
         NativePacketPayload packet = this.session.getSharedSendPacket();
         packet.writeInteger(IntegerDataType.INT1, NativeConstants.COM_STMT_EXECUTE);
         packet.writeInteger(IntegerDataType.INT4, this.serverStatementId);
@@ -475,10 +470,10 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
 
     /**
      * Sends stream-type data parameters to the server.
-     * 
+     *
      * <pre>
      *  Long data handling:
-     * 
+     *
      *  - Server gets the long data in pieces with command type 'COM_LONG_DATA'.
      *  - The packet received will have the format:
      *    [COM_LONG_DATA:     1][STMT_ID:4][parameter_number:2][type:2][data]
@@ -489,12 +484,10 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
      *    data  or not; if there is any error; then during execute; the error
      *    will  be returned
      * </pre>
-     * 
-     * @param parameterIndex
-     *            parameter index
-     * @param longData
-     *            {@link ServerPreparedQueryBindValue containing long data}
-     * 
+     *
+     * @param parameterIndex parameter index
+     * @param longData {@link ServerPreparedQueryBindValue containing long data}
+     *
      */
     private void serverLongData(int parameterIndex, ServerPreparedQueryBindValue longData) {
         synchronized (this) {
@@ -706,8 +699,7 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * @param clearServerParameters
-     *            flag indicating whether we need an additional clean up
+     * @param clearServerParameters flag indicating whether we need an additional clean up
      */
     public void clearParameters(boolean clearServerParameters) {
         boolean hadLongData = false;
@@ -734,13 +726,13 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * Computes the maximum parameter set size and the size of the entire batch given
-     * the number of arguments in the batch.
+     * Computes the maximum parameter set size and the size of the entire batch given the number of
+     * arguments in the batch.
      */
     @Override
     protected long[] computeMaxParameterSetSizeAndBatchSize(int numBatchedArgs) {
 
-        long sizeOfEntireBatch = 1 + /* com_execute */+4 /* stmt id */ + 1 /* flags */ + 4 /* batch count padding */;
+        long sizeOfEntireBatch = 1 + /* com_execute */ +4 /* stmt id */ + 1 /* flags */ + 4 /* batch count padding */;
         long maxSizeOfParameterSet = 0;
 
         for (int i = 0; i < numBatchedArgs; i++) {
@@ -772,7 +764,7 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
             }
         }
 
-        return new long[] { maxSizeOfParameterSet, sizeOfEntireBatch };
+        return new long[]{maxSizeOfParameterSet, sizeOfEntireBatch};
     }
 
     private String truncateQueryToLog(String sql) {

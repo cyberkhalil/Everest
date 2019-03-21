@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package demo.x.devapi;
 
 import com.mysql.cj.xdevapi.Collection;
@@ -43,6 +42,7 @@ import com.mysql.cj.xdevapi.SessionFactory;
  * Sample program showing how to use Connector/J's Dev API support.
  */
 public class DevApiSample {
+
     public static void main(String[] args) {
         Session session = new SessionFactory().getSession("mysqlx://localhost:33060/test?user=user&password=password1234");
         System.err.println("Connected!");

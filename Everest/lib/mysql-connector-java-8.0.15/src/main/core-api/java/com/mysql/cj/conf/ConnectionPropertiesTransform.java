@@ -26,27 +26,25 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.util.Properties;
 
 /**
- * Implement this interface, and pass the class name as the 'propertiesTransform' property in your URL, and the driver will pass the properties it has
- * parsed to your transform implementation so that you can modify/substitute/add any that you desire.
+ * Implement this interface, and pass the class name as the 'propertiesTransform' property in your
+ * URL, and the driver will pass the properties it has parsed to your transform implementation so
+ * that you can modify/substitute/add any that you desire.
  */
 public interface ConnectionPropertiesTransform {
+
     /**
-     * The driver will call this method if the user has loaded your
-     * implementation of this interface by specifying the 'propertiesTransform'
-     * property in their URL.
-     * 
-     * @param props
-     *            the properties as passed by the driver (never null)
-     * 
-     * @return the same properties with any transformations that your
-     *         implementation has made
-     * 
+     * The driver will call this method if the user has loaded your implementation of this interface
+     * by specifying the 'propertiesTransform' property in their URL.
+     *
+     * @param props the properties as passed by the driver (never null)
+     *
+     * @return the same properties with any transformations that your implementation has made
+     *
      */
     Properties transformProperties(Properties props);
 }

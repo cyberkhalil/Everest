@@ -15,7 +15,7 @@ import javax.swing.table.TableModel;
 public class studentTableJframe extends javax.swing.JFrame {
 
     Student student;
-    Connection conn = login.getConnection();
+    Connection conn = Login.getConnection();
 
     public studentTableJframe() {
         initComponents();
@@ -60,7 +60,7 @@ public class studentTableJframe extends javax.swing.JFrame {
     }
 
     public void excuteSQLQuery(String Query, String message) {
-        Connection conn = DBConnection.establishConnection();
+        Connection conn = DBConnection.getConnection();
         Statement st;
         try {
             st = conn.createStatement();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.IOException;
@@ -43,7 +42,9 @@ import com.mysql.cj.util.StringUtils;
  */
 public class DebugBufferingPacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 
-    /** Max number of bytes to dump when tracing the protocol */
+    /**
+     * Max number of bytes to dump when tracing the protocol
+     */
     private static final int MAX_PACKET_DUMP_LENGTH = 1024;
     private static final int DEBUG_MSG_LEN = 96;
 
@@ -74,15 +75,15 @@ public class DebugBufferingPacketReader implements MessageReader<NativePacketHea
         if (!this.packetSequenceReset) {
 
             if ((currPacketSeq == -128) && (prevPacketSeq != 127)) {
-                throw new IOException(Messages.getString("PacketReader.9", new Object[] { "-128", currPacketSeq }));
+                throw new IOException(Messages.getString("PacketReader.9", new Object[]{"-128", currPacketSeq}));
             }
 
             if ((prevPacketSeq == -1) && (currPacketSeq != 0)) {
-                throw new IOException(Messages.getString("PacketReader.9", new Object[] { "-1", currPacketSeq }));
+                throw new IOException(Messages.getString("PacketReader.9", new Object[]{"-1", currPacketSeq}));
             }
 
             if ((currPacketSeq != -128) && (prevPacketSeq != -1) && (currPacketSeq != (prevPacketSeq + 1))) {
-                throw new IOException(Messages.getString("PacketReader.9", new Object[] { (prevPacketSeq + 1), currPacketSeq }));
+                throw new IOException(Messages.getString("PacketReader.9", new Object[]{(prevPacketSeq + 1), currPacketSeq}));
             }
 
         } else {

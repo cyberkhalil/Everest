@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.authentication;
 
 import java.io.BufferedInputStream;
@@ -55,6 +54,7 @@ import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.util.StringUtils;
 
 public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPayload> {
+
     public static String PLUGIN_NAME = "sha256_password";
 
     protected Protocol<NativePacketPayload> protocol;
@@ -102,7 +102,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
 
         if (this.password == null || this.password.length() == 0 || fromServer == null) {
             // no password
-            NativePacketPayload bresp = new NativePacketPayload(new byte[] { 0 });
+            NativePacketPayload bresp = new NativePacketPayload(new byte[]{0});
             toServer.add(bresp);
 
         } else {
@@ -141,7 +141,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
                     } else {
                         // build and send Public Key Retrieval packet
                         this.seed = fromServer.readString(StringSelfDataType.STRING_TERM, null);
-                        NativePacketPayload bresp = new NativePacketPayload(new byte[] { 1 });
+                        NativePacketPayload bresp = new NativePacketPayload(new byte[]{1});
                         toServer.add(bresp);
                         this.publicKeyRequested = true;
                     }
@@ -159,7 +159,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
 
     protected byte[] encryptPassword(String transformation) {
         byte[] input = null;
-        input = this.password != null ? StringUtils.getBytesNullTerminated(this.password, this.protocol.getPasswordCharacterEncoding()) : new byte[] { 0 };
+        input = this.password != null ? StringUtils.getBytesNullTerminated(this.password, this.protocol.getPasswordCharacterEncoding()) : new byte[]{0};
         byte[] mysqlScrambleBuff = new byte[input.length];
         Security.xorString(input, mysqlScrambleBuff, this.seed.getBytes(), input.length);
         return ExportControlled.encryptWithRSAPublicKey(mysqlScrambleBuff, ExportControlled.decodeRSAPublicKey(this.publicKeyString), transformation);
@@ -188,7 +188,7 @@ public class Sha256PasswordPlugin implements AuthenticationPlugin<NativePacketPa
 
             throw ExceptionFactory.createException(WrongArgumentException.class,
                     Messages.getString("Sha256PasswordPlugin.0",
-                            propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? new Object[] { "" } : new Object[] { "'" + pkPath + "'" }),
+                            propertySet.getBooleanProperty(PropertyKey.paranoid).getValue() ? new Object[]{""} : new Object[]{"'" + pkPath + "'"}),
                     exceptionInterceptor);
 
         } finally {

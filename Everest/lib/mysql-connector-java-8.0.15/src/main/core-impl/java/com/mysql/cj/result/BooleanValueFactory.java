@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -38,6 +37,7 @@ import com.mysql.cj.util.DataTypeUtil;
  * A value factory for creating {@link java.lang.Boolean} values.
  */
 public class BooleanValueFactory extends DefaultValueFactory<Boolean> {
+
     @Override
     public Boolean createFromLong(long l) {
         // Goes back to ODBC driver compatibility, and VB/Automation Languages/COM, where in Windows "-1" can mean true as well.

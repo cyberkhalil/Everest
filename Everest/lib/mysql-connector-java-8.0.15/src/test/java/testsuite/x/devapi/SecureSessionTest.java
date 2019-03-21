@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -55,6 +54,7 @@ import com.mysql.cj.xdevapi.SessionImpl;
 import com.mysql.cj.xdevapi.SqlResult;
 
 public class SecureSessionTest extends DevApiBaseTestCase {
+
     final String trustStoreUrl = "file:src/test/config/ssl-test-certs/ca-truststore";
     final String trustStorePath = "src/test/config/ssl-test-certs/ca-truststore";
     final String trustStorePassword = "password";
@@ -162,7 +162,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map. This is the default if no ssl-mode is provided.
+     * Tests secure {@link Session}s created via URL and properties map. This is the default if no
+     * ssl-mode is provided.
      */
     @Test
     public void testSecureSessionDefaultAndRequired() {
@@ -210,7 +211,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, with the SSL system properties also defined.
+     * Tests secure {@link Session}s created via URL and properties map, with the SSL system
+     * properties also defined.
      */
     @Test
     public void testSecureSessionDefaultAndRequiredWithSystemPropsPresent() {
@@ -261,7 +263,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, verifying server certificate.
+     * Tests secure {@link Session}s created via URL and properties map, verifying server
+     * certificate.
      */
     @Test
     public void testSecureSessionVerifyServerCertificate() {
@@ -296,7 +299,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map combined with SSL system properties, verifying server certificate.
+     * Tests secure {@link Session}s created via URL and properties map combined with SSL system
+     * properties, verifying server certificate.
      */
     @Test
     public void testSecureSessionVerifyServerCertificateUsingSystemProps() {
@@ -329,8 +333,9 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, verifying server certificate.
-     * This test would pass if the server certificate had "CN=<host_name>", with <host_name> equals to the host name in the test URL.
+     * Tests secure {@link Session}s created via URL and properties map, verifying server
+     * certificate. This test would pass if the server certificate had "CN=<host_name>", with
+     * <host_name> equals to the host name in the test URL.
      */
     @Test
     @Ignore
@@ -407,8 +412,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests exception thrown on verifying server certificate identity failure.
-     * The server certificate used in this test has "CN=MySQL Connector/J Server".
+     * Tests exception thrown on verifying server certificate identity failure. The server
+     * certificate used in this test has "CN=MySQL Connector/J Server".
      */
     @Test
     public void testSecureSessionVerifyServerCertificateIdentityFailure() {
@@ -498,7 +503,7 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests that PLAIN, MYSQL41, SHA256_MEMORY, and EXTERNAL authentication mechanisms.
-     * 
+     *
      * @throws Throwable
      */
     @Test
@@ -546,7 +551,6 @@ public class SecureSessionTest extends DevApiBaseTestCase {
             Properties props = new Properties(this.sslFreeTestProperties);
 
             // With default auth mechanism for secure connections (PLAIN).
-
             // *** User: mysqlnative; Auth: default.
             props.setProperty(PropertyKey.USER.getKeyName(), "testAuthMechNative");
             props.setProperty(PropertyKey.PASSWORD.getKeyName(), "mysqlnative");
@@ -606,7 +610,6 @@ public class SecureSessionTest extends DevApiBaseTestCase {
             }
 
             // Forcing an auth mechanism.
-
             // *** User: testAuthMechNative; Auth: PLAIN.
             props.setProperty(PropertyKey.USER.getKeyName(), "testAuthMechNative");
             props.setProperty(PropertyKey.PASSWORD.getKeyName(), "mysqlnative");
@@ -785,7 +788,6 @@ public class SecureSessionTest extends DevApiBaseTestCase {
             props.setProperty(PropertyKey.xdevapiSSLMode.getKeyName(), PropertyDefinitions.XdevapiSslMode.DISABLED.toString());
 
             // With default auth mechanism for non-secure connections (MYSQL41|SHA2_MEMORY).
-
             // *** User: testAuthMechNative; Auth: default.
             props.setProperty(PropertyKey.USER.getKeyName(), "testAuthMechNative");
             props.setProperty(PropertyKey.PASSWORD.getKeyName(), "mysqlnative");
@@ -845,7 +847,6 @@ public class SecureSessionTest extends DevApiBaseTestCase {
             }
 
             // Forcing an auth mechanism.
-
             // *** User: testAuthMechNative; Auth: PLAIN.
             props.setProperty(PropertyKey.USER.getKeyName(), "testAuthMechNative");
             props.setProperty(PropertyKey.PASSWORD.getKeyName(), "mysqlnative");
@@ -1002,13 +1003,12 @@ public class SecureSessionTest extends DevApiBaseTestCase {
 
     /**
      * Tests TLSv1.2
-     * 
-     * This test requires two server instances:
-     * 1) main xplugin server pointed to by the com.mysql.cj.testsuite.mysqlx.url variable,
-     * compiled with yaSSL
-     * 2) additional xplugin server instance pointed to by com.mysql.cj.testsuite.mysqlx.url.openssl,
-     * variable compiled with OpenSSL.
-     * 
+     *
+     * This test requires two server instances: 1) main xplugin server pointed to by the
+     * com.mysql.cj.testsuite.mysqlx.url variable, compiled with yaSSL 2) additional xplugin server
+     * instance pointed to by com.mysql.cj.testsuite.mysqlx.url.openssl, variable compiled with
+     * OpenSSL.
+     *
      * For example, add these variables to the ant call:
      * -Dcom.mysql.cj.testsuite.mysqlx.url=mysqlx://localhost:33060/cjtest_5_1?user=root&password=pwd
      * -Dcom.mysql.cj.testsuite.mysqlx.url.openssl=mysqlx://localhost:33070/cjtest_5_1?user=root&password=pwd
@@ -1028,7 +1028,6 @@ public class SecureSessionTest extends DevApiBaseTestCase {
         props.setProperty(PropertyKey.xdevapiSSLTrustStorePassword.getKeyName(), this.trustStorePassword);
 
         /* Against yaSSL server */
-
         // defaults to TLSv1.1
         Session testSession = this.fact.getSession(props);
         assertSecureSession(testSession);
@@ -1178,7 +1177,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#25494338, ENABLEDSSLCIPHERSUITES PARAMETER NOT WORKING AS EXPECTED WITH X-PLUGIN.
+     * Tests fix for Bug#25494338, ENABLEDSSLCIPHERSUITES PARAMETER NOT WORKING AS EXPECTED WITH
+     * X-PLUGIN.
      */
     @Test
     public void testBug25494338() {
@@ -1252,7 +1252,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23597281, GETNODESESSION() CALL WITH SSL PARAMETERS RETURNS CJCOMMUNICATIONSEXCEPTION
+     * Tests fix for Bug#23597281, GETNODESESSION() CALL WITH SSL PARAMETERS RETURNS
+     * CJCOMMUNICATIONSEXCEPTION
      */
     @Test
     public void testBug23597281() {
@@ -1280,9 +1281,11 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#26227653, WL#10528 DIFF BEHAVIOUR WHEN SYSTEM PROP JAVAX.NET.SSL.TRUSTSTORETYPE IS SET
-     * 
-     * The actual bug is: if wrong system-wide SSL settings are provided, the session should not fail if 'xdevapi.ssl-mode=REQUIRED'.
+     * Tests fix for Bug#26227653, WL#10528 DIFF BEHAVIOUR WHEN SYSTEM PROP
+     * JAVAX.NET.SSL.TRUSTSTORETYPE IS SET
+     *
+     * The actual bug is: if wrong system-wide SSL settings are provided, the session should not
+     * fail if 'xdevapi.ssl-mode=REQUIRED'.
      */
     @Test
     public void testBug26227653() {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
@@ -52,9 +51,11 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * This class parses a connection string using the general URI structure defined in RFC 3986. Instead of using a URI instance to ensure the correct syntax of
- * the connection string, this implementation uses regular expressions which is faster but also less strict in terms of validations. This actually works better
- * because database URLs don't exactly stick to the RFC 3986 rules.
+ * This class parses a connection string using the general URI structure defined in RFC 3986.
+ * Instead of using a URI instance to ensure the correct syntax of the connection string, this
+ * implementation uses regular expressions which is faster but also less strict in terms of
+ * validations. This actually works better because database URLs don't exactly stick to the RFC 3986
+ * rules.
  * <p>
  * <i>scheme://authority/path?query#fragment</i>
  * <p>
@@ -63,19 +64,23 @@ import com.mysql.cj.util.StringUtils;
  * <dt>scheme</dt>
  * <dd>The protocol and subprotocol identification. Usually "jdbc:mysql:" or "mysqlx:".</dd>
  * <dt>authority</dt>
- * <dd>Contains information about the user credentials and/or the host and port information. Unlike its definition in the RFC 3986 specification, there can be
- * multiple authority sections separated by a single comma (,) in a connection string. It is also possible to use an alternative syntax for the user and/or host
- * identification, that also allows setting per host connection properties, in the form of
+ * <dd>Contains information about the user credentials and/or the host and port information. Unlike
+ * its definition in the RFC 3986 specification, there can be multiple authority sections separated
+ * by a single comma (,) in a connection string. It is also possible to use an alternative syntax
+ * for the user and/or host identification, that also allows setting per host connection properties,
+ * in the form of
  * "[user[:password]@]address=(key1=value)[(key2=value)]...[,address=(key3=value)[(key4=value)]...]...".</dd>
  * <dt>path</dt>
  * <dd>Corresponds to the database identification.</dd>
  * <dt>query</dt>
- * <dd>The connection properties, written as "propertyName1[=[propertyValue1]][&amp;propertyName2[=[propertyValue2]]]..."</dd>
+ * <dd>The connection properties, written as
+ * "propertyName1[=[propertyValue1]][&amp;propertyName2[=[propertyValue2]]]..."</dd>
  * <dt>fragment</dt>
  * <dd>The fragment section is ignored in Connector/J connection strings.</dd>
  * </dl>
  */
 public class ConnectionUrlParser implements DatabaseUrlContainer {
+
     private static final String DUMMY_SCHEMA = "cj://";
     private static final String USER_PASS_SEPARATOR = ":";
     private static final String USER_HOST_SEPARATOR = "@";
@@ -109,9 +114,8 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Static factory method for constructing instances of this class.
-     * 
-     * @param connString
-     *            The connection string to parse.
+     *
+     * @param connString The connection string to parse.
      * @return an instance of {@link ConnectionUrlParser}
      */
     public static ConnectionUrlParser parseConnectionString(String connString) {
@@ -120,9 +124,8 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Constructs a connection string parser for the given connection string.
-     * 
-     * @param connString
-     *            the connection string to parse
+     *
+     * @param connString the connection string to parse
      */
     private ConnectionUrlParser(String connString) {
         if (connString == null) {
@@ -130,18 +133,17 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
         }
         if (!isConnectionStringSupported(connString)) {
             throw ExceptionFactory.createException(UnsupportedConnectionStringException.class,
-                    Messages.getString("ConnectionString.17", new String[] { connString }));
+                    Messages.getString("ConnectionString.17", new String[]{connString}));
         }
         this.baseConnectionString = connString;
         parseConnectionString();
     }
 
     /**
-     * Checks if the scheme part of given connection string matches one of the {@link Type}s supported by Connector/J.
-     * Throws {@link WrongArgumentException} if connString is null.
-     * 
-     * @param connString
-     *            connection string
+     * Checks if the scheme part of given connection string matches one of the {@link Type}s
+     * supported by Connector/J. Throws {@link WrongArgumentException} if connString is null.
+     *
+     * @param connString connection string
      * @return true if supported
      */
     public static boolean isConnectionStringSupported(String connString) {
@@ -193,14 +195,15 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
      * <li>_user_:_password_@[_any_of_the_above_1_,_any_of_the_above_2_,...]
      * </ul>
      * Most of the above placeholders can be omitted, representing a null, empty, or default value.
-     * The placeholder _host_, can be a host name, IPv4 or IPv6. This parser doesn't check IP syntax. IPv6 addresses are enclosed by square brackets ([::1]).
-     * The placeholder _any_of_the_above_?_ can be any of the above except for the user information part (_user_:_password_@).
-     * When the symbol ":" is not used, it means an null/empty password or a default (-1) port, respectively.
-     * When the symbol "@" is not used, it means that the authority part doesn't contain user information (depending on the scheme type can still be provided
-     * via key=value pairs).
-     * 
-     * @param authSegment
-     *            the string containing the authority segment
+     * The placeholder _host_, can be a host name, IPv4 or IPv6. This parser doesn't check IP
+     * syntax. IPv6 addresses are enclosed by square brackets ([::1]). The placeholder
+     * _any_of_the_above_?_ can be any of the above except for the user information part
+     * (_user_:_password_@). When the symbol ":" is not used, it means an null/empty password or a
+     * default (-1) port, respectively. When the symbol "@" is not used, it means that the authority
+     * part doesn't contain user information (depending on the scheme type can still be provided via
+     * key=value pairs).
+     *
+     * @param authSegment the string containing the authority segment
      */
     private void parseAuthoritySegment(String authSegment) {
         /*
@@ -275,19 +278,17 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
         /*
          * Failed parsing the authority segment.
          */
-        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.2", new Object[] { authSegment }));
+        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.2", new Object[]{authSegment}));
     }
 
     /**
      * Builds an {@link HostInfo} instance for empty host authority segments.
-     * 
-     * @param user
-     *            the user to include in the final {@link HostInfo}
-     * @param password
-     *            the password to include in the final {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code> if the host part is not empty
+     *
+     * @param user the user to include in the final {@link HostInfo}
+     * @param password the password to include in the final {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code>
+     * if the host part is not empty
      */
     private HostInfo buildHostInfoForEmptyHost(String user, String password, String hostInfo) {
         if (isNullOrEmpty(hostInfo)) {
@@ -300,16 +301,15 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
     }
 
     /**
-     * Parses the host information resorting to a URI object. This process handles most single-host well formed addresses.
-     * 
-     * @param user
-     *            the user to include in the final {@link HostInfo}
-     * @param password
-     *            the password to include in the final {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * 
-     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code> if unable to parse the host information
+     * Parses the host information resorting to a URI object. This process handles most single-host
+     * well formed addresses.
+     *
+     * @param user the user to include in the final {@link HostInfo}
+     * @param password the password to include in the final {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     *
+     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code>
+     * if unable to parse the host information
      */
     private HostInfo buildHostInfoResortingToUriParser(String user, String password, String hostInfo) {
         String host = null;
@@ -340,14 +340,12 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Parses the host information using the alternate sub hosts lists syntax "[host1, host2, ...]".
-     * 
-     * @param user
-     *            the user to include in all the resulting {@link HostInfo}
-     * @param password
-     *            the password to include in all the resulting {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * @return a list with all {@link HostInfo} instances containing the parsed information or <code>null</code> if unable to parse the host information
+     *
+     * @param user the user to include in all the resulting {@link HostInfo}
+     * @param password the password to include in all the resulting {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     * @return a list with all {@link HostInfo} instances containing the parsed information or
+     * <code>null</code> if unable to parse the host information
      */
     private List<HostInfo> buildHostInfoResortingToSubHostsListParser(String user, String password, String hostInfo) {
         Matcher matcher = HOST_LIST_PTRN.matcher(hostInfo);
@@ -382,14 +380,12 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Parses the host information using the alternate syntax "(key1=value1, key2=value2, ...)".
-     * 
-     * @param user
-     *            the user to include in the resulting {@link HostInfo}
-     * @param password
-     *            the password to include in the resulting {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code> if unable to parse the host information
+     *
+     * @param user the user to include in the resulting {@link HostInfo}
+     * @param password the password to include in the resulting {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code>
+     * if unable to parse the host information
      */
     private HostInfo buildHostInfoResortingToKeyValueSyntaxParser(String user, String password, String hostInfo) {
         if (!hostInfo.startsWith(KEY_VALUE_HOST_INFO_OPENING_MARKER) || !hostInfo.endsWith(KEY_VALUE_HOST_INFO_CLOSING_MARKER)) {
@@ -401,15 +397,14 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
     }
 
     /**
-     * Parses the host information using the alternate syntax "address=(key1=value1)(key2=value2)...".
-     * 
-     * @param user
-     *            the user to include in the resulting {@link HostInfo}
-     * @param password
-     *            the password to include in the resulting {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code> if unable to parse the host information
+     * Parses the host information using the alternate syntax
+     * "address=(key1=value1)(key2=value2)...".
+     *
+     * @param user the user to include in the resulting {@link HostInfo}
+     * @param password the password to include in the resulting {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code>
+     * if unable to parse the host information
      */
     private HostInfo buildHostInfoResortingToAddressEqualsSyntaxParser(String user, String password, String hostInfo) {
         int p = StringUtils.indexOfIgnoreCase(hostInfo, ADDRESS_EQUALS_HOST_INFO_PREFIX);
@@ -423,14 +418,12 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Parses the host information using the generic syntax "host:port".
-     * 
-     * @param user
-     *            the user to include in the resulting {@link HostInfo}
-     * @param password
-     *            the password to include in the resulting {@link HostInfo}
-     * @param hostInfo
-     *            the string containing the host information part
-     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code> if unable to parse the host information
+     *
+     * @param user the user to include in the resulting {@link HostInfo}
+     * @param password the password to include in the resulting {@link HostInfo}
+     * @param hostInfo the string containing the host information part
+     * @return the {@link HostInfo} instance containing the parsed information or <code>null</code>
+     * if unable to parse the host information
      */
     private HostInfo buildHostInfoResortingToGenericSyntaxParser(String user, String password, String hostInfo) {
         if (splitByUserInfoAndHostInfo(hostInfo).left != null) {
@@ -445,11 +438,11 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Splits the given authority segment in the user information part and the host part.
-     * 
-     * @param authSegment
-     *            the string containing the authority segment, i.e., the user and host information parts
-     * @return
-     *         a {@link Pair} containing the user information in the left side and the host information in the right
+     *
+     * @param authSegment the string containing the authority segment, i.e., the user and host
+     * information parts
+     * @return a {@link Pair} containing the user information in the left side and the host
+     * information in the right
      */
     private Pair<String, String> splitByUserInfoAndHostInfo(String authSegment) {
         String userInfoPart = null;
@@ -464,10 +457,10 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Parses the given user information which is formed by the parts [user][:password].
-     * 
-     * @param userInfo
-     *            the string containing the user information
-     * @return a {@link Pair} containing the user and password information or null if the user information can't be parsed
+     *
+     * @param userInfo the string containing the user information
+     * @return a {@link Pair} containing the user and password information or null if the user
+     * information can't be parsed
      */
     public static Pair<String, String> parseUserInfo(String userInfo) {
         if (isNullOrEmpty(userInfo)) {
@@ -481,10 +474,10 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Parses a host:port pair and returns the two elements in a {@link Pair}
-     * 
-     * @param hostInfo
-     *            the host:pair to parse
-     * @return a {@link Pair} containing the host and port information or null if the host information can't be parsed
+     *
+     * @param hostInfo the host:pair to parse
+     * @return a {@link Pair} containing the host and port information or null if the host
+     * information can't be parsed
      */
     public static Pair<String, Integer> parseHostPortPair(String hostInfo) {
         if (isNullOrEmpty(hostInfo)) {
@@ -499,17 +492,18 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
                 try {
                     portAsInteger = Integer.parseInt(portAsString);
                 } catch (NumberFormatException e) {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.3", new Object[] { hostInfo }),
+                    throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.3", new Object[]{hostInfo}),
                             e);
                 }
             }
             return new Pair<>(host, portAsInteger);
         }
-        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.3", new Object[] { hostInfo }));
+        throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.3", new Object[]{hostInfo}));
     }
 
     /**
-     * Parses the connection properties section and stores the extracted key/value pairs into a local map.
+     * Parses the connection properties section and stores the extracted key/value pairs into a
+     * local map.
      */
     private void parseQuerySection() {
         if (isNullOrEmpty(this.query)) {
@@ -520,14 +514,13 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
     }
 
     /**
-     * Takes a two-matching-groups (respectively named "key" and "value") pattern which is successively tested against the given string and produces a key/value
-     * map with the matched values. The given pattern must ensure that there are no leftovers between successive tests, i.e., the end of the previous match must
-     * coincide with the beginning of the next.
-     * 
-     * @param pattern
-     *            the regular expression pattern to match against to
-     * @param input
-     *            the input string
+     * Takes a two-matching-groups (respectively named "key" and "value") pattern which is
+     * successively tested against the given string and produces a key/value map with the matched
+     * values. The given pattern must ensure that there are no leftovers between successive tests,
+     * i.e., the end of the previous match must coincide with the beginning of the next.
+     *
+     * @param pattern the regular expression pattern to match against to
+     * @param input the input string
      * @return a key/value map containing the matched values
      */
     private Map<String, String> processKeyValuePattern(Pattern pattern, String input) {
@@ -537,7 +530,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
         while (matcher.find()) {
             if (matcher.start() != p) {
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("ConnectionString.4", new Object[] { input.substring(p) }));
+                        Messages.getString("ConnectionString.4", new Object[]{input.substring(p)}));
             }
             String key = decode(safeTrim(matcher.group("key")));
             String value = decode(safeTrim(matcher.group("value")));
@@ -545,23 +538,21 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
                 kvMap.put(key, value);
             } else if (!isNullOrEmpty(value)) {
                 throw ExceptionFactory.createException(WrongArgumentException.class,
-                        Messages.getString("ConnectionString.4", new Object[] { input.substring(p) }));
+                        Messages.getString("ConnectionString.4", new Object[]{input.substring(p)}));
             }
             p = matcher.end();
         }
         if (p != input.length()) {
-            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.4", new Object[] { input.substring(p) }));
+            throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("ConnectionString.4", new Object[]{input.substring(p)}));
         }
         return kvMap;
     }
 
     /**
      * URL-decode the given string.
-     * 
-     * @param text
-     *            the string to decode
-     * @return
-     *         the decoded string
+     *
+     * @param text the string to decode
+     * @return the decoded string
      */
     private static String decode(String text) {
         if (isNullOrEmpty(text)) {
@@ -577,7 +568,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the original database URL that produced this connection string parser.
-     * 
+     *
      * @return the original database URL
      */
     @Override
@@ -587,7 +578,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the scheme section.
-     * 
+     *
      * @return the scheme section
      */
     public String getScheme() {
@@ -596,7 +587,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the authority section.
-     * 
+     *
      * @return the authority section
      */
     public String getAuthority() {
@@ -605,7 +596,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the path section.
-     * 
+     *
      * @return the path section
      */
     public String getPath() {
@@ -614,7 +605,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the query section.
-     * 
+     *
      * @return the query section
      */
     public String getQuery() {
@@ -623,7 +614,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the hosts information.
-     * 
+     *
      * @return the hosts information
      */
     public List<HostInfo> getHosts() {
@@ -636,7 +627,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns the properties map contained in this connection string.
-     * 
+     *
      * @return the properties map
      */
     public Map<String, String> getProperties() {
@@ -648,7 +639,7 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * Returns a string representation of this object.
-     * 
+     *
      * @return a string representation of this object
      */
     @Override
@@ -661,13 +652,12 @@ public class ConnectionUrlParser implements DatabaseUrlContainer {
 
     /**
      * This class is a simple container for two elements.
-     * 
-     * @param <T>
-     *            left part type
-     * @param <U>
-     *            right part type
+     *
+     * @param <T> left part type
+     * @param <U> right part type
      */
     public static class Pair<T, U> {
+
         public final T left;
         public final U right;
 

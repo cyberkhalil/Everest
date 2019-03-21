@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.util.Iterator;
@@ -37,6 +36,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class BufferedRowList implements RowList {
+
     private List<Row> rowList;
     private int position = -1;
 
@@ -46,9 +46,8 @@ public class BufferedRowList implements RowList {
 
     /**
      * Create a new instance by filling the internal buffer by draining the row stream.
-     * 
-     * @param ris
-     *            {@link Row}s iterator
+     *
+     * @param ris {@link Row}s iterator
      */
     public BufferedRowList(Iterator<Row> ris) {
         this.rowList = StreamSupport.stream(Spliterators.spliteratorUnknownSize(ris, 0), false).collect(Collectors.toList());

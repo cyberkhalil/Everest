@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Properties;
@@ -40,9 +39,8 @@ public interface MysqlConnection {
 
     /**
      * Creates an IO channel to the server.
-     * 
-     * @param isForReconnect
-     *            is this request for a re-connect
+     *
+     * @param isForReconnect is this request for a re-connect
      */
     void createNewIO(boolean isForReconnect);
 
@@ -50,7 +48,7 @@ public interface MysqlConnection {
 
     /**
      * Returns the parsed and passed in properties for this connection.
-     * 
+     *
      * @return {@link Properties}
      */
     Properties getProperties();
@@ -71,9 +69,8 @@ public interface MysqlConnection {
 
     /**
      * Destroys this connection and any underlying resources.
-     * 
-     * @param whyCleanedUp
-     *            exception caused the connection clean up
+     *
+     * @param whyCleanedUp exception caused the connection clean up
      */
     void cleanup(Throwable whyCleanedUp);
 }

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.IOException;
@@ -35,6 +34,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 public class NetworkResources {
+
     private final Socket mysqlConnection;
     private final InputStream mysqlInput;
     private final OutputStream mysqlOutput;

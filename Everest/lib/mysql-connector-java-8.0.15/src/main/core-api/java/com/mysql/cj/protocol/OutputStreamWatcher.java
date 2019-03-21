@@ -26,19 +26,18 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 /**
- * Objects that want to be notified of lifecycle events on a WatchableOutputStream should implement this interface, and register themselves with setWatcher()
- * on the WatchableOutputStream instance.
+ * Objects that want to be notified of lifecycle events on a WatchableOutputStream should implement
+ * this interface, and register themselves with setWatcher() on the WatchableOutputStream instance.
  */
 public interface OutputStreamWatcher {
+
     /**
      * Called when the OutputStream being watched has .close() called
-     * 
-     * @param out
-     *            {@link WatchableStream}
+     *
+     * @param out {@link WatchableStream}
      */
     void streamClosed(WatchableStream out);
 }

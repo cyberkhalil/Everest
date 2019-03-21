@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.IOException;
@@ -112,9 +111,10 @@ public class ExportControlled {
     private static final String TLSv1 = "TLSv1";
     private static final String TLSv1_1 = "TLSv1.1";
     private static final String TLSv1_2 = "TLSv1.2";
-    private static final String[] TLS_PROTOCOLS = new String[] { TLSv1_2, TLSv1_1, TLSv1 };
+    private static final String[] TLS_PROTOCOLS = new String[]{TLSv1_2, TLSv1_1, TLSv1};
 
-    private ExportControlled() { /* prevent instantiation */
+    private ExportControlled() {
+        /* prevent instantiation */
     }
 
     public static boolean enabled() {
@@ -152,7 +152,7 @@ public class ExportControlled {
             }
         }
 
-        return allowedCiphers == null ? null : allowedCiphers.toArray(new String[] {});
+        return allowedCiphers == null ? null : allowedCiphers.toArray(new String[]{});
     }
 
     private static String[] getAllowedProtocols(PropertySet pset, ServerVersion serverVersion, String[] socketProtocols) {
@@ -173,7 +173,7 @@ public class ExportControlled {
             tryProtocols = TLS_PROTOCOLS;
         } else {
             // allow TLSv1 and TLSv1.1 for all server versions by default
-            tryProtocols = new String[] { TLSv1_1, TLSv1 };
+            tryProtocols = new String[]{TLSv1_1, TLSv1};
 
         }
 
@@ -191,6 +191,7 @@ public class ExportControlled {
     }
 
     private static class KeyStoreConf {
+
         public String keyStoreUrl = null;
         public String keyStorePassword = null;
         public String keyStoreType = "JKS";
@@ -264,32 +265,25 @@ public class ExportControlled {
     }
 
     /**
-     * Converts the socket being used in the given CoreIO to an SSLSocket by
-     * performing the SSL/TLS handshake.
-     * 
-     * @param rawSocket
-     *            original non-SSL socket
-     * @param socketConnection
-     *            the Protocol instance containing the socket to convert to an
-     *            SSLSocket.
-     * @param serverVersion
-     *            ServerVersion object
+     * Converts the socket being used in the given CoreIO to an SSLSocket by performing the SSL/TLS
+     * handshake.
+     *
+     * @param rawSocket original non-SSL socket
+     * @param socketConnection the Protocol instance containing the socket to convert to an
+     * SSLSocket.
+     * @param serverVersion ServerVersion object
      * @return SSL socket
-     * @throws IOException
-     *             if i/o exception occurs
-     * @throws SSLParamsException
-     *             if the handshake fails, or if this distribution of
-     *             Connector/J doesn't contain the SSL crypto hooks needed to
-     *             perform the handshake.
-     * @throws FeatureNotAvailableException
-     *             if TLS is not supported
+     * @throws IOException if i/o exception occurs
+     * @throws SSLParamsException if the handshake fails, or if this distribution of Connector/J
+     * doesn't contain the SSL crypto hooks needed to perform the handshake.
+     * @throws FeatureNotAvailableException if TLS is not supported
      */
     public static Socket performTlsHandshake(Socket rawSocket, SocketConnection socketConnection, ServerVersion serverVersion)
             throws IOException, SSLParamsException, FeatureNotAvailableException {
 
         PropertySet pset = socketConnection.getPropertySet();
 
-        SslMode sslMode = pset.<SslMode> getEnumProperty(PropertyKey.sslMode).getValue();
+        SslMode sslMode = pset.<SslMode>getEnumProperty(PropertyKey.sslMode).getValue();
         boolean verifyServerCert = sslMode == SslMode.VERIFY_CA || sslMode == SslMode.VERIFY_IDENTITY;
 
         KeyStoreConf trustStore = !verifyServerCert ? new KeyStoreConf() : getTrustStoreConf(pset, PropertyKey.trustCertificateKeyStoreUrl,
@@ -301,7 +295,7 @@ public class ExportControlled {
         SSLSocketFactory socketFactory = getSSLContext(keyStore.keyStoreUrl, keyStore.keyStoreType, keyStore.keyStorePassword, trustStore.keyStoreUrl,
                 trustStore.keyStoreType, trustStore.keyStorePassword, serverVersion != null, verifyServerCert,
                 sslMode == PropertyDefinitions.SslMode.VERIFY_IDENTITY ? socketConnection.getHost() : null, socketConnection.getExceptionInterceptor())
-                        .getSocketFactory();
+                .getSocketFactory();
 
         SSLSocket sslSocket = (SSLSocket) socketFactory.createSocket(rawSocket, socketConnection.getHost(), socketConnection.getPort(), true);
 
@@ -318,7 +312,8 @@ public class ExportControlled {
     }
 
     /**
-     * Implementation of X509TrustManager wrapping JVM X509TrustManagers to add expiration and identity check
+     * Implementation of X509TrustManager wrapping JVM X509TrustManagers to add expiration and
+     * identity check
      */
     public static class X509TrustManagerWrapper implements X509TrustManager {
 
@@ -418,30 +413,19 @@ public class ExportControlled {
 
     /**
      * Configure the {@link SSLContext} based on the supplier property set.
-     * 
-     * @param clientCertificateKeyStoreUrl
-     *            clientCertificateKeyStoreUrl
-     * @param clientCertificateKeyStoreType
-     *            clientCertificateKeyStoreType
-     * @param clientCertificateKeyStorePassword
-     *            clientCertificateKeyStorePassword
-     * @param trustCertificateKeyStoreUrl
-     *            trustCertificateKeyStoreUrl
-     * @param trustCertificateKeyStoreType
-     *            trustCertificateKeyStoreType
-     * @param trustCertificateKeyStorePassword
-     *            trustCertificateKeyStorePassword
-     * @param fallbackToDefaultTrustStore
-     *            fallbackToDefaultTrustStore
-     * @param verifyServerCert
-     *            verifyServerCert
-     * @param hostName
-     *            host name
-     * @param exceptionInterceptor
-     *            exception interceptor
+     *
+     * @param clientCertificateKeyStoreUrl clientCertificateKeyStoreUrl
+     * @param clientCertificateKeyStoreType clientCertificateKeyStoreType
+     * @param clientCertificateKeyStorePassword clientCertificateKeyStorePassword
+     * @param trustCertificateKeyStoreUrl trustCertificateKeyStoreUrl
+     * @param trustCertificateKeyStoreType trustCertificateKeyStoreType
+     * @param trustCertificateKeyStorePassword trustCertificateKeyStorePassword
+     * @param fallbackToDefaultTrustStore fallbackToDefaultTrustStore
+     * @param verifyServerCert verifyServerCert
+     * @param hostName host name
+     * @param exceptionInterceptor exception interceptor
      * @return SSLContext
-     * @throws SSLParamsException
-     *             if an error occurs
+     * @throws SSLParamsException if an error occurs
      */
     public static SSLContext getSSLContext(String clientCertificateKeyStoreUrl, String clientCertificateKeyStoreType, String clientCertificateKeyStorePassword,
             String trustCertificateKeyStoreUrl, String trustCertificateKeyStoreType, String trustCertificateKeyStorePassword,
@@ -616,7 +600,7 @@ public class ExportControlled {
 
         PropertySet propertySet = socketConnection.getPropertySet();
 
-        SslMode sslMode = propertySet.<SslMode> getEnumProperty(PropertyKey.sslMode).getValue();
+        SslMode sslMode = propertySet.<SslMode>getEnumProperty(PropertyKey.sslMode).getValue();
 
         boolean verifyServerCert = sslMode == SslMode.VERIFY_CA || sslMode == SslMode.VERIFY_IDENTITY;
         KeyStoreConf trustStore = !verifyServerCert ? new KeyStoreConf() : getTrustStoreConf(propertySet, PropertyKey.trustCertificateKeyStoreUrl,
@@ -644,15 +628,12 @@ public class ExportControlled {
     }
 
     /**
-     * Perform the handshaking step of the TLS connection. We use the `sslEngine' along with the `channel' to exchange messages with the server to setup an
-     * encrypted channel.
-     * 
-     * @param sslEngine
-     *            {@link SSLEngine}
-     * @param channel
-     *            {@link AsynchronousSocketChannel}
-     * @throws SSLException
-     *             in case of handshake error
+     * Perform the handshaking step of the TLS connection. We use the `sslEngine' along with the
+     * `channel' to exchange messages with the server to setup an encrypted channel.
+     *
+     * @param sslEngine {@link SSLEngine}
+     * @param channel {@link AsynchronousSocketChannel}
+     * @throws SSLException in case of handshake error
      */
     private static void performTlsHandshake(SSLEngine sslEngine, AsynchronousSocketChannel channel) throws SSLException {
         sslEngine.beginHandshake();
@@ -741,11 +722,9 @@ public class ExportControlled {
 
     /**
      * Synchronously send data to the server. (Needed here for TLS handshake)
-     * 
-     * @param channel
-     *            {@link AsynchronousSocketChannel}
-     * @param data
-     *            {@link ByteBuffer}
+     *
+     * @param channel {@link AsynchronousSocketChannel}
+     * @param data {@link ByteBuffer}
      */
     private static void write(AsynchronousSocketChannel channel, ByteBuffer data) {
         CompletableFuture<Void> f = new CompletableFuture<>();
@@ -773,11 +752,9 @@ public class ExportControlled {
 
     /**
      * Synchronously read data from the server. (Needed here for TLS handshake)
-     * 
-     * @param channel
-     *            {@link AsynchronousSocketChannel}
-     * @param data
-     *            {@link ByteBuffer}
+     *
+     * @param channel {@link AsynchronousSocketChannel}
+     * @param data {@link ByteBuffer}
      * @return the number of bytes read
      */
     private static Integer read(AsynchronousSocketChannel channel, ByteBuffer data) {

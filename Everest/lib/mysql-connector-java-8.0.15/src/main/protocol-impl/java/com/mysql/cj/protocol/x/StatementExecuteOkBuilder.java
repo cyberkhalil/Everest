@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.ArrayList;
@@ -41,6 +40,7 @@ import com.mysql.cj.protocol.x.Notice.XWarning;
  * Handle state necessary to accumulate noticed and build a {@link StatementExecuteOk} response.
  */
 public class StatementExecuteOkBuilder {
+
     private long rowsAffected = 0;
     private Long lastInsertId = null;
     private List<String> generatedIds = Collections.emptyList();
@@ -71,7 +71,7 @@ public class StatementExecuteOkBuilder {
                 case Notice.SessionStateChanged_TRX_ROLLEDBACK:
                 case Notice.SessionStateChanged_CLIENT_ID_ASSIGNED:
                 default:
-                    // TODO do something with notices, expose them to client
+                // TODO do something with notices, expose them to client
             }
         }
     }

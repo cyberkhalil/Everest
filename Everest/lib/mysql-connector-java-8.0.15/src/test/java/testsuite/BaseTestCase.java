@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite;
 
 import static com.mysql.cj.util.StringUtils.isNullOrEmpty;
@@ -83,35 +82,49 @@ public abstract class BaseTestCase extends TestCase {
     protected boolean DISABLED_testBug5874 = true; // TODO this test is working in c/J 5.1 but fails here; disabled for later analysis
 
     /**
-     * JDBC URL, initialized from com.mysql.cj.testsuite.url system property, or defaults to jdbc:mysql:///test and its connection URL.
+     * JDBC URL, initialized from com.mysql.cj.testsuite.url system property, or defaults to
+     * jdbc:mysql:///test and its connection URL.
      */
     public static String dbUrl = "jdbc:mysql:///test";
     protected static ConnectionUrl mainConnectionUrl = null;
 
     /**
-     * JDBC URL, initialized from com.mysql.cj.testsuite.url.openssl system property and its connection URL
+     * JDBC URL, initialized from com.mysql.cj.testsuite.url.openssl system property and its
+     * connection URL
      */
     protected static String sha256Url = null;
     protected static ConnectionUrl sha256ConnectionUrl = null;
 
-    /** Instance counter */
+    /**
+     * Instance counter
+     */
     private static int instanceCount = 1;
 
-    /** Connection to server, initialized in setUp() Cleaned up in tearDown(). */
+    /**
+     * Connection to server, initialized in setUp() Cleaned up in tearDown().
+     */
     protected Connection conn = null;
 
     protected Connection sha256Conn = null;
 
-    /** Server version `this.conn' is connected to. */
+    /**
+     * Server version `this.conn' is connected to.
+     */
     protected ServerVersion serverVersion;
 
-    /** list of schema objects to be dropped in tearDown */
+    /**
+     * list of schema objects to be dropped in tearDown
+     */
     private List<String[]> createdObjects;
 
-    /** The driver to use */
+    /**
+     * The driver to use
+     */
     protected String dbClass = "com.mysql.cj.jdbc.Driver";
 
-    /** My instance number */
+    /**
+     * My instance number
+     */
     private int myInstanceNumber = 0;
 
     /**
@@ -120,8 +133,7 @@ public abstract class BaseTestCase extends TestCase {
     protected final String dbName;
 
     /**
-     * PreparedStatement to be used in tests, not initialized. Cleaned up in
-     * tearDown().
+     * PreparedStatement to be used in tests, not initialized. Cleaned up in tearDown().
      */
     protected PreparedStatement pstmt = null;
 
@@ -133,8 +145,7 @@ public abstract class BaseTestCase extends TestCase {
     protected ResultSet sha256Rs = null;
 
     /**
-     * Statement to be used in tests, initialized in setUp(). Cleaned up in
-     * tearDown().
+     * Statement to be used in tests, initialized in setUp(). Cleaned up in tearDown().
      */
     protected Statement stmt = null;
 
@@ -144,9 +155,8 @@ public abstract class BaseTestCase extends TestCase {
 
     /**
      * Creates a new BaseTestCase object.
-     * 
-     * @param name
-     *            The name of the JUnit test case
+     *
+     * @param name The name of the JUnit test case
      */
     public BaseTestCase(String name) {
         super(name);
@@ -174,7 +184,7 @@ public abstract class BaseTestCase extends TestCase {
 
     protected void createSchemaObject(Statement st, String objectType, String objectName, String columnsAndOtherStuff) throws SQLException {
         if (st != null) {
-            this.createdObjects.add(new String[] { objectType, objectName });
+            this.createdObjects.add(new String[]{objectType, objectName});
             try {
                 dropSchemaObject(st, objectType, objectName);
             } catch (SQLException ex) {
@@ -369,13 +379,11 @@ public abstract class BaseTestCase extends TestCase {
 
     /**
      * Returns a new connection with the given properties
-     * 
-     * @param props
-     *            the properties to use (the URL will come from the standard for
-     *            this testcase).
-     * 
+     *
+     * @param props the properties to use (the URL will come from the standard for this testcase).
+     *
      * @return a new connection using the given properties.
-     * 
+     *
      * @throws SQLException
      */
     public Connection getConnectionWithProps(Properties props) throws SQLException {
@@ -400,9 +408,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Returns the per-instance counter (for messages when multi-threading
-     * stress tests)
-     * 
+     * Returns the per-instance counter (for messages when multi-threading stress tests)
+     *
      * @return int the instance number
      */
     protected int getInstanceNumber() {
@@ -422,27 +429,23 @@ public abstract class BaseTestCase extends TestCase {
 
     /**
      * Returns the named MySQL variable from the currently connected server.
-     * 
-     * @param variableName
-     *            the name of the variable to return
-     * 
+     *
+     * @param variableName the name of the variable to return
+     *
      * @return the value of the given variable, or NULL if it doesn't exist
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @throws SQLException if an error occurs
      */
     protected String getMysqlVariable(String variableName) throws SQLException {
         return getMysqlVariable(this.conn, variableName);
     }
 
     /**
-     * Returns the properties that represent the default URL used for
-     * connections for all testcases.
-     * 
+     * Returns the properties that represent the default URL used for connections for all testcases.
+     *
      * @return properties parsed from com.mysql.jdbc.testsuite.url
-     * 
-     * @throws SQLException
-     *             if parsing fails
+     *
+     * @throws SQLException if parsing fails
      */
     protected Properties getPropertiesFromTestsuiteUrl() throws SQLException {
         return getPropertiesFromUrl(mainConnectionUrl);
@@ -471,13 +474,13 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Some tests build connections strings for internal usage but, in order for them to work, they may require some connection properties set in the main test
-     * suite URL. For example 'serverTimezone' is one of those properties.
-     * 
-     * @param props
-     *            the Properties object where to add the missing connection properties
-     * @return
-     *         the modified Properties objects or a new one if <code>props</code> is <code>null</code>
+     * Some tests build connections strings for internal usage but, in order for them to work, they
+     * may require some connection properties set in the main test suite URL. For example
+     * 'serverTimezone' is one of those properties.
+     *
+     * @param props the Properties object where to add the missing connection properties
+     * @return the modified Properties objects or a new one if <code>props</code> is
+     * <code>null</code>
      */
     protected Properties appendRequiredProperties(Properties props) {
         if (props == null) {
@@ -626,12 +629,10 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether a certain system property is defined, in order to
-     * run/not-run certain tests
-     * 
-     * @param propName
-     *            the property name to check for
-     * 
+     * Checks whether a certain system property is defined, in order to run/not-run certain tests
+     *
+     * @param propName the property name to check for
+     *
      * @return true if the property is defined.
      */
     protected boolean runTestIfSysPropDefined(String propName) {
@@ -646,9 +647,8 @@ public abstract class BaseTestCase extends TestCase {
 
     /**
      * Creates resources used by all tests.
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     *
+     * @throws Exception if an error occurs.
      */
     @Override
     public void setUp() throws Exception {
@@ -792,36 +792,28 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether the database we're connected to meets the given version
-     * minimum
-     * 
-     * @param major
-     *            the major version to meet
-     * @param minor
-     *            the minor version to meet
-     * 
+     * Checks whether the database we're connected to meets the given version minimum
+     *
+     * @param major the major version to meet
+     * @param minor the minor version to meet
+     *
      * @return boolean if the major/minor is met
-     * 
-     * @throws SQLException
-     *             if an error occurs.
+     *
+     * @throws SQLException if an error occurs.
      */
     protected boolean versionMeetsMinimum(int major, int minor) throws SQLException {
         return versionMeetsMinimum(major, minor, 0);
     }
 
     /**
-     * Checks whether the database we're connected to meets the given version
-     * minimum
-     * 
-     * @param major
-     *            the major version to meet
-     * @param minor
-     *            the minor version to meet
-     * 
+     * Checks whether the database we're connected to meets the given version minimum
+     *
+     * @param major the major version to meet
+     * @param minor the minor version to meet
+     *
      * @return boolean if the major/minor is met
-     * 
-     * @throws SQLException
-     *             if an error occurs.
+     *
+     * @throws SQLException if an error occurs.
      */
     protected boolean versionMeetsMinimum(int major, int minor, int subminor) throws SQLException {
         return (((JdbcConnection) this.conn).getSession().versionMeetsMinimum(major, minor, subminor));
@@ -997,11 +989,14 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Asserts the most recent history of connection attempts from the global data in UnreliableSocketFactory.
-     * 
-     * @param expectedConnectionsHistory
-     *            The list of expected events. Use UnreliableSocketFactory.getHostConnectedStatus(String), UnreliableSocketFactory.getHostFailedStatus(String)
-     *            and UnreliableSocketFactory.getHostUnknownStatus(String) to build proper syntax for host+status identification.
+     * Asserts the most recent history of connection attempts from the global data in
+     * UnreliableSocketFactory.
+     *
+     * @param expectedConnectionsHistory The list of expected events. Use
+     * UnreliableSocketFactory.getHostConnectedStatus(String),
+     * UnreliableSocketFactory.getHostFailedStatus(String) and
+     * UnreliableSocketFactory.getHostUnknownStatus(String) to build proper syntax for host+status
+     * identification.
      */
     protected static void assertConnectionsHistory(String... expectedConnectionsHistory) {
         List<String> actualConnectionsHistory = UnreliableSocketFactory.getHostsFromLastConnections(expectedConnectionsHistory.length);
@@ -1053,8 +1048,7 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Retrieve the current system time in milliseconds, using the nanosecond
-     * time if possible.
+     * Retrieve the current system time in milliseconds, using the nanosecond time if possible.
      */
     protected static final long currentTimeMillis() {
         try {
@@ -1208,6 +1202,7 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     public static class MockConnectionConfiguration {
+
         String hostName;
         String port;
         String serverType;

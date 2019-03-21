@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.List;
@@ -145,6 +144,7 @@ public class Notice {
     }
 
     public static class XSessionVariableChanged extends Notice {
+
         private String paramName = null;
         private Scalar value = null;
 
@@ -166,6 +166,7 @@ public class Notice {
     }
 
     public static class XSessionStateChanged extends Notice {
+
         private Integer paramType = null;
         private List<Scalar> valueList = null;
 

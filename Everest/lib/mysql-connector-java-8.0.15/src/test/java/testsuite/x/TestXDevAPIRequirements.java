@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x;
 
 import static org.junit.Assert.assertEquals;
@@ -53,11 +52,9 @@ import com.mysql.cj.xdevapi.Table;
 public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
 
     /**
-     * Session [11]
-     * Session.Connect.Single [6]
-     * Session.Connect.DataSource [7]
-     * Session.Connect.Mysqls [8] [9] - not supported in first version
-     * 
+     * Session [11] Session.Connect.Single [6] Session.Connect.DataSource [7] Session.Connect.Mysqls
+     * [8] [9] - not supported in first version
+     *
      * @throws Exception
      */
     @Test
@@ -72,7 +69,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         sess.close();
 
         // TODO test different URLs
-
         ConnectionUrl conUrl = ConnectionUrl.getConnectionUrlInstance(url, null);
 
         Properties props = conUrl.getMainHost().exposeAsProperties();
@@ -90,7 +86,7 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * 
+     *
      * @throws Exception
      */
     @Test
@@ -115,22 +111,16 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         //sess.dropSchema("name"); // TODO set name
         //sess.getSchemas();
         //sess.getUri();
-
         //String sql = ""; // TODO set query
         //sess.executeSql(sql);
     }
 
     /**
-     * Schema browsing Schema.getCollections() [44]
-     * Schema browsing Schema.getTables() [45]
-     * Schema access Schema.getCollection() [47]
-     * Schema access Schema.getCollectionAsTable() [50]
-     * Schema access Schema.getTable() [48]
-     * Schema - who am I? [51]
-     * Schema - am I real? [52]
-     * Schema - DDL create [55]
-     * Schema.drop [53]
-     * 
+     * Schema browsing Schema.getCollections() [44] Schema browsing Schema.getTables() [45] Schema
+     * access Schema.getCollection() [47] Schema access Schema.getCollectionAsTable() [50] Schema
+     * access Schema.getTable() [48] Schema - who am I? [51] Schema - am I real? [52] Schema - DDL
+     * create [55] Schema.drop [53]
+     *
      * @throws Exception
      */
     @Test
@@ -141,7 +131,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         }
 
         // TODO fill in the next pattern
-
         Schema schema = getSession("").getDefaultSchema(); // TODO set URL
 
         // Schema browsing Schema.getCollections() [44]
@@ -175,19 +164,11 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * Collection.createCollection [16]
-     * Collection Index Creation [59]
-     * Collection.getCollection [16]
-     * Collection.add [17]
-     * Collection.find basics [18]
-     * Collection.modify (incl. all array_*) [21]
-     * Collection.remove [22]
-     * Collection.as [41]
-     * Collection.count [43]
-     * Collection - who am I? [51]
-     * Collection - am I real? [52]
-     * Collection.drop [53]
-     * 
+     * Collection.createCollection [16] Collection Index Creation [59] Collection.getCollection [16]
+     * Collection.add [17] Collection.find basics [18] Collection.modify (incl. all array_*) [21]
+     * Collection.remove [22] Collection.as [41] Collection.count [43] Collection - who am I? [51]
+     * Collection - am I real? [52] Collection.drop [53]
+     *
      * @throws Exception
      */
     @Test
@@ -198,13 +179,11 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         }
 
         // TODO fill in the next pattern
-
         // Collection.createCollection [16]
         Collection collection = getSession("").getDefaultSchema().createCollection(""); // TODO set URL and collection name
 
         // Collection Index Creation [59]
         // TODO spec in progress
-
         // Collection.getCollection [16]
         collection = getSession("").getDefaultSchema().getCollection(""); // TODO set URL and collection name
 
@@ -223,7 +202,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
 
         // Collection.as [41]
         // collection.as("alias"); // TODO set correct parameter
-
         // Collection.count [43]
         collection.count();
 
@@ -243,20 +221,12 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * Table.createTable [26] - not supported in first version
-     * Table Index Creation [60] - not supported in first version
-     * Table.insert [28]
-     * Table.select basics [27]
-     * Table.update [29]
-     * Table.delete [30]
-     * Table.alter [31] - not supported in first version
-     * Table.join (tables) [40] - not supported in first version
-     * Table.as [42]
-     * Table.count [43]
-     * Table - who am I? [51]
-     * Table - am I real? [52]
-     * Table.drop [53] - not supported in first version
-     * 
+     * Table.createTable [26] - not supported in first version Table Index Creation [60] - not
+     * supported in first version Table.insert [28] Table.select basics [27] Table.update [29]
+     * Table.delete [30] Table.alter [31] - not supported in first version Table.join (tables) [40]
+     * - not supported in first version Table.as [42] Table.count [43] Table - who am I? [51] Table
+     * - am I real? [52] Table.drop [53] - not supported in first version
+     *
      * @throws Exception
      */
     @Test
@@ -267,7 +237,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         }
 
         // TODO fill in the next pattern
-
         Table table = getSession("").getDefaultSchema().getCollectionAsTable("name"); // TODO set URL and collection name
 
         // Table.insert [28]
@@ -286,7 +255,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
 
         // Table.as [42]
         // table.as("alias"); // TODO set correct parameter
-
         // Table.count [43]
         table.count();
 
@@ -303,12 +271,9 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * View.select [54]
-     * View.count [43]
-     * View - who am I? [51]
-     * View - am I real? [52]
-     * View.drop [53] - not supported in first version
-     * 
+     * View.select [54] View.count [43] View - who am I? [51] View - am I real? [52] View.drop [53]
+     * - not supported in first version
+     *
      * @throws Exception
      */
     @Test
@@ -319,7 +284,6 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
         }
 
         // TODO fill in the next pattern, Views are treated as Tables
-
         Table view = getSession("").getDefaultSchema().getTable("name");  // getView("name"); // TODO set URL and collection name
 
         view.isView();
@@ -343,16 +307,14 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * Context.Session [33] - not supported in first version
-     * Context.Transaction [34] - not supported in first version
-     * Context.Batch.Collection [35] - not supported in first version
-     * Context.Batch.Table [35] - not supported in first version
-     * Context.Batch.SQL / executeSql() [35] - not supported in first version
-     * Context Nesting [36] - not supported in first version
-     * Context option Custom error handling [56] - not supported in first version
-     * Context option Consistency [57] - not supported in first version
-     * Context option Replication Factor [58] - not supported in first version
-     * 
+     * Context.Session [33] - not supported in first version Context.Transaction [34] - not
+     * supported in first version Context.Batch.Collection [35] - not supported in first version
+     * Context.Batch.Table [35] - not supported in first version Context.Batch.SQL / executeSql()
+     * [35] - not supported in first version Context Nesting [36] - not supported in first version
+     * Context option Custom error handling [56] - not supported in first version Context option
+     * Consistency [57] - not supported in first version Context option Replication Factor [58] -
+     * not supported in first version
+     *
      * @throws Exception
      */
     @Test
@@ -365,10 +327,8 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * Result.Basics [38]
-     * Result client side buffering
-     * Results.Multi Resultset [38]
-     * 
+     * Result.Basics [38] Result client side buffering Results.Multi Resultset [38]
+     *
      * @throws Exception
      */
     @Test
@@ -381,12 +341,9 @@ public class TestXDevAPIRequirements extends BaseXDevAPITestCase {
     }
 
     /**
-     * CRUD.Synchronous execution [14]
-     * CRUD.Asynchronous execution [14]
-     * CRUD.Parameter Binding [15]
-     * Document class DbDoc [25]
-     * INSERT.Streaming [37]
-     * 
+     * CRUD.Synchronous execution [14] CRUD.Asynchronous execution [14] CRUD.Parameter Binding [15]
+     * Document class DbDoc [25] INSERT.Streaming [37]
+     *
      * @throws Exception
      */
     @Test

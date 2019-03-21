@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.integration.c3p0;
 
 import java.lang.reflect.Method;
@@ -41,8 +40,9 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 /**
- * ConnectionTester for C3P0 connection pool that uses the more efficient COM_PING method of testing connection 'liveness' for MySQL, and 'sorts' exceptions
- * based on SQLState or class of 'CommunicationsException' for handling exceptions.
+ * ConnectionTester for C3P0 connection pool that uses the more efficient COM_PING method of testing
+ * connection 'liveness' for MySQL, and 'sorts' exceptions based on SQLState or class of
+ * 'CommunicationsException' for handling exceptions.
  */
 public final class MysqlConnectionTester implements QueryConnectionTester {
 
@@ -108,7 +108,6 @@ public final class MysqlConnectionTester implements QueryConnectionTester {
         }
 
         // Runtime/Unchecked?
-
         return CONNECTION_IS_INVALID;
     }
 

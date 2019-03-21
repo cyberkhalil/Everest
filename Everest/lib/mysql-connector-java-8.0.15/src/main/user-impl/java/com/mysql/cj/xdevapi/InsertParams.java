@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.ArrayList;
@@ -43,14 +42,14 @@ import com.mysql.cj.x.protobuf.MysqlxCrud.Insert.TypedRow;
  * Helper class for collecting parameters for relational insert command.
  */
 public class InsertParams {
+
     private List<Column> projection;
     private List<TypedRow> rows = new LinkedList<>();
 
     /**
      * Set X Protocol Column objects list for projection.
-     * 
-     * @param projection
-     *            projection expressions
+     *
+     * @param projection projection expressions
      */
     public void setProjection(String[] projection) {
         this.projection = Arrays.stream(projection).map(p -> new ExprParser(p, true).parseTableInsertField()).collect(Collectors.toList());
@@ -58,7 +57,7 @@ public class InsertParams {
 
     /**
      * Get X Protocol Column objects list for projection.
-     * 
+     *
      * @return X Protocol Column objects list
      */
     public Object getProjection() {
@@ -67,9 +66,8 @@ public class InsertParams {
 
     /**
      * Add new X Protocol row.
-     * 
-     * @param row
-     *            field value expressions for this row
+     *
+     * @param row field value expressions for this row
      */
     public void addRow(List<Object> row) {
         this.rows.add(TypedRow.newBuilder().addAllField(row.stream().map(f -> ExprUtil.argObjectToExpr(f, true)).collect(Collectors.toList())).build());
@@ -77,7 +75,7 @@ public class InsertParams {
 
     /**
      * Get X Protocol rows list.
-     * 
+     *
      * @return X Protocol rows list
      */
     public Object getRows() {
@@ -86,9 +84,8 @@ public class InsertParams {
 
     /**
      * Fill insert parameters from projection_expression -&gt; value_expression map.
-     * 
-     * @param fieldsAndValues
-     *            projection_expression -&gt; value_expression map
+     *
+     * @param fieldsAndValues projection_expression -&gt; value_expression map
      */
     public void setFieldsAndValues(Map<String, Object> fieldsAndValues) {
         this.projection = new ArrayList<>();

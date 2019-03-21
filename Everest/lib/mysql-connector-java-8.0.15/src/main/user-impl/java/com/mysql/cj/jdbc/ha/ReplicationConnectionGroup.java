@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.ha;
 
 import java.sql.SQLException;
@@ -37,10 +36,12 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Group of connection objects which can be configured as a group. This is used for promotion/demotion of slaves and masters in a replication configuration,
- * and for exposing metrics around replication-aware connections.
+ * Group of connection objects which can be configured as a group. This is used for
+ * promotion/demotion of slaves and masters in a replication configuration, and for exposing metrics
+ * around replication-aware connections.
  */
 public class ReplicationConnectionGroup {
+
     private String groupName;
     private long connections = 0;
     private long slavesAdded = 0;
@@ -95,18 +96,16 @@ public class ReplicationConnectionGroup {
 
     /**
      * Adds a host to the slaves hosts list.
-     * 
-     * We can safely assume that if this host was added to the slaves list, then it must be added to each one of the replication connections from this group as
-     * well.
-     * Unnecessary calls to {@link ReplicationConnection#addSlaveHost(String)} could result in undesirable locking issues, assuming that this method is
-     * synchronized by nature.
-     * 
+     *
+     * We can safely assume that if this host was added to the slaves list, then it must be added to
+     * each one of the replication connections from this group as well. Unnecessary calls to
+     * {@link ReplicationConnection#addSlaveHost(String)} could result in undesirable locking
+     * issues, assuming that this method is synchronized by nature.
+     *
      * This is a no-op if the group already has this host in a slave role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @throws SQLException if an error occurs
      */
     public void addSlaveHost(String hostPortPair) throws SQLException {
         // only add if it's not already a slave host
@@ -127,20 +126,17 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the slaves hosts list.
-     * 
-     * We can safely assume that if this host was removed from the slaves list, then it must be removed from each one of the replication connections from this
-     * group as well.
-     * Unnecessary calls to {@link ReplicationConnection#removeSlave(String, boolean)} could result in undesirable locking issues, assuming that this method is
-     * synchronized by nature.
-     * 
+     *
+     * We can safely assume that if this host was removed from the slaves list, then it must be
+     * removed from each one of the replication connections from this group as well. Unnecessary
+     * calls to {@link ReplicationConnection#removeSlave(String, boolean)} could result in
+     * undesirable locking issues, assuming that this method is synchronized by nature.
+     *
      * This is a no-op if the group doesn't have this host in a slave role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @param closeGently
-     *            remove host when it's not in use
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @param closeGently remove host when it's not in use
+     * @throws SQLException if an error occurs
      */
     public void removeSlaveHost(String hostPortPair, boolean closeGently) throws SQLException {
         if (this.slaveHostList.remove(hostPortPair)) {
@@ -155,18 +151,17 @@ public class ReplicationConnectionGroup {
 
     /**
      * Promotes a slave host to master.
-     * 
-     * We can safely assume that if this host was removed from the slaves list or added to the masters list, then the same host promotion must happen in each
-     * one of the replication connections from this group as well.
-     * Unnecessary calls to {@link ReplicationConnection#promoteSlaveToMaster(String)} could result in undesirable locking issues, assuming that this method is
-     * synchronized by nature.
-     * 
+     *
+     * We can safely assume that if this host was removed from the slaves list or added to the
+     * masters list, then the same host promotion must happen in each one of the replication
+     * connections from this group as well. Unnecessary calls to
+     * {@link ReplicationConnection#promoteSlaveToMaster(String)} could result in undesirable
+     * locking issues, assuming that this method is synchronized by nature.
+     *
      * This is a no-op if the group already has this host in a master role and not in slave role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @throws SQLException if an error occurs
      */
     public void promoteSlaveToMaster(String hostPortPair) throws SQLException {
         // remove host from slaves AND add host to masters, note that both operands need to be evaluated.
@@ -181,11 +176,9 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the masters hosts list.
-     * 
-     * @param hostPortPair
-     *            host:port
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair host:port
+     * @throws SQLException if an error occurs
      */
     public void removeMasterHost(String hostPortPair) throws SQLException {
         this.removeMasterHost(hostPortPair, true);
@@ -193,20 +186,17 @@ public class ReplicationConnectionGroup {
 
     /**
      * Removes a host from the masters hosts list.
-     * 
-     * We can safely assume that if this host was removed from the masters list, then it must be removed from each one of the replication connections from this
-     * group as well.
-     * Unnecessary calls to {@link ReplicationConnection#removeMasterHost(String, boolean)} could result in undesirable locking issues, assuming that this
-     * method is synchronized by nature.
-     * 
+     *
+     * We can safely assume that if this host was removed from the masters list, then it must be
+     * removed from each one of the replication connections from this group as well. Unnecessary
+     * calls to {@link ReplicationConnection#removeMasterHost(String, boolean)} could result in
+     * undesirable locking issues, assuming that this method is synchronized by nature.
+     *
      * This is a no-op if the group doesn't have this host in a master role.
-     * 
-     * @param hostPortPair
-     *            "host:port"
-     * @param closeGently
-     *            remove host when it's not in use
-     * @throws SQLException
-     *             if an error occurs
+     *
+     * @param hostPortPair "host:port"
+     * @param closeGently remove host when it's not in use
+     * @throws SQLException if an error occurs
      */
     public void removeMasterHost(String hostPortPair, boolean closeGently) throws SQLException {
         if (this.masterHostList.remove(hostPortPair)) {

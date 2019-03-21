@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import static org.junit.Assert.assertEquals;
@@ -74,7 +73,7 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Unsupported conversion from BIT to java.time.LocalTime", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                vf.createFromBit(new byte[] { 1 }, 0, 2);
+                vf.createFromBit(new byte[]{1}, 0, 2);
                 return null;
             }
         });
@@ -82,7 +81,7 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataConversionException.class, "Unsupported conversion from VARCHAR/TEXT/BLOB to java.time.LocalTime", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
-                vf.createFromBytes(new byte[] { 1 }, 0, 2);
+                vf.createFromBytes(new byte[]{1}, 0, 2);
                 return null;
             }
         });
@@ -116,22 +115,22 @@ public class LocalTimeValueFactoryTest extends CommonAsserts {
         assertThrows(DataReadException.class,
                 "The value '-1:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
-                    @Override
-                    public Void call() throws Exception {
-                        vf.createFromTime(-1, 0, 0, 0);
-                        return null;
-                    }
-                });
+            @Override
+            public Void call() throws Exception {
+                vf.createFromTime(-1, 0, 0, 0);
+                return null;
+            }
+        });
 
         assertThrows(DataReadException.class,
                 "The value '44:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
-                    @Override
-                    public Void call() throws Exception {
-                        vf.createFromTime(44, 0, 0, 0);
-                        return null;
-                    }
-                });
+            @Override
+            public Void call() throws Exception {
+                vf.createFromTime(44, 0, 0, 0);
+                return null;
+            }
+        });
 
         assertEquals(LocalTime.of(1, 1, 1, 1), vf.createFromTimestamp(2018, 1, 1, 1, 1, 1, 1));
 

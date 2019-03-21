@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.log;
 
 public class BaseMetricsHolder {
@@ -34,8 +33,7 @@ public class BaseMetricsHolder {
     private final static int HISTOGRAM_BUCKETS = 20;
 
     /**
-     * If gathering metrics, what was the execution time of the longest query so
-     * far ?
+     * If gathering metrics, what was the execution time of the longest query so far ?
      */
     private long longestQueryTimeMs = 0;
 
@@ -43,9 +41,10 @@ public class BaseMetricsHolder {
 
     private long minimumNumberTablesAccessed = Long.MAX_VALUE;
 
-    /** When was the last time we reported metrics? */
+    /**
+     * When was the last time we reported metrics?
+     */
     //private long metricsLastReportedMs;
-
     private long numberOfPreparedExecutes = 0;
 
     private long numberOfPrepares = 0;
@@ -139,8 +138,7 @@ public class BaseMetricsHolder {
     }
 
     /**
-     * @param queryTimeMs
-     *            query execution time in milliseconds
+     * @param queryTimeMs query execution time in milliseconds
      */
     public void registerQueryExecutionTime(long queryTimeMs) {
         if (queryTimeMs > this.longestQueryTimeMs) {
@@ -315,7 +313,6 @@ public class BaseMetricsHolder {
     //        }
     //    }
     //}
-
     public void reportNumberOfTablesAccessed(int numTablesAccessed) {
         if (numTablesAccessed < this.minimumNumberTablesAccessed) {
             this.minimumNumberTablesAccessed = numTablesAccessed;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.lang.reflect.Field;
@@ -63,9 +62,10 @@ import testsuite.BaseTestCase;
  * Tests DatabaseMetaData methods.
  */
 public class MetadataTest extends BaseTestCase {
+
     /**
      * Creates a new MetadataTest object.
-     * 
+     *
      * @param name
      */
     public MetadataTest(String name) {
@@ -74,7 +74,7 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -246,13 +246,13 @@ public class MetadataTest extends BaseTestCase {
         createTable("cpd_foreign_2", "(id int(8) not null auto_increment primary key,key (id),name varchar(255)) ", "InnoDB");
         createTable("cpd_foreign_3",
                 "(cpd_foreign_1_id int(8) not null,cpd_foreign_2_id int(8) not null,key(cpd_foreign_1_id),"
-                        + "key(cpd_foreign_2_id),primary key (cpd_foreign_1_id, cpd_foreign_2_id),"
-                        + "foreign key (cpd_foreign_1_id) references cpd_foreign_1(id),foreign key (cpd_foreign_2_id) references cpd_foreign_2(id)) ",
+                + "key(cpd_foreign_2_id),primary key (cpd_foreign_1_id, cpd_foreign_2_id),"
+                + "foreign key (cpd_foreign_1_id) references cpd_foreign_1(id),foreign key (cpd_foreign_2_id) references cpd_foreign_2(id)) ",
                 "InnoDB");
         createTable("cpd_foreign_4",
                 "(cpd_foreign_1_id int(8) not null,cpd_foreign_2_id int(8) not null,key(cpd_foreign_1_id),"
-                        + "key(cpd_foreign_2_id),primary key (cpd_foreign_1_id, cpd_foreign_2_id),foreign key (cpd_foreign_1_id, cpd_foreign_2_id) "
-                        + "references cpd_foreign_3(cpd_foreign_1_id, cpd_foreign_2_id) ON DELETE RESTRICT ON UPDATE CASCADE) ",
+                + "key(cpd_foreign_2_id),primary key (cpd_foreign_1_id, cpd_foreign_2_id),foreign key (cpd_foreign_1_id, cpd_foreign_2_id) "
+                + "references cpd_foreign_3(cpd_foreign_1_id, cpd_foreign_2_id) ON DELETE RESTRICT ON UPDATE CASCADE) ",
                 "InnoDB");
 
         createTable("fktable1", "(TYPE_ID int not null, TYPE_DESC varchar(32), primary key(TYPE_ID))", "InnoDB");
@@ -262,12 +262,11 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests the implementation of metadata for views.
-     * 
-     * This test automatically detects whether or not the server it is running
-     * against supports the creation of views.
-     * 
-     * @throws SQLException
-     *             if the test fails.
+     *
+     * This test automatically detects whether or not the server it is running against supports the
+     * creation of views.
+     *
+     * @throws SQLException if the test fails.
      */
     public void testViewMetaData() throws SQLException {
         try {
@@ -283,7 +282,7 @@ public class MetadataTest extends BaseTestCase {
                     ResultSet tablesRs = null;
 
                     try {
-                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[] { "TABLE", "VIEW" });
+                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[]{"TABLE", "VIEW"});
                         assertTrue(tablesRs.next());
                         assertTrue("testViewMetaData".equalsIgnoreCase(tablesRs.getString(3)));
                         assertTrue(tablesRs.next());
@@ -296,7 +295,7 @@ public class MetadataTest extends BaseTestCase {
                     }
 
                     try {
-                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[] { "TABLE" });
+                        tablesRs = this.conn.getMetaData().getTables(this.conn.getCatalog(), null, "%ViewMetaData", new String[]{"TABLE"});
                         assertTrue(tablesRs.next());
                         assertTrue("testViewMetaData".equalsIgnoreCase(tablesRs.getString(3)));
                         assertTrue(!tablesRs.next());
@@ -319,9 +318,8 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * Tests detection of read-only fields.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testRSMDIsReadOnly() throws Exception {
         try {
@@ -663,8 +661,8 @@ public class MetadataTest extends BaseTestCase {
     }
 
     /**
-     * Tests the implementation of Information Schema for description
-     * of stored procedures available in a catalog.
+     * Tests the implementation of Information Schema for description of stored procedures available
+     * in a catalog.
      */
     public void testGetProceduresUsingInfoSchema() throws Exception {
         createProcedure("sp1", "()\n BEGIN\nSELECT 1;end\n");
@@ -777,11 +775,12 @@ public class MetadataTest extends BaseTestCase {
 
     /**
      * WL#411 - Generated columns.
-     * 
+     *
      * Test for new syntax and support in DatabaseMetaData.getColumns().
-     * 
-     * New syntax for CREATE TABLE, introduced in MySQL 5.7.6:
-     * -col_name data_type [GENERATED ALWAYS] AS (expression) [VIRTUAL | STORED] [UNIQUE [KEY]] [COMMENT comment] [[NOT] NULL] [[PRIMARY] KEY]
+     *
+     * New syntax for CREATE TABLE, introduced in MySQL 5.7.6: -col_name data_type [GENERATED
+     * ALWAYS] AS (expression) [VIRTUAL | STORED] [UNIQUE [KEY]] [COMMENT comment] [[NOT] NULL]
+     * [[PRIMARY] KEY]
      */
     public void testGeneratedColumns() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -811,7 +810,7 @@ public class MetadataTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.nullCatalogMeansCurrent.getKeyName(), "true");
 
-        for (String useIS : new String[] { "false", "true" }) {
+        for (String useIS : new String[]{"false", "true"}) {
             Connection testConn = null;
             props.setProperty(PropertyKey.useInformationSchema.getKeyName(), useIS);
 
@@ -869,9 +868,9 @@ public class MetadataTest extends BaseTestCase {
     }
 
     /**
-     * Tests DatabaseMetaData.getSQLKeywords().
-     * (Related to BUG#70701 - DatabaseMetaData.getSQLKeywords() doesn't match MySQL 5.6 reserved words)
-     * 
+     * Tests DatabaseMetaData.getSQLKeywords(). (Related to BUG#70701 -
+     * DatabaseMetaData.getSQLKeywords() doesn't match MySQL 5.6 reserved words)
+     *
      * This test checks the statically maintained keywords list.
      */
     public void testGetSqlKeywordsStatic() throws Exception {
@@ -897,9 +896,8 @@ public class MetadataTest extends BaseTestCase {
     }
 
     /**
-     * Tests DatabaseMetaData.getSQLKeywords().
-     * WL#10544, Update MySQL 8.0 keywords list.
-     * 
+     * Tests DatabaseMetaData.getSQLKeywords(). WL#10544, Update MySQL 8.0 keywords list.
+     *
      * This test checks the dynamically maintained keywords lists.
      */
     public void testGetSqlKeywordsDynamic() throws Exception {
@@ -975,6 +973,7 @@ public class MetadataTest extends BaseTestCase {
     }
 
     public static class TestGetSqlKeywordsDynamicQueryInterceptor extends BaseQueryInterceptor {
+
         public static List<String> interceptedQueries = new ArrayList<>();
 
         @Override

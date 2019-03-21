@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.util.Calendar;
@@ -42,7 +41,6 @@ import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.util.StringUtils;
 
 //TODO should not be protocol-specific
-
 public class ServerPreparedQueryBindValue extends ClientPreparedQueryBindValue implements BindValue {
 
     public long boundBeforeExecutionNum = 0;
@@ -79,11 +77,10 @@ public class ServerPreparedQueryBindValue extends ClientPreparedQueryBindValue i
 
     /**
      * Reset a bind value to be used for a new value of the given type.
-     * 
-     * @param bufType
-     *            MysqlType.FIELD_TYPE_*
-     * @param numberOfExecutions
-     *            current number of PreparedQuery executions
+     *
+     * @param bufType MysqlType.FIELD_TYPE_
+     *
+     * @param numberOfExecutions current number of PreparedQuery executions
      * @return true if we need to send/resend types to the server
      */
     public boolean resetToType(int bufType, long numberOfExecutions) {
@@ -269,8 +266,7 @@ public class ServerPreparedQueryBindValue extends ClientPreparedQueryBindValue i
     }
 
     /**
-     * @param intoPacket
-     *            packet to write into
+     * @param intoPacket packet to write into
      */
     private void storeDateTime(NativePacketPayload intoPacket) {
         synchronized (this) {

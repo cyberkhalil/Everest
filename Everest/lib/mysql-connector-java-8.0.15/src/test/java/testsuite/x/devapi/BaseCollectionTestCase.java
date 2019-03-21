@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import java.util.Random;
@@ -37,7 +36,10 @@ import org.junit.Before;
 import com.mysql.cj.xdevapi.Collection;
 
 public class BaseCollectionTestCase extends DevApiBaseTestCase {
-    /** Collection for testing. */
+
+    /**
+     * Collection for testing.
+     */
     protected Collection collection;
     protected String collectionName;
 

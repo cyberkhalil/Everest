@@ -26,27 +26,25 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 /**
  * A statement requesting to remove a set of documents.
  */
 public interface RemoveStatement extends Statement<RemoveStatement, Result> {
+
     /**
      * Add/replace the order specification for the removal.
-     * 
-     * @param sortFields
-     *            sort expression
+     *
+     * @param sortFields sort expression
      * @return {@link RemoveStatement}
      */
     RemoveStatement orderBy(String... sortFields);
 
     /**
      * Add/replace the document limit for the removal.
-     * 
-     * @param numberOfRows
-     *            limit
+     *
+     * @param numberOfRows limit
      * @return {@link RemoveStatement}
      */
     RemoveStatement limit(long numberOfRows);

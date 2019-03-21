@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import java.io.ByteArrayInputStream;
@@ -110,11 +109,11 @@ import testsuite.BaseTestCase;
  * Regression test cases for the ResultSet class.
  */
 public class ResultSetRegressionTest extends BaseTestCase {
+
     /**
      * Creates a new ResultSetRegressionTest
-     * 
-     * @param name
-     *            the name of the test to run
+     *
+     * @param name the name of the test to run
      */
     public ResultSetRegressionTest(String name) {
         super(name);
@@ -122,7 +121,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -130,11 +129,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#???? -- Numeric types and server-side prepared
-     * statements incorrectly detect nulls.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#???? -- Numeric types and server-side prepared statements incorrectly
+     * detect nulls.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug2359() throws Exception {
         /*
@@ -201,9 +199,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#2643, ClassCastException when using this.rs.absolute()
-     * and server-side prepared statements.
-     * 
+     * Tests fix for BUG#2643, ClassCastException when using this.rs.absolute() and server-side
+     * prepared statements.
+     *
      * @throws Exception
      */
     public void testBug2623() throws Exception {
@@ -229,11 +227,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#2654, "Column 'column.table' not found" when "order by"
-     * in query"
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#2654, "Column 'column.table' not found" when "order by" in query"
+     *
+     * @throws Exception if the test fails
      */
     public void testBug2654() throws Exception {
         if (!this.DISABLED_testBug2654) { // this is currently a server-level bug
@@ -265,9 +261,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests for fix to BUG#1130
-     * 
-     * @throws Exception
-     *             if the test fails
+     *
+     * @throws Exception if the test fails
      */
     public void testClobTruncate() throws Exception {
         createTable("testClobTruncate", "(field1 TEXT)");
@@ -290,9 +285,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests that streaming result sets are registered correctly.
-     * 
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @throws Exception if any errors occur
      */
     public void testClobberStreamingRS() throws Exception {
         try {
@@ -344,11 +338,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Checks fix for BUG#1592 -- cross-database updatable result sets are not
-     * checked for updatability correctly.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Checks fix for BUG#1592 -- cross-database updatable result sets are not checked for
+     * updatability correctly.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug1592() throws Exception {
         Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -369,12 +362,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#2006, where 2 columns with same name in a result set
-     * are returned via findColumn() in the wrong order...The JDBC spec states,
-     * that the _first_ matching column should be returned.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#2006, where 2 columns with same name in a result set are returned via
+     * findColumn() in the wrong order...The JDBC spec states, that the _first_ matching column
+     * should be returned.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug2006() throws Exception {
 
@@ -398,9 +390,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests that ResultSet.getLong() does not truncate values.
-     * 
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @throws Exception if any errors occur
      */
     public void testGetLongBug() throws Exception {
         createTable("getLongBug", "(int_col int, bigint_col bigint)");
@@ -428,11 +419,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests a bug where ResultSet.isBefireFirst() would return true when the
-     * result set was empty (which is incorrect)
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     * Tests a bug where ResultSet.isBefireFirst() would return true when the result set was empty
+     * (which is incorrect)
+     *
+     * @throws Exception if an error occurs.
      */
     public void testIsBeforeFirstOnEmpty() throws Exception {
         // Query with valid rows: isBeforeFirst() correctly returns True
@@ -445,11 +435,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests a bug where ResultSet.isBefireFirst() would return true when the
-     * result set was empty (which is incorrect)
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     * Tests a bug where ResultSet.isBefireFirst() would return true when the result set was empty
+     * (which is incorrect)
+     *
+     * @throws Exception if an error occurs.
      */
     public void testMetaDataIsWritable() throws Exception {
         // Query with valid rows
@@ -466,9 +455,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for bug # 496
-     * 
-     * @throws Exception
-     *             if an error happens.
+     *
+     * @throws Exception if an error happens.
      */
     public void testNextAndPrevious() throws Exception {
         createTable("testNextAndPrevious", "(field1 int)");
@@ -502,11 +490,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#1630 (not updatable exception turning into NPE on
-     * second updateFoo() method call.
-     * 
-     * @throws Exception
-     *             if an unexpected exception is thrown.
+     * Tests fix for BUG#1630 (not updatable exception turning into NPE on second updateFoo() method
+     * call.
+     *
+     * @throws Exception if an unexpected exception is thrown.
      */
     public void testNotUpdatable() throws Exception {
         this.rs = null;
@@ -535,9 +522,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests that streaming result sets are registered correctly.
-     * 
-     * @throws Exception
-     *             if any errors occur
+     *
+     * @throws Exception if any errors occur
      */
     public void testStreamingRegBug() throws Exception {
         createTable("StreamingRegBug", "( DUMMYID INTEGER NOT NULL, DUMMYNAME VARCHAR(32),PRIMARY KEY (DUMMYID) )");
@@ -574,19 +560,17 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests that result sets can be updated when all parameters are correctly
-     * set.
-     * 
-     * @throws Exception
-     *             if any errors occur
+     * Tests that result sets can be updated when all parameters are correctly set.
+     *
+     * @throws Exception if any errors occur
      */
     public void testUpdatability() throws Exception {
         this.rs = null;
 
         createTable("updatabilityBug",
                 "(id int(10) unsigned NOT NULL auto_increment, field1 varchar(32) NOT NULL default '',"
-                        + " field2 varchar(128) NOT NULL default '', field3 varchar(128) default NULL, field4 varchar(128) default NULL,"
-                        + " field5 varchar(64) default NULL, field6 int(10) unsigned default NULL, field7 varchar(64) default NULL, PRIMARY KEY  (id)) ",
+                + " field2 varchar(128) NOT NULL default '', field3 varchar(128) default NULL, field4 varchar(128) default NULL,"
+                + " field5 varchar(64) default NULL, field6 int(10) unsigned default NULL, field7 varchar(64) default NULL, PRIMARY KEY  (id)) ",
                 "InnoDB");
         this.stmt.executeUpdate("insert into updatabilityBug (id) values (1)");
 
@@ -615,9 +599,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Test fixes for BUG#1071
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testUpdatabilityAndEscaping() throws Exception {
         Properties props = new Properties();
@@ -648,11 +631,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the fix for BUG#661 ... refreshRow() fails when primary key values
-     * have escaped data in them.
-     * 
-     * @throws Exception
-     *             if an error occurs
+     * Tests the fix for BUG#661 ... refreshRow() fails when primary key values have escaped data in
+     * them.
+     *
+     * @throws Exception if an error occurs
      */
     public void testUpdatabilityWithQuotes() throws Exception {
         Statement updStmt = null;
@@ -682,9 +664,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Checks whether or not ResultSet.updateClob() is implemented
-     * 
-     * @throws Exception
-     *             if the test fails
+     *
+     * @throws Exception if the test fails
      */
     public void testUpdateClob() throws Exception {
         Statement updatableStmt = this.conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -728,11 +709,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4482, ResultSet.getObject() returns wrong type for
-     * strings when using prepared statements.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#4482, ResultSet.getObject() returns wrong type for strings when using
+     * prepared statements.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug4482() throws Exception {
         this.rs = this.conn.prepareStatement("SELECT 'abcdef'").executeQuery();
@@ -741,8 +721,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test fix for BUG#4689 - WasNull not getting set correctly for binary
-     * result sets.
+     * Test fix for BUG#4689 - WasNull not getting set correctly for binary result sets.
      */
     public void testBug4689() throws Exception {
         createTable("testBug4689", "(tinyintField tinyint, tinyintFieldNull tinyint, intField int, intFieldNull int, "
@@ -782,11 +761,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5032 -- ResultSet.getObject() doesn't return type
-     * Boolean for pseudo-bit types from prepared statements on 4.1.x.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#5032 -- ResultSet.getObject() doesn't return type Boolean for pseudo-bit
+     * types from prepared statements on 4.1.x.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug5032() throws Exception {
         createTable("testBug5032", "(field1 BIT)");
@@ -799,13 +777,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5069 -- ResultSet.getMetaData() should not return
-     * incorrectly-initialized metadata if the result set has been closed, but
-     * should instead throw a SQLException. Also tests fix for getRow() and
-     * getWarnings() and traversal methods.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#5069 -- ResultSet.getMetaData() should not return incorrectly-initialized
+     * metadata if the result set has been closed, but should instead throw a SQLException. Also
+     * tests fix for getRow() and getWarnings() and traversal methods.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug5069() throws Exception {
 
@@ -927,11 +903,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for BUG#5136, GEOMETRY types getting corrupted, turns out to be a
-     * server bug.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests for BUG#5136, GEOMETRY types getting corrupted, turns out to be a server bug.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug5136() throws Exception {
         if (!this.DISABLED_testBug5136) {
@@ -970,9 +944,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#5664, ResultSet.updateByte() when on insert row throws
      * ArrayOutOfBoundsException.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug5664() throws Exception {
         createTable("testBug5664", "(pkfield int PRIMARY KEY NOT NULL, field1 SMALLINT)");
@@ -1005,8 +978,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests our ability to reject NaN and +/- INF in
-     * PreparedStatement.setDouble();
+     * Tests our ability to reject NaN and +/- INF in PreparedStatement.setDouble();
      */
     public void testBug5717() throws Exception {
         createTable("testBug5717", "(field1 DOUBLE)");
@@ -1035,11 +1007,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for server issue that drops precision on aggregate operations
-     * on DECIMAL types, because they come back as DOUBLEs.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for server issue that drops precision on aggregate operations on DECIMAL types,
+     * because they come back as DOUBLEs.
+     *
+     * @throws Exception if the test fails.
      */
     @SuppressWarnings("deprecation")
     public void testBug6537() throws Exception {
@@ -1067,11 +1038,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#6231, ResultSet.getTimestamp() on a column with TIME in
-     * it fails.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#6231, ResultSet.getTimestamp() on a column with TIME in it fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug6231() throws Exception {
 
@@ -1155,11 +1124,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for presence of BUG#6561, NPE thrown when dealing with 0 dates and
-     * non-unpacked result sets.
-     * 
-     * @throws Exception
-     *             if the test occurs.
+     * Tests for presence of BUG#6561, NPE thrown when dealing with 0 dates and non-unpacked result
+     * sets.
+     *
+     * @throws Exception if the test occurs.
      */
     public void testBug6561() throws Exception {
         Connection testConn = this.conn;
@@ -1234,11 +1202,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#7715 - Timestamps converted incorrectly to strings with
-     * SSPS and Upd. Result Sets.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#7715 - Timestamps converted incorrectly to strings with SSPS and Upd.
+     * Result Sets.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug7715() throws Exception {
         PreparedStatement pStmt = null;
@@ -1256,11 +1223,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#8428 - getString() doesn't maintain format stored on
-     * server.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#8428 - getString() doesn't maintain format stored on server.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug8428() throws Exception {
         Connection noSyncConn = null;
@@ -1288,11 +1253,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#8868, DATE_FORMAT() queries returned as BLOBs from
-     * getObject().
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for Bug#8868, DATE_FORMAT() queries returned as BLOBs from getObject().
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug8868() throws Exception {
         createTable("testBug8868", "(field1 DATE, field2 VARCHAR(32) CHARACTER SET BINARY)");
@@ -1303,11 +1266,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9098 - Server doesn't give us info to distinguish
-     * between CURRENT_TIMESTAMP and 'CURRENT_TIMESTAMP' for default values.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#9098 - Server doesn't give us info to distinguish between CURRENT_TIMESTAMP
+     * and 'CURRENT_TIMESTAMP' for default values.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug9098() throws Exception {
         Statement updatableStmt = null;
@@ -1321,13 +1283,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9236, a continuation of BUG#8868, where functions used
-     * in queries that should return non-string types when resolved by temporary
-     * tables suddenly become opaque binary strings (work-around for server
-     * limitation)
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#9236, a continuation of BUG#8868, where functions used in queries that
+     * should return non-string types when resolved by temporary tables suddenly become opaque
+     * binary strings (work-around for server limitation)
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug9236() throws Exception {
         Connection testConn = this.conn;
@@ -1348,12 +1308,12 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
             createTable("testBug9236",
                     "(field_1 int(18) NOT NULL auto_increment, field_2 varchar(50) NOT NULL default '',"
-                            + "field_3 varchar(12) default NULL, field_4 int(18) default NULL, field_5 int(18) default NULL,"
-                            + "field_6 datetime default NULL, field_7 varchar(30) default NULL, field_8 varchar(50) default NULL,"
-                            + "field_9 datetime default NULL, field_10 int(18) NOT NULL default '0', field_11 int(18) default NULL,"
-                            + "field_12 datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (field_1), KEY (field_4), KEY (field_2),"
-                            + "KEY (field_3), KEY (field_7,field_1), KEY (field_5), KEY (field_6,field_10,field_9), KEY (field_11,field_10),"
-                            + "KEY (field_12,field_10)) DEFAULT CHARSET=latin1",
+                    + "field_3 varchar(12) default NULL, field_4 int(18) default NULL, field_5 int(18) default NULL,"
+                    + "field_6 datetime default NULL, field_7 varchar(30) default NULL, field_8 varchar(50) default NULL,"
+                    + "field_9 datetime default NULL, field_10 int(18) NOT NULL default '0', field_11 int(18) default NULL,"
+                    + "field_12 datetime NOT NULL default '0000-00-00 00:00:00', PRIMARY KEY  (field_1), KEY (field_4), KEY (field_2),"
+                    + "KEY (field_3), KEY (field_7,field_1), KEY (field_5), KEY (field_6,field_10,field_9), KEY (field_11,field_10),"
+                    + "KEY (field_12,field_10)) DEFAULT CHARSET=latin1",
                     "InnoDB");
 
             this.stmt.executeUpdate("INSERT INTO testBug9236 VALUES "
@@ -1411,22 +1371,20 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9437, IF() returns type of [B or java.lang.String
-     * depending on platform. Fixed earlier, but in here to catch if it ever
-     * regresses.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#9437, IF() returns type of [B or java.lang.String depending on platform.
+     * Fixed earlier, but in here to catch if it ever regresses.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug9437() throws Exception {
         String tableName = "testBug9437";
 
         createTable(tableName,
                 "(languageCode char(2) NOT NULL default '', countryCode char(2) NOT NULL default '',"
-                        + "supported enum('no','yes') NOT NULL default 'no', ordering int(11) default NULL,"
-                        + "createDate datetime NOT NULL default '1000-01-01 00:00:03', modifyDate timestamp NOT NULL default CURRENT_TIMESTAMP on update"
-                        + " CURRENT_TIMESTAMP, PRIMARY KEY  (languageCode,countryCode), KEY languageCode (languageCode),"
-                        + "KEY countryCode (countryCode), KEY ordering (ordering), KEY modifyDate (modifyDate)) DEFAULT CHARSET=utf8",
+                + "supported enum('no','yes') NOT NULL default 'no', ordering int(11) default NULL,"
+                + "createDate datetime NOT NULL default '1000-01-01 00:00:03', modifyDate timestamp NOT NULL default CURRENT_TIMESTAMP on update"
+                + " CURRENT_TIMESTAMP, PRIMARY KEY  (languageCode,countryCode), KEY languageCode (languageCode),"
+                + "KEY countryCode (countryCode), KEY ordering (ordering), KEY modifyDate (modifyDate)) DEFAULT CHARSET=utf8",
                 "InnoDB");
 
         this.stmt.executeUpdate("INSERT INTO " + tableName + " (languageCode) VALUES ('en')");
@@ -1465,9 +1423,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#10156 - Unsigned SMALLINT treated as signed
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug10156() throws Exception {
         String tableName = "testBug10156";
@@ -1505,11 +1462,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11190 - ResultSet.moveToCurrentRow() fails to work when
-     * preceeded with .moveToInsertRow().
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#11190 - ResultSet.moveToCurrentRow() fails to work when preceeded with
+     * .moveToInsertRow().
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug11190() throws Exception {
 
@@ -1541,11 +1497,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#12104 - Geometry types not handled with server-side
-     * prepared statements.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#12104 - Geometry types not handled with server-side prepared statements.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug12104() throws Exception {
         createTable("testBug12104", "(field1 GEOMETRY)", "MyISAM");
@@ -1562,11 +1516,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests bugfix for BUG#14562 - metadata/type for MEDIUMINT UNSIGNED is
-     * incorrect.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests bugfix for BUG#14562 - metadata/type for MEDIUMINT UNSIGNED is incorrect.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug14562() throws Exception {
         createTable("testBug14562", "(row_order INT, signed_field MEDIUMINT, unsigned_field MEDIUMINT UNSIGNED)");
@@ -1697,11 +1649,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#14609 - Exception thrown for new decimal type when
-     * using updatable result sets.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#14609 - Exception thrown for new decimal type when using updatable result
+     * sets.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug14609() throws Exception {
         createTable("testBug14609", "(field1 int primary key, field2 decimal)");
@@ -1720,11 +1671,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#16169 - ResultSet.getNativeShort() causes stack
-     * overflow error via recurisve calls.
-     * 
-     * @throws Exception
-     *             if the tests fails
+     * Tests fix for BUG#16169 - ResultSet.getNativeShort() causes stack overflow error via
+     * recurisve calls.
+     *
+     * @throws Exception if the tests fails
      */
     public void testBug16169() throws Exception {
         createTable("testBug16169", "(field1 smallint)");
@@ -1739,12 +1689,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#16841 - updatable result set doesn't return
-     * AUTO_INCREMENT values for insertRow() when multiple column primary keys
-     * are used.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#16841 - updatable result set doesn't return AUTO_INCREMENT values for
+     * insertRow() when multiple column primary keys are used.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug16841() throws Exception {
 
@@ -1778,12 +1726,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#17450 - ResultSet.wasNull() not always reset correctly
-     * for booleans when done via conversion for server-side prepared
-     * statements.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#17450 - ResultSet.wasNull() not always reset correctly for booleans when
+     * done via conversion for server-side prepared statements.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug17450() throws Exception {
         createTable("testBug17450", "(FOO VARCHAR(100), BAR CHAR NOT NULL)");
@@ -1808,12 +1754,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19282 - ResultSet.wasNull() returns incorrect value
-     * when extracting native string from server-side prepared statement
-     * generated result set.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#19282 - ResultSet.wasNull() returns incorrect value when extracting native
+     * string from server-side prepared statement generated result set.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug19282() throws Exception {
         createTable("testBug19282", "(field1 VARCHAR(32))");
@@ -1838,7 +1782,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#
-     * 
+     *
      * @throws Exception
      */
     public void testBug19568() throws Exception {
@@ -2001,7 +1945,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
      * if (ps != null) { PreparedStatement toClosePs = ps; ps = null;
      * toClosePs.close(); } } }
      */
-
     public void testNPEWithUsageAdvisor() throws Exception {
         Connection advisorConn = null;
 
@@ -2312,7 +2255,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
         //
         // Now, be more pedantic....
         //
-
         props = new Properties();
         props.setProperty(PropertyKey.emptyStringsConvertToZero.getKeyName(), "false");
 
@@ -2405,11 +2347,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#10485, SQLException thrown when retrieving YEAR(2) with ResultSet.getString().
-     * 
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#10485, SQLException thrown when retrieving YEAR(2) with
+     * ResultSet.getString().
+     *
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug10485() throws Exception {
 
@@ -2469,11 +2411,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11552, wrong values returned from server-side prepared
-     * statements if values are unsigned.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#11552, wrong values returned from server-side prepared statements if values
+     * are unsigned.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug11552() throws Exception {
         createTable("testBug11552", "(field1 INT UNSIGNED, field2 TINYINT UNSIGNED, field3 SMALLINT UNSIGNED, field4 BIGINT UNSIGNED)");
@@ -2516,9 +2457,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests correct detection of truncation of non-sig digits.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testTruncationOfNonSigDigits() throws Exception {
         createTable("testTruncationOfNonSigDigits", "(field1 decimal(12,2), field2 varchar(2))", "Innodb");
@@ -2541,11 +2481,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20479 - Updatable result set throws ClassCastException
-     * when there is row data and moveToInsertRow() is called.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#20479 - Updatable result set throws ClassCastException when there is row
+     * data and moveToInsertRow() is called.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20479() throws Exception {
         PreparedStatement updStmt = null;
@@ -2577,11 +2516,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20485 - Updatable result set that contains a BIT column
-     * fails when server-side prepared statements are used.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#20485 - Updatable result set that contains a BIT column fails when
+     * server-side prepared statements are used.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20485() throws Exception {
         PreparedStatement updStmt = null;
@@ -2600,11 +2538,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20306 - ResultSet.getShort() for UNSIGNED TINYINT
-     * returns incorrect values when using server-side prepared statements.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#20306 - ResultSet.getShort() for UNSIGNED TINYINT returns incorrect values
+     * when using server-side prepared statements.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug20306() throws Exception {
         createTable("testBug20306", "(field1 TINYINT UNSIGNED, field2 TINYINT UNSIGNED)");
@@ -2639,11 +2576,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#21062 - ResultSet.getSomeInteger() doesn't work for
-     * BIT(>1)
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#21062 - ResultSet.getSomeInteger() doesn't work for BIT(>1)
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug21062() throws Exception {
         createTable("testBug21062", "(bit_7_field BIT(7), bit_31_field BIT(31), bit_12_field BIT(12))");
@@ -2671,11 +2606,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#18880 - ResultSet.getFloatFromString() can't retrieve
-     * values near Float.MIN/MAX_VALUE.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#18880 - ResultSet.getFloatFromString() can't retrieve values near
+     * Float.MIN/MAX_VALUE.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug18880() throws Exception {
         this.rs = this.stmt.executeQuery("SELECT 3.4E38,1.4E-45");
@@ -2685,11 +2619,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15677, wrong values returned from getShort() if SQL
-     * values are tinyint unsigned.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#15677, wrong values returned from getShort() if SQL values are tinyint
+     * unsigned.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug15677() throws Exception {
         createTable("testBug15677", "(id BIGINT, field1 TINYINT UNSIGNED)");
@@ -2732,9 +2665,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 0);
         this.pstmt.setBigDecimal(10, new BigDecimal("0"));
         this.pstmt.setString(11, "false");
-        this.pstmt.setBytes(12, new byte[] { 0 });
-        this.pstmt.setBytes(13, new byte[] { 0 });
-        this.pstmt.setBytes(14, new byte[] { 0 });
+        this.pstmt.setBytes(12, new byte[]{0});
+        this.pstmt.setBytes(13, new byte[]{0});
+        this.pstmt.setBytes(14, new byte[]{0});
 
         this.pstmt.executeUpdate();
 
@@ -2749,9 +2682,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 1);
         this.pstmt.setBigDecimal(10, new BigDecimal("1"));
         this.pstmt.setString(11, "true");
-        this.pstmt.setBytes(12, new byte[] { 1 });
-        this.pstmt.setBytes(13, new byte[] { 1 });
-        this.pstmt.setBytes(14, new byte[] { 1 });
+        this.pstmt.setBytes(12, new byte[]{1});
+        this.pstmt.setBytes(13, new byte[]{1});
+        this.pstmt.setBytes(14, new byte[]{1});
         this.pstmt.executeUpdate();
 
         this.pstmt.setInt(1, 3);
@@ -2765,9 +2698,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 1);
         this.pstmt.setBigDecimal(10, new BigDecimal("1"));
         this.pstmt.setString(11, "true");
-        this.pstmt.setBytes(12, new byte[] { 2 });
-        this.pstmt.setBytes(13, new byte[] { 2 });
-        this.pstmt.setBytes(14, new byte[] { 2 });
+        this.pstmt.setBytes(12, new byte[]{2});
+        this.pstmt.setBytes(13, new byte[]{2});
+        this.pstmt.setBytes(14, new byte[]{2});
         this.pstmt.executeUpdate();
 
         this.pstmt.setInt(1, 4);
@@ -2781,9 +2714,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 1);
         this.pstmt.setBigDecimal(10, new BigDecimal("1"));
         this.pstmt.setString(11, "true");
-        this.pstmt.setBytes(12, new byte[] { -1 });
-        this.pstmt.setBytes(13, new byte[] { -1 });
-        this.pstmt.setBytes(14, new byte[] { -1 });
+        this.pstmt.setBytes(12, new byte[]{-1});
+        this.pstmt.setBytes(13, new byte[]{-1});
+        this.pstmt.setBytes(14, new byte[]{-1});
         this.pstmt.executeUpdate();
 
         this.pstmt.setInt(1, 5);
@@ -2797,9 +2730,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 0);
         this.pstmt.setBigDecimal(10, new BigDecimal("0"));
         this.pstmt.setString(11, "false");
-        this.pstmt.setBytes(12, new byte[] { 0, 0 });
-        this.pstmt.setBytes(13, new byte[] { 0, 0 });
-        this.pstmt.setBytes(14, new byte[] { 0, 0 });
+        this.pstmt.setBytes(12, new byte[]{0, 0});
+        this.pstmt.setBytes(13, new byte[]{0, 0});
+        this.pstmt.setBytes(14, new byte[]{0, 0});
         this.pstmt.executeUpdate();
 
         this.pstmt.setInt(1, 6);
@@ -2813,9 +2746,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 1);
         this.pstmt.setBigDecimal(10, new BigDecimal("1"));
         this.pstmt.setString(11, "true");
-        this.pstmt.setBytes(12, new byte[] { 1, 0 });
-        this.pstmt.setBytes(13, new byte[] { 1, 0 });
-        this.pstmt.setBytes(14, new byte[] { 1, 0 });
+        this.pstmt.setBytes(12, new byte[]{1, 0});
+        this.pstmt.setBytes(13, new byte[]{1, 0});
+        this.pstmt.setBytes(14, new byte[]{1, 0});
         this.pstmt.executeUpdate();
 
         this.pstmt.setInt(1, 7);
@@ -2829,15 +2762,15 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.pstmt.setDouble(9, 0);
         this.pstmt.setBigDecimal(10, new BigDecimal("0"));
         this.pstmt.setString(11, "");
-        this.pstmt.setBytes(12, new byte[] {});
-        this.pstmt.setBytes(13, new byte[] {});
-        this.pstmt.setBytes(14, new byte[] {});
+        this.pstmt.setBytes(12, new byte[]{});
+        this.pstmt.setBytes(13, new byte[]{});
+        this.pstmt.setBytes(14, new byte[]{});
         this.pstmt.executeUpdate();
 
         this.rs = this.stmt.executeQuery(
                 "SELECT field1, field2, field3, field4, field5, field6, field7, field8, field9, field10, field11, field12, field13 FROM testBooleans ORDER BY ob");
 
-        boolean[] testVals = new boolean[] { false, true, true, true, false, true, false };
+        boolean[] testVals = new boolean[]{false, true, true, true, false, true, false};
 
         int i = 0;
 
@@ -2863,13 +2796,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix(es) for BUG#21379 - column names don't match metadata in cases
-     * where server doesn't return original column names (functions) thus
-     * breaking compatibility with applications that expect 1-1 mappings between
-     * findColumn() and rsmd.getColumnName().
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix(es) for BUG#21379 - column names don't match metadata in cases where server doesn't
+     * return original column names (functions) thus breaking compatibility with applications that
+     * expect 1-1 mappings between findColumn() and rsmd.getColumnName().
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug21379() throws Exception {
         //
@@ -2885,7 +2816,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
         //
         // test complete emulation of C/J 3.1 and earlier behavior through configuration option
         //
-
         createTable("testBug21379", "(field1 int)");
         Connection legacyConn = null;
         Statement legacyStmt = null;
@@ -2909,9 +2839,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#21814 - time values outside valid range silently wrap
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug21814() throws Exception {
 
@@ -2930,11 +2859,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for a server bug - needs to be revisited when the server is fixed.
-     * Exists in server versions prior to 5.0.37 and 5.1.16
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests for a server bug - needs to be revisited when the server is fixed. Exists in server
+     * versions prior to 5.0.37 and 5.1.16
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug24710() throws Exception {
 
@@ -2957,11 +2885,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25328 - BIT(> 1) is returned as java.lang.String from
-     * ResultSet.getObject() rather than byte[].
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#25328 - BIT(> 1) is returned as java.lang.String from ResultSet.getObject()
+     * rather than byte[].
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug25328() throws Exception {
         createTable("testBug25382", "(BINARY_VAL BIT(64) NULL)");
@@ -2979,11 +2906,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25517 - Statement.setMaxRows() is not effective on
-     * result sets materialized from cursors.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#25517 - Statement.setMaxRows() is not effective on result sets materialized
+     * from cursors.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug25517() throws Exception {
         Connection fetchConn = null;
@@ -3008,7 +2934,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             fetchStmt = fetchConn.createStatement();
 
             // int[] maxRows = new int[] {1, 4, 5, 11, 12, 13, 16, 50, 51, 52, 100};
-            int[] fetchSizes = new int[] { 1, 4, 10, 25, 100 };
+            int[] fetchSizes = new int[]{1, 4, 10, 25, 100};
             List<Integer> maxRows = new ArrayList<>();
             maxRows.add(new Integer(1));
 
@@ -3080,15 +3006,13 @@ public class ResultSetRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#25787 - java.util.Date should be serialized for
      * PreparedStatement.setObject().
-     * 
-     * We add a new configuration option "treatUtilDateAsTimestamp", which is
-     * false by default, as (1) We already had specific behavior to treat
-     * java.util.Date as a java.sql.Timestamp because it's useful to many folks,
-     * and (2) that behavior will very likely be in JDBC-post-4.0 as a
+     *
+     * We add a new configuration option "treatUtilDateAsTimestamp", which is false by default, as
+     * (1) We already had specific behavior to treat java.util.Date as a java.sql.Timestamp because
+     * it's useful to many folks, and (2) that behavior will very likely be in JDBC-post-4.0 as a
      * requirement.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug25787() throws Exception {
         createTable("testBug25787", "(MY_OBJECT_FIELD BLOB)");
@@ -3186,8 +3110,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     public void testBug25894() throws Exception {
         createTable("bug25894",
                 "(tinyInt_type TINYINT DEFAULT 1, tinyIntU_type TINYINT UNSIGNED DEFAULT 1, smallInt_type SMALLINT DEFAULT 1,"
-                        + "smallIntU_type SMALLINT UNSIGNED DEFAULT 1, mediumInt_type MEDIUMINT DEFAULT 1, mediumIntU_type MEDIUMINT UNSIGNED DEFAULT 1,"
-                        + "int_type INT DEFAULT 1, intU_type INT UNSIGNED DEFAULT 1, bigInt_type BIGINT DEFAULT 1, bigIntU_type BIGINT UNSIGNED DEFAULT 1);");
+                + "smallIntU_type SMALLINT UNSIGNED DEFAULT 1, mediumInt_type MEDIUMINT DEFAULT 1, mediumIntU_type MEDIUMINT UNSIGNED DEFAULT 1,"
+                + "int_type INT DEFAULT 1, intU_type INT UNSIGNED DEFAULT 1, bigInt_type BIGINT DEFAULT 1, bigIntU_type BIGINT UNSIGNED DEFAULT 1);");
         this.stmt.executeUpdate("INSERT INTO bug25894 VALUES (-1,1,-1,1,-1,1,-1,1,-1,1)");
         this.rs = this.stmt.executeQuery("SELECT * FROM bug25894");
         java.sql.ResultSetMetaData tblMD = this.rs.getMetaData();
@@ -3216,11 +3140,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#26173 - fetching rows via cursor retrieves corrupted
-     * data.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#26173 - fetching rows via cursor retrieves corrupted data.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug26173() throws Exception {
         createTable("testBug26173", "(fkey int, fdate date, fprice decimal(15, 2), fdiscount decimal(5,3))", "InnoDB");
@@ -3258,11 +3180,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#26789 - fast date/time parsing doesn't take into
-     * account 00:00:00 as a legal value.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#26789 - fast date/time parsing doesn't take into account 00:00:00 as a
+     * legal value.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug26789() throws Exception {
         this.rs = this.stmt.executeQuery("SELECT '00:00:00'");
@@ -3290,11 +3211,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#27317 - column index < 1 returns misleading error
-     * message.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#27317 - column index < 1 returns misleading error message.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug27317() throws Exception {
         this.rs = this.stmt.executeQuery("SELECT NULL");
@@ -3315,7 +3234,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
                 }
 
                 try {
-                    getterMethods[i].invoke(this.rs, new Object[] { zeroIndex });
+                    getterMethods[i].invoke(this.rs, new Object[]{zeroIndex});
                 } catch (InvocationTargetException invokeEx) {
                     Throwable ex = invokeEx.getTargetException();
 
@@ -3333,7 +3252,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
                 String messageHighBound = null;
 
                 try {
-                    getterMethods[i].invoke(this.rs, new Object[] { twoIndex });
+                    getterMethods[i].invoke(this.rs, new Object[]{twoIndex});
                 } catch (InvocationTargetException invokeEx) {
                     Throwable ex = invokeEx.getTargetException();
 
@@ -3357,11 +3276,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28085 - Need more useful error messages for diagnostics
-     * when the driver thinks a result set isn't updatable.
-     * 
-     * @throws Exception
-     *             if the tests fail.
+     * Tests fix for BUG#28085 - Need more useful error messages for diagnostics when the driver
+     * thinks a result set isn't updatable.
+     *
+     * @throws Exception if the tests fail.
      */
     public void testBug28085() throws Exception {
 
@@ -3468,12 +3386,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#30664. Note that this fix only works for MySQL server
-     * 5.0.25 and newer, since earlier versions didn't consistently return
-     * correct metadata for functions, and thus results from subqueries and
-     * functions were indistinguishable from each other, leading to type-related
-     * bugs.
-     * 
+     * Tests fix for BUG#30664. Note that this fix only works for MySQL server 5.0.25 and newer,
+     * since earlier versions didn't consistently return correct metadata for functions, and thus
+     * results from subqueries and functions were indistinguishable from each other, leading to
+     * type-related bugs.
+     *
      * @throws Exception
      */
     public void testBug30664() throws Exception {
@@ -3499,9 +3416,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#30851, NPE with null column values when
-     * "padCharsWithSpace" is set to "true".
-     * 
+     * Tests fix for BUG#30851, NPE with null column values when "padCharsWithSpace" is set to
+     * "true".
+     *
      * @throws Exception
      */
     public void testBug30851() throws Exception {
@@ -3523,12 +3440,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#33678 - Multiple result sets not supported in
-     * "streaming" mode. This fix covers both normal statements, and stored
-     * procedures, with the exception of stored procedures with registered
-     * OUTPUT parameters, which can't be used at all with "streaming" result
-     * sets.
-     * 
+     * Tests fix for Bug#33678 - Multiple result sets not supported in "streaming" mode. This fix
+     * covers both normal statements, and stored procedures, with the exception of stored procedures
+     * with registered OUTPUT parameters, which can't be used at all with "streaming" result sets.
+     *
      * @throws Exception
      */
     public void testBug33678() throws Exception {
@@ -3668,8 +3583,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test Bug#36051.
-     * NOTE: This behavior changed in Connector/J 6.0. Rollover is no longer supported for java.sql.Time.
+     * Test Bug#36051. NOTE: This behavior changed in Connector/J 6.0. Rollover is no longer
+     * supported for java.sql.Time.
      */
     public void testBug36051() throws Exception {
         try {
@@ -3682,11 +3597,11 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#35610, BUG#35150. We follow the JDBC Spec here, in that
-     * the 4.0 behavior is correct, the JDBC-3.0 (and earlier) spec has a bug,
-     * but you can get the buggy behavior (allowing column names *and* labels to
-     * be used) by setting "useColumnNamesInFindColumn" to "true".
-     * 
+     * Tests fix for BUG#35610, BUG#35150. We follow the JDBC Spec here, in that the 4.0 behavior is
+     * correct, the JDBC-3.0 (and earlier) spec has a bug, but you can get the buggy behavior
+     * (allowing column names *and* labels to be used) by setting "useColumnNamesInFindColumn" to
+     * "true".
+     *
      * @throws Exception
      */
     public void testBug35610() throws Exception {
@@ -3723,14 +3638,12 @@ public class ResultSetRegressionTest extends BaseTestCase {
         // SQL AS clause was not specified, then the label is the name of the
         // column
         //
-
         assertEquals(1, this.rs.getInt("f1"));
         assertEquals(2, this.rs.getInt("f2"));
         assertEquals(3, this.rs.getInt("field3"));
 
         // Pre-JDBC 4.0, some versions of the spec say "column name *or* label"
         // for the column name argument...
-
         if (force30Behavior) {
             assertEquals(1, this.rs.getInt("field1"));
             assertEquals(2, this.rs.getInt("field2"));
@@ -3754,8 +3667,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#39911 - We don't retrieve nanos correctly when
-     * -parsing- a string for a TIMESTAMP.
+     * Tests fix for BUG#39911 - We don't retrieve nanos correctly when -parsing- a string for a
+     * TIMESTAMP.
      */
     public void testBug39911() throws Exception {
         this.rs = this.stmt.executeQuery("SELECT '2008-09-26 15:47:20.797283'");
@@ -3950,7 +3863,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
         // At this point the row with pkValue1 should be deleted. We'll select
         // it back to see.
         // If the row comes back, the testcase has failed.
-
         this.rs = this.stmt.executeQuery("SELECT * FROM testtable_bincolumn WHERE bincolumn = unhex('" + pkValue1 + "')");
         assertFalse(this.rs.next());
 
@@ -4101,13 +4013,13 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#65503 - ResultSets created by PreparedStatement.getGeneratedKeys() are not close()d.
-     * 
-     * To get results quicker add option -Xmx10M, with this option I got an out of memory failure after about 6500 passes.
-     * Since it's a very long test it is disabled by default.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#65503 - ResultSets created by PreparedStatement.getGeneratedKeys() are not
+     * close()d.
+     *
+     * To get results quicker add option -Xmx10M, with this option I got an out of memory failure
+     * after about 6500 passes. Since it's a very long test it is disabled by default.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug65503() throws Exception {
         if (!this.DISABLED_testBug65503) {
@@ -4138,7 +4050,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#64204 - ResultSet.close hangs if streaming query is killed
-     * 
+     *
      * @throws Exception
      */
     public void testBug64204() throws Exception {
@@ -4235,10 +4147,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#38252 - ResultSet.absolute(0) is not behaving according to JDBC specification.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#38252 - ResultSet.absolute(0) is not behaving according to JDBC
+     * specification.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug38252() throws Exception {
         createTable("testBug38252", "(id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY)");
@@ -4275,9 +4187,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#67318 - SQLException thrown on already closed ResultSet
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug67318() throws Exception {
         Properties props = new Properties();
@@ -4349,10 +4260,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#72000 - java.lang.ArrayIndexOutOfBoundsException on java.sql.ResultSet.getInt(String).
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#72000 - java.lang.ArrayIndexOutOfBoundsException on
+     * java.sql.ResultSet.getInt(String).
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug72000() throws Exception {
         final ResultSet testRS = this.stmt.executeQuery("SELECT ' '");
@@ -4431,19 +4342,18 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#72023 - Avoid byte array creation in MysqlIO#unpackBinaryResultSetRow.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug72023() throws Exception {
         // null bitmask contains 2 reserved bits plus 1 bit per field
         //
         // boundary cases at 8n - 2 / 8n - 1 field count; e.g. 6/7, 14/15
-        String[] selectList = new String[] { "NULL", "1", "NULL,NULL,NULL,NULL,NULL,NULL", "1,NULL,NULL,1,1,NULL", "1,1,1,1,1,1",
-                "NULL,NULL,NULL,NULL,NULL,NULL,NULL", "1,1,1,NULL,1,NULL,NULL", "1,1,1,1,1,1,1",
-                "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL", "NULL,NULL,NULL,1,NULL,1,NULL,NULL,1,NULL,1,1,NULL,NULL",
-                "1,1,1,1,1,1,1,1,1,1,1,1,1,1", "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL",
-                "NULL,1,NULL,1,NULL,NULL,1,NULL,1,NULL,NULL,NULL,NULL,1,1", "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1" };
+        String[] selectList = new String[]{"NULL", "1", "NULL,NULL,NULL,NULL,NULL,NULL", "1,NULL,NULL,1,1,NULL", "1,1,1,1,1,1",
+            "NULL,NULL,NULL,NULL,NULL,NULL,NULL", "1,1,1,NULL,1,NULL,NULL", "1,1,1,1,1,1,1",
+            "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL", "NULL,NULL,NULL,1,NULL,1,NULL,NULL,1,NULL,1,1,NULL,NULL",
+            "1,1,1,1,1,1,1,1,1,1,1,1,1,1", "NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL",
+            "NULL,1,NULL,1,NULL,NULL,1,NULL,1,NULL,NULL,NULL,NULL,1,1", "1,1,1,1,1,1,1,1,1,1,1,1,1,1,1"};
 
         Connection testConn = getConnectionWithProps("useServerPrepStmts=true");
         PreparedStatement testPstmt;
@@ -4471,10 +4381,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#75309 - mysql connector/J driver in streaming mode will in the blocking state.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#75309 - mysql connector/J driver in streaming mode will in the blocking
+     * state.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug75309() throws Exception {
         Connection testConn = getConnectionWithProps("socketTimeout=1000");
@@ -4517,10 +4427,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19536760 - GETSTRING() CALL AFTER RS.RELATIVE() RETURNS NULLPOINTEREXCEPTION
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#19536760 - GETSTRING() CALL AFTER RS.RELATIVE() RETURNS
+     * NULLPOINTEREXCEPTION
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug19536760() throws Exception {
 
@@ -4624,10 +4534,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for fix to BUG#20804635 - GETTIME() AND GETDATE() FUNCTIONS FAILS WHEN FRACTIONAL PART EXISTS
+     * Tests for fix to BUG#20804635 - GETTIME() AND GETDATE() FUNCTIONS FAILS WHEN FRACTIONAL PART
+     * EXISTS
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug20804635() throws Exception {
         if (!versionMeetsMinimum(5, 6, 4)) {
@@ -4663,7 +4573,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#80522 - Using useCursorFetch leads to data corruption in Connector/J for TIME type.
+     * Tests fix for Bug#80522 - Using useCursorFetch leads to data corruption in Connector/J for
+     * TIME type.
      */
     public void testBug80522() throws Exception {
         createTable("testBug80522", "(t TIME, d DATE, s TEXT)");
@@ -4700,8 +4611,9 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#56479 - getTimestamp throws exception.
-     * 
-     * This bug occurs exclusively on UpdatableResultSets when retrieving previously set timestamp values.
+     *
+     * This bug occurs exclusively on UpdatableResultSets when retrieving previously set timestamp
+     * values.
      */
     public void testBug56479() throws Exception {
         if (!versionMeetsMinimum(5, 6)) {
@@ -4804,9 +4716,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#22931433, GETTING VALUE OF BIT COLUMN RESULTS IN EXCEPTION.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug22931433() throws Exception {
         createTable("testBug22931433",
@@ -4815,8 +4726,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
                 "INSERT INTO testBug22931433 (c1, c2, c3, c4, c5, c6, c7, c8, cb1, cb2) values('a', 'ba', 'cba', 'dcba', 'edcba', 'fedcba', 'gfedcba', 'hgfedcba', b'00000001', -1)");
         this.stmt.executeUpdate(
                 "INSERT INTO testBug22931433 (c1, c2, c3, c4, c5, c6, c7, c8, cb1, cb2) values(b'11001100', b'1100110011001100', b'110011001100110011001100', b'11001100110011001100110011001100',"
-                        + " b'1100110011001100110011001100110011001100', b'110011001100110011001100110011001100110011001100', b'11001100110011001100110011001100110011001100110011001100',"
-                        + " b'1100110011001100110011001100110011001100110011001100110011001100', 0x00, -2)");
+                + " b'1100110011001100110011001100110011001100', b'110011001100110011001100110011001100110011001100', b'11001100110011001100110011001100110011001100110011001100',"
+                + " b'1100110011001100110011001100110011001100110011001100110011001100', 0x00, -2)");
 
         ResultSet rs1 = this.stmt.executeQuery("SELECT * FROM testBug22931433");
         rs1.next();
@@ -4990,7 +4901,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#78685 - Wrong results when retrieving the value of a BIT column as an integer.
+     * Tests fix for Bug#78685 - Wrong results when retrieving the value of a BIT column as an
+     * integer.
      */
     public void testBug78685() throws Exception {
         createTable("testBug78685", "(b1 BIT(8), b2 BIT(16), b3 BIT(24))", "InnoDB");
@@ -5051,7 +4963,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, expectedNum, this.rs.getBigDecimal(1).intValue());
             assertEquals(testCase, String.valueOf(expectedNum), this.rs.getString(1));
             assertTrue(this.rs.getObject(1) instanceof byte[]);
-            assertByteArrayEquals(testCase, new byte[] { (byte) (expectedNumBase) }, (byte[]) this.rs.getObject(1));
+            assertByteArrayEquals(testCase, new byte[]{(byte) (expectedNumBase)}, (byte[]) this.rs.getObject(1));
 
             assertEquals(testCase, expectedNum, this.rs.getShort(2));
             assertEquals(testCase, expectedNum, this.rs.getInt(2));
@@ -5082,7 +4994,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, expectedNum, this.rs.getBigDecimal(4).intValue());
             assertEquals(testCase, String.valueOf(expectedNum), this.rs.getString(4));
             assertTrue(this.rs.getObject(4) instanceof byte[]);
-            assertByteArrayEquals(testCase, new byte[] { (byte) (expectedNumBase), (byte) (expectedNumBase) }, (byte[]) this.rs.getObject(4));
+            assertByteArrayEquals(testCase, new byte[]{(byte) (expectedNumBase), (byte) (expectedNumBase)}, (byte[]) this.rs.getObject(4));
 
             assertEquals(testCase, expectedNum, this.rs.getShort(5));
             assertEquals(testCase, expectedNum, this.rs.getInt(5));
@@ -5118,7 +5030,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, expectedNum, this.rs.getBigDecimal(7).intValue());
             assertEquals(testCase, String.valueOf(expectedNum), this.rs.getString(7));
             assertTrue(this.rs.getObject(7) instanceof byte[]);
-            assertByteArrayEquals(testCase, new byte[] { 0, (byte) (expectedNumBase), (byte) (expectedNumBase) }, (byte[]) this.rs.getObject(7));
+            assertByteArrayEquals(testCase, new byte[]{0, (byte) (expectedNumBase), (byte) (expectedNumBase)}, (byte[]) this.rs.getObject(7));
 
             assertEquals(testCase, expectedNum, this.rs.getShort(8));
             assertEquals(testCase, expectedNum, this.rs.getInt(8));
@@ -5164,7 +5076,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
          * \uD83D\uDC2C (Emoji): "Dolphin"
          * \u263A (Symbols): "White Smiling Face"
          */
-        String[] data = new String[] { "\u4E2D\u56FD", "\u65E5\u672C", "\uD83D\uDC2C", "\u263A" };
+        String[] data = new String[]{"\u4E2D\u56FD", "\u65E5\u672C", "\uD83D\uDC2C", "\u263A"};
         String jsonTmpl = "{\"data\": \"%s\"}";
 
         createTable("testBug80631", "(data JSON)");
@@ -5232,7 +5144,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23197238 - EXECUTEQUERY() FAILS FOR JSON DATA WHEN RESULTSETCONCURRENCY=CONCUR_UPDATABLE.
+     * Tests fix for Bug#23197238 - EXECUTEQUERY() FAILS FOR JSON DATA WHEN
+     * RESULTSETCONCURRENCY=CONCUR_UPDATABLE.
      */
     public void testBug23197238() throws Exception {
         if (!versionMeetsMinimum(5, 7, 9)) {
@@ -5241,7 +5154,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
         createTable("testBug23197238", "(id INT AUTO_INCREMENT PRIMARY KEY, doc JSON DEFAULT NULL, field3 int DEFAULT 10)");
 
-        String[] docs = new String[] { "{\"key10\": \"value10\"}", "{\"key2\": \"value2\"}", "{\"key3\": \"value3\"}" };
+        String[] docs = new String[]{"{\"key10\": \"value10\"}", "{\"key2\": \"value2\"}", "{\"key3\": \"value3\"}"};
         Properties props = new Properties();
         props.setProperty(PropertyKey.useSSL.getKeyName(), "false");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
@@ -5252,7 +5165,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         testStmt.execute("INSERT INTO testBug23197238 (doc) VALUES ('" + docs[2] + "')");
         testStmt.close();
 
-        testBug23197238AssertDoc(new String[] { docs[2] });
+        testBug23197238AssertDoc(new String[]{docs[2]});
 
         testStmt = testConn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_UPDATABLE);
         this.rs = testStmt.executeQuery("SELECT * FROM testBug23197238");
@@ -5264,8 +5177,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
         this.rs.insertRow();
         testStmt.close();
 
-        testBug23197238AssertDoc(new String[] { docs[1], docs[1] });
-        testBug23197238AssertId(new int[] { 1, 2 });
+        testBug23197238AssertDoc(new String[]{docs[1], docs[1]});
+        testBug23197238AssertId(new int[]{1, 2});
 
         PreparedStatement testPstmt = testConn.prepareStatement("SELECT * FROM testBug23197238 WHERE id = ?", ResultSet.TYPE_FORWARD_ONLY,
                 ResultSet.CONCUR_UPDATABLE);
@@ -5282,7 +5195,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         testPstmt.close();
 
         testBug23197238AssertDoc(docs);
-        testBug23197238AssertId(new int[] { 1, 2, 3 });
+        testBug23197238AssertId(new int[]{1, 2, 3});
 
         testConn.close();
     }
@@ -5306,10 +5219,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#81202 - RESULTSETIMPL.GETOBJECT THROWS NULLPOINTEREXCEPTION WHEN FIELD IS NULL.
-     * 
-     * @throws Exception
-     *             if the test fails
+     * Tests fix for BUG#81202 - RESULTSETIMPL.GETOBJECT THROWS NULLPOINTEREXCEPTION WHEN FIELD IS
+     * NULL.
+     *
+     * @throws Exception if the test fails
      */
     public void testBug81202() throws Exception {
         createTable("testBug81202", "(id INT unsigned NOT NULL, value_timestamp TIMESTAMP NULL, ot1 VARCHAR(100), ot2 BLOB, odt1 VARCHAR(100), odt2 BLOB)");
@@ -5354,9 +5267,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#82964 - JSR-310 DATA TYPES CREATED THROUGH JAVA.SQL TYPES.
-     * 
-     * @throws Exception
-     *             if the test fails
+     *
+     * @throws Exception if the test fails
      */
     public void testBug82964() throws Exception {
 
@@ -5439,8 +5351,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
         StringBuilder sb = new StringBuilder(
                 "INSERT INTO testBug24525461 values(0, 1, 1, 1, 1, 1, 1, 1, '2000-01-01 00:00:00', 1, 1, '2000-01-01', '12:00:00', '2000-01-01 00:00:00', 2000, 'aaa',"
-                        + " 1, 1, 'x', 'a', 1, '1', 1 , '1', 1, '1', 1, '1', '1', 1, " + fGeomFromText + "('POINT(1 1)'), " + fGeomFromText + "('POINT(2 2)'),"
-                        + " _utf8 'aaa', _utf8 'aaa', 'aaa', 'aaa', 1, 1, 'aaa', 'aaa', 'aaa', _utf8 'aaa', _utf8 'aaa', '1', null");
+                + " 1, 1, 'x', 'a', 1, '1', 1 , '1', 1, '1', 1, '1', '1', 1, " + fGeomFromText + "('POINT(1 1)'), " + fGeomFromText + "('POINT(2 2)'),"
+                + " _utf8 'aaa', _utf8 'aaa', 'aaa', 'aaa', 1, 1, 'aaa', 'aaa', 'aaa', _utf8 'aaa', _utf8 'aaa', '1', null");
         if (testJSON) {
             sb.append(", '{\"key1\": \"value1\"}'");
         }
@@ -5461,7 +5373,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
         tstBug24525461assertResults1(testJSON);
 
         // check that all fields are set as expected
-
         Calendar cal = Calendar.getInstance();
         cal.set(2002, 01, 02, 10, 30, 0);
         cal.set(Calendar.MILLISECOND, 0);
@@ -5481,20 +5392,20 @@ public class ResultSetRegressionTest extends BaseTestCase {
         rs1.updateTimestamp(14, new Timestamp(cal.getTimeInMillis())); // f13 DATETIME
         rs1.updateInt(15, 2002); // f14 YEAR
         rs1.updateNString(16, "bbb");
-        rs1.updateBytes(17, new byte[] { 50 }); // f16 VARBINARY(30)
+        rs1.updateBytes(17, new byte[]{50}); // f16 VARBINARY(30)
         rs1.updateByte(18, (byte) 0); // f17 BIT
         rs1.updateString(19, "y");
         rs1.updateString(20, "b");
         rs1.updateBlob(21, new com.mysql.cj.jdbc.Blob("2".getBytes(), null));
         rs1.updateClob(22, new com.mysql.cj.jdbc.Clob("2", null));
-        rs1.updateBlob(23, new ByteArrayInputStream(new byte[] { 50 }));
+        rs1.updateBlob(23, new ByteArrayInputStream(new byte[]{50}));
         rs1.updateClob(24, new StringReader("2"));
-        rs1.updateBlob(25, new ByteArrayInputStream(new byte[] { 50, 51, 52 }), 1);
+        rs1.updateBlob(25, new ByteArrayInputStream(new byte[]{50, 51, 52}), 1);
         rs1.updateClob(26, new StringReader("2222"), 1);
         rs1.updateObject(27, "2", MysqlType.BLOB);
         rs1.updateNClob(28, new com.mysql.cj.jdbc.NClob("2", null));
         rs1.updateString(29, "2");
-        rs1.updateBytes(30, new byte[] { 50 });
+        rs1.updateBytes(30, new byte[]{50});
 
         Object p1 = rs1.getObject(31);
         Object p2 = rs1.getObject(32);
@@ -5505,8 +5416,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
         rs1.updateNClob(34, new StringReader("bbbbbb"), 3);
         rs1.updateAsciiStream(35, new ByteArrayInputStream("bbb".getBytes()));
         rs1.updateAsciiStream(36, new ByteArrayInputStream("bbbbbb".getBytes()), 3);
-        rs1.updateBinaryStream(37, new ByteArrayInputStream(new byte[] { 50 }));
-        rs1.updateBinaryStream(38, new ByteArrayInputStream(new byte[] { 50, 51, 52 }), 1);
+        rs1.updateBinaryStream(37, new ByteArrayInputStream(new byte[]{50}));
+        rs1.updateBinaryStream(38, new ByteArrayInputStream(new byte[]{50, 51, 52}), 1);
         rs1.updateCharacterStream(39, new StringReader("bbb"));
         rs1.updateCharacterStream(40, new StringReader("bbbbbb"), 3);
         rs1.updateCharacterStream(41, new StringReader("bbbbbb"), 3L);
@@ -5550,33 +5461,33 @@ public class ResultSetRegressionTest extends BaseTestCase {
         assertEquals("2000-01-01", rs2.getDate(15).toString());
         assertEquals("aaa", rs2.getString(16));
         Blob blob = rs2.getBlob(17);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals(1, rs2.getInt(18));
         assertEquals("x", rs2.getString(19));
         assertEquals("a", rs2.getString(20));
         blob = rs2.getBlob(21);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("1", rs2.getString(22));
         blob = rs2.getBlob(23);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("1", rs2.getString(24));
         blob = rs2.getBlob(25);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("1", rs2.getString(26));
         blob = rs2.getBlob(27);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("1", rs2.getString(28));
         assertEquals("1", rs2.getString(29));
         blob = rs2.getBlob(30);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("aaa", rs2.getString(33));
         assertEquals("aaa", rs2.getString(34));
         assertEquals("aaa", rs2.getString(35));
         assertEquals("aaa", rs2.getString(36));
         blob = rs2.getBlob(37);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         blob = rs2.getBlob(38);
-        assertTrue(Arrays.equals(new byte[] { 49 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{49}, blob.getBytes(1, (int) blob.length())));
         assertEquals("aaa", rs2.getString(39));
         assertEquals("aaa", rs2.getString(40));
         assertEquals("aaa", rs2.getString(41));
@@ -5621,33 +5532,33 @@ public class ResultSetRegressionTest extends BaseTestCase {
         assertEquals("2002-01-01", rs2.getDate(15).toString());
         assertEquals("bbb", rs2.getString(16));
         Blob blob = rs2.getBlob(17);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals(0, rs2.getInt(18));
         assertEquals("y", rs2.getString(19));
         assertEquals("b", rs2.getString(20));
         blob = rs2.getBlob(21);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("2", rs2.getString(22));
         blob = rs2.getBlob(23);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("2", rs2.getString(24));
         blob = rs2.getBlob(25);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("2", rs2.getString(26));
         blob = rs2.getBlob(27);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("2", rs2.getString(28));
         assertEquals("2", rs2.getString(29));
         blob = rs2.getBlob(30);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("bbb", rs2.getString(33));
         assertEquals("bbb", rs2.getString(34));
         assertEquals("bbb", rs2.getString(35));
         assertEquals("bbb", rs2.getString(36));
         blob = rs2.getBlob(37);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         blob = rs2.getBlob(38);
-        assertTrue(Arrays.equals(new byte[] { 50 }, blob.getBytes(1, (int) blob.length())));
+        assertTrue(Arrays.equals(new byte[]{50}, blob.getBytes(1, (int) blob.length())));
         assertEquals("bbb", rs2.getString(39));
         assertEquals("bbb", rs2.getString(40));
         assertEquals("bbb", rs2.getString(41));
@@ -5670,7 +5581,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#24527173 - QUERY EXECUTION USING PREPARED STMT FAILS WHEN USECURSORFETCH=TRUE
+     * Tests fix for Bug#24527173 - QUERY EXECUTION USING PREPARED STMT FAILS WHEN
+     * USECURSORFETCH=TRUE
      */
     public void testBug24527173() throws Exception {
 
@@ -5761,9 +5673,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#23702040 - JDBCDATEVALUEFACTORY FAILS TO PARSE SOME DATES.
-     * 
-     * @throws Exception
-     *             if the test fails
+     *
+     * @throws Exception if the test fails
      */
     public void testBug23702040() throws Exception {
         SimpleDateFormat sdf = TimeUtil.getSimpleDateFormat(null, "yyyy-MM-dd", null, TimeZone.getTimeZone("Europe/Bucharest"));
@@ -5808,7 +5719,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#84084 (25215008), JAVA.LANG.ARRAYINDEXOUTOFBOUNDSEXCEPTION ON ATTEMPT TO GET VALUE FROM RESULTSET.
+     * Tests fix for Bug#84084 (25215008), JAVA.LANG.ARRAYINDEXOUTOFBOUNDSEXCEPTION ON ATTEMPT TO
+     * GET VALUE FROM RESULTSET.
      */
     public void testBug25215008() throws Exception {
 
@@ -5834,7 +5746,6 @@ public class ResultSetRegressionTest extends BaseTestCase {
         rs1.close();
 
         // then test with useServerPrepStmts=true
-
         // - test 2 - OK
         props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), "true");
         Connection conn2 = getConnectionWithProps(props);
@@ -5921,7 +5832,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#83368 - 5.1.40 regression: wasNull not updated when calling getInt for a bit column.
+     * Tests fix for Bug#83368 - 5.1.40 regression: wasNull not updated when calling getInt for a
+     * bit column.
      */
     public void testBug83368() throws Exception {
         createTable("testBug83368", "(c1 VARCHAR(1), c2 BIT)");
@@ -5958,7 +5870,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#83662 - NullPointerException while reading NULL boolean value from DB.
-     * 
+     *
      * This fix was actually done in the patch for Bug#83368, as both are fixed in the same way.
      */
     public void testBug83662() throws Exception {
@@ -5977,13 +5889,13 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for Bug#70704 - Deadlock using UpdatableResultSet.
-     * 
-     * Doesn't actually test the buggy behavior since it is not verifiable since the fix for Bug#59462 (revision 385a151). However, the patch for this fix is
-     * needed because the synchronization in UpdatableResultSet was dated.
-     * This test makes sure there is no regression.
-     * 
-     * WARNING! If this test fails there is no guarantee that the JVM will remain stable and won't affect any other tests. It is imperative that this test
-     * passes to ensure other tests results.
+     *
+     * Doesn't actually test the buggy behavior since it is not verifiable since the fix for
+     * Bug#59462 (revision 385a151). However, the patch for this fix is needed because the
+     * synchronization in UpdatableResultSet was dated. This test makes sure there is no regression.
+     *
+     * WARNING! If this test fails there is no guarantee that the JVM will remain stable and won't
+     * affect any other tests. It is imperative that this test passes to ensure other tests results.
      */
     public void testBug70704() throws Exception {
         for (int i = 0; i < 100; i++) {
@@ -6028,10 +5940,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for fix to BUG#25650305 - GETDATE(),GETTIME() AND GETTIMESTAMP() CALL WITH NULL CALENDAR RETURNS NPE
+     * Tests for fix to BUG#25650305 - GETDATE(),GETTIME() AND GETTIMESTAMP() CALL WITH NULL
+     * CALENDAR RETURNS NPE
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug25650305() throws Exception {
         if (!versionMeetsMinimum(5, 6, 4)) {
@@ -6067,10 +5979,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for fix to BUG#26750705 - MASTER : ERROR - UNSUPPORTED CONVERSION FROM TIME TO JAVA.SQL.DATE
+     * Tests for fix to BUG#26750705 - MASTER : ERROR - UNSUPPORTED CONVERSION FROM TIME TO
+     * JAVA.SQL.DATE
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug26750705() throws Exception {
         if (!versionMeetsMinimum(5, 6, 4)) {
@@ -6100,7 +6012,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         assertNotNull(w);
 
         int cnt = 2;
-        String expectedWarning = Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[] { "java.sql.Date" });
+        String expectedWarning = Messages.getString("ResultSet.ImplicitDatePartWarning", new Object[]{"java.sql.Date"});
         while (w != null) {
             if (expectedWarning.equals(w.getMessage())) {
                 cnt--;
@@ -6113,10 +6025,10 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for fix to BUG#26266731 - CONCUR_UPDATABLE RESULTSET OPERATIONS FAIL AGAINST 8.0 FOR BOOLEAN COLUMN
+     * Tests for fix to BUG#26266731 - CONCUR_UPDATABLE RESULTSET OPERATIONS FAIL AGAINST 8.0 FOR
+     * BOOLEAN COLUMN
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug26266731() throws Exception {
         this.rs = null;
@@ -6147,8 +6059,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     /**
      * Tests for fix to BUG#85941 (25924324), WASNULL NOT SET AFTER GETBYTES IS CALLED
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug85941() throws Exception {
         createTable("testBug85941", "(strField VARCHAR(1), bitField TEXT)");
@@ -6165,7 +6076,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#22305979, WRONG RECORD UPDATED IF SENDFRACTIONALSECONDS=FALSE AND SMT IS SCROLLABLE.
+     * Tests fix for Bug#22305979, WRONG RECORD UPDATED IF SENDFRACTIONALSECONDS=FALSE AND SMT IS
+     * SCROLLABLE.
      */
     public void testBug22305979() throws Exception {
         if (!versionMeetsMinimum(5, 6, 4)) {
@@ -6179,7 +6091,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
         props.setProperty(PropertyKey.sendFractionalSeconds.getKeyName(), "false");
 
-        for (String serverTimezone : new String[] { null, "GMT", "Asia/Calcutta" }) {
+        for (String serverTimezone : new String[]{null, "GMT", "Asia/Calcutta"}) {
             System.out.println("serverTimezone=" + serverTimezone);
             if (serverTimezone != null) {
                 props.setProperty(PropertyKey.serverTimezone.getKeyName(), serverTimezone);
@@ -6215,110 +6127,109 @@ public class ResultSetRegressionTest extends BaseTestCase {
         }
 
         /* Unified test */
-
         // Original values we insert
-        Timestamp[] ts_ins = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 13:14:15"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1234567"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12345678"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.999999999") };
+        Timestamp[] ts_ins = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 13:14:15"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1234567"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12345678"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.999999999")};
 
         // Values we expect in DB after insert operation if TIME_TRUNCATE_FRACTIONAL sql_mode is unset
-        Timestamp[] ts_ins_expected_round = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 13:14:15"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 13:14:16.0") };
+        Timestamp[] ts_ins_expected_round = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 13:14:15"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 13:14:16.0")};
 
         // Values we expect in DB after insert operation if TIME_TRUNCATE_FRACTIONAL sql_mode is set
-        Timestamp[] ts_ins_expected_truncate = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 13:14:15"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.999999") };
+        Timestamp[] ts_ins_expected_truncate = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 13:14:15"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.999999")};
 
         // Values we expect in DB after insert operation if sendFractionalSeconds=false
-        Timestamp[] ts_ins_expected_not_sendFractionalSeconds = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 13:14:15"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 13:14:15.0") };
+        Timestamp[] ts_ins_expected_not_sendFractionalSeconds = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 13:14:15"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 13:14:15.0")};
 
         // Original values we pass to update operation
-        Timestamp[] ts_upd = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 03:14:15"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1234567"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12345678"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.999999999") };
+        Timestamp[] ts_upd = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 03:14:15"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1234567"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12345678"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.999999999")};
 
         // Values we expect in DB after update operation if TIME_TRUNCATE_FRACTIONAL sql_mode is unset
-        Timestamp[] ts_upd_expected_round = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 03:14:15"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 03:14:16.0") };
+        Timestamp[] ts_upd_expected_round = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 03:14:15"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 03:14:16.0")};
 
         // Values we expect in DB after update operation if TIME_TRUNCATE_FRACTIONAL sql_mode is set
-        Timestamp[] ts_upd_expected_truncate = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 03:14:15"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.999999") };
+        Timestamp[] ts_upd_expected_truncate = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 03:14:15"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.1234"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.12345"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123456"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.123457"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.999999")};
 
         // Values we expect in DB after update operation if sendFractionalSeconds=false
-        Timestamp[] ts_upd_expected_not_sendFractionalSeconds = new Timestamp[] { //
-                Timestamp.valueOf("2018-07-09 03:14:15"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0"), //
-                Timestamp.valueOf("2018-07-09 03:14:15.0") };
+        Timestamp[] ts_upd_expected_not_sendFractionalSeconds = new Timestamp[]{ //
+            Timestamp.valueOf("2018-07-09 03:14:15"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0"), //
+            Timestamp.valueOf("2018-07-09 03:14:15.0")};
 
         Connection testConn;
 
@@ -6331,7 +6242,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             if (sqlModeTimeTruncateFractional && !versionMeetsMinimum(8, 0)) {
                 continue;
             }
-            for (String serverTimezone : new String[] { null, "GMT", "Asia/Calcutta" }) {
+            for (String serverTimezone : new String[]{null, "GMT", "Asia/Calcutta"}) {
                 if (serverTimezone != null) {
                     props.setProperty(PropertyKey.serverTimezone.getKeyName(), serverTimezone);
                 } else {
@@ -6366,8 +6277,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
                     String tableName = "testBug22305979_" + len;
                     createTable(tableName,
                             "(id INTEGER, dt DATETIME" + (fieldLen == 0 ? "" : "(" + fieldLen + ")") + ", ts TIMESTAMP"
-                                    + (fieldLen == 0 ? "" : "(" + fieldLen + ")") + ", tm TIME" + (fieldLen == 0 ? "" : "(" + fieldLen + ")")
-                                    + ", PRIMARY KEY(id,dt,ts,tm))");
+                            + (fieldLen == 0 ? "" : "(" + fieldLen + ")") + ", tm TIME" + (fieldLen == 0 ? "" : "(" + fieldLen + ")")
+                            + ", PRIMARY KEY(id,dt,ts,tm))");
 
                     Statement st = testConn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
                     this.rs = st.executeQuery("SELECT id,dt,ts,tm FROM " + tableName + " FOR UPDATE");
@@ -6433,15 +6344,16 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#80532 (22847443), ENCODING OF RESULTSET.UPDATEROW IS BROKEN FOR NON ASCII CHARCTERS.
+     * Tests fix for Bug#80532 (22847443), ENCODING OF RESULTSET.UPDATEROW IS BROKEN FOR NON ASCII
+     * CHARCTERS.
      */
     public void testBug80532() throws Exception {
         Properties props = new Properties();
         props.setProperty(PropertyKey.useSSL.getKeyName(), "false");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
 
-        for (String enc : new String[] { "ISO8859_1", "UTF-8" }) {
-            for (String useSSPS : new String[] { "false", "true" }) {
+        for (String enc : new String[]{"ISO8859_1", "UTF-8"}) {
+            for (String useSSPS : new String[]{"false", "true"}) {
                 final String testCase = String.format("Case: [characterEncoding=%s, useServerPrepStmts=%s]", enc, useSSPS);
                 System.out.println(testCase);
 
@@ -6600,14 +6512,14 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for fix to BUG#92574 (28706219), WHEN CONVERTING FROM VARCHAR TO JAVA BOOLEAN, 'N' IS NOT SUPPORTED.
+     * Tests for fix to BUG#92574 (28706219), WHEN CONVERTING FROM VARCHAR TO JAVA BOOLEAN, 'N' IS
+     * NOT SUPPORTED.
      *
-     * @throws Exception
-     *             if the test fails
+     * @throws Exception if the test fails
      */
     public void testBug92574() throws Exception {
-        String[] strValues = new String[] { null, "N", "n", "Y", "y", "0", "1" };
-        boolean[] boolValues = new boolean[] { false, false, false, true, true, false, true };
+        String[] strValues = new String[]{null, "N", "n", "Y", "y", "0", "1"};
+        boolean[] boolValues = new boolean[]{false, false, false, true, true, false, true};
 
         createTable("testBug92574", "(id int not null, f varchar(1), key(id))");
         for (int i = 0; i < strValues.length; i++) {
@@ -6623,7 +6535,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#91065 (28101003), ZERODATETIMEBEHAVIOR=CONVERT_TO_NULL SHOULD NOT APPLY TO 00:00:00 TIME COLUMNS.
+     * Tests fix for Bug#91065 (28101003), ZERODATETIMEBEHAVIOR=CONVERT_TO_NULL SHOULD NOT APPLY TO
+     * 00:00:00 TIME COLUMNS.
      */
     public void testBug91065() throws Exception {
         createTable("testBug91065", "(theTimeField time DEFAULT NULL)");
@@ -6653,7 +6566,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         Properties props = new Properties();
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
-        for (String useSSPS : new String[] { "false", "true" }) {
+        for (String useSSPS : new String[]{"false", "true"}) {
             props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), useSSPS);
             Connection c1 = getConnectionWithProps(props);
             try (PreparedStatement stmt1 = c1.prepareStatement("SELECT `key`, `value` FROM `testBug92536` WHERE `key`=? FOR UPDATE",
@@ -6679,7 +6592,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#25650482, REFRESHROW() CALL AFTER UPDATEROW() API FAILS WHEN USESERVERPREPSTMTS=TRUE.
+     * Tests fix for Bug#25650482, REFRESHROW() CALL AFTER UPDATEROW() API FAILS WHEN
+     * USESERVERPREPSTMTS=TRUE.
      */
     public void testBug25650482() throws Exception {
         createTable("testBug25650482", "(c1 int, c2 char(10),  primary key(c1))");
@@ -6689,7 +6603,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
 
-        for (String useSSPS : new String[] { "false", "true" }) {
+        for (String useSSPS : new String[]{"false", "true"}) {
             props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), useSSPS);
             Connection c1 = getConnectionWithProps(props);
             try (PreparedStatement ps1 = c1.prepareStatement("SELECT * FROM `testBug25650482` order by c1 asc", ResultSet.TYPE_SCROLL_SENSITIVE,
@@ -6715,7 +6629,8 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#25650514, UPDATEROW() CALL FAILS WITH NPE WHEN SSPS=TRUE AND TABLE HAS MULTI-FLD KEY.
+     * Tests fix for Bug#25650514, UPDATEROW() CALL FAILS WITH NPE WHEN SSPS=TRUE AND TABLE HAS
+     * MULTI-FLD KEY.
      */
     public void testBug25650514() throws Exception {
         createTable("testBug25650514", "(c1 int,c2 char(10),  primary key(c1,c2))");
@@ -6725,7 +6640,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         props.setProperty(PropertyKey.sslMode.getKeyName(), "DISABLED");
         props.setProperty(PropertyKey.allowPublicKeyRetrieval.getKeyName(), "true");
 
-        for (String useSSPS : new String[] { "false", "true" }) {
+        for (String useSSPS : new String[]{"false", "true"}) {
             props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), useSSPS);
             Connection c1 = getConnectionWithProps(props);
             try (PreparedStatement ps1 = c1.prepareStatement("SELECT * FROM `testBug25650514` order by c1 asc", ResultSet.TYPE_SCROLL_SENSITIVE,

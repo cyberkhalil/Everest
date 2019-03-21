@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import testsuite.BaseTestCase;
@@ -41,11 +40,9 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11797 - Escape tokenizer doesn't respect stacked single
-     * quotes for escapes.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#11797 - Escape tokenizer doesn't respect stacked single quotes for escapes.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug11797() throws Exception {
         assertEquals("select 'ESCAPED BY ''\\'' ON {tbl_name | * | *.* | db_name.*}'",
@@ -53,11 +50,10 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11498 - Escape processor didn't honor strings
-     * demarcated with double quotes.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests fix for BUG#11498 - Escape processor didn't honor strings demarcated with double
+     * quotes.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug11498() throws Exception {
         assertEquals(
@@ -68,9 +64,9 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#14909 - escape processor replaces quote character in
-     * quoted string with string delimiter.
-     * 
+     * Tests fix for BUG#14909 - escape processor replaces quote character in quoted string with
+     * string delimiter.
+     *
      * @throws Exception
      */
     public void testBug14909() throws Exception {
@@ -79,9 +75,8 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#25399 - EscapeProcessor gets confused by multiple backslashes
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug25399() throws Exception {
         assertEquals("\\' {d}", getSingleValueWithQuery("SELECT '\\\\\\' {d}'"));
@@ -89,9 +84,8 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#63526 - Unhandled case of {data...}
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testBug63526() throws Exception {
         createTable("bug63526", "(`{123}` INT UNSIGNED NOT NULL)", "INNODB");
@@ -99,7 +93,7 @@ public class EscapeProcessorRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#60598 - nativeSQL() truncates fractional seconds
-     * 
+     *
      * @throws Exception
      */
     public void testBug60598() throws Exception {

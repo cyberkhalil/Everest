@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.io.BufferedInputStream;
@@ -135,24 +134,29 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     protected static final int COMP_HEADER_LENGTH = 3;
     protected static final int MAX_QUERY_SIZE_TO_EXPLAIN = 1024 * 1024; // don't explain queries above 1MB
     private static final String EXPLAINABLE_STATEMENT = "SELECT";
-    private static final String[] EXPLAINABLE_STATEMENT_EXTENSION = new String[] { "INSERT", "UPDATE", "REPLACE", "DELETE" };
+    private static final String[] EXPLAINABLE_STATEMENT_EXTENSION = new String[]{"INSERT", "UPDATE", "REPLACE", "DELETE"};
 
     protected MessageSender<NativePacketPayload> packetSender;
     protected MessageReader<NativePacketHeader, NativePacketPayload> packetReader;
 
     protected NativeServerSession serverSession;
 
-    /** Track this to manually shut down. */
+    /**
+     * Track this to manually shut down.
+     */
     protected CompressedPacketSender compressedPacketSender;
 
     //private PacketPayload sendPacket = null;
     protected NativePacketPayload sharedSendPacket = null;
-    /** Use this when reading in rows to avoid thousands of new() calls, because the byte arrays just get copied out of the packet anyway */
+    /**
+     * Use this when reading in rows to avoid thousands of new() calls, because the byte arrays just
+     * get copied out of the packet anyway
+     */
     protected NativePacketPayload reusablePacket = null;
 
     /**
      * Packet used for 'LOAD DATA LOCAL INFILE'
-     * 
+     *
      * We use a SoftReference, so that we don't penalize intermittent use of this feature
      */
     private SoftReference<NativePacketPayload> loadFileBufRef;
@@ -166,7 +170,9 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     //private boolean needToGrabQueryFromPacket;
     private boolean autoGenerateTestcaseScript;
 
-    /** Does the server support long column info? */
+    /**
+     * Does the server support long column info?
+     */
     private boolean logSlowQueries = false;
     private boolean useAutoSlowLog;
 
@@ -185,8 +191,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     protected Map<Class<? extends ProtocolEntity>, ProtocolEntityReader<? extends ProtocolEntity, ? extends Message>> PROTOCOL_ENTITY_CLASS_TO_BINARY_READER;
 
     /**
-     * Does the character set of this connection match the character set of the
-     * platform
+     * Does the character set of this connection match the character set of the platform
      */
     protected boolean platformDbCharsetMatches = true; // changed once we've connected.
 
@@ -203,13 +208,14 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     private TransactionEventHandler transactionManager;
 
     /**
-     * The comment (if any) that we'll prepend to all queries
-     * sent to the server (to show up in "SHOW PROCESSLIST")
+     * The comment (if any) that we'll prepend to all queries sent to the server (to show up in
+     * "SHOW PROCESSLIST")
      */
     private String queryComment = null;
 
     /**
-     * We store the platform 'encoding' here, only used to avoid munging filenames for LOAD DATA LOCAL INFILE...
+     * We store the platform 'encoding' here, only used to avoid munging filenames for LOAD DATA
+     * LOCAL INFILE...
      */
     private static String jvmPlatformCharset = null;
 
@@ -280,7 +286,6 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         }
 
         //this.needToGrabQueryFromPacket = (this.profileSQL || this.logSlowQueries || this.autoGenerateTestcaseScript);
-
         if (this.propertySet.getBooleanProperty(PropertyKey.useNanosForElapsedTime).getValue() && TimeUtil.nanoTimeAvailable()) {
             this.useNanosForElapsedTime = true;
 
@@ -323,11 +328,10 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Negotiates the SSL communications channel used when connecting
-     * to a MySQL server that understands SSL.
-     * 
-     * @param packLength
-     *            packet length
+     * Negotiates the SSL communications channel used when connecting to a MySQL server that
+     * understands SSL.
+     *
+     * @param packLength packet length
      */
     @Override
     public void negotiateSSLConnection(int packLength) {
@@ -459,11 +463,9 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Apply optional decorators to configured PacketSender and PacketReader.
-     * 
-     * @param sender
-     *            {@link MessageSender}
-     * @param messageReader
-     *            {@link MessageReader}
+     *
+     * @param sender {@link MessageSender}
+     * @param messageReader {@link MessageReader}
      */
     public void applyPacketDecorators(MessageSender<NativePacketPayload> sender, MessageReader<NativePacketHeader, NativePacketPayload> messageReader) {
         TimeTrackingPacketSender ttSender = null;
@@ -568,10 +570,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * @param packet
-     *            {@link Message}
-     * @param packetLen
-     *            length of header + payload
+     * @param packet {@link Message}
+     * @param packetLen length of header + payload
      */
     @Override
     public final void send(Message packet, int packetLen) {
@@ -710,16 +710,13 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Checks for errors in the reply packet, and if none, returns the reply
-     * packet, ready for reading
-     * 
-     * @param command
-     *            the command being issued (if used)
+     * Checks for errors in the reply packet, and if none, returns the reply packet, ready for
+     * reading
+     *
+     * @param command the command being issued (if used)
      * @return NativePacketPayload
-     * @throws CJException
-     *             if an error packet was received
-     * @throws CJCommunicationsException
-     *             if a database error occurs
+     * @throws CJException if an error packet was received
+     * @throws CJCommunicationsException if a database error occurs
      */
     private NativePacketPayload checkErrorMessage(int command) {
 
@@ -850,30 +847,20 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Build a query packet from the given string and send it to the server.
-     * 
-     * @param <T>
-     *            extends {@link Resultset}
-     * @param callingQuery
-     *            {@link Query}
-     * @param query
-     *            query string
-     * @param characterEncoding
-     *            Java encoding name
-     * @param maxRows
-     *            rows limit
-     * @param streamResults
-     *            whether a stream result should be created
-     * @param catalog
-     *            database name
-     * @param cachedMetadata
-     *            use this metadata instead of the one provided on wire
+     *
+     * @param <T> extends {@link Resultset}
+     * @param callingQuery {@link Query}
+     * @param query query string
+     * @param characterEncoding Java encoding name
+     * @param maxRows rows limit
+     * @param streamResults whether a stream result should be created
+     * @param catalog database name
+     * @param cachedMetadata use this metadata instead of the one provided on wire
      * @param getProfilerEventHandlerInstanceFunction
-     *            {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     * {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      * @return T instance
-     * @throws IOException
-     *             if an i/o error occurs
+     * @throws IOException if an i/o error occurs
      */
     public final <T extends Resultset> T sendQueryString(Query callingQuery, String query, String characterEncoding, int maxRows, boolean streamResults,
             String catalog, ColumnDefinition cachedMetadata, GetProfilerEventHandlerInstanceFunction getProfilerEventHandlerInstanceFunction,
@@ -924,28 +911,19 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Send a query stored in a packet to the server.
-     * 
-     * @param <T>
-     *            extends {@link Resultset}
-     * @param callingQuery
-     *            {@link Query}
-     * @param queryPacket
-     *            {@link NativePacketPayload} containing query
-     * @param maxRows
-     *            rows limit
-     * @param streamResults
-     *            whether a stream result should be created
-     * @param catalog
-     *            database name
-     * @param cachedMetadata
-     *            use this metadata instead of the one provided on wire
+     *
+     * @param <T> extends {@link Resultset}
+     * @param callingQuery {@link Query}
+     * @param queryPacket {@link NativePacketPayload} containing query
+     * @param maxRows rows limit
+     * @param streamResults whether a stream result should be created
+     * @param catalog database name
+     * @param cachedMetadata use this metadata instead of the one provided on wire
      * @param getProfilerEventHandlerInstanceFunction
-     *            {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     * {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      * @return T instance
-     * @throws IOException
-     *             if an i/o error occurs
+     * @throws IOException if an i/o error occurs
      */
     public final <T extends Resultset> T sendQueryPacket(Query callingQuery, NativePacketPayload queryPacket, int maxRows, boolean streamResults,
             String catalog, ColumnDefinition cachedMetadata, GetProfilerEventHandlerInstanceFunction getProfilerEventHandlerInstanceFunction,
@@ -1049,8 +1027,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
                 StringBuilder mesgBuf = new StringBuilder(48 + profileQueryToLog.length());
 
                 mesgBuf.append(Messages.getString("Protocol.SlowQuery",
-                        new Object[] { String.valueOf(this.useAutoSlowLog ? " 95% of all queries " : this.slowQueryThreshold), this.queryTimingUnits,
-                                Long.valueOf(queryEndTime - queryStartTime) }));
+                        new Object[]{String.valueOf(this.useAutoSlowLog ? " 95% of all queries " : this.slowQueryThreshold), this.queryTimingUnits,
+                            Long.valueOf(queryEndTime - queryStartTime)}));
                 mesgBuf.append(profileQueryToLog);
 
                 ProfilerEventHandler eventSink = getProfilerEventHandlerInstanceFunction.apply();
@@ -1064,7 +1042,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
                         queryPacket.setPosition(1); // skip first byte 
                         explainSlowQuery(query.toString(), profileQueryToLog);
                     } else {
-                        this.log.logWarn(Messages.getString("Protocol.3", new Object[] { MAX_QUERY_SIZE_TO_EXPLAIN }));
+                        this.log.logWarn(Messages.getString("Protocol.3", new Object[]{MAX_QUERY_SIZE_TO_EXPLAIN}));
                     }
                 }
             }
@@ -1153,13 +1131,10 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * 
-     * @param <M>
-     *            extends {@link Message}
-     * @param queryPacket
-     *            {@link NativePacketPayload} containing query
-     * @param forceExecute
-     *            currently ignored
+     *
+     * @param <M> extends {@link Message}
+     * @param queryPacket {@link NativePacketPayload} containing query
+     * @param forceExecute currently ignored
      * @return M instance
      */
     public <M extends Message> M invokeQueryInterceptorsPre(M queryPacket, boolean forceExecute) {
@@ -1172,7 +1147,6 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
             //            boolean executeTopLevelOnly = interceptor.executeTopLevelOnly();
             //            boolean shouldExecute = (executeTopLevelOnly && (this.statementExecutionDepth == 1 || forceExecute)) || (!executeTopLevelOnly);
             //            if (shouldExecute) {
-
             M interceptedPacketPayload = interceptor.preProcess(queryPacket);
             if (interceptedPacketPayload != null) {
                 previousPacketPayload = interceptedPacketPayload;
@@ -1204,15 +1178,11 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * 
-     * @param <M>
-     *            extends {@link Message}
-     * @param queryPacket
-     *            {@link NativePacketPayload} containing query
-     * @param originalResponsePacket
-     *            {@link NativePacketPayload} containing response
-     * @param forceExecute
-     *            currently ignored
+     *
+     * @param <M> extends {@link Message}
+     * @param queryPacket {@link NativePacketPayload} containing query
+     * @param originalResponsePacket {@link NativePacketPayload} containing response
+     * @param forceExecute currently ignored
      * @return T instance
      */
     public <M extends Message> M invokeQueryInterceptorsPost(M queryPacket, M originalResponsePacket, boolean forceExecute) {
@@ -1224,7 +1194,6 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
             //            boolean executeTopLevelOnly = interceptor.executeTopLevelOnly();
             //            boolean shouldExecute = (executeTopLevelOnly && (this.statementExecutionDepth == 1 || forceExecute)) || (!executeTopLevelOnly);
             //            if (shouldExecute) {
-
             M interceptedPacketPayload = interceptor.postProcess(queryPacket, originalResponsePacket);
             if (interceptedPacketPayload != null) {
                 originalResponsePacket = interceptedPacketPayload;
@@ -1253,12 +1222,10 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Runs an 'EXPLAIN' on the given query and dumps the results to the log
-     * 
-     * @param query
-     *            full query string
-     * @param truncatedQuery
-     *            query string truncated for profiling
-     * 
+     *
+     * @param query full query string
+     * @param truncatedQuery query string truncated for profiling
+     *
      */
     public void explainSlowQuery(String query, String truncatedQuery) {
         if (StringUtils.startsWithIgnoreCaseAndWs(truncatedQuery, EXPLAINABLE_STATEMENT)
@@ -1287,10 +1254,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Reads and discards a single MySQL packet from the input stream.
-     * 
-     * @throws CJException
-     *             if the network fails while skipping the
-     *             packet.
+     *
+     * @throws CJException if the network fails while skipping the packet.
      */
     public final void skipPacket() {
         try {
@@ -1307,7 +1272,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Log-off of the MySQL server and close the socket.
-     * 
+     *
      */
     public final void quit() {
         try {
@@ -1337,7 +1302,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     /**
      * Returns the packet used for sending data (used by PreparedStatement) with position set to 0.
      * Guarded by external synchronization on a mutex.
-     * 
+     *
      * @return A packet to send data with
      */
     public NativePacketPayload getSharedSendPacket() {
@@ -1365,14 +1330,11 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Re-authenticates as the given user and password
-     * 
-     * @param user
-     *            user name
-     * @param password
-     *            password
-     * @param database
-     *            database name
-     * 
+     *
+     * @param user user name
+     * @param password password
+     * @param database database name
+     *
      */
     public void changeUser(String user, String password, String database) {
         this.packetSequence = -1;
@@ -1521,8 +1483,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         boolean isImplicitTemporaryTable = tableName.length() > 0 && tableName.toString().startsWith("#sql_");
 
         boolean isOpaqueBinary = (isBinary && collationIndex == CharsetMapping.MYSQL_COLLATION_INDEX_binary && (mysqlTypeId == MysqlType.FIELD_TYPE_STRING
-                || mysqlTypeId == MysqlType.FIELD_TYPE_VAR_STRING || mysqlTypeId == MysqlType.FIELD_TYPE_VARCHAR)) ?
-        // queries resolved by temp tables also have this 'signature', check for that
+                || mysqlTypeId == MysqlType.FIELD_TYPE_VAR_STRING || mysqlTypeId == MysqlType.FIELD_TYPE_VARCHAR))
+                        ? // queries resolved by temp tables also have this 'signature', check for that
                         !isImplicitTemporaryTable : "binary".equalsIgnoreCase(encoding);
 
         switch (mysqlTypeId) {
@@ -1673,7 +1635,6 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     /*
      * Reading results
      */
-
     @Override
     public <T extends ProtocolEntity> T read(Class<T> requiredClass, ProtocolEntityFactory<T, NativePacketPayload> protocolEntityFactory) throws IOException {
         @SuppressWarnings("unchecked")
@@ -1700,22 +1661,15 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Read next result set from multi-result chain.
-     * 
-     * @param <T>
-     *            extends {@link ProtocolEntity}
-     * @param currentProtocolEntity
-     *            T instance
-     * @param maxRows
-     *            rows limit
-     * @param streamResults
-     *            whether a stream result should be created
-     * @param isBinaryEncoded
-     *            true for binary protocol
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     *
+     * @param <T> extends {@link ProtocolEntity}
+     * @param currentProtocolEntity T instance
+     * @param maxRows rows limit
+     * @param streamResults whether a stream result should be created
+     * @param isBinaryEncoded true for binary protocol
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      * @return T instance
-     * @throws IOException
-     *             if an i/o error occurs
+     * @throws IOException if an i/o error occurs
      */
     public <T extends ProtocolEntity> T readNextResultset(T currentProtocolEntity, int maxRows, boolean streamResults, boolean isBinaryEncoded,
             ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory) throws IOException {
@@ -1815,9 +1769,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Reads and sends a file to the server for LOAD DATA LOCAL INFILE
-     * 
-     * @param fileName
-     *            the file name to send.
+     *
+     * @param fileName the file name to send.
      * @return NativePacketPayload
      */
     public final NativePacketPayload sendFileToServer(String fileName) {
@@ -1839,7 +1792,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
                 filePacket = new NativePacketPayload(packetLength);
                 this.loadFileBufRef = new SoftReference<>(filePacket);
             } catch (OutOfMemoryError oom) {
-                throw ExceptionFactory.createException(Messages.getString("MysqlIO.111", new Object[] { packetLength }),
+                throw ExceptionFactory.createException(Messages.getString("MysqlIO.111", new Object[]{packetLength}),
                         MysqlErrorNumbers.SQL_STATE_MEMORY_ALLOCATION_ERROR, 0, false, oom, this.exceptionInterceptor);
             }
         }
@@ -2120,15 +2073,13 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Turns output of 'SHOW WARNINGS' into JDBC SQLWarning instances.
-     * 
-     * If 'forTruncationOnly' is true, only looks for truncation warnings, and
-     * actually throws DataTruncation as an exception.
-     * 
-     * @param warningCountIfKnown
-     *            the warning count (if known), otherwise set it to 0.
-     * @param forTruncationOnly
-     *            if this method should only scan for data truncation warnings
-     * 
+     *
+     * If 'forTruncationOnly' is true, only looks for truncation warnings, and actually throws
+     * DataTruncation as an exception.
+     *
+     * @param warningCountIfKnown the warning count (if known), otherwise set it to 0.
+     * @param forTruncationOnly if this method should only scan for data truncation warnings
+     *
      * @return the SQLWarning chain (or null if no warnings)
      */
     public SQLWarning convertShowWarningsToSQLWarnings(int warningCountIfKnown, boolean forTruncationOnly) {
@@ -2220,10 +2171,9 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
 
     /**
      * Configures the client's timezone if required.
-     * 
-     * @throws CJException
-     *             if the timezone the server is configured to use can't be
-     *             mapped to a Java timezone.
+     *
+     * @throws CJException if the timezone the server is configured to use can't be mapped to a Java
+     * timezone.
      */
     public void configureTimezone() {
         String configuredTimeZoneOnServer = this.serverSession.getServerVariable("time_zone");
@@ -2252,7 +2202,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
             // The Calendar class has the behavior of mapping unknown timezones to 'GMT' instead of throwing an exception, so we must check for this...
             //
             if (!canonicalTimezone.equalsIgnoreCase("GMT") && this.serverSession.getServerTimeZone().getID().equals("GMT")) {
-                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.9", new Object[] { canonicalTimezone }),
+                throw ExceptionFactory.createException(WrongArgumentException.class, Messages.getString("Connection.9", new Object[]{canonicalTimezone}),
                         getExceptionInterceptor());
             }
         }
@@ -2281,7 +2231,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
                 int allowedBlobSendChunkSize = Math.min(preferredBlobSendChunkSize, this.maxAllowedPacket.getValue()) - packetHeaderSize;
 
                 if (allowedBlobSendChunkSize <= 0) {
-                    throw ExceptionFactory.createException(Messages.getString("Connection.15", new Object[] { packetHeaderSize }),
+                    throw ExceptionFactory.createException(Messages.getString("Connection.15", new Object[]{packetHeaderSize}),
                             MysqlErrorNumbers.SQL_STATE_INVALID_CONNECTION_ATTRIBUTE, 0, false, null, this.exceptionInterceptor);
                 }
 

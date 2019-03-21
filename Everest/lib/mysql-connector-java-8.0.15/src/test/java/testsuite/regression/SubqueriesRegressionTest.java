@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.regression;
 
 import testsuite.BaseTestCase;
@@ -35,6 +34,7 @@ import testsuite.BaseTestCase;
  * Tests SubQueries
  */
 public class SubqueriesRegressionTest extends BaseTestCase {
+
     private final static int REPETITIONS = 100;
 
     /**
@@ -57,7 +57,7 @@ public class SubqueriesRegressionTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {

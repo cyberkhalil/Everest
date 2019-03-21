@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.ByteArrayOutputStream;
@@ -52,6 +51,7 @@ import testsuite.BaseTestCase;
  * Unit tests for our XA implementation.
  */
 public class XATest extends BaseTestCase {
+
     MysqlXADataSource xaDs;
 
     public XATest(String name) {
@@ -64,9 +64,8 @@ public class XATest extends BaseTestCase {
 
     /**
      * Tests that simple distributed transaction processing works as expected.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testCoordination() throws Exception {
         createTable("testCoordination", "(field1 int) ENGINE=InnoDB");
@@ -114,7 +113,6 @@ public class XATest extends BaseTestCase {
             //
             // Now test rollback
             //
-
             xid1 = createXid();
             xid2 = createXid(xid1);
 
@@ -167,9 +165,8 @@ public class XATest extends BaseTestCase {
 
     /**
      * Tests that XA RECOVER works as expected.
-     * 
-     * @throws Exception
-     *             if test fails
+     *
+     * @throws Exception if test fails
      */
     public void testRecover() throws Exception {
         if (versionMeetsMinimum(5, 7) && !versionMeetsMinimum(5, 7, 5)) {
@@ -257,11 +254,10 @@ public class XATest extends BaseTestCase {
     }
 
     /**
-     * Tests operation of local transactions on XAConnections when global
-     * transactions are in or not in progress (follows from BUG#17401).
-     * 
-     * @throws Exception
-     *             if the testcase fails
+     * Tests operation of local transactions on XAConnections when global transactions are in or not
+     * in progress (follows from BUG#17401).
+     *
+     * @throws Exception if the testcase fails
      */
     public void testLocalTransaction() throws Exception {
 
@@ -370,8 +366,8 @@ public class XATest extends BaseTestCase {
 
         MysqlXADataSource suspXaDs = new MysqlXADataSource();
         suspXaDs.setUrl(BaseTestCase.dbUrl);
-        suspXaDs.<Boolean> getProperty(PropertyKey.pinGlobalTxToPhysicalConnection).setValue(true);
-        suspXaDs.<Boolean> getProperty(PropertyKey.rollbackOnPooledClose).setValue(true);
+        suspXaDs.<Boolean>getProperty(PropertyKey.pinGlobalTxToPhysicalConnection).setValue(true);
+        suspXaDs.<Boolean>getProperty(PropertyKey.rollbackOnPooledClose).setValue(true);
 
         XAConnection xaConn1 = null;
 
@@ -413,7 +409,6 @@ public class XATest extends BaseTestCase {
              * xa end 0x123,0x456;
              * xa commit 0x123,0x456 one phase;
              */
-
             xaConn1 = suspXaDs.getXAConnection();
             xaRes1 = xaConn1.getXAResource();
             conn1 = xaConn1.getConnection();

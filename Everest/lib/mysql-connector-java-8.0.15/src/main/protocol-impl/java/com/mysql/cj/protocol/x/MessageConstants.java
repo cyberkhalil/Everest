@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.Collections;
@@ -72,8 +71,10 @@ import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
  * Constants related to X Protocol messages.
  */
 public class MessageConstants {
+
     /**
-     * Store a mapping of "ServerMessages" class to message parsers. This is used to get the de-serializer after reading the type tag.
+     * Store a mapping of "ServerMessages" class to message parsers. This is used to get the
+     * de-serializer after reading the type tag.
      */
     public static final Map<Class<? extends GeneratedMessageV3>, Parser<? extends GeneratedMessageV3>> MESSAGE_CLASS_TO_PARSER;
 
@@ -89,7 +90,8 @@ public class MessageConstants {
     public static final Map<Integer, Class<? extends GeneratedMessageV3>> MESSAGE_TYPE_TO_CLASS;
 
     /**
-     * Store a mapping of message class to "ClientMessages" type tag. This is used to generate the header when sending a message.
+     * Store a mapping of message class to "ClientMessages" type tag. This is used to generate the
+     * header when sending a message.
      */
     public static final Map<Class<? extends MessageLite>, Integer> MESSAGE_CLASS_TO_CLIENT_MESSAGE_TYPE;
 
@@ -158,9 +160,8 @@ public class MessageConstants {
 
     /**
      * Lookup the "ClientMessages" type tag for a Protocol buffers message class.
-     * 
-     * @param msgClass
-     *            message class extending {@link MessageLite}
+     *
+     * @param msgClass message class extending {@link MessageLite}
      * @return type tag for this message class
      */
     public static int getTypeForMessageClass(Class<? extends MessageLite> msgClass) {

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.io.ByteArrayInputStream;
@@ -196,7 +195,6 @@ public class MysqlSQLXML implements SQLXML {
 
         // Note that we try and use streams here wherever possible for the day that the server actually supports streaming from server -> client
         // (futureproofing)
-
         if (clazz == null || clazz.equals(SAXSource.class)) {
 
             InputSource inputSource = null;
@@ -254,7 +252,7 @@ public class MysqlSQLXML implements SQLXML {
                 throw sqlEx;
             }
         } else {
-            throw SQLError.createSQLException(Messages.getString("MysqlSQLXML.2", new Object[] { clazz.toString() }),
+            throw SQLError.createSQLException(Messages.getString("MysqlSQLXML.2", new Object[]{clazz.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.exceptionInterceptor);
         }
     }
@@ -330,7 +328,7 @@ public class MysqlSQLXML implements SQLXML {
                 throw sqlEx;
             }
         } else {
-            throw SQLError.createSQLException(Messages.getString("MysqlSQLXML.3", new Object[] { clazz.toString() }),
+            throw SQLError.createSQLException(Messages.getString("MysqlSQLXML.3", new Object[]{clazz.toString()}),
                     MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, this.exceptionInterceptor);
         }
     }
@@ -480,8 +478,8 @@ public class MysqlSQLXML implements SQLXML {
      * See the License for the specific language governing permissions and
      * limitations under the License.
      */
-
     class SimpleSaxToReader extends DefaultHandler {
+
         StringBuilder buf = new StringBuilder();
 
         @Override

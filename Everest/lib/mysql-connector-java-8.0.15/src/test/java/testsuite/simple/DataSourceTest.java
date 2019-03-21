@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.File;
@@ -59,13 +58,14 @@ import com.mysql.cj.jdbc.MysqlXADataSource;
 import testsuite.BaseTestCase;
 
 public class DataSourceTest extends BaseTestCase {
+
     private Context ctx;
 
     private File tempDir;
 
     /**
      * Creates a new DataSourceTest object.
-     * 
+     *
      * @param name
      */
     public DataSourceTest(String name) {
@@ -74,7 +74,7 @@ public class DataSourceTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -82,11 +82,10 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Sets up this test, calling registerDataSource() to bind a DataSource into
-     * JNDI, using the FSContext JNDI provider from Sun
-     * 
-     * @throws Exception
-     *             if an error occurs.
+     * Sets up this test, calling registerDataSource() to bind a DataSource into JNDI, using the
+     * FSContext JNDI provider from Sun
+     *
+     * @throws Exception if an error occurs.
      */
     @Override
     public void setUp() throws Exception {
@@ -96,9 +95,8 @@ public class DataSourceTest extends BaseTestCase {
 
     /**
      * Un-binds the DataSource, and cleans up the filesystem
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     @Override
     public void tearDown() throws Exception {
@@ -112,11 +110,9 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Tests that we can get a connection from the DataSource bound in JNDI
-     * during test setup
-     * 
-     * @throws Exception
-     *             if an error occurs
+     * Tests that we can get a connection from the DataSource bound in JNDI during test setup
+     *
+     * @throws Exception if an error occurs
      */
     public void testDataSource() throws Exception {
         NameParser nameParser = this.ctx.getNameParser("");
@@ -143,11 +139,10 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Tests whether Connection.changeUser() (and thus pooled connections)
-     * restore character set information correctly.
-     * 
-     * @throws Exception
-     *             if the test fails.
+     * Tests whether Connection.changeUser() (and thus pooled connections) restore character set
+     * information correctly.
+     *
+     * @throws Exception if the test fails.
      */
     public void testChangeUserAndCharsets() throws Exception {
         MysqlConnectionPoolDataSource ds = new MysqlConnectionPoolDataSource();
@@ -185,9 +180,8 @@ public class DataSourceTest extends BaseTestCase {
 
     /**
      * Tests whether XADataSources can be bound into JNDI
-     * 
-     * @throws Exception
-     *             if the test fails.
+     *
+     * @throws Exception if the test fails.
      */
     public void testXADataSource() throws Exception {
 
@@ -203,12 +197,11 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * This method is separated from the rest of the example since you normally
-     * would NOT register a JDBC driver in your code. It would likely be
-     * configered into your naming and directory service using some GUI.
-     * 
-     * @throws Exception
-     *             if an error occurs
+     * This method is separated from the rest of the example since you normally would NOT register a
+     * JDBC driver in your code. It would likely be configered into your naming and directory
+     * service using some GUI.
+     *
+     * @throws Exception if an error occurs
      */
     private void registerDataSource() throws Exception {
         this.tempDir = File.createTempFile("jnditest", null);
@@ -258,7 +251,6 @@ public class DataSourceTest extends BaseTestCase {
 
         // TODO ds.getReference();
         // TODO ds.setPropertiesViaRef(ref);
-
         assertEquals("", ds.getServerName());
         ds.setServerName("test.server.name");
         assertEquals("test.server.name", ds.getServerName());
@@ -274,44 +266,43 @@ public class DataSourceTest extends BaseTestCase {
         //assertNull(ds.getUser());
         //ds.setUser("testUser");
         //assertEquals("testUser", ds.getUser());
-
         // instrumented properties
         for (PropertyDefinition<?> def : PropertyDefinitions.PROPERTY_KEY_TO_PROPERTY_DEFINITION.values()) {
             String pname = def.hasCcAlias() ? def.getCcAlias() : def.getName();
             String gname = "get" + pname.substring(0, 1).toUpperCase() + pname.substring(1);
             String sname = "set" + pname.substring(0, 1).toUpperCase() + pname.substring(1);
 
-            Method getter = ds.getClass().getMethod(gname, new Class<?>[] {});
-            Object res1 = getter.invoke(ds, new Object[] {});
+            Method getter = ds.getClass().getMethod(gname, new Class<?>[]{});
+            Object res1 = getter.invoke(ds, new Object[]{});
             assertEquals(gname + ": ", def.getDefaultValue() + "", res1 + "");
 
             Method setter = null;
 
             if (def instanceof StringPropertyDefinition) {
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { String.class });
-                setter.invoke(ds, new Object[] { testStr });
-                assertEquals(sname + ": ", testStr, (String) getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{String.class});
+                setter.invoke(ds, new Object[]{testStr});
+                assertEquals(sname + ": ", testStr, (String) getter.invoke(ds, new Object[]{}));
 
             } else if (def instanceof BooleanPropertyDefinition) {
                 Boolean testBool = !((Boolean) def.getDefaultValue());
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { Boolean.TYPE });
-                setter.invoke(ds, new Object[] { testBool });
-                assertEquals(sname + ": ", testBool, getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{Boolean.TYPE});
+                setter.invoke(ds, new Object[]{testBool});
+                assertEquals(sname + ": ", testBool, getter.invoke(ds, new Object[]{}));
 
             } else if (def instanceof IntegerPropertyDefinition) {
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { Integer.TYPE });
-                setter.invoke(ds, new Object[] { testInt });
-                assertEquals(sname + ": ", testInt, getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{Integer.TYPE});
+                setter.invoke(ds, new Object[]{testInt});
+                assertEquals(sname + ": ", testInt, getter.invoke(ds, new Object[]{}));
 
             } else if (def instanceof LongPropertyDefinition) {
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { Long.TYPE });
-                setter.invoke(ds, new Object[] { testLong });
-                assertEquals(sname + ": ", testLong, getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{Long.TYPE});
+                setter.invoke(ds, new Object[]{testLong});
+                assertEquals(sname + ": ", testLong, getter.invoke(ds, new Object[]{}));
 
             } else if (def instanceof MemorySizePropertyDefinition) {
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { Integer.TYPE });
-                setter.invoke(ds, new Object[] { testInt });
-                assertEquals(sname + ": ", testInt, getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{Integer.TYPE});
+                setter.invoke(ds, new Object[]{testInt});
+                assertEquals(sname + ": ", testInt, getter.invoke(ds, new Object[]{}));
 
             } else if (def instanceof EnumPropertyDefinition<?>) {
                 String testEnum = null;
@@ -321,9 +312,9 @@ public class DataSourceTest extends BaseTestCase {
                         break;
                     }
                 }
-                setter = ds.getClass().getMethod(sname, new Class<?>[] { String.class });
-                setter.invoke(ds, new Object[] { testEnum });
-                assertEquals(sname + ": ", testEnum, (String) getter.invoke(ds, new Object[] {}));
+                setter = ds.getClass().getMethod(sname, new Class<?>[]{String.class});
+                setter.invoke(ds, new Object[]{testEnum});
+                assertEquals(sname + ": ", testEnum, (String) getter.invoke(ds, new Object[]{}));
 
             } else {
                 fail("Unknown " + def.getName() + " property type.");

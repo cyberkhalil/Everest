@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import static org.junit.Assert.assertEquals;
@@ -45,6 +44,7 @@ import com.mysql.cj.result.ValueFactory;
  * Tests for {@link MysqlTextValueDecoder}.
  */
 public class MysqlTextValueDecoderTest {
+
     private MysqlTextValueDecoder valueDecoder = new MysqlTextValueDecoder();
 
     @Test

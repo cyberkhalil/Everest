@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a.result;
 
 import com.mysql.cj.Constants;
@@ -55,13 +54,12 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.util.Util;
 
 /**
- * Provides streaming of Resultset rows. Each next row is consumed from the
- * input stream only on {@link #next()} call. Consumed rows are not cached thus
- * we only stream result sets when they are forward-only, read-only, and the
- * fetch size has been set to Integer.MIN_VALUE (rows are read one by one).
- * 
- * @param <T>
- *            ProtocolEntity type
+ * Provides streaming of Resultset rows. Each next row is consumed from the input stream only on
+ * {@link #next()} call. Consumed rows are not cached thus we only stream result sets when they are
+ * forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE (rows are read one
+ * by one).
+ *
+ * @param <T> ProtocolEntity type
  */
 public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractResultsetRows implements ResultsetRows {
 
@@ -85,15 +83,11 @@ public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractRe
 
     /**
      * Creates a new RowDataDynamic object.
-     * 
-     * @param io
-     *            the connection to MySQL that this data is coming from
-     * @param columnDefinition
-     *            the metadata that describe this data
-     * @param isBinaryEncoded
-     *            is this data in native format?
-     * @param resultSetFactory
-     *            {@link ProtocolEntityFactory}
+     *
+     * @param io the connection to MySQL that this data is coming from
+     * @param columnDefinition the metadata that describe this data
+     * @param isBinaryEncoded is this data in native format?
+     * @param resultSetFactory {@link ProtocolEntityFactory}
      */
     public ResultsetRowsStreaming(NativeProtocol io, ColumnDefinition columnDefinition, boolean isBinaryEncoded,
             ProtocolEntityFactory<T, NativePacketPayload> resultSetFactory) {
@@ -147,8 +141,8 @@ public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractRe
                     eventSink.consumeEvent(new ProfilerEventImpl(ProfilerEvent.TYPE_WARN, "", this.owner.getCurrentCatalog(), this.owner.getConnectionId(),
                             this.owner.getOwningStatementId(), -1, System.currentTimeMillis(), 0, Constants.MILLIS_I18N, null, null,
                             Messages.getString("RowDataDynamic.2") + howMuchMore + Messages.getString("RowDataDynamic.3")
-                                    + Messages.getString("RowDataDynamic.4") + Messages.getString("RowDataDynamic.5") + Messages.getString("RowDataDynamic.6")
-                                    + this.owner.getPointOfOrigin()));
+                            + Messages.getString("RowDataDynamic.4") + Messages.getString("RowDataDynamic.5") + Messages.getString("RowDataDynamic.6")
+                            + this.owner.getPointOfOrigin()));
                 }
             }
         }

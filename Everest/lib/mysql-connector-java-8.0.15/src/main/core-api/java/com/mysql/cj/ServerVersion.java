@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 /**
  * A server version.
  */
 public class ServerVersion implements Comparable<ServerVersion> {
+
     private String completeVersion;
     private Integer major;
     private Integer minor;
@@ -62,9 +62,10 @@ public class ServerVersion implements Comparable<ServerVersion> {
     }
 
     /**
-     * A string representation of this version. If this version was parsed from, or provided with, a "complete" string which may contain more than just the
-     * version number, this string is returned verbatim. Otherwise, a string representation of the version numbers is given.
-     * 
+     * A string representation of this version. If this version was parsed from, or provided with, a
+     * "complete" string which may contain more than just the version number, this string is
+     * returned verbatim. Otherwise, a string representation of the version numbers is given.
+     *
      * @return string version representation
      */
     @Override
@@ -112,8 +113,7 @@ public class ServerVersion implements Comparable<ServerVersion> {
     /**
      * Does this version meet the minimum specified by `min'?
      *
-     * @param min
-     *            The minimum version to compare against.
+     * @param min The minimum version to compare against.
      * @return true if version meets the minimum specified by `min'
      */
     public boolean meetsMinimum(ServerVersion min) {
@@ -122,9 +122,8 @@ public class ServerVersion implements Comparable<ServerVersion> {
 
     /**
      * Parse the server version into major/minor/subminor.
-     * 
-     * @param versionString
-     *            string version representation
+     *
+     * @param versionString string version representation
      * @return {@link ServerVersion}
      */
     public static ServerVersion parseVersion(final String versionString) {

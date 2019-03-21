@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.internal;
 
 import static org.junit.Assert.assertEquals;
@@ -71,6 +70,7 @@ import com.mysql.cj.xdevapi.WarningImpl;
  * Tests for protocol-level APIs against X Plugin via X Protocol.
  */
 public class XProtocolTest extends InternalXBaseTestCase {
+
     private XProtocol protocol;
     private XMessageBuilder messageBuilder;
 
@@ -184,8 +184,9 @@ public class XProtocolTest extends InternalXBaseTestCase {
     }
 
     /**
-     * This tests that all types are decoded correctly. We retrieve them all as strings which happens after the decoding step. This is an exhaustive types of
-     * type decoding and metadata from the server.
+     * This tests that all types are decoded correctly. We retrieve them all as strings which
+     * happens after the decoding step. This is an exhaustive types of type decoding and metadata
+     * from the server.
      */
     @Test
     public void testDecodingAllTypes() {
@@ -330,7 +331,7 @@ public class XProtocolTest extends InternalXBaseTestCase {
         String collName = createTempTestCollection(this.protocol);
 
         String json = "{'_id': '85983efc2a9a11e5b345feff819cdc9f', 'testVal': 1, 'insertedBy': 'Jess'}".replaceAll("'", "\"");
-        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[] { json }), false), 0);
+        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[]{json}), false), 0);
         this.protocol.readQueryResult();
 
         FilterParams filterParams = new DocFilterParams(getTestDatabase(), collName);
@@ -382,7 +383,7 @@ public class XProtocolTest extends InternalXBaseTestCase {
         String collName = createTempTestCollection(this.protocol);
 
         String json = "{'_id': '85983efc2a9a11e5b345feff819cdc9f', 'testVal': '1', 'insertedBy': 'Jess'}".replaceAll("'", "\"");
-        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[] { json }), false), 0);
+        this.protocol.send(this.messageBuilder.buildDocInsert(getTestDatabase(), collName, Arrays.asList(new String[]{json}), false), 0);
         this.protocol.readQueryResult();
 
         List<UpdateSpec> updates = new ArrayList<>();
@@ -410,7 +411,7 @@ public class XProtocolTest extends InternalXBaseTestCase {
         this.protocol.send(this.messageBuilder.buildSqlStatement("create table tableInsert (x int, y varchar(20), z decimal(10, 2))"), 0);
         this.protocol.readQueryResult();
         InsertParams insertParams = new InsertParams();
-        insertParams.setProjection(new String[] { "z", "x", "y" });
+        insertParams.setProjection(new String[]{"z", "x", "y"});
         insertParams.addRow(Arrays.asList("10.2", 40, "some string value"));
         insertParams.addRow(Arrays.asList("10.3", 50, "another string value"));
         this.protocol.send(this.messageBuilder.buildRowInsert(getTestDatabase(), "tableInsert", insertParams), 0);

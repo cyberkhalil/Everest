@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud.UpdateOperation;
@@ -34,8 +33,9 @@ import com.mysql.cj.x.protobuf.MysqlxExpr.ColumnIdentifier;
 import com.mysql.cj.x.protobuf.MysqlxExpr.Expr;
 
 /**
- * Representation of a single update operation in a list of operations to be performed by {@link ModifyStatement}.
- * Used internally for transformation of X DevAPI parameters into X Protocol ones.
+ * Representation of a single update operation in a list of operations to be performed by
+ * {@link ModifyStatement}. Used internally for transformation of X DevAPI parameters into X
+ * Protocol ones.
  */
 public class UpdateSpec {
 
@@ -45,11 +45,9 @@ public class UpdateSpec {
 
     /**
      * Constructor.
-     * 
-     * @param updateType
-     *            update operation type
-     * @param source
-     *            document path expression
+     *
+     * @param updateType update operation type
+     * @param source document path expression
      */
     public UpdateSpec(UpdateType updateType, String source) {
         this.updateType = UpdateOperation.UpdateType.valueOf(updateType.name());
@@ -62,7 +60,7 @@ public class UpdateSpec {
 
     /**
      * Get X Protocol update type.
-     * 
+     *
      * @return X Protocol UpdateOperation.UpdateType
      */
     public Object getUpdateType() {
@@ -71,7 +69,7 @@ public class UpdateSpec {
 
     /**
      * Get X Protocol ColumnIdentifier.
-     * 
+     *
      * @return X Protocol MysqlxExpr.ColumnIdentifier
      */
     public Object getSource() {
@@ -80,9 +78,8 @@ public class UpdateSpec {
 
     /**
      * Set value to be set by this update operation.
-     * 
-     * @param value
-     *            value expression
+     *
+     * @param value value expression
      * @return this UpdateSpec
      */
     public UpdateSpec setValue(Object value) {
@@ -92,7 +89,7 @@ public class UpdateSpec {
 
     /**
      * Get X Protocol value expression.
-     * 
+     *
      * @return X Protocol MysqlxExpr.Expr
      */
     public Object getValue() {

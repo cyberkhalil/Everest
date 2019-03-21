@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.math.BigDecimal;
@@ -36,15 +35,17 @@ import com.mysql.cj.Messages;
 import com.mysql.cj.exceptions.DataConversionException;
 
 /**
- * The default value factory provides a base class that can be used for value factories that do not support creation from every type. The default value factory
- * will thrown an UnsupportedOperationException for every method and individual methods must be overridden by subclasses.
- * 
- * @param <T>
- *            value type
+ * The default value factory provides a base class that can be used for value factories that do not
+ * support creation from every type. The default value factory will thrown an
+ * UnsupportedOperationException for every method and individual methods must be overridden by
+ * subclasses.
+ *
+ * @param <T> value type
  */
 public abstract class DefaultValueFactory<T> implements ValueFactory<T> {
+
     private T unsupported(String sourceType) {
-        throw new DataConversionException(Messages.getString("ResultSet.UnsupportedConversion", new Object[] { sourceType, getTargetTypeName() }));
+        throw new DataConversionException(Messages.getString("ResultSet.UnsupportedConversion", new Object[]{sourceType, getTargetTypeName()}));
     }
 
     public T createFromDate(int year, int month, int day) {

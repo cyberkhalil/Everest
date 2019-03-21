@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.math.BigInteger;
@@ -53,16 +52,13 @@ public interface JdbcPreparedStatement extends java.sql.PreparedStatement, JdbcS
     void setBytes(int parameterIndex, byte[] x, boolean checkForIntroducer, boolean escapeForMBChars) throws SQLException;
 
     /**
-     * Used by updatable result sets for refreshRow() because the parameter has
-     * already been escaped for updater or inserter prepared statements.
-     * 
-     * @param parameterIndex
-     *            the parameter to set.
-     * @param parameterAsBytes
-     *            the parameter as a string.
-     * 
-     * @throws SQLException
-     *             if an error occurs
+     * Used by updatable result sets for refreshRow() because the parameter has already been escaped
+     * for updater or inserter prepared statements.
+     *
+     * @param parameterIndex the parameter to set.
+     * @param parameterAsBytes the parameter as a string.
+     *
+     * @throws SQLException if an error occurs
      */
     void setBytesNoEscape(int parameterIndex, byte[] parameterAsBytes) throws SQLException;
 

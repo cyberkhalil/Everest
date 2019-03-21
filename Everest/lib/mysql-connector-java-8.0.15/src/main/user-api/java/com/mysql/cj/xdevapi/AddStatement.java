@@ -26,43 +26,41 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 /**
  * A statement adding documents to a collection.
  */
 public interface AddStatement extends Statement<AddStatement, AddResult> {
+
     /**
      * Add a document as a JSON string.
-     * 
-     * @param jsonString
-     *            document as a JSON string
+     *
+     * @param jsonString document as a JSON string
      * @return {@link AddStatement}
      */
     AddStatement add(String jsonString);
 
     /**
      * Add a sequence of DbDocs.
-     * 
-     * @param documents
-     *            one or more {@link DbDoc} documents
+     *
+     * @param documents one or more {@link DbDoc} documents
      * @return {@link AddStatement}
      */
     AddStatement add(DbDoc... documents);
 
     /**
      * Check the upsert flag.
-     * 
+     *
      * @return true if this is an upsert statement.
      */
     boolean isUpsert();
 
     /**
-     * Set upsert flag on this statement. Used internally by the {@link Collection#addOrReplaceOne(String, DbDoc)} method.
-     * 
-     * @param upsert
-     *            if true then this statement will be executed as an upsert statement
+     * Set upsert flag on this statement. Used internally by the
+     * {@link Collection#addOrReplaceOne(String, DbDoc)} method.
+     *
+     * @param upsert if true then this statement will be executed as an upsert statement
      * @return {@link AddStatement}
      */
     AddStatement setUpsert(boolean upsert);

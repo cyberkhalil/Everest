@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.concurrent.CompletableFuture;
@@ -39,6 +38,7 @@ import com.mysql.cj.xdevapi.FilterParams.RowLockOptions;
  * {@link SelectStatement} implementation.
  */
 public class SelectStatementImpl extends FilterableStatement<SelectStatement, RowResult> implements SelectStatement {
+
     private MysqlxSession mysqlxSession;
 
     /* package private */ SelectStatementImpl(MysqlxSession mysqlxSession, String schema, String table, String... projection) {

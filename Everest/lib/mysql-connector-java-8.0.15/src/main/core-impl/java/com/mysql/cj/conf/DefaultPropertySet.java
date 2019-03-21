@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.io.Serializable;
@@ -204,7 +203,7 @@ public class DefaultPropertySet implements PropertySet, Serializable {
             }
 
             // Translate legacy SSL properties if sslMode isn't explicitly set. Default sslMode is PREFERRED.
-            RuntimeProperty<SslMode> sslMode = this.<SslMode> getEnumProperty(PropertyKey.sslMode);
+            RuntimeProperty<SslMode> sslMode = this.<SslMode>getEnumProperty(PropertyKey.sslMode);
             if (!sslMode.isExplicitlySet()) {
                 RuntimeProperty<Boolean> useSSL = this.getBooleanProperty(PropertyKey.useSSL);
                 RuntimeProperty<Boolean> verifyServerCertificate = this.getBooleanProperty(PropertyKey.verifyServerCertificate);

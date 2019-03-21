@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.result;
 
 import java.sql.SQLException;
@@ -104,16 +103,12 @@ public class ResultSetFactory implements ProtocolEntityFactory<ResultSetImpl, Na
 
     /**
      * Build ResultSet from ResultsetRows
-     * 
-     * @param resultSetType
-     *            scrollability (TYPE_FORWARD_ONLY, TYPE_SCROLL_????)
-     * @param resultSetConcurrency
-     *            the type of result set (CONCUR_UPDATABLE or READ_ONLY)
-     * @param rows
-     *            {@link ResultsetRows}
+     *
+     * @param resultSetType scrollability (TYPE_FORWARD_ONLY, TYPE_SCROLL_????)
+     * @param resultSetConcurrency the type of result set (CONCUR_UPDATABLE or READ_ONLY)
+     * @param rows {@link ResultsetRows}
      * @return ResultSetImpl
-     * @throws SQLException
-     *             if an error occurs
+     * @throws SQLException if an error occurs
      */
     public ResultSetImpl createFromResultsetRows(int resultSetConcurrency, int resultSetType, ResultsetRows rows) throws SQLException {
 

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.io.ByteArrayOutputStream;
@@ -36,6 +35,7 @@ import java.io.IOException;
  * A java.io.OutputStream used to write ASCII data into Blobs and Clobs
  */
 public class WatchableOutputStream extends ByteArrayOutputStream implements WatchableStream {
+
     private OutputStreamWatcher watcher;
 
     /**

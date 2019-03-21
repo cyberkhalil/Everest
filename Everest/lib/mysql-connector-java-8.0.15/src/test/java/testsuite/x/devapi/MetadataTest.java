@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.devapi;
 
 import static org.junit.Assert.assertEquals;
@@ -47,6 +46,7 @@ import com.mysql.cj.xdevapi.Type;
  * Tests for "Column" table metadata API.
  */
 public class MetadataTest extends BaseTableTestCase {
+
     @Before
     @Override
     public void setupTableTest() {
@@ -302,9 +302,9 @@ public class MetadataTest extends BaseTableTestCase {
     }
 
     /**
-     * Some metadata fields have no sense with concrete SQL data type. The following table from {@link ColumnMetaData}
-     * describes which fields are relevant to each type:
-     * 
+     * Some metadata fields have no sense with concrete SQL data type. The following table from
+     * {@link ColumnMetaData} describes which fields are relevant to each type:
+     *
      * <pre>
      *     ================= ============ ======= ========== ====== ========
      *     SQL Type          .type        .length .frac_dig  .flags .charset

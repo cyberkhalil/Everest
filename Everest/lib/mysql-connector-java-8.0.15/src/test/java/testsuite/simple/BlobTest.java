@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.simple;
 
 import java.io.BufferedInputStream;
@@ -65,9 +64,8 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Creates a new BlobTest object.
-     * 
-     * @param name
-     *            the test to run
+     *
+     * @param name the test to run
      */
     public BlobTest(String name) {
         super(name);
@@ -75,7 +73,7 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Runs all test cases in this test suite
-     * 
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -84,9 +82,8 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Setup the test case
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     @Override
     public void setUp() throws Exception {
@@ -121,9 +118,8 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Tests inserting blob data as a stream
-     * 
-     * @throws Exception
-     *             if an error occurs
+     *
+     * @throws Exception if an error occurs
      */
     private void testByteStreamInsert(Connection c) throws Exception {
         BufferedInputStream bIn = new BufferedInputStream(new FileInputStream(testBlobFile));
@@ -177,11 +173,10 @@ public class BlobTest extends BaseTestCase {
 
     /**
      * Mark this as deprecated to avoid warnings from compiler...
-     * 
+     *
      * @deprecated
-     * 
-     * @throws Exception
-     *             if an error occurs retrieving the value
+     *
+     * @throws Exception if an error occurs retrieving the value
      */
     @Deprecated
     private void doRetrieval() throws Exception {
@@ -241,7 +236,6 @@ public class BlobTest extends BaseTestCase {
 
         // TODO: following cleanup doesn't work correctly during concurrent execution of testsuite 
         // cleanupTempFiles(testBlobFile, TEST_BLOB_FILE_PREFIX);
-
         BufferedOutputStream bOut = new BufferedOutputStream(new FileOutputStream(testBlobFile));
 
         int dataRange = Byte.MAX_VALUE - Byte.MIN_VALUE;

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc;
 
 import java.sql.Connection;
@@ -36,8 +35,10 @@ import javax.sql.ConnectionPoolDataSource;
 import javax.sql.PooledConnection;
 
 /**
- * This class is used to obtain a physical connection and instantiate and return a MysqlPooledConnection. J2EE application servers map client calls to
- * dataSource.getConnection to this class based upon mapping set within deployment descriptor. This class extends MysqlDataSource.
+ * This class is used to obtain a physical connection and instantiate and return a
+ * MysqlPooledConnection. J2EE application servers map client calls to dataSource.getConnection to
+ * this class based upon mapping set within deployment descriptor. This class extends
+ * MysqlDataSource.
  */
 public class MysqlConnectionPoolDataSource extends MysqlDataSource implements ConnectionPoolDataSource {
 

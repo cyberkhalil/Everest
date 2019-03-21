@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.net.SocketAddress;
@@ -44,10 +43,10 @@ import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.result.Row;
 
 /**
- * {@link Session} exposes logical level which user API uses internally to call {@link Protocol} methods.
- * It's a higher-level abstraction than MySQL server session ({@link ServerSession}). {@link Protocol} and {@link ServerSession} methods
- * should never be used directly from user API.
- * 
+ * {@link Session} exposes logical level which user API uses internally to call {@link Protocol}
+ * methods. It's a higher-level abstraction than MySQL server session ({@link ServerSession}).
+ * {@link Protocol} and {@link ServerSession} methods should never be used directly from user API.
+ *
  */
 public interface Session {
 
@@ -57,14 +56,11 @@ public interface Session {
 
     /**
      * Re-authenticates as the given user and password
-     * 
-     * @param userName
-     *            DB user name
-     * @param password
-     *            DB user password
-     * @param database
-     *            database name
-     * 
+     *
+     * @param userName DB user name
+     * @param password DB user password
+     * @param database database name
+     *
      */
     void changeUser(String userName, String password, String database);
 
@@ -74,7 +70,7 @@ public interface Session {
 
     /**
      * Log-off of the MySQL server and close the socket.
-     * 
+     *
      */
     void quit();
 
@@ -84,15 +80,11 @@ public interface Session {
     void forceClose();
 
     /**
-     * Does the version of the MySQL server we are connected to meet the given
-     * minimums?
-     * 
-     * @param major
-     *            major version number
-     * @param minor
-     *            minor version number
-     * @param subminor
-     *            sub-minor version number
+     * Does the version of the MySQL server we are connected to meet the given minimums?
+     *
+     * @param major major version number
+     * @param minor minor version number
+     * @param subminor sub-minor version number
      * @return true if current server version equal or higher than provided one
      */
     boolean versionMeetsMinimum(int major, int minor, int subminor);
@@ -117,21 +109,20 @@ public interface Session {
 
     /**
      * Add listener for this session status changes.
-     * 
-     * @param l
-     *            {@link SessionEventListener} instance.
+     *
+     * @param l {@link SessionEventListener} instance.
      */
     void addListener(SessionEventListener l);
 
     /**
      * Remove session listener.
-     * 
-     * @param l
-     *            {@link SessionEventListener} instance.
+     *
+     * @param l {@link SessionEventListener} instance.
      */
     void removeListener(SessionEventListener l);
 
     public static interface SessionEventListener {
+
         void handleNormalClose();
 
         void handleReconnect();

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.x;
 
 import java.util.ArrayList;
@@ -50,6 +49,7 @@ import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
  * A {@link MessageListener} to handle result data and propagate it to a {@link ResultListener}.
  */
 public class ResultMessageListener implements MessageListener<XMessage> {
+
     private ResultListener<StatementExecuteOk> callbacks;
     private ProtocolEntityFactory<Field, XMessage> fieldFactory;
 
@@ -79,11 +79,12 @@ public class ResultMessageListener implements MessageListener<XMessage> {
         if (ColumnMetaData.class.equals(msgClass)) {
             Field f = this.fieldFactory.createFromMessage(message);
             this.fields.add(f);
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
         }
         if (!this.metadataSent) {
             if (this.metadata == null) {
-                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[] {}));
+                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[]{}));
             }
             this.callbacks.onMetadata(this.metadata);
             this.metadataSent = true;
@@ -91,32 +92,38 @@ public class ResultMessageListener implements MessageListener<XMessage> {
 
         if (StmtExecuteOk.class.equals(msgClass)) {
             this.callbacks.onComplete(this.okBuilder.build());
-            return true; /* done reading? */
+            return true;
+            /* done reading? */
 
         } else if (FetchDone.class.equals(msgClass)) {
             // ignored. wait for StmtExecuteOk
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
 
         } else if (Row.class.equals(msgClass)) {
             if (this.metadata == null) {
-                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[] {}));
+                this.metadata = new DefaultColumnDefinition(this.fields.toArray(new Field[]{}));
             }
             XProtocolRow row = new XProtocolRow(this.metadata, Row.class.cast(message.getMessage()));
             this.callbacks.onRow(row);
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
 
         } else if (Error.class.equals(msgClass)) {
             XProtocolError e = new XProtocolError(Error.class.cast(message.getMessage()));
             this.callbacks.onException(e);
-            return true; /* done reading? */
+            return true;
+            /* done reading? */
 
         } else if (Frame.class.equals(msgClass)) {
             this.okBuilder.addNotice(Notice.getInstance(message));
-            return false; /* done reading? */
+            return false;
+            /* done reading? */
         }
 
         this.callbacks.onException(new WrongArgumentException("Unhandled msg class (" + msgClass + ") + msg=" + message.getMessage()));
-        return false; /* done reading? */ // note, this doesn't comply with the specified semantics ResultListener
+        return false;
+        /* done reading? */ // note, this doesn't comply with the specified semantics ResultListener
     }
 
     public void error(Throwable ex) {

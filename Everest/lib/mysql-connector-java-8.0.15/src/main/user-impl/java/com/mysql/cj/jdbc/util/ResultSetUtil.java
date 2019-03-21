@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.jdbc.util;
 
 import java.io.IOException;
@@ -40,14 +39,14 @@ import java.util.Map;
  */
 public class ResultSetUtil {
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static void resultSetToMap(Map mappedValues, ResultSet rs) throws SQLException {
         while (rs.next()) {
             mappedValues.put(rs.getObject(1), rs.getObject(2));
         }
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public static void resultSetToMap(Map mappedValues, java.sql.ResultSet rs, int key, int value) throws SQLException {
         while (rs.next()) {
             mappedValues.put(rs.getObject(key), rs.getObject(value));
@@ -55,21 +54,15 @@ public class ResultSetUtil {
     }
 
     /**
-     * Given a ResultSet and an index into the columns of that ResultSet, read
-     * binary data from the column which represents a serialized object, and
-     * re-create the object.
-     * 
-     * @param resultSet
-     *            the ResultSet to use.
-     * @param index
-     *            an index into the ResultSet.
+     * Given a ResultSet and an index into the columns of that ResultSet, read binary data from the
+     * column which represents a serialized object, and re-create the object.
+     *
+     * @param resultSet the ResultSet to use.
+     * @param index an index into the ResultSet.
      * @return the object if it can be de-serialized
-     * @throws IOException
-     *             if an error occurs
-     * @throws SQLException
-     *             if an error occurs
-     * @throws ClassNotFoundException
-     *             if an error occurs
+     * @throws IOException if an error occurs
+     * @throws SQLException if an error occurs
+     * @throws ClassNotFoundException if an error occurs
      */
     // TODO not used ?
     public static Object readObject(java.sql.ResultSet resultSet, int index) throws IOException, SQLException, ClassNotFoundException {

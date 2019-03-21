@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol;
 
 import java.net.InetAddress;
@@ -46,7 +45,7 @@ public interface SocketMetadata {
 
     default boolean isLocallyConnected(Session sess, String processHost) {
         if (processHost != null) {
-            sess.getLog().logDebug(Messages.getString("SocketMetadata.0", new Object[] { processHost }));
+            sess.getLog().logDebug(Messages.getString("SocketMetadata.0", new Object[]{processHost}));
 
             int endIndex = processHost.lastIndexOf(":");
             if (endIndex != -1) {
@@ -63,25 +62,25 @@ public interface SocketMetadata {
 
                         for (InetAddress hostAddr : whereMysqlThinksIConnectedFrom) {
                             if (hostAddr.equals(whereIConnectedTo)) {
-                                sess.getLog().logDebug(Messages.getString("SocketMetadata.1", new Object[] { hostAddr, whereIConnectedTo }));
+                                sess.getLog().logDebug(Messages.getString("SocketMetadata.1", new Object[]{hostAddr, whereIConnectedTo}));
                                 return true;
                             }
-                            sess.getLog().logDebug(Messages.getString("SocketMetadata.2", new Object[] { hostAddr, whereIConnectedTo }));
+                            sess.getLog().logDebug(Messages.getString("SocketMetadata.2", new Object[]{hostAddr, whereIConnectedTo}));
                         }
 
                     } else {
-                        sess.getLog().logDebug(Messages.getString("SocketMetadata.3", new Object[] { remoteSocketAddr }));
+                        sess.getLog().logDebug(Messages.getString("SocketMetadata.3", new Object[]{remoteSocketAddr}));
                     }
 
                     return false;
                 } catch (UnknownHostException e) {
-                    sess.getLog().logWarn(Messages.getString("Connection.CantDetectLocalConnect", new Object[] { processHost }), e);
+                    sess.getLog().logWarn(Messages.getString("Connection.CantDetectLocalConnect", new Object[]{processHost}), e);
 
                     return false;
                 }
 
             }
-            sess.getLog().logWarn(Messages.getString("SocketMetadata.4", new Object[] { processHost }));
+            sess.getLog().logWarn(Messages.getString("SocketMetadata.4", new Object[]{processHost}));
             return false;
         }
 

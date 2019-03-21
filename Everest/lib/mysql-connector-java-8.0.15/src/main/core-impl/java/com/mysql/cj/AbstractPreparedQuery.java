@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj;
 
 import java.io.ByteArrayOutputStream;
@@ -51,15 +50,21 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
 
     protected T queryBindings = null;
 
-    /** The SQL that was passed in to 'prepare' */
+    /**
+     * The SQL that was passed in to 'prepare'
+     */
     protected String originalSql = null;
 
-    /** The number of parameters in this PreparedStatement */
+    /**
+     * The number of parameters in this PreparedStatement
+     */
     protected int parameterCount;
 
     protected RuntimeProperty<Boolean> autoClosePStmtStreams;
 
-    /** Command index of currently executing batch command. */
+    /**
+     * Command index of currently executing batch command.
+     */
     protected int batchCommandIndex = -1;
 
     protected RuntimeProperty<Boolean> useStreamLengthsInPrepStmts;
@@ -125,11 +130,10 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
     }
 
     /**
-     * Computes the optimum number of batched parameter lists to send
-     * without overflowing max_allowed_packet.
-     * 
-     * @param numBatchedArgs
-     *            original batch size
+     * Computes the optimum number of batched parameter lists to send without overflowing
+     * max_allowed_packet.
+     *
+     * @param numBatchedArgs original batch size
      * @return computed batch size
      */
     public int computeBatchSize(int numBatchedArgs) {
@@ -147,12 +151,10 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
 
     /**
      * Method checkNullOrEmptyQuery.
-     * 
-     * @param sql
-     *            the SQL to check
-     * 
-     * @throws WrongArgumentException
-     *             if query is null or empty.
+     *
+     * @param sql the SQL to check
+     *
+     * @throws WrongArgumentException if query is null or empty.
      */
     public void checkNullOrEmptyQuery(String sql) {
         if (sql == null) {
@@ -210,9 +212,8 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
 
     /**
      * Creates the packet that contains the query to be sent to the server.
-     * 
-     * @return A Buffer filled with the query representing the
-     *         PreparedStatement.
+     *
+     * @return A Buffer filled with the query representing the PreparedStatement.
      */
     @Override
     public <M extends Message> M fillSendPacket() {
@@ -223,10 +224,9 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
 
     /**
      * Creates the packet that contains the query to be sent to the server.
-     * 
-     * @param bindings
-     *            values
-     * 
+     *
+     * @param bindings values
+     *
      * @return a Buffer filled with the query that represents this statement
      */
     @SuppressWarnings("unchecked")

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.protocol.a;
 
 import java.math.BigDecimal;
@@ -39,32 +38,49 @@ import com.mysql.cj.result.ValueFactory;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * Implementation of {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL text protocol. All values will be received as <i>LengthEncodedString</i> values.
+ * Implementation of {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL text protocol. All
+ * values will be received as <i>LengthEncodedString</i> values.
  * <p>
  * Refer to MySQL documentation for format of values as strings.
  * <p>
  * Numeric values are returned as ASCII (encoding=63/binary).
  */
 public class MysqlTextValueDecoder implements ValueDecoder {
-    /** Buffer length of MySQL date string: 'YYYY-MM-DD'. */
+
+    /**
+     * Buffer length of MySQL date string: 'YYYY-MM-DD'.
+     */
     public static final int DATE_BUF_LEN = 10;
-    /** Min string length of MySQL time string: 'HH:MM:SS'. */
+    /**
+     * Min string length of MySQL time string: 'HH:MM:SS'.
+     */
     public static final int TIME_STR_LEN_MIN = 8;
-    /** Max string length of MySQL time string (with microsecs): '-HHH:MM:SS.mmmmmm'. */
+    /**
+     * Max string length of MySQL time string (with microsecs): '-HHH:MM:SS.mmmmmm'.
+     */
     public static final int TIME_STR_LEN_MAX = 17;
-    /** String length of MySQL timestamp string (no microsecs): 'YYYY-MM-DD HH:MM:SS'. */
+    /**
+     * String length of MySQL timestamp string (no microsecs): 'YYYY-MM-DD HH:MM:SS'.
+     */
     public static final int TIMESTAMP_NOFRAC_STR_LEN = 19;
-    /** Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD HH:MM:SS.mmmmmm'. */
+    /**
+     * Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD HH:MM:SS.mmmmmm'.
+     */
     public static final int TIMESTAMP_STR_LEN_MAX = TIMESTAMP_NOFRAC_STR_LEN + 7;
-    /** String length of String timestamp with nanos. This does not come from MySQL server but we support it via string conversion. */
+    /**
+     * String length of String timestamp with nanos. This does not come from MySQL server but we
+     * support it via string conversion.
+     */
     public static final int TIMESTAMP_STR_LEN_WITH_NANOS = TIMESTAMP_NOFRAC_STR_LEN + 10;
 
-    /** Max string length of a signed long = 9223372036854775807 (19+1 for minus sign) */
+    /**
+     * Max string length of a signed long = 9223372036854775807 (19+1 for minus sign)
+     */
     private static final int MAX_SIGNED_LONG_LEN = 20;
 
     public <T> T decodeDate(byte[] bytes, int offset, int length, ValueFactory<T> vf) {
         if (length != DATE_BUF_LEN) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "DATE" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "DATE"}));
         }
         int year = StringUtils.getInt(bytes, offset, offset + 4);
         int month = StringUtils.getInt(bytes, offset + 5, offset + 7);
@@ -78,7 +94,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         int segmentLen;
 
         if (length < TIME_STR_LEN_MIN || length > TIME_STR_LEN_MAX) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "TIME" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "TIME"}));
         }
 
         boolean negative = false;
@@ -94,7 +110,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen == 0 || bytes[offset + pos + segmentLen] != ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { "TIME", StringUtils.toString(bytes, offset, length) }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{"TIME", StringUtils.toString(bytes, offset, length)}));
         }
         int hours = StringUtils.getInt(bytes, offset + pos, offset + pos + segmentLen);
         if (negative) {
@@ -108,7 +124,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen != 2 || bytes[offset + pos + segmentLen] != ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { "TIME", StringUtils.toString(bytes, offset, length) }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{"TIME", StringUtils.toString(bytes, offset, length)}));
         }
         int minutes = StringUtils.getInt(bytes, offset + pos, offset + pos + segmentLen);
         pos += segmentLen + 1;
@@ -119,7 +135,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         }
         if (segmentLen != 2) {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIME" }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIME"}));
         }
         int seconds = StringUtils.getInt(bytes, offset + pos, offset + pos + segmentLen);
         pos += segmentLen;
@@ -134,7 +150,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
             }
             if (segmentLen + pos != length) {
                 throw new DataReadException(
-                        Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIME" }));
+                        Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIME"}));
             }
             nanos = StringUtils.getInt(bytes, offset + pos, offset + pos + segmentLen);
             // scale out nanos appropriately. mysql supports up to 6 digits of fractional seconds, each additional digit increasing the range by a factor of
@@ -147,12 +163,12 @@ public class MysqlTextValueDecoder implements ValueDecoder {
 
     public <T> T decodeTimestamp(byte[] bytes, int offset, int length, ValueFactory<T> vf) {
         if (length < TIMESTAMP_NOFRAC_STR_LEN || (length > TIMESTAMP_STR_LEN_MAX && length != TIMESTAMP_STR_LEN_WITH_NANOS)) {
-            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[] { length, "TIMESTAMP" }));
+            throw new DataReadException(Messages.getString("ResultSet.InvalidLengthForType", new Object[]{length, "TIMESTAMP"}));
         } else if (length != TIMESTAMP_NOFRAC_STR_LEN) {
             // need at least two extra bytes for fractional, '.' and a digit
             if (bytes[offset + TIMESTAMP_NOFRAC_STR_LEN] != (byte) '.' || length < TIMESTAMP_NOFRAC_STR_LEN + 2) {
                 throw new DataReadException(
-                        Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIMESTAMP" }));
+                        Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIMESTAMP"}));
             }
         }
 
@@ -160,7 +176,7 @@ public class MysqlTextValueDecoder implements ValueDecoder {
         if (bytes[offset + 4] != (byte) '-' || bytes[offset + 7] != (byte) '-' || bytes[offset + 10] != (byte) ' ' || bytes[offset + 13] != (byte) ':'
                 || bytes[offset + 16] != (byte) ':') {
             throw new DataReadException(
-                    Messages.getString("ResultSet.InvalidFormatForType", new Object[] { StringUtils.toString(bytes, offset, length), "TIMESTAMP" }));
+                    Messages.getString("ResultSet.InvalidFormatForType", new Object[]{StringUtils.toString(bytes, offset, length), "TIMESTAMP"}));
         }
 
         int year = StringUtils.getInt(bytes, offset, offset + 4);

@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.HashMap;
@@ -39,13 +38,13 @@ import com.mysql.cj.x.protobuf.MysqlxExpr.Expr;
  * Class collecting parameters for {@link Table#update()}.
  */
 public class UpdateParams {
+
     private Map<ColumnIdentifier, Expr> updateOps = new HashMap<>();
 
     /**
      * Fill update parameters from field -&gt; value_expression map.
-     * 
-     * @param updates
-     *            field -&gt; value_expression map
+     *
+     * @param updates field -&gt; value_expression map
      */
     public void setUpdates(Map<String, Object> updates) {
         updates.entrySet().forEach(e -> addUpdate(e.getKey(), e.getValue()));
@@ -53,11 +52,9 @@ public class UpdateParams {
 
     /**
      * Add update parameter.
-     * 
-     * @param path
-     *            field name
-     * @param value
-     *            value expression
+     *
+     * @param path field name
+     * @param value value expression
      */
     public void addUpdate(String path, Object value) {
         this.updateOps.put(new ExprParser(path, true).parseTableUpdateField(), ExprUtil.argObjectToExpr(value, true));
@@ -65,7 +62,7 @@ public class UpdateParams {
 
     /**
      * Get update parameters map.
-     * 
+     *
      * @return X Protocol ColumnIdentifier-&gt;Expr map.
      */
     public Object getUpdates() {

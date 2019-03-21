@@ -29,157 +29,157 @@
 -->
 <project name="MySQL Connector/J" default="dist" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
     <description>
-Compiling Connector/J
-=====================
+        Compiling Connector/J
+        =====================
 
-Connector/J 8.0 supports JDBC4.2. This requires JDBC classes to be compiled with Java 8.
-The variable 'com.mysql.cj.build.jdk' is used to find the compiler when building the driver. Side by side with these, the variable 'com.mysql.cj.extra.libs'
-must point to the location of third-party libraries that we don't distribute and are required for compiling. Further details can be found in
-http://dev.mysql.com/doc/connector-j/en/connector-j-installing-source.html.
+        Connector/J 8.0 supports JDBC4.2. This requires JDBC classes to be compiled with Java 8.
+        The variable 'com.mysql.cj.build.jdk' is used to find the compiler when building the driver. Side by side with these, the variable 'com.mysql.cj.extra.libs'
+        must point to the location of third-party libraries that we don't distribute and are required for compiling. Further details can be found in
+        http://dev.mysql.com/doc/connector-j/en/connector-j-installing-source.html.
 
-Targets: "dist", "full-dist", "package", "full-package", "full-package-no-sources", "compile", "install"
-
-
-Testing Connector/J
-===================
-
-Connector/J 8.0 ships with an extensive test suite that can be run simply by providing a MySQL JDBC URL in the variable 'com.mysql.cj.testsuite.url' and by
-calling the target "test". If nothing more is set, these tests run with the JVM referred in the variable 'com.mysql.cj.build.jdk'.
-Alternatively, all tests can be run with a distinct JVM, provided that it is pointed out in the variable 'com.mysql.cj.testsuite.jvm'.
-Running only one test set is possible by setting the variable 'com.mysql.cj.testsuite.test.class' with the class' fully qualified name. If also a comma
-separated list of test names is provided in the variable 'com.mysql.cj.testsuite.test.methods', then only these will be executed.
-
-Targets: "test"
+        Targets: "dist", "full-dist", "package", "full-package", "full-package-no-sources", "compile", "install"
 
 
-Coverage and instrumentation
-============================
+        Testing Connector/J
+        ===================
 
-This file ships with target "test-coverage" for collecting coverage results and "report-coverage" for creating the HTML coverage report.
-The JaCoCo library needed to run these targets can be found at https://github.com/jacoco/jacoco, it's JARs should be placed
-into ${com.mysql.cj.extra.libs}/jacoco directory.
-The "test-coverage" target enables tests execution-time JaCoCo instrumentation, runs tests collecting coverage info into result file
-which path is set as ${com.mysql.cj.coverage.result.dir}/${com.mysql.cj.coverage.result.name}.
-The "report-coverage" target first merges coverage result files which are placed in 'com.mysql.cj.coverage.result.dir' directory and
-their comma-delimited names are passed via 'com.mysql.cj.coverage.merge.files' property. Merge result file path is passed
-via 'com.mysql.cj.coverage.merge.result' property. Finally this target builds the HTML report from
-'com.mysql.cj.coverage.merge.result' file into the directory passed via 'com.mysql.cj.coverage.report.dir' property.
-If some properties are not passed to ANT script then default values are used:
-    com.mysql.cj.coverage.result.dir - "${com.mysql.cj.testsuite.build.dir}/coverage"
-    com.mysql.cj.coverage.result.name - "jacoco.exec"
-    com.mysql.cj.coverage.merge.files - none, merge step is skipped
-    com.mysql.cj.coverage.merge.result - ${com.mysql.cj.coverage.result.dir}/jacoco.exec
-    com.mysql.cj.coverage.report.dir - ${com.mysql.cj.coverage.result.dir}/report
+        Connector/J 8.0 ships with an extensive test suite that can be run simply by providing a MySQL JDBC URL in the variable 'com.mysql.cj.testsuite.url' and by
+        calling the target "test". If nothing more is set, these tests run with the JVM referred in the variable 'com.mysql.cj.build.jdk'.
+        Alternatively, all tests can be run with a distinct JVM, provided that it is pointed out in the variable 'com.mysql.cj.testsuite.jvm'.
+        Running only one test set is possible by setting the variable 'com.mysql.cj.testsuite.test.class' with the class' fully qualified name. If also a comma
+        separated list of test names is provided in the variable 'com.mysql.cj.testsuite.test.methods', then only these will be executed.
 
-Targets: "test-coverage", "report-coverage"
+        Targets: "test"
 
 
-Sample 'build.properties' that can be used to compile, build and test
-=====================================================================
-~~~start cut here~~~
-# Basic settings for 'compile', 'test' and targets that depend on these.
+        Coverage and instrumentation
+        ============================
 
-# External libraries needed for both compiling and testing:
-# - Further details in http://dev.mysql.com/doc/connector-j/en/connector-j-installing-source.html
-# - Mandatory.
-com.mysql.cj.extra.libs=&lt;full_path_to_connector-j-jardeps&gt;
+        This file ships with target "test-coverage" for collecting coverage results and "report-coverage" for creating the HTML coverage report.
+        The JaCoCo library needed to run these targets can be found at https://github.com/jacoco/jacoco, it's JARs should be placed
+        into ${com.mysql.cj.extra.libs}/jacoco directory.
+        The "test-coverage" target enables tests execution-time JaCoCo instrumentation, runs tests collecting coverage info into result file
+        which path is set as ${com.mysql.cj.coverage.result.dir}/${com.mysql.cj.coverage.result.name}.
+        The "report-coverage" target first merges coverage result files which are placed in 'com.mysql.cj.coverage.result.dir' directory and
+        their comma-delimited names are passed via 'com.mysql.cj.coverage.merge.files' property. Merge result file path is passed
+        via 'com.mysql.cj.coverage.merge.result' property. Finally this target builds the HTML report from
+        'com.mysql.cj.coverage.merge.result' file into the directory passed via 'com.mysql.cj.coverage.report.dir' property.
+        If some properties are not passed to ANT script then default values are used:
+        com.mysql.cj.coverage.result.dir - "${com.mysql.cj.testsuite.build.dir}/coverage"
+        com.mysql.cj.coverage.result.name - "jacoco.exec"
+        com.mysql.cj.coverage.merge.files - none, merge step is skipped
+        com.mysql.cj.coverage.merge.result - ${com.mysql.cj.coverage.result.dir}/jacoco.exec
+        com.mysql.cj.coverage.report.dir - ${com.mysql.cj.coverage.result.dir}/report
 
-# JDKs needed for compiling:
-# - Must point to JDK home directory.
-# - Also used for testing if 'com.mysql.cj.testsuite.jvm' is not provided.
-# - Mandatory.
-com.mysql.cj.build.jdk=&lt;full_path_to_jdk1.8&gt;
+        Targets: "test-coverage", "report-coverage"
 
-# Single JVM/MySQL tests:
-# - Must point to JDK or JRE home directory.
-# - If not provided, JDBC tests are run with 'com.mysql.cj.build.jdk'.
-# - Optional.
-com.mysql.cj.testsuite.jvm=&lt;full_path_to_a_jdk_or_jre&gt;
-# - URL to the test database.
-# - Any of the current MySQL versions.
-# - Mandatory for 'test' target.
-com.mysql.cj.testsuite.url=jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;testDB&gt;?user=&lt;user&gt;&amp;password=&lt;pwd&gt;
-com.mysql.cj.testsuite.mysqlx.url=jdbc:mysql://&lt;user&gt;:&lt;pwd&gt;@&lt;host&gt;:&lt;port&gt;/&lt;testDB&gt;
 
-# Cancels re-compiling between successive test executions.
-# - Comment variable if not needed.
-# - Optional.
-com.mysql.cj.build.noCleanBetweenCompiles=yes
+        Sample 'build.properties' that can be used to compile, build and test
+        =====================================================================
+        ~~~start cut here~~~
+        # Basic settings for 'compile', 'test' and targets that depend on these.
 
-# Other targets may require specific settings. Check 'build.xml' for details.
-~~~end cut here~~~
+        # External libraries needed for both compiling and testing:
+        # - Further details in http://dev.mysql.com/doc/connector-j/en/connector-j-installing-source.html
+        # - Mandatory.
+        com.mysql.cj.extra.libs=&lt;full_path_to_connector-j-jardeps&gt;
 
-Available build properties
-==========================
+        # JDKs needed for compiling:
+        # - Must point to JDK home directory.
+        # - Also used for testing if 'com.mysql.cj.testsuite.jvm' is not provided.
+        # - Mandatory.
+        com.mysql.cj.build.jdk=&lt;full_path_to_jdk1.8&gt;
 
-build.properties - path to properties file
+        # Single JVM/MySQL tests:
+        # - Must point to JDK or JRE home directory.
+        # - If not provided, JDBC tests are run with 'com.mysql.cj.build.jdk'.
+        # - Optional.
+        com.mysql.cj.testsuite.jvm=&lt;full_path_to_a_jdk_or_jre&gt;
+        # - URL to the test database.
+        # - Any of the current MySQL versions.
+        # - Mandatory for 'test' target.
+        com.mysql.cj.testsuite.url=jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;testDB&gt;?user=&lt;user&gt;&amp;password=&lt;pwd&gt;
+        com.mysql.cj.testsuite.mysqlx.url=jdbc:mysql://&lt;user&gt;:&lt;pwd&gt;@&lt;host&gt;:&lt;port&gt;/&lt;testDB&gt;
 
-com.mysql.cj.extra.libs - location of third-party libraries: [${com.mysql.cj.extra.libs}]
+        # Cancels re-compiling between successive test executions.
+        # - Comment variable if not needed.
+        # - Optional.
+        com.mysql.cj.build.noCleanBetweenCompiles=yes
 
-com.mysql.cj.build.jdk - path to JDK used for building driver: [${com.mysql.cj.build.jdk}]
-com.mysql.cj.build.addDebugInfo - should the driver be compiled with debugging info: [${com.mysql.cj.build.addDebugInfo}]
-com.mysql.cj.build.noCleanBetweenCompiles - don't clean artifacts from previous build: [_unset_]
-com.mysql.cj.build.failOnWarnings - fail the build when any warning is found: [_unset_]
-com.mysql.cj.build.verbose - log the extended build info: [_unset_]
+        # Other targets may require specific settings. Check 'build.xml' for details.
+        ~~~end cut here~~~
 
-com.mysql.cj.build.commercial - build commercial variant of the driver: [_unset_]
-com.mysql.cj.build.filterLicense - build ISV variant of the driver: [_unset_]
-com.mysql.cj.build.noCrypto - build the driver without SSL support: [_unset_]
+        Available build properties
+        ==========================
 
-com.mysql.cj.build.driver.version.major - major version: [${com.mysql.cj.build.driver.version.major}]
-com.mysql.cj.build.driver.version.minor - minor version: [${com.mysql.cj.build.driver.version.minor}]
-com.mysql.cj.build.driver.version.subminor - subminor version: [${com.mysql.cj.build.driver.version.subminor}]
-com.mysql.cj.build.driver.version.status - version status, such as '-rc' or '-dmr': [${com.mysql.cj.build.driver.version.status}]
+        build.properties - path to properties file
 
-com.mysql.cj.build.driver.version - standard version string (includes version status): [${com.mysql.cj.build.driver.version.numeric}${com.mysql.cj.build.driver.version.status}]
-com.mysql.cj.build.driver.version.series - product series, i.e. x.y: [${com.mysql.cj.build.driver.version.major}.${com.mysql.cj.build.driver.version.minor}]
-com.mysql.cj.build.driver.version.numeric - numeric version, i.e. x.y.z: [${com.mysql.cj.build.driver.version.series}.${com.mysql.cj.build.driver.version.subminor}}
-com.mysql.cj.build.driver.version.extra - optional version information appended to the full version string: [${com.mysql.cj.build.driver.version.extra}]
-com.mysql.cj.build.driver.version.snapshot - optional version snapshot marker: [${com.mysql.cj.build.driver.version.snapshot}]
-com.mysql.cj.build.driver.version.full - full version string: [${com.mysql.cj.build.driver.version}${com.mysql.cj.build.driver.version.extra}${com.mysql.cj.build.driver.version.snapshot}]
+        com.mysql.cj.extra.libs - location of third-party libraries: [${com.mysql.cj.extra.libs}]
 
-com.mysql.cj.build.driver.displayName - product display name: [${com.mysql.cj.build.driver.displayName}]
-com.mysql.cj.build.driver.name - product name: [${com.mysql.cj.build.driver.name}]
-com.mysql.cj.build.driver.extraName - optional extension to product name: [${com.mysql.cj.build.driver.extraName}]
-com.mysql.cj.build.driver.extendedName - final product name: [${com.mysql.cj.build.driver.name}${com.mysql.cj.build.driver.extraName}]
-com.mysql.cj.build.driver.fullName - full product name (includes version): [${com.mysql.cj.build.driver.extendedName}-${com.mysql.cj.build.driver.version.full}]
+        com.mysql.cj.build.jdk - path to JDK used for building driver: [${com.mysql.cj.build.jdk}]
+        com.mysql.cj.build.addDebugInfo - should the driver be compiled with debugging info: [${com.mysql.cj.build.addDebugInfo}]
+        com.mysql.cj.build.noCleanBetweenCompiles - don't clean artifacts from previous build: [_unset_]
+        com.mysql.cj.build.failOnWarnings - fail the build when any warning is found: [_unset_]
+        com.mysql.cj.build.verbose - log the extended build info: [_unset_]
 
-com.mysql.cj.build.dir - root directory for driver build: [${com.mysql.cj.build.dir}]
-com.mysql.cj.build.dir.driver - driver build dir: [${com.mysql.cj.build.dir}/${com.mysql.cj.build.driver.fullName}]
+        com.mysql.cj.build.commercial - build commercial variant of the driver: [_unset_]
+        com.mysql.cj.build.filterLicense - build ISV variant of the driver: [_unset_]
+        com.mysql.cj.build.noCrypto - build the driver without SSL support: [_unset_]
 
-com.mysql.cj.dist.packageName - final package name: [${com.mysql.cj.build.driver.extendedName}[${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_none_]-${com.mysql.cj.build.driver.version.full}]
-com.mysql.cj.dist.packageSuffix - suffix added to package name (depends on package type): [${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_unset_]
-com.mysql.cj.dist.packageWithSourcesSuffix - suffix for packages containing sources if not by default: [${com.mysql.cj.dist.packageWithSourcesSuffix}]
-com.mysql.cj.dist.packageNoSourcesSuffix - suffix for packages not containing sources if not by default: [${com.mysql.cj.dist.packageNoSourcesSuffix}]
-com.mysql.cj.dist.noSources - don't include sources into dist packages: [_unset]
-com.mysql.cj.dist.noMavenSources - don't include sources into Maven package: [_unset_]
-com.mysql.cj.dist.licenseUrl - license book location: [${com.mysql.cj.dist.licenseUrl}]
+        com.mysql.cj.build.driver.version.major - major version: [${com.mysql.cj.build.driver.version.major}]
+        com.mysql.cj.build.driver.version.minor - minor version: [${com.mysql.cj.build.driver.version.minor}]
+        com.mysql.cj.build.driver.version.subminor - subminor version: [${com.mysql.cj.build.driver.version.subminor}]
+        com.mysql.cj.build.driver.version.status - version status, such as '-rc' or '-dmr': [${com.mysql.cj.build.driver.version.status}]
 
-com.mysql.cj.dist.dir - root directory for driver packaging: [${com.mysql.cj.dist.dir}]
-com.mysql.cj.dist.dir.prepare - directory for preparing packages: [${com.mysql.cj.dist.dir.prepare}]
-com.mysql.cj.dist.dir.package - directory for preparing packages for given package name: [${com.mysql.cj.dist.dir.prepare}/${com.mysql.cj.build.driver.extendedName}[${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_none_]-${com.mysql.cj.build.driver.version.full}]
-com.mysql.cj.dist.dir.maven - directory for preparing Maven packages: [${com.mysql.cj.dist.dir.prepare}/maven-bundle-&lt;random_number&gt;]
-com.mysql.cj.dist.dir.prebuilt.docs - where to take prebuilt documentation files for adding them to packages: [${com.mysql.cj.dist.dir.prebuilt.docs}]
+        com.mysql.cj.build.driver.version - standard version string (includes version status): [${com.mysql.cj.build.driver.version.numeric}${com.mysql.cj.build.driver.version.status}]
+        com.mysql.cj.build.driver.version.series - product series, i.e. x.y: [${com.mysql.cj.build.driver.version.major}.${com.mysql.cj.build.driver.version.minor}]
+        com.mysql.cj.build.driver.version.numeric - numeric version, i.e. x.y.z: [${com.mysql.cj.build.driver.version.series}.${com.mysql.cj.build.driver.version.subminor}}
+        com.mysql.cj.build.driver.version.extra - optional version information appended to the full version string: [${com.mysql.cj.build.driver.version.extra}]
+        com.mysql.cj.build.driver.version.snapshot - optional version snapshot marker: [${com.mysql.cj.build.driver.version.snapshot}]
+        com.mysql.cj.build.driver.version.full - full version string: [${com.mysql.cj.build.driver.version}${com.mysql.cj.build.driver.version.extra}${com.mysql.cj.build.driver.version.snapshot}]
 
-com.mysql.cj.dist.deb.maintainerEmail - the deb package maintainer email: [${com.mysql.cj.dist.deb.maintainerEmail}]
+        com.mysql.cj.build.driver.displayName - product display name: [${com.mysql.cj.build.driver.displayName}]
+        com.mysql.cj.build.driver.name - product name: [${com.mysql.cj.build.driver.name}]
+        com.mysql.cj.build.driver.extraName - optional extension to product name: [${com.mysql.cj.build.driver.extraName}]
+        com.mysql.cj.build.driver.extendedName - final product name: [${com.mysql.cj.build.driver.name}${com.mysql.cj.build.driver.extraName}]
+        com.mysql.cj.build.driver.fullName - full product name (includes version): [${com.mysql.cj.build.driver.extendedName}-${com.mysql.cj.build.driver.version.full}]
 
-Available test properties
-=========================
+        com.mysql.cj.build.dir - root directory for driver build: [${com.mysql.cj.build.dir}]
+        com.mysql.cj.build.dir.driver - driver build dir: [${com.mysql.cj.build.dir}/${com.mysql.cj.build.driver.fullName}]
 
-com.mysql.cj.testsuite.build.dir - root directory for building testsuite, default '${com.mysql.cj.testsuite.build.dir}'
-com.mysql.cj.testsuite.junit.results - where to put junit reports, default '${com.mysql.cj.testsuite.junit.results}'
-com.mysql.cj.testsuite.jvm - run testsuite under this one JVM, default '${com.mysql.cj.testsuite.jvm}'
-com.mysql.cj.testsuite.url - connection string to the main test server, default _unset_
-com.mysql.cj.testsuite.url.openssl - connection string to the test server compiled with OpenSSL, used in sha256 tests, default _unset_
-com.mysql.cj.testsuite.mysqlx.url - connection string to the test server with xplugin, default _unset_
-com.mysql.cj.testsuite.mysqlx.url.openssl - connection string to the test server compiled with OpenSSL and enabled xplugin, default _unset_
-com.mysql.cj.testsuite.test.class - testcase class name to run, default _unset_
-com.mysql.cj.testsuite.test.methods - a comma separated list of test names existing in class defined by 'com.mysql.cj.testsuite.test.class', default _unset_
-com.mysql.cj.testsuite.unavailable.host - a host:port pair used for tests checking socket connection timeout
+        com.mysql.cj.dist.packageName - final package name: [${com.mysql.cj.build.driver.extendedName}[${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_none_]-${com.mysql.cj.build.driver.version.full}]
+        com.mysql.cj.dist.packageSuffix - suffix added to package name (depends on package type): [${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_unset_]
+        com.mysql.cj.dist.packageWithSourcesSuffix - suffix for packages containing sources if not by default: [${com.mysql.cj.dist.packageWithSourcesSuffix}]
+        com.mysql.cj.dist.packageNoSourcesSuffix - suffix for packages not containing sources if not by default: [${com.mysql.cj.dist.packageNoSourcesSuffix}]
+        com.mysql.cj.dist.noSources - don't include sources into dist packages: [_unset]
+        com.mysql.cj.dist.noMavenSources - don't include sources into Maven package: [_unset_]
+        com.mysql.cj.dist.licenseUrl - license book location: [${com.mysql.cj.dist.licenseUrl}]
 
-See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test options.
+        com.mysql.cj.dist.dir - root directory for driver packaging: [${com.mysql.cj.dist.dir}]
+        com.mysql.cj.dist.dir.prepare - directory for preparing packages: [${com.mysql.cj.dist.dir.prepare}]
+        com.mysql.cj.dist.dir.package - directory for preparing packages for given package name: [${com.mysql.cj.dist.dir.prepare}/${com.mysql.cj.build.driver.extendedName}[${com.mysql.cj.dist.packageWithSourcesSuffix}|${com.mysql.cj.dist.packageNoSourcesSuffix}|_none_]-${com.mysql.cj.build.driver.version.full}]
+        com.mysql.cj.dist.dir.maven - directory for preparing Maven packages: [${com.mysql.cj.dist.dir.prepare}/maven-bundle-&lt;random_number&gt;]
+        com.mysql.cj.dist.dir.prebuilt.docs - where to take prebuilt documentation files for adding them to packages: [${com.mysql.cj.dist.dir.prebuilt.docs}]
 
-</description>
+        com.mysql.cj.dist.deb.maintainerEmail - the deb package maintainer email: [${com.mysql.cj.dist.deb.maintainerEmail}]
+
+        Available test properties
+        =========================
+
+        com.mysql.cj.testsuite.build.dir - root directory for building testsuite, default '${com.mysql.cj.testsuite.build.dir}'
+        com.mysql.cj.testsuite.junit.results - where to put junit reports, default '${com.mysql.cj.testsuite.junit.results}'
+        com.mysql.cj.testsuite.jvm - run testsuite under this one JVM, default '${com.mysql.cj.testsuite.jvm}'
+        com.mysql.cj.testsuite.url - connection string to the main test server, default _unset_
+        com.mysql.cj.testsuite.url.openssl - connection string to the test server compiled with OpenSSL, used in sha256 tests, default _unset_
+        com.mysql.cj.testsuite.mysqlx.url - connection string to the test server with xplugin, default _unset_
+        com.mysql.cj.testsuite.mysqlx.url.openssl - connection string to the test server compiled with OpenSSL and enabled xplugin, default _unset_
+        com.mysql.cj.testsuite.test.class - testcase class name to run, default _unset_
+        com.mysql.cj.testsuite.test.methods - a comma separated list of test names existing in class defined by 'com.mysql.cj.testsuite.test.class', default _unset_
+        com.mysql.cj.testsuite.unavailable.host - a host:port pair used for tests checking socket connection timeout
+
+        See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test options.
+
+    </description>
 
 
     <!-- ******************** -->
@@ -408,7 +408,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
     <!-- Prepares files and settings for compiling driver. -->
     <target name="init" depends="-extra-libs-check, -compiler-check, -init-copy">
         <!-- The following is needed for source distributions as the classpath can't be dynamically altered, and not having this directory present causes the
-             build to fail. -->
+        build to fail. -->
         <available property="com.mysql.cj.prebuiltDocsPresent" file="${com.mysql.cj.dist.dir.prebuilt.docs}" />
         <available property="com.mysql.cj.c3p0Present" classname="com.mchange.v2.c3p0.QueryConnectionTester" classpathref="project.build.classpath" />
         <available property="com.mysql.cj.log4jPresent" classname="org.apache.log4j.Logger" classpathref="project.build.classpath" />
@@ -492,7 +492,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
         </exec>
 
         <!-- The following workaround is needed for the RE builds environment, which build from a non-versioned directory, so revision information is provided
-            from an external revision-info.properties file. -->
+        from an external revision-info.properties file. -->
         <property prefix="revinfo" file="revision-info.properties" />
 
         <condition property="com.mysql.cj.build.git.branch" value="${com.mysql.cj.build.git.branchFromCmd}" else="${revinfo.branch}">

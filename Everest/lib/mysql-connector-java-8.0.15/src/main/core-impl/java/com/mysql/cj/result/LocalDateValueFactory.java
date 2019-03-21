@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.result;
 
 import java.time.LocalDate;
@@ -39,6 +38,7 @@ import com.mysql.cj.exceptions.DataReadException;
  * A value factory for creating {@link LocalDate} values.
  */
 public class LocalDateValueFactory extends DefaultValueFactory<LocalDate> {
+
     private WarningListener warningListener;
 
     public LocalDateValueFactory() {
@@ -60,7 +60,7 @@ public class LocalDateValueFactory extends DefaultValueFactory<LocalDate> {
     @Override
     public LocalDate createFromTimestamp(int year, int month, int day, int hours, int minutes, int seconds, int nanos) {
         if (this.warningListener != null) {
-            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[] { getTargetTypeName() }));
+            this.warningListener.warningEncountered(Messages.getString("ResultSet.PrecisionLostWarning", new Object[]{getTargetTypeName()}));
         }
         // truncate any time information
         return createFromDate(year, month, day);

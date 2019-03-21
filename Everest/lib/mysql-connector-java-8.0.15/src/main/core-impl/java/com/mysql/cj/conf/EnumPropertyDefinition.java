@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.conf;
 
 import java.util.Arrays;
@@ -63,14 +62,14 @@ public class EnumPropertyDefinition<T extends Enum<T>> extends AbstractPropertyD
         } catch (Exception e) {
             throw ExceptionFactory.createException(
                     Messages.getString("PropertyDefinition.1",
-                            new Object[] { getName(), StringUtils.stringArrayToString(getAllowableValues(), "'", "', '", "' or '", "'"), value }),
+                            new Object[]{getName(), StringUtils.stringArrayToString(getAllowableValues(), "'", "', '", "' or '", "'"), value}),
                     e, exceptionInterceptor);
         }
     }
 
     /**
      * Creates an instance of EnumProperty.
-     * 
+     *
      * @return RuntimeProperty
      */
     @Override

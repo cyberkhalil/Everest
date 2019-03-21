@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package testsuite.x.internal;
 
 import static org.junit.Assert.assertEquals;
@@ -47,6 +46,7 @@ import com.mysql.cj.xdevapi.Session;
  * Tests for protocol-level auth APIs against X Plugin via X Protocol.
  */
 public class XProtocolAuthTest extends InternalXBaseTestCase {
+
     private static XProtocol protocol;
     private XMessageBuilder messageBuilder;
 
@@ -66,8 +66,9 @@ public class XProtocolAuthTest extends InternalXBaseTestCase {
     }
 
     /**
-     * Test that we are disconnected with an error if we send a bad authentication message. The server responds by immediately closing the socket. The async
-     * implementation may block indefinitely here and we need to prevent any regression.
+     * Test that we are disconnected with an error if we send a bad authentication message. The
+     * server responds by immediately closing the socket. The async implementation may block
+     * indefinitely here and we need to prevent any regression.
      */
     @Test
     public void testBadAuthMessage() throws Exception {

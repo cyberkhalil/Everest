@@ -26,7 +26,6 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.xdevapi;
 
 import java.util.ArrayList;
@@ -45,13 +44,14 @@ import com.mysql.cj.protocol.x.XMessageBuilder;
  * {@link ModifyStatement} implementation.
  */
 public class ModifyStatementImpl extends FilterableStatement<ModifyStatement, Result> implements ModifyStatement {
+
     private MysqlxSession mysqlxSession;
     private List<UpdateSpec> updates = new ArrayList<>();
 
     /* package private */ ModifyStatementImpl(MysqlxSession mysqlxSession, String schema, String collection, String criteria) {
         super(new DocFilterParams(schema, collection));
         if (criteria == null || criteria.trim().length() == 0) {
-            throw new XDevAPIError(Messages.getString("ModifyStatement.0", new String[] { "criteria" }));
+            throw new XDevAPIError(Messages.getString("ModifyStatement.0", new String[]{"criteria"}));
         }
         this.filterParams.setCriteria(criteria);
         this.mysqlxSession = mysqlxSession;
@@ -60,14 +60,14 @@ public class ModifyStatementImpl extends FilterableStatement<ModifyStatement, Re
     @Override
     public Result execute() {
         StatementExecuteOk ok = this.mysqlxSession
-                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDocUpdate(this.filterParams, this.updates));
+                .sendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDocUpdate(this.filterParams, this.updates));
         return new UpdateResult(ok);
     }
 
     @Override
     public CompletableFuture<Result> executeAsync() {
         CompletableFuture<StatementExecuteOk> okF = this.mysqlxSession
-                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage> getMessageBuilder()).buildDocUpdate(this.filterParams, this.updates));
+                .asyncSendMessage(((XMessageBuilder) this.mysqlxSession.<XMessage>getMessageBuilder()).buildDocUpdate(this.filterParams, this.updates));
         return okF.thenApply(ok -> new UpdateResult(ok));
     }
 

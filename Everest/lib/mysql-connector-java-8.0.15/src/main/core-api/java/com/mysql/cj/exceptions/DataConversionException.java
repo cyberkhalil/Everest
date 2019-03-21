@@ -26,13 +26,13 @@
  * this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
  */
-
 package com.mysql.cj.exceptions;
 
 /**
  * Indicates that data could not be converted according to the given request.
  */
 public class DataConversionException extends DataReadException {
+
     private static final long serialVersionUID = -863576663404236982L;
 
     public DataConversionException(String msg) {
