@@ -319,7 +319,6 @@ public final class StudentTableJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable_Display_StudentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_StudentsMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Students.getSelectedRow();
         TableModel tableModel = jTable_Display_Students.getModel();
         IDTF.setText(tableModel.getValueAt(i, 0).toString());
@@ -347,7 +346,6 @@ public final class StudentTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
 //        String query = "Delete from student where StdID=" + IDTF.getText();
 //        excuteSQLQuery(query, "Delete");
         try {
@@ -368,19 +366,15 @@ public final class StudentTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void payment_methodTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payment_methodTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_payment_methodTFActionPerformed
 
     private void phone_numberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phone_numberTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_phone_numberTFActionPerformed
 
     private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_nameTFActionPerformed
 
     private void IDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IDTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_IDTFActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField IDTF;

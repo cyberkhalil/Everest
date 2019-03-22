@@ -581,15 +581,12 @@ public class StudentJFrame extends javax.swing.JFrame {
         }
     }
     private void paymentValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentValueActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_paymentValueActionPerformed
 
     private void StudentNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentNameActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_StudentNameActionPerformed
 
     private void BookCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookCheckBoxActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_BookCheckBoxActionPerformed
 
     private void BookCheckBoxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_BookCheckBoxStateChanged
@@ -603,15 +600,12 @@ public class StudentJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_BookCheckBoxStateChanged
 
     private void courseNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseNameActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_courseNameActionPerformed
 
     private void paymentMethodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paymentMethodActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_paymentMethodActionPerformed
 
     private void StudentPhoneNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentPhoneNum1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_StudentPhoneNum1ActionPerformed
 
     private void CourseCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseCheckBoxActionPerformed
@@ -679,7 +673,6 @@ public class StudentJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExamCheckBoxActionPerformed
 
     private void DiscountFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscountFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_DiscountFieldActionPerformed
 
     private void BookBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookBoxActionPerformed

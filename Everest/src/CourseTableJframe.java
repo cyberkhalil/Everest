@@ -392,23 +392,18 @@ public final class CourseTableJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void start_dateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_start_dateTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_start_dateTFActionPerformed
 
     private void course_priceTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_course_priceTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_course_priceTFActionPerformed
 
     private void end_dateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_end_dateTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_end_dateTFActionPerformed
 
     private void hour_toTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hour_toTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_hour_toTFActionPerformed
 
     private void jTable_Display_CourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_CourseMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Course.getSelectedRow();
         TableModel tableModel = jTable_Display_Course.getModel();
         course_nameTF.setText(tableModel.getValueAt(i, 0).toString());
@@ -444,7 +439,6 @@ public final class CourseTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void course_nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_course_nameTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_course_nameTFActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
@@ -472,11 +466,9 @@ public final class CourseTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void course_DaysTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_course_DaysTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_course_DaysTFActionPerformed
 
     private void hour_fromTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hour_fromTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_hour_fromTFActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField course_DaysTF;

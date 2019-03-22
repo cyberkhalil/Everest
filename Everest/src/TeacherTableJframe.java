@@ -326,15 +326,12 @@ public final class TeacherTableJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void teachernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachernameTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_teachernameTFActionPerformed
 
     private void phone_numberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phone_numberTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_phone_numberTFActionPerformed
 
     private void jTable_Display_TeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_TeachersMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Teachers.getSelectedRow();
         TableModel tableModel = jTable_Display_Teachers.getModel();
         teacher_idTF.setText(tableModel.getValueAt(i, 0).toString());
@@ -412,7 +409,6 @@ public final class TeacherTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_teacher_idTFKeyReleased
 
     private void searchTextF1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextF1KeyReleased
-        // TODO add your handling code here:
     }//GEN-LAST:event_searchTextF1KeyReleased
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton;

@@ -324,15 +324,12 @@ public class BookTableJframe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_nameTFActionPerformed
 
     private void priceTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_priceTFActionPerformed
 
     private void jTable_Display_BookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_BookMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Book.getSelectedRow();
         TableModel tableModel = jTable_Display_Book.getModel();
         IDTF.setText(tableModel.getValueAt(i, 0).toString());

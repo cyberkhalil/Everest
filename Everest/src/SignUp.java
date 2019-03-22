@@ -299,7 +299,6 @@ public class SignUp extends javax.swing.JFrame {
     }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void SignUpBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtn3ActionPerformed
-        // TODO add your handling code here;
         String Str1 = PasswordField5.getText();
         String Str2 = PasswordField6.getText();
         if (Str1.equals(Str2)) {

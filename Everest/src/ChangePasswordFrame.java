@@ -294,7 +294,6 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void ChangeDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeDataBtnActionPerformed
-        // TODO add your handling code here;
         String username = usernameField4.getText();
         String Str1 = PasswordField5.getText();
         String Str2 = PasswordField6.getText();

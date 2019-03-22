@@ -275,11 +275,9 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_usernameTFActionPerformed
 
     private void jTable_Display_TeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_TeachersMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Teachers.getSelectedRow();
         TableModel tableModel = jTable_Display_Teachers.getModel();
         user_idTF.setText(tableModel.getValueAt(i, 0).toString());
@@ -300,8 +298,6 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-
         String query = "Delete from user where userid=" + user_idTF.getText();
         excuteSQLQuery(query, "Deleted");
     }//GEN-LAST:event_deleteButtonActionPerformed

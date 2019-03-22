@@ -183,7 +183,6 @@ public class RegistraionTableJframe extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_Display_RegistrationMouseClicked
 
     private void AddToCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddToCourseActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_AddToCourseActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddToCourse;

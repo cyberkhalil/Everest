@@ -381,7 +381,6 @@ public class PaymentTableJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void payment_idTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payment_idTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_payment_idTFActionPerformed
 
     private void jTable_Display_PaymentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_PaymentMouseClicked
@@ -440,7 +439,6 @@ public class PaymentTableJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchjJBActionPerformed
 
     private void student_IDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_student_IDTFActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_student_IDTFActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField SearchJF;

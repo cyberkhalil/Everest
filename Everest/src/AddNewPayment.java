@@ -632,7 +632,7 @@ public class AddNewPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowPaymentsBtnActionPerformed
 
     private void InvoiceBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvoiceBoxActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_InvoiceBoxActionPerformed
 
     private void BookRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookRadioBtnActionPerformed

@@ -636,7 +636,6 @@ public class EnrollFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExamBtnActionPerformed
 
     private void ExamBtnStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ExamBtnStateChanged
-        // TODO add your handling code here:
     }//GEN-LAST:event_ExamBtnStateChanged
 
     private void CourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CourseBtnActionPerformed

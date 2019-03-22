@@ -222,7 +222,7 @@ public class AddTeacherFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CourseBoxActionPerformed
 
     private void TeacherNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeacherNameFieldActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_TeacherNameFieldActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddTeacherBtn;

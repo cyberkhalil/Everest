@@ -36,7 +36,6 @@ public class BookTable extends javax.swing.JFrame {
     public ArrayList<Book> booktList() {
         ArrayList<Book> arrayList = new ArrayList<>();
         try {
-            // TODO check why there is error here..
             String query = "select * from book where student_id_fk IS NOT NULL";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -188,7 +187,6 @@ public class BookTable extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable_Display_BookMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_BookMouseClicked
-        // TODO add your handling code here:
         int i = jTable_Display_Book.getSelectedRow();
         TableModel tableModel = jTable_Display_Book.getModel();
 //        IDTF.setText(tableModel.getValueAt(i, 0).toString());

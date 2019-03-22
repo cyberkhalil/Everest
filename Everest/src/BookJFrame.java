@@ -341,15 +341,12 @@ public class BookJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBookBtnActionPerformed
 
     private void BooknameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BooknameActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_BooknameActionPerformed
 
     private void numberOfBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numberOfBookActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_numberOfBookActionPerformed
 
     private void price1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_price1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_price1ActionPerformed
 
     private void ShowallBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowallBooksBtnActionPerformed
