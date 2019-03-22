@@ -1,24 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author mohammed salah
- */
-public class payment {
+public class Payment {
 
     private int paymentId;
     private double paymentValue;
     private String paymetDate;
 
-    public payment() {
+    public Payment() {
 
     }
 
-    public payment(int paymentId, double paymentValue, String paymetDate) {
+    public Payment(int paymentId, double paymentValue, String paymetDate) {
         this.paymentId = paymentId;
         this.paymentValue = paymentValue;
         this.paymetDate = paymetDate;

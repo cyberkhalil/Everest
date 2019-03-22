@@ -13,14 +13,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class teacherTableJframe1 extends javax.swing.JFrame {
+public final class TeacherTableJframe extends javax.swing.JFrame {
 
-    Connection conn = DBConnection.getConnection();
     Teacher teacher;
     Course course;
     String course_name = null;
 
-    public teacherTableJframe1() {
+    public TeacherTableJframe() {
         initComponents();
         show_teacher();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -29,9 +28,9 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
     }
 
     public ArrayList<Teacher> teacherList() {
-        ArrayList<Teacher> arrayList = new ArrayList<Teacher>();
+        ArrayList<Teacher> arrayList = new ArrayList<>();
 
-        Connection conn = DBConnection.getConnection();
+        Connection connection = DBConnection.getConnection();
         String query = "select * from teacher ";
         String query1 = "select CourseName from teacher,course where TeacherId=Teacher_TeacherId";
         Statement st;
@@ -40,21 +39,21 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
         ResultSet rs1;
 
         try {
-            st = conn.createStatement();
+            st = connection.createStatement();
             rs = st.executeQuery(query);
 
             while (rs.next()) {
                 teacher = new Teacher(rs.getInt("TeacherId"), rs.getString("TeacherName"), rs.getInt("TeacherPhoneNumber"));
                 arrayList.add(teacher);
             }
-            st1 = conn.createStatement();
+            st1 = connection.createStatement();
             rs1 = st1.executeQuery(query1);
             while (rs1.next()) {
                 course_name = rs1.getString("CourseName");
 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(teacherTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -86,7 +85,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Do not " + message);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -350,7 +349,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
             int PhoneNumber = Integer.parseInt(phone_numberTF.getText());
             int teacherID = Integer.parseInt(teacher_idTF.getText());
             String query = "UPDATE teacher SET TeacherName=?,TeacherPhoneNumber=? where TeacherId=?";
-            PreparedStatement ps4 = conn.prepareStatement(query);
+            PreparedStatement ps4 = DBConnection.getConnection().prepareStatement(query);
             ps4.setString(1, TeacherName);
             ps4.setDouble(2, PhoneNumber);
             ps4.setInt(3, teacherID);
@@ -360,7 +359,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
             show_teacher();
             JOptionPane.showMessageDialog(null, "Updated sucessfully");
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -368,7 +367,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
         try {
             int teacherID = Integer.parseInt(teacher_idTF.getText());
             String query = "Delete from teacher where TeacherId=?";
-            PreparedStatement ps4 = conn.prepareStatement(query);
+            PreparedStatement ps4 = DBConnection.getConnection().prepareStatement(query);
             ps4.setInt(1, teacherID);
             ps4.execute();
             DefaultTableModel model = (DefaultTableModel) jTable_Display_Teachers.getModel();
@@ -379,7 +378,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
             phone_numberTF.setText("");
             JOptionPane.showMessageDialog(null, "deleted sucessfully");
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
@@ -408,7 +407,7 @@ public class teacherTableJframe1 extends javax.swing.JFrame {
                 //course_nameTF.setText(str4);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(teacherTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_teacher_idTFKeyReleased
 

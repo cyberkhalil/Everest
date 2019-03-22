@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 
 public class AdminMainFrame extends javax.swing.JFrame {
 
-    registraionTableJframe1 registraiontableJframe1 = new registraionTableJframe1();
-    BookTableJframe1 bookTableJframe1 = new BookTableJframe1();
+    RegistraionTableJframe registraiontableJframe1 = new RegistraionTableJframe();
+    BookTableJframe bookTableJframe1 = new BookTableJframe();
     //courseTableJframe1 coursetableJframe1 = new courseTableJframe1();
     AddTeacherFrame addTeacherFrame = new AddTeacherFrame();
 
@@ -535,7 +535,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_add_studentJBActionPerformed
 
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-        studentTableJframe studenttableJframe = new studentTableJframe();
+        StudentTableJframe studenttableJframe = new StudentTableJframe();
         studenttableJframe.setVisible(true);
     }//GEN-LAST:event_display_studentJBActionPerformed
 
@@ -545,7 +545,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        BookTable2 book = new BookTable2();
+        BookTable book = new BookTable();
         book.setVisible(true);
     }//GEN-LAST:event_display_BookJBActionPerformed
 
@@ -560,7 +560,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_add_teacherJBActionPerformed
 
     private void display_teacherJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_teacherJBActionPerformed
-        teacherTableJframe1 teachertableJframe1 = new teacherTableJframe1();
+        TeacherTableJframe teachertableJframe1 = new TeacherTableJframe();
         teachertableJframe1.setVisible(true);
     }//GEN-LAST:event_display_teacherJBActionPerformed
 
@@ -586,7 +586,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ChangePassBtnActionPerformed
 
     private void ShowPaymentsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentsTableActionPerformed
-        paymentTableJFrame py = new paymentTableJFrame();
+        PaymentTableJFrame py = new PaymentTableJFrame();
         py.setVisible(true);
     }//GEN-LAST:event_ShowPaymentsTableActionPerformed
 
@@ -596,12 +596,12 @@ public class AdminMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addNewPaymentActionPerformed
 
     private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
-        BookTableJframe1 bj = new BookTableJframe1();
+        BookTableJframe bj = new BookTableJframe();
         bj.setVisible(true);
     }//GEN-LAST:event_AvailableBooksBtnActionPerformed
 
     private void DisplayCourse2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCourse2BtnActionPerformed
-        courseTableJframe2 cf = new courseTableJframe2();
+        CourseTableJframe cf = new CourseTableJframe();
         cf.setVisible(true);
     }//GEN-LAST:event_DisplayCourse2BtnActionPerformed
 

@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class studentTableJframe extends javax.swing.JFrame {
+public final class StudentTableJframe extends javax.swing.JFrame {
 
     Student student;
     Connection conn = DBConnection.getConnection();
 
-    public studentTableJframe() {
+    public StudentTableJframe() {
         initComponents();
         show_student();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -27,7 +27,7 @@ public class studentTableJframe extends javax.swing.JFrame {
     }
 
     public ArrayList<Student> studentList() {
-        ArrayList<Student> arrayList = new ArrayList<Student>();
+        ArrayList<Student> arrayList = new ArrayList<>();
         //Connection connect = null;
 
         String query = "select * from student ";
@@ -41,7 +41,7 @@ public class studentTableJframe extends javax.swing.JFrame {
                 arrayList.add(student);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -61,7 +61,6 @@ public class studentTableJframe extends javax.swing.JFrame {
     }
 
     public void excuteSQLQuery(String Query, String message) {
-        Connection conn = DBConnection.getConnection();
         Statement st;
         try {
             st = conn.createStatement();
@@ -74,7 +73,7 @@ public class studentTableJframe extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "couldn't " + message);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -342,7 +341,7 @@ public class studentTableJframe extends javax.swing.JFrame {
             ps1.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Updated Successfully");
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_updateButtonActionPerformed
@@ -364,7 +363,7 @@ public class studentTableJframe extends javax.swing.JFrame {
             payment_methodTF.setText("");
             JOptionPane.showMessageDialog(null, "Data deleted successfully");
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 

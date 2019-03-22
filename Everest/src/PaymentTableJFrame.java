@@ -14,27 +14,27 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class paymentTableJFrame extends javax.swing.JFrame {
+public class PaymentTableJFrame extends javax.swing.JFrame {
 
     int desieredID = -1;
     String desieredName;
     int idNum = 0;
-    payment pay = new payment();
+    Payment pay = new Payment();
     Student student = new Student();
     String std_name = null;
     ArrayList<String> arrayList1;
     int Student_id = 0;
 
-    public paymentTableJFrame() {
+    public PaymentTableJFrame() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
-    public ArrayList<payment> paymentList(String valToSearch) {
-        ArrayList<payment> arrayList = new ArrayList<payment>();
-        arrayList1 = new ArrayList<String>();
+    public ArrayList<Payment> paymentList(String valToSearch) {
+        ArrayList<Payment> arrayList = new ArrayList<>();
+        arrayList1 = new ArrayList<>();
 
         Connection conn = DBConnection.getConnection();
         String qe = "SELECT StdID,StdName,IDCardNum FROM student";
@@ -57,18 +57,18 @@ public class paymentTableJFrame extends javax.swing.JFrame {
                 st1 = conn.createStatement();
                 rs1 = st1.executeQuery(qe2);
                 while (rs1.next()) {
-                    pay = new payment(rs1.getInt("PaymentNo"), rs1.getDouble("paymentValue"), rs1.getString("paymentTime"));
+                    pay = new Payment(rs1.getInt("PaymentNo"), rs1.getDouble("paymentValue"), rs1.getString("paymentTime"));
                     arrayList.add(pay);
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(paymentTableJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PaymentTableJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
 
     public void show_payment() {
-        ArrayList<payment> arrayList = paymentList(SearchJF.getText());
+        ArrayList<Payment> arrayList = paymentList(SearchJF.getText());
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Payment.getModel();
         model.setColumnIdentifiers(new Object[]{"Payment ID", "payment Value", "payment Time", "Student Name", "Student ID"});
         Object[] rObjects = new Object[5];
@@ -423,7 +423,7 @@ public class paymentTableJFrame extends javax.swing.JFrame {
             ps1.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Updated Successfully");
         } catch (SQLException ex) {
-            Logger.getLogger(paymentTableJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PaymentTableJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateBActionPerformed
 

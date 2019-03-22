@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class UsersTableJFrame extends javax.swing.JFrame {
+public final class UsersTableJFrame extends javax.swing.JFrame {
 
     User user = new User();
 
@@ -25,7 +25,7 @@ public class UsersTableJFrame extends javax.swing.JFrame {
     }
 
     public ArrayList<User> teacherList() {
-        ArrayList<User> arrayList = new ArrayList<User>();
+        ArrayList<User> arrayList = new ArrayList<>();
 
         Connection conn = DBConnection.getConnection();
         String query = "select * from user ";
@@ -42,7 +42,7 @@ public class UsersTableJFrame extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(teacherTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -74,7 +74,7 @@ public class UsersTableJFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Do not " + message);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

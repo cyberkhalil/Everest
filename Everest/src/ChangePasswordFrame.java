@@ -1,8 +1,6 @@
 
 import db.DBConnection;
 import utils.Hashing;
-import java.awt.Frame;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +13,7 @@ import javax.swing.JOptionPane;
 public class ChangePasswordFrame extends javax.swing.JFrame {
 
     User user = new User();
-    userEntry UserEntry = new userEntry();
+    UserEntry UserEntry = new UserEntry();
 
     public ChangePasswordFrame() {
         initComponents();

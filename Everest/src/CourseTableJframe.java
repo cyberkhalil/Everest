@@ -12,13 +12,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class courseTableJframe2 extends javax.swing.JFrame {
+public final class CourseTableJframe extends javax.swing.JFrame {
 
     Connection conn = DBConnection.getConnection();
     Course course;
     int Student_num = 0;
 
-    public courseTableJframe2() {
+    public CourseTableJframe() {
         initComponents();
         show_course();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -27,7 +27,7 @@ public class courseTableJframe2 extends javax.swing.JFrame {
     }
 
     public ArrayList<Course> studentList() {
-        ArrayList<Course> arrayList = new ArrayList<Course>();
+        ArrayList<Course> arrayList = new ArrayList<>();
         //Connection connect = null;
 
         String query = "select * from course where Teacher_TeacherId IS NULL";
@@ -51,7 +51,7 @@ public class courseTableJframe2 extends javax.swing.JFrame {
             }
             //System.out.println(Student_num);
         } catch (SQLException ex) {
-            Logger.getLogger(courseTableJframe2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -439,7 +439,7 @@ public class courseTableJframe2 extends javax.swing.JFrame {
             preparedStmt1.executeUpdate();
             JOptionPane.showMessageDialog(null, "Data Updated successfully");
         } catch (SQLException ex) {
-            Logger.getLogger(courseTableJframe2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -467,7 +467,7 @@ public class courseTableJframe2 extends javax.swing.JFrame {
             course_DaysTF.setText("");
             // Exam_costTF.setText("");
         } catch (SQLException ex) {
-            Logger.getLogger(courseTableJframe2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 

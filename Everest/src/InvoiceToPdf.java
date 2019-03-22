@@ -15,7 +15,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 
-public class invoiceToPdf {
+public class InvoiceToPdf {
 
     static Connection Conn = DBConnection.getConnection();
 
@@ -143,8 +143,7 @@ public class invoiceToPdf {
                 }
             }
         } catch (JRException ex) {
-            ex.printStackTrace();
-            System.out.println("Error: " + ex);
+            System.out.println("Error: " + ex.getMessage());
         }
     }
 
@@ -217,8 +216,7 @@ public class invoiceToPdf {
                 }
             }
         } catch (JRException ex) {
-            ex.printStackTrace();
-            System.out.println("Error: " + ex);
+            System.out.println("Error: " + ex.getMessage());
         }
 
     }

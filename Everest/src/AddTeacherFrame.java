@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class AddTeacherFrame extends javax.swing.JFrame {
 
-    HashMap<Integer, Integer> xx = new HashMap<Integer, Integer>();
+    HashMap<Integer, Integer> xx = new HashMap<>();
     Teacher t = new Teacher();
     TeacherEntry teacher = new TeacherEntry();
 
@@ -213,7 +213,7 @@ public class AddTeacherFrame extends javax.swing.JFrame {
                 String course_name = rs1.getString("courseName");
                 CourseBox.addItem(course_name);
             };
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }

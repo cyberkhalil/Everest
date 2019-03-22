@@ -15,7 +15,7 @@ public class BookJFrame extends javax.swing.JFrame {
     int Bookswitch = 0;
     double Bookprice;
     int bookID = 0;
-    userEntry UserEntry = new userEntry();
+    UserEntry UserEntry = new UserEntry();
     Book book = new Book();
     ArrayList<Integer> ids = new ArrayList<>();
     ArrayList<Integer> bookids = new ArrayList<>();
@@ -353,12 +353,12 @@ public class BookJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_price1ActionPerformed
 
     private void ShowallBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowallBooksBtnActionPerformed
-        BookTable2 bt2 = new BookTable2();
+        BookTable bt2 = new BookTable();
         bt2.setVisible(true);
     }//GEN-LAST:event_ShowallBooksBtnActionPerformed
 
     private void ShowAvaliableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowAvaliableBooksBtnActionPerformed
-        BookTableJframe1 btjf = new BookTableJframe1();
+        BookTableJframe btjf = new BookTableJframe();
         btjf.setVisible(true);
     }//GEN-LAST:event_ShowAvaliableBooksBtnActionPerformed
 
@@ -404,7 +404,7 @@ public class BookJFrame extends javax.swing.JFrame {
                 String book_name = rs.getString("BookName");
                 BookNameComboBox.addItem(book_name);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }

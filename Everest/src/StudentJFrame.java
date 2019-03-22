@@ -21,7 +21,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     int ExamID = 0;
     Student student = new Student();
     Book b = new Book();
-    userEntry UserEntry = new userEntry();
+    UserEntry UserEntry = new UserEntry();
     Course c = new Course();
 
     public StudentJFrame() {
@@ -478,7 +478,7 @@ public class StudentJFrame extends javax.swing.JFrame {
             }
             if (this.GenInvoiceBox.isSelected()) {
                 JOptionPane.showMessageDialog(null, "new student has been added sucessfully, Press Ok to generate Invoice");
-                invoiceToPdf.invoicetopdf();
+                InvoiceToPdf.invoicetopdf();
             } else if (this.GenInvoiceBox.isSelected() == false) {
                 JOptionPane.showMessageDialog(null, "new student has been added sucessfully");
             }

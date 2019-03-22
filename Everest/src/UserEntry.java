@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class userEntry {
+public class UserEntry {
 
     Student s = new Student();
 
@@ -75,7 +75,7 @@ public class userEntry {
             ps2.setDouble(4, net);
             ps2.execute();
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println("Got an exception!");
             System.err.println(ex.getMessage());
         }
@@ -85,39 +85,48 @@ public class userEntry {
         int id = 0;
         Connection conn = DBConnection.getConnection();
         try {
-            if (item.equals("Book")) {
-                String query1 = "select BookId from book where student_id_fk = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+            switch (item) {
+                case "Book": {
+                    String query1 = "select BookId from book where student_id_fk = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("BookId");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    id = rs.getInt("BookId");
+                case "Course": {
+                    String query1 = "select course_id_fk from student_course where student_id_fk = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("course_id_fk");
+                    }
+                    break;
                 }
-            } else if (item.equals("Course")) {
-                String query1 = "select course_id_fk from student_course where student_id_fk = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+                case "Exam": {
+                    String query1 = "select Exam_ID from student_exam where Std_ID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("Exam_ID");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    id = rs.getInt("course_id_fk");
-                }
-            } else if (item.equals("Exam")) {
-                String query1 = "select Exam_ID from student_exam where Std_ID = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
-                }
-                while (rs.next()) {
-                    id = rs.getInt("Exam_ID");
-                }
+                default:
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
@@ -174,7 +183,7 @@ public class userEntry {
             // execute the preparedstatement
             preparedStmt.execute();
             //return "Successfully Data Insert";
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println("Got an exception!");
             System.err.println(ex.getMessage());
             //return " Data Insert Fail";

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class BookTable2 extends javax.swing.JFrame {
+public class BookTable extends javax.swing.JFrame {
 
     Connection conn = DBConnection.getConnection();
     Book book;
@@ -25,7 +25,7 @@ public class BookTable2 extends javax.swing.JFrame {
     int StudentID = 0;
     String stdName = null;
 
-    public BookTable2() {
+    public BookTable() {
         initComponents();
         show_Book();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -34,8 +34,9 @@ public class BookTable2 extends javax.swing.JFrame {
     }
 
     public ArrayList<Book> booktList() {
-        ArrayList<Book> arrayList = new ArrayList<Book>();
+        ArrayList<Book> arrayList = new ArrayList<>();
         try {
+            // TODO check why there is error here..
             String query = "select * from book where student_id_fk IS NOT NULL";
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -49,7 +50,7 @@ public class BookTable2 extends javax.swing.JFrame {
                 arrayList.add(book);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -72,7 +73,7 @@ public class BookTable2 extends javax.swing.JFrame {
                     System.out.println(stdName);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
             }
             rObjects[0] = arrayList.get(i).getBookId();
             rObjects[1] = arrayList.get(i).getBookName();
@@ -96,7 +97,7 @@ public class BookTable2 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Do not " + message);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

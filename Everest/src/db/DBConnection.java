@@ -1,12 +1,13 @@
 package db;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConnection {
+public final class DBConnection {
 
+    private DBConnection() {
+    }
     private static boolean isConnected = false;
     private static Connection connection;
 

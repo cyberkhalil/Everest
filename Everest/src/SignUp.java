@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class SignUp extends javax.swing.JFrame {
 
     User user = new User();
-    userEntry UserEntry = new userEntry();
+    UserEntry UserEntry = new UserEntry();
 
     /**
      * Creates new form SignUp

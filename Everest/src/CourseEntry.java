@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class CourseEntry {
 
-    static userEntry e = new userEntry();
+    static UserEntry e = new UserEntry();
     static Student std = new Student();
 
     public static void createCourse(Course c, String CourseName, String CourseDay1,

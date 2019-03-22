@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-public class registraionTableJframe1 extends javax.swing.JFrame {
+public class RegistraionTableJframe extends javax.swing.JFrame {
 
     Student student;
     String course_name = null;
 
-    public registraionTableJframe1() {
+    public RegistraionTableJframe() {
         initComponents();
         show_student();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -48,7 +48,7 @@ public class registraionTableJframe1 extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }

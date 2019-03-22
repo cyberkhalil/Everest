@@ -401,7 +401,7 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
         sjf.setVisible(true);
     }
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-        studentTableJframe studenttableJframe = new studentTableJframe();
+        StudentTableJframe studenttableJframe = new StudentTableJframe();
         studenttableJframe.setVisible(true);
     }//GEN-LAST:event_display_studentJBActionPerformed
 
@@ -411,12 +411,12 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        BookTableJframe1 Display_book = new BookTableJframe1();
+        BookTableJframe Display_book = new BookTableJframe();
         Display_book.setVisible(true);
     }//GEN-LAST:event_display_BookJBActionPerformed
 
     private void ShowPaymentTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentTableActionPerformed
-        paymentTableJFrame py = new paymentTableJFrame();
+        PaymentTableJFrame py = new PaymentTableJFrame();
         py.setVisible(true);
     }//GEN-LAST:event_ShowPaymentTableActionPerformed
 
@@ -442,7 +442,7 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_add_courseJBActionPerformed
 
     private void DisplayCourse2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCourse2BtnActionPerformed
-        courseTableJframe2 cf = new courseTableJframe2();
+        CourseTableJframe cf = new CourseTableJframe();
         cf.setVisible(true);
     }//GEN-LAST:event_DisplayCourse2BtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

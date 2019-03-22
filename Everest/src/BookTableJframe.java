@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class BookTableJframe1 extends javax.swing.JFrame {
+public class BookTableJframe extends javax.swing.JFrame {
 
     Connection conn = DBConnection.getConnection();
     Book book;
@@ -25,7 +25,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
     int StudentID = 0;
     String stdName = null;
 
-    public BookTableJframe1() {
+    public BookTableJframe() {
         initComponents();
         show_Book();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -48,7 +48,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
                 arrayList.add(book);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         return arrayList;
     }
@@ -79,7 +79,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Do not " + message);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(studentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -353,7 +353,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
             ps4.setInt(3, bookID);
             ps4.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -376,7 +376,7 @@ public class BookTableJframe1 extends javax.swing.JFrame {
             priceTF.setText("");
             // student_nameTF.setText("");
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 

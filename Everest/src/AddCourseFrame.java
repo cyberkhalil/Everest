@@ -116,12 +116,6 @@ public class AddCourseFrame extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));
         jLabel5.setText("Course Hours :");
 
-        TimeToField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TimeToFieldActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setText("From :");
@@ -174,11 +168,6 @@ public class AddCourseFrame extends javax.swing.JFrame {
         jLabel18.setText("Year:");
 
         DaysToComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        DaysToComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DaysToComboBoxActionPerformed(evt);
-            }
-        });
 
         MonthEndBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
@@ -204,12 +193,6 @@ public class AddCourseFrame extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 51, 153));
         jLabel21.setText("Course Price :");
-
-        CoursePriceField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CoursePriceFieldActionPerformed(evt);
-            }
-        });
 
         jLabel23.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(0, 51, 153));
@@ -455,10 +438,6 @@ public class AddCourseFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DaysToComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DaysToComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DaysToComboBoxActionPerformed
-
     private void AddCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCourseBtnActionPerformed
         double CoursePrice = Double.parseDouble(CoursePriceField.getText());
         c.setCoursePrice(CoursePrice);
@@ -494,15 +473,9 @@ public class AddCourseFrame extends javax.swing.JFrame {
                 monthEnd, yearEnd, TimeFrom, TimeTo, ExamCost);
 
     }//GEN-LAST:event_AddCourseBtnActionPerformed
-    private void TimeToFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TimeToFieldActionPerformed
-
-    }//GEN-LAST:event_TimeToFieldActionPerformed
-    private void CoursePriceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CoursePriceFieldActionPerformed
-
-    }//GEN-LAST:event_CoursePriceFieldActionPerformed
 
     private void ShowCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowCoursesBtnActionPerformed
-        courseTableJframe2 ct = new courseTableJframe2();
+        CourseTableJframe ct = new CourseTableJframe();
         ct.setVisible(true);
     }//GEN-LAST:event_ShowCoursesBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     User u = new User();
-    AdminMainFrame mFA;
-    SecretaryMainFrame mFS;
     static String CurrentUser;
     static String privilege;
 
@@ -227,12 +225,11 @@ public class Login extends javax.swing.JFrame {
                     switch (privilege) {
                         case "Admin":
                             this.setVisible(false);
-                            mFA = new AdminMainFrame();
-                            mFA.setVisible(true);
+                            new AdminMainFrame().setVisible(true);
                             break;
                         case "Normal User":
                             this.setVisible(false);
-                            mFS.setVisible(true);
+                            new SecretaryMainFrame().setVisible(true);
                             break;
                         default:
                             JOptionPane.showMessageDialog(rootPane, "Error in privileges "

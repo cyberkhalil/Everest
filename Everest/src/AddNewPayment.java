@@ -14,7 +14,7 @@ public class AddNewPayment extends javax.swing.JFrame {
 
     Connection conn = DBConnection.getConnection();
     ArrayList<Integer> ids = new ArrayList<>();
-    userEntry us = new userEntry();
+    UserEntry us = new UserEntry();
 
     public AddNewPayment() {
         initComponents();
@@ -437,15 +437,18 @@ public class AddNewPayment extends javax.swing.JFrame {
             double Net = 0;
             int PayID = 0;
             String ItemPaymentsAreCompleted = "";
-            if (Item.equals("Book")) {
-                String Bookname = BookComboBox.getSelectedItem().toString();
-
-            } else if (Item.equals("Course")) {
-                String Coursename = courseComboBox.getSelectedItem().toString();
-
-            } else if (Item.equals("Exam")) {
-                String Examname = examComboBox.getSelectedItem().toString();
-
+            switch (Item) {
+                case "Book":
+                    String Bookname = BookComboBox.getSelectedItem().toString();
+                    break;
+                case "Course":
+                    String Coursename = courseComboBox.getSelectedItem().toString();
+                    break;
+                case "Exam":
+                    String Examname = examComboBox.getSelectedItem().toString();
+                    break;
+                default:
+                    break;
             }
             if (ItemPaymentsAreCompleted.equals("Yes")) {
                 JOptionPane.showMessageDialog(null, "Selected Item is Already Paid");
@@ -504,52 +507,60 @@ public class AddNewPayment extends javax.swing.JFrame {
                 ps6.executeUpdate();
                 int price = 0;
 
-                if (Item.equals("Book")) {
-                    String queryBook = "select Price from book where BookId = ?";
-                    PreparedStatement psB = conn.prepareStatement(queryBook);
-                    psB.setInt(1, ItemID);
-                    ResultSet rsB = psB.executeQuery();
-                    while (rsB.next()) {
-                        price = rsB.getInt("Price");
+                switch (Item) {
+                    case "Book": {
+                        String queryBook = "select Price from book where BookId = ?";
+                        PreparedStatement psB = conn.prepareStatement(queryBook);
+                        psB.setInt(1, ItemID);
+                        ResultSet rsB = psB.executeQuery();
+                        while (rsB.next()) {
+                            price = rsB.getInt("Price");
+                        }       //check if the price equals the sum of payments for the item
+                        if (price == paymentvalues) {
+                            String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
+                            PreparedStatement ps9 = conn.prepareStatement(query9);
+                            ps9.setString(1, "Yes");
+                            ps9.setInt(2, ItemID);
+                            ps9.executeUpdate();
+                        }
+                        break;
                     }
-                    //check if the price equals the sum of payments for the item
-                    if (price == paymentvalues) {
-                        String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
-                        PreparedStatement ps9 = conn.prepareStatement(query9);
-                        ps9.setString(1, "Yes");
-                        ps9.setInt(2, ItemID);
-                        ps9.executeUpdate();
+                    case "Course": {
+                        String queryCourse = "select CoursePrice from course where CourseId = ?";
+                        PreparedStatement psB = conn.prepareStatement(queryCourse);
+                        psB.setInt(1, ItemID);
+                        ResultSet rsB = psB.executeQuery();
+                        while (rsB.next()) {
+                            price = rsB.getInt("Price");
+                        }
+                        if (price == paymentvalues) {
+                            String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
+                            PreparedStatement ps9 = conn.prepareStatement(query9);
+                            ps9.setString(1, "Yes");
+                            ps9.setInt(2, ItemID);
+                            ps9.executeUpdate();
+                        }
+                        break;
                     }
-                } else if (Item.equals("Course")) {
-                    String queryCourse = "select CoursePrice from course where CourseId = ?";
-                    PreparedStatement psB = conn.prepareStatement(queryCourse);
-                    psB.setInt(1, ItemID);
-                    ResultSet rsB = psB.executeQuery();
-                    while (rsB.next()) {
-                        price = rsB.getInt("Price");
+                    case "Exam": {
+                        String queryExam = "select ExamPrice from exam where ExamID = ?";
+                        PreparedStatement psB = conn.prepareStatement(queryExam);
+                        psB.setInt(1, ItemID);
+                        ResultSet rsB = psB.executeQuery();
+                        while (rsB.next()) {
+                            price = rsB.getInt("Price");
+                        }
+                        if (price == paymentvalues) {
+                            String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
+                            PreparedStatement ps9 = conn.prepareStatement(query9);
+                            ps9.setString(1, "Yes");
+                            ps9.setInt(2, ItemID);
+                            ps9.executeUpdate();
+                        }
+                        break;
                     }
-                    if (price == paymentvalues) {
-                        String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
-                        PreparedStatement ps9 = conn.prepareStatement(query9);
-                        ps9.setString(1, "Yes");
-                        ps9.setInt(2, ItemID);
-                        ps9.executeUpdate();
-                    }
-                } else if (Item.equals("Exam")) {
-                    String queryExam = "select ExamPrice from exam where ExamID = ?";
-                    PreparedStatement psB = conn.prepareStatement(queryExam);
-                    psB.setInt(1, ItemID);
-                    ResultSet rsB = psB.executeQuery();
-                    while (rsB.next()) {
-                        price = rsB.getInt("Price");
-                    }
-                    if (price == paymentvalues) {
-                        String query9 = "update payment_item set PaidFor = ? where ItemID = ? ";
-                        PreparedStatement ps9 = conn.prepareStatement(query9);
-                        ps9.setString(1, "Yes");
-                        ps9.setInt(2, ItemID);
-                        ps9.executeUpdate();
-                    }
+                    default:
+                        break;
                 }
                 JOptionPane.showMessageDialog(null, "Payment added successfully");
                 //------------------------------------ End Of Queries
@@ -567,39 +578,48 @@ public class AddNewPayment extends javax.swing.JFrame {
     public int getItemID(String item, int std) {
         int id = 0;
         try {
-            if (item.equals("Book")) {
-                String query1 = "select BookID from book where StdID = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.isBeforeFirst()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+            switch (item) {
+                case "Book": {
+                    String query1 = "select BookID from book where StdID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.isBeforeFirst()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("BookID");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    id = rs.getInt("BookID");
+                case "Course": {
+                    String query1 = "select courseID from student_course where StdID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.isBeforeFirst()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("courseID");
+                    }
+                    break;
                 }
-            } else if (item.equals("Course")) {
-                String query1 = "select courseID from student_course where StdID = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.isBeforeFirst()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+                case "Exam": {
+                    String query1 = "select examID from student_exam where StdID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, std);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.isBeforeFirst()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        id = rs.getInt("examID");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    id = rs.getInt("courseID");
-                }
-            } else if (item.equals("Exam")) {
-                String query1 = "select examID from student_exam where StdID = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, std);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.isBeforeFirst()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
-                }
-                while (rs.next()) {
-                    id = rs.getInt("examID");
-                }
+                default:
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
@@ -607,7 +627,7 @@ public class AddNewPayment extends javax.swing.JFrame {
         return id;
     }
     private void ShowPaymentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentsBtnActionPerformed
-        paymentTableJFrame pt = new paymentTableJFrame();
+        PaymentTableJFrame pt = new PaymentTableJFrame();
         pt.setVisible(true);
     }//GEN-LAST:event_ShowPaymentsBtnActionPerformed
 
