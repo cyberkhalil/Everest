@@ -19,7 +19,7 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.UserLbl.setText("The current user is " + Login.CurrentUser);
+        this.UserLbl.setText("Welcome " + Login.user.getUsername());
         WindowListener exitListener = new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

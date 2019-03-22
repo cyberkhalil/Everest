@@ -44,7 +44,7 @@ public class UserEntry {
             preparedStmt.setInt(2, ID);
             preparedStmt.setInt(3, s.getPhoneNumber());
             preparedStmt.setString(4, s.getPaymentMethod());
-            preparedStmt.setString(5, Login.CurrentUser);
+            preparedStmt.setString(5, Login.user.getUsername());
             preparedStmt.setDouble(6, s.getDiscount());
             preparedStmt.execute();
 

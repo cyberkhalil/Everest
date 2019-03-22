@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    static String CurrentUser;
+    static User user;
 
     public Login() {
         initComponents();
@@ -182,25 +182,24 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        String user = usernameField.getText();
+        String username = usernameField.getText();
         String pass = String.valueOf(PasswordField.getPassword());
-        login(user, pass);
+        login(username, pass);
     }
 
     private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String user = usernameField.getText();
+            String username = usernameField.getText();
             String pass = String.valueOf(PasswordField.getPassword());
-            login(user, pass);
+            login(username, pass);
         }
     }
 
-    private void login(String user, String pass) {
+    private void login(String username, String pass) {
         try {
             try {
-                User u = new User(user, pass);
-                CurrentUser = u.getUsername();
-                if (u.isAdmin()) {
+                user = new User(username, pass);
+                if (user.isAdmin()) {
                     new AdminMainFrame(this).setVisible(true);
                 } else {
                     new SecretaryMainFrame(this).setVisible(true);
