@@ -7,14 +7,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.NoPermissionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import users.UserUtil;
 
 public final class UsersTableJFrame extends javax.swing.JFrame {
 
-    User user = new User();
+    users.User selectedUser;
 
     public UsersTableJFrame() {
         initComponents();
@@ -24,7 +26,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
-    public ArrayList<User> teacherList() {
+    public ArrayList<User> getUsersArrayList() {
         ArrayList<User> arrayList = new ArrayList<>();
 
         Connection conn = DBConnection.getConnection();
@@ -37,19 +39,21 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             rs = st.executeQuery(query);
 
             while (rs.next()) {
-                user = new User(rs.getInt("userid"), rs.getString("Username"), rs.getString("Password"));
-                arrayList.add(user);
+                User u = new User(rs.getInt("userid"), rs.getString("Username"), rs.getString("Privilege"));
+                arrayList.add(u);
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
         }
         return arrayList;
     }
 
     public void show_user() {
-        ArrayList<User> arrayList = teacherList();
-        DefaultTableModel model = (DefaultTableModel) jTable_Display_Teachers.getModel();
+        ArrayList<User> arrayList = getUsersArrayList();
+        DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
         Object[] rObjects = new Object[3];
         for (int i = 0; i < arrayList.size(); i++) {
             rObjects[0] = arrayList.get(i).getUserId();
@@ -66,7 +70,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
         try {
             st = conn.createStatement();
             if (st.executeUpdate(Query) == 1) {
-                DefaultTableModel model = (DefaultTableModel) jTable_Display_Teachers.getModel();
+                DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
                 model.setRowCount(0);
                 show_user();
                 JOptionPane.showMessageDialog(null, "Data " + message + " Successfully");
@@ -84,15 +88,19 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Display_Teachers = new javax.swing.JTable();
+        jUsersTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        usernameTF = new javax.swing.JTextField();
+        userprivilege = new javax.swing.JTextField();
         user_idTF = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usernameTF = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        updateButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
+        jButtonSetPassword = new javax.swing.JButton();
+        jButtonDeleteUser = new javax.swing.JButton();
+        jButtonSetUsername = new javax.swing.JButton();
+        jButtonSetPrivilege = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -110,34 +118,46 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable_Display_Teachers.setModel(new javax.swing.table.DefaultTableModel(
+        jUsersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "user id", "user  name"
+                "id", "username", "privilege"
             }
-        ));
-        jTable_Display_Teachers.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_Display_TeachersMouseClicked(evt);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable_Display_Teachers);
+        jUsersTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jUsersTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jUsersTable);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel1.setText("user name : ");
+        jLabel1.setText("Username :");
 
-        usernameTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameTFActionPerformed(evt);
-            }
-        });
+        userprivilege.setEditable(false);
 
+        user_idTF.setEditable(false);
         user_idTF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 user_idTFKeyReleased(evt);
@@ -146,53 +166,86 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel9.setText("user id:");
+        jLabel9.setText("User ID :");
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel2.setText("privilege :");
+
+        usernameTF.setEditable(false);
+        usernameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTFActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usernameTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(user_idTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(user_idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userprivilege, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(70, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(user_idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(usernameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(169, 169, 169))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userprivilege, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        updateButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        updateButton.setText("update");
-        updateButton.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSetPassword.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButtonSetPassword.setText("Set Password");
+        jButtonSetPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateButtonActionPerformed(evt);
+                jButtonSetPasswordActionPerformed(evt);
             }
         });
 
-        deleteButton.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        deleteButton.setText("delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDeleteUser.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButtonDeleteUser.setText("Delete User");
+        jButtonDeleteUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
+                jButtonDeleteUserActionPerformed(evt);
+            }
+        });
+
+        jButtonSetUsername.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButtonSetUsername.setText("Set Username");
+        jButtonSetUsername.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetUsernameActionPerformed(evt);
+            }
+        });
+
+        jButtonSetPrivilege.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButtonSetPrivilege.setText("Set Privilege");
+        jButtonSetPrivilege.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetPrivilegeActionPerformed(evt);
             }
         });
 
@@ -201,20 +254,28 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonSetUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSetPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonDeleteUser, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSetPrivilege, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteButton)
-                    .addComponent(updateButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonDeleteUser)
+                    .addComponent(jButtonSetPassword))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSetUsername)
+                    .addComponent(jButtonSetPrivilege))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -265,71 +326,120 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
-    }//GEN-LAST:event_usernameTFActionPerformed
-
-    private void jTable_Display_TeachersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Display_TeachersMouseClicked
-        int i = jTable_Display_Teachers.getSelectedRow();
-        TableModel tableModel = jTable_Display_Teachers.getModel();
+    private void jUsersTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jUsersTableMouseClicked
+        int i = jUsersTable.getSelectedRow();
+        TableModel tableModel = jUsersTable.getModel();
         user_idTF.setText(tableModel.getValueAt(i, 0).toString());
         usernameTF.setText(tableModel.getValueAt(i, 1).toString());
+        userprivilege.setText(tableModel.getValueAt(i, 2).toString());
 
-    }//GEN-LAST:event_jTable_Display_TeachersMouseClicked
+    }//GEN-LAST:event_jUsersTableMouseClicked
 
-    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-//       try {
-//           String pass=hashing.toHash(passwordTF.getText().toString());
-//          user.setPassword(pass);
-//           String query = "UPDATE user SET Username='" + usernameTF.getText() + "',Password=" + user.getPassword();
-//        excuteSQLQuery(query, "update");
-//       } catch (NoSuchAlgorithmException ex) {
-//           Logger.getLogger(userTableJframe11.class.getName()).log(Level.SEVERE, null, ex);
-//       }
+    private void jButtonSetPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetPasswordActionPerformed
+        String pass = JOptionPane.showInputDialog(
+                rootPane, "New Password :", DISPOSE_ON_CLOSE);
 
-    }//GEN-LAST:event_updateButtonActionPerformed
+        if (pass == null || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    rootPane, "You didn't change password");
+            return;
+        }
+        try {
+            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            selectedUser.setPassword(pass);
+        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+    }//GEN-LAST:event_jButtonSetPasswordActionPerformed
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        String query = "Delete from user where userid=" + user_idTF.getText();
-        excuteSQLQuery(query, "Deleted");
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
+
+        try {
+            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            UserUtil.deleteUser(Login.user, selectedUser);
+        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+
+    }//GEN-LAST:event_jButtonDeleteUserActionPerformed
 
     private void user_idTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_idTFKeyReleased
-//        try {
-//            String query = "select * from user where Username=?";
-//            Connection connect = null;
-//            Connection conn = login.doConnection(connect);
-//            PreparedStatement preparedStmt = conn.prepareStatement(query);
-//            preparedStmt.setString(1, searchTextF1.getText());
-//            ResultSet rs;
-//            rs = preparedStmt.executeQuery();
-//          
-//             if (rs.next()) {
-//                String str1 = rs.getString("userid");
-//                user_idTF.setText(str1);
-//                String str2 = rs.getString("Username");
-//                usernameTF.setText(str2);
-//                String str3 = rs.getString("Password");
-//                passwordTF.setText(str3);
-//             }
-//           
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(teacherTableJframe1.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }//GEN-LAST:event_user_idTFKeyReleased
 
+    private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
+        // TODO remove this !
+    }//GEN-LAST:event_usernameTFActionPerformed
+
+    private void jButtonSetUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetUsernameActionPerformed
+        String username = JOptionPane.showInputDialog(
+                rootPane, "New Username :", DISPOSE_ON_CLOSE);
+
+        if (username == null || username.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    rootPane, "You didn't change password");
+            return;
+        }
+        try {
+            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            selectedUser.setUsername(username);
+        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+    }//GEN-LAST:event_jButtonSetUsernameActionPerformed
+
+    private void jButtonSetPrivilegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetPrivilegeActionPerformed
+
+        int choice = JOptionPane.showOptionDialog(rootPane,
+                "Select User new privilege ",
+                "Set User Privilege",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Admin", "Normal User"},
+                "Admin");
+
+        if (choice < 0) {
+            // nothing selected
+            return;
+        }
+        try {
+            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            if (choice == 0) {
+                selectedUser.setPrivilege("Admin");
+            } else {
+                selectedUser.setPrivilege("Normal User");
+            }
+
+        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+    }//GEN-LAST:event_jButtonSetPrivilegeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton jButtonDeleteUser;
+    private javax.swing.JButton jButtonSetPassword;
+    private javax.swing.JButton jButtonSetPrivilege;
+    private javax.swing.JButton jButtonSetUsername;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -338,9 +448,9 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_Display_Teachers;
-    private javax.swing.JButton updateButton;
+    private javax.swing.JTable jUsersTable;
     private javax.swing.JTextField user_idTF;
     private javax.swing.JTextField usernameTF;
+    private javax.swing.JTextField userprivilege;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,9 +1,5 @@
 
 import utils.Hashing;
-import java.awt.Frame;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -12,9 +8,6 @@ public class SignUp extends javax.swing.JFrame {
     User user = new User();
     UserEntry UserEntry = new UserEntry();
 
-    /**
-     * Creates new form SignUp
-     */
     public SignUp() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);

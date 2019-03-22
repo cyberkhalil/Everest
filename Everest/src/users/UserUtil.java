@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO use this instead of UserEntry
+ * TODO : {create createUser method, create deleteUser method, use this instead
+ * of UserEntry for manipulate users,set user privilege}
  *
  * @author User
  */
@@ -86,10 +87,13 @@ public final class UserUtil {
     }
 
     public static void deleteUser(User admin, User u)
-            throws NoPermissionException, SQLException {
+            throws NoPermissionException, SQLException, IllegalStateException {
 
         if (!admin.isAdmin()) {
             throw new NoPermissionException("You must be admin to get users list");
+        }
+        if (u.isAdmin() && UserUtil.getNumberOfAdminUsers(admin) == 1) {
+            throw new IllegalStateException("You Can't delete the last Admin user");
         }
         String query = "delete * from user where userid=?";
 
@@ -133,5 +137,4 @@ public final class UserUtil {
         result.next();
         return result.getInt("count(*)");
     }
-
 }

@@ -45,8 +45,6 @@ public class User {
 
     User(String username) throws SQLException {
         String query = "select * from user where Username =? ";
-
-        // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, username);
@@ -61,8 +59,6 @@ public class User {
 
     User(int userId) throws SQLException {
         String query = "select * from user where userid =? ";
-
-        // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, userId);
@@ -105,6 +101,10 @@ public class User {
         return privilege;
     }
 
+    /**
+     * TODO remove this method !
+     *
+     */
     public void setPrivilege(String privilege) throws SQLException {
         String query = "Update user set Privilege =? where userid= ?";
         PreparedStatement preparedStatement
