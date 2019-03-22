@@ -1,4 +1,5 @@
 
+import db.DBConnection;
 import utils.Hashing;
 import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
@@ -13,7 +14,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     User u = new User();
-    mainFrameAdmin mFA;
+    AdminMainFrame mFA;
     mainFrameSec mFS = new mainFrameSec();
     static String CurrentUser;
     static String privilege;
@@ -227,7 +228,7 @@ public class Login extends javax.swing.JFrame {
                     switch (privilege) {
                         case "Admin":
                             this.setVisible(false);
-                            mFA = new mainFrameAdmin();
+                            mFA = new AdminMainFrame();
                             mFA.setVisible(true);
                             break;
                         case "Normal User":

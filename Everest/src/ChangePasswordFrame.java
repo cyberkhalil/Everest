@@ -1,4 +1,5 @@
 
+import db.DBConnection;
 import utils.Hashing;
 import java.awt.Frame;
 import java.security.NoSuchAlgorithmException;

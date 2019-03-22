@@ -1,4 +1,5 @@
 
+import db.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,11 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-public class userTableJframe11 extends javax.swing.JFrame {
+public class UsersTableJFrame extends javax.swing.JFrame {
 
     User user = new User();
 
-    public userTableJframe11() {
+    public UsersTableJFrame() {
         initComponents();
         show_user();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);

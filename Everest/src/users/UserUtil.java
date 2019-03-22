@@ -7,7 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NoPermissionException;
-
+/**
+ * TODO use this instead of UserEntry
+ * @author User
+ */
 public final class UserUtil {
 
     private UserUtil() {
