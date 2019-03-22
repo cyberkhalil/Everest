@@ -1,4 +1,5 @@
 
+import utils.Hashing;
 import java.awt.Frame;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -299,25 +300,20 @@ public class SignUp extends javax.swing.JFrame {
 
     private void SignUpBtn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtn3ActionPerformed
         // TODO add your handling code here;
-        Hashing hash = new Hashing();
         String Str1 = PasswordField5.getText();
         String Str2 = PasswordField6.getText();
         if (Str1.equals(Str2)) {
             Label6.setText("The Passwords are Equal");
             Label6.setForeground(new java.awt.Color(0, 204, 0));
-            try {
-                String Str3 = hash.toHash(Str1);
-                user.setUsername(usernameField4.getText());
-                user.setPassword(Str3);
-                AdminRadioButton.setActionCommand("Admin");
-                NormalUserRadioButton.setActionCommand("Normal User");
-                String Str = buttonGroup1.getSelection().getActionCommand();
-                System.out.println(Str);
-                UserEntry.createUser(user, user.getUsername(), user.getPassword(), Str);
-                JOptionPane.showMessageDialog(null, "User has been added sucessfully");
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            String Str3 = Hashing.toMD5(Str1);
+            user.setUsername(usernameField4.getText());
+            user.setPassword(Str3);
+            AdminRadioButton.setActionCommand("Admin");
+            NormalUserRadioButton.setActionCommand("Normal User");
+            String Str = buttonGroup1.getSelection().getActionCommand();
+            System.out.println(Str);
+            UserEntry.createUser(user, user.getUsername(), user.getPassword(), Str);
+            JOptionPane.showMessageDialog(null, "User has been added sucessfully");
         } else {
             Label6.setText("The Passwords are not Equal, Please Try again");
             Label6.setForeground(new java.awt.Color(255, 0, 0));

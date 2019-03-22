@@ -1,4 +1,5 @@
 
+import utils.Hashing;
 import java.awt.Frame;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -295,7 +296,6 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
 
     private void ChangeDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeDataBtnActionPerformed
         // TODO add your handling code here;
-        Hashing hash = new Hashing();
         String username = usernameField4.getText();
         String Str1 = PasswordField5.getText();
         String Str2 = PasswordField6.getText();
@@ -303,7 +303,7 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
             Label6.setText("The Passwords are Equal");
             Label6.setForeground(new java.awt.Color(0, 204, 0));
             try {
-                String Str3 = hash.toHash(Str1);
+                String Str3 = Hashing.toMD5(Str1);
                 user.setUsername(usernameField4.getText());
                 user.setPassword(Str3);
                 AdminRadioButton.setActionCommand("Admin");
@@ -326,8 +326,6 @@ public class ChangePasswordFrame extends javax.swing.JFrame {
                 ps1.setInt(4, id);
                 ps1.executeUpdate();
                 JOptionPane.showMessageDialog(null, "User Data has been Changed sucessfully");
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(SignUp.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ChangePasswordFrame.class.getName()).log(Level.SEVERE, null, ex);
             }

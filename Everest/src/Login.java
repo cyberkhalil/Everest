@@ -1,4 +1,5 @@
 
+import utils.Hashing;
 import java.awt.event.KeyEvent;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
@@ -12,7 +13,6 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     User u = new User();
-    Hashing h = new Hashing();
     mainFrameAdmin mFA;
     mainFrameSec mFS = new mainFrameSec();
     static String CurrentUser;
@@ -189,24 +189,16 @@ public class Login extends javax.swing.JFrame {
     // End of variables declaration
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            String user = usernameField.getText();
-            String pass = h.toHash(String.valueOf(PasswordField.getPassword()));
-            login(user, pass);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String user = usernameField.getText();
+        String pass = Hashing.toMD5(String.valueOf(PasswordField.getPassword()));
+        login(user, pass);
     }
 
     private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            try {
-                String user = usernameField.getText();
-                String pass = h.toHash(String.valueOf(PasswordField.getPassword()));
-                login(user, pass);
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            String user = usernameField.getText();
+            String pass = Hashing.toMD5(String.valueOf(PasswordField.getPassword()));
+            login(user, pass);
         }
     }
 

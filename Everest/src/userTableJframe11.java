@@ -1,7 +1,5 @@
 
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,7 +14,6 @@ import javax.swing.table.TableModel;
 public class userTableJframe11 extends javax.swing.JFrame {
 
     User user = new User();
-    Hashing hashing = new Hashing();
 
     public userTableJframe11() {
         initComponents();
