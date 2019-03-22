@@ -489,7 +489,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     public void addBook() {
         try {
             Connection conn = DBConnection.getConnection();
-            String query = "select BookName from book where student_id_fk IS NULL";
+            String query = "select BookName from book";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStatement = conn.prepareStatement(query);
             ResultSet rs = preparedStatement.executeQuery();
@@ -648,6 +648,7 @@ public class StudentJFrame extends javax.swing.JFrame {
     }
     private void ExamCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExamCheckBoxActionPerformed
         if (ExamCheckBox.isSelected()) {
+            //TODO see Exception here
             ExamBox.setEnabled(true);
             try {
                 Connection conn = DBConnection.getConnection();

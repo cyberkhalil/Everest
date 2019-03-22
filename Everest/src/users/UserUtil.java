@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO : {create createUser method, create deleteUser method, use this instead
- * of UserEntry for manipulate users,set user privilege}
+ * TODO : {create createUser method, use this instead of UserEntry for
+ * manipulate users,set user privilege}
  *
  * @author User
  */
@@ -95,13 +95,13 @@ public final class UserUtil {
         if (u.isAdmin() && UserUtil.getNumberOfAdminUsers(admin) == 1) {
             throw new IllegalStateException("You Can't delete the last Admin user");
         }
-        String query = "delete * from user where userid=?";
+        String query = "delete from user where userid=? ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, u.getUserId());
-        preparedStatement.executeQuery();
+        preparedStatement.executeUpdate();
 
     }
 

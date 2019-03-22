@@ -20,7 +20,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
 
     public UsersTableJFrame() {
         initComponents();
-        show_user();
+        update_users_table();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -51,7 +51,15 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
         return arrayList;
     }
 
-    public void show_user() {
+    public void update_users_table() {
+        { // remove all rows
+            DefaultTableModel dm = (DefaultTableModel) jUsersTable.getModel();
+            int rowCount = dm.getRowCount();
+
+            for (int i = rowCount - 1; i >= 0; i--) {
+                dm.removeRow(i);
+            }
+        }
         ArrayList<User> arrayList = getUsersArrayList();
         DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
         Object[] rObjects = new Object[3];
@@ -72,7 +80,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             if (st.executeUpdate(Query) == 1) {
                 DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
                 model.setRowCount(0);
-                show_user();
+                update_users_table();
                 JOptionPane.showMessageDialog(null, "Data " + message + " Successfully");
             } else {
                 JOptionPane.showMessageDialog(null, "Do not " + message);
@@ -373,11 +381,11 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
-
+        update_users_table();
     }//GEN-LAST:event_jButtonDeleteUserActionPerformed
 
     private void user_idTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_user_idTFKeyReleased
-
+        //TODO remove this !
     }//GEN-LAST:event_user_idTFKeyReleased
 
     private void usernameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTFActionPerformed
@@ -401,6 +409,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
+        update_users_table();
     }//GEN-LAST:event_jButtonSetUsernameActionPerformed
 
     private void jButtonSetPrivilegeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSetPrivilegeActionPerformed
@@ -431,6 +440,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
+        update_users_table();
     }//GEN-LAST:event_jButtonSetPrivilegeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

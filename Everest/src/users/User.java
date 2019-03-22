@@ -103,7 +103,6 @@ public class User {
 
     /**
      * TODO remove this method !
-     *
      */
     public void setPrivilege(String privilege) throws SQLException {
         String query = "Update user set Privilege =? where userid= ?";
