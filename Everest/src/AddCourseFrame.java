@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 public class AddCourseFrame extends javax.swing.JFrame {
 
     Course c = new Course();
-    getDate date = new getDate();
 
     public AddCourseFrame() {
         initComponents();

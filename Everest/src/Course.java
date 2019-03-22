@@ -1,10 +1,4 @@
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.Date;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-
 public class Course {
 
     private String CourseDays;
@@ -45,7 +39,6 @@ public class Course {
 
     }
 
-    getDate date = new getDate();
     private int courseId;
 
     public int getCourseId() {
@@ -221,14 +214,6 @@ public class Course {
 
     public void setCourseDay3(String CourseDay3) {
         this.CourseDay3 = CourseDay3;
-    }
-
-    public getDate getDate() {
-        return date;
-    }
-
-    public void setDate(getDate date) {
-        this.date = date;
     }
 
     public double getDiscount() {

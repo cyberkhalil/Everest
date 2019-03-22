@@ -27,7 +27,7 @@ public class userEntry {
             preparedStmt.setString(3, Str3);
             preparedStmt.execute();
             return "Successfully Data Insert";
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println("Got an exception!");
             System.err.println(ex.getMessage());
             return " Data Insert Fail";
@@ -194,7 +194,7 @@ public class userEntry {
             preparedStmt.execute();
             return "Successfully Data Insertion";
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.err.println("Got an exception!");
             System.err.println(ex.getMessage());
             return " Data Insert Failed";

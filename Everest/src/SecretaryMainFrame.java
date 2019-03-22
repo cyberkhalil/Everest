@@ -6,9 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
-public class mainFrameSec extends javax.swing.JFrame {
+public class SecretaryMainFrame extends javax.swing.JFrame {
 
-    public mainFrameSec() {
+    public SecretaryMainFrame() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);

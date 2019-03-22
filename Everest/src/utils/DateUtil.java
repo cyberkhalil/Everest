@@ -1,10 +1,15 @@
+package utils;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class getDate {
+public final class DateUtil {
 
-    public String getDate(int day, int month, int year) {
+    private DateUtil() {
+    }
+
+    public static String getDate(int day, int month, int year) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         int dayx = day;
         int monthx = month;

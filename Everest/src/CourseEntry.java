@@ -1,4 +1,5 @@
 
+import utils.DateUtil;
 import db.DBConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;
@@ -10,7 +11,6 @@ public class CourseEntry {
 
     static userEntry e = new userEntry();
     static Student std = new Student();
-    static getDate date = new getDate();
 
     public static void createCourse(Course c, String CourseName, String CourseDay1,
             String CourseDay2, String CourseDay3, double CoursePrice, int CourseStartDay, int CourseStartMonth,
@@ -18,8 +18,8 @@ public class CourseEntry {
             String CourseEndHour, double ExamCost) {
 
         String CourseDays = CourseDay1 + "," + CourseDay2 + "," + CourseDay3;
-        String startDate = date.getDate(CourseStartDay, CourseStartMonth, CourseStartYear);
-        String endDate = date.getDate(CourseEndDay, CourseEndMonth, CourseEndYear);
+        String startDate = DateUtil.getDate(CourseStartDay, CourseStartMonth, CourseStartYear);
+        String endDate = DateUtil.getDate(CourseEndDay, CourseEndMonth, CourseEndYear);
         try {
             //---------
             //Connection conn = null;

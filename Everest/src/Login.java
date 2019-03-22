@@ -2,7 +2,6 @@
 import db.DBConnection;
 import utils.Hashing;
 import java.awt.event.KeyEvent;
-import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ public class Login extends javax.swing.JFrame {
 
     User u = new User();
     AdminMainFrame mFA;
-    mainFrameSec mFS = new mainFrameSec();
+    SecretaryMainFrame mFS;
     static String CurrentUser;
     static String privilege;
 
@@ -24,7 +23,7 @@ public class Login extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
     }
-
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -172,9 +171,9 @@ public class Login extends javax.swing.JFrame {
         );
 
         pack();
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
-    // Variables declaration
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginBtn;
     private javax.swing.JPasswordField PasswordField;
     private javax.swing.JLabel PasswordLabel;
@@ -187,7 +186,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField usernameField;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {
         String user = usernameField.getText();
