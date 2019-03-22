@@ -34,7 +34,8 @@ package com.mysql.cj.xdevapi;
 public interface InsertResult extends Result {
 
     /**
-     * Get the auto-increment value if one was generated from a row insert statement.
+     * Get the auto-increment value if one was generated from a row insert
+     * statement.
      *
      * @return auto-increment value
      */

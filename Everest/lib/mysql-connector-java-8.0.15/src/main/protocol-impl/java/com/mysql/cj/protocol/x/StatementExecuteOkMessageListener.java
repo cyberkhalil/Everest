@@ -39,8 +39,8 @@ import com.mysql.cj.x.protobuf.MysqlxResultset.FetchDone;
 import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
 
 /**
- * Async message reader accumulating the status necessary to produce a {@link StatementExecuteOk}
- * result.
+ * Async message reader accumulating the status necessary to produce a
+ * {@link StatementExecuteOk} result.
  */
 public class StatementExecuteOkMessageListener implements MessageListener<XMessage> {
 

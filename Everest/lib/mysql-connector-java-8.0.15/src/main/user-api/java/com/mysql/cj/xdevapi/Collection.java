@@ -31,8 +31,8 @@ package com.mysql.cj.xdevapi;
 import java.util.Map;
 
 /**
- * Representation of a document collection. This interface allows access to and manipulation of the
- * collection through add/find/modify/remove statements.
+ * Representation of a document collection. This interface allows access to and
+ * manipulation of the collection through add/find/modify/remove statements.
  */
 public interface Collection extends DatabaseObject {
 
@@ -79,7 +79,8 @@ public interface Collection extends DatabaseObject {
     FindStatement find();
 
     /**
-     * Create a new find statement retrieving documents matching the given search condition.
+     * Create a new find statement retrieving documents matching the given
+     * search condition.
      *
      * @param searchCondition condition expression
      * @return {@link FindStatement}
@@ -87,7 +88,8 @@ public interface Collection extends DatabaseObject {
     FindStatement find(String searchCondition);
 
     /**
-     * Create a new modify statement affecting documents matching the given search condition.
+     * Create a new modify statement affecting documents matching the given
+     * search condition.
      *
      * @param searchCondition condition expression
      * @return {@link ModifyStatement}
@@ -95,7 +97,8 @@ public interface Collection extends DatabaseObject {
     ModifyStatement modify(String searchCondition);
 
     /**
-     * Create a new removal statement affecting documents matching the given search condition.
+     * Create a new removal statement affecting documents matching the given
+     * search condition.
      *
      * @param searchCondition condition expression
      * @return {@link RemoveStatement}
@@ -103,67 +106,80 @@ public interface Collection extends DatabaseObject {
     RemoveStatement remove(String searchCondition);
 
     /**
-     * Create a new statement defining the creation of an index on this collection.
+     * Create a new statement defining the creation of an index on this
+     * collection.
      * <p>
-     * Example: collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myGeoJsonField\",
-     * \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],
-     * \"type\":\"SPATIAL\"}");
+     * Example: collection.createIndex("myIndex", "{\"fields\": [{\"field\":
+     * \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true,
+     * \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
      *
      * @param indexName index name
      * @param indexDefinition JSON document with the following fields:
      * <ul>
-     * <li>fields: array of IndexField objects, each describing a single document member to be
-     * included in the index (see below)</li>
-     * <li>type: string, (optional) the type of index. One of INDEX or SPATIAL (case insensitive).
-     * Default is INDEX and may be omitted.</li>
+     * <li>fields: array of IndexField objects, each describing a single
+     * document member to be included in the index (see below)</li>
+     * <li>type: string, (optional) the type of index. One of INDEX or SPATIAL
+     * (case insensitive). Default is INDEX and may be omitted.</li>
      * </ul>
      * where single IndexField description consists of the following fields:
      * <ul>
-     * <li>field: string, the full document path to the document member or field to be indexed</li>
-     * <li>type: string, one of the supported SQL column types to map the field into (see below for
-     * a list). For numeric types, the optional UNSIGNED keyword may follow. For the TEXT type, the
-     * length to consider for indexing may be added. Type descriptions are case insensitive.</li>
-     * <li>required: bool, (optional) true if the field is required to exist in the document.
-     * Defaults to false, except for GEOJSON where it defaults to true</li>
-     * <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
-     * <li>srid: int, (optional) srid value for use when decoding GEOJSON data</li>
+     * <li>field: string, the full document path to the document member or field
+     * to be indexed</li>
+     * <li>type: string, one of the supported SQL column types to map the field
+     * into (see below for a list). For numeric types, the optional UNSIGNED
+     * keyword may follow. For the TEXT type, the length to consider for
+     * indexing may be added. Type descriptions are case insensitive.</li>
+     * <li>required: bool, (optional) true if the field is required to exist in
+     * the document. Defaults to false, except for GEOJSON where it defaults to
+     * true</li>
+     * <li>options: int, (optional) special option flags for use when decoding
+     * GEOJSON data</li>
+     * <li>srid: int, (optional) srid value for use when decoding GEOJSON
+     * data</li>
      * </ul>
      * @return {@link Result}
      */
     Result createIndex(String indexName, DbDoc indexDefinition);
 
     /**
-     * Create a new statement defining the creation of an index on this collection.
+     * Create a new statement defining the creation of an index on this
+     * collection.
      * <p>
-     * Example: collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myGeoJsonField\",
-     * \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],
-     * \"type\":\"SPATIAL\"}");
+     * Example: collection.createIndex("myIndex", "{\"fields\": [{\"field\":
+     * \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true,
+     * \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
      *
      * @param indexName index name
      * @param jsonIndexDefinition JSON document with the following fields:
      * <ul>
-     * <li>fields: array of IndexField objects, each describing a single document member to be
-     * included in the index (see below)</li>
-     * <li>type: string, (optional) the type of index. One of INDEX or SPATIAL. Default is INDEX and
-     * may be omitted.</li>
+     * <li>fields: array of IndexField objects, each describing a single
+     * document member to be included in the index (see below)</li>
+     * <li>type: string, (optional) the type of index. One of INDEX or SPATIAL.
+     * Default is INDEX and may be omitted.</li>
      * </ul>
      * where single IndexField description consists of the following fields:
      * <ul>
-     * <li>field: string, the full document path to the document member or field to be indexed</li>
-     * <li>type: string, one of the supported SQL column types to map the field into (see below for
-     * a list). For numeric types, the optional UNSIGNED keyword may follow. For the TEXT type, the
-     * length to consider for indexing may be added.</li>
-     * <li>required: bool, (optional) true if the field is required to exist in the document.
-     * Defaults to false, except for GEOJSON where it defaults to true</li>
-     * <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
-     * <li>srid: int, (optional) srid value for use when decoding GEOJSON data</li>
+     * <li>field: string, the full document path to the document member or field
+     * to be indexed</li>
+     * <li>type: string, one of the supported SQL column types to map the field
+     * into (see below for a list). For numeric types, the optional UNSIGNED
+     * keyword may follow. For the TEXT type, the length to consider for
+     * indexing may be added.</li>
+     * <li>required: bool, (optional) true if the field is required to exist in
+     * the document. Defaults to false, except for GEOJSON where it defaults to
+     * true</li>
+     * <li>options: int, (optional) special option flags for use when decoding
+     * GEOJSON data</li>
+     * <li>srid: int, (optional) srid value for use when decoding GEOJSON
+     * data</li>
      * </ul>
      * @return {@link Result}
      */
     Result createIndex(String indexName, String jsonIndexDefinition);
 
     /**
-     * Create a new statement defining the removal of an index on this collection.
+     * Create a new statement defining the removal of an index on this
+     * collection.
      *
      * @param indexName index name
      */
@@ -184,24 +200,28 @@ public interface Collection extends DatabaseObject {
     DbDoc newDoc();
 
     /**
-     * Takes in a document object that will replace the matching document. If no matches are found,
-     * the function returns normally with no changes being made.
+     * Takes in a document object that will replace the matching document. If no
+     * matches are found, the function returns normally with no changes being
+     * made.
      *
      * @param id the document id of the document to be replaced
-     * @param doc the new document, which may contain expressions. If document contains an _id
-     * value, it is ignored.
-     * @return Result object, which will indicate the number of affected documents (1 or 0, if none)
+     * @param doc the new document, which may contain expressions. If document
+     * contains an _id value, it is ignored.
+     * @return Result object, which will indicate the number of affected
+     * documents (1 or 0, if none)
      */
     Result replaceOne(String id, DbDoc doc);
 
     /**
-     * Takes in a document object that will replace the matching document. If no matches are found,
-     * the function returns normally with no changes being made.
+     * Takes in a document object that will replace the matching document. If no
+     * matches are found, the function returns normally with no changes being
+     * made.
      *
      * @param id the document id of the document to be replaced
-     * @param jsonString the new document, given as JSON string, which may contain expressions. If
-     * document contains an _id value, it is ignored.
-     * @return Result object, which will indicate the number of affected documents (1 or 0, if none)
+     * @param jsonString the new document, given as JSON string, which may
+     * contain expressions. If document contains an _id value, it is ignored.
+     * @return Result object, which will indicate the number of affected
+     * documents (1 or 0, if none)
      */
     Result replaceOne(String id, String jsonString);
 
@@ -209,10 +229,11 @@ public interface Collection extends DatabaseObject {
      * Adds the document to the collection. The following algorithm applies:
      *
      * @param id the document id of the document to be replaced
-     * @param doc the new document, which may contain expressions. If doc contains an _id value and
-     * it does not match the given id then the error will be thrown.
-     * @return Result object, which will indicate the number of affected documents (0 - if none, 1 -
-     * if added, 2 - if replaced)
+     * @param doc the new document, which may contain expressions. If doc
+     * contains an _id value and it does not match the given id then the error
+     * will be thrown.
+     * @return Result object, which will indicate the number of affected
+     * documents (0 - if none, 1 - if added, 2 - if replaced)
      */
     Result addOrReplaceOne(String id, DbDoc doc);
 
@@ -220,10 +241,11 @@ public interface Collection extends DatabaseObject {
      * Adds the document to the collection. The following algorithm applies:
      *
      * @param id the document id of the document to be replaced
-     * @param jsonString the new document, given as JSON string, which may contain expressions. If
-     * doc contains an _id value and it does not match the given id then the error will be thrown.
-     * @return Result object, which will indicate the number of affected documents (0 - if none, 1 -
-     * if added, 2 - if replaced)
+     * @param jsonString the new document, given as JSON string, which may
+     * contain expressions. If doc contains an _id value and it does not match
+     * the given id then the error will be thrown.
+     * @return Result object, which will indicate the number of affected
+     * documents (0 - if none, 1 - if added, 2 - if replaced)
      */
     Result addOrReplaceOne(String id, String jsonString);
 
@@ -239,8 +261,8 @@ public interface Collection extends DatabaseObject {
      * Removes the document with the given id.
      *
      * @param id the document id of the document to be removed
-     * @return Returns a Result object, which will indicate the number of removed documents (1 or 0,
-     * if none)
+     * @return Returns a Result object, which will indicate the number of
+     * removed documents (1 or 0, if none)
      */
     Result removeOne(String id);
 

@@ -31,7 +31,8 @@ package com.mysql.cj.xdevapi;
 import java.util.List;
 
 /**
- * A client-side representation of a database schema. Provides access to the schema contents.
+ * A client-side representation of a database schema. Provides access to the
+ * schema contents.
  */
 public interface Schema extends DatabaseObject {
 
@@ -44,7 +45,8 @@ public interface Schema extends DatabaseObject {
     List<Collection> getCollections();
 
     /**
-     * Retrieve the set of collections existing in this schema and matching the given pattern.
+     * Retrieve the set of collections existing in this schema and matching the
+     * given pattern.
      *
      * @param pattern match pattern
      * @return list of {@link Collection} objects
@@ -59,7 +61,8 @@ public interface Schema extends DatabaseObject {
     List<Table> getTables();
 
     /**
-     * Retrieve the set of tables existing in this schema and matching the given pattern.
+     * Retrieve the set of tables existing in this schema and matching the given
+     * pattern.
      *
      * @param pattern match pattern
      * @return list of {@link Table} objects
@@ -76,8 +79,8 @@ public interface Schema extends DatabaseObject {
     Collection getCollection(String name);
 
     /**
-     * Retrieve a reference to the named collection hinting that an exception should be thrown if
-     * the collection is not known to the server.
+     * Retrieve a reference to the named collection hinting that an exception
+     * should be thrown if the collection is not known to the server.
      *
      * @param name collection name
      * @param requireExists true if required to exist
@@ -102,8 +105,8 @@ public interface Schema extends DatabaseObject {
     Table getTable(String name);
 
     /**
-     * Retrieve a reference to the named table hinting that an exception should be thrown if the
-     * collection is not known to the server.
+     * Retrieve a reference to the named table hinting that an exception should
+     * be thrown if the collection is not known to the server.
      *
      * @param tableName table name
      * @param requireExists true if required to exist

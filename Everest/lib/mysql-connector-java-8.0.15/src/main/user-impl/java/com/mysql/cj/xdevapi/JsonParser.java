@@ -355,8 +355,8 @@ public class JsonParser {
      * Create {@link JsonString} object from JSON string provided by reader.
      *
      * @param reader JSON string reader.
-     * @return New {@link JsonString} object initialized by parsed JSON string or <code>null</code>
-     * if no JSON string was found.
+     * @return New {@link JsonString} object initialized by parsed JSON string
+     * or <code>null</code> if no JSON string was found.
      * @throws IOException if can't read
      */
     static JsonString parseString(StringReader reader) throws IOException {

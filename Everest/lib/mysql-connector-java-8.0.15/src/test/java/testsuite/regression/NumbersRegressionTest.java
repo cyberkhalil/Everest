@@ -33,7 +33,8 @@ import java.sql.ResultSetMetaData;
 import testsuite.BaseTestCase;
 
 /**
- * Tests various number-handling issues that have arisen in the JDBC driver at one time or another.
+ * Tests various number-handling issues that have arisen in the JDBC driver at
+ * one time or another.
  */
 public class NumbersRegressionTest extends BaseTestCase {
 
@@ -111,8 +112,8 @@ public class NumbersRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests that ResultSetMetaData precision and scale methods work correctly for all numeric
-     * types.
+     * Tests that ResultSetMetaData precision and scale methods work correctly
+     * for all numeric types.
      *
      * @throws Exception if any errors occur
      */
@@ -214,8 +215,8 @@ public class NumbersRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#8484 - ResultSet.getBigDecimal() throws exception when rounding would need
-     * to occur to set scale.
+     * Tests fix for BUG#8484 - ResultSet.getBigDecimal() throws exception when
+     * rounding would need to occur to set scale.
      *
      * @throws Exception if the test fails
      * @deprecated

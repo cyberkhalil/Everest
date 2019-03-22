@@ -82,8 +82,8 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Sets up this test, calling registerDataSource() to bind a DataSource into JNDI, using the
-     * FSContext JNDI provider from Sun
+     * Sets up this test, calling registerDataSource() to bind a DataSource into
+     * JNDI, using the FSContext JNDI provider from Sun
      *
      * @throws Exception if an error occurs.
      */
@@ -110,7 +110,8 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Tests that we can get a connection from the DataSource bound in JNDI during test setup
+     * Tests that we can get a connection from the DataSource bound in JNDI
+     * during test setup
      *
      * @throws Exception if an error occurs
      */
@@ -139,8 +140,8 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * Tests whether Connection.changeUser() (and thus pooled connections) restore character set
-     * information correctly.
+     * Tests whether Connection.changeUser() (and thus pooled connections)
+     * restore character set information correctly.
      *
      * @throws Exception if the test fails.
      */
@@ -197,9 +198,9 @@ public class DataSourceTest extends BaseTestCase {
     }
 
     /**
-     * This method is separated from the rest of the example since you normally would NOT register a
-     * JDBC driver in your code. It would likely be configered into your naming and directory
-     * service using some GUI.
+     * This method is separated from the rest of the example since you normally
+     * would NOT register a JDBC driver in your code. It would likely be
+     * configered into your naming and directory service using some GUI.
      *
      * @throws Exception if an error occurs
      */

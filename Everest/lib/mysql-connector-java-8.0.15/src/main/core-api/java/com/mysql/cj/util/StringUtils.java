@@ -53,7 +53,8 @@ import com.mysql.cj.exceptions.NumberOutOfRange;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * Various utility methods for converting to/from byte arrays in the platform encoding
+ * Various utility methods for converting to/from byte arrays in the platform
+ * encoding
  */
 public class StringUtils {
 
@@ -65,33 +66,35 @@ public class StringUtils {
      * Convenience EnumSets for several SearchMode combinations
      */
     /**
-     * Full search mode: allow backslash escape, skip between markers, skip block comments, skip
-     * line comments and skip white space.
+     * Full search mode: allow backslash escape, skip between markers, skip
+     * block comments, skip line comments and skip white space.
      */
     public static final Set<SearchMode> SEARCH_MODE__ALL = Collections.unmodifiableSet(EnumSet.allOf(SearchMode.class));
 
     /**
-     * Search mode: skip between markers, skip block comments, skip line comments and skip white
-     * space.
+     * Search mode: skip between markers, skip block comments, skip line
+     * comments and skip white space.
      */
     public static final Set<SearchMode> SEARCH_MODE__MRK_COM_WS = Collections.unmodifiableSet(
             EnumSet.of(SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_BLOCK_COMMENTS, SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_WHITE_SPACE));
 
     /**
-     * Search mode: allow backslash escape, skip block comments, skip line comments and skip white
-     * space.
+     * Search mode: allow backslash escape, skip block comments, skip line
+     * comments and skip white space.
      */
     public static final Set<SearchMode> SEARCH_MODE__BSESC_COM_WS = Collections.unmodifiableSet(
             EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BLOCK_COMMENTS, SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_WHITE_SPACE));
 
     /**
-     * Search mode: allow backslash escape, skip between markers and skip white space.
+     * Search mode: allow backslash escape, skip between markers and skip white
+     * space.
      */
     public static final Set<SearchMode> SEARCH_MODE__BSESC_MRK_WS = Collections
             .unmodifiableSet(EnumSet.of(SearchMode.ALLOW_BACKSLASH_ESCAPE, SearchMode.SKIP_BETWEEN_MARKERS, SearchMode.SKIP_WHITE_SPACE));
 
     /**
-     * Search mode: skip block comments, skip line comments and skip white space.
+     * Search mode: skip block comments, skip line comments and skip white
+     * space.
      */
     public static final Set<SearchMode> SEARCH_MODE__COM_WS = Collections
             .unmodifiableSet(EnumSet.of(SearchMode.SKIP_BLOCK_COMMENTS, SearchMode.SKIP_LINE_COMMENTS, SearchMode.SKIP_WHITE_SPACE));
@@ -231,7 +234,8 @@ public class StringUtils {
     }
 
     /**
-     * Adds '+' to decimal numbers that are positive (MySQL doesn't understand them otherwise
+     * Adds '+' to decimal numbers that are positive (MySQL doesn't understand
+     * them otherwise
      *
      * @param dString The value as a string
      *
@@ -262,7 +266,8 @@ public class StringUtils {
     }
 
     /**
-     * Returns the byte[] representation of the given string using the given encoding.
+     * Returns the byte[] representation of the given string using the given
+     * encoding.
      *
      * @param s source string
      * @param encoding java encoding
@@ -281,8 +286,8 @@ public class StringUtils {
     }
 
     /**
-     * Returns the byte[] representation of the given string properly wrapped between the given char
-     * delimiters using the given encoding.
+     * Returns the byte[] representation of the given string properly wrapped
+     * between the given char delimiters using the given encoding.
      *
      * @param s source string
      * @param beginWrap opening char delimiter
@@ -409,8 +414,8 @@ public class StringUtils {
      *
      * @param searchIn the string to search in
      * @param searchFor the array of strings to search for
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     public static int indexOfIgnoreCase(String searchIn, String searchFor) {
         return indexOfIgnoreCase(0, searchIn, searchFor);
@@ -422,8 +427,8 @@ public class StringUtils {
      * @param startingPosition the position to start the search from
      * @param searchIn the string to search in
      * @param searchFor the array of strings to search for
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     public static int indexOfIgnoreCase(int startingPosition, String searchIn, String searchFor) {
         if ((searchIn == null) || (searchFor == null)) {
@@ -458,23 +463,27 @@ public class StringUtils {
     }
 
     /**
-     * Finds the position of the first of a consecutive sequence of strings within a string,
-     * ignoring case, with the option to skip text delimited by given markers or within comments.
+     * Finds the position of the first of a consecutive sequence of strings
+     * within a string, ignoring case, with the option to skip text delimited by
+     * given markers or within comments.
      * <p>
-     * Independently of the <code>searchMode</code> provided, when searching for the second and
-     * following strings <code>SearchMode.SKIP_WHITE_SPACE</code> will be added and
-     * <code>SearchMode.SKIP_BETWEEN_MARKERS</code> removed.
+     * Independently of the <code>searchMode</code> provided, when searching for
+     * the second and following strings <code>SearchMode.SKIP_WHITE_SPACE</code>
+     * will be added and <code>SearchMode.SKIP_BETWEEN_MARKERS</code> removed.
      * </p>
      *
      * @param startingPosition the position to start the search from
      * @param searchIn the string to search in
      * @param searchForSequence searchForSequence
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behavior of the search
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behavior of the search
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     public static int indexOfIgnoreCase(int startingPosition, String searchIn, String[] searchForSequence, String openingMarkers, String closingMarkers,
             Set<SearchMode> searchMode) {
@@ -546,18 +555,21 @@ public class StringUtils {
     }
 
     /**
-     * Finds the position of a substring within a string, ignoring case, with the option to skip
-     * text delimited by given markers or within comments.
+     * Finds the position of a substring within a string, ignoring case, with
+     * the option to skip text delimited by given markers or within comments.
      *
      * @param startingPosition the position to start the search from
      * @param searchIn the string to search in
      * @param searchFor the string to search for
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behavior of the search
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behavior of the search
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     public static int indexOfIgnoreCase(int startingPosition, String searchIn, String searchFor, String openingMarkers, String closingMarkers,
             Set<SearchMode> searchMode) {
@@ -565,24 +577,28 @@ public class StringUtils {
     }
 
     /**
-     * Finds the position of a substring within a string, ignoring case, with the option to skip
-     * text delimited by given markers or within comments.
+     * Finds the position of a substring within a string, ignoring case, with
+     * the option to skip text delimited by given markers or within comments.
      *
      * @param startingPosition the position to start the search from
      * @param searchIn the string to search in
      * @param searchFor the string to search for
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
-     * @param overridingMarkers the subset of <code>openingMarkers</code> that override the
-     * remaining markers, e.g., if <code>openingMarkers = "'("</code> and
-     * <code>overridingMarkers = "'"</code> then the block between the outer parenthesis in
-     * <code>"start ('max('); end"</code> is strictly consumed, otherwise the suffix
-     * <code>" end"</code> would end up being consumed too in the process of handling the nested
-     * parenthesis.
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behavior of the search
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
+     * @param overridingMarkers the subset of <code>openingMarkers</code> that
+     * override the remaining markers, e.g., if
+     * <code>openingMarkers = "'("</code> and
+     * <code>overridingMarkers = "'"</code> then the block between the outer
+     * parenthesis in <code>"start ('max('); end"</code> is strictly consumed,
+     * otherwise the suffix <code>" end"</code> would end up being consumed too
+     * in the process of handling the nested parenthesis.
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behavior of the search
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     public static int indexOfIgnoreCase(int startingPosition, String searchIn, String searchFor, String openingMarkers, String closingMarkers,
             String overridingMarkers, Set<SearchMode> searchMode) {
@@ -640,19 +656,22 @@ public class StringUtils {
     }
 
     /**
-     * Finds the position the next character from a string, possibly skipping white space, comments
-     * and text between markers.
+     * Finds the position the next character from a string, possibly skipping
+     * white space, comments and text between markers.
      *
      * @param startingPosition the position to start the search from
      * @param stopPosition the position where to stop the search (inclusive)
      * @param searchIn the string to search in
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
      * @param overridingMarkers overridingMarkers
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behavior of the search
-     * @return the position where <code>searchFor</code> is found within <code>searchIn</code>
-     * starting from <code>startingPosition</code>.
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behavior of the search
+     * @return the position where <code>searchFor</code> is found within
+     * <code>searchIn</code> starting from <code>startingPosition</code>.
      */
     private static int indexOfNextChar(int startingPosition, int stopPosition, String searchIn, String openingMarkers, String closingMarkers,
             String overridingMarkers, Set<SearchMode> searchMode) {
@@ -826,13 +845,15 @@ public class StringUtils {
     }
 
     /**
-     * Splits stringToSplit into a list, using the given delimiter and skipping all between the
-     * given markers.
+     * Splits stringToSplit into a list, using the given delimiter and skipping
+     * all between the given markers.
      *
      * @param stringToSplit the string to split
      * @param delimiter the string to split on
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
      * @param trim should the split strings be whitespace trimmed?
      *
      * @return the list of strings, split by delimiter
@@ -844,16 +865,19 @@ public class StringUtils {
     }
 
     /**
-     * Splits stringToSplit into a list, using the given delimiter and skipping all between the
-     * given markers.
+     * Splits stringToSplit into a list, using the given delimiter and skipping
+     * all between the given markers.
      *
      * @param stringToSplit the string to split
      * @param delimiter the string to split on
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
      * @param trim should the split strings be whitespace trimmed?
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behaviour of the search
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behaviour of the search
      *
      * @return the list of strings, split by delimiter
      *
@@ -865,19 +889,22 @@ public class StringUtils {
     }
 
     /**
-     * Splits stringToSplit into a list, using the given delimiter and skipping all between the
-     * given markers.
+     * Splits stringToSplit into a list, using the given delimiter and skipping
+     * all between the given markers.
      *
      * @param stringToSplit the string to split
      * @param delimiter the string to split on
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
-     * @param overridingMarkers the subset of <code>openingMarkers</code> that override the
-     * remaining markers, e.g., if <code>openingMarkers = "'("</code> and
-     * <code>overridingMarkers = "'"</code> then the block between the outer parenthesis in
-     * <code>"start ('max('); end"</code> is strictly consumed, otherwise the suffix
-     * <code>" end"</code> would end up being consumed too in the process of handling the nested
-     * parenthesis.
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
+     * @param overridingMarkers the subset of <code>openingMarkers</code> that
+     * override the remaining markers, e.g., if
+     * <code>openingMarkers = "'("</code> and
+     * <code>overridingMarkers = "'"</code> then the block between the outer
+     * parenthesis in <code>"start ('max('); end"</code> is strictly consumed,
+     * otherwise the suffix <code>" end"</code> would end up being consumed too
+     * in the process of handling the nested parenthesis.
      * @param trim should the split strings be whitespace trimmed?
      *
      * @return the list of strings, split by delimiter
@@ -890,22 +917,26 @@ public class StringUtils {
     }
 
     /**
-     * Splits stringToSplit into a list, using the given delimiter and skipping all between the
-     * given markers.
+     * Splits stringToSplit into a list, using the given delimiter and skipping
+     * all between the given markers.
      *
      * @param stringToSplit the string to split
      * @param delimiter the string to split on
-     * @param openingMarkers characters which delimit the beginning of a text block to skip
-     * @param closingMarkers characters which delimit the end of a text block to skip
-     * @param overridingMarkers the subset of <code>openingMarkers</code> that override the
-     * remaining markers, e.g., if <code>openingMarkers = "'("</code> and
-     * <code>overridingMarkers = "'"</code> then the block between the outer parenthesis in
-     * <code>"start ('max('); end"</code> is strictly consumed, otherwise the suffix
-     * <code>" end"</code> would end up being consumed too in the process of handling the nested
-     * parenthesis.
+     * @param openingMarkers characters which delimit the beginning of a text
+     * block to skip
+     * @param closingMarkers characters which delimit the end of a text block to
+     * skip
+     * @param overridingMarkers the subset of <code>openingMarkers</code> that
+     * override the remaining markers, e.g., if
+     * <code>openingMarkers = "'("</code> and
+     * <code>overridingMarkers = "'"</code> then the block between the outer
+     * parenthesis in <code>"start ('max('); end"</code> is strictly consumed,
+     * otherwise the suffix <code>" end"</code> would end up being consumed too
+     * in the process of handling the nested parenthesis.
      * @param trim should the split strings be whitespace trimmed?
-     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>, containing the flags
-     * from the enum <code>StringUtils.SearchMode</code> that determine the behaviour of the search
+     * @param searchMode a <code>Set</code>, ideally an <code>EnumSet</code>,
+     * containing the flags from the enum <code>StringUtils.SearchMode</code>
+     * that determine the behaviour of the search
      *
      * @return the list of strings, split by delimiter
      *
@@ -959,8 +990,9 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' contains the string 'searchFor',
-     * dis-regarding case starting at 'startAt' Shorthand for a String.regionMatch(...)
+     * Determines whether or not the string 'searchIn' contains the string
+     * 'searchFor', dis-regarding case starting at 'startAt' Shorthand for a
+     * String.regionMatch(...)
      *
      * @param searchIn the string to search in
      * @param startAt the position to start at
@@ -973,8 +1005,8 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' contains the string 'searchFor',
-     * dis-regarding case. Shorthand for a String.regionMatch(...)
+     * Determines whether or not the string 'searchIn' contains the string
+     * 'searchFor', dis-regarding case. Shorthand for a String.regionMatch(...)
      *
      * @param searchIn the string to search in
      * @param searchFor the string to search for
@@ -986,8 +1018,9 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' contains the string 'searchFor', disregarding
-     * case,leading whitespace and non-alphanumeric characters.
+     * Determines whether or not the string 'searchIn' contains the string
+     * 'searchFor', disregarding case,leading whitespace and non-alphanumeric
+     * characters.
      *
      * @param searchIn the string to search in
      * @param searchFor the string to search for
@@ -1013,8 +1046,8 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' contains the string 'searchFor', disregarding
-     * case and leading whitespace
+     * Determines whether or not the string 'searchIn' contains the string
+     * 'searchFor', disregarding case and leading whitespace
      *
      * @param searchIn the string to search in
      * @param searchFor the string to search for
@@ -1026,8 +1059,8 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' contains the string 'searchFor', disregarding
-     * case and leading whitespace
+     * Determines whether or not the string 'searchIn' contains the string
+     * 'searchFor', disregarding case and leading whitespace
      *
      * @param searchIn the string to search in
      * @param searchFor the string to search for
@@ -1052,8 +1085,8 @@ public class StringUtils {
     }
 
     /**
-     * Determines whether or not the string 'searchIn' starts with one of the strings in
-     * 'searchFor', disregarding case and leading whitespace
+     * Determines whether or not the string 'searchIn' starts with one of the
+     * strings in 'searchFor', disregarding case and leading whitespace
      *
      * @param searchIn the string to search in
      * @param searchFor the string array to search for
@@ -1124,11 +1157,12 @@ public class StringUtils {
     }
 
     /**
-     * Compares searchIn against searchForWildcard with wildcards, in a case insensitive manner.
+     * Compares searchIn against searchForWildcard with wildcards, in a case
+     * insensitive manner.
      *
      * @param searchIn the string to search in
-     * @param searchFor the string to search for, using the 'standard' SQL wildcard chars of '%' and
-     * '_'
+     * @param searchFor the string to search for, using the 'standard' SQL
+     * wildcard chars of '%' and '_'
      * @return true if matches
      */
     public static boolean wildCompareIgnoreCase(String searchIn, String searchFor) {
@@ -1136,20 +1170,20 @@ public class StringUtils {
     }
 
     /**
-     * Compares searchIn against searchForWildcard with wildcards (heavily borrowed from
-     * strings/ctype-simple.c in the server sources)
+     * Compares searchIn against searchForWildcard with wildcards (heavily
+     * borrowed from strings/ctype-simple.c in the server sources)
      *
-     * This method does a single passage matching for normal characters and WILDCARD_ONE (_), and
-     * recursive matching for WILDCARD_MANY (%) which may be repeated for as many anchor chars are
-     * found.
+     * This method does a single passage matching for normal characters and
+     * WILDCARD_ONE (_), and recursive matching for WILDCARD_MANY (%) which may
+     * be repeated for as many anchor chars are found.
      *
      * @param searchIn the string to search in
-     * @param searchFor the string to search for, using the 'standard' SQL wildcard chars of '%' and
-     * '_'
+     * @param searchFor the string to search for, using the 'standard' SQL
+     * wildcard chars of '%' and '_'
      *
-     * @return WILD_COMPARE_MATCH if matched, WILD_COMPARE_NO_MATCH if not matched,
-     * WILD_COMPARE_CONTINUE_WITH_WILD if not matched yet, but it may in one of following recursion
-     * rounds
+     * @return WILD_COMPARE_MATCH if matched, WILD_COMPARE_NO_MATCH if not
+     * matched, WILD_COMPARE_CONTINUE_WITH_WILD if not matched yet, but it may
+     * in one of following recursion rounds
      */
     private static int wildCompareInternal(String searchIn, String searchFor) {
         if ((searchIn == null) || (searchFor == null)) {
@@ -1306,10 +1340,11 @@ public class StringUtils {
      *
      * @param src the source string
      * @param stringOpens characters which delimit the "open" of a string
-     * @param stringCloses characters which delimit the "close" of a string, in counterpart order to
-     * <code>stringOpens</code>
+     * @param stringCloses characters which delimit the "close" of a string, in
+     * counterpart order to <code>stringOpens</code>
      * @param slashStarComments strip slash-star type "C" style comments
-     * @param slashSlashComments strip slash-slash C++ style comments to end-of-line
+     * @param slashSlashComments strip slash-slash C++ style comments to
+     * end-of-line
      * @param hashComments strip #-style comments to end-of-line
      * @param dashDashComments strip "--" style comments to end-of-line
      * @return the input string with all comment-delimited data removed
@@ -1406,9 +1441,9 @@ public class StringUtils {
     }
 
     /**
-     * Next two functions are to help DBMD check if the given string is in form of database.name and
-     * return it as "database";"name" with comments removed. If string is NULL or wildcard (%),
-     * returns null and exits.
+     * Next two functions are to help DBMD check if the given string is in form
+     * of database.name and return it as "database";"name" with comments
+     * removed. If string is NULL or wildcard (%), returns null and exits.
      *
      * First, we sanitize...
      *
@@ -1424,10 +1459,11 @@ public class StringUtils {
     }
 
     /**
-     * Splits an entity identifier into its parts (database and entity name) and returns a list
-     * containing the two elements. If the identifier doesn't contain the database part then the
-     * argument <code>catalog</code> is used in its place and <code>source</code> corresponds to the
-     * full entity name. If argument <code>source</code> is NULL or wildcard (%), returns an empty
+     * Splits an entity identifier into its parts (database and entity name) and
+     * returns a list containing the two elements. If the identifier doesn't
+     * contain the database part then the argument <code>catalog</code> is used
+     * in its place and <code>source</code> corresponds to the full entity name.
+     * If argument <code>source</code> is NULL or wildcard (%), returns an empty
      * list.
      *
      * @param source the source string
@@ -1461,8 +1497,8 @@ public class StringUtils {
     }
 
     /**
-     * Builds and returns a fully qualified name, quoted if necessary, for the given catalog and
-     * database entity.
+     * Builds and returns a fully qualified name, quoted if necessary, for the
+     * given catalog and database entity.
      *
      * @param catalog database name
      * @param entity identifier
@@ -1526,13 +1562,15 @@ public class StringUtils {
     }
 
     /**
-     * Surrounds identifier with quoteChar and duplicates these symbols inside the identifier.
+     * Surrounds identifier with quoteChar and duplicates these symbols inside
+     * the identifier.
      *
      * @param quoteChar ` or "
-     * @param identifier in pedantic mode (connection property pedantic=true) identifier is treated
-     * as unquoted (as it is stored in the database) even if it starts and ends with quoteChar; in
-     * non-pedantic mode if identifier starts and ends with quoteChar method treats it as already
-     * quoted and doesn't modify.
+     * @param identifier in pedantic mode (connection property pedantic=true)
+     * identifier is treated as unquoted (as it is stored in the database) even
+     * if it starts and ends with quoteChar; in non-pedantic mode if identifier
+     * starts and ends with quoteChar method treats it as already quoted and
+     * doesn't modify.
      * @param isPedantic are we in pedantic mode
      *
      * @return With quoteChar="`":<br>
@@ -1541,7 +1579,8 @@ public class StringUtils {
      * <li>abc {@code ->} `abc`</li>
      * <li>ab`c {@code ->} `ab``c`</li>
      * <li>ab"c {@code ->} `ab"c`</li>
-     * <li>`ab``c` {@code ->} `ab``c` in non-pedantic mode or ```ab````c``` in pedantic mode</li>
+     * <li>`ab``c` {@code ->} `ab``c` in non-pedantic mode or ```ab````c``` in
+     * pedantic mode</li>
      * </ul>
      * With quoteChar="\"":<br>
      * <ul>
@@ -1549,7 +1588,8 @@ public class StringUtils {
      * <li>abc {@code ->} "abc"</li>
      * <li>ab`c {@code ->} "ab`c"</li>
      * <li>ab"c {@code ->} "ab""c"</li>
-     * <li>"ab""c" {@code ->} "ab""c" in non-pedantic mode or """ab""""c""" in pedantic mode</li>
+     * <li>"ab""c" {@code ->} "ab""c" in non-pedantic mode or """ab""""c""" in
+     * pedantic mode</li>
      * </ul>
      */
     public static String quoteIdentifier(String identifier, String quoteChar, boolean isPedantic) {
@@ -1592,12 +1632,13 @@ public class StringUtils {
     }
 
     /**
-     * Surrounds identifier with "`" and duplicates these symbols inside the identifier.
+     * Surrounds identifier with "`" and duplicates these symbols inside the
+     * identifier.
      *
-     * @param identifier in pedantic mode (connection property pedantic=true) identifier is treated
-     * as unquoted (as it is stored in the database) even if it starts and ends with "`"; in
-     * non-pedantic mode if identifier starts and ends with "`" method treats it as already quoted
-     * and doesn't modify.
+     * @param identifier in pedantic mode (connection property pedantic=true)
+     * identifier is treated as unquoted (as it is stored in the database) even
+     * if it starts and ends with "`"; in non-pedantic mode if identifier starts
+     * and ends with "`" method treats it as already quoted and doesn't modify.
      * @param isPedantic are we in pedantic mode
      *
      * @return
@@ -1606,7 +1647,8 @@ public class StringUtils {
      * <li>abc {@code ->} `abc`</li>
      * <li>ab`c {@code ->} `ab``c`</li>
      * <li>ab"c {@code ->} `ab"c`</li>
-     * <li>`ab``c` {@code ->} `ab``c` in non-pedantic mode or ```ab````c``` in pedantic mode</li>
+     * <li>`ab``c` {@code ->} `ab``c` in non-pedantic mode or ```ab````c``` in
+     * pedantic mode</li>
      * </ul>
      */
     public static String quoteIdentifier(String identifier, boolean isPedantic) {
@@ -1614,9 +1656,9 @@ public class StringUtils {
     }
 
     /**
-     * Trims identifier, removes quote chars from first and last positions and replaces double
-     * occurrences of quote char from entire identifier, i.e converts quoted identifier into form as
-     * it is stored in database.
+     * Trims identifier, removes quote chars from first and last positions and
+     * replaces double occurrences of quote char from entire identifier, i.e
+     * converts quoted identifier into form as it is stored in database.
      *
      * @param identifier identifier
      * @param quoteChar ` or "
@@ -1724,8 +1766,8 @@ public class StringUtils {
     }
 
     /**
-     * Returns the byte[] representation of subset of the given char[] using the default/platform
-     * encoding.
+     * Returns the byte[] representation of subset of the given char[] using the
+     * default/platform encoding.
      *
      * @param value chars
      * @return bytes
@@ -1735,7 +1777,8 @@ public class StringUtils {
     }
 
     /**
-     * Returns the byte[] representation of subset of the given char[] using the given encoding.
+     * Returns the byte[] representation of subset of the given char[] using the
+     * given encoding.
      *
      * @param c chars
      * @param encoding java encoding
@@ -1750,7 +1793,8 @@ public class StringUtils {
     }
 
     /**
-     * Returns the byte[] representation of subset of the given char[] using the given encoding.
+     * Returns the byte[] representation of subset of the given char[] using the
+     * given encoding.
      *
      * @param value chars
      * @param offset offset
@@ -1912,12 +1956,12 @@ public class StringUtils {
     }
 
     /**
-     * Checks is the CharSequence contains digits only. No leading sign and thousands or decimal
-     * separators are allowed.
+     * Checks is the CharSequence contains digits only. No leading sign and
+     * thousands or decimal separators are allowed.
      *
      * @param cs The CharSequence to check.
-     * @return {@code true} if the CharSequence not empty and contains only digits, {@code false}
-     * otherwise.
+     * @return {@code true} if the CharSequence not empty and contains only
+     * digits, {@code false} otherwise.
      */
     public static boolean isStrictlyNumeric(CharSequence cs) {
         if (cs == null || cs.length() == 0) {
@@ -1936,15 +1980,17 @@ public class StringUtils {
     }
 
     /**
-     * Constructs a String containing all the elements in the String array bounded and joined by the
-     * provided concatenation elements. The last element uses a different delimiter.
+     * Constructs a String containing all the elements in the String array
+     * bounded and joined by the provided concatenation elements. The last
+     * element uses a different delimiter.
      *
      * @param elems the String array from where to take the elements.
      * @param prefix the prefix of the resulting String.
      * @param midDelimiter the delimiter to be used between the N-1 elements
      * @param lastDelimiter the delimiter to be used before the last element.
      * @param suffix the suffix of the resulting String.
-     * @return a String built from the provided String array and concatenation elements.
+     * @return a String built from the provided String array and concatenation
+     * elements.
      */
     public static String stringArrayToString(String[] elems, String prefix, String midDelimiter, String lastDelimiter, String suffix) {
         StringBuilder valuesString = new StringBuilder();
@@ -1995,7 +2041,8 @@ public class StringUtils {
     }
 
     /**
-     * Does the string contain wildcard symbols ('%' or '_'). Used in DatabaseMetaData.
+     * Does the string contain wildcard symbols ('%' or '_'). Used in
+     * DatabaseMetaData.
      *
      * @param src string
      * @return true if src contains wildcard symbols
@@ -2010,8 +2057,8 @@ public class StringUtils {
     }
 
     /**
-     * Joins all elements of the given list using serial comma (Oxford comma) rules. E.g.: - "A" -
-     * "A and B" - "A, B, and C"
+     * Joins all elements of the given list using serial comma (Oxford comma)
+     * rules. E.g.: - "A" - "A and B" - "A, B, and C"
      *
      * @param elements the elements to join
      * @return the String with all elements, joined by commas and "and".

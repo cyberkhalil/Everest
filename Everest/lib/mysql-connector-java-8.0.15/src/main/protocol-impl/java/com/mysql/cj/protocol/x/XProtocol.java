@@ -99,7 +99,8 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
     private MessageReader<XMessageHeader, XMessage> reader;
     private MessageSender<XMessage> sender;
     /**
-     * We take responsibility of the socket as the managed resource. We close it when we're done.
+     * We take responsibility of the socket as the managed resource. We close it
+     * when we're done.
      */
     private Closeable managedResource;
     private ProtocolEntityFactory<Field, XMessage> fieldFactory;
@@ -470,9 +471,10 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
     }
 
     /**
-     * Signal the intent to start processing a new command. A session supports processing a single
-     * command at a time. Results are reading lazily from the wire. It is necessary to flush any
-     * pending result before starting a new command. This method performs the flush if necessary.
+     * Signal the intent to start processing a new command. A session supports
+     * processing a single command at a time. Results are reading lazily from
+     * the wire. It is necessary to flush any pending result before starting a
+     * new command. This method performs the flush if necessary.
      */
     protected void newCommand() {
         if (this.currentResultStreamer != null) {
@@ -502,8 +504,8 @@ public class XProtocol extends AbstractProtocol<XMessage> implements Protocol<XM
      *
      * @param filterParams {@link FilterParams}
      * @param callbacks {@link ResultListener}
-     * @param errorFuture the {@link CompletableFuture} to complete exceptionally if the request
-     * fails
+     * @param errorFuture the {@link CompletableFuture} to complete
+     * exceptionally if the request fails
      */
     public void asyncFind(FilterParams filterParams, ResultListener<StatementExecuteOk> callbacks, CompletableFuture<?> errorFuture) {
         newCommand();

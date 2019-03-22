@@ -29,8 +29,9 @@
 package com.mysql.cj.protocol;
 
 /**
- * Message is the content of a full single message (native protocol packet or protobuf message),
- * independent from on-wire splitting, communicated with the server.
+ * Message is the content of a full single message (native protocol packet or
+ * protobuf message), independent from on-wire splitting, communicated with the
+ * server.
  */
 public interface Message {
 

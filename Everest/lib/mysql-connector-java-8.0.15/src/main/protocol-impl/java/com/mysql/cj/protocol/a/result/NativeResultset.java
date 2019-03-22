@@ -67,8 +67,8 @@ public class NativeResultset implements Resultset {
     protected long updateId = -1;
 
     /**
-     * Any info message from the server that was created while generating this result set (if 'info
-     * parsing' is enabled for the connection).
+     * Any info message from the server that was created while generating this
+     * result set (if 'info parsing' is enabled for the connection).
      */
     protected String serverInfo = null;
 
@@ -148,8 +148,8 @@ public class NativeResultset implements Resultset {
     }
 
     /**
-     * We can't do this ourselves, otherwise the contract for Statement.getMoreResults() won't work
-     * correctly.
+     * We can't do this ourselves, otherwise the contract for
+     * Statement.getMoreResults() won't work correctly.
      */
     public synchronized void clearNextResultset() {
         // TODO release resources of nextResultset, close streamer

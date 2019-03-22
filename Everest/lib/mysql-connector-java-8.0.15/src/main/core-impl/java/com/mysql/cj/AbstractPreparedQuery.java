@@ -130,8 +130,8 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
     }
 
     /**
-     * Computes the optimum number of batched parameter lists to send without overflowing
-     * max_allowed_packet.
+     * Computes the optimum number of batched parameter lists to send without
+     * overflowing max_allowed_packet.
      *
      * @param numBatchedArgs original batch size
      * @return computed batch size
@@ -213,7 +213,8 @@ public abstract class AbstractPreparedQuery<T extends QueryBindings<?>> extends 
     /**
      * Creates the packet that contains the query to be sent to the server.
      *
-     * @return A Buffer filled with the query representing the PreparedStatement.
+     * @return A Buffer filled with the query representing the
+     * PreparedStatement.
      */
     @Override
     public <M extends Message> M fillSendPacket() {

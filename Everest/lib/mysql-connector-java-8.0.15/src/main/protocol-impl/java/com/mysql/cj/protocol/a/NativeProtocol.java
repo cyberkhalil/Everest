@@ -149,15 +149,16 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     //private PacketPayload sendPacket = null;
     protected NativePacketPayload sharedSendPacket = null;
     /**
-     * Use this when reading in rows to avoid thousands of new() calls, because the byte arrays just
-     * get copied out of the packet anyway
+     * Use this when reading in rows to avoid thousands of new() calls, because
+     * the byte arrays just get copied out of the packet anyway
      */
     protected NativePacketPayload reusablePacket = null;
 
     /**
      * Packet used for 'LOAD DATA LOCAL INFILE'
      *
-     * We use a SoftReference, so that we don't penalize intermittent use of this feature
+     * We use a SoftReference, so that we don't penalize intermittent use of
+     * this feature
      */
     private SoftReference<NativePacketPayload> loadFileBufRef;
 
@@ -191,7 +192,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     protected Map<Class<? extends ProtocolEntity>, ProtocolEntityReader<? extends ProtocolEntity, ? extends Message>> PROTOCOL_ENTITY_CLASS_TO_BINARY_READER;
 
     /**
-     * Does the character set of this connection match the character set of the platform
+     * Does the character set of this connection match the character set of the
+     * platform
      */
     protected boolean platformDbCharsetMatches = true; // changed once we've connected.
 
@@ -208,14 +210,14 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     private TransactionEventHandler transactionManager;
 
     /**
-     * The comment (if any) that we'll prepend to all queries sent to the server (to show up in
-     * "SHOW PROCESSLIST")
+     * The comment (if any) that we'll prepend to all queries sent to the server
+     * (to show up in "SHOW PROCESSLIST")
      */
     private String queryComment = null;
 
     /**
-     * We store the platform 'encoding' here, only used to avoid munging filenames for LOAD DATA
-     * LOCAL INFILE...
+     * We store the platform 'encoding' here, only used to avoid munging
+     * filenames for LOAD DATA LOCAL INFILE...
      */
     private static String jvmPlatformCharset = null;
 
@@ -328,8 +330,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Negotiates the SSL communications channel used when connecting to a MySQL server that
-     * understands SSL.
+     * Negotiates the SSL communications channel used when connecting to a MySQL
+     * server that understands SSL.
      *
      * @param packLength packet length
      */
@@ -710,8 +712,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Checks for errors in the reply packet, and if none, returns the reply packet, ready for
-     * reading
+     * Checks for errors in the reply packet, and if none, returns the reply
+     * packet, ready for reading
      *
      * @param command the command being issued (if used)
      * @return NativePacketPayload
@@ -855,7 +857,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
      * @param maxRows rows limit
      * @param streamResults whether a stream result should be created
      * @param catalog database name
-     * @param cachedMetadata use this metadata instead of the one provided on wire
+     * @param cachedMetadata use this metadata instead of the one provided on
+     * wire
      * @param getProfilerEventHandlerInstanceFunction
      * {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
      * @param resultSetFactory {@link ProtocolEntityFactory}
@@ -918,7 +921,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
      * @param maxRows rows limit
      * @param streamResults whether a stream result should be created
      * @param catalog database name
-     * @param cachedMetadata use this metadata instead of the one provided on wire
+     * @param cachedMetadata use this metadata instead of the one provided on
+     * wire
      * @param getProfilerEventHandlerInstanceFunction
      * {@link com.mysql.cj.protocol.Protocol.GetProfilerEventHandlerInstanceFunction}
      * @param resultSetFactory {@link ProtocolEntityFactory}
@@ -1181,7 +1185,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
      *
      * @param <M> extends {@link Message}
      * @param queryPacket {@link NativePacketPayload} containing query
-     * @param originalResponsePacket {@link NativePacketPayload} containing response
+     * @param originalResponsePacket {@link NativePacketPayload} containing
+     * response
      * @param forceExecute currently ignored
      * @return T instance
      */
@@ -1300,8 +1305,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Returns the packet used for sending data (used by PreparedStatement) with position set to 0.
-     * Guarded by external synchronization on a mutex.
+     * Returns the packet used for sending data (used by PreparedStatement) with
+     * position set to 0. Guarded by external synchronization on a mutex.
      *
      * @return A packet to send data with
      */
@@ -2074,11 +2079,13 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     /**
      * Turns output of 'SHOW WARNINGS' into JDBC SQLWarning instances.
      *
-     * If 'forTruncationOnly' is true, only looks for truncation warnings, and actually throws
-     * DataTruncation as an exception.
+     * If 'forTruncationOnly' is true, only looks for truncation warnings, and
+     * actually throws DataTruncation as an exception.
      *
-     * @param warningCountIfKnown the warning count (if known), otherwise set it to 0.
-     * @param forTruncationOnly if this method should only scan for data truncation warnings
+     * @param warningCountIfKnown the warning count (if known), otherwise set it
+     * to 0.
+     * @param forTruncationOnly if this method should only scan for data
+     * truncation warnings
      *
      * @return the SQLWarning chain (or null if no warnings)
      */
@@ -2172,8 +2179,8 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     /**
      * Configures the client's timezone if required.
      *
-     * @throws CJException if the timezone the server is configured to use can't be mapped to a Java
-     * timezone.
+     * @throws CJException if the timezone the server is configured to use can't
+     * be mapped to a Java timezone.
      */
     public void configureTimezone() {
         String configuredTimeZoneOnServer = this.serverSession.getServerVariable("time_zone");

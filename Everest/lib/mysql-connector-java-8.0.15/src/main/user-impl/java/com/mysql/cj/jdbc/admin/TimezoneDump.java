@@ -34,8 +34,8 @@ import java.sql.ResultSet;
 import com.mysql.cj.util.TimeUtil;
 
 /**
- * Dumps the timezone of the MySQL server represented by the JDBC url given on the commandline (or
- * localhost/test if none provided).
+ * Dumps the timezone of the MySQL server represented by the JDBC url given on
+ * the commandline (or localhost/test if none provided).
  */
 public class TimezoneDump {
 

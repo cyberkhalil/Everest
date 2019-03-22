@@ -39,7 +39,8 @@ import com.mysql.cj.log.Log;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * Used to de-compress packets from the MySQL server when protocol-level compression is turned on.
+ * Used to de-compress packets from the MySQL server when protocol-level
+ * compression is turned on.
  */
 public class CompressedInputStream extends InputStream {
 
@@ -79,7 +80,8 @@ public class CompressedInputStream extends InputStream {
     private int pos = 0;
 
     /**
-     * Creates a new CompressedInputStream that reads the given stream from the server.
+     * Creates a new CompressedInputStream that reads the given stream from the
+     * server.
      *
      * @param streamFromServer original server InputStream
      * @param traceProtocol "traceProtocol" property
@@ -112,7 +114,8 @@ public class CompressedInputStream extends InputStream {
     }
 
     /**
-     * Retrieves and un-compressed (if necessary) the next packet from the server.
+     * Retrieves and un-compressed (if necessary) the next packet from the
+     * server.
      *
      * @throws IOException if an I/O error occurs
      */
@@ -200,8 +203,8 @@ public class CompressedInputStream extends InputStream {
     }
 
     /**
-     * Determines if another packet needs to be read from the server to be able to read numBytes
-     * from the stream.
+     * Determines if another packet needs to be read from the server to be able
+     * to read numBytes from the stream.
      *
      * @param numBytes the number of bytes to be read
      *

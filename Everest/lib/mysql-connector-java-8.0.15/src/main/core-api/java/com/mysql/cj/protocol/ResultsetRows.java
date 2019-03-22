@@ -35,9 +35,10 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.result.RowList;
 
 /**
- * This interface abstracts away how row data is accessed by the result set. It is meant to allow a
- * static implementation (Current version), and a streaming one. It extends the {@link RowList}
- * functionality by providing row positioning, updatability and ownership.
+ * This interface abstracts away how row data is accessed by the result set. It
+ * is meant to allow a static implementation (Current version), and a streaming
+ * one. It extends the {@link RowList} functionality by providing row
+ * positioning, updatability and ownership.
  */
 public interface ResultsetRows extends RowList, ProtocolEntity {
 
@@ -105,8 +106,8 @@ public interface ResultsetRows extends RowList, ProtocolEntity {
     /**
      * Returns true if the result set is dynamic.
      *
-     * This means that move back and move forward won't work because we do not hold on to the
-     * records.
+     * This means that move back and move forward won't work because we do not
+     * hold on to the records.
      *
      * @return true if this result set is streaming from the server
      */
@@ -174,8 +175,9 @@ public interface ResultsetRows extends RowList, ProtocolEntity {
     boolean wasEmpty();
 
     /**
-     * Sometimes the driver doesn't have metadata until after the statement has the result set
-     * in-hand (because it's cached), so it can call this to set it after the fact.
+     * Sometimes the driver doesn't have metadata until after the statement has
+     * the result set in-hand (because it's cached), so it can call this to set
+     * it after the fact.
      *
      * @param columnDefinition field-level metadata for the result set
      */

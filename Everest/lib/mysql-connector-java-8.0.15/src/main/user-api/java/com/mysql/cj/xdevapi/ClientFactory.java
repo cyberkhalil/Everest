@@ -33,8 +33,8 @@ import java.util.Properties;
 /**
  * ClientFactory is used for creation of {@link Client} instances.
  *
- * {@link Client} objects provide the means of creating {@link Session}s that use an internally
- * managed connection pool.
+ * {@link Client} objects provide the means of creating {@link Session}s that
+ * use an internally managed connection pool.
  *
  * <pre>
  * ClientFactory xClientFactory = new ClientFactory();
@@ -47,12 +47,13 @@ import java.util.Properties;
 public class ClientFactory {
 
     /**
-     * Creates a {@link Client} object which provides a Session pooling functionality.
+     * Creates a {@link Client} object which provides a Session pooling
+     * functionality.
      *
      * @param url the session URL.
-     * @param clientPropsJson JSON string representing a document that defines connection properties
-     * in a special format. For pooling configuration, it should contain an embedded document after
-     * the "pooling" key:
+     * @param clientPropsJson JSON string representing a document that defines
+     * connection properties in a special format. For pooling configuration, it
+     * should contain an embedded document after the "pooling" key:
      *
      * <pre>
      * pooling : {
@@ -70,13 +71,15 @@ public class ClientFactory {
     }
 
     /**
-     * Creates a {@link Client} object that provides a Session pooling functionality.
+     * Creates a {@link Client} object that provides a Session pooling
+     * functionality.
      *
      * @param url the session URL.
-     * @param clientProps the {@link Properties} instance that contains the connection properties.
-     * The keys in this {@link Properties} match with the path of each value in the JSON document
-     * from {@link #getClient(String, String)} (for example, <code>pooling.enabled</code> or
-     * <code>pooling.maxSize</code>).
+     * @param clientProps the {@link Properties} instance that contains the
+     * connection properties. The keys in this {@link Properties} match with the
+     * path of each value in the JSON document from
+     * {@link #getClient(String, String)} (for example,
+     * <code>pooling.enabled</code> or <code>pooling.maxSize</code>).
      * @return a {@link Client} instance.
      */
     public Client getClient(String url, Properties clientProps) {

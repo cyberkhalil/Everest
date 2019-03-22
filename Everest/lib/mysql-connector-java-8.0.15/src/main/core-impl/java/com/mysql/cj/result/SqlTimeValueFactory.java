@@ -40,8 +40,9 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * A value factory to create {@link java.sql.Time} instances. As with other date/time types, a time
- * zone is necessary to interpret the time values returned from the server.
+ * A value factory to create {@link java.sql.Time} instances. As with other
+ * date/time types, a time zone is necessary to interpret the time values
+ * returned from the server.
  */
 public class SqlTimeValueFactory extends DefaultValueFactory<Time> {
 

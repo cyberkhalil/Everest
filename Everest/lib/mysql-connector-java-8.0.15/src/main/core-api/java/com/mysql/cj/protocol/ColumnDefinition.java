@@ -44,9 +44,10 @@ public interface ColumnDefinition extends ProtocolEntity {
     void setFields(Field[] fields);
 
     /**
-     * Builds a hash between column names and their indices for fast retrieval. This is done lazily
-     * to support findColumn() and get*(String), as it can be more expensive than just retrieving
-     * result set values by ordinal index.
+     * Builds a hash between column names and their indices for fast retrieval.
+     * This is done lazily to support findColumn() and get*(String), as it can
+     * be more expensive than just retrieving result set values by ordinal
+     * index.
      */
     void buildIndexMapping();
 
@@ -75,11 +76,11 @@ public interface ColumnDefinition extends ProtocolEntity {
     int findColumn(String columnName, boolean useColumnNamesInFindColumn, int indexBase);
 
     /**
-     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in
-     * this ColumnDefinition.
+     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or
+     * LONGTEXT exist in this ColumnDefinition.
      *
-     * @return true if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT
-     * exist in this ColumnDefinition.
+     * @return true if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT,
+     * MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
      */
     boolean hasLargeFields();
 }

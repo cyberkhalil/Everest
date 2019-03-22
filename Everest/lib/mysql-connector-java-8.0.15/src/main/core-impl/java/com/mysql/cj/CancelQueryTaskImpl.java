@@ -39,9 +39,9 @@ import com.mysql.cj.util.StringUtils;
 
 //TODO should not be protocol-specific
 /**
- * Thread used to implement query timeouts...Eventually we could be more efficient and have one
- * thread with timers, but this is a straightforward and simple way to implement a feature that
- * isn't used all that often.
+ * Thread used to implement query timeouts...Eventually we could be more
+ * efficient and have one thread with timers, but this is a straightforward and
+ * simple way to implement a feature that isn't used all that often.
  */
 public class CancelQueryTaskImpl extends TimerTask implements CancelQueryTask {
 

@@ -101,19 +101,20 @@ public class NativeSession extends CoreSession implements Serializable {
     private CacheAdapter<String, Map<String, String>> serverConfigCache;
 
     /**
-     * Actual collation index to mysql charset name map of user defined charsets for given server
-     * URLs.
+     * Actual collation index to mysql charset name map of user defined charsets
+     * for given server URLs.
      */
     private static final Map<String, Map<Integer, String>> customIndexToCharsetMapByUrl = new HashMap<>();
 
     /**
-     * Actual mysql charset name to mblen map of user defined charsets for given server URLs.
+     * Actual mysql charset name to mblen map of user defined charsets for given
+     * server URLs.
      */
     private static final Map<String, Map<String, Integer>> customCharsetToMblenMapByUrl = new HashMap<>();
 
     /**
-     * If a CharsetEncoder is required for escaping. Needed for SJIS and related problems with
-     * \u00A5.
+     * If a CharsetEncoder is required for escaping. Needed for SJIS and related
+     * problems with \u00A5.
      */
     private boolean requiresEscapingEncoder;
 
@@ -296,8 +297,8 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Returns the packet used for sending data (used by PreparedStatement) with position set to 0.
-     * Guarded by external synchronization on a mutex.
+     * Returns the packet used for sending data (used by PreparedStatement) with
+     * position set to 0. Guarded by external synchronization on a mutex.
      *
      * @return A packet to send data with
      */
@@ -438,16 +439,17 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Sets up client character set. This must be done before any further communication with the
-     * server!
+     * Sets up client character set. This must be done before any further
+     * communication with the server!
      *
-     * @param dontCheckServerMatch if true then send the SET NAMES query even if server charset
-     * already matches the new value
-     * @return true if this routine actually configured the client character set, or false if the
-     * driver needs to use 'older' methods to detect the character set, as it is connected to a
-     * MySQL server older than 4.1.0
-     * @throws CJException if an exception happens while sending 'SET NAMES' to the server, or the
-     * server sends character set information that the client doesn't know about.
+     * @param dontCheckServerMatch if true then send the SET NAMES query even if
+     * server charset already matches the new value
+     * @return true if this routine actually configured the client character
+     * set, or false if the driver needs to use 'older' methods to detect the
+     * character set, as it is connected to a MySQL server older than 4.1.0
+     * @throws CJException if an exception happens while sending 'SET NAMES' to
+     * the server, or the server sends character set information that the client
+     * doesn't know about.
      */
     public boolean configureClientCharacterSet(boolean dontCheckServerMatch) {
         String realJavaEncoding = this.characterEncoding.getValue();
@@ -658,8 +660,8 @@ public class NativeSession extends CoreSession implements Serializable {
         }
 
         /**
-         * Check if we need a CharsetEncoder for escaping codepoints that are transformed to
-         * backslash (0x5c) in the connection encoding.
+         * Check if we need a CharsetEncoder for escaping codepoints that are
+         * transformed to backslash (0x5c) in the connection encoding.
          */
         try {
             CharsetEncoder enc = Charset.forName(this.characterEncoding.getValue()).newEncoder();
@@ -758,8 +760,8 @@ public class NativeSession extends CoreSession implements Serializable {
     private final static String SERVER_VERSION_STRING_VAR_NAME = "server_version_string";
 
     /**
-     * Loads the result of 'SHOW VARIABLES' into the serverVariables field so that the driver can
-     * configure itself.
+     * Loads the result of 'SHOW VARIABLES' into the serverVariables field so
+     * that the driver can configure itself.
      *
      * @param syncMutex synchronization mutex
      * @param version driver version string
@@ -896,8 +898,8 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Builds the map needed for 4.1.0 and newer servers that maps field-level charset/collation
-     * info to a java character encoding name.
+     * Builds the map needed for 4.1.0 and newer servers that maps field-level
+     * charset/collation info to a java character encoding name.
      */
     public void buildCollationMapping() {
 
@@ -1097,9 +1099,9 @@ public class NativeSession extends CoreSession implements Serializable {
     }
 
     /**
-     * Send a query to the server. Returns one of the ResultSet objects. To ensure that Statement's
-     * queries are serialized, calls to this method should be enclosed in a connection mutex
-     * synchronized block.
+     * Send a query to the server. Returns one of the ResultSet objects. To
+     * ensure that Statement's queries are serialized, calls to this method
+     * should be enclosed in a connection mutex synchronized block.
      *
      * @param <T> extends {@link Resultset}
      * @param callingQuery {@link Query} object
@@ -1109,7 +1111,8 @@ public class NativeSession extends CoreSession implements Serializable {
      * @param streamResults whether a stream result should be created
      * @param resultSetFactory {@link ProtocolEntityFactory}
      * @param catalog database name
-     * @param cachedMetadata use this metadata instead of the one provided on wire
+     * @param cachedMetadata use this metadata instead of the one provided on
+     * wire
      * @param isBatch is it a batch query
      *
      * @return a ResultSet holding the results

@@ -40,7 +40,8 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 public interface RowList extends Iterator<Row> {
 
     /**
-     * What's returned for the size of a row list when its size can not be determined.
+     * What's returned for the size of a row list when its size can not be
+     * determined.
      */
     public static final int RESULT_SET_SIZE_UNKNOWN = -1;
 

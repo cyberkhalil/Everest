@@ -35,8 +35,8 @@ import java.util.Arrays;
 import com.mysql.cj.log.Log;
 
 /**
- * A non-blocking buffered input stream. Reads more if it can, won't block to fill the buffer, only
- * blocks to satisfy a request of read(byte[])
+ * A non-blocking buffered input stream. Reads more if it can, won't block to
+ * fill the buffer, only blocks to satisfy a request of read(byte[])
  */
 public class ReadAheadInputStream extends InputStream {
 

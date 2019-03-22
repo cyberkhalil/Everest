@@ -48,9 +48,9 @@ import com.mysql.cj.jdbc.JdbcStatement;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 /**
- * Connection that opens two connections, one two a replication master, and another to one or more
- * slaves, and decides to use master when the connection is not read-only, and use slave(s) when the
- * connection is read-only.
+ * Connection that opens two connections, one two a replication master, and
+ * another to one or more slaves, and decides to use master when the connection
+ * is not read-only, and use slave(s) when the connection is read-only.
  */
 public class ReplicationConnectionProxy extends MultiHostConnectionProxy implements PingTarget {
 
@@ -75,7 +75,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     /**
      * Static factory to create {@link ReplicationConnection} instances.
      *
-     * @param connectionUrl The connection URL containing the hosts in a replication setup.
+     * @param connectionUrl The connection URL containing the hosts in a
+     * replication setup.
      * @return A {@link ReplicationConnection} proxy.
      * @throws SQLException if an error occurs
      */
@@ -86,11 +87,13 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Creates a proxy for java.sql.Connection that routes requests to a load-balanced connection of
-     * master servers or a load-balanced connection of slave servers. Each sub-connection is created
-     * with its own set of independent properties.
+     * Creates a proxy for java.sql.Connection that routes requests to a
+     * load-balanced connection of master servers or a load-balanced connection
+     * of slave servers. Each sub-connection is created with its own set of
+     * independent properties.
      *
-     * @param connectionUrl The connection URL containing the hosts in a replication setup.
+     * @param connectionUrl The connection URL containing the hosts in a
+     * replication setup.
      * @throws SQLException if an error occurs
      */
     private ReplicationConnectionProxy(ReplicationConnectionUrl connectionUrl) throws SQLException {
@@ -206,7 +209,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     /**
      * Propagates the connection proxy down through all live connections.
      *
-     * @param proxyConn The top level connection in the multi-host connections chain.
+     * @param proxyConn The top level connection in the multi-host connections
+     * chain.
      */
     @Override
     protected void propagateProxyDown(JdbcConnection proxyConn) {
@@ -297,8 +301,9 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Proxies method invocation on the java.sql.Connection interface. This is the continuation of
-     * MultiHostConnectionProxy#invoke(Object, Method, Object[]).
+     * Proxies method invocation on the java.sql.Connection interface. This is
+     * the continuation of MultiHostConnectionProxy#invoke(Object, Method,
+     * Object[]).
      */
     @Override
     Object invokeMore(Object proxy, Method method, Object[] args) throws Throwable {
@@ -334,11 +339,12 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Checks if this connection is in a state capable to invoke the provided method. If the
-     * connection is in an inconsistent state, i.e. it has no hosts for both sub-connections, then
-     * throw an invalid transaction state exception. Nevertheless, the methods defined in the
-     * ReplicationConnection interface will be allowed as they are the only way to leave from an
-     * empty hosts lists situation.
+     * Checks if this connection is in a state capable to invoke the provided
+     * method. If the connection is in an inconsistent state, i.e. it has no
+     * hosts for both sub-connections, then throw an invalid transaction state
+     * exception. Nevertheless, the methods defined in the ReplicationConnection
+     * interface will be allowed as they are the only way to leave from an empty
+     * hosts lists situation.
      *
      * @param method method
      * @throws Throwable if an error occurs
@@ -351,7 +357,8 @@ public class ReplicationConnectionProxy extends MultiHostConnectionProxy impleme
     }
 
     /**
-     * Pings both l/b connections. Switch to another connection in case of failure.
+     * Pings both l/b connections. Switch to another connection in case of
+     * failure.
      */
     @Override
     public void doPing() throws SQLException {

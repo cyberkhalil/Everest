@@ -33,9 +33,9 @@ import com.mysql.cj.x.protobuf.MysqlxExpr.ColumnIdentifier;
 import com.mysql.cj.x.protobuf.MysqlxExpr.Expr;
 
 /**
- * Representation of a single update operation in a list of operations to be performed by
- * {@link ModifyStatement}. Used internally for transformation of X DevAPI parameters into X
- * Protocol ones.
+ * Representation of a single update operation in a list of operations to be
+ * performed by {@link ModifyStatement}. Used internally for transformation of X
+ * DevAPI parameters into X Protocol ones.
  */
 public class UpdateSpec {
 

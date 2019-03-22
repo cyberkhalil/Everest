@@ -38,13 +38,16 @@ import com.mysql.cj.protocol.ValueDecoder;
 public interface Row extends ProtocolEntity {
 
     /**
-     * Retrieve a value for the given column. This is the main facility to access values from the
-     * Row involving {@link ValueDecoder} and {@link ValueFactory} chain. Metadata <i>must</i> be
-     * set via Row constructor or {@link #setMetadata(ColumnDefinition)} call before calling this
-     * method to allow correct columnIndex boundaries check and data type recognition.
+     * Retrieve a value for the given column. This is the main facility to
+     * access values from the Row involving {@link ValueDecoder} and
+     * {@link ValueFactory} chain. Metadata <i>must</i> be set via Row
+     * constructor or {@link #setMetadata(ColumnDefinition)} call before calling
+     * this method to allow correct columnIndex boundaries check and data type
+     * recognition.
      *
      * @param <T> type to decode to
-     * @param columnIndex index of column to retrieve value from (0-indexed, not JDBC 1-indexed)
+     * @param columnIndex index of column to retrieve value from (0-indexed, not
+     * JDBC 1-indexed)
      * @param vf value factory used to create the return value after decoding
      * @return The return value from the value factory
      */
@@ -61,12 +64,12 @@ public interface Row extends ProtocolEntity {
     }
 
     /**
-     * Returns the value at the given column as a byte array. The bytes represent the raw values
-     * returned by the server.
+     * Returns the value at the given column as a byte array. The bytes
+     * represent the raw values returned by the server.
      *
      * @param columnIndex index of column (starting at 0) to return from.
-     * @return the value for the given column; if the value is SQL <code>NULL</code>, the value
-     * returned is <code>null</code>
+     * @return the value for the given column; if the value is SQL
+     * <code>NULL</code>, the value returned is <code>null</code>
      */
     default byte[] getBytes(int columnIndex) {
         // TODO check that "if the value is SQL NULL, the value returned is null" is correctly implemented
@@ -74,7 +77,8 @@ public interface Row extends ProtocolEntity {
     }
 
     /**
-     * Sets the given byte array as a raw column value (only works currently with ByteArrayRow).
+     * Sets the given byte array as a raw column value (only works currently
+     * with ByteArrayRow).
      *
      * @param columnIndex index of the column (starting at 0) to set to.
      * @param value the (raw) value to set

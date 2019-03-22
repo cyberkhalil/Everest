@@ -63,7 +63,8 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 public class ConnectionUrlTest {
 
     /**
-     * Internal class for generating hundreds of thousands of connection strings.
+     * Internal class for generating hundreds of thousands of connection
+     * strings.
      */
     private static class ConnectionStringGenerator implements Iterator<String>, Iterable<String> {
 
@@ -119,8 +120,8 @@ public class ConnectionUrlTest {
         boolean hasNext = true;
 
         /**
-         * Create an instance of {@link ConnectionStringGenerator} and initializes internal data for
-         * the iterator.
+         * Create an instance of {@link ConnectionStringGenerator} and
+         * initializes internal data for the iterator.
          *
          * @param numberOfHosts
          */
@@ -187,7 +188,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Builds a connection string with the parts corresponding to the current counter position.
+         * Builds a connection string with the parts corresponding to the
+         * current counter position.
          *
          * @return the connection string built from the current counter position
          */
@@ -244,7 +246,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Returns the user info part for the current position and the given host.
+         * Returns the user info part for the current position and the given
+         * host.
          *
          * @param fromHostIndex the host from where to get user info
          * @return the user info part
@@ -263,7 +266,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Returns the host info part for the current position and the given host.
+         * Returns the host info part for the current position and the given
+         * host.
          *
          * @param fromHostIndex the host from where to get host info
          * @return the host info part
@@ -316,7 +320,8 @@ public class ConnectionUrlTest {
         /**
          * Checks if current host info contains the given key & value parameter.
          *
-         * @param hostIndex the host from where the given information will be checked against
+         * @param hostIndex the host from where the given information will be
+         * checked against
          * @param key the key to check
          * @param value the value to check
          * @return true if the key/value pair exists, false otherwise
@@ -330,8 +335,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Returns the number of host specific parameters existing in the current position and the
-         * given host.
+         * Returns the number of host specific parameters existing in the
+         * current position and the given host.
          *
          * @param hostIndex the host from where to get the count
          * @return the number of host specific parameters
@@ -347,7 +352,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Checks if the current connection properties contain the given key & value.
+         * Checks if the current connection properties contain the given key &
+         * value.
          *
          * @param key the key to check
          * @param value the value to check
@@ -362,7 +368,8 @@ public class ConnectionUrlTest {
         }
 
         /**
-         * Returns the number of connection parameters existing the the current position.
+         * Returns the number of connection parameters existing the the current
+         * position.
          *
          * @return the number of connection parameters
          */
@@ -407,8 +414,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Checks if the values returned from {@link ConnectionUrl.Type#fromValue(String, int)} are
-     * correct.
+     * Checks if the values returned from
+     * {@link ConnectionUrl.Type#fromValue(String, int)} are correct.
      */
     @Test
     public void testTypeEnumCorrectValues() {
@@ -433,8 +440,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Tests the {@link ConnectionUrlParser} with close to one million of different connection
-     * string variations.
+     * Tests the {@link ConnectionUrlParser} with close to one million of
+     * different connection string variations.
      */
     @Test
     public void testConnectionStringParser() {
@@ -503,8 +510,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Tests the {@link ConnectionUrl#acceptsUrl(String)} method for supported and non-supported
-     * protocols.
+     * Tests the {@link ConnectionUrl#acceptsUrl(String)} method for supported
+     * and non-supported protocols.
      */
     @Test
     public void testConnectionStringAcceptsUrl() {
@@ -550,8 +557,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Tests the {@link ConnectionUrl} with close to one million of different connection string
-     * variations.
+     * Tests the {@link ConnectionUrl} with close to one million of different
+     * connection string variations.
      */
     @Test
     public void testConnectionUrl() {
@@ -586,8 +593,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Tests the {@link ConnectionUrlParser} and {@link ConnectionUrl} with non standard, but
-     * accepted, connection strings.
+     * Tests the {@link ConnectionUrlParser} and {@link ConnectionUrl} with non
+     * standard, but accepted, connection strings.
      *
      * @throws Exception
      */
@@ -1094,8 +1101,8 @@ public class ConnectionUrlTest {
     }
 
     /**
-     * Tests fix for BUG#28150662, CONNECTOR/J 8 MALFORMED DATABASE URL EXCEPTION WHIT CORRECT URL
-     * STRING.
+     * Tests fix for BUG#28150662, CONNECTOR/J 8 MALFORMED DATABASE URL
+     * EXCEPTION WHIT CORRECT URL STRING.
      */
     @Test
     public void testBug28150662() {

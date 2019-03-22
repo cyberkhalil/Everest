@@ -31,7 +31,8 @@ package com.mysql.cj.xdevapi;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * Transforms X DevAPI filter parameters into X Protocol message entities. Used internally.
+ * Transforms X DevAPI filter parameters into X Protocol message entities. Used
+ * internally.
  */
 public interface FilterParams {
 
@@ -69,11 +70,13 @@ public interface FilterParams {
      */
     public enum RowLockOptions {
         /**
-         * Do not wait to acquire row lock, fail with an error if a requested row is locked.
+         * Do not wait to acquire row lock, fail with an error if a requested
+         * row is locked.
          */
         NOWAIT(1),
         /**
-         * Do not wait to acquire a row lock, remove locked rows from the result set.
+         * Do not wait to acquire a row lock, remove locked rows from the result
+         * set.
          */
         SKIP_LOCKED(2);
 
@@ -201,8 +204,8 @@ public interface FilterParams {
     void addArg(String name, Object value);
 
     /**
-     * Verify that all arguments are bound. Throws {@link WrongArgumentException} if any placeholder
-     * argument is not bound.
+     * Verify that all arguments are bound. Throws
+     * {@link WrongArgumentException} if any placeholder argument is not bound.
      */
     void verifyAllArgsBound();
 

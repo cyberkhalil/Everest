@@ -185,7 +185,8 @@ public class TableSelectTest extends BaseTableTestCase {
     }
 
     /**
-     * Tests fix for Bug#22931433, GETTING VALUE OF BIT COLUMN RESULTS IN EXCEPTION.
+     * Tests fix for Bug#22931433, GETTING VALUE OF BIT COLUMN RESULTS IN
+     * EXCEPTION.
      *
      * @throws Exception if the test fails.
      */
@@ -439,7 +440,8 @@ public class TableSelectTest extends BaseTableTestCase {
     }
 
     /**
-     * Tests fix for BUG#22931277, COLUMN.GETTYPE() RETURNS ERROR FOR VALID DATATYPES.
+     * Tests fix for BUG#22931277, COLUMN.GETTYPE() RETURNS ERROR FOR VALID
+     * DATATYPES.
      */
     @Test
     public void testBug22931277() {

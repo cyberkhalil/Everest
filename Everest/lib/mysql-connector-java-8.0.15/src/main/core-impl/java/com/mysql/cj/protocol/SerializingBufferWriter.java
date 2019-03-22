@@ -39,9 +39,10 @@ import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A layer over {@link AsynchronousSocketChannel} that serializes all incoming write requests. This
- * means we queue any incoming buffer and don't begin writing it until the previous buffer has been
- * written fully. All buffers are transmitted atomically with respect to the caller/callback.
+ * A layer over {@link AsynchronousSocketChannel} that serializes all incoming
+ * write requests. This means we queue any incoming buffer and don't begin
+ * writing it until the previous buffer has been written fully. All buffers are
+ * transmitted atomically with respect to the caller/callback.
  */
 public class SerializingBufferWriter implements CompletionHandler<Long, Void> {
 
@@ -56,8 +57,8 @@ public class SerializingBufferWriter implements CompletionHandler<Long, Void> {
     private Queue<ByteBufferWrapper> pendingWrites = new LinkedList<>();
 
     /**
-     * Keeps the link between ByteBuffer to be written and the CompletionHandler object to be
-     * invoked for this one write operation.
+     * Keeps the link between ByteBuffer to be written and the CompletionHandler
+     * object to be invoked for this one write operation.
      */
     private static class ByteBufferWrapper {
 
@@ -83,9 +84,10 @@ public class SerializingBufferWriter implements CompletionHandler<Long, Void> {
     }
 
     /**
-     * Initiate a write of the current pending buffers. This method can only be called when no other
-     * writes are in progress. This method should be called under a mutex for this.pendingWrites to
-     * prevent concurrent writes to the channel.
+     * Initiate a write of the current pending buffers. This method can only be
+     * called when no other writes are in progress. This method should be called
+     * under a mutex for this.pendingWrites to prevent concurrent writes to the
+     * channel.
      */
     private void initiateWrite() {
         try {
@@ -104,10 +106,11 @@ public class SerializingBufferWriter implements CompletionHandler<Long, Void> {
     }
 
     /**
-     * Queue a buffer to be written to the channel. This method uses a mutex on the buffer list to
-     * synchronize for the following cases:
+     * Queue a buffer to be written to the channel. This method uses a mutex on
+     * the buffer list to synchronize for the following cases:
      * <ul>
-     * <li>The buffer list becomes empty after we check and miss writing to the channel.</li>
+     * <li>The buffer list becomes empty after we check and miss writing to the
+     * channel.</li>
      * <li>LinkedList is not thread-safe.</li>
      * </ul>
      *
@@ -185,8 +188,9 @@ public class SerializingBufferWriter implements CompletionHandler<Long, Void> {
     }
 
     /**
-     * Allow overwriting the channel once the writer has been established. Required for SSL/TLS
-     * connections when the encryption doesn't start until we send the capability flag to X Plugin.
+     * Allow overwriting the channel once the writer has been established.
+     * Required for SSL/TLS connections when the encryption doesn't start until
+     * we send the capability flag to X Plugin.
      *
      * @param channel {@link AsynchronousSocketChannel}
      */

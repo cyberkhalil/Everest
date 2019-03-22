@@ -31,39 +31,45 @@ package com.mysql.cj.xdevapi;
 import java.util.List;
 
 /**
- * X DevAPI introduces a new, high-level database connection concept that is called Session. When
- * working with X DevAPI it is important to understand this new Session concept which is different
- * from working with traditional low-level MySQL connections.
+ * X DevAPI introduces a new, high-level database connection concept that is
+ * called Session. When working with X DevAPI it is important to understand this
+ * new Session concept which is different from working with traditional
+ * low-level MySQL connections.
  * <p>
- * An application using the Session class can be run against a single MySQL server or large number
- * of MySQL servers forming a sharding cluster with no code changes.
+ * An application using the Session class can be run against a single MySQL
+ * server or large number of MySQL servers forming a sharding cluster with no
+ * code changes.
  * <p>
- * When using literal/verbatim SQL the common API patterns are mostly the same compared to using DML
- * and CRUD operations on Tables and Collections. Two differences exist: setting the current schema
- * and escaping names.
+ * When using literal/verbatim SQL the common API patterns are mostly the same
+ * compared to using DML and CRUD operations on Tables and Collections. Two
+ * differences exist: setting the current schema and escaping names.
  * <p>
- * You cannot call {@link Session#getSchema(String)} or {@link Session#getDefaultSchema()} to obtain
- * a {@link Schema} object against which you can issue verbatin SQL statements. The Schema object
- * does not feature a sql() function.
+ * You cannot call {@link Session#getSchema(String)} or
+ * {@link Session#getDefaultSchema()} to obtain a {@link Schema} object against
+ * which you can issue verbatin SQL statements. The Schema object does not
+ * feature a sql() function.
  * <p>
- * The sql() function is a method of the {@link Session} class. Use {@link Session#sql(String)} and
- * the SQL command USE to change the current schema
+ * The sql() function is a method of the {@link Session} class. Use
+ * {@link Session#sql(String)} and the SQL command USE to change the current
+ * schema
  * <p>
  * Session session = SessionFactory.getSession("root:s3kr3t@localhost");<br>
  * session.sql("USE test");
  * <p>
- * If a Session has been established using a data source file the name of the default schema can be
- * obtained to change the current database.
+ * If a Session has been established using a data source file the name of the
+ * default schema can be obtained to change the current database.
  * <p>
  * Properties p = new Properties();<br>
- * p.setProperty("dataSourceFile", "/home/app_instance50/mysqlxconfig.json");<br>
+ * p.setProperty("dataSourceFile",
+ * "/home/app_instance50/mysqlxconfig.json");<br>
  * Session session = SessionFactory.getSession(p);<br>
  * String defaultSchema = session.getDefaultSchema().getName();<br>
  * session.sql("USE ?").bind(defaultSchema).execute();<br>
  * <p>
- * A quoting function exists to escape SQL names/identifiers. StringUtils.quoteIdentifier(String,
- * boolean) will escape the identifier given in accordance to the settings of the current
- * connection. The escape function must not be used to escape values. Use the value bind syntax of
+ * A quoting function exists to escape SQL names/identifiers.
+ * StringUtils.quoteIdentifier(String, boolean) will escape the identifier given
+ * in accordance to the settings of the current connection. The escape function
+ * must not be used to escape values. Use the value bind syntax of
  * {@link Session#sql(String)} instead.
  * <p>
  * // use bind syntax for values<br>
@@ -76,13 +82,14 @@ import java.util.List;
  * <br>
  * session.sql(create).execute();
  * <p>
- * Users of the CRUD API do not need to escape identifiers. This is true for working with
- * collections and for working with relational tables.
+ * Users of the CRUD API do not need to escape identifiers. This is true for
+ * working with collections and for working with relational tables.
  */
 public interface Session {
 
     /**
-     * Retrieve the list of Schema objects for which the current user has access.
+     * Retrieve the list of Schema objects for which the current user has
+     * access.
      *
      * @return list of Schema objects
      */
@@ -119,8 +126,8 @@ public interface Session {
     Schema createSchema(String schemaName);
 
     /**
-     * Create and return a new schema with the name given by name. If the schema already exists, a
-     * reference to it is returned.
+     * Create and return a new schema with the name given by name. If the schema
+     * already exists, a reference to it is returned.
      *
      * @param schemaName name of schema to create
      * @param reuseExistingObject true to reuse
@@ -170,18 +177,19 @@ public interface Session {
     void rollback();
 
     /**
-     * Creates a transaction savepoint with an implementation-defined generated name and returns its
-     * name, which can be used in {@link #rollbackTo(String)} or {@link #releaseSavepoint(String)}.
-     * Calling this method more than once should always work. The generated name shall be unique per
-     * session.
+     * Creates a transaction savepoint with an implementation-defined generated
+     * name and returns its name, which can be used in
+     * {@link #rollbackTo(String)} or {@link #releaseSavepoint(String)}. Calling
+     * this method more than once should always work. The generated name shall
+     * be unique per session.
      *
      * @return savepoint name
      */
     String setSavepoint();
 
     /**
-     * Creates or replaces a transaction savepoint with the given name. Calling this method more
-     * than once should always work.
+     * Creates or replaces a transaction savepoint with the given name. Calling
+     * this method more than once should always work.
      *
      * @param name savepoint name
      * @return savepoint name
@@ -189,25 +197,28 @@ public interface Session {
     String setSavepoint(String name);
 
     /**
-     * Rolls back the transaction to the named savepoint. This method will succeed as long as the
-     * given save point has not been already rolled back or released. Rolling back to a savepoint
-     * prior to the one named will release or rollback any that came after.
+     * Rolls back the transaction to the named savepoint. This method will
+     * succeed as long as the given save point has not been already rolled back
+     * or released. Rolling back to a savepoint prior to the one named will
+     * release or rollback any that came after.
      *
      * @param name savepoint name
      */
     void rollbackTo(String name);
 
     /**
-     * Releases the named savepoint. This method will succeed as long as the given save point has
-     * not been already rolled back or released. Rolling back to a savepoint prior to the one named
-     * will release or rollback any that came after.
+     * Releases the named savepoint. This method will succeed as long as the
+     * given save point has not been already rolled back or released. Rolling
+     * back to a savepoint prior to the one named will release or rollback any
+     * that came after.
      *
      * @param name savepoint name
      */
     void releaseSavepoint(String name);
 
     /**
-     * Create a native SQL command. Placeholders are supported using the native "?" syntax.
+     * Create a native SQL command. Placeholders are supported using the native
+     * "?" syntax.
      *
      * @param sql native SQL statement
      * @return {@link SqlStatement}

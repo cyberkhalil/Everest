@@ -184,9 +184,9 @@ public class XProtocolTest extends InternalXBaseTestCase {
     }
 
     /**
-     * This tests that all types are decoded correctly. We retrieve them all as strings which
-     * happens after the decoding step. This is an exhaustive types of type decoding and metadata
-     * from the server.
+     * This tests that all types are decoded correctly. We retrieve them all as
+     * strings which happens after the decoding step. This is an exhaustive
+     * types of type decoding and metadata from the server.
      */
     @Test
     public void testDecodingAllTypes() {
@@ -294,7 +294,8 @@ public class XProtocolTest extends InternalXBaseTestCase {
     }
 
     /**
-     * Test DML that is executed with <i>StmtExecute</i> and does not return a result set.
+     * Test DML that is executed with <i>StmtExecute</i> and does not return a
+     * result set.
      */
     @Test
     public void testSqlDml() {
@@ -483,7 +484,8 @@ public class XProtocolTest extends InternalXBaseTestCase {
     }
 
     /**
-     * This is a development method that will print a detailed result set for any command sent.
+     * This is a development method that will print a detailed result set for
+     * any command sent.
      */
     @Test
     public void testResultSet() {

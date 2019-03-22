@@ -95,9 +95,11 @@ public class SessionFactory {
     }
 
     /**
-     * Creates a {@link Session} using the information contained in the given properties.
+     * Creates a {@link Session} using the information contained in the given
+     * properties.
      *
-     * @param properties the {@link Properties} instance that contains the session components.
+     * @param properties the {@link Properties} instance that contains the
+     * session components.
      * @return a {@link Session} instance.
      */
     public Session getSession(Properties properties) {

@@ -39,9 +39,10 @@ import com.mysql.cj.exceptions.ExceptionFactory;
 import com.mysql.cj.exceptions.WrongArgumentException;
 
 /**
- * Value factory to create {@link java.sql.Timestamp} instances. Timestamp instances are created
- * from fields returned from the db without a timezone. In order to create a <i>point-in-time</i>, a
- * time zone must be provided to interpret the fields.
+ * Value factory to create {@link java.sql.Timestamp} instances. Timestamp
+ * instances are created from fields returned from the db without a timezone. In
+ * order to create a <i>point-in-time</i>, a time zone must be provided to
+ * interpret the fields.
  */
 public class SqlTimestampValueFactory extends DefaultValueFactory<Timestamp> {
 

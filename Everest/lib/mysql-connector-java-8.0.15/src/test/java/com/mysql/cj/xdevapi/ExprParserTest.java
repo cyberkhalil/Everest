@@ -107,8 +107,9 @@ public class ExprParserTest {
     }
 
     /**
-     * Check that a string parses and is reconstituted as a string that we expect. Futher we parse
-     * the canonical version to make sure it doesn't change.
+     * Check that a string parses and is reconstituted as a string that we
+     * expect. Futher we parse the canonical version to make sure it doesn't
+     * change.
      */
     private void checkParseRoundTrip(String input, String expected) {
         if (expected == null) {

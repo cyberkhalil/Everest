@@ -63,18 +63,22 @@ import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.mysql.cj.util.Util;
 
 /**
- * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that load balances requests
- * across a series of MySQL JDBC connections, where the balancing takes place at transaction commit.
+ * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that
+ * load balances requests across a series of MySQL JDBC connections, where the
+ * balancing takes place at transaction commit.
  *
- * Therefore, for this to work (at all), you must use transactions, even if only reading data.
+ * Therefore, for this to work (at all), you must use transactions, even if only
+ * reading data.
  *
- * This implementation will invalidate connections that it detects have had communication errors
- * when processing a request. Problematic hosts will be added to a global blacklist for
- * loadBalanceBlacklistTimeout ms, after which they will be removed from the blacklist and made
- * eligible once again to be selected for new connections.
+ * This implementation will invalidate connections that it detects have had
+ * communication errors when processing a request. Problematic hosts will be
+ * added to a global blacklist for loadBalanceBlacklistTimeout ms, after which
+ * they will be removed from the blacklist and made eligible once again to be
+ * selected for new connections.
  *
- * This implementation is thread-safe, but it's questionable whether sharing a connection instance
- * amongst threads is a good idea, given that transactions are scoped to connections in JDBC.
+ * This implementation is thread-safe, but it's questionable whether sharing a
+ * connection instance amongst threads is a good idea, given that transactions
+ * are scoped to connections in JDBC.
  */
 public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implements PingTarget {
 
@@ -107,7 +111,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     /**
      * Static factory to create {@link LoadBalancedConnection} instances.
      *
-     * @param connectionUrl The connection URL containing the hosts in a load-balance setup.
+     * @param connectionUrl The connection URL containing the hosts in a
+     * load-balance setup.
      * @return A {@link LoadBalancedConnection} proxy.
      * @throws SQLException if an error occurs
      */
@@ -117,10 +122,11 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a proxy for java.sql.Connection that routes requests between the hosts in the
-     * connection URL.
+     * Creates a proxy for java.sql.Connection that routes requests between the
+     * hosts in the connection URL.
      *
-     * @param connectionUrl The connection URL containing the hosts to load balance.
+     * @param connectionUrl The connection URL containing the hosts to load
+     * balance.
      * @throws SQLException if an error occurs
      */
     public LoadBalancedConnectionProxy(LoadbalanceConnectionUrl connectionUrl) throws SQLException {
@@ -254,7 +260,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     /**
      * Propagates the connection proxy down through all live connections.
      *
-     * @param proxyConn The top level connection in the multi-host connections chain.
+     * @param proxyConn The top level connection in the multi-host connections
+     * chain.
      */
     @Override
     protected void propagateProxyDown(JdbcConnection proxyConn) {
@@ -269,8 +276,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Consults the registered LoadBalanceExceptionChecker if the given exception should trigger a
-     * connection fail-over.
+     * Consults the registered LoadBalanceExceptionChecker if the given
+     * exception should trigger a connection fail-over.
      *
      * @param t The Exception instance to check.
      * @return true if the given exception should trigger a connection fail-over
@@ -281,7 +288,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Always returns 'true' as there are no "masters" and "slaves" in this type of connection.
+     * Always returns 'true' as there are no "masters" and "slaves" in this type
+     * of connection.
      */
     @Override
     boolean isMasterConnection() {
@@ -316,8 +324,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Picks the "best" connection to use for the next transaction based on the BalanceStrategy in
-     * use.
+     * Picks the "best" connection to use for the next transaction based on the
+     * BalanceStrategy in use.
      *
      * @throws SQLException if an error occurs
      */
@@ -373,8 +381,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a new physical connection for the given {@link HostInfo} and updates required
-     * internal mappings and statistics for that connection.
+     * Creates a new physical connection for the given {@link HostInfo} and
+     * updates required internal mappings and statistics for that connection.
      *
      * @param hostInfo The host info instance.
      * @return The new Connection instance.
@@ -416,11 +424,13 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Creates a new physical connection for the given host:port info. If the this connection's
-     * connection URL knows about this host:port then its host info is used, otherwise a new host
-     * info based on current connection URL defaults is spawned.
+     * Creates a new physical connection for the given host:port info. If the
+     * this connection's connection URL knows about this host:port then its host
+     * info is used, otherwise a new host info based on current connection URL
+     * defaults is spawned.
      *
-     * @param hostPortPair The host:port pair identifying the host to connect to.
+     * @param hostPortPair The host:port pair identifying the host to connect
+     * to.
      * @return The new Connection instance.
      * @throws SQLException if an error occurs
      */
@@ -510,8 +520,9 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Proxies method invocation on the java.sql.Connection interface, trapping "close", "isClosed"
-     * and "commit/rollback" to switch connections for load balancing. This is the continuation of
+     * Proxies method invocation on the java.sql.Connection interface, trapping
+     * "close", "isClosed" and "commit/rollback" to switch connections for load
+     * balancing. This is the continuation of
      * MultiHostConnectionProxy#invoke(Object, Method, Object[]).
      */
     @Override
@@ -685,8 +696,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Returns a local hosts blacklist, while cleaning up expired records from the global blacklist,
-     * or a blacklist with the hosts to be removed.
+     * Returns a local hosts blacklist, while cleaning up expired records from
+     * the global blacklist, or a blacklist with the hosts to be removed.
      *
      * @return A local hosts blacklist.
      */
@@ -737,7 +748,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Removes a host from the host list, allowing it some time to be released gracefully if needed.
+     * Removes a host from the host list, allowing it some time to be released
+     * gracefully if needed.
      *
      * @param hostPortPair The host to be removed.
      * @throws SQLException if an error occurs
@@ -816,7 +828,8 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
      * Adds a host to the hosts list.
      *
      * @param hostPortPair The host to be added.
-     * @return true if host was added and false if the host list already contains it
+     * @return true if host was added and false if the host list already
+     * contains it
      */
     public synchronized boolean addHost(String hostPortPair) {
         if (this.hostsToListIndexMap.containsKey(hostPortPair)) {
@@ -875,9 +888,10 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * A LoadBalancedConnection proxy that provides null-functionality. It can be used as a
-     * replacement of the <b>null</b> keyword in the places where a LoadBalancedConnection object
-     * cannot be effectively <b>null</b> because that would be a potential source of NPEs.
+     * A LoadBalancedConnection proxy that provides null-functionality. It can
+     * be used as a replacement of the <b>null</b> keyword in the places where a
+     * LoadBalancedConnection object cannot be effectively <b>null</b> because
+     * that would be a potential source of NPEs.
      */
     private static class NullLoadBalancedConnectionProxy implements InvocationHandler {
 

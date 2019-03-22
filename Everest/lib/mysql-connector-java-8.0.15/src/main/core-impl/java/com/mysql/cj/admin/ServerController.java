@@ -95,7 +95,8 @@ public class ServerController {
     }
 
     /**
-     * Creates a server controller for the MySQL server with the given basedir and datadir.
+     * Creates a server controller for the MySQL server with the given basedir
+     * and datadir.
      *
      * @param basedir the basedir to use when starting MySQL.
      * @param datadir the datadir to use when starting MySQL.
@@ -122,9 +123,11 @@ public class ServerController {
     }
 
     /**
-     * Starts the server, returning a java.lang.Process instance that represents the mysql server.
+     * Starts the server, returning a java.lang.Process instance that represents
+     * the mysql server.
      *
-     * @return Process a java.lang.Process instance representing the mysql server process.
+     * @return Process a java.lang.Process instance representing the mysql
+     * server process.
      * @throws IOException if an error occurs while starting the mysql server.
      */
     public Process start() throws IOException {
@@ -139,7 +142,8 @@ public class ServerController {
     /**
      * Stops the server (if started)
      *
-     * @param forceIfNecessary use forceStop if mysqladmin doesn't shut the server down
+     * @param forceIfNecessary use forceStop if mysqladmin doesn't shut the
+     * server down
      *
      * @throws IOException if an error occurs while stopping the server
      */
@@ -191,7 +195,8 @@ public class ServerController {
     }
 
     /**
-     * Returns the list of properties that will be used to start/control the server.
+     * Returns the list of properties that will be used to start/control the
+     * server.
      *
      * @return Properties the list of properties.
      */
@@ -204,8 +209,8 @@ public class ServerController {
     }
 
     /**
-     * Returns the full commandline used to start the mysql server, including and arguments to be
-     * passed to the server process.
+     * Returns the full commandline used to start the mysql server, including
+     * and arguments to be passed to the server process.
      *
      * @return String the commandline used to start the mysql server.
      */
@@ -258,8 +263,8 @@ public class ServerController {
     }
 
     /**
-     * Builds the list of command-line arguments that will be passed to the mysql server to be
-     * started.
+     * Builds the list of command-line arguments that will be passed to the
+     * mysql server to be started.
      *
      * @return String the list of command-line arguments.
      */

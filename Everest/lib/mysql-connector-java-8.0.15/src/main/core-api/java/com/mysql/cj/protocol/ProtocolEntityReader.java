@@ -46,12 +46,12 @@ public interface ProtocolEntityReader<T extends ProtocolEntity, M extends Messag
     }
 
     /**
-     * Reads one result set off of the wire, if the result is actually an update count, creates an
-     * update-count only result set.
+     * Reads one result set off of the wire, if the result is actually an update
+     * count, creates an update-count only result set.
      *
      * @param maxRows the maximum number of rows to read (-1 means all rows)
-     * @param streamResults should the driver leave the results on the wire, and read them only when
-     * needed?
+     * @param streamResults should the driver leave the results on the wire, and
+     * read them only when needed?
      * @param resultPacket the first packet of information in the result set
      * @param metadata use this metadata instead of the one provided on wire
      * @param protocolEntityFactory {@link ProtocolEntityFactory} instance

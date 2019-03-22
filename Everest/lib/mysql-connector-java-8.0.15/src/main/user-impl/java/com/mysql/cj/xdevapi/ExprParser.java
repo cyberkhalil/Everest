@@ -93,8 +93,8 @@ public class ExprParser {
      */
     int tokenPos = 0;
     /**
-     * Mapping of names to positions for named placeholders. Used for both string values ":arg" and
-     * numeric values ":2".
+     * Mapping of names to positions for named placeholders. Used for both
+     * string values ":arg" and numeric values ":2".
      */
     Map<String, Integer> placeholderNameToPosition = new HashMap<>();
     /**
@@ -238,8 +238,9 @@ public class ExprParser {
     }
 
     /**
-     * Helper function to match integer or floating point numbers. This function should be called
-     * when the position is on the first character of the number (a digit or '.').
+     * Helper function to match integer or floating point numbers. This function
+     * should be called when the position is on the first character of the
+     * number (a digit or '.').
      *
      * @param i The current position in the string
      * @return the next position in the string after the number.
@@ -515,7 +516,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse a paren-enclosed expression list. This is used for function params or IN params.
+     * Parse a paren-enclosed expression list. This is used for function params
+     * or IN params.
      *
      * @return a List of expressions
      */
@@ -624,7 +626,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse a JSON-style document path, like WL#7909, but prefix by @. instead of $.
+     * Parse a JSON-style document path, like WL#7909, but prefix by @. instead
+     * of $.
      *
      * @return list of {@link DocumentPathItem} objects
      */
@@ -666,7 +669,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse a column identifier (which may optionally include a JSON document path).
+     * Parse a column identifier (which may optionally include a JSON document
+     * path).
      *
      * @return {@link Expr}
      */
@@ -880,7 +884,8 @@ public class ExprParser {
     }
 
     /**
-     * An expression parser. (used in {@link #parseLeftAssocBinaryOpExpr(TokenType[], ParseExpr)})
+     * An expression parser. (used in
+     * {@link #parseLeftAssocBinaryOpExpr(TokenType[], ParseExpr)})
      */
     @FunctionalInterface
     static interface ParseExpr {
@@ -892,7 +897,8 @@ public class ExprParser {
      * Parse a left-associated binary operator.
      *
      * @param types The token types that denote this operator.
-     * @param innerParser The inner parser that should be called to parse operands.
+     * @param innerParser The inner parser that should be called to parse
+     * operands.
      * @return an expression tree of the binary operator or a single operand
      */
     Expr parseLeftAssocBinaryOpExpr(TokenType[] types, ParseExpr innerParser) {
@@ -969,7 +975,8 @@ public class ExprParser {
     }
 
     /**
-     * Workaround for improper comparisons in the server. (lack of JSON_UNQUOTE())
+     * Workaround for improper comparisons in the server. (lack of
+     * JSON_UNQUOTE())
      *
      * @param e {@link Expr}
      * @return {@link Expr}
@@ -1102,8 +1109,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse an ORDER BY specification which is a comma-separated list of expressions, each may be
-     * optionally suffixed by ASC/DESC.
+     * Parse an ORDER BY specification which is a comma-separated list of
+     * expressions, each may be optionally suffixed by ASC/DESC.
      *
      * @return list of {@link Order} objects
      */
@@ -1123,8 +1130,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse a SELECT projection which is a comma-separated list of expressions, each optionally
-     * suffixed with a target alias.
+     * Parse a SELECT projection which is a comma-separated list of expressions,
+     * each optionally suffixed with a target alias.
      *
      * @return list of {@link Projection} objects
      */
@@ -1160,8 +1167,8 @@ public class ExprParser {
     }
 
     /**
-     * Parse a document projection which is similar to SELECT but with document paths as the target
-     * alias.
+     * Parse a document projection which is similar to SELECT but with document
+     * paths as the target alias.
      *
      * @return list of {@link Projection} objects
      */

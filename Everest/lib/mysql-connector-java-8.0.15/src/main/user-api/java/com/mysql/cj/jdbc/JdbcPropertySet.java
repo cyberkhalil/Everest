@@ -39,11 +39,13 @@ public interface JdbcPropertySet extends PropertySet {
     /**
      * Exposes all ConnectionPropertyInfo instances as DriverPropertyInfo
      *
-     * @param info the properties to load into these ConnectionPropertyInfo instances
-     * @param slotsToReserve the number of DPI slots to reserve for 'standard' DPI properties (user,
-     * host, password, etc)
+     * @param info the properties to load into these ConnectionPropertyInfo
+     * instances
+     * @param slotsToReserve the number of DPI slots to reserve for 'standard'
+     * DPI properties (user, host, password, etc)
      *
-     * @return a list of all ConnectionPropertyInfo instances, as DriverPropertyInfo
+     * @return a list of all ConnectionPropertyInfo instances, as
+     * DriverPropertyInfo
      *
      * @throws SQLException if an error occurs
      */

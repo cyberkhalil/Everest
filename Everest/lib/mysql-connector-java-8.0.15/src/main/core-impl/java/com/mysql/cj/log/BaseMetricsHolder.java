@@ -33,7 +33,8 @@ public class BaseMetricsHolder {
     private final static int HISTOGRAM_BUCKETS = 20;
 
     /**
-     * If gathering metrics, what was the execution time of the longest query so far ?
+     * If gathering metrics, what was the execution time of the longest query so
+     * far ?
      */
     private long longestQueryTimeMs = 0;
 

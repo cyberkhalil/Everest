@@ -265,17 +265,18 @@ public class ExportControlled {
     }
 
     /**
-     * Converts the socket being used in the given CoreIO to an SSLSocket by performing the SSL/TLS
-     * handshake.
+     * Converts the socket being used in the given CoreIO to an SSLSocket by
+     * performing the SSL/TLS handshake.
      *
      * @param rawSocket original non-SSL socket
-     * @param socketConnection the Protocol instance containing the socket to convert to an
-     * SSLSocket.
+     * @param socketConnection the Protocol instance containing the socket to
+     * convert to an SSLSocket.
      * @param serverVersion ServerVersion object
      * @return SSL socket
      * @throws IOException if i/o exception occurs
-     * @throws SSLParamsException if the handshake fails, or if this distribution of Connector/J
-     * doesn't contain the SSL crypto hooks needed to perform the handshake.
+     * @throws SSLParamsException if the handshake fails, or if this
+     * distribution of Connector/J doesn't contain the SSL crypto hooks needed
+     * to perform the handshake.
      * @throws FeatureNotAvailableException if TLS is not supported
      */
     public static Socket performTlsHandshake(Socket rawSocket, SocketConnection socketConnection, ServerVersion serverVersion)
@@ -312,8 +313,8 @@ public class ExportControlled {
     }
 
     /**
-     * Implementation of X509TrustManager wrapping JVM X509TrustManagers to add expiration and
-     * identity check
+     * Implementation of X509TrustManager wrapping JVM X509TrustManagers to add
+     * expiration and identity check
      */
     public static class X509TrustManagerWrapper implements X509TrustManager {
 
@@ -416,7 +417,8 @@ public class ExportControlled {
      *
      * @param clientCertificateKeyStoreUrl clientCertificateKeyStoreUrl
      * @param clientCertificateKeyStoreType clientCertificateKeyStoreType
-     * @param clientCertificateKeyStorePassword clientCertificateKeyStorePassword
+     * @param clientCertificateKeyStorePassword
+     * clientCertificateKeyStorePassword
      * @param trustCertificateKeyStoreUrl trustCertificateKeyStoreUrl
      * @param trustCertificateKeyStoreType trustCertificateKeyStoreType
      * @param trustCertificateKeyStorePassword trustCertificateKeyStorePassword
@@ -628,8 +630,9 @@ public class ExportControlled {
     }
 
     /**
-     * Perform the handshaking step of the TLS connection. We use the `sslEngine' along with the
-     * `channel' to exchange messages with the server to setup an encrypted channel.
+     * Perform the handshaking step of the TLS connection. We use the
+     * `sslEngine' along with the `channel' to exchange messages with the server
+     * to setup an encrypted channel.
      *
      * @param sslEngine {@link SSLEngine}
      * @param channel {@link AsynchronousSocketChannel}

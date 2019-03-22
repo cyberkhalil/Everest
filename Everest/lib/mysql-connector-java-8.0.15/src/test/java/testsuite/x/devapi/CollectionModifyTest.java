@@ -272,8 +272,8 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Tests fix for BUG#24471057, UPDATE FAILS WHEN THE NEW VALUE IS OF TYPE DBDOC WHICH HAS ARRAY
-     * IN IT.
+     * Tests fix for BUG#24471057, UPDATE FAILS WHEN THE NEW VALUE IS OF TYPE
+     * DBDOC WHICH HAS ARRAY IN IT.
      *
      * @throws Exception if the test fails.
      */
@@ -497,8 +497,8 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Tests fix for BUG#27185332, WL#11210:ERROR IS THROWN WHEN NESTED EMPTY DOCUMENTS ARE INSERTED
-     * TO COLLECTION.
+     * Tests fix for BUG#27185332, WL#11210:ERROR IS THROWN WHEN NESTED EMPTY
+     * DOCUMENTS ARE INSERTED TO COLLECTION.
      *
      * @throws Exception if the test fails.
      */
@@ -665,7 +665,8 @@ public class CollectionModifyTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Tests fix for BUG#27226293, JSONNUMBER.GETINTEGER() & NUMBERFORMATEXCEPTION.
+     * Tests fix for BUG#27226293, JSONNUMBER.GETINTEGER() &
+     * NUMBERFORMATEXCEPTION.
      */
     @Test
     public void testBug27226293() {

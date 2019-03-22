@@ -254,8 +254,8 @@ public class XATest extends BaseTestCase {
     }
 
     /**
-     * Tests operation of local transactions on XAConnections when global transactions are in or not
-     * in progress (follows from BUG#17401).
+     * Tests operation of local transactions on XAConnections when global
+     * transactions are in or not in progress (follows from BUG#17401).
      *
      * @throws Exception if the testcase fails
      */

@@ -63,9 +63,10 @@ import testsuite.TestUtils;
 public class InternalXBaseTestCase {
 
     /**
-     * The default character set used to interpret metadata. Use <i>latin1</i> - MySQL's default.
-     * This value is provided by higher layers above the protocol so we avoid issues by using only
-     * ASCII characters for metadata in these tests.
+     * The default character set used to interpret metadata. Use <i>latin1</i> -
+     * MySQL's default. This value is provided by higher layers above the
+     * protocol so we avoid issues by using only ASCII characters for metadata
+     * in these tests.
      */
     protected static final String DEFAULT_METADATA_CHARSET = "latin1";
 
@@ -248,8 +249,8 @@ public class InternalXBaseTestCase {
     }
 
     /**
-     * Checks if the MySQL version we are connected to meets the minimum {@link ServerVersion}
-     * provided.
+     * Checks if the MySQL version we are connected to meets the minimum
+     * {@link ServerVersion} provided.
      *
      * @param version the minimum {@link ServerVersion} accepted
      * @return true or false according to versions comparison

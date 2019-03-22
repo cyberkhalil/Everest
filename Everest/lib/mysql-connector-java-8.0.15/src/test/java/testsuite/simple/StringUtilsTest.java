@@ -661,8 +661,8 @@ public class StringUtilsTest extends BaseTestCase {
     }
 
     /**
-     * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier() methods using back
-     * quote marks.
+     * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier()
+     * methods using back quote marks.
      *
      * @throws Exception
      */
@@ -752,8 +752,8 @@ public class StringUtilsTest extends BaseTestCase {
     }
 
     /**
-     * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier() methods using double
-     * quote marks.
+     * Tests StringUtil.quoteIdentifier() and StringUtil.unQuoteIdentifier()
+     * methods using double quote marks.
      *
      * @throws Exception
      */

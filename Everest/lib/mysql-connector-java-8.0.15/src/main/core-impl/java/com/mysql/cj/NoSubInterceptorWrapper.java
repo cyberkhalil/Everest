@@ -38,8 +38,8 @@ import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.protocol.ServerSession;
 
 /**
- * Wraps query interceptors during driver startup so that they don't produce different result sets
- * than we expect.
+ * Wraps query interceptors during driver startup so that they don't produce
+ * different result sets than we expect.
  */
 public class NoSubInterceptorWrapper implements QueryInterceptor {
 

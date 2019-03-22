@@ -699,7 +699,8 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * @param clearServerParameters flag indicating whether we need an additional clean up
+     * @param clearServerParameters flag indicating whether we need an
+     * additional clean up
      */
     public void clearParameters(boolean clearServerParameters) {
         boolean hadLongData = false;
@@ -726,8 +727,8 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * Computes the maximum parameter set size and the size of the entire batch given the number of
-     * arguments in the batch.
+     * Computes the maximum parameter set size and the size of the entire batch
+     * given the number of arguments in the batch.
      */
     @Override
     protected long[] computeMaxParameterSetSizeAndBatchSize(int numBatchedArgs) {

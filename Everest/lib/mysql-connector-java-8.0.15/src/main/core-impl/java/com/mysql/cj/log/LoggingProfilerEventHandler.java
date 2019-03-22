@@ -29,7 +29,8 @@
 package com.mysql.cj.log;
 
 /**
- * A profile event handler that just logs to the standard logging mechanism of the driver.
+ * A profile event handler that just logs to the standard logging mechanism of
+ * the driver.
  */
 public class LoggingProfilerEventHandler implements ProfilerEventHandler {
 

@@ -70,8 +70,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String durationUnits;
 
     /**
-     * The hostname the event occurred on (as an index into a dictionary, used by 'remote' profilers
-     * for efficiency)?
+     * The hostname the event occurred on (as an index into a dictionary, used
+     * by 'remote' profilers for efficiency)?
      */
     protected int hostNameIndex;
 
@@ -81,8 +81,8 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String hostName;
 
     /**
-     * The catalog the event occurred on (as an index into a dictionary, used by 'remote' profilers
-     * for efficiency)?
+     * The catalog the event occurred on (as an index into a dictionary, used by
+     * 'remote' profilers for efficiency)?
      */
     protected int catalogIndex;
 
@@ -92,13 +92,14 @@ public class ProfilerEventImpl implements ProfilerEvent {
     protected String catalog;
 
     /**
-     * Where was the event created (as an index into a dictionary, used by 'remote' profilers for
-     * efficiency)?
+     * Where was the event created (as an index into a dictionary, used by
+     * 'remote' profilers for efficiency)?
      */
     protected int eventCreationPointIndex;
 
     /**
-     * Where was the event created (as a string description of the eventCreationPoint)?
+     * Where was the event created (as a string description of the
+     * eventCreationPoint)?
      */
     protected String eventCreationPointDesc;
 

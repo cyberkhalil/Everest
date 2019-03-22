@@ -34,8 +34,8 @@ package com.mysql.cj.protocol;
 public interface PacketSentTimeHolder {
 
     /**
-     * Returns the send time of a very recent packet. Should be used in exception generation when
-     * the send operation failed.
+     * Returns the send time of a very recent packet. Should be used in
+     * exception generation when the send operation failed.
      *
      * @return very recent packet send time
      */
@@ -44,8 +44,9 @@ public interface PacketSentTimeHolder {
     }
 
     /**
-     * Returns the send time of a previous packet. Should be used in exception generation when the
-     * send operation was successful but the following read operation failed.
+     * Returns the send time of a previous packet. Should be used in exception
+     * generation when the send operation was successful but the following read
+     * operation failed.
      *
      * @return previous packet send time
      */

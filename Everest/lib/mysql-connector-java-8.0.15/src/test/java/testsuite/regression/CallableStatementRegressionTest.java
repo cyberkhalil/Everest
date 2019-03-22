@@ -69,7 +69,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#3539 getProcedures() does not return any procedures in result set
+     * Tests fix for BUG#3539 getProcedures() does not return any procedures in
+     * result set
      *
      * @throws Exception if an error occurs.
      */
@@ -83,7 +84,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#3540 getProcedureColumns doesn't work with wildcards for procedure name
+     * Tests fix for BUG#3540 getProcedureColumns doesn't work with wildcards
+     * for procedure name
      *
      * @throws Exception if an error occurs.
      */
@@ -111,7 +113,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#7026 - DBMD.getProcedures() doesn't respect catalog parameter
+     * Tests fix for BUG#7026 - DBMD.getProcedures() doesn't respect catalog
+     * parameter
      *
      * @throws Exception if the test fails.
      */
@@ -153,8 +156,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9319 -- Stored procedures with same name in different databases confuse the
-     * driver when it tries to determine parameter counts/types.
+     * Tests fix for BUG#9319 -- Stored procedures with same name in different
+     * databases confuse the driver when it tries to determine parameter
+     * counts/types.
      *
      * @throws Exception if the test fails
      */
@@ -259,8 +263,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9682 - Stored procedures with DECIMAL parameters with storage
-     * specifications that contained "," in them would fail.
+     * Tests fix for BUG#9682 - Stored procedures with DECIMAL parameters with
+     * storage specifications that contained "," in them would fail.
      *
      * @throws Exception if the test fails.
      */
@@ -282,9 +286,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix forBUG#10310 - Driver doesn't support {?=CALL(...)} for calling stored functions.
-     * This involved adding support for function retrieval to DatabaseMetaData.getProcedures() and
-     * getProcedureColumns() as well.
+     * Tests fix forBUG#10310 - Driver doesn't support {?=CALL(...)} for calling
+     * stored functions. This involved adding support for function retrieval to
+     * DatabaseMetaData.getProcedures() and getProcedureColumns() as well.
      *
      * @throws Exception if the test fails.
      */
@@ -404,8 +408,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#12417 - stored procedure catalog name is case-sensitive on Windows (this is
-     * actually a server bug, but we have a workaround in place for it now).
+     * Tests fix for Bug#12417 - stored procedure catalog name is case-sensitive
+     * on Windows (this is actually a server bug, but we have a workaround in
+     * place for it now).
      *
      * @throws Exception if the test fails.
      */
@@ -480,9 +485,10 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#17898 - registerOutParameter not working when some parameters
-     * pre-populated. Still waiting for feedback from JDBC experts group to determine what correct
-     * parameter count from getMetaData() should be, however.
+     * Tests fix for BUG#17898 - registerOutParameter not working when some
+     * parameters pre-populated. Still waiting for feedback from JDBC experts
+     * group to determine what correct parameter count from getMetaData() should
+     * be, however.
      *
      * @throws Exception if the test fails
      */
@@ -502,8 +508,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#21462 - JDBC (and ODBC) specifications allow no-parenthesis CALL statements
-     * for procedures with no arguments, MySQL server does not.
+     * Tests fix for BUG#21462 - JDBC (and ODBC) specifications allow
+     * no-parenthesis CALL statements for procedures with no arguments, MySQL
+     * server does not.
      *
      * @throws Exception if the test fails.
      */
@@ -525,8 +532,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#22024 - Newlines causing whitespace to span confuse procedure parser when
-     * getting parameter metadata for stored procedures.
+     * Tests fix for BUG#22024 - Newlines causing whitespace to span confuse
+     * procedure parser when getting parameter metadata for stored procedures.
      *
      * @throws Exception if the test fails
      */
@@ -554,9 +561,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests workaround for server crash when calling stored procedures via a server-side prepared
-     * statement (driver now detects prepare(stored procedure) and substitutes client-side prepared
-     * statement).
+     * Tests workaround for server crash when calling stored procedures via a
+     * server-side prepared statement (driver now detects prepare(stored
+     * procedure) and substitutes client-side prepared statement).
      *
      * @throws Exception if the test fails
      */
@@ -650,7 +657,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25379 - INOUT parameters in CallableStatements get doubly-escaped.
+     * Tests fix for BUG#25379 - INOUT parameters in CallableStatements get
+     * doubly-escaped.
      *
      * @throws Exception if the test fails.
      */
@@ -667,8 +675,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25715 - CallableStatements with OUT/INOUT parameters that are "binary" have
-     * extra 7 bytes (which happens to be the _binary introducer!)
+     * Tests fix for BUG#25715 - CallableStatements with OUT/INOUT parameters
+     * that are "binary" have extra 7 bytes (which happens to be the _binary
+     * introducer!)
      *
      * @throws Exception if the test fails.
      */
@@ -852,12 +861,13 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28689 - CallableStatement.executeBatch() doesn't work when connection
-     * property "noAccessToProcedureBodies" has been set to "true".
+     * Tests fix for BUG#28689 - CallableStatement.executeBatch() doesn't work
+     * when connection property "noAccessToProcedureBodies" has been set to
+     * "true".
      *
-     * The fix involves changing the behavior of "noAccessToProcedureBodies", in that the driver
-     * will now report all paramters as "IN" paramters but allow callers to call
-     * registerOutParameter() on them.
+     * The fix involves changing the behavior of "noAccessToProcedureBodies", in
+     * that the driver will now report all paramters as "IN" paramters but allow
+     * callers to call registerOutParameter() on them.
      *
      * @throws Exception
      */
@@ -891,8 +901,9 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#31823 - CallableStatement.setNull() on a stored function would throw an
-     * ArrayIndexOutOfBounds when setting the last parameter to null when calling setNull().
+     * Tests fix for Bug#31823 - CallableStatement.setNull() on a stored
+     * function would throw an ArrayIndexOutOfBounds when setting the last
+     * parameter to null when calling setNull().
      *
      * @throws Exception
      */
@@ -1223,9 +1234,10 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#57022 - cannot execute a store procedure with output parameters Problem was
-     * in CallableStatement.java, private void determineParameterTypes() throws SQLException if
-     * (procName.indexOf(".") == -1) { useCatalog = true; } The fix will be to "sanitize" db.sp call
+     * Tests fix for Bug#57022 - cannot execute a store procedure with output
+     * parameters Problem was in CallableStatement.java, private void
+     * determineParameterTypes() throws SQLException if (procName.indexOf(".")
+     * == -1) { useCatalog = true; } The fix will be to "sanitize" db.sp call
      * just like in noAccessToProcedureBodies.
      *
      * @throws Exception if the test fails
@@ -1276,7 +1288,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#60816 - Cannot pass NULL to an INOUT procedure parameter
+     * Tests fix for BUG#60816 - Cannot pass NULL to an INOUT procedure
+     * parameter
      *
      * @throws Exception
      */
@@ -1320,8 +1333,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#79561 - NullPointerException when calling a fully qualified stored
-     * procedure
+     * Tests fix for Bug#79561 - NullPointerException when calling a fully
+     * qualified stored procedure
      */
     public void testBug79561() throws Exception {
         createProcedure("testBug79561", "(OUT o VARCHAR(100)) BEGIN SELECT 'testBug79561 data' INTO o; END");
@@ -1384,8 +1397,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#84324 - CallableStatement.extractProcedureName() not work when catalog name
-     * with dash.
+     * Tests fix for Bug#84324 - CallableStatement.extractProcedureName() not
+     * work when catalog name with dash.
      */
     public void testBug84324() throws Exception {
         createDatabase("`testBug84324-db`");
@@ -1459,8 +1472,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#26259384 - CALLABLE STATEMENT GIVES ERROR IN C/JAVA WHEN RUN AGAINST MYSQL
-     * 8.0
+     * Tests fix for BUG#26259384 - CALLABLE STATEMENT GIVES ERROR IN C/JAVA
+     * WHEN RUN AGAINST MYSQL 8.0
      *
      * @throws Exception
      */
@@ -1475,8 +1488,8 @@ public class CallableStatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#87704 (26771560) - THE STREAM GETS THE RESULT SET ?THE DRIVER SIDE GET
-     * WRONG ABOUT GETLONG().
+     * Tests fix for BUG#87704 (26771560) - THE STREAM GETS THE RESULT SET ?THE
+     * DRIVER SIDE GET WRONG ABOUT GETLONG().
      *
      * @throws Exception if an error occurs.
      */

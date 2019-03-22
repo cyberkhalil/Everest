@@ -77,14 +77,15 @@ import com.mysql.cj.util.StringUtils;
  * This class provides information about the database as a whole.
  * </p>
  * <p>
- * Many of the methods here return lists of information in ResultSets. You can use the normal
- * ResultSet methods such as getString and getInt to retrieve the data from these ResultSets. If a
- * given form of metadata is not available, these methods show throw a SQLException.
+ * Many of the methods here return lists of information in ResultSets. You can
+ * use the normal ResultSet methods such as getString and getInt to retrieve the
+ * data from these ResultSets. If a given form of metadata is not available,
+ * these methods show throw a SQLException.
  * </p>
  * <p>
- * Some of these methods take arguments that are String patterns. These methods all have names such
- * as fooPattern. Within a pattern String "%" means match any substring of 0 or more characters and
- * "_" means match any one character.
+ * Some of these methods take arguments that are String patterns. These methods
+ * all have names such as fooPattern. Within a pattern String "%" means match
+ * any substring of 0 or more characters and "_" means match any one character.
  * </p>
  */
 public class DatabaseMetaData implements java.sql.DatabaseMetaData {
@@ -180,7 +181,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Parses and represents common data type information used by various column/parameter methods.
+     * Parses and represents common data type information used by various
+     * column/parameter methods.
      */
     class TypeDescriptor {
 
@@ -373,8 +375,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Helper class to provide means of comparing indexes by NON_UNIQUE, TYPE, INDEX_NAME, and
-     * ORDINAL_POSITION.
+     * Helper class to provide means of comparing indexes by NON_UNIQUE, TYPE,
+     * INDEX_NAME, and ORDINAL_POSITION.
      */
     protected class IndexMetaDataKey implements Comparable<IndexMetaDataKey> {
 
@@ -430,8 +432,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Helper class to provide means of comparing tables by TABLE_TYPE, TABLE_CAT, TABLE_SCHEM and
-     * TABLE_NAME.
+     * Helper class to provide means of comparing tables by TABLE_TYPE,
+     * TABLE_CAT, TABLE_SCHEM and TABLE_NAME.
      */
     protected class TableMetaDataKey implements Comparable<TableMetaDataKey> {
 
@@ -487,7 +489,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Helper/wrapper class to provide means of sorting objects by using a sorting key.
+     * Helper/wrapper class to provide means of sorting objects by using a
+     * sorting key.
      *
      * @param <K> key type
      * @param <V> value type
@@ -935,32 +938,35 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function
-     * return parameter.
+     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT
+     * or INOUT) or function return parameter.
      *
      * @param isOutParam Indicates whether it's an output parameter.
      * @param isInParam Indicates whether it's an input parameter.
      * @param isReturnParam Indicates whether it's a function return parameter.
-     * @param forGetFunctionColumns Indicates whether the column belong to a function. This argument
-     * is required for JDBC4, in which case this method must be overridden to provide the correct
-     * functionality.
+     * @param forGetFunctionColumns Indicates whether the column belong to a
+     * function. This argument is required for JDBC4, in which case this method
+     * must be overridden to provide the correct functionality.
      *
-     * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns API.
+     * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns
+     * API.
      */
     protected int getColumnType(boolean isOutParam, boolean isInParam, boolean isReturnParam, boolean forGetFunctionColumns) {
         return getProcedureOrFunctionColumnType(isOutParam, isInParam, isReturnParam, forGetFunctionColumns);
     }
 
     /**
-     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function
-     * return parameter.
+     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT
+     * or INOUT) or function return parameter.
      *
      * @param isOutParam Indicates whether it's an output parameter.
      * @param isInParam Indicates whether it's an input parameter.
      * @param isReturnParam Indicates whether it's a function return parameter.
-     * @param forGetFunctionColumns Indicates whether the column belong to a function.
+     * @param forGetFunctionColumns Indicates whether the column belong to a
+     * function.
      *
-     * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns API.
+     * @return The corresponding COLUMN_TYPE as in java.sql.getProcedureColumns
+     * API.
      */
     protected static int getProcedureOrFunctionColumnType(boolean isOutParam, boolean isInParam, boolean isReturnParam, boolean forGetFunctionColumns) {
 
@@ -1146,8 +1152,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Creates a result set similar enough to 'SHOW TABLE STATUS' to allow the same code to work on
-     * extracting the foreign key data
+     * Creates a result set similar enough to 'SHOW TABLE STATUS' to allow the
+     * same code to work on extracting the foreign key data
      *
      * @param catalog the database name to extract foreign key info for
      * @param tableName the table to extract foreign key info for
@@ -1663,12 +1669,15 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Finds the end of the parameter declaration from the output of "SHOW CREATE PROCEDURE".
+     * Finds the end of the parameter declaration from the output of "SHOW
+     * CREATE PROCEDURE".
      *
-     * @param beginIndex should be the index of the procedure body that contains the first "(".
+     * @param beginIndex should be the index of the procedure body that contains
+     * the first "(".
      * @param procedureDef the procedure body
      * @param quoteChar the identifier quote character in use
-     * @return the ending index of the parameter declaration, not including the closing ")"
+     * @return the ending index of the parameter declaration, not including the
+     * closing ")"
      * @throws SQLException if a parse error occurs.
      */
     private int endPositionOfParameterDeclaration(int beginIndex, String procedureDef, String quoteChar) throws SQLException {
@@ -1701,11 +1710,13 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Finds the end of the RETURNS clause for SQL Functions by using any of the keywords allowed
-     * after the RETURNS clause, or a label.
+     * Finds the end of the RETURNS clause for SQL Functions by using any of the
+     * keywords allowed after the RETURNS clause, or a label.
      *
-     * @param procedureDefn the function body containing the definition of the function
-     * @param positionOfReturnKeyword the position of "RETURNS" in the definition
+     * @param procedureDefn the function body containing the definition of the
+     * function
+     * @param positionOfReturnKeyword the position of "RETURNS" in the
+     * definition
      * @return the end of the returns clause
      * @throws SQLException if a parse error occurs
      */
@@ -1757,8 +1768,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Parses the cascade option string and returns the DBMD constant that represents it (for
-     * deletes)
+     * Parses the cascade option string and returns the DBMD constant that
+     * represents it (for deletes)
      *
      * @param cascadeOptions the comment from 'SHOW TABLE STATUS'
      * @return the DBMD constant that represents the cascade option
@@ -1784,8 +1795,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Parses the cascade option string and returns the DBMD constant that represents it (for
-     * Updates)
+     * Parses the cascade option string and returns the DBMD constant that
+     * represents it (for Updates)
      *
      * @param cascadeOptions the comment from 'SHOW TABLE STATUS'
      * @return the DBMD constant that represents the cascade option
@@ -2508,9 +2519,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Adds to the tuples list the exported keys of exportingTable based on the keysComment from the
-     * 'show table status' sql command. KeysComment is that part of the comment field that follows
-     * the "InnoDB free ...;" prefix.
+     * Adds to the tuples list the exported keys of exportingTable based on the
+     * keysComment from the 'show table status' sql command. KeysComment is that
+     * part of the comment field that follows the "InnoDB free ...;" prefix.
      *
      * @param catalog the database to use
      * @param exportingTable the table keys are being exported from
@@ -2529,9 +2540,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Returns the DELETE and UPDATE foreign key actions from the given 'SHOW TABLE STATUS' string,
-     * with the DELETE action being the first item in the array, and the UPDATE action being the
-     * second.
+     * Returns the DELETE and UPDATE foreign key actions from the given 'SHOW
+     * TABLE STATUS' string, with the DELETE action being the first item in the
+     * array, and the UPDATE action being the second.
      *
      * @param commentString the comment from 'SHOW TABLE STATUS'
      * @return int[] [0] = delete action, [1] = update action
@@ -2634,9 +2645,10 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Populates the tuples list with the imported keys of importingTable based on the keysComment
-     * from the 'show table status' sql command. KeysComment is that part of the comment field that
-     * follows the "InnoDB free ...;" prefix.
+     * Populates the tuples list with the imported keys of importingTable based
+     * on the keysComment from the 'show table status' sql command. KeysComment
+     * is that part of the comment field that follows the "InnoDB free ...;"
+     * prefix.
      *
      * @param catalog the database to use
      * @param importingTable the table keys are being imported to
@@ -3354,8 +3366,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Get a comma separated list of all a database's SQL keywords that are NOT also SQL92/SQL2003
-     * keywords.
+     * Get a comma separated list of all a database's SQL keywords that are NOT
+     * also SQL92/SQL2003 keywords.
      *
      * @return the list
      * @throws SQLException if a database access error occurs
@@ -3814,8 +3826,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      *
-     * @param mysqlTypeName we use a string name here to allow aliases for the same MysqlType to be
-     * listed too
+     * @param mysqlTypeName we use a string name here to allow aliases for the
+     * same MysqlType to be listed too
      * @return bytes
      * @throws SQLException if a conversion error occurs
      */
@@ -4260,8 +4272,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Converts the given string to bytes, using the connection's character encoding, or if not
-     * available, the JVM default encoding.
+     * Converts the given string to bytes, using the connection's character
+     * encoding, or if not available, the JVM default encoding.
      *
      * @param s string
      * @return bytes

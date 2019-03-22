@@ -47,7 +47,8 @@ import com.mysql.cj.util.StringUtils;
 import com.mysql.cj.util.TimeUtil;
 
 /**
- * EscapeProcessor performs all escape code processing as outlined in the JDBC spec by JavaSoft.
+ * EscapeProcessor performs all escape code processing as outlined in the JDBC
+ * spec by JavaSoft.
  */
 class EscapeProcessor {
 
@@ -84,9 +85,10 @@ class EscapeProcessor {
      *
      * @param sql the SQL to escape process.
      * @param defaultTimeZone time zone
-     * @param serverSupportsFractionalSecond flag indicating if server supports fractional seconds
-     * @param serverTruncatesFractionalSecond flag indicating if server truncates fractional seconds
-     * (sql_mode contains TIME_TRUNCATE_FRACTIONAL)
+     * @param serverSupportsFractionalSecond flag indicating if server supports
+     * fractional seconds
+     * @param serverTruncatesFractionalSecond flag indicating if server
+     * truncates fractional seconds (sql_mode contains TIME_TRUNCATE_FRACTIONAL)
      * @param exceptionInterceptor exception interceptor
      *
      * @return the SQL after it has been escape processed.
@@ -469,8 +471,8 @@ class EscapeProcessor {
     }
 
     /**
-     * Removes all whitespace from the given String. We use this to make escape token comparison
-     * white-space ignorant.
+     * Removes all whitespace from the given String. We use this to make escape
+     * token comparison white-space ignorant.
      *
      * @param toCollapse the string to remove the whitespace from
      *

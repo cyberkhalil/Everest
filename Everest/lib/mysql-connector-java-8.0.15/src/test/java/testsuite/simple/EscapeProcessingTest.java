@@ -124,7 +124,8 @@ public class EscapeProcessingTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#51313 - Escape processing is confused by multiple backslashes.
+     * Tests fix for BUG#51313 - Escape processing is confused by multiple
+     * backslashes.
      *
      * @throws Exception
      */

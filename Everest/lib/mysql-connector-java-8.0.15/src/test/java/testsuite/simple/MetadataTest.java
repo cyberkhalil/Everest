@@ -263,8 +263,8 @@ public class MetadataTest extends BaseTestCase {
     /**
      * Tests the implementation of metadata for views.
      *
-     * This test automatically detects whether or not the server it is running against supports the
-     * creation of views.
+     * This test automatically detects whether or not the server it is running
+     * against supports the creation of views.
      *
      * @throws SQLException if the test fails.
      */
@@ -661,8 +661,8 @@ public class MetadataTest extends BaseTestCase {
     }
 
     /**
-     * Tests the implementation of Information Schema for description of stored procedures available
-     * in a catalog.
+     * Tests the implementation of Information Schema for description of stored
+     * procedures available in a catalog.
      */
     public void testGetProceduresUsingInfoSchema() throws Exception {
         createProcedure("sp1", "()\n BEGIN\nSELECT 1;end\n");
@@ -778,9 +778,9 @@ public class MetadataTest extends BaseTestCase {
      *
      * Test for new syntax and support in DatabaseMetaData.getColumns().
      *
-     * New syntax for CREATE TABLE, introduced in MySQL 5.7.6: -col_name data_type [GENERATED
-     * ALWAYS] AS (expression) [VIRTUAL | STORED] [UNIQUE [KEY]] [COMMENT comment] [[NOT] NULL]
-     * [[PRIMARY] KEY]
+     * New syntax for CREATE TABLE, introduced in MySQL 5.7.6: -col_name
+     * data_type [GENERATED ALWAYS] AS (expression) [VIRTUAL | STORED] [UNIQUE
+     * [KEY]] [COMMENT comment] [[NOT] NULL] [[PRIMARY] KEY]
      */
     public void testGeneratedColumns() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -896,7 +896,8 @@ public class MetadataTest extends BaseTestCase {
     }
 
     /**
-     * Tests DatabaseMetaData.getSQLKeywords(). WL#10544, Update MySQL 8.0 keywords list.
+     * Tests DatabaseMetaData.getSQLKeywords(). WL#10544, Update MySQL 8.0
+     * keywords list.
      *
      * This test checks the dynamically maintained keywords lists.
      */

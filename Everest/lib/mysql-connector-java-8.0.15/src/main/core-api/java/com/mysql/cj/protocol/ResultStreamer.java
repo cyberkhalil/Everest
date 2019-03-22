@@ -29,11 +29,12 @@
 package com.mysql.cj.protocol;
 
 /**
- * A result streamer is a result object that is streaming results from the current connection. It
- * allows to stream as long as nothing else needs to happen on the connection. Once something else
- * needs to happen the streamed is notified to "complete streaming" at which point he can throw an
- * exception, discard rows, buffer rows, etc. The connection is then free to execute the next
- * command.
+ * A result streamer is a result object that is streaming results from the
+ * current connection. It allows to stream as long as nothing else needs to
+ * happen on the connection. Once something else needs to happen the streamed is
+ * notified to "complete streaming" at which point he can throw an exception,
+ * discard rows, buffer rows, etc. The connection is then free to execute the
+ * next command.
  */
 public interface ResultStreamer {
 

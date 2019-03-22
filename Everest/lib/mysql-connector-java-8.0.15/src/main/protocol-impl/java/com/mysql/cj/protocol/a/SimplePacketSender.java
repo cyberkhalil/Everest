@@ -34,8 +34,9 @@ import java.io.IOException;
 import com.mysql.cj.protocol.MessageSender;
 
 /**
- * Simple implementation of {@link MessageSender} which handles the transmission of logical MySQL
- * packets to the provided output stream. Large packets will be split into multiple chunks.
+ * Simple implementation of {@link MessageSender} which handles the transmission
+ * of logical MySQL packets to the provided output stream. Large packets will be
+ * split into multiple chunks.
  */
 public class SimplePacketSender implements MessageSender<NativePacketPayload> {
 

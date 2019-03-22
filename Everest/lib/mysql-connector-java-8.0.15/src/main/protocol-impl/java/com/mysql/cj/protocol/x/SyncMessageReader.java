@@ -48,8 +48,8 @@ import com.mysql.cj.x.protobuf.Mysqlx.Error;
 import com.mysql.cj.x.protobuf.Mysqlx.ServerMessages;
 
 /**
- * Synchronous-only implementation of {@link MessageReader}. This implementation wraps an
- * {@link java.io.InputStream}.
+ * Synchronous-only implementation of {@link MessageReader}. This implementation
+ * wraps an {@link java.io.InputStream}.
  */
 public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage> {
 
@@ -207,10 +207,12 @@ public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage
     private class ListenersDispatcher implements Runnable {
 
         /**
-         * The timeout value for queue.poll(timeout, unit) defining the time after that we close and
-         * unregister the dispatching thread. On the other hand, the bigger timeout value allows to
-         * keep dispatcher thread running while multiple concurrent asynchronous read operations are
-         * pending, thus avoiding the delays for new dispatching threads creation.
+         * The timeout value for queue.poll(timeout, unit) defining the time
+         * after that we close and unregister the dispatching thread. On the
+         * other hand, the bigger timeout value allows to keep dispatcher thread
+         * running while multiple concurrent asynchronous read operations are
+         * pending, thus avoiding the delays for new dispatching threads
+         * creation.
          */
         private static final long POLL_TIMEOUT = 100; // TODO expose via connection property
         boolean started = false;

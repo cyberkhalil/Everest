@@ -29,13 +29,14 @@
 package com.mysql.cj.xdevapi;
 
 /**
- * A result from a SQL statement which may have several sets of data following by a DML result.
+ * A result from a SQL statement which may have several sets of data following
+ * by a DML result.
  */
 public interface SqlResult extends Result, InsertResult, RowResult {
 
     /**
-     * Move to the next result. This method has no effect after returning <code>false</code> for the
-     * first time.
+     * Move to the next result. This method has no effect after returning
+     * <code>false</code> for the first time.
      *
      * @return was there a next result that we moved to?
      */

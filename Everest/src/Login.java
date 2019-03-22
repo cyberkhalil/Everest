@@ -1,20 +1,15 @@
 
+import users.User;
 import db.DBConnection;
-import utils.Hashing;
 import java.awt.event.KeyEvent;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.security.auth.login.LoginException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    User u = new User();
     static String CurrentUser;
-    static String privilege;
 
     public Login() {
         initComponents();
@@ -188,63 +183,37 @@ public class Login extends javax.swing.JFrame {
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {
         String user = usernameField.getText();
-        String pass = Hashing.toMD5(String.valueOf(PasswordField.getPassword()));
+        String pass = String.valueOf(PasswordField.getPassword());
         login(user, pass);
     }
 
     private void PasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String user = usernameField.getText();
-            String pass = Hashing.toMD5(String.valueOf(PasswordField.getPassword()));
+            String pass = String.valueOf(PasswordField.getPassword());
             login(user, pass);
         }
     }
 
-    private boolean login(String user, String pass) {
+    private void login(String user, String pass) {
         try {
-            String query = "select * from user where Username =? ";
-
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStatement
-                    = DBConnection.getConnection().prepareStatement(query);
-            preparedStatement.setString(1, user);
-            ResultSet rs = preparedStatement.executeQuery();
-            rs.next();
-
-            int id = rs.getInt("userid");
-            String username = rs.getString("Username");
-            String password = rs.getString("Password");
-            privilege = rs.getString("Privilege");
-
-            if (user.equals(username) && pass.equals(password)) {
-                Login.CurrentUser = username;
-                if (privilege == null) {
-                    JOptionPane.showMessageDialog(rootPane, "Error in privileges determination"
-                            + "priv: " + null);
+            try {
+                User u = new User(user, pass);
+                CurrentUser = u.getUsername();
+                if (u.isAdmin()) {
+                    new AdminMainFrame(this).setVisible(true);
                 } else {
-                    switch (privilege) {
-                        case "Admin":
-                            this.setVisible(false);
-                            new AdminMainFrame().setVisible(true);
-                            break;
-                        case "Normal User":
-                            this.setVisible(false);
-                            new SecretaryMainFrame().setVisible(true);
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(rootPane, "Error in privileges "
-                                    + "determination , priv:" + privilege);
-                            break;
-                    }
+                    new SecretaryMainFrame(this).setVisible(true);
                 }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Username or password is not correct");
+            } catch (LoginException ex) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "Username or Password is inncorrect");
             }
-
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage());
         }
-        return false;
+        this.PasswordField.setText(null);
     }
 
     public static void main(String args[]) {

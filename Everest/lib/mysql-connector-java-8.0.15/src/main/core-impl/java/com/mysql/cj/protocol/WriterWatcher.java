@@ -29,8 +29,9 @@
 package com.mysql.cj.protocol;
 
 /**
- * Objects that want to be notified of lifecycle events on a WatchableWriter should implement this
- * interface, and register themselves with setWatcher() on the WatchableWriter instance.
+ * Objects that want to be notified of lifecycle events on a WatchableWriter
+ * should implement this interface, and register themselves with setWatcher() on
+ * the WatchableWriter instance.
  */
 public interface WriterWatcher {
 

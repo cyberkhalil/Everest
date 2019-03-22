@@ -459,8 +459,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#10155, double quotes not recognized when parsing client-side prepared
-     * statements.
+     * Tests fix for BUG#10155, double quotes not recognized when parsing
+     * client-side prepared statements.
      *
      * @throws Exception if the test fails.
      */
@@ -469,7 +469,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#10630, Statement.getWarnings() fails with NPE if statement has been closed.
+     * Tests fix for BUG#10630, Statement.getWarnings() fails with NPE if
+     * statement has been closed.
      */
     public void testBug10630() throws Exception {
         Connection conn2 = null;
@@ -496,7 +497,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11115, Varbinary data corrupted when using server-side prepared statements.
+     * Tests fix for BUG#11115, Varbinary data corrupted when using server-side
+     * prepared statements.
      */
     public void testBug11115() throws Exception {
         String tableName = "testBug11115";
@@ -578,8 +580,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11663, autoGenerateTestcaseScript uses bogus parameter names for
-     * server-side prepared statements.
+     * Tests fix for BUG#11663, autoGenerateTestcaseScript uses bogus parameter
+     * names for server-side prepared statements.
      *
      * @throws Exception if the test fails.
      */
@@ -627,7 +629,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11798 - Pstmt.setObject(...., Types.BOOLEAN) throws exception.
+     * Tests fix for BUG#11798 - Pstmt.setObject(...., Types.BOOLEAN) throws
+     * exception.
      *
      * @throws Exception if the test fails.
      */
@@ -646,7 +649,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#13255 - Reconnect during middle of executeBatch() should not happen.
+     * Tests fix for BUG#13255 - Reconnect during middle of executeBatch()
+     * should not happen.
      *
      * @throws Exception if the test fails.
      */
@@ -723,8 +727,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15024 - Driver incorrectly closes streams passed as arguments to
-     * PreparedStatements.
+     * Tests fix for BUG#15024 - Driver incorrectly closes streams passed as
+     * arguments to PreparedStatements.
      *
      * @throws Exception if the test fails.
      */
@@ -803,8 +807,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#18041 - Server-side prepared statements don't cause truncation exceptions
-     * to be thrown.
+     * Tests fix for BUG#18041 - Server-side prepared statements don't cause
+     * truncation exceptions to be thrown.
      *
      * @throws Exception if the test fails
      */
@@ -921,8 +925,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#1901 -- PreparedStatement.setObject(int, Object, int, int) doesn't support
-     * CLOB or BLOB types.
+     * Tests fix for BUG#1901 -- PreparedStatement.setObject(int, Object, int,
+     * int) doesn't support CLOB or BLOB types.
      *
      * @throws Exception if this test fails for any reason
      */
@@ -1005,8 +1009,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the fix for BUG#1934 -- prepareStatement dies silently when encountering
-     * Statement.RETURN_GENERATED_KEY
+     * Tests the fix for BUG#1934 -- prepareStatement dies silently when
+     * encountering Statement.RETURN_GENERATED_KEY
      *
      * @throws Exception if the test fails
      */
@@ -1028,7 +1032,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#1958 - Improper bounds checking on PreparedStatement.setFoo().
+     * Tests fix for BUG#1958 - Improper bounds checking on
+     * PreparedStatement.setFoo().
      *
      * @throws Exception if the test fails.
      */
@@ -1056,8 +1061,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the fix for BUG#2606, server-side prepared statements not returning datatype YEAR
-     * correctly.
+     * Tests the fix for BUG#2606, server-side prepared statements not returning
+     * datatype YEAR correctly.
      *
      * @throws Exception if the test fails.
      */
@@ -1080,7 +1085,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the fix for BUG#2671, nulls encoded incorrectly in server-side prepared statements.
+     * Tests the fix for BUG#2671, nulls encoded incorrectly in server-side
+     * prepared statements.
      *
      * @throws Exception if an error occurs.
      */
@@ -1444,7 +1450,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#3804, data truncation on server should throw DataTruncation exception.
+     * Tests fix for BUG#3804, data truncation on server should throw
+     * DataTruncation exception.
      *
      * @throws Exception if the test fails
      */
@@ -1469,8 +1476,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests BUG#3873 - PreparedStatement.executeBatch() not returning all generated keys (even
-     * though that's not JDBC compliant).
+     * Tests BUG#3873 - PreparedStatement.executeBatch() not returning all
+     * generated keys (even though that's not JDBC compliant).
      *
      * @throws Exception if the test fails
      */
@@ -1515,7 +1522,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4119 -- misbehavior in a managed environment from MVCSoft JDO
+     * Tests fix for BUG#4119 -- misbehavior in a managed environment from
+     * MVCSoft JDO
      *
      * @throws Exception if the test fails.
      */
@@ -1545,8 +1553,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4311 - Error in JDBC retrieval of mediumint column when using prepared
-     * statements and binary result sets.
+     * Tests fix for BUG#4311 - Error in JDBC retrieval of mediumint column when
+     * using prepared statements and binary result sets.
      *
      * @throws Exception if the test fails.
      */
@@ -1570,7 +1578,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4510 -- Statement.getGeneratedKeys() fails when key > 32767
+     * Tests fix for BUG#4510 -- Statement.getGeneratedKeys() fails when key >
+     * 32767
      *
      * @throws Exception if the test fails
      */
@@ -1596,8 +1605,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Server doesn't accept everything as a server-side prepared statement, so by default we scan
-     * for stuff it can't handle.
+     * Server doesn't accept everything as a server-side prepared statement, so
+     * by default we scan for stuff it can't handle.
      *
      * @throws SQLException
      */
@@ -1641,8 +1650,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5012 -- ServerPreparedStatements dealing with return of DECIMAL type don't
-     * work.
+     * Tests fix for BUG#5012 -- ServerPreparedStatements dealing with return of
+     * DECIMAL type don't work.
      *
      * @throws Exception if the test fails.
      */
@@ -1669,8 +1678,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5133 -- PreparedStatement.toString() doesn't return correct value if no
-     * parameters are present in statement.
+     * Tests fix for BUG#5133 -- PreparedStatement.toString() doesn't return
+     * correct value if no parameters are present in statement.
      *
      * @throws Exception
      */
@@ -1683,7 +1692,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for BUG#5191 -- PreparedStatement.executeQuery() gives OutOfMemoryError
+     * Tests for BUG#5191 -- PreparedStatement.executeQuery() gives
+     * OutOfMemoryError
      *
      * @throws Exception if the test fails.
      */
@@ -1733,8 +1743,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for BUG#5235, ClassCastException on all-zero date field when zeroDatetimeBehavior is
-     * 'CONVERT_TO_NULL'.
+     * Tests for BUG#5235, ClassCastException on all-zero date field when
+     * zeroDatetimeBehavior is 'CONVERT_TO_NULL'.
      *
      * @throws Exception if the test fails.
      */
@@ -1845,8 +1855,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5874, timezone correction goes in wrong 'direction' (when useTimezone=true
-     * and server timezone differs from client timezone).
+     * Tests fix for BUG#5874, timezone correction goes in wrong 'direction'
+     * (when useTimezone=true and server timezone differs from client timezone).
      *
      * @throws Exception if the test fails.
      */
@@ -1974,7 +1984,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#8487 - PreparedStatements not creating streaming result sets.
+     * Tests fix for BUG#8487 - PreparedStatements not creating streaming result
+     * sets.
      *
      * @throws Exception if the test fails.
      */
@@ -2415,7 +2426,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for BUG#9288, parameter index out of range if LIKE, ESCAPE '\' present in query.
+     * Tests for BUG#9288, parameter index out of range if LIKE, ESCAPE '\'
+     * present in query.
      *
      * @throws Exception if the test fails.
      */
@@ -2485,8 +2497,9 @@ public class StatementRegressionTest extends BaseTestCase {
      *
      * @throws Exception if the test fails.
      *
-     * @deprecated because we need to use this particular constructor for the date class, as
-     * Calendar-constructed dates don't pass the .equals() test :(
+     * @deprecated because we need to use this particular constructor for the
+     * date class, as Calendar-constructed dates don't pass the .equals() test
+     * :(
      */
     @Deprecated
     public void testServerPrepStmtAndDate() throws Exception {
@@ -2529,7 +2542,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests PreparedStatement.setCharacterStream() to ensure it accepts > 4K streams
+     * Tests PreparedStatement.setCharacterStream() to ensure it accepts > 4K
+     * streams
      *
      * @throws Exception if an error occurs.
      */
@@ -2626,8 +2640,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests a bug where Statement.setFetchSize() does not work for values other than 0 or
-     * Integer.MIN_VALUE
+     * Tests a bug where Statement.setFetchSize() does not work for values other
+     * than 0 or Integer.MIN_VALUE
      *
      * @throws Exception if any errors occur
      */
@@ -2745,9 +2759,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15383 - PreparedStatement.setObject() serializes BigInteger as object,
-     * rather than sending as numeric value (and is thus not complementary to .getObject() on an
-     * UNSIGNED LONG type).
+     * Tests fix for BUG#15383 - PreparedStatement.setObject() serializes
+     * BigInteger as object, rather than sending as numeric value (and is thus
+     * not complementary to .getObject() on an UNSIGNED LONG type).
      *
      * @throws Exception if the test fails.
      */
@@ -2784,8 +2798,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#17099 - Statement.getGeneratedKeys() throws NPE when no query has been
-     * processed.
+     * Tests fix for BUG#17099 - Statement.getGeneratedKeys() throws NPE when no
+     * query has been processed.
      *
      * @throws Exception if the test fails
      */
@@ -2799,7 +2813,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#17587 - clearParameters() on a closed prepared statement causes NPE.
+     * Tests fix for BUG#17587 - clearParameters() on a closed prepared
+     * statement causes NPE.
      *
      * @throws Exception if the test fails.
      */
@@ -2832,8 +2847,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19615, PreparedStatement.setObject(int, Object, int) doesn't respect scale
-     * of BigDecimals.
+     * Tests fix for BUG#19615, PreparedStatement.setObject(int, Object, int)
+     * doesn't respect scale of BigDecimals.
      *
      * @throws Exception if the test fails.
      */
@@ -2931,8 +2946,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Fixes BUG#20687 - Can't pool server-side prepared statements, exception raised when re-using
-     * them.
+     * Fixes BUG#20687 - Can't pool server-side prepared statements, exception
+     * raised when re-using them.
      *
      * @throws Exception if the test fails.
      */
@@ -3011,8 +3026,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20650 - Statement.cancel() causes NullPointerException if underlying
-     * connection has been closed due to server failure.
+     * Tests fix for BUG#20650 - Statement.cancel() causes NullPointerException
+     * if underlying connection has been closed due to server failure.
      *
      * @throws Exception if the test fails.
      */
@@ -3039,8 +3054,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20888 - escape of quotes in client-side prepared statements parsing not
-     * respected.
+     * Tests fix for BUG#20888 - escape of quotes in client-side prepared
+     * statements parsing not respected.
      *
      * @throws Exception if the test fails.
      */
@@ -3055,8 +3070,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests Bug#21207 - Driver throws NPE when tracing prepared statements that have been closed
-     * (in asSQL()).
+     * Tests Bug#21207 - Driver throws NPE when tracing prepared statements that
+     * have been closed (in asSQL()).
      *
      * @throws Exception if the test fails
      */
@@ -3067,8 +3082,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests BUG#21438, server-side PS fails when using jdbcCompliantTruncation. If either is set to
-     * FALSE (&useServerPrepStmts=false or &jdbcCompliantTruncation=false) test succedes.
+     * Tests BUG#21438, server-side PS fails when using jdbcCompliantTruncation.
+     * If either is set to FALSE (&useServerPrepStmts=false or
+     * &jdbcCompliantTruncation=false) test succedes.
      *
      * @throws Exception if the test fails.
      */
@@ -3092,8 +3108,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#22359 - Driver was using millis for Statement.setQueryTimeout() when spec
-     * says argument is seconds.
+     * Tests fix for BUG#22359 - Driver was using millis for
+     * Statement.setQueryTimeout() when spec says argument is seconds.
      *
      * @throws Exception if the test fails.
      */
@@ -3122,8 +3138,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#22290 - Driver issues truncation on write exception when it shouldn't (due
-     * to sending big decimal incorrectly to server with server-side prepared statement).
+     * Tests fix for BUG#22290 - Driver issues truncation on write exception
+     * when it shouldn't (due to sending big decimal incorrectly to server with
+     * server-side prepared statement).
      *
      * @throws Exception if the test fails.
      */
@@ -3164,7 +3181,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#24360 .setFetchSize() breaks prepared SHOW and other commands.
+     * Tests fix for BUG#24360 .setFetchSize() breaks prepared SHOW and other
+     * commands.
      *
      * @throws Exception if the test fails
      */
@@ -3189,16 +3207,17 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#24344 - useJDBCCompliantTimezoneShift with server-side prepared statements
-     * gives different behavior than when using client-side prepared statements. (this is now fixed
-     * if moving from server-side prepared statements to client-side prepared statements by setting
-     * "useSSPSCompatibleTimezoneShift" to "true", as the driver can't tell if this is a new
-     * deployment that never used server-side prepared statements, or if it is an existing
-     * deployment that is switching to client-side prepared statements from server-side prepared
-     * statements.
+     * Tests fix for BUG#24344 - useJDBCCompliantTimezoneShift with server-side
+     * prepared statements gives different behavior than when using client-side
+     * prepared statements. (this is now fixed if moving from server-side
+     * prepared statements to client-side prepared statements by setting
+     * "useSSPSCompatibleTimezoneShift" to "true", as the driver can't tell if
+     * this is a new deployment that never used server-side prepared statements,
+     * or if it is an existing deployment that is switching to client-side
+     * prepared statements from server-side prepared statements.
      *
-     * Note: The properties 'useJDBCCompliantTimezoneShift' and 'useSSPSCompatibleTimezoneShift' no
-     * longer exist in Connector/J 6.0.
+     * Note: The properties 'useJDBCCompliantTimezoneShift' and
+     * 'useSSPSCompatibleTimezoneShift' no longer exist in Connector/J 6.0.
      *
      * @throws Exception if the test fails
      */
@@ -3247,8 +3266,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25073 - rewriting batched statements leaks internal statement instances,
-     * and causes a memory leak.
+     * Tests fix for BUG#25073 - rewriting batched statements leaks internal
+     * statement instances, and causes a memory leak.
      *
      * @throws Exception if the test fails.
      */
@@ -3341,8 +3360,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25009 - Results from updates not handled correctly in multi-statement
-     * queries.
+     * Tests fix for BUG#25009 - Results from updates not handled correctly in
+     * multi-statement queries.
      *
      * @throws Exception if the test fails.
      */
@@ -3382,9 +3401,10 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25025 - Client-side prepared statement parser gets confused by in-line
-     * (slash-star) comments and therefore can't rewrite batched statements or reliably detect type
-     * of statements when they're used.
+     * Tests fix for BUG#25025 - Client-side prepared statement parser gets
+     * confused by in-line (slash-star) comments and therefore can't rewrite
+     * batched statements or reliably detect type of statements when they're
+     * used.
      *
      * @throws Exception if the test fails.
      */
@@ -3452,8 +3472,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28256 - When connection is in read-only mode, queries that are parentheized
-     * incorrectly identified as DML.
+     * Tests fix for BUG#28256 - When connection is in read-only mode, queries
+     * that are parentheized incorrectly identified as DML.
      *
      * @throws Exception
      */
@@ -3469,11 +3489,12 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28469 - PreparedStatement.getMetaData() for statements containing leading
-     * one-line comments is not returned correctly.
+     * Tests fix for BUG#28469 - PreparedStatement.getMetaData() for statements
+     * containing leading one-line comments is not returned correctly.
      *
-     * As part of this fix, we also overhauled detection of DML for executeQuery() and SELECTs for
-     * executeUpdate() in plain and prepared statements to be aware of the same types of comments.
+     * As part of this fix, we also overhauled detection of DML for
+     * executeQuery() and SELECTs for executeUpdate() in plain and prepared
+     * statements to be aware of the same types of comments.
      *
      * @throws Exception
      */
@@ -3543,8 +3564,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28851 - parser in client-side prepared statements eats character following
-     * '/' if it's not a multi-line comment.
+     * Tests fix for BUG#28851 - parser in client-side prepared statements eats
+     * character following '/' if it's not a multi-line comment.
      *
      * @throws Exception if the test fails.
      */
@@ -3560,8 +3581,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28596 - parser in client-side prepared statements runs to end of statement,
-     * rather than end-of-line for '#' comments.
+     * Tests fix for BUG#28596 - parser in client-side prepared statements runs
+     * to end of statement, rather than end-of-line for '#' comments.
      *
      * Also added support for '--' single-line comments
      *
@@ -3586,8 +3607,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#30550 - executeBatch() on an empty batch when there are no elements in the
-     * batch causes a divide-by-zero error when rewriting is enabled.
+     * Tests fix for BUG#30550 - executeBatch() on an empty batch when there are
+     * no elements in the batch causes a divide-by-zero error when rewriting is
+     * enabled.
      *
      * @throws Exception if the test fails
      */
@@ -3631,8 +3653,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#27412 - cached metadata with PreparedStatement.execute() throws
-     * NullPointerException.
+     * Tests fix for Bug#27412 - cached metadata with
+     * PreparedStatement.execute() throws NullPointerException.
      *
      * @throws Exception
      */
@@ -3740,13 +3762,14 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#32577 - no way to store two timestamp/datetime values that happens over the
-     * DST switchover, as the hours end up being the same when sent as the literal that MySQL
-     * requires.
+     * Tests fix for BUG#32577 - no way to store two timestamp/datetime values
+     * that happens over the DST switchover, as the hours end up being the same
+     * when sent as the literal that MySQL requires.
      *
-     * Note that to get this scenario to work with MySQL (since it doesn't support per-value
-     * timezones), you need to configure your server (or session) to be in UTC. This will cause the
-     * driver to always convert to/from the server and client timezone consistently.
+     * Note that to get this scenario to work with MySQL (since it doesn't
+     * support per-value timezones), you need to configure your server (or
+     * session) to be in UTC. This will cause the driver to always convert
+     * to/from the server and client timezone consistently.
      *
      * @throws Exception
      */
@@ -3809,8 +3832,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#30508 - ResultSet returned by Statement.getGeneratedKeys() is not closed
-     * automatically when statement that created it is closed.
+     * Tests fix for BUG#30508 - ResultSet returned by
+     * Statement.getGeneratedKeys() is not closed automatically when statement
+     * that created it is closed.
      *
      * @throws Exception
      */
@@ -4720,9 +4744,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#34093 - Statements with batched values do not return correct values for
-     * getGeneratedKeys() when "rewriteBatchedStatements" is set to "true", and the statement has an
-     * "ON DUPLICATE KEY UPDATE" clause.
+     * Tests fix for BUG#34093 - Statements with batched values do not return
+     * correct values for getGeneratedKeys() when "rewriteBatchedStatements" is
+     * set to "true", and the statement has an "ON DUPLICATE KEY UPDATE" clause.
      *
      * @throws Exception if the test fails.
      */
@@ -5099,8 +5123,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Ensures that cases listed in Bug#41448 actually work - we don't think there's a bug here
-     * right now
+     * Ensures that cases listed in Bug#41448 actually work - we don't think
+     * there's a bug here right now
      */
     public void testBug41448() throws Exception {
         createTable("testBug41448", "(pk INT PRIMARY KEY AUTO_INCREMENT, field1 VARCHAR(4))");
@@ -5233,8 +5257,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#41532 - regression in performance for batched inserts when using ON
-     * DUPLICATE KEY UPDATE
+     * Tests fix for Bug#41532 - regression in performance for batched inserts
+     * when using ON DUPLICATE KEY UPDATE
      */
     public void testBug41532() throws Exception {
         createTable("testBug41532", "(ID INTEGER, S1 VARCHAR(100), S2 VARCHAR(100), S3 VARCHAR(100), D1 DATETIME, D2 DATETIME, D3 DATETIME, "
@@ -5295,8 +5319,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#44056 - Statement.getGeneratedKeys() retains result set instances until
-     * statement is closed.
+     * Tests fix for Bug#44056 - Statement.getGeneratedKeys() retains result set
+     * instances until statement is closed.
      */
     public void testBug44056() throws Exception {
         createTable("testBug44056", "(pk int primary key not null auto_increment)");
@@ -5405,7 +5429,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Bug #42253 - multiple escaped quotes cause exception from EscapeProcessor.
+     * Bug #42253 - multiple escaped quotes cause exception from
+     * EscapeProcessor.
      */
     public void testBug42253() throws Exception {
         this.rs = this.stmt.executeQuery("select '\\'\\'','{t\\'}'");
@@ -5415,7 +5440,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Bug #41566 - Quotes within comments not correctly ignored by escape parser
+     * Bug #41566 - Quotes within comments not correctly ignored by escape
+     * parser
      */
     public void testBug41566() throws Exception {
         this.rs = this.stmt.executeQuery("-- this should't change the literal\n select '{1}'");
@@ -5481,7 +5507,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Bug #39426 - executeBatch passes most recent PreparedStatement params to StatementInterceptor
+     * Bug #39426 - executeBatch passes most recent PreparedStatement params to
+     * StatementInterceptor
      */
     public void testBug39426() throws Exception {
         Connection c = null;
@@ -5734,8 +5761,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#51704, rewritten batched statements don't honor escape processing flag of
-     * Statement that they are created for
+     * Tests fix for Bug#51704, rewritten batched statements don't honor escape
+     * processing flag of Statement that they are created for
      */
     public void testBug51704() throws Exception {
         createTable("testBug51704", "(field1 TIMESTAMP)");
@@ -5772,8 +5799,10 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#58728, NPE in com.mysql.jdbc.StatementWrappe.getResultSet()
-     * ((com.mysql.jdbc.ResultSetInternalMethods) rs).setWrapperStatement(this); when rs is null
+     * Tests fix for Bug#58728, NPE in
+     * com.mysql.jdbc.StatementWrappe.getResultSet()
+     * ((com.mysql.jdbc.ResultSetInternalMethods) rs).setWrapperStatement(this);
+     * when rs is null
      */
     public void testBug58728() throws Exception {
         createTable("testbug58728", "(Id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY, txt VARCHAR(50))", "InnoDB");
@@ -5971,8 +6000,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#40279 - Timestamp values get truncated when passed as prepared statement
-     * parameters (and duplicate BUG#60584 - prepared statements truncate milliseconds)
+     * Tests fix for BUG#40279 - Timestamp values get truncated when passed as
+     * prepared statement parameters (and duplicate BUG#60584 - prepared
+     * statements truncate milliseconds)
      *
      * @throws Exception
      */
@@ -6026,8 +6056,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#35653 - executeQuery() in Statement.java let "TRUNCATE" queries being
-     * executed. "RENAME" is also filtered now.
+     * Tests fix for BUG#35653 - executeQuery() in Statement.java let "TRUNCATE"
+     * queries being executed. "RENAME" is also filtered now.
      *
      * @throws Exception
      */
@@ -6051,7 +6081,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#64805 - StatementImpl$CancelTask occasionally throws NullPointerExceptions.
+     * Tests fix for BUG#64805 - StatementImpl$CancelTask occasionally throws
+     * NullPointerExceptions.
      *
      * @throws Exception
      */
@@ -6076,9 +6107,10 @@ public class StatementRegressionTest extends BaseTestCase {
     /**
      * WL#4897 - Add EXPLAIN INSERT/UPDATE/DELETE
      *
-     * Added support for EXPLAIN INSERT/REPLACE/UPDATE/DELETE. Connector/J must issue a warning
-     * containing the execution plan for slow queries when connection properties logSlowQueries=true
-     * and explainSlowQueries=true are used.
+     * Added support for EXPLAIN INSERT/REPLACE/UPDATE/DELETE. Connector/J must
+     * issue a warning containing the execution plan for slow queries when
+     * connection properties logSlowQueries=true and explainSlowQueries=true are
+     * used.
      *
      * @throws SQLException
      */
@@ -6174,8 +6206,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#68562 - Combination rewriteBatchedStatements and useAffectedRows not
-     * working as expected
+     * Tests fix for BUG#68562 - Combination rewriteBatchedStatements and
+     * useAffectedRows not working as expected
      *
      * @throws Exception if the test fails.
      */
@@ -6267,8 +6299,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#55340 - initializeResultsMetadataFromCache fails on second call to stored
-     * proc
+     * Tests fix for BUG#55340 - initializeResultsMetadataFromCache fails on
+     * second call to stored proc
      *
      * @throws Exception if the test fails.
      */
@@ -6310,8 +6342,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#71396 - setMaxRows (SQL_SELECT_LIMIT) from one query used in later queries
-     * (sometimes)
+     * Tests fix for BUG#71396 - setMaxRows (SQL_SELECT_LIMIT) from one query
+     * used in later queries (sometimes)
      *
      * @throws Exception if the test fails.
      */
@@ -6564,8 +6596,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Initializes and returns a Statement with maxRows defined. Tests the SQL_SELECT_LIMIT defined.
-     * Executing this query also forces this limit to be defined at session level.
+     * Initializes and returns a Statement with maxRows defined. Tests the
+     * SQL_SELECT_LIMIT defined. Executing this query also forces this limit to
+     * be defined at session level.
      */
     private Statement testBug71396StatementInit(Connection testConn, int maxRows) throws SQLException {
         ResultSet testRS;
@@ -6581,8 +6614,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes a set of queries using a Statement (newly created) and tests if the results count is
-     * the expected.
+     * Executes a set of queries using a Statement (newly created) and tests if
+     * the results count is the expected.
      */
     private void testBug71396StatementMultiCheck(Connection testConn, String[] queries, int[] expRowCount) throws SQLException {
         if (queries.length != expRowCount.length) {
@@ -6594,7 +6627,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes a set of queries using a Statement and tests if the results count is the expected.
+     * Executes a set of queries using a Statement and tests if the results
+     * count is the expected.
      */
     private void testBug71396StatementMultiCheck(Statement testStmt, String[] queries, int[] expRowCount) throws SQLException {
         if (queries.length != expRowCount.length) {
@@ -6606,7 +6640,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes one query using a Statement and tests if the results count is the expected.
+     * Executes one query using a Statement and tests if the results count is
+     * the expected.
      */
     private void testBug71396StatementCheck(Statement testStmt, String query, int expRowCount) throws SQLException {
         ResultSet testRS;
@@ -6624,8 +6659,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Initializes and returns an array of PreparedStatements, with maxRows defined, for a set of
-     * queries.
+     * Initializes and returns an array of PreparedStatements, with maxRows
+     * defined, for a set of queries.
      */
     private PreparedStatement[] testBug71396PrepStatementInit(Connection testConn, String[] queries, int maxRows) throws SQLException {
         PreparedStatement[] testPStmt = new PreparedStatement[queries.length];
@@ -6649,8 +6684,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes a set of queries using newly created PreparedStatements and tests if the results
-     * count is the expected.
+     * Executes a set of queries using newly created PreparedStatements and
+     * tests if the results count is the expected.
      */
     private void testBug71396PrepStatementMultiCheck(Connection testConn, String[] queries, int[] expRowCount) throws SQLException {
         if (queries.length != expRowCount.length) {
@@ -6662,8 +6697,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes a set of queries using the given PreparedStatements and tests if the results count
-     * is the expected.
+     * Executes a set of queries using the given PreparedStatements and tests if
+     * the results count is the expected.
      */
     private void testBug71396PrepStatementMultiCheck(PreparedStatement[] testPStmt, String[] queries, int[] expRowCount) throws SQLException {
         if (testPStmt.length != queries.length || testPStmt.length != expRowCount.length) {
@@ -6675,8 +6710,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes one query using a newly created PreparedStatement, setting its maxRows limit, and
-     * tests if the results count is the expected.
+     * Executes one query using a newly created PreparedStatement, setting its
+     * maxRows limit, and tests if the results count is the expected.
      */
     private void testBug71396PrepStatementCheck(Connection testConn, String query, int expRowCount, int maxRows) throws SQLException {
         PreparedStatement chkPStmt;
@@ -6690,7 +6725,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes one query using a PreparedStatement and tests if the results count is the expected.
+     * Executes one query using a PreparedStatement and tests if the results
+     * count is the expected.
      */
     private void testBug71396PrepStatementCheck(PreparedStatement testPStmt, String query, int expRowCount) throws SQLException {
         ResultSet testRS;
@@ -6708,9 +6744,10 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Executes a query containing the clause LIMIT with a Statement and a PreparedStatement, using
-     * a combination of Connection properties, maxRows value and limit clause value, and tests if
-     * the results count is the expected.
+     * Executes a query containing the clause LIMIT with a Statement and a
+     * PreparedStatement, using a combination of Connection properties, maxRows
+     * value and limit clause value, and tests if the results count is the
+     * expected.
      */
     private void testBug71396MultiSettingsCheck(String connProps, int maxRows, int limitClause, int expRowCount) throws SQLException {
         Connection testConn = getConnectionWithProps(connProps);
@@ -6729,8 +6766,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for 18091639 - STRINGINDEXOUTOFBOUNDSEXCEPTION IN PREPAREDSTATEMENT.SETTIMESTAMP
-     * WITH 5.6.15
+     * Tests fix for 18091639 - STRINGINDEXOUTOFBOUNDSEXCEPTION IN
+     * PREPAREDSTATEMENT.SETTIMESTAMP WITH 5.6.15
      *
      * @throws Exception if the test fails.
      */
@@ -6775,8 +6812,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#66947 (16004987) - Calling ServerPreparedStatement.close() twice corrupts
-     * cached statements
+     * Tests fix for Bug#66947 (16004987) - Calling
+     * ServerPreparedStatement.close() twice corrupts cached statements
      *
      * @throws Exception
      */
@@ -6848,7 +6885,8 @@ public class StatementRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#68916 - closeOnCompletion doesn't work.
      *
-     * This test requires help and timezone tables in mysql database to be initialized, see
+     * This test requires help and timezone tables in mysql database to be
+     * initialized, see
      * http://dev.mysql.com/doc/refman/5.7/en/time-zone-support.html and
      * http://dev.mysql.com/doc/refman/5.7/en/server-side-help-support.html
      *
@@ -8237,8 +8275,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#71672 - Every SQL statement is checked if it contains "ON DUPLICATE KEY
-     * UPDATE" or not
+     * Tests fix for Bug#71672 - Every SQL statement is checked if it contains
+     * "ON DUPLICATE KEY UPDATE" or not
      *
      * @throws Exception if the test fails.
      */
@@ -8449,8 +8487,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Check the update count and returned keys for an INSERT query using a Statement object. If
-     * expectedUpdateCount < 0 then runs Statement.execute() otherwise Statement.executeUpdate().
+     * Check the update count and returned keys for an INSERT query using a
+     * Statement object. If expectedUpdateCount < 0 then runs
+     * Statement.execute() otherwise Statement.executeUpdate().
      */
     public void testBug71672Statement(int testStep, Connection testConn, String query, int expectedUpdateCount, int[] expectedKeys) throws SQLException {
         Statement testStmt = testConn.createStatement();
@@ -8472,9 +8511,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Check the update count and returned keys for an INSERT query using a PreparedStatement
-     * object. If expectedUpdateCount < 0 then runs PreparedStatement.execute() otherwise
-     * PreparedStatement.executeUpdate().
+     * Check the update count and returned keys for an INSERT query using a
+     * PreparedStatement object. If expectedUpdateCount < 0 then runs
+     * PreparedStatement.execute() otherwise PreparedStatement.executeUpdate().
      */
     public void testBug71672PreparedStatement(int testStep, Connection testConn, String query, int expectedUpdateCount, int[] expectedKeys)
             throws SQLException {
@@ -8497,7 +8536,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#71923 - Incorrect generated keys if ON DUPLICATE KEY UPDATE not exact
+     * Tests fix for BUG#71923 - Incorrect generated keys if ON DUPLICATE KEY
+     * UPDATE not exact
      *
      * @throws Exception if the test fails.
      */
@@ -8644,7 +8684,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#73163 - IndexOutOfBoundsException thrown preparing statement.
+     * Tests fix for BUG#73163 - IndexOutOfBoundsException thrown preparing
+     * statement.
      *
      * This bug occurs only if running with Java6+.
      *
@@ -8663,18 +8704,20 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#74998 - readRemainingMultiPackets not computed correctly for rows larger
-     * than 16 MB.
+     * Tests fix for BUG#74998 - readRemainingMultiPackets not computed
+     * correctly for rows larger than 16 MB.
      *
-     * This bug is observed only when a multipacket uses packets 127 and 128. It happens due to the
-     * transition from positive to negative values in a signed byte numeric value (127 + 1 == -128).
+     * This bug is observed only when a multipacket uses packets 127 and 128. It
+     * happens due to the transition from positive to negative values in a
+     * signed byte numeric value (127 + 1 == -128).
      *
-     * The test case forces a multipacket to use packets 127, 128 and 129, where packet 129 is
-     * 0-length, this being another boundary case. Query (*1) generates the following MySQL protocol
-     * packets from the server: - Packets 1 to 4 contain protocol control data and results metadata
-     * info. (*2) - Packets 5 to 126 contain each row "X". (*3) - Packets 127 to 129 contain row
-     * "Y..." as a multipacket (size("Y...") = 32*1024*1024-15 requires 3 packets). (*4) - Packet
-     * 130 contains row "Z". (*5)
+     * The test case forces a multipacket to use packets 127, 128 and 129, where
+     * packet 129 is 0-length, this being another boundary case. Query (*1)
+     * generates the following MySQL protocol packets from the server: - Packets
+     * 1 to 4 contain protocol control data and results metadata info. (*2) -
+     * Packets 5 to 126 contain each row "X". (*3) - Packets 127 to 129 contain
+     * row "Y..." as a multipacket (size("Y...") = 32*1024*1024-15 requires 3
+     * packets). (*4) - Packet 130 contains row "Z". (*5)
      *
      * @throws Exception if the test fails.
      */
@@ -8725,16 +8768,17 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#50348 - mysql connector/j 5.1.10 render the wrong value for dateTime column
-     * in GMT DB.
+     * Tests fix for BUG#50348 - mysql connector/j 5.1.10 render the wrong value
+     * for dateTime column in GMT DB.
      *
-     * With the right time zone settings in server and client, and using the property
-     * 'useTimezone=true', time shifts are computed in the opposite direction of those that are
-     * computed otherwise.
+     * With the right time zone settings in server and client, and using the
+     * property 'useTimezone=true', time shifts are computed in the opposite
+     * direction of those that are computed otherwise.
      *
-     * This issue is observed when the server is configured with time zone 'GMT' and the client
-     * other than 'GMT'. However, if the server's time zone is one equivalent to 'GMT' but under a
-     * different identifier, say "UTC" or "GMT+00", the wrong behavior isn't observed anymore.
+     * This issue is observed when the server is configured with time zone 'GMT'
+     * and the client other than 'GMT'. However, if the server's time zone is
+     * one equivalent to 'GMT' but under a different identifier, say "UTC" or
+     * "GMT+00", the wrong behavior isn't observed anymore.
      */
     public void testBug50348() throws Exception {
         final TimeZone defaultTZ = TimeZone.getDefault();
@@ -8848,10 +8892,11 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#77449 - Add 'truncateFractionalSeconds=true|false' property (contribution).
+     * Tests fix for Bug#77449 - Add 'truncateFractionalSeconds=true|false'
+     * property (contribution).
      *
-     * The property actually added was 'sendFractionalSeconds' and works as the opposite of the
-     * proposed one.
+     * The property actually added was 'sendFractionalSeconds' and works as the
+     * opposite of the proposed one.
      */
     public void testBug77449() throws Exception {
         if (!versionMeetsMinimum(5, 6, 4)) {
@@ -8987,17 +9032,18 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#77681 - rewrite replace sql like insert when rewriteBatchedStatements=true
-     * (contribution)
+     * Tests fix for BUG#77681 - rewrite replace sql like insert when
+     * rewriteBatchedStatements=true (contribution)
      *
-     * When using 'rewriteBatchedStatements=true' we rewrite several batched statements into one
-     * single query by extending its VALUES clause. Although INSERT REPLACE have the same syntax,
-     * this wasn't happening for REPLACE statements.
+     * When using 'rewriteBatchedStatements=true' we rewrite several batched
+     * statements into one single query by extending its VALUES clause. Although
+     * INSERT REPLACE have the same syntax, this wasn't happening for REPLACE
+     * statements.
      *
-     * This tests the number of queries actually sent to server when rewriteBatchedStatements is
-     * used and not by using a QueryInterceptor. The test is repeated for server side prepared
-     * statements. Without the fix, this test fails while checking the number of expected REPLACE
-     * queries.
+     * This tests the number of queries actually sent to server when
+     * rewriteBatchedStatements is used and not by using a QueryInterceptor. The
+     * test is repeated for server side prepared statements. Without the fix,
+     * this test fails while checking the number of expected REPLACE queries.
      */
     public void testBug77681() throws Exception {
         createTable("testBug77681", "(id INT, txt VARCHAR(50), PRIMARY KEY (id))");
@@ -9102,10 +9148,11 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#21876798 - CONNECTOR/J WITH MYSQL FABRIC AND SPRING PRODUCES PROXY ERROR.
+     * Tests fix for Bug#21876798 - CONNECTOR/J WITH MYSQL FABRIC AND SPRING
+     * PRODUCES PROXY ERROR.
      *
-     * Although this is a Fabric related bug we are able reproduce it using a couple of multi-host
-     * connections.
+     * Although this is a Fabric related bug we are able reproduce it using a
+     * couple of multi-host connections.
      */
     public void testBug21876798() throws Exception {
         createTable("testBug21876798", "(tst INT, val INT)");
@@ -9169,11 +9216,11 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#78961 - Can't call MySQL procedure with InOut parameters in Fabric
-     * environment.
+     * Tests fix for Bug#78961 - Can't call MySQL procedure with InOut
+     * parameters in Fabric environment.
      *
-     * Although this is a Fabric related bug we are able reproduce it using a couple of multi-host
-     * connections.
+     * Although this is a Fabric related bug we are able reproduce it using a
+     * couple of multi-host connections.
      */
     public void testBug78961() throws Exception {
         createProcedure("testBug78961", "(IN c1 FLOAT, IN c2 FLOAT, OUT h FLOAT, INOUT t FLOAT) BEGIN SET h = SQRT(c1 * c1 + c2 * c2); SET t = t + h; END;");
@@ -9198,8 +9245,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test Bug#75956 - Inserting timestamps using a server PreparedStatement and
-     * useLegacyDatetimeCode=false
+     * Test Bug#75956 - Inserting timestamps using a server PreparedStatement
+     * and useLegacyDatetimeCode=false
      */
     public void testBug75956() throws Exception {
         createTable("bug75956", "(id int not null primary key auto_increment, dt1 datetime, dt2 datetime)");
@@ -9239,8 +9286,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23188498 - CLIENT HANG WHILE USING SERVERPREPSTMT WHEN PROFILESQL=TRUE AND
-     * USEIS=TRUE.
+     * Tests fix for Bug#23188498 - CLIENT HANG WHILE USING SERVERPREPSTMT WHEN
+     * PROFILESQL=TRUE AND USEIS=TRUE.
      */
     public void testBug23188498() throws Exception {
         createTable("testBug23188498", "(id INT)");
@@ -9293,8 +9340,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23201930 - CLIENT HANG WHEN RSLT CUNCURRENCY=CONCUR_UPDATABLE AND RSLTSET
-     * TYPE=FORWARD_ONLY.
+     * Tests fix for Bug#23201930 - CLIENT HANG WHEN RSLT
+     * CUNCURRENCY=CONCUR_UPDATABLE AND RSLTSET TYPE=FORWARD_ONLY.
      */
     public void testBug23201930() throws Exception {
         boolean useSSL = false;
@@ -9374,38 +9421,45 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#80615 - prepared statement leak when rewriteBatchedStatements=true and
-     * useServerPrepStmt.
+     * Tests fix for Bug#80615 - prepared statement leak when
+     * rewriteBatchedStatements=true and useServerPrepStmt.
      *
-     * There are two bugs here: 1. A server prepared statement leakage by not actually closing the
-     * statement on server when .close() is called in the client side. This occurs when setting
-     * 'cachePrepStmts=true&useServerPrepStmts=true' and a prepared statement is set as non-poolable
-     * ('setPoolable(false)'). By itself this doesn't cause any visible issue because the connector
-     * has a fail-safe mechanism that uses client-side prepared statements when server-side prepared
-     * statements fail to be prepared. So, the connector ends up using client-side prepared
-     * statements after the number of open prepared statements on server hits the value of
-     * 'max_prepared_stmt_count'. 2. A prepared statement fails to be prepared when there are too
-     * many open prepared statements on server. By setting the options
-     * 'rewriteBatchedStatements=true&useServerPrepStmts=true' when a query happens to be rewritten
-     * a new (server-side) prepared statement is required but the fail-safe mechanism isn't
-     * implemented in this spot, so, since the leakage described above already consumed all
-     * available prepared statements on server, this ends up throwing the exception.
+     * There are two bugs here: 1. A server prepared statement leakage by not
+     * actually closing the statement on server when .close() is called in the
+     * client side. This occurs when setting
+     * 'cachePrepStmts=true&useServerPrepStmts=true' and a prepared statement is
+     * set as non-poolable ('setPoolable(false)'). By itself this doesn't cause
+     * any visible issue because the connector has a fail-safe mechanism that
+     * uses client-side prepared statements when server-side prepared statements
+     * fail to be prepared. So, the connector ends up using client-side prepared
+     * statements after the number of open prepared statements on server hits
+     * the value of 'max_prepared_stmt_count'. 2. A prepared statement fails to
+     * be prepared when there are too many open prepared statements on server.
+     * By setting the options
+     * 'rewriteBatchedStatements=true&useServerPrepStmts=true' when a query
+     * happens to be rewritten a new (server-side) prepared statement is
+     * required but the fail-safe mechanism isn't implemented in this spot, so,
+     * since the leakage described above already consumed all available prepared
+     * statements on server, this ends up throwing the exception.
      *
-     * This test combines three elements: 1. Call .close() on a server prepared statement. This
-     * promotes a prepared statement for caching if prepared statements cache is enabled. 2.
-     * cachePrepStmts=true|false. Turns on/off the prepared statements cache. 3. Call
-     * .setPoolable(true|false) on the prepared statement. This allows canceling the prepared
-     * statement caching, on a per statement basis. It has no effect if the prepared statements
+     * This test combines three elements: 1. Call .close() on a server prepared
+     * statement. This promotes a prepared statement for caching if prepared
+     * statements cache is enabled. 2. cachePrepStmts=true|false. Turns on/off
+     * the prepared statements cache. 3. Call .setPoolable(true|false) on the
+     * prepared statement. This allows canceling the prepared statement caching,
+     * on a per statement basis. It has no effect if the prepared statements
      * cache if turned off for the current connection.
      *
-     * Expected behavior: - If .close() is not called on server prepared statements then they also
-     * can't be promoted for caching. This causes a server prepared statements leak in all remaining
-     * combinations. - If .close() is called on server prepared statements and the prepared
-     * statements cache is disabled by any form (either per connection or per statement), then the
-     * statements is immediately closed on server side too. - If .close() is called on server
-     * prepared statements and the prepared statements cache is enabled (both in the connection and
-     * in the statement) then the statement is cached and only effectively closed in the server side
-     * if and when removed from the cache.
+     * Expected behavior: - If .close() is not called on server prepared
+     * statements then they also can't be promoted for caching. This causes a
+     * server prepared statements leak in all remaining combinations. - If
+     * .close() is called on server prepared statements and the prepared
+     * statements cache is disabled by any form (either per connection or per
+     * statement), then the statements is immediately closed on server side too.
+     * - If .close() is called on server prepared statements and the prepared
+     * statements cache is enabled (both in the connection and in the statement)
+     * then the statement is cached and only effectively closed in the server
+     * side if and when removed from the cache.
      */
     public void testBug80615() throws Exception {
         final int prepStmtCacheSize = 5;
@@ -9653,8 +9707,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#66430 - setCatalog on connection leaves ServerPreparedStatement cache for
-     * old catalog.
+     * Tests fix for Bug#66430 - setCatalog on connection leaves
+     * ServerPreparedStatement cache for old catalog.
      */
     public void testBug66430() throws Exception {
         createDatabase("testBug66430DB1");
@@ -9804,8 +9858,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#74932 - ConnectionImp Doesn't Close Server Prepared Statement
-     * (PreparedStatement Leak).
+     * Tests fix for Bug#74932 - ConnectionImp Doesn't Close Server Prepared
+     * Statement (PreparedStatement Leak).
      */
     public void testBug74932() throws Exception {
         createTable("testBug74932", "(c1 INT, c2 INT)");
@@ -9879,7 +9933,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#78313 - proxies not handling Object.equals(Object) calls correctly.
+     * Tests fix for Bug#78313 - proxies not handling Object.equals(Object)
+     * calls correctly.
      */
     public void testBug78313() throws Exception {
         Connection testConn;
@@ -9997,7 +10052,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#87429 - repeated close of ServerPreparedStatement causes memory leak.
+     * Tests fix for Bug#87429 - repeated close of ServerPreparedStatement
+     * causes memory leak.
      */
     public void testBug87429() throws Exception {
         final String sql1 = "SELECT 'sql1', ?";
@@ -10072,7 +10128,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#26995710 - WL#11161 : NULL POINTER EXCEPTION IN EXECUTEBATCH() AND CLOSE().
+     * Tests fix for Bug#26995710 - WL#11161 : NULL POINTER EXCEPTION IN
+     * EXECUTEBATCH() AND CLOSE().
      */
     public void testBug26995710() throws Exception {
         createTable("testBug26995710", "(c1 char(20),c2 char(20))");
@@ -10221,8 +10278,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#26748909 - MASTER : ERROR - NO OPERATIONS ALLOWED AFTER STATEMENT CLOSED
-     * FOR TOSTRING()
+     * Tests fix for Bug#26748909 - MASTER : ERROR - NO OPERATIONS ALLOWED AFTER
+     * STATEMENT CLOSED FOR TOSTRING()
      *
      * @throws Exception
      */
@@ -10291,8 +10348,9 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#87534 - UNION ALL query fails when useServerPrepStmts=true on database
-     * connection. Base Bug#27422376 - NEWDATE TYPE IS LEAKING OUT, fixed in MySQL 5.7.22.
+     * Tests fix for Bug#87534 - UNION ALL query fails when
+     * useServerPrepStmts=true on database connection. Base Bug#27422376 -
+     * NEWDATE TYPE IS LEAKING OUT, fixed in MySQL 5.7.22.
      */
     public void testBug87534() throws Exception {
         if (versionMeetsMinimum(5, 7) && !versionMeetsMinimum(5, 7, 22)) {
@@ -10339,7 +10397,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#84813 (25501750), rewriteBatchedStatements fails in INSERT.
+     * Tests fix for Bug#84813 (25501750), rewriteBatchedStatements fails in
+     * INSERT.
      */
     public void testBug84813() throws Exception {
         createTable("testBug84813", "(id INT AUTO_INCREMENT PRIMARY KEY, z INT, n INT)");
@@ -10397,8 +10456,8 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#81063 (23098159), w/ rewriteBatchedStatements, when 2 tables involved, the
-     * rewriting not correct.
+     * Tests fix for Bug#81063 (23098159), w/ rewriteBatchedStatements, when 2
+     * tables involved, the rewriting not correct.
      */
     public void testBug81063() throws Exception {
         createTable("testBug81063a", "(c1 INT, c2 INT, c3 INT DEFAULT 0, c4 INT DEFAULT 0)");

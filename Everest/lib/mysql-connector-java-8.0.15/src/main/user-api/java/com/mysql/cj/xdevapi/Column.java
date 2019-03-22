@@ -113,7 +113,8 @@ public interface Column {
     /**
      * Checks if the value has a padding.
      *
-     * @return true if column flags contain FIELD_FLAG_ZEROFILL or field type is CHAR
+     * @return true if column flags contain FIELD_FLAG_ZEROFILL or field type is
+     * CHAR
      */
     boolean isPadded();
 

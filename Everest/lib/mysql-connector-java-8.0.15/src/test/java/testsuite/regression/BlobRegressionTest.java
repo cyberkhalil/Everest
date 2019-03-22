@@ -202,8 +202,8 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests BUG#8096 where emulated locators corrupt binary data when using server-side prepared
-     * statements.
+     * Tests BUG#8096 where emulated locators corrupt binary data when using
+     * server-side prepared statements.
      *
      * @throws Exception if the test fails.
      */
@@ -269,8 +269,8 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9040 - PreparedStatement.addBatch() doesn't work with server-side prepared
-     * statements and streaming BINARY data.
+     * Tests fix for BUG#9040 - PreparedStatement.addBatch() doesn't work with
+     * server-side prepared statements and streaming BINARY data.
      *
      * @throws Exception if the test fails.
      */
@@ -332,7 +332,8 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20453671 - CLOB.POSITION() API CALL WITH CLOB INPUT RETURNS EXCEPTION
+     * Tests fix for BUG#20453671 - CLOB.POSITION() API CALL WITH CLOB INPUT
+     * RETURNS EXCEPTION
      *
      * @throws Exception if the test fails.
      */
@@ -363,8 +364,8 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20453712 - CLOB.SETSTRING() WITH VALID INPUT RETURNS EXCEPTION server-side
-     * prepared statements and streaming BINARY data.
+     * Tests fix for BUG#20453712 - CLOB.SETSTRING() WITH VALID INPUT RETURNS
+     * EXCEPTION server-side prepared statements and streaming BINARY data.
      *
      * @throws Exception if the test fails.
      */
@@ -404,7 +405,8 @@ public class BlobRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23535571 - EXCESSIVE MEMORY USAGE WHEN ENABLEPACKETDEBUG=TRUE
+     * Tests fix for Bug#23535571 - EXCESSIVE MEMORY USAGE WHEN
+     * ENABLEPACKETDEBUG=TRUE
      *
      * @throws Exception
      */

@@ -31,7 +31,8 @@ package com.mysql.cj.jdbc.exceptions;
 import java.sql.DataTruncation;
 
 /**
- * MySQL wrapper for DataTruncation until the server can support sending all needed information.
+ * MySQL wrapper for DataTruncation until the server can support sending all
+ * needed information.
  */
 public class MysqlDataTruncation extends DataTruncation {
 

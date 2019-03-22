@@ -31,8 +31,8 @@ package com.mysql.cj.xdevapi;
 import java.util.Map;
 
 /**
- * A client-side representation of a database table. Provides access to the table through standard
- * INSERT/SELECT/UPDATE/DELETE statements.
+ * A client-side representation of a database table. Provides access to the
+ * table through standard INSERT/SELECT/UPDATE/DELETE statements.
  */
 public interface Table extends DatabaseObject {
 

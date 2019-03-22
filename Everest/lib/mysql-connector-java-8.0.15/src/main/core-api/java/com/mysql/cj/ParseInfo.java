@@ -37,8 +37,8 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * Represents the "parsed" state of a prepared query, with the statement broken up into its static
- * and dynamic (where parameters are bound) parts.
+ * Represents the "parsed" state of a prepared query, with the statement broken
+ * up into its static and dynamic (where parameters are bound) parts.
  */
 public class ParseInfo {
 
@@ -375,7 +375,8 @@ public class ParseInfo {
     }
 
     /**
-     * Returns a ParseInfo for a multi-value INSERT for a batch of size numBatch (without parsing!).
+     * Returns a ParseInfo for a multi-value INSERT for a batch of size numBatch
+     * (without parsing!).
      *
      * @param numBatch number of batched parameters
      * @return {@link ParseInfo}
@@ -391,8 +392,8 @@ public class ParseInfo {
     }
 
     /**
-     * Returns a preparable SQL string for the number of batched parameters; used by server-side
-     * prepared statements when re-writing batch INSERTs.
+     * Returns a preparable SQL string for the number of batched parameters;
+     * used by server-side prepared statements when re-writing batch INSERTs.
      *
      * @param numBatch number of batched parameters
      * @return SQL string
@@ -433,11 +434,12 @@ public class ParseInfo {
     }
 
     /**
-     * Builds a ParseInfo for the given batch size, without parsing. We use a visitor pattern here,
-     * because the if {}s make computing a size for the resultant byte[][] make this too complex,
-     * and we don't necessarily want to use a List for this, because the size can be dynamic, and
-     * thus we'll not be able to guess a good initial size for an array-based list, and it's not
-     * efficient to convert a LinkedList to an array.
+     * Builds a ParseInfo for the given batch size, without parsing. We use a
+     * visitor pattern here, because the if {}s make computing a size for the
+     * resultant byte[][] make this too complex, and we don't necessarily want
+     * to use a List for this, because the size can be dynamic, and thus we'll
+     * not be able to guess a good initial size for an array-based list, and
+     * it's not efficient to convert a LinkedList to an array.
      *
      * @param numBatch number of batched parameters
      * @param visitor visitor

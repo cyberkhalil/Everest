@@ -41,9 +41,10 @@ import java.util.Set;
 import java.util.TreeMap;
 
 /**
- * Mapping between MySQL charset names and Java charset names. I've investigated placing these in a
- * .properties file, but unfortunately under most appservers this complicates configuration because
- * the security policy needs to be changed by the user to allow the driver to read them :(
+ * Mapping between MySQL charset names and Java charset names. I've investigated
+ * placing these in a .properties file, but unfortunately under most appservers
+ * this complicates configuration because the security policy needs to be
+ * changed by the user to allow the driver to read them :(
  */
 public class CharsetMapping {
 
@@ -586,18 +587,20 @@ public class CharsetMapping {
     }
 
     /**
-     * MySQL charset could map to several Java encodings. So here we choose the one according to
-     * next rules:
+     * MySQL charset could map to several Java encodings. So here we choose the
+     * one according to next rules:
      * <ul>
-     * <li>if there is no static mapping for this charset then return javaEncoding value as is
-     * because this could be a custom charset for example
-     * <li>if static mapping exists and javaEncoding equals to one of Java encoding canonical names
-     * or aliases available for this mapping then javaEncoding value as is; this is required when
-     * result should match to connection encoding, for example if connection encoding is Cp943 we
-     * must avoid getting SHIFT_JIS for sjis mysql charset
-     * <li>if static mapping exists and javaEncoding doesn't match any Java encoding canonical names
-     * or aliases available for this mapping then return default Java encoding (the first in mapping
-     * list)
+     * <li>if there is no static mapping for this charset then return
+     * javaEncoding value as is because this could be a custom charset for
+     * example
+     * <li>if static mapping exists and javaEncoding equals to one of Java
+     * encoding canonical names or aliases available for this mapping then
+     * javaEncoding value as is; this is required when result should match to
+     * connection encoding, for example if connection encoding is Cp943 we must
+     * avoid getting SHIFT_JIS for sjis mysql charset
+     * <li>if static mapping exists and javaEncoding doesn't match any Java
+     * encoding canonical names or aliases available for this mapping then
+     * return default Java encoding (the first in mapping list)
      * </ul>
      *
      * @param mysqlCharsetName MySQL charset name
@@ -668,10 +671,11 @@ class MysqlCharset {
      *
      * @param charsetName MySQL charset name
      * @param mblen Max number of bytes per character
-     * @param priority MysqlCharset with highest value of this param will be used for Java encoding
-     * --&gt; Mysql charsets conversion.
-     * @param javaEncodings List of Java encodings corresponding to this MySQL charset; the first
-     * name in list is the default for mysql --&gt; java data conversion
+     * @param priority MysqlCharset with highest value of this param will be
+     * used for Java encoding --&gt; Mysql charsets conversion.
+     * @param javaEncodings List of Java encodings corresponding to this MySQL
+     * charset; the first name in list is the default for mysql --&gt; java data
+     * conversion
      */
     public MysqlCharset(String charsetName, int mblen, int priority, String[] javaEncodings) {
         this(charsetName, mblen, priority, javaEncodings, new ServerVersion(0, 0, 0));
@@ -739,8 +743,9 @@ class MysqlCharset {
     }
 
     /**
-     * If javaEncoding parameter value is one of available java encodings for this charset then
-     * returns javaEncoding value as is. Otherwise returns first available java encoding name.
+     * If javaEncoding parameter value is one of available java encodings for
+     * this charset then returns javaEncoding value as is. Otherwise returns
+     * first available java encoding name.
      *
      * @param javaEncoding java encoding name
      * @return java encoding name

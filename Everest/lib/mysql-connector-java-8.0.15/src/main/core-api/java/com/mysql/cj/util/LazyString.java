@@ -31,9 +31,10 @@ package com.mysql.cj.util;
 import java.util.function.Supplier;
 
 /**
- * A lazy string that can take a byte buffer and encoding and interpret it as a string if/when
- * requested. The string is cached and saved for any further requests. "NULL" values can be
- * represented by a 0-len string or a <i>null</i> passed to LazyString(String).
+ * A lazy string that can take a byte buffer and encoding and interpret it as a
+ * string if/when requested. The string is cached and saved for any further
+ * requests. "NULL" values can be represented by a 0-len string or a <i>null</i>
+ * passed to LazyString(String).
  */
 public class LazyString implements Supplier<String> {
 

@@ -38,8 +38,8 @@ public class ClientPreparedQuery extends AbstractPreparedQuery<ClientPreparedQue
     }
 
     /**
-     * Computes the maximum parameter set size, and entire batch size given the number of arguments
-     * in the batch.
+     * Computes the maximum parameter set size, and entire batch size given the
+     * number of arguments in the batch.
      *
      */
     @Override

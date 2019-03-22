@@ -38,7 +38,8 @@ import com.mysql.cj.result.ValueFactory;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * A {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL binary (prepared statement) protocol.
+ * A {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL binary (prepared
+ * statement) protocol.
  */
 public class MysqlBinaryValueDecoder implements ValueDecoder {
 

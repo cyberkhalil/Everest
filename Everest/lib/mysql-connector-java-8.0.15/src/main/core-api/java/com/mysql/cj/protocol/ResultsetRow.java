@@ -31,13 +31,14 @@ package com.mysql.cj.protocol;
 import com.mysql.cj.result.Row;
 
 /**
- * Classes that implement this interface represent one row of data from the MySQL server that might
- * be stored in different ways depending on whether the result set was streaming (so they wrap a
- * reusable packet), or whether the result set was cached or via a server-side cursor (so they
- * represent a byte[][]).
+ * Classes that implement this interface represent one row of data from the
+ * MySQL server that might be stored in different ways depending on whether the
+ * result set was streaming (so they wrap a reusable packet), or whether the
+ * result set was cached or via a server-side cursor (so they represent a
+ * byte[][]).
  *
- * Notice that <strong>no</strong> bounds checking is expected for implementors of this interface,
- * it happens in ResultSetImpl.
+ * Notice that <strong>no</strong> bounds checking is expected for implementors
+ * of this interface, it happens in ResultSetImpl.
  */
 public interface ResultsetRow extends Row, ProtocolEntity {
 

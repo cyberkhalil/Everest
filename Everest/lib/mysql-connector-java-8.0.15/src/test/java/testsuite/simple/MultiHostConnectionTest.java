@@ -136,7 +136,8 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests failover connection establishing with multiple up/down combinations of 3 hosts.
+     * Tests failover connection establishing with multiple up/down combinations
+     * of 3 hosts.
      */
     public void testFailoverConnection() throws Exception {
         String hostPortPair = getEncodedHostPortPairFromTestsuiteUrl();
@@ -181,7 +182,8 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests failover transitions in a default failover connection using three hosts.
+     * Tests failover transitions in a default failover connection using three
+     * hosts.
      */
     public void testFailoverTransitions() throws Exception {
         Set<String> downedHosts = new HashSet<>();
@@ -221,13 +223,16 @@ public class MultiHostConnectionTest extends BaseTestCase {
     /**
      * Tests a failover transition.
      *
-     * @param fromHost The host where initially connected to. In order to connect to an host other
-     * than the primary all previous hosts must be downed (pinpoint them in the 'downedHosts' set).
-     * @param toHost The host where to failover. In order to correctly connect to this host, all
-     * hosts between (and eventually before) 'fromHost' and 'toHost' must be downed.
+     * @param fromHost The host where initially connected to. In order to
+     * connect to an host other than the primary all previous hosts must be
+     * downed (pinpoint them in the 'downedHosts' set).
+     * @param toHost The host where to failover. In order to correctly connect
+     * to this host, all hosts between (and eventually before) 'fromHost' and
+     * 'toHost' must be downed.
      * @param downedHosts The set of hosts initially down.
      * @param recoverHost The host that recovers after first connection.
-     * @param expectedConnectionsHistory The expected connection attempts sequence.
+     * @param expectedConnectionsHistory The expected connection attempts
+     * sequence.
      */
     private void testFailoverTransition(String fromHost, String toHost, Set<String> downedHosts, String recoverHost, String... expectedConnectionsHistory)
             throws Exception {
@@ -286,10 +291,11 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests a default failover connection using three hosts and the following sequence of events: -
-     * [/HOST_1 : /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 : /HOST_2 : /HOST_3] --> HOST_2 -
-     * [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3 - [/HOST_1 : /HOST_2 : /HOST_3] - [/HOST_1 : /HOST_2
-     * : \HOST_3] --> HOST_2 - [/HOST_1 : \HOST_2 : \HOST_3] --> HOST_1
+     * Tests a default failover connection using three hosts and the following
+     * sequence of events: - [/HOST_1 : /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1
+     * : /HOST_2 : /HOST_3] --> HOST_2 - [\HOST_1 : \HOST_2 : /HOST_3] -->
+     * HOST_3 - [/HOST_1 : /HOST_2 : /HOST_3] - [/HOST_1 : /HOST_2 : \HOST_3]
+     * --> HOST_2 - [/HOST_1 : \HOST_2 : \HOST_3] --> HOST_1
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -410,11 +416,12 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Repeatedly tests a failover connection using three hosts and the following sequence of
-     * events, combining distinct failover event triggering: - [/HOST_1 : /HOST_2 : /HOST_3] -->
-     * HOST_1 - [\HOST_1 : /HOST_2 : /HOST_3] --> HOST_2 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
-     * - [/HOST_1 : /HOST_2 : /HOST_3] - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 :
-     * \HOST_2 : \HOST_3] --> HOST_1
+     * Repeatedly tests a failover connection using three hosts and the
+     * following sequence of events, combining distinct failover event
+     * triggering: - [/HOST_1 : /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 :
+     * /HOST_2 : /HOST_3] --> HOST_2 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * - [/HOST_1 : /HOST_2 : /HOST_3] - [/HOST_1 : /HOST_2 : \HOST_3] -->
+     * HOST_2 - [/HOST_1 : \HOST_2 : \HOST_3] --> HOST_1
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -561,10 +568,11 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the property 'failOverReadOnly' in a failover connection using three hosts and the
-     * following sequence of events: - [\HOST_1 : /HOST_2 : /HOST_3] --> HOST_2 - [\HOST_1 : \HOST_2
-     * : /HOST_3] --> HOST_3 - [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 : \HOST_2 :
-     * \HOST_3] --> HOST_1 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * Tests the property 'failOverReadOnly' in a failover connection using
+     * three hosts and the following sequence of events: - [\HOST_1 : /HOST_2 :
+     * /HOST_3] --> HOST_2 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3 - [\HOST_1
+     * : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 : \HOST_2 : \HOST_3] -->
+     * HOST_1 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -663,9 +671,10 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the property 'queriesBeforeRetryMaster' in a failover connection using three hosts and
-     * the following sequence of events: - [/HOST_1 : /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 :
-     * \HOST_2 : /HOST_3] --> HOST_3 - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 vs HOST_2
+     * Tests the property 'queriesBeforeRetryMaster' in a failover connection
+     * using three hosts and the following sequence of events: - [/HOST_1 :
+     * /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 vs HOST_2
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -746,9 +755,10 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the property 'secondsBeforeRetryMaster' in a failover connection using three hosts and
-     * the following sequence of events: - [/HOST_1 : /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 :
-     * \HOST_2 : /HOST_3] --> HOST_3 - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 vs HOST_2
+     * Tests the property 'secondsBeforeRetryMaster' in a failover connection
+     * using three hosts and the following sequence of events: - [/HOST_1 :
+     * /HOST_2 : /HOST_3] --> HOST_1 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 vs HOST_2
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -834,16 +844,18 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the automatic fall back to primary host in a failover connection using three hosts and
-     * the following sequence of events: + 1.st part: - [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 -
-     * [/HOST_1 : /HOST_2 : /HOST_3] --> no_change vs HOST_1 (auto fall back) - [/HOST_1 : \HOST_2 :
-     * /HOST_3] --> HOST_1 vs no_change + 2.nd part: - [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 -
-     * [/HOST_1 : /HOST_2 : /HOST_3] --> no_change - [/HOST_1 : \HOST_2 : /HOST_3] --> HOST_3 -
-     * [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 - /HOST_2 & \HOST_3
+     * Tests the automatic fall back to primary host in a failover connection
+     * using three hosts and the following sequence of events: + 1.st part: -
+     * [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 : /HOST_2 : /HOST_3]
+     * --> no_change vs HOST_1 (auto fall back) - [/HOST_1 : \HOST_2 : /HOST_3]
+     * --> HOST_1 vs no_change + 2.nd part: - [\HOST_1 : /HOST_2 : \HOST_3] -->
+     * HOST_2 - [/HOST_1 : /HOST_2 : /HOST_3] --> no_change - [/HOST_1 : \HOST_2
+     * : /HOST_3] --> HOST_3 - [/HOST_1 : /HOST_2 : \HOST_3] --> HOST_1 -
+     * /HOST_2 & \HOST_3
      *
-     * The automatic fall back only happens at transaction boundaries and at least
-     * 'queriesBeforeRetryMaster' or 'secondsBeforeRetryMaster' is greater than 0. [Legend:
-     * "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
+     * The automatic fall back only happens at transaction boundaries and at
+     * least 'queriesBeforeRetryMaster' or 'secondsBeforeRetryMaster' is greater
+     * than 0. [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
     public void testFailoverAutoFallBack() throws Exception {
         Set<String> downedHosts = new HashSet<>();
@@ -994,10 +1006,11 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests the property 'autoReconnect' in a failover connection using three hosts and the
-     * following sequence of events: - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3 - [\HOST_1 : /HOST_2
-     * : \HOST_3] --> HOST_2 - [/HOST_1 : /HOST_2 : \HOST_3] - [/HOST_1 : \HOST_2 : \HOST_3] -->
-     * HOST_1 - [/HOST_1 : \HOST_2 : /HOST_3] - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * Tests the property 'autoReconnect' in a failover connection using three
+     * hosts and the following sequence of events: - [\HOST_1 : \HOST_2 :
+     * /HOST_3] --> HOST_3 - [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1
+     * : /HOST_2 : \HOST_3] - [/HOST_1 : \HOST_2 : \HOST_3] --> HOST_1 -
+     * [/HOST_1 : \HOST_2 : /HOST_3] - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */
@@ -1124,9 +1137,10 @@ public class MultiHostConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests connection properties synchronization in a failover connection using three hosts and
-     * the following sequence of events: - [\HOST_1 : /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 :
-     * \HOST_2 : \HOST_3] --> HOST_1 - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
+     * Tests connection properties synchronization in a failover connection
+     * using three hosts and the following sequence of events: - [\HOST_1 :
+     * /HOST_2 : \HOST_3] --> HOST_2 - [/HOST_1 : \HOST_2 : \HOST_3] --> HOST_1
+     * - [\HOST_1 : \HOST_2 : /HOST_3] --> HOST_3
      *
      * [Legend: "/HOST_n" --> HOST_n up; "\HOST_n" --> HOST_n down]
      */

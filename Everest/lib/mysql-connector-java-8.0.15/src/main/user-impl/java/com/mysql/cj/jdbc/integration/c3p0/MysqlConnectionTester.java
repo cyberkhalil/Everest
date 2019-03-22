@@ -40,9 +40,10 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 /**
- * ConnectionTester for C3P0 connection pool that uses the more efficient COM_PING method of testing
- * connection 'liveness' for MySQL, and 'sorts' exceptions based on SQLState or class of
- * 'CommunicationsException' for handling exceptions.
+ * ConnectionTester for C3P0 connection pool that uses the more efficient
+ * COM_PING method of testing connection 'liveness' for MySQL, and 'sorts'
+ * exceptions based on SQLState or class of 'CommunicationsException' for
+ * handling exceptions.
  */
 public final class MysqlConnectionTester implements QueryConnectionTester {
 

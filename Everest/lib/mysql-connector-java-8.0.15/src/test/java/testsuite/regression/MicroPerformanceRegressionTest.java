@@ -38,8 +38,8 @@ import java.util.Map;
 import testsuite.BaseTestCase;
 
 /**
- * Microperformance benchmarks to track increase/decrease in performance of core methods in the
- * driver over time.
+ * Microperformance benchmarks to track increase/decrease in performance of core
+ * methods in the driver over time.
  */
 public class MicroPerformanceRegressionTest extends BaseTestCase {
 
@@ -100,7 +100,8 @@ public class MicroPerformanceRegressionTest extends BaseTestCase {
     /**
      * Tests result set accessors performance.
      *
-     * @throws Exception if the performance of these methods does not meet expectations.
+     * @throws Exception if the performance of these methods does not meet
+     * expectations.
      */
     public void testResultSetAccessors() throws Exception {
         createTable("marktest", "(intField INT, floatField DOUBLE, timeField TIME, datetimeField DATETIME, stringField VARCHAR(64))");

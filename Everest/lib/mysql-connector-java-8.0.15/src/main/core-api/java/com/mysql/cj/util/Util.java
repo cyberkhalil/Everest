@@ -101,17 +101,20 @@ public class Util {
     }
 
     /**
-     * Checks whether the given server version string is a MySQL Community edition
+     * Checks whether the given server version string is a MySQL Community
+     * edition
      *
      * @param serverVersion full server version string
-     * @return true if version does not contain "enterprise", "commercial" or "advanced"
+     * @return true if version does not contain "enterprise", "commercial" or
+     * "advanced"
      */
     public static boolean isCommunityEdition(String serverVersion) {
         return !isEnterpriseEdition(serverVersion);
     }
 
     /**
-     * Checks whether the given server version string is a MySQL Enterprise edition
+     * Checks whether the given server version string is a MySQL Enterprise
+     * edition
      *
      * @param serverVersion full server version string
      * @return true if version contains "enterprise", "commercial" or "advanced"
@@ -125,7 +128,8 @@ public class Util {
      *
      * @param ex the exception to expand into a message.
      *
-     * @return a message containing the exception, the message (if any), and a stacktrace.
+     * @return a message containing the exception, the message (if any), and a
+     * stacktrace.
      */
     public static String stackTraceToString(Throwable ex) {
         StringBuilder traceBuf = new StringBuilder();
@@ -170,8 +174,8 @@ public class Util {
     }
 
     /**
-     * Handles constructing new instance with the given constructor and wrapping (or not, as
-     * required) the exceptions that could possibly be generated
+     * Handles constructing new instance with the given constructor and wrapping
+     * (or not, as required) the exceptions that could possibly be generated
      *
      * @param ctor constructor
      * @param args arguments for constructor
@@ -201,8 +205,8 @@ public class Util {
      * Does a network interface exist locally with the given hostname?
      *
      * @param hostname the hostname (or IP address in string form) to check
-     * @return true if it exists, false if no, or unable to determine due to VM version support of
-     * java.net.NetworkInterface
+     * @return true if it exists, false if no, or unable to determine due to VM
+     * version support of java.net.NetworkInterface
      */
     public static boolean interfaceExists(String hostname) {
         try {
@@ -292,8 +296,8 @@ public class Util {
     private static final ConcurrentMap<Class<?>, Boolean> isJdbcInterfaceCache = new ConcurrentHashMap<>();
 
     /**
-     * Recursively checks for interfaces on the given class to determine if it implements a
-     * java.sql, javax.sql or com.mysql.cj.jdbc interface.
+     * Recursively checks for interfaces on the given class to determine if it
+     * implements a java.sql, javax.sql or com.mysql.cj.jdbc interface.
      *
      * @param clazz The class to investigate.
      * @return boolean
@@ -350,9 +354,9 @@ public class Util {
     private static final ConcurrentMap<Class<?>, Class<?>[]> implementedInterfacesCache = new ConcurrentHashMap<>();
 
     /**
-     * Retrieves a list with all interfaces implemented by the given class. If possible gets this
-     * information from a cache instead of navigating through the object hierarchy. Results are
-     * stored in a cache for future reference.
+     * Retrieves a list with all interfaces implemented by the given class. If
+     * possible gets this information from a cache instead of navigating through
+     * the object hierarchy. Results are stored in a cache for future reference.
      *
      * @param clazz The class from which the interface list will be retrieved.
      * @return An array with all the interfaces for the given class.
@@ -379,7 +383,8 @@ public class Util {
     }
 
     /**
-     * Computes the number of seconds elapsed since the given time in milliseconds.
+     * Computes the number of seconds elapsed since the given time in
+     * milliseconds.
      *
      * @param timeInMillis The past instant in milliseconds.
      * @return The number of seconds, truncated, elapsed since timeInMillis.
@@ -414,8 +419,9 @@ public class Util {
     }
 
     /**
-     * Returns the package name of the given class. Using clazz.getPackage().getName() is not an
-     * alternative because under some class loaders the method getPackage() just returns null.
+     * Returns the package name of the given class. Using
+     * clazz.getPackage().getName() is not an alternative because under some
+     * class loaders the method getPackage() just returns null.
      *
      * @param clazz the Class from which to get the package name
      * @return the package name
@@ -432,14 +438,16 @@ public class Util {
     /**
      * Checks if the JVM is running on Windows Operating System.
      *
-     * @return <code>true</code> if currently running on Windows, <code>false</code> otherwise.
+     * @return <code>true</code> if currently running on Windows,
+     * <code>false</code> otherwise.
      */
     public static boolean isRunningOnWindows() {
         return StringUtils.indexOfIgnoreCase(Constants.OS_NAME, "WINDOWS") != -1;
     }
 
     /**
-     * Reads length bytes from reader into buf. Blocks until enough input is available
+     * Reads length bytes from reader into buf. Blocks until enough input is
+     * available
      *
      * @param reader {@link Reader}
      * @param buf char array to read into

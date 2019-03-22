@@ -572,7 +572,8 @@ public final class MysqlxExpect {
             }
 
             /**
-             * Protobuf enum {@code Mysqlx.Expect.Open.Condition.ConditionOperation}
+             * Protobuf enum
+             * {@code Mysqlx.Expect.Open.Condition.ConditionOperation}
              */
             public enum ConditionOperation
                     implements com.google.protobuf.ProtocolMessageEnum {

@@ -36,9 +36,9 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Group of connection objects which can be configured as a group. This is used for
- * promotion/demotion of slaves and masters in a replication configuration, and for exposing metrics
- * around replication-aware connections.
+ * Group of connection objects which can be configured as a group. This is used
+ * for promotion/demotion of slaves and masters in a replication configuration,
+ * and for exposing metrics around replication-aware connections.
  */
 public class ReplicationConnectionGroup {
 
@@ -97,10 +97,12 @@ public class ReplicationConnectionGroup {
     /**
      * Adds a host to the slaves hosts list.
      *
-     * We can safely assume that if this host was added to the slaves list, then it must be added to
-     * each one of the replication connections from this group as well. Unnecessary calls to
-     * {@link ReplicationConnection#addSlaveHost(String)} could result in undesirable locking
-     * issues, assuming that this method is synchronized by nature.
+     * We can safely assume that if this host was added to the slaves list, then
+     * it must be added to each one of the replication connections from this
+     * group as well. Unnecessary calls to
+     * {@link ReplicationConnection#addSlaveHost(String)} could result in
+     * undesirable locking issues, assuming that this method is synchronized by
+     * nature.
      *
      * This is a no-op if the group already has this host in a slave role.
      *
@@ -127,10 +129,12 @@ public class ReplicationConnectionGroup {
     /**
      * Removes a host from the slaves hosts list.
      *
-     * We can safely assume that if this host was removed from the slaves list, then it must be
-     * removed from each one of the replication connections from this group as well. Unnecessary
-     * calls to {@link ReplicationConnection#removeSlave(String, boolean)} could result in
-     * undesirable locking issues, assuming that this method is synchronized by nature.
+     * We can safely assume that if this host was removed from the slaves list,
+     * then it must be removed from each one of the replication connections from
+     * this group as well. Unnecessary calls to
+     * {@link ReplicationConnection#removeSlave(String, boolean)} could result
+     * in undesirable locking issues, assuming that this method is synchronized
+     * by nature.
      *
      * This is a no-op if the group doesn't have this host in a slave role.
      *
@@ -152,13 +156,16 @@ public class ReplicationConnectionGroup {
     /**
      * Promotes a slave host to master.
      *
-     * We can safely assume that if this host was removed from the slaves list or added to the
-     * masters list, then the same host promotion must happen in each one of the replication
-     * connections from this group as well. Unnecessary calls to
-     * {@link ReplicationConnection#promoteSlaveToMaster(String)} could result in undesirable
-     * locking issues, assuming that this method is synchronized by nature.
+     * We can safely assume that if this host was removed from the slaves list
+     * or added to the masters list, then the same host promotion must happen in
+     * each one of the replication connections from this group as well.
+     * Unnecessary calls to
+     * {@link ReplicationConnection#promoteSlaveToMaster(String)} could result
+     * in undesirable locking issues, assuming that this method is synchronized
+     * by nature.
      *
-     * This is a no-op if the group already has this host in a master role and not in slave role.
+     * This is a no-op if the group already has this host in a master role and
+     * not in slave role.
      *
      * @param hostPortPair "host:port"
      * @throws SQLException if an error occurs
@@ -187,10 +194,12 @@ public class ReplicationConnectionGroup {
     /**
      * Removes a host from the masters hosts list.
      *
-     * We can safely assume that if this host was removed from the masters list, then it must be
-     * removed from each one of the replication connections from this group as well. Unnecessary
-     * calls to {@link ReplicationConnection#removeMasterHost(String, boolean)} could result in
-     * undesirable locking issues, assuming that this method is synchronized by nature.
+     * We can safely assume that if this host was removed from the masters list,
+     * then it must be removed from each one of the replication connections from
+     * this group as well. Unnecessary calls to
+     * {@link ReplicationConnection#removeMasterHost(String, boolean)} could
+     * result in undesirable locking issues, assuming that this method is
+     * synchronized by nature.
      *
      * This is a no-op if the group doesn't have this host in a master role.
      *

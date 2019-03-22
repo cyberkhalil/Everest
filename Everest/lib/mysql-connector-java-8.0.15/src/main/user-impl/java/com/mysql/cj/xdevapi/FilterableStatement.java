@@ -64,7 +64,8 @@ public abstract class FilterableStatement<STMT_T, RES_T> implements Statement<ST
     }
 
     /**
-     * Add sort expressions to this statement. Synonym to {@link #orderBy(String...)}.
+     * Add sort expressions to this statement. Synonym to
+     * {@link #orderBy(String...)}.
      *
      * <pre>
      * DocResult docs = this.collection.find().orderBy("$._id").execute();

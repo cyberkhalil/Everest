@@ -8,7 +8,13 @@ import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 public class SecretaryMainFrame extends javax.swing.JFrame {
 
-    public SecretaryMainFrame() {
+    private final JFrame root;
+
+    public SecretaryMainFrame(JFrame root) {
+        // hide and save root
+        root.setVisible(false);
+        this.root = root;
+
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
@@ -426,9 +432,8 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AddNewPaymentActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
-        Login log = new Login();
-        this.setVisible(false);
-        log.setVisible(true);
+        root.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void EnrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollBtnActionPerformed

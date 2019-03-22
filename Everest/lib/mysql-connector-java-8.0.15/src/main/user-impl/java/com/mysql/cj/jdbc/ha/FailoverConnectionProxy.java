@@ -47,10 +47,11 @@ import com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping;
 import com.mysql.cj.util.Util;
 
 /**
- * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that provides failover
- * features for list of hosts. Connection switching occurs on communications related exceptions
- * and/or user defined settings, namely when one of the conditions set in 'secondsBeforeRetryMaster'
- * or 'queriesBeforeRetryMaster' is met.
+ * A proxy for a dynamic com.mysql.cj.jdbc.JdbcConnection implementation that
+ * provides failover features for list of hosts. Connection switching occurs on
+ * communications related exceptions and/or user defined settings, namely when
+ * one of the conditions set in 'secondsBeforeRetryMaster' or
+ * 'queriesBeforeRetryMaster' is met.
  */
 public class FailoverConnectionProxy extends MultiHostConnectionProxy {
 
@@ -77,9 +78,9 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     private long queriesIssuedSinceFailover = 0;
 
     /**
-     * Proxy class to intercept and deal with errors that may occur in any object bound to the
-     * current connection. Additionally intercepts query executions and triggers an execution count
-     * on the outer class.
+     * Proxy class to intercept and deal with errors that may occur in any
+     * object bound to the current connection. Additionally intercepts query
+     * executions and triggers an execution count on the outer class.
      */
     class FailoverJdbcInterfaceProxy extends JdbcInterfaceProxy {
 
@@ -117,11 +118,11 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Instantiates a new FailoverConnectionProxy for the given list of hosts and connection
-     * properties.
+     * Instantiates a new FailoverConnectionProxy for the given list of hosts
+     * and connection properties.
      *
-     * @param connectionUrl {@link ConnectionUrl} instance containing the lists of hosts available
-     * to switch on.
+     * @param connectionUrl {@link ConnectionUrl} instance containing the lists
+     * of hosts available to switch on.
      * @throws SQLException if an error occurs
      */
     private FailoverConnectionProxy(ConnectionUrl connectionUrl) throws SQLException {
@@ -206,7 +207,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Creates a new connection instance for host pointed out by the given host index.
+     * Creates a new connection instance for host pointed out by the given host
+     * index.
      *
      * @param hostIndex The host index in the global hosts list.
      * @return The new connection instance.
@@ -217,8 +219,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Connects this dynamic failover connection proxy to the host pointed out by the given host
-     * index.
+     * Connects this dynamic failover connection proxy to the host pointed out
+     * by the given host index.
      *
      * @param hostIndex The host index in the global hosts list.
      * @throws SQLException if an error occurs
@@ -241,10 +243,11 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Replaces the previous underlying connection by the connection given. State from previous
-     * connection, if any, is synchronized with the new one.
+     * Replaces the previous underlying connection by the connection given.
+     * State from previous connection, if any, is synchronized with the new one.
      *
-     * @param hostIndex The host index in the global hosts list that matches the given connection.
+     * @param hostIndex The host index in the global hosts list that matches the
+     * given connection.
      * @param connection The connection instance to switch to.
      * @throws SQLException if an error occurs
      */
@@ -269,7 +272,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Initiates a default failover procedure starting at the current connection host index.
+     * Initiates a default failover procedure starting at the current connection
+     * host index.
      *
      * @throws SQLException if an error occurs
      */
@@ -278,12 +282,13 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Initiates a default failover procedure starting at the given host index. This process tries
-     * to connect, sequentially, to the next host in the list. The primary host may or may not be
-     * excluded from the connection attempts.
+     * Initiates a default failover procedure starting at the given host index.
+     * This process tries to connect, sequentially, to the next host in the
+     * list. The primary host may or may not be excluded from the connection
+     * attempts.
      *
-     * @param failedHostIdx The host index where to start from. First connection attempt will be the
-     * next one.
+     * @param failedHostIdx The host index where to start from. First connection
+     * attempt will be the next one.
      * @throws SQLException if an error occurs
      */
     private synchronized void failOver(int failedHostIdx) throws SQLException {
@@ -335,7 +340,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Falls back to primary host or keep current connection if primary not available.
+     * Falls back to primary host or keep current connection if primary not
+     * available.
      */
     synchronized void fallBackToPrimaryIfAvailable() {
         JdbcConnection connection = null;
@@ -355,15 +361,16 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Gets the next host on the hosts list. Uses a round-robin algorithm to find the next element,
-     * but it may skip the index for the primary host. General rules to include the primary host
-     * are: - not currently connected to any host. - primary host is vouched (usually because
-     * connection to all secondary hosts has failed). - conditions to fall back to primary host are
-     * met (or they are disabled).
+     * Gets the next host on the hosts list. Uses a round-robin algorithm to
+     * find the next element, but it may skip the index for the primary host.
+     * General rules to include the primary host are: - not currently connected
+     * to any host. - primary host is vouched (usually because connection to all
+     * secondary hosts has failed). - conditions to fall back to primary host
+     * are met (or they are disabled).
      *
      * @param currHostIdx Current host index.
-     * @param vouchForPrimaryHost Allows to return the primary host index even if the usual required
-     * conditions aren't met.
+     * @param vouchForPrimaryHost Allows to return the primary host index even
+     * if the usual required conditions aren't met.
      * @return next host index
      */
     private int nextHost(int currHostIdx, boolean vouchForPrimaryHost) {
@@ -383,8 +390,9 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Checks if at least one of the required conditions to fall back to primary host is met, which
-     * is determined by the properties 'queriesBeforeRetryMaster' and 'secondsBeforeRetryMaster'.
+     * Checks if at least one of the required conditions to fall back to primary
+     * host is met, which is determined by the properties
+     * 'queriesBeforeRetryMaster' and 'secondsBeforeRetryMaster'.
      *
      * @return true if ready
      */
@@ -412,7 +420,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Checks if this proxy is using the primary host in the underlying connection.
+     * Checks if this proxy is using the primary host in the underlying
+     * connection.
      *
      * @return true if so
      */
@@ -421,7 +430,8 @@ public class FailoverConnectionProxy extends MultiHostConnectionProxy {
     }
 
     /**
-     * Checks if this proxy is using a secondary host in the underlying connection.
+     * Checks if this proxy is using a secondary host in the underlying
+     * connection.
      *
      * @return true if so
      */

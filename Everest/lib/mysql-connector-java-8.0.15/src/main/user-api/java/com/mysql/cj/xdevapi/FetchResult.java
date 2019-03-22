@@ -39,8 +39,9 @@ import java.util.List;
 public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
 
     /**
-     * Does this result have data? This indicates that the result was produced from a data-returning
-     * query. It does not indicate whether there are more than 0 rows in the result.
+     * Does this result have data? This indicates that the result was produced
+     * from a data-returning query. It does not indicate whether there are more
+     * than 0 rows in the result.
      *
      * @return true if has data
      */
@@ -70,8 +71,8 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
     }
 
     /**
-     * How many items are in this result? This method forces internal buffering of the entire
-     * result.
+     * How many items are in this result? This method forces internal buffering
+     * of the entire result.
      *
      * @return number of elements in result
      */
@@ -85,16 +86,16 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
     List<T> fetchAll();
 
     /**
-     * Count of warnings generated during statement execution. This method forces internal buffering
-     * of the result.
+     * Count of warnings generated during statement execution. This method
+     * forces internal buffering of the result.
      *
      * @return number of warnings
      */
     int getWarningsCount();
 
     /**
-     * Warnings generated during statement execution. This method forces internal buffering of the
-     * result.
+     * Warnings generated during statement execution. This method forces
+     * internal buffering of the result.
      *
      * @return iterator over warnings
      */

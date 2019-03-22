@@ -61,28 +61,32 @@ import com.mysql.cj.jdbc.result.CachedResultSetMetaData;
 import com.mysql.cj.jdbc.result.ResultSetInternalMethods;
 
 /**
- * Each instance of MultiHostMySQLConnection is coupled with a MultiHostConnectionProxy instance.
+ * Each instance of MultiHostMySQLConnection is coupled with a
+ * MultiHostConnectionProxy instance.
  *
- * While this class implements MySQLConnection directly, MultiHostConnectionProxy does the same but
- * via a dynamic proxy.
+ * While this class implements MySQLConnection directly,
+ * MultiHostConnectionProxy does the same but via a dynamic proxy.
  *
- * Most of the methods in this class refer directly to the active connection from its
- * MultiHostConnectionProxy pair, providing a non-proxied access to the current active connection
- * managed by this multi-host structure. The remaining methods either implement some local behavior
- * or refer to the proxy itself instead of the sub-connection.
+ * Most of the methods in this class refer directly to the active connection
+ * from its MultiHostConnectionProxy pair, providing a non-proxied access to the
+ * current active connection managed by this multi-host structure. The remaining
+ * methods either implement some local behavior or refer to the proxy itself
+ * instead of the sub-connection.
  *
- * Referring to the higher level proxy connection is needed when some operation needs to be extended
- * to all open sub-connections existing in this multi-host structure as opposed to just refer to the
- * active current connection, such as with close() which is most likely required to close all
- * sub-connections as well.
+ * Referring to the higher level proxy connection is needed when some operation
+ * needs to be extended to all open sub-connections existing in this multi-host
+ * structure as opposed to just refer to the active current connection, such as
+ * with close() which is most likely required to close all sub-connections as
+ * well.
  */
 public class MultiHostMySQLConnection implements JdbcConnection {
 
     /**
-     * thisAsProxy holds the proxy (MultiHostConnectionProxy or one of its subclasses) this
-     * connection is associated with. It is used as a gateway to the current active sub-connection
-     * managed by this multi-host structure or as a target to where some of the methods implemented
-     * here in this class refer to.
+     * thisAsProxy holds the proxy (MultiHostConnectionProxy or one of its
+     * subclasses) this connection is associated with. It is used as a gateway
+     * to the current active sub-connection managed by this multi-host structure
+     * or as a target to where some of the methods implemented here in this
+     * class refer to.
      */
     protected MultiHostConnectionProxy thisAsProxy;
 

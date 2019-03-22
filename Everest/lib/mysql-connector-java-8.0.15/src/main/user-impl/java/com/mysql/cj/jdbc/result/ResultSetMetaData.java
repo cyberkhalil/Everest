@@ -41,8 +41,8 @@ import com.mysql.cj.jdbc.exceptions.SQLError;
 import com.mysql.cj.result.Field;
 
 /**
- * A ResultSetMetaData object can be used to find out about the types and properties of the columns
- * in a ResultSet
+ * A ResultSetMetaData object can be used to find out about the types and
+ * properties of the columns in a ResultSet
  */
 public class ResultSetMetaData implements java.sql.ResultSetMetaData {
 
@@ -97,8 +97,9 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
      *
      * @param column the first column is 1, the second is 2, etc.
      *
-     * @return the Java character encoding name for the given column, or null if no Java character
-     * encoding maps to the MySQL character set for the given column.
+     * @return the Java character encoding name for the given column, or null if
+     * no Java character encoding maps to the MySQL character set for the given
+     * column.
      *
      * @throws SQLException if an invalid column index is given.
      */
@@ -241,7 +242,8 @@ public class ResultSetMetaData implements java.sql.ResultSetMetaData {
     }
 
     /**
-     * Returns amount of correction that should be applied to the precision value.
+     * Returns amount of correction that should be applied to the precision
+     * value.
      *
      * Different versions of MySQL report different precision values.
      *

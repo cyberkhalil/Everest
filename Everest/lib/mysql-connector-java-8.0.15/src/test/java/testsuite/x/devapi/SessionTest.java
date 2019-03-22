@@ -98,7 +98,8 @@ public class SessionTest extends DevApiBaseTestCase {
     private List<String> createdTestSchemas = new ArrayList<>();
 
     /**
-     * Create a random schema name. The schema will be dropped upon test cleanup.
+     * Create a random schema name. The schema will be dropped upon test
+     * cleanup.
      */
     private String getRandomTestSchemaName() {
         String n = "cj_test_schema_no_" + new Random().nextInt(1000);
@@ -524,8 +525,8 @@ public class SessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug #27652379, NPE FROM GETSESSION(PROPERTIES) WHEN HOST PARAMETER IS GIVEN IN
-     * SMALL LETTER.
+     * Tests fix for Bug #27652379, NPE FROM GETSESSION(PROPERTIES) WHEN HOST
+     * PARAMETER IS GIVEN IN SMALL LETTER.
      */
     @Test
     public void testBug27652379() throws Exception {

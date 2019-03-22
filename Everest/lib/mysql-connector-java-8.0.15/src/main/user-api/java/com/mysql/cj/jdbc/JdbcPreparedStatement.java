@@ -52,8 +52,8 @@ public interface JdbcPreparedStatement extends java.sql.PreparedStatement, JdbcS
     void setBytes(int parameterIndex, byte[] x, boolean checkForIntroducer, boolean escapeForMBChars) throws SQLException;
 
     /**
-     * Used by updatable result sets for refreshRow() because the parameter has already been escaped
-     * for updater or inserter prepared statements.
+     * Used by updatable result sets for refreshRow() because the parameter has
+     * already been escaped for updater or inserter prepared statements.
      *
      * @param parameterIndex the parameter to set.
      * @param parameterAsBytes the parameter as a string.

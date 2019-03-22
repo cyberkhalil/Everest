@@ -32,7 +32,8 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * PropertyKey handles connection property names, their camel-case aliases and case sensitivity.
+ * PropertyKey handles connection property names, their camel-case aliases and
+ * case sensitivity.
  */
 public enum PropertyKey {
     /*
@@ -63,11 +64,13 @@ public enum PropertyKey {
      */
     PATH("path", "namedPipePath", false),
     /**
-     * The server type in a replication setup. Possible values: "master" and "slave".
+     * The server type in a replication setup. Possible values: "master" and
+     * "slave".
      */
     TYPE("type", false),
     /**
-     * The address value ("host:port") from the properties instance passed to the driver.
+     * The address value ("host:port") from the properties instance passed to
+     * the driver.
      */
     ADDRESS("address", false),
     /**
@@ -286,8 +289,8 @@ public enum PropertyKey {
     }
 
     /**
-     * Initializes each enum element with the proper key name to be used in the connection string or
-     * properties maps.
+     * Initializes each enum element with the proper key name to be used in the
+     * connection string or properties maps.
      *
      * @param keyName the key name for the enum element.
      * @param isCaseSensitive is this name case sensitive
@@ -298,8 +301,8 @@ public enum PropertyKey {
     }
 
     /**
-     * Initializes each enum element with the proper key name to be used in the connection string or
-     * properties maps.
+     * Initializes each enum element with the proper key name to be used in the
+     * connection string or properties maps.
      *
      * @param keyName the key name for the enum element.
      * @param alias camel-case alias key name
@@ -327,7 +330,8 @@ public enum PropertyKey {
     /**
      * Gets the camel-case alias key name of this enum element.
      *
-     * @return the camel-case alias key name associated with the enum element or null.
+     * @return the camel-case alias key name associated with the enum element or
+     * null.
      */
     public String getCcAlias() {
         return this.ccAlias;
@@ -337,8 +341,8 @@ public enum PropertyKey {
      * Looks for a {@link PropertyKey} that matches the given value as key name.
      *
      * @param value the key name to look for.
-     * @return the {@link PropertyKey} element that matches the given key name value or
-     * <code>null</code> if none is found.
+     * @return the {@link PropertyKey} element that matches the given key name
+     * value or <code>null</code> if none is found.
      */
     public static PropertyKey fromValue(String value) {
         for (PropertyKey k : values()) {
@@ -356,12 +360,12 @@ public enum PropertyKey {
     }
 
     /**
-     * Helper method that normalizes the case of the given key, if it is one of {@link PropertyKey}
-     * elements.
+     * Helper method that normalizes the case of the given key, if it is one of
+     * {@link PropertyKey} elements.
      *
      * @param keyName the key name to normalize.
-     * @return the normalized key name if it belongs to this enum, otherwise returns the input
-     * unchanged.
+     * @return the normalized key name if it belongs to this enum, otherwise
+     * returns the input unchanged.
      */
     public static String normalizeCase(String keyName) {
         PropertyKey pk = caseInsensitiveValues.get(keyName);

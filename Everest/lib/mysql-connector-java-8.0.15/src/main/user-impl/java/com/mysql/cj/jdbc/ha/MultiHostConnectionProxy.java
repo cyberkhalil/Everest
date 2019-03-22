@@ -47,8 +47,9 @@ import com.mysql.cj.jdbc.JdbcConnection;
 import com.mysql.cj.util.Util;
 
 /**
- * An abstract class that processes generic multi-host configurations. This class has to be
- * sub-classed by specific multi-host implementations, such as load-balancing and failover.
+ * An abstract class that processes generic multi-host configurations. This
+ * class has to be sub-classed by specific multi-host implementations, such as
+ * load-balancing and failover.
  */
 public abstract class MultiHostConnectionProxy implements InvocationHandler {
 
@@ -83,8 +84,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     protected Throwable lastExceptionDealtWith = null;
 
     /**
-     * Proxy class to intercept and deal with errors that may occur in any object bound to the
-     * current connection.
+     * Proxy class to intercept and deal with errors that may occur in any
+     * object bound to the current connection.
      */
     class JdbcInterfaceProxy implements InvocationHandler {
 
@@ -116,7 +117,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Initializes a connection wrapper for this MultiHostConnectionProxy instance.
+     * Initializes a connection wrapper for this MultiHostConnectionProxy
+     * instance.
      *
      * @throws SQLException if an error occurs
      */
@@ -125,7 +127,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Constructs a MultiHostConnectionProxy instance for the given connection URL.
+     * Constructs a MultiHostConnectionProxy instance for the given connection
+     * URL.
      *
      * @param connectionUrl The connection URL.
      * @throws SQLException if an error occurs
@@ -136,10 +139,12 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Initializes the hosts lists and makes a "clean" local copy of the given connection properties
-     * so that it can be later used to create standard connections.
+     * Initializes the hosts lists and makes a "clean" local copy of the given
+     * connection properties so that it can be later used to create standard
+     * connections.
      *
-     * @param connUrl The connection URL that initialized this multi-host connection.
+     * @param connUrl The connection URL that initialized this multi-host
+     * connection.
      * @param hosts The list of hosts for this multi-host connection.
      * @return The number of hosts found in the hosts list.
      */
@@ -157,22 +162,24 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Get this connection's proxy. A multi-host connection may not be at top level in the
-     * multi-host connections chain. In such case the first connection in the chain is available as
-     * a proxy.
+     * Get this connection's proxy. A multi-host connection may not be at top
+     * level in the multi-host connections chain. In such case the first
+     * connection in the chain is available as a proxy.
      *
-     * @return Returns this connection's proxy if there is one or itself if this is the first one.
+     * @return Returns this connection's proxy if there is one or itself if this
+     * is the first one.
      */
     protected JdbcConnection getProxy() {
         return this.proxyConnection != null ? this.proxyConnection : this.thisAsConnection;
     }
 
     /**
-     * Sets this connection's proxy. This proxy should be the first connection in the multi-host
-     * connections chain. After setting the connection proxy locally, propagates it through the
-     * dependant connections.
+     * Sets this connection's proxy. This proxy should be the first connection
+     * in the multi-host connections chain. After setting the connection proxy
+     * locally, propagates it through the dependant connections.
      *
-     * @param proxyConn The top level connection in the multi-host connections chain.
+     * @param proxyConn The top level connection in the multi-host connections
+     * chain.
      */
     protected final void setProxy(JdbcConnection proxyConn) {
         this.proxyConnection = proxyConn;
@@ -180,11 +187,12 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Propagates the connection proxy down through the multi-host connections chain. This method is
-     * intended to be overridden in subclasses that manage more than one active connection at same
-     * time.
+     * Propagates the connection proxy down through the multi-host connections
+     * chain. This method is intended to be overridden in subclasses that manage
+     * more than one active connection at same time.
      *
-     * @param proxyConn The top level connection in the multi-host connections chain.
+     * @param proxyConn The top level connection in the multi-host connections
+     * chain.
      */
     protected void propagateProxyDown(JdbcConnection proxyConn) {
         this.currentConnection.setProxy(proxyConn);
@@ -201,12 +209,15 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * If the given return type is or implements a JDBC interface, proxies the given object so that
-     * we can catch SQL errors and fire a connection switch.
+     * If the given return type is or implements a JDBC interface, proxies the
+     * given object so that we can catch SQL errors and fire a connection
+     * switch.
      *
-     * @param returnType The type the object instance to proxy is supposed to be.
+     * @param returnType The type the object instance to proxy is supposed to
+     * be.
      * @param toProxy The object instance to proxy.
-     * @return The proxied object or the original one if it does not implement a JDBC interface.
+     * @return The proxied object or the original one if it does not implement a
+     * JDBC interface.
      */
     Object proxyIfReturnTypeIsJdbcInterface(Class<?> returnType, Object toProxy) {
         if (toProxy != null) {
@@ -219,8 +230,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Instantiates a new JdbcInterfaceProxy for the given object. Subclasses can override this to
-     * return instances of JdbcInterfaceProxy subclasses.
+     * Instantiates a new JdbcInterfaceProxy for the given object. Subclasses
+     * can override this to return instances of JdbcInterfaceProxy subclasses.
      *
      * @param toProxy The object instance to be proxied.
      * @return The new InvocationHandler instance.
@@ -292,8 +303,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Picks the "best" connection to use from now on. Each subclass needs to implement its
-     * connection switch strategy on it.
+     * Picks the "best" connection to use from now on. Each subclass needs to
+     * implement its connection switch strategy on it.
      *
      * @throws SQLException if an error occurs
      */
@@ -334,8 +345,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Synchronizes session state between two connections, allowing to override the read-only
-     * status.
+     * Synchronizes session state between two connections, allowing to override
+     * the read-only status.
      *
      * @param source The connection where to get state from.
      * @param target The connection where to set state.
@@ -386,11 +397,12 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     abstract void doAbort(Executor executor) throws SQLException;
 
     /**
-     * Proxies method invocation on the java.sql.Connection interface, trapping multi-host specific
-     * methods and generic methods. Subclasses have to override this to complete the method
-     * invocation process, deal with exceptions and decide when to switch connection. To avoid
-     * unnecessary additional exception handling overriders should consult #canDealWith(Method)
-     * before chaining here.
+     * Proxies method invocation on the java.sql.Connection interface, trapping
+     * multi-host specific methods and generic methods. Subclasses have to
+     * override this to complete the method invocation process, deal with
+     * exceptions and decide when to switch connection. To avoid unnecessary
+     * additional exception handling overriders should consult
+     * #canDealWith(Method) before chaining here.
      *
      * @param proxy proxy object
      * @param method method to invoke
@@ -459,7 +471,8 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * Continuation of the method invocation process, to be implemented within each subclass.
+     * Continuation of the method invocation process, to be implemented within
+     * each subclass.
      *
      * @param proxy proxy object
      * @param method method to invoke

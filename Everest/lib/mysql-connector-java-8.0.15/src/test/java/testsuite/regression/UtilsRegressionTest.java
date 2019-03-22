@@ -574,7 +574,8 @@ public class UtilsRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#70436 - Incorrect mapping of windows timezone to Olson timezone.
+     * Tests fix for BUG#70436 - Incorrect mapping of windows timezone to Olson
+     * timezone.
      *
      * @throws Exception if the test fails.
      */
@@ -584,8 +585,8 @@ public class UtilsRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#82115 - Some exceptions are intercepted twice or fail to set the init
-     * cause.
+     * Tests fix for Bug#82115 - Some exceptions are intercepted twice or fail
+     * to set the init cause.
      */
     public void testBug82115() throws Exception {
         Exception ex = SQLError.createSQLException("ORIGINAL_EXCEPTION", "0", new Exception("ORIGINAL_CAUSE"), null);

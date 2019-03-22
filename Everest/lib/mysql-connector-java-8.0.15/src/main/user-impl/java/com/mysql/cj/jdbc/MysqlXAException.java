@@ -31,7 +31,8 @@ package com.mysql.cj.jdbc;
 import javax.transaction.xa.XAException;
 
 /**
- * The stock XAException class isn't too friendly (i.e. no error messages), so we extend it a bit.
+ * The stock XAException class isn't too friendly (i.e. no error messages), so
+ * we extend it a bit.
  */
 class MysqlXAException extends XAException {
 

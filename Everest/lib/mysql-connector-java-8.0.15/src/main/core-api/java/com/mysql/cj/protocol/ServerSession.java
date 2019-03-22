@@ -34,19 +34,21 @@ import java.util.TimeZone;
 import com.mysql.cj.ServerVersion;
 
 /**
- * Keeps the effective states of server/session variables, contains methods for initial retrieving
- * of these states and for their actualization.
+ * Keeps the effective states of server/session variables, contains methods for
+ * initial retrieving of these states and for their actualization.
  *
  */
 public interface ServerSession {
 
     /**
-     * There was no change between old and current SERVER_STATUS_IN_TRANS state and it is 0.
+     * There was no change between old and current SERVER_STATUS_IN_TRANS state
+     * and it is 0.
      */
     public static int TRANSACTION_NOT_STARTED = 0;
 
     /**
-     * There was no change between old and current SERVER_STATUS_IN_TRANS state and it is 1.
+     * There was no change between old and current SERVER_STATUS_IN_TRANS state
+     * and it is 1.
      */
     public static int TRANSACTION_IN_PROGRESS = 1;
 
@@ -79,7 +81,8 @@ public interface ServerSession {
      * Sets new server status (from response)
      *
      * @param statusFlags new server status flags
-     * @param saveOldStatusFlags true if old server status flags should be preserved
+     * @param saveOldStatusFlags true if old server status flags should be
+     * preserved
      */
     void setStatusFlags(int statusFlags, boolean saveOldStatusFlags);
 
@@ -89,12 +92,14 @@ public interface ServerSession {
 
     /**
      *
-     * @return Collation index which server provided in handshake greeting packet
+     * @return Collation index which server provided in handshake greeting
+     * packet
      */
     int getServerDefaultCollationIndex();
 
     /**
-     * Stores collation index which server provided in handshake greeting packet.
+     * Stores collation index which server provided in handshake greeting
+     * packet.
      *
      * @param serverDefaultCollationIndex collation index
      */
@@ -102,19 +107,20 @@ public interface ServerSession {
 
     /**
      *
-     * @return TRANSACTION_NOT_STARTED, TRANSACTION_IN_PROGRESS, TRANSACTION_STARTED or
-     * TRANSACTION_COMPLETED
+     * @return TRANSACTION_NOT_STARTED, TRANSACTION_IN_PROGRESS,
+     * TRANSACTION_STARTED or TRANSACTION_COMPLETED
      */
     int getTransactionState();
 
     boolean inTransactionOnServer();
 
     /**
-     * Server will only open a cursor and set this flag if it can, otherwise it punts and goes back
-     * to mysql_store_results() behavior.
+     * Server will only open a cursor and set this flag if it can, otherwise it
+     * punts and goes back to mysql_store_results() behavior.
      *
      * @return SERVER_STATUS_CURSOR_EXISTS
-     * <a href=http://dev.mysql.com/doc/internals/en/status-flags.html>status flag</a> value.
+     * <a href=http://dev.mysql.com/doc/internals/en/status-flags.html>status
+     * flag</a> value.
      */
     boolean cursorExists();
 
@@ -169,14 +175,16 @@ public interface ServerSession {
      *
      * @param version the version to check for
      *
-     * @return true if the version of the MySQL server we are connected is the given version
+     * @return true if the version of the MySQL server we are connected is the
+     * given version
      */
     boolean isVersion(ServerVersion version);
 
     /**
      *
-     * @return the server's default character set name according to collation index from server
-     * greeting, or value of 'character_set_server' variable if there is no mapping for that index
+     * @return the server's default character set name according to collation
+     * index from server greeting, or value of 'character_set_server' variable
+     * if there is no mapping for that index
      */
     String getServerDefaultCharset();
 
@@ -189,10 +197,12 @@ public interface ServerSession {
     int getMaxBytesPerChar(Integer charsetIndex, String javaCharsetName);
 
     /**
-     * Returns the Java character encoding name for the given MySQL server collation index
+     * Returns the Java character encoding name for the given MySQL server
+     * collation index
      *
      * @param collationIndex collation index
-     * @return the Java character encoding name for the given MySQL server collation index
+     * @return the Java character encoding name for the given MySQL server
+     * collation index
      */
     String getEncodingForIndex(int collationIndex);
 
@@ -240,10 +250,12 @@ public interface ServerSession {
     void setServerTimeZone(TimeZone serverTimeZone);
 
     /**
-     * The default time zone used to marshall date/time values to/from the server. This is used when
-     * getDate(), etc methods are called without a calendar argument.
+     * The default time zone used to marshall date/time values to/from the
+     * server. This is used when getDate(), etc methods are called without a
+     * calendar argument.
      *
-     * @return The server time zone (which may be user overridden in a connection property)
+     * @return The server time zone (which may be user overridden in a
+     * connection property)
      */
     TimeZone getDefaultTimeZone();
 

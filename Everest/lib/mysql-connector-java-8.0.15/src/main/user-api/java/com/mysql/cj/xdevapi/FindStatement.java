@@ -29,7 +29,8 @@
 package com.mysql.cj.xdevapi;
 
 /**
- * A statement to <i>find</i> the set of documents according to the given specification.
+ * A statement to <i>find</i> the set of documents according to the given
+ * specification.
  */
 public interface FindStatement extends Statement<FindStatement, DocResult> {
 
@@ -88,7 +89,8 @@ public interface FindStatement extends Statement<FindStatement, DocResult> {
      *
      * @param limitOffset number of documents to skip
      * @return {@link FindStatement}
-     * @deprecated Deprecated in c/J 8.0.12, please use {@link #offset(long)} instead.
+     * @deprecated Deprecated in c/J 8.0.12, please use {@link #offset(long)}
+     * instead.
      */
     @Deprecated
     default FindStatement skip(long limitOffset) {
@@ -119,25 +121,29 @@ public interface FindStatement extends Statement<FindStatement, DocResult> {
     FindStatement lockShared();
 
     /**
-     * Locks matching rows against updates using the provided lock contention option.
+     * Locks matching rows against updates using the provided lock contention
+     * option.
      *
-     * @param lockContention The {@link com.mysql.cj.xdevapi.Statement.LockContention} value to set.
+     * @param lockContention The
+     * {@link com.mysql.cj.xdevapi.Statement.LockContention} value to set.
      * @return {@link FindStatement}
      */
     FindStatement lockShared(LockContention lockContention);
 
     /**
-     * Locks matching rows exclusively so no other transactions can read or write to them.
+     * Locks matching rows exclusively so no other transactions can read or
+     * write to them.
      *
      * @return {@link FindStatement}
      */
     FindStatement lockExclusive();
 
     /**
-     * Locks matching rows exclusively so no other transactions can read or write to them, using the
-     * provided lock contention option.
+     * Locks matching rows exclusively so no other transactions can read or
+     * write to them, using the provided lock contention option.
      *
-     * @param lockContention The {@link com.mysql.cj.xdevapi.Statement.LockContention} value to set.
+     * @param lockContention The
+     * {@link com.mysql.cj.xdevapi.Statement.LockContention} value to set.
      * @return {@link FindStatement}
      */
     FindStatement lockExclusive(LockContention lockContention);

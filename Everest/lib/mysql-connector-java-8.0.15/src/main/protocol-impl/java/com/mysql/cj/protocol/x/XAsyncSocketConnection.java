@@ -49,7 +49,8 @@ import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.protocol.SocketConnection;
 
 /**
- * An async I/O connection. This enables use of async methods on {@link XProtocol}.
+ * An async I/O connection. This enables use of async methods on
+ * {@link XProtocol}.
  *
  */
 public class XAsyncSocketConnection extends AbstractSocketConnection implements SocketConnection {

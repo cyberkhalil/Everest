@@ -161,7 +161,8 @@ public class PropertyDefinitions {
     public static final boolean RUNTIME_MODIFIABLE = true;
 
     /**
-     * is not modifiable in run-time (will allow to set not-null value only once)
+     * is not modifiable in run-time (will allow to set not-null value only
+     * once)
      */
     public static final boolean RUNTIME_NOT_MODIFIABLE = false;
 
@@ -185,7 +186,8 @@ public class PropertyDefinitions {
     }
 
     /**
-     * Static unmodifiable {@link PropertyKey} -&gt; {@link PropertyDefinition} map.
+     * Static unmodifiable {@link PropertyKey} -&gt; {@link PropertyDefinition}
+     * map.
      */
     public static final Map<PropertyKey, PropertyDefinition<?>> PROPERTY_KEY_TO_PROPERTY_DEFINITION;
 

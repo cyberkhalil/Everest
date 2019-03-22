@@ -35,7 +35,8 @@ import com.mysql.cj.util.Util;
 public class ProfilerEventHandlerFactory {
 
     /**
-     * Returns the ProfilerEventHandler that handles profiler events for the given session.
+     * Returns the ProfilerEventHandler that handles profiler events for the
+     * given session.
      *
      * @param sess the session to handle events for
      * @return the {@link ProfilerEventHandler} that handles profiler events

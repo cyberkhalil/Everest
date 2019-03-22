@@ -29,7 +29,8 @@
 package com.mysql.cj.xdevapi;
 
 /**
- * A client-side representation of X Plugin server object, e.g. table, collection, etc.
+ * A client-side representation of X Plugin server object, e.g. table,
+ * collection, etc.
  */
 public interface DatabaseObject {
 

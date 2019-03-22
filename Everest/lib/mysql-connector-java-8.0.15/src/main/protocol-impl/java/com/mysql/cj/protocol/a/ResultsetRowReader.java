@@ -54,8 +54,9 @@ public class ResultsetRowReader implements ProtocolEntityReader<ResultsetRow, Na
     }
 
     /**
-     * Retrieve one row from the MySQL server. Note: this method is not thread-safe, but it is only
-     * called from methods that are guarded by synchronizing on this object.
+     * Retrieve one row from the MySQL server. Note: this method is not
+     * thread-safe, but it is only called from methods that are guarded by
+     * synchronizing on this object.
      *
      * @param sf ProtocolEntityFactory
      * @throws IOException if an error occurs

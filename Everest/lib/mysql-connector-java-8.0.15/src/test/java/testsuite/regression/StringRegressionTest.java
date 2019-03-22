@@ -96,7 +96,8 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests for regression of encoding forced by user, reported by Jive Software
+     * Tests for regression of encoding forced by user, reported by Jive
+     * Software
      *
      * @throws Exception when encoding is not supported (which is a bug)
      */
@@ -559,8 +560,8 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11614 - StringUtils.getBytes() doesn't work when using multibyte character
-     * encodings and a length in _characters_ is specified.
+     * Tests fix for BUG#11614 - StringUtils.getBytes() doesn't work when using
+     * multibyte character encodings and a length in _characters_ is specified.
      *
      * @throws Exception if the test fails.
      */
@@ -641,8 +642,8 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#24840 - character encoding of "US-ASCII" doesn't map correctly for 4.1 or
-     * newer
+     * Tests fix for BUG#24840 - character encoding of "US-ASCII" doesn't map
+     * correctly for 4.1 or newer
      *
      * @throws Exception if the test fails.
      */
@@ -654,8 +655,8 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25047 - StringUtils.indexOfIgnoreCaseRespectQuotes() isn't case-insensitive
-     * on the first character of the target.
+     * Tests fix for BUG#25047 - StringUtils.indexOfIgnoreCaseRespectQuotes()
+     * isn't case-insensitive on the first character of the target.
      *
      * UPD: Method StringUtils.indexOfIgnoreCaseRespectQuotes() was replaced by
      * StringUtils.indexOfIgnoreCase()
@@ -673,7 +674,8 @@ public class StringRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#64731 - StringUtils.getBytesWrapped throws StringIndexOutOfBoundsException.
+     * Tests fix for BUG#64731 - StringUtils.getBytesWrapped throws
+     * StringIndexOutOfBoundsException.
      *
      * @throws Exception if the test fails.
      */

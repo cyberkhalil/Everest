@@ -627,10 +627,12 @@ public class TranslateExceptions {
      * Instruments methods of cjClazz defined in jdbcClass.
      *
      * @param cjClazz CtClass to be instrumented.
-     * @param jdbcClass Class from JDBC specification where methods descriptors to be get.
-     * @param declaredMethodsOnly true - instrument methods declared in this class, false - also
-     * instrument inherited methods
-     * @param exceptionInterceptorStr exception interceptor reference as a string
+     * @param jdbcClass Class from JDBC specification where methods descriptors
+     * to be get.
+     * @param declaredMethodsOnly true - instrument methods declared in this
+     * class, false - also instrument inherited methods
+     * @param exceptionInterceptorStr exception interceptor reference as a
+     * string
      * @throws Exception if an error occurs
      */
     private static void instrumentJdbcMethods(CtClass cjClazz, Class<?> jdbcClass, boolean declaredMethodsOnly, String exceptionInterceptorStr)

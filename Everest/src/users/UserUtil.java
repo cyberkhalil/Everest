@@ -7,8 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NoPermissionException;
+
 /**
  * TODO use this instead of UserEntry
+ *
  * @author User
  */
 public final class UserUtil {
@@ -114,7 +116,8 @@ public final class UserUtil {
         result.next();
         return result.getInt("count(*)");
     }
-public static int getNumberOfAdminUsers(User admin)
+
+    public static int getNumberOfAdminUsers(User admin)
             throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
@@ -131,5 +134,4 @@ public static int getNumberOfAdminUsers(User admin)
         return result.getInt("count(*)");
     }
 
-    
 }

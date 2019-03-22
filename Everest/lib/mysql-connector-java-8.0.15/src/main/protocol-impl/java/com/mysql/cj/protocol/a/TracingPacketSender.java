@@ -35,7 +35,8 @@ import com.mysql.cj.protocol.MessageSender;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * A decorating {@link MessageSender} which traces all sent packets to the provided logger.
+ * A decorating {@link MessageSender} which traces all sent packets to the
+ * provided logger.
  */
 public class TracingPacketSender implements MessageSender<NativePacketPayload> {
 

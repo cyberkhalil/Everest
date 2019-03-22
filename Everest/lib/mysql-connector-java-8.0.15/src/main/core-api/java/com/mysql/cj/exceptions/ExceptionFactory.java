@@ -167,8 +167,9 @@ public class ExceptionFactory {
     }
 
     /**
-     * Creates a communications link failure message to be used in CommunicationsException that
-     * (hopefully) has some better information and suggestions based on heuristics.
+     * Creates a communications link failure message to be used in
+     * CommunicationsException that (hopefully) has some better information and
+     * suggestions based on heuristics.
      *
      * @param propertySet property set
      * @param serverSession server session

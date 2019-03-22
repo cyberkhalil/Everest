@@ -31,8 +31,9 @@ package com.mysql.cj.xdevapi;
 /**
  * X DevAPI class encapsulating a Session pooling functionality.
  * <p>
- * The Client object is obtained via {@link ClientFactory#getClient(String, java.util.Properties)}
- * or {@link ClientFactory#getClient(String, String)} methods.
+ * The Client object is obtained via
+ * {@link ClientFactory#getClient(String, java.util.Properties)} or
+ * {@link ClientFactory#getClient(String, String)} methods.
  */
 public interface Client {
 
@@ -44,10 +45,11 @@ public interface Client {
     public Session getSession();
 
     /**
-     * Close <code>Client</code>. Closes all Sessions it has created, and destroys the managed pool.
+     * Close <code>Client</code>. Closes all Sessions it has created, and
+     * destroys the managed pool.
      * <p>
-     * Calling the method <code>close</code> on a <code>Client</code> object that is already closed
-     * is a no-op.
+     * Calling the method <code>close</code> on a <code>Client</code> object
+     * that is already closed is a no-op.
      */
     public void close();
 

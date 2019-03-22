@@ -302,8 +302,9 @@ public class MetadataTest extends BaseTableTestCase {
     }
 
     /**
-     * Some metadata fields have no sense with concrete SQL data type. The following table from
-     * {@link ColumnMetaData} describes which fields are relevant to each type:
+     * Some metadata fields have no sense with concrete SQL data type. The
+     * following table from {@link ColumnMetaData} describes which fields are
+     * relevant to each type:
      *
      * <pre>
      *     ================= ============ ======= ========== ====== ========

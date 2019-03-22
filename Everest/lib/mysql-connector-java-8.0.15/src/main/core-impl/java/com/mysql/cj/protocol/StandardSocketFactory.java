@@ -83,7 +83,8 @@ public class StandardSocketFactory implements SocketFactory {
     /**
      * Create the raw socket.
      *
-     * @param props properties available to affect behaviour during socket creation.
+     * @param props properties available to affect behaviour during socket
+     * creation.
      * @return socket
      */
     protected Socket createSocket(PropertySet props) {
@@ -91,8 +92,8 @@ public class StandardSocketFactory implements SocketFactory {
     }
 
     /**
-     * Configures socket properties based on properties from the connection (tcpNoDelay, snd/rcv
-     * buf, traffic class, etc).
+     * Configures socket properties based on properties from the connection
+     * (tcpNoDelay, snd/rcv buf, traffic class, etc).
      *
      * @param sock socket
      * @param pset properties

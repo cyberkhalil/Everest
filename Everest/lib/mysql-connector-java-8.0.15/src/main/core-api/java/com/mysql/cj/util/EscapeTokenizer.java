@@ -178,9 +178,9 @@ public class EscapeTokenizer {
     }
 
     /**
-     * Returns true if a variable reference was found. Note that this information isn't accurate
-     * until finishing to process all tokens from source String. It also can't be used as per token
-     * basis.
+     * Returns true if a variable reference was found. Note that this
+     * information isn't accurate until finishing to process all tokens from
+     * source String. It also can't be used as per token basis.
      *
      * @return true if a variable reference was found.
      */

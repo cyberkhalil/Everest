@@ -44,7 +44,8 @@ import java.util.List;
 public class TestUtils {
 
     /**
-     * Percent-encode all occurrence of the the percent sign (%) in the given string.
+     * Percent-encode all occurrence of the the percent sign (%) in the given
+     * string.
      *
      * @param strToEncode the string to encode
      * @return the encoded string
@@ -81,8 +82,8 @@ public class TestUtils {
      *
      * @param host the host where to look for the server socket
      * @param port the expected port the server is listening
-     * @return true if there is a server socket listening in the given address and port, false
-     * otherwise
+     * @return true if there is a server socket listening in the given address
+     * and port, false otherwise
      */
     public static boolean serverListening(String hostName, int port) {
         try {
@@ -93,12 +94,13 @@ public class TestUtils {
     }
 
     /**
-     * Checks if there is a server socket listening in the given address and port.
+     * Checks if there is a server socket listening in the given address and
+     * port.
      *
      * @param addr the address where to look for the server socket
      * @param port the expected port the server is listening
-     * @return true if there is a server socket listening in the given address and port, false
-     * otherwise
+     * @return true if there is a server socket listening in the given address
+     * and port, false otherwise
      */
     public static boolean serverListening(InetAddress addr, int port) {
         Socket s = null;

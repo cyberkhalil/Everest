@@ -174,7 +174,8 @@ public class DateTest extends BaseTestCase {
     }
 
     /**
-     * Tests the configurability of all-zero date/datetime/timestamp handling in the driver.
+     * Tests the configurability of all-zero date/datetime/timestamp handling in
+     * the driver.
      *
      * @throws Exception if the test fails.
      */

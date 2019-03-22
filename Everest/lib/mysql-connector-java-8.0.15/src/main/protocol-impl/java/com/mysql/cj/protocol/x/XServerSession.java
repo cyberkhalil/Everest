@@ -50,7 +50,8 @@ public class XServerSession implements ServerSession {
      */
     //private TimeZone serverTimeZone = null;
     /**
-     * c.f. getDefaultTimeZone(). this value may be overridden during connection initialization
+     * c.f. getDefaultTimeZone(). this value may be overridden during connection
+     * initialization
      */
     private TimeZone defaultTimeZone = TimeZone.getDefault();
 

@@ -36,8 +36,8 @@ import com.mysql.cj.conf.PropertyKey;
 import com.mysql.cj.conf.PropertySet;
 
 /**
- * A socket factory used to create sockets connecting through a SOCKS proxy. The socket still
- * supports all the same TCP features as the "standard" socket.
+ * A socket factory used to create sockets connecting through a SOCKS proxy. The
+ * socket still supports all the same TCP features as the "standard" socket.
  */
 public class SocksProxySocketFactory extends StandardSocketFactory {
 

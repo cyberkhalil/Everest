@@ -31,9 +31,10 @@ package com.mysql.cj.protocol;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * A value decoder is responsible for interpreting a byte array as a value. The type of the value is
- * encoded in the method call. After decoding, the value decoder passes an <i>intermediate
- * representation</i> of the value to a {@link ValueFactory} for result value creation.
+ * A value decoder is responsible for interpreting a byte array as a value. The
+ * type of the value is encoded in the method call. After decoding, the value
+ * decoder passes an <i>intermediate representation</i> of the value to a
+ * {@link ValueFactory} for result value creation.
  *
  * @since 6.0
  */

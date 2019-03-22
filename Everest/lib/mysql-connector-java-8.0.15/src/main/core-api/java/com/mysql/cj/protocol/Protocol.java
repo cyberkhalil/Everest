@@ -52,7 +52,8 @@ public interface Protocol<M extends Message> {
     /**
      * Init method takes the place of constructor.
      *
-     * A constructor should be used unless the encapsulation of ProtocolFactory is necessary.
+     * A constructor should be used unless the encapsulation of ProtocolFactory
+     * is necessary.
      *
      * @param session {@link Session}
      * @param socketConnection {@link SocketConnection}
@@ -91,7 +92,8 @@ public interface Protocol<M extends Message> {
     void setPacketReceivedTimeHolder(PacketReceivedTimeHolder packetReceivedTimeHolder);
 
     /**
-     * Create a new session. This generally happens once at the beginning of a connection.
+     * Create a new session. This generally happens once at the beginning of a
+     * connection.
      *
      * @param user DB user name
      * @param password DB user password
@@ -128,8 +130,8 @@ public interface Protocol<M extends Message> {
     }
 
     /**
-     * Read one message from the MySQL server into the reusable buffer if provided or into the new
-     * one.
+     * Read one message from the MySQL server into the reusable buffer if
+     * provided or into the new one.
      *
      * @param reuse {@link Message} instance to read into, may be null
      * @return the message from the server.
@@ -137,8 +139,8 @@ public interface Protocol<M extends Message> {
     M readMessage(M reuse);
 
     /**
-     * Read one message from the MySQL server, checks for errors in it, and if none, returns the
-     * message, ready for reading
+     * Read one message from the MySQL server, checks for errors in it, and if
+     * none, returns the message, ready for reading
      *
      * @return a message ready for reading.
      */
@@ -159,9 +161,9 @@ public interface Protocol<M extends Message> {
     /**
      * Send a command to the MySQL server.
      *
-     * @param queryPacket a packet pre-loaded with data for the protocol (eg. from a client-side
-     * prepared statement). The first byte of this packet is the MySQL protocol 'command' from
-     * MysqlDefs
+     * @param queryPacket a packet pre-loaded with data for the protocol (eg.
+     * from a client-side prepared statement). The first byte of this packet is
+     * the MySQL protocol 'command' from MysqlDefs
      * @param skipCheck do not call checkErrorPacket() if true
      * @param timeoutMillis timeout
      *
@@ -178,10 +180,11 @@ public interface Protocol<M extends Message> {
      *
      * @param requiredClass required Resultset class
      * @param maxRows the maximum number of rows to read (-1 means all rows)
-     * @param streamResults should the driver leave the results on the wire, and read them only when
-     * needed?
+     * @param streamResults should the driver leave the results on the wire, and
+     * read them only when needed?
      * @param resultPacket the first packet of information in the result set
-     * @param isBinaryEncoded true if the binary protocol is used (for server prepared statements)
+     * @param isBinaryEncoded true if the binary protocol is used (for server
+     * prepared statements)
      * @param metadata use this metadata instead of the one provided on wire
      * @param protocolEntityFactory {@link ProtocolEntityFactory} instance
      * @param <T> object extending the {@link ProtocolEntity}
@@ -192,42 +195,47 @@ public interface Protocol<M extends Message> {
             ColumnDefinition metadata, ProtocolEntityFactory<T, M> protocolEntityFactory) throws IOException;
 
     /**
-     * Sets an InputStream instance that will be used to send data to the MySQL server for a "LOAD
-     * DATA LOCAL INFILE" statement rather than a FileInputStream or URLInputStream that represents
-     * the path given as an argument to the statement.
+     * Sets an InputStream instance that will be used to send data to the MySQL
+     * server for a "LOAD DATA LOCAL INFILE" statement rather than a
+     * FileInputStream or URLInputStream that represents the path given as an
+     * argument to the statement.
      *
-     * This stream will be read to completion upon execution of a "LOAD DATA LOCAL INFILE"
-     * statement, and will automatically be closed by the driver, so it needs to be reset before
-     * each call to execute*() that would cause the MySQL server to request data to fulfill the
-     * request for "LOAD DATA LOCAL INFILE".
+     * This stream will be read to completion upon execution of a "LOAD DATA
+     * LOCAL INFILE" statement, and will automatically be closed by the driver,
+     * so it needs to be reset before each call to execute*() that would cause
+     * the MySQL server to request data to fulfill the request for "LOAD DATA
+     * LOCAL INFILE".
      *
-     * If this value is set to NULL, the driver will revert to using a FileInputStream or
-     * URLInputStream as required.
+     * If this value is set to NULL, the driver will revert to using a
+     * FileInputStream or URLInputStream as required.
      *
      * @param stream input stream
      */
     void setLocalInfileInputStream(InputStream stream);
 
     /**
-     * Returns the InputStream instance that will be used to send data in response to a "LOAD DATA
-     * LOCAL INFILE" statement.
+     * Returns the InputStream instance that will be used to send data in
+     * response to a "LOAD DATA LOCAL INFILE" statement.
      *
-     * This method returns NULL if no such stream has been set via setLocalInfileInputStream().
+     * This method returns NULL if no such stream has been set via
+     * setLocalInfileInputStream().
      *
      * @return input stream
      */
     InputStream getLocalInfileInputStream();
 
     /**
-     * Returns the comment that will be prepended to all statements sent to the server.
+     * Returns the comment that will be prepended to all statements sent to the
+     * server.
      *
      * @return query comment string
      */
     String getQueryComment();
 
     /**
-     * Sets the comment that will be prepended to all statements sent to the server. Do not use
-     * slash-star or star-slash tokens in the comment as these will be added by the driver itself.
+     * Sets the comment that will be prepended to all statements sent to the
+     * server. Do not use slash-star or star-slash tokens in the comment as
+     * these will be added by the driver itself.
      *
      * @param comment query comment string
      */

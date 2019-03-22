@@ -119,8 +119,8 @@ public abstract class CoreSession implements Session {
     }
 
     /**
-     * Change user as given by parameters. This implementation only supports calling this during the
-     * initial handshake.
+     * Change user as given by parameters. This implementation only supports
+     * calling this during the initial handshake.
      *
      * @param user user name
      * @param password password
@@ -147,7 +147,8 @@ public abstract class CoreSession implements Session {
     }
 
     /**
-     * Returns the log mechanism that should be used to log information from/for this Session.
+     * Returns the log mechanism that should be used to log information from/for
+     * this Session.
      *
      * @return the Log instance to use for logging messages.
      */

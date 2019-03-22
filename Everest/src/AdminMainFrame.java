@@ -5,17 +5,19 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class AdminMainFrame extends javax.swing.JFrame {
+public class AdminMainFrame extends JFrame {
 
+    final JFrame root;
     RegistraionTableJframe registraiontableJframe1 = new RegistraionTableJframe();
     BookTableJframe bookTableJframe1 = new BookTableJframe();
-    //courseTableJframe1 coursetableJframe1 = new courseTableJframe1();
     AddTeacherFrame addTeacherFrame = new AddTeacherFrame();
 
-    //serTableJframe11 usretableJframe11 = new userTableJframe11();
-    public AdminMainFrame() {
+    public AdminMainFrame(JFrame root) {
+//        TODO set root visible on close
+        root.setVisible(false);
+        this.root = root;
+
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
         WindowListener exitListener = new WindowAdapter() {
             @Override
@@ -31,6 +33,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
         };
         this.addWindowListener(exitListener);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setSize(600, 591);
     }
 
     @SuppressWarnings("unchecked")
@@ -68,13 +71,13 @@ public class AdminMainFrame extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         display_usersJB = new javax.swing.JButton();
         AddUserBtn = new javax.swing.JButton();
-        ChangePassBtn = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         ShowPaymentsTable = new javax.swing.JButton();
         addNewPayment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(575, 500));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,6 +134,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 171, 112)));
         jPanel4.setToolTipText("student");
+        jPanel4.setPreferredSize(new java.awt.Dimension(573, 450));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
@@ -297,7 +301,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
                 .addComponent(add_courseJB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DisplayCourse2Btn)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -343,7 +347,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
                 .addComponent(add_teacherJB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(display_teacherJB)
-                .addGap(0, 45, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -369,13 +373,6 @@ public class AdminMainFrame extends javax.swing.JFrame {
             }
         });
 
-        ChangePassBtn.setText("Change Users Information");
-        ChangePassBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangePassBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
@@ -385,7 +382,6 @@ public class AdminMainFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(display_usersJB, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ChangePassBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AddUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -393,13 +389,11 @@ public class AdminMainFrame extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addComponent(AddUserBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChangePassBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(display_usersJB)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -472,21 +466,20 @@ public class AdminMainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addGap(22, 22, 22)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -501,7 +494,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -512,7 +505,7 @@ public class AdminMainFrame extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -523,97 +516,91 @@ public class AdminMainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void add_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_studentJBActionPerformed
-        StudentJFrame sjf = new StudentJFrame();
-        sjf.setVisible(true);
-    }//GEN-LAST:event_add_studentJBActionPerformed
-
-    private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-        StudentTableJframe studenttableJframe = new StudentTableJframe();
-        studenttableJframe.setVisible(true);
-    }//GEN-LAST:event_display_studentJBActionPerformed
-
-    private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        BookJFrame bookJFrame = new BookJFrame();
-        bookJFrame.setVisible(true);
-    }//GEN-LAST:event_add_BookJBActionPerformed
-
-    private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        BookTable book = new BookTable();
-        book.setVisible(true);
-    }//GEN-LAST:event_display_BookJBActionPerformed
-
-    private void add_courseJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_courseJBActionPerformed
-        AddCourseFrame addCourseFrame = new AddCourseFrame();
-        addCourseFrame.setVisible(true);
-    }//GEN-LAST:event_add_courseJBActionPerformed
-
-    private void add_teacherJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_teacherJBActionPerformed
-        AddTeacherFrame addTeacherFrame = new AddTeacherFrame();
-        addTeacherFrame.setVisible(true);
-    }//GEN-LAST:event_add_teacherJBActionPerformed
-
-    private void display_teacherJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_teacherJBActionPerformed
-        TeacherTableJframe teachertableJframe1 = new TeacherTableJframe();
-        teachertableJframe1.setVisible(true);
-    }//GEN-LAST:event_display_teacherJBActionPerformed
-
-    private void display_usersJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_usersJBActionPerformed
-        UsersTableJFrame usr = new UsersTableJFrame();
-        usr.setVisible(true);
-    }//GEN-LAST:event_display_usersJBActionPerformed
-
-    private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
-        SignUp s = new SignUp();
-        s.setVisible(true);
-    }//GEN-LAST:event_AddUserBtnActionPerformed
-
     private void LogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBtnActionPerformed
-        Login log = new Login();
-        this.setVisible(false);
-        log.setVisible(true);
+        root.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_LogOutBtnActionPerformed
-
-    private void ChangePassBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangePassBtnActionPerformed
-        ChangePasswordFrame ps = new ChangePasswordFrame();
-        ps.setVisible(true);
-    }//GEN-LAST:event_ChangePassBtnActionPerformed
-
-    private void ShowPaymentsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentsTableActionPerformed
-        PaymentTableJFrame py = new PaymentTableJFrame();
-        py.setVisible(true);
-    }//GEN-LAST:event_ShowPaymentsTableActionPerformed
 
     private void addNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewPaymentActionPerformed
         AddNewPayment anp = new AddNewPayment();
         anp.setVisible(true);
     }//GEN-LAST:event_addNewPaymentActionPerformed
 
-    private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
-        BookTableJframe bj = new BookTableJframe();
-        bj.setVisible(true);
-    }//GEN-LAST:event_AvailableBooksBtnActionPerformed
+    private void ShowPaymentsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentsTableActionPerformed
+        PaymentTableJFrame py = new PaymentTableJFrame();
+        py.setVisible(true);
+    }//GEN-LAST:event_ShowPaymentsTableActionPerformed
+
+    private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
+        SignUp s = new SignUp();
+        s.setVisible(true);
+    }//GEN-LAST:event_AddUserBtnActionPerformed
+
+    private void display_usersJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_usersJBActionPerformed
+        UsersTableJFrame usr = new UsersTableJFrame();
+        usr.setVisible(true);
+    }//GEN-LAST:event_display_usersJBActionPerformed
+
+    private void display_teacherJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_teacherJBActionPerformed
+        TeacherTableJframe teachertableJframe1 = new TeacherTableJframe();
+        teachertableJframe1.setVisible(true);
+    }//GEN-LAST:event_display_teacherJBActionPerformed
+
+    private void add_teacherJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_teacherJBActionPerformed
+        new AddTeacherFrame().setVisible(true);
+    }//GEN-LAST:event_add_teacherJBActionPerformed
 
     private void DisplayCourse2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCourse2BtnActionPerformed
         CourseTableJframe cf = new CourseTableJframe();
         cf.setVisible(true);
     }//GEN-LAST:event_DisplayCourse2BtnActionPerformed
 
+    private void add_courseJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_courseJBActionPerformed
+        AddCourseFrame addCourseFrame = new AddCourseFrame();
+        addCourseFrame.setVisible(true);
+    }//GEN-LAST:event_add_courseJBActionPerformed
+
+    private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
+        BookTableJframe bj = new BookTableJframe();
+        bj.setVisible(true);
+    }//GEN-LAST:event_AvailableBooksBtnActionPerformed
+
+    private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
+        BookTable book = new BookTable();
+        book.setVisible(true);
+    }//GEN-LAST:event_display_BookJBActionPerformed
+
+    private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
+        BookJFrame bookJFrame = new BookJFrame();
+        bookJFrame.setVisible(true);
+    }//GEN-LAST:event_add_BookJBActionPerformed
+
     private void EnrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollBtnActionPerformed
         EnrollFrame ef = new EnrollFrame();
         ef.setVisible(true);
     }//GEN-LAST:event_EnrollBtnActionPerformed
 
+    private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
+        StudentTableJframe studenttableJframe = new StudentTableJframe();
+        studenttableJframe.setVisible(true);
+    }//GEN-LAST:event_display_studentJBActionPerformed
+
+    private void add_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_studentJBActionPerformed
+        StudentJFrame sjf = new StudentJFrame();
+        sjf.setVisible(true);
+    }//GEN-LAST:event_add_studentJBActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserBtn;
     private javax.swing.JButton AvailableBooksBtn;
-    private javax.swing.JButton ChangePassBtn;
     private javax.swing.JButton DisplayCourse2Btn;
     private javax.swing.JButton EnrollBtn;
     private javax.swing.JButton LogOutBtn;

@@ -271,18 +271,19 @@ public abstract class AbstractQueryBindings<T extends BindValue> implements Quer
     }
 
     /**
-     * Set the value of a parameter using an object; use the java.lang equivalent objects for
-     * integral values.
+     * Set the value of a parameter using an object; use the java.lang
+     * equivalent objects for integral values.
      *
      * <P>
-     * The given Java object will be converted to the targetMysqlType before being sent to the
-     * database.
+     * The given Java object will be converted to the targetMysqlType before
+     * being sent to the database.
      *
      * @param parameterIndex the first parameter is 1...
      * @param parameterObj the object containing the input parameter value
      * @param targetMysqlType The MysqlType to be send to the database
-     * @param scaleOrLength For Types.DECIMAL or Types.NUMERIC types this is the number of digits
-     * after the decimal. For all other types this value will be ignored.
+     * @param scaleOrLength For Types.DECIMAL or Types.NUMERIC types this is the
+     * number of digits after the decimal. For all other types this value will
+     * be ignored.
      */
     public void setObject(int parameterIndex, Object parameterObj, MysqlType targetMysqlType, int scaleOrLength) {
         if (parameterObj == null) {
@@ -570,8 +571,8 @@ public abstract class AbstractQueryBindings<T extends BindValue> implements Quer
     }
 
     /**
-     * Sets the value for the placeholder as a serialized Java object (used by various forms of
-     * setObject()
+     * Sets the value for the placeholder as a serialized Java object (used by
+     * various forms of setObject()
      *
      * @param parameterIndex parameter index
      * @param parameterObj value

@@ -38,9 +38,9 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * A ResultSetRow implementation that holds one row packet (which is re-used by the driver, and thus
- * saves memory allocations), and tries when possible to avoid allocations to break out the results
- * as individual byte[]s.
+ * A ResultSetRow implementation that holds one row packet (which is re-used by
+ * the driver, and thus saves memory allocations), and tries when possible to
+ * avoid allocations to break out the results as individual byte[]s.
  *
  * (this isn't possible when doing things like reading floating point values).
  */
@@ -123,8 +123,8 @@ public class TextBufferRow extends AbstractBufferRow {
     }
 
     /**
-     * Implementation of getValue() based on the underlying Buffer object. Delegate to superclass
-     * for decoding.
+     * Implementation of getValue() based on the underlying Buffer object.
+     * Delegate to superclass for decoding.
      */
     @Override
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {

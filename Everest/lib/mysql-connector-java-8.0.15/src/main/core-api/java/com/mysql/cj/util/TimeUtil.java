@@ -132,18 +132,20 @@ public class TimeUtil {
     }
 
     /**
-     * Return a new Timestamp object which value is adjusted according to known DATE, DATETIME or
-     * TIMESTAMP field precision.
+     * Return a new Timestamp object which value is adjusted according to known
+     * DATE, DATETIME or TIMESTAMP field precision.
      *
      * @param ts an original Timestamp object, not modified by this method
-     * @param fsp value in the range from 0 to 6 specifying fractional seconds precision
-     * @param serverRoundFracSecs Flag indicating whether rounding or truncation occurs on server
-     * when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part into a column
-     * having the same type but fewer fractional digits: true means rounding, false means
-     * truncation. The proper value should be detected by analyzing sql_mode server variable for
+     * @param fsp value in the range from 0 to 6 specifying fractional seconds
+     * precision
+     * @param serverRoundFracSecs Flag indicating whether rounding or truncation
+     * occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a
+     * fractional seconds part into a column having the same type but fewer
+     * fractional digits: true means rounding, false means truncation. The
+     * proper value should be detected by analyzing sql_mode server variable for
      * TIME_TRUNCATE_FRACTIONAL presence.
-     * @return A new Timestamp object cloned from original ones and then rounded or truncated
-     * according to required fsp value
+     * @return A new Timestamp object cloned from original ones and then rounded
+     * or truncated according to required fsp value
      */
     public static Timestamp adjustTimestampNanosPrecision(Timestamp ts, int fsp, boolean serverRoundFracSecs) {
         if (fsp < 0 || fsp > 6) {
@@ -169,9 +171,9 @@ public class TimeUtil {
     }
 
     /**
-     * Return a string representation of a fractional seconds part. This method assumes that all
-     * Timestamp adjustments are already done before, thus no rounding is needed, only a proper "0"
-     * padding to be done.
+     * Return a string representation of a fractional seconds part. This method
+     * assumes that all Timestamp adjustments are already done before, thus no
+     * rounding is needed, only a proper "0" padding to be done.
      *
      * @param nanos fractional seconds value
      * @param fsp required fractional part length

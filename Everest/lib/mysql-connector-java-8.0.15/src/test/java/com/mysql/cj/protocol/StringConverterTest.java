@@ -40,8 +40,9 @@ import com.mysql.cj.result.StringValueFactory;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * Tests for {@link StringConverter}. Here we exercise the weird/wacky ways that we and/or JDBC
- * allow retrieving data from columns other than the matching types.
+ * Tests for {@link StringConverter}. Here we exercise the weird/wacky ways that
+ * we and/or JDBC allow retrieving data from columns other than the matching
+ * types.
  */
 public class StringConverterTest {
 

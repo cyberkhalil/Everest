@@ -215,7 +215,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#3554 - Not specifying database in URL causes MalformedURL exception.
+     * Tests fix for BUG#3554 - Not specifying database in URL causes
+     * MalformedURL exception.
      *
      * @throws Exception if an error occurs.
      */
@@ -285,8 +286,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests if the driver configures character sets correctly for 4.1.x servers. Requires that the
-     * 'admin connection' is configured, as this test needs to create/drop databases.
+     * Tests if the driver configures character sets correctly for 4.1.x
+     * servers. Requires that the 'admin connection' is configured, as this test
+     * needs to create/drop databases.
      *
      * @throws Exception if an error occurs
      */
@@ -440,7 +442,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4334, port #'s not being picked up for failover/autoreconnect.
+     * Tests fix for BUG#4334, port #'s not being picked up for
+     * failover/autoreconnect.
      *
      * @throws Exception if an error occurs.
      */
@@ -592,11 +595,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#6966, connections starting up failed-over (due to down master) never retry
-     * master.
+     * Tests fix for BUG#6966, connections starting up failed-over (due to down
+     * master) never retry master.
      *
-     * @throws Exception if the test fails...Note, test is timing-dependent, but should work in most
-     * cases.
+     * @throws Exception if the test fails...Note, test is timing-dependent, but
+     * should work in most cases.
      */
     public void testBug6966() throws Exception {
         Properties props = getPropertiesFromTestsuiteUrl();
@@ -647,8 +650,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test fix for BUG#7952 -- Infinite recursion when 'falling back' to master in failover
-     * configuration.
+     * Test fix for BUG#7952 -- Infinite recursion when 'falling back' to master
+     * in failover configuration.
      *
      * @throws Exception if the tests fails.
      */
@@ -720,7 +723,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#7607 - MS932, SHIFT_JIS and Windows_31J not recog. as aliases for sjis.
+     * Tests fix for BUG#7607 - MS932, SHIFT_JIS and Windows_31J not recog. as
+     * aliases for sjis.
      *
      * @throws Exception if the test fails.
      */
@@ -835,7 +839,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9206, can not use 'UTF-8' for characterSetResults configuration property.
+     * Tests fix for BUG#9206, can not use 'UTF-8' for characterSetResults
+     * configuration property.
      */
     public void testBug9206() throws Exception {
         Properties props = new Properties();
@@ -844,7 +849,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * These two charsets have different names depending on version of MySQL server.
+     * These two charsets have different names depending on version of MySQL
+     * server.
      *
      * @throws Exception if the test fails.
      */
@@ -859,7 +865,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#10144 - Memory leak in ServerPreparedStatement if serverPrepare() fails.
+     * Tests fix for BUG#10144 - Memory leak in ServerPreparedStatement if
+     * serverPrepare() fails.
      */
     public void testBug10144() throws Exception {
         Properties props = new Properties();
@@ -881,7 +888,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#10496 - SQLException is thrown when using property "characterSetResults"
+     * Tests fix for BUG#10496 - SQLException is thrown when using property
+     * "characterSetResults"
      */
     public void testBug10496() throws Exception {
         Properties props = new Properties();
@@ -896,7 +904,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11259, autoReconnect ping causes exception on connection startup.
+     * Tests fix for BUG#11259, autoReconnect ping causes exception on
+     * connection startup.
      *
      * @throws Exception if the test fails.
      */
@@ -914,8 +923,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11879 -- ReplicationConnection won't switch to slave, throws "Catalog can't
-     * be null" exception.
+     * Tests fix for BUG#11879 -- ReplicationConnection won't switch to slave,
+     * throws "Catalog can't be null" exception.
      *
      * @throws Exception if the test fails
      */
@@ -936,7 +945,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11976 - maxPerformance.properties mis-spells "elideSetAutoCommits".
+     * Tests fix for BUG#11976 - maxPerformance.properties mis-spells
+     * "elideSetAutoCommits".
      *
      * @throws Exception if the test fails.
      */
@@ -949,8 +959,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#12218, properties shared between master and slave with replication
-     * connection.
+     * Tests fix for BUG#12218, properties shared between master and slave with
+     * replication connection.
      *
      * @throws Exception if the test fails.
      */
@@ -980,7 +990,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#12229 - explainSlowQueries hangs with server-side prepared statements.
+     * Tests fix for BUG#12229 - explainSlowQueries hangs with server-side
+     * prepared statements.
      *
      * @throws Exception if the test fails.
      */
@@ -1011,7 +1022,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#12752 - Cp1251 incorrectly mapped to win1251 for servers newer than 4.0.x.
+     * Tests fix for BUG#12752 - Cp1251 incorrectly mapped to win1251 for
+     * servers newer than 4.0.x.
      *
      * @throws Exception if the test fails.
      */
@@ -1022,8 +1034,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#12753, sessionVariables=....=...., doesn't work as it's tokenized
-     * incorrectly.
+     * Tests fix for BUG#12753, sessionVariables=....=...., doesn't work as it's
+     * tokenized incorrectly.
      *
      * @throws Exception if the test fails.
      */
@@ -1104,8 +1116,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#13453 - can't use & or = in URL configuration values (we now allow you to
-     * use www-form-encoding).
+     * Tests fix for BUG#13453 - can't use & or = in URL configuration values
+     * (we now allow you to use www-form-encoding).
      *
      * @throws Exception if the test fails
      */
@@ -1141,8 +1153,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15065 - Usage advisor complains about unreferenced columns, even though
-     * they've been referenced.
+     * Tests fix for BUG#15065 - Usage advisor complains about unreferenced
+     * columns, even though they've been referenced.
      *
      * @throws Exception if the test fails.
      */
@@ -1289,10 +1301,12 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15570 - ReplicationConnection incorrectly copies state, doesn't transfer
-     * connection context correctly when transitioning between the same read-only states.
+     * Tests fix for BUG#15570 - ReplicationConnection incorrectly copies state,
+     * doesn't transfer connection context correctly when transitioning between
+     * the same read-only states.
      *
-     * (note, this test will fail if the test user doesn't have permission to "USE 'mysql'".
+     * (note, this test will fail if the test user doesn't have permission to
+     * "USE 'mysql'".
      *
      * @throws Exception if the test fails.
      */
@@ -1341,11 +1355,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests bug where downed slave caused round robin load balance not to cycle back to first host
-     * in the list.
+     * Tests bug where downed slave caused round robin load balance not to cycle
+     * back to first host in the list.
      *
-     * @throws Exception if the test fails...Note, test is timing-dependent, but should work in most
-     * cases.
+     * @throws Exception if the test fails...Note, test is timing-dependent, but
+     * should work in most cases.
      */
     public void testBug23281() throws Exception {
         Properties props = getHostFreePropertiesFromTestsuiteUrl();
@@ -1441,8 +1455,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25514 - Timer instance used for Statement.setQueryTimeout() created
-     * per-connection, rather than per-VM, causing memory leak.
+     * Tests fix for BUG#25514 - Timer instance used for
+     * Statement.setQueryTimeout() created per-connection, rather than per-VM,
+     * causing memory leak.
      *
      * @throws Exception if the test fails.
      */
@@ -1495,10 +1510,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Ensures that we don't miss getters/setters for driver properties defined in
-     * PropertyDefinitions so that names given in documentation work with DataSources which will use
-     * JavaBean-style names and reflection to set the values (and often fail silently! when the
-     * method isn't available).
+     * Ensures that we don't miss getters/setters for driver properties defined
+     * in PropertyDefinitions so that names given in documentation work with
+     * DataSources which will use JavaBean-style names and reflection to set the
+     * values (and often fail silently! when the method isn't available).
      *
      * @throws Exception
      */
@@ -1599,10 +1614,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#25545 - Client flags not sent correctly during handshake when using SSL.
+     * Tests fix for BUG#25545 - Client flags not sent correctly during
+     * handshake when using SSL.
      *
-     * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being
-     * tested.
+     * Requires test certificates from testsuite/ssl-test-certs to be installed
+     * on the server being tested.
      *
      * @throws Exception if the test fails.
      */
@@ -1633,11 +1649,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#36948 - Trying to use trustCertificateKeyStoreUrl causes an
-     * IllegalStateException.
+     * Tests fix for BUG#36948 - Trying to use trustCertificateKeyStoreUrl
+     * causes an IllegalStateException.
      *
-     * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being
-     * tested.
+     * Requires test certificates from testsuite/ssl-test-certs to be installed
+     * on the server being tested.
      *
      * @throws Exception if the test fails.
      */
@@ -1670,8 +1686,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#27655 - getTransactionIsolation() uses "SHOW VARIABLES LIKE" which is very
-     * inefficient on MySQL-5.0+
+     * Tests fix for BUG#27655 - getTransactionIsolation() uses "SHOW VARIABLES
+     * LIKE" which is very inefficient on MySQL-5.0+
      *
      * @throws Exception
      */
@@ -1698,9 +1714,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for issue where a failed-over connection would let an application call
-     * setReadOnly(false), when that call should be ignored until the connection is reconnected to a
-     * writable master.
+     * Tests fix for issue where a failed-over connection would let an
+     * application call setReadOnly(false), when that call should be ignored
+     * until the connection is reconnected to a writable master.
      *
      * @throws Exception if the test fails.
      */
@@ -1799,11 +1815,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test of a new feature to fix BUG 22643, specifying a "validation query" in your connection
-     * pool that starts with "slash-star ping slash-star" _exactly_ will cause the driver to " +
-     * instead send a ping to the server (much lighter weight), and when using a
-     * ReplicationConnection or a LoadBalancedConnection, will send the ping across all active
-     * connections.
+     * Test of a new feature to fix BUG 22643, specifying a "validation query"
+     * in your connection pool that starts with "slash-star ping slash-star"
+     * _exactly_ will cause the driver to " + instead send a ping to the server
+     * (much lighter weight), and when using a ReplicationConnection or a
+     * LoadBalancedConnection, will send the ping across all active connections.
      *
      * @throws Exception
      */
@@ -1892,8 +1908,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#33734 - NullPointerException when using client-side prepared statements and
-     * enabling caching of prepared statements (only present in nightly builds of 5.1).
+     * Tests fix for BUG#33734 - NullPointerException when using client-side
+     * prepared statements and enabling caching of prepared statements (only
+     * present in nightly builds of 5.1).
      *
      * @throws Exception
      */
@@ -2431,8 +2448,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#44587, provide last packet sent/received timing in all connection failure
-     * errors.
+     * Tests fix for BUG#44587, provide last packet sent/received timing in all
+     * connection failure errors.
      */
     public void testBug44587() throws Exception {
         Exception e = null;
@@ -2457,8 +2474,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#45419, ensure that time is not converted to seconds before being reported
-     * as milliseconds.
+     * Tests fix for BUG#45419, ensure that time is not converted to seconds
+     * before being reported as milliseconds.
      */
     public void testBug45419() throws Exception {
         Exception e = null;
@@ -3884,12 +3901,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * This test requires two server instances: 1) main test server pointed by
-     * com.mysql.cj.testsuite.url variable configured without RSA encryption support
-     * (sha256_password_private_key_path, sha256_password_public_key_path,
-     * caching_sha2_password_private_key_path and caching_sha2_password_public_key_path config
-     * options are unset). 2) additional server instance pointed by
-     * com.mysql.cj.testsuite.url.openssl variable configured with
-     * default-authentication-plugin=sha256_password and RSA encryption enabled.
+     * com.mysql.cj.testsuite.url variable configured without RSA encryption
+     * support (sha256_password_private_key_path,
+     * sha256_password_public_key_path, caching_sha2_password_private_key_path
+     * and caching_sha2_password_public_key_path config options are unset). 2)
+     * additional server instance pointed by com.mysql.cj.testsuite.url.openssl
+     * variable configured with default-authentication-plugin=sha256_password
+     * and RSA encryption enabled.
      *
      * To run this test please add this variable to ant call:
      * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
@@ -4600,7 +4618,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#57662, Incorrect Query Duration When useNanosForElapsedTime Enabled
+     * Tests fix for BUG#57662, Incorrect Query Duration When
+     * useNanosForElapsedTime Enabled
      *
      * @throws Exception if the test fails.
      */
@@ -4669,7 +4688,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#11237 useCompression=true and LOAD DATA LOCAL INFILE SQL Command
+     * Tests fix for BUG#11237 useCompression=true and LOAD DATA LOCAL INFILE
+     * SQL Command
      *
      * @throws Exception if any errors occur
      */
@@ -4992,7 +5012,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#16224249 - Deadlock on concurrently used LoadBalancedMySQLConnection
+     * Tests fix for BUG#16224249 - Deadlock on concurrently used
+     * LoadBalancedMySQLConnection
      *
      * @throws Exception
      */
@@ -5106,7 +5127,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#68763, ReplicationConnection.isMasterConnection() returns false always
+     * Tests fix for BUG#68763, ReplicationConnection.isMasterConnection()
+     * returns false always
      *
      * @throws Exception if the test fails.
      */
@@ -5121,8 +5143,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#68733, ReplicationConnection does not ping all underlying active physical
-     * connections to slaves.
+     * Tests fix for BUG#68733, ReplicationConnection does not ping all
+     * underlying active physical connections to slaves.
      *
      * @throws Exception if the test fails.
      */
@@ -5359,8 +5381,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#68400 useCompression=true and connect to server, zip native method cause
-     * out of memory
+     * Tests fix for BUG#68400 useCompression=true and connect to server, zip
+     * native method cause out of memory
      *
      * @throws Exception if any errors occur
      */
@@ -5391,8 +5413,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
     /**
      * @param props
-     * @param connectionType 0-ConnectionImpl, 1-LoadBalancedConnection, 2-FailoverConnection,
-     * 3-ReplicationConnection
+     * @param connectionType 0-ConnectionImpl, 1-LoadBalancedConnection,
+     * 2-FailoverConnection, 3-ReplicationConnection
      * @param finType 0 - none, 1 - close(), 2 - abortInternal()
      * @throws Exception
      */
@@ -5517,7 +5539,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#17251955, ARRAYINDEXOUTOFBOUNDSEXCEPTION ON LONG MULTI-BYTE DB/USER NAMES
+     * Tests fix for BUG#17251955, ARRAYINDEXOUTOFBOUNDSEXCEPTION ON LONG
+     * MULTI-BYTE DB/USER NAMES
      *
      * @throws Exception
      */
@@ -5567,8 +5590,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#69506 - XAER_DUPID error code is not returned when a duplicate XID is
-     * offered in Java.
+     * Tests fix for BUG#69506 - XAER_DUPID error code is not returned when a
+     * duplicate XID is offered in Java.
      *
      * @throws Exception if the test fails.
      */
@@ -5798,7 +5821,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#69452 - Memory size connection property doesn't support large values well
+     * Tests fix for Bug#69452 - Memory size connection property doesn't support
+     * large values well
      *
      * @throws Exception if the test fails.
      */
@@ -5834,8 +5858,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#69777 - Setting maxAllowedPacket below 8203 makes blobSendChunkSize
-     * negative.
+     * Tests fix for Bug#69777 - Setting maxAllowedPacket below 8203 makes
+     * blobSendChunkSize negative.
      *
      * @throws Exception if any errors occur
      */
@@ -6021,8 +6045,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Internal method for tests to get a replication connection with a single master host to the
-     * test URL.
+     * Internal method for tests to get a replication connection with a single
+     * master host to the test URL.
      */
     private ReplicationConnection getTestReplicationConnectionNoSlaves(String masterHost) throws Exception {
         Properties props = getHostFreePropertiesFromTestsuiteUrl();
@@ -6036,8 +6060,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test that we remain on the master when: - the connection is not in read-only mode - no slaves
-     * are configured - a new slave is added
+     * Test that we remain on the master when: - the connection is not in
+     * read-only mode - no slaves are configured - a new slave is added
      */
     public void testReplicationConnectionNoSlavesRemainOnMaster() throws Exception {
         Properties props = getPropertiesFromTestsuiteUrl();
@@ -6137,7 +6161,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#71850 - init() is called twice on exception interceptors
+     * Tests fix for Bug#71850 - init() is called twice on exception
+     * interceptors
      *
      * @throws Exception if the test fails.
      */
@@ -6214,8 +6239,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Test for Bug#72712 - SET NAMES issued unnecessarily.
      *
-     * Using a statement interceptor, ensure that SET NAMES is not called if the encoding requested
-     * by the client application matches that of character_set_server.
+     * Using a statement interceptor, ensure that SET NAMES is not called if the
+     * encoding requested by the client application matches that of
+     * character_set_server.
      *
      * Also test that character_set_results is not set unnecessarily.
      */
@@ -6290,7 +6316,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test fix for Bug#18869381 - CHANGEUSER() FOR SHA USER RESULTS IN NULLPOINTEREXCEPTION
+     * Test fix for Bug#18869381 - CHANGEUSER() FOR SHA USER RESULTS IN
+     * NULLPOINTEREXCEPTION
      *
      * This test requires additional server instance configured with
      * default-authentication-plugin=sha256_password and RSA encryption enabled.
@@ -6410,7 +6437,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#73053 - Endless loop in MysqlIO.clearInputStream due to Linux kernel bug.
+     * Tests fix for BUG#73053 - Endless loop in MysqlIO.clearInputStream due to
+     * Linux kernel bug.
      *
      * @throws Exception if the test fails.
      */
@@ -6835,7 +6863,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19354014 - CHANGEUSER() CALL RESULTS IN "PACKETS OUT OF ORDER" ERROR
+     * Tests fix for BUG#19354014 - CHANGEUSER() CALL RESULTS IN "PACKETS OUT OF
+     * ORDER" ERROR
      *
      * @throws Exception
      */
@@ -6866,7 +6895,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#75168 - loadBalanceExceptionChecker interface cannot work using JDBC4/JDK7
+     * Tests fix for Bug#75168 - loadBalanceExceptionChecker interface cannot
+     * work using JDBC4/JDK7
      *
      * @throws Exception
      */
@@ -6971,7 +7001,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#71084 - Wrong java.sql.Date stored if client and server time zones differ
+     * Tests fix for BUG#71084 - Wrong java.sql.Date stored if client and server
+     * time zones differ
      *
      * @throws Exception if the test fails.
      */
@@ -7064,7 +7095,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20685022 - SSL CONNECTION TO MYSQL 5.7.6 COMMUNITY SERVER FAILS
+     * Tests fix for BUG#20685022 - SSL CONNECTION TO MYSQL 5.7.6 COMMUNITY
+     * SERVER FAILS
      *
      * @throws Exception if the test fails.
      */
@@ -7196,7 +7228,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#62452 - NPE thrown in JDBC4MySQLPooledException when statement is closed.
+     * Tests fix for BUG#62452 - NPE thrown in JDBC4MySQLPooledException when
+     * statement is closed.
      *
      * @throws Exception
      */
@@ -7235,18 +7268,19 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20825727 - CONNECT FAILURE WHEN TRY TO CONNECT SHA USER WITH DIFFERENT
-     * CHARSET.
+     * Tests fix for BUG#20825727 - CONNECT FAILURE WHEN TRY TO CONNECT SHA USER
+     * WITH DIFFERENT CHARSET.
      *
-     * This test runs through all authentication plugins when one of the following server
-     * requirements is met: 1. Default connection string points to a server configured with both SSL
-     * *and* RSA encryption. or 2. Default connection string points to a server configured with SSL
-     * enabled but no RSA encryption *and* the property com.mysql.cj.testsuite.url.openssl points to
-     * an additional server configured with default-authentication-plugin=sha256_password and RSA
-     * encryption.
+     * This test runs through all authentication plugins when one of the
+     * following server requirements is met: 1. Default connection string points
+     * to a server configured with both SSL *and* RSA encryption. or 2. Default
+     * connection string points to a server configured with SSL enabled but no
+     * RSA encryption *and* the property com.mysql.cj.testsuite.url.openssl
+     * points to an additional server configured with
+     * default-authentication-plugin=sha256_password and RSA encryption.
      *
-     * If none of the servers has SSL and RSA encryption enabled then only 'mysql_native_password'
-     * and 'mysql_old_password' plugins are tested.
+     * If none of the servers has SSL and RSA encryption enabled then only
+     * 'mysql_native_password' and 'mysql_old_password' plugins are tested.
      *
      * @throws Exception if the test fails.
      */
@@ -7562,11 +7596,12 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#75670 - Connection fails with "Public Key Retrieval is not allowed" for
-     * native auth.
+     * Tests fix for BUG#75670 - Connection fails with "Public Key Retrieval is
+     * not allowed" for native auth.
      *
-     * Requires additional server instance pointed by com.mysql.cj.testsuite.url.openssl variable
-     * configured with default-authentication-plugin=sha256_password and RSA encryption enabled.
+     * Requires additional server instance pointed by
+     * com.mysql.cj.testsuite.url.openssl variable configured with
+     * default-authentication-plugin=sha256_password and RSA encryption enabled.
      *
      * @throws Exception if the test fails.
      */
@@ -7714,8 +7749,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#16634180 - LOCK WAIT TIMEOUT EXCEEDED CAUSES SQLEXCEPTION, SHOULD CAUSE
-     * SQLTRANSIENTEXCEPTION
+     * Tests fix for Bug#16634180 - LOCK WAIT TIMEOUT EXCEEDED CAUSES
+     * SQLEXCEPTION, SHOULD CAUSE SQLTRANSIENTEXCEPTION
      *
      * @throws Exception if the test fails.
      */
@@ -7755,44 +7790,54 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#21934573 - FABRIC CODE INVOLVED IN THREAD DEADLOCK. (Duplicate Bug#78710
-     * (21966391) - Deadlock on ReplicationConnection and ReplicationConnectionGroup when failover)
+     * Tests fix for Bug#21934573 - FABRIC CODE INVOLVED IN THREAD DEADLOCK.
+     * (Duplicate Bug#78710 (21966391) - Deadlock on ReplicationConnection and
+     * ReplicationConnectionGroup when failover)
      *
-     * Two threads with different Fabric connections using the same server group (and consequently
-     * the same {@link ReplicationConnectionGroup}) may hit a deadlock when one executes a failover
-     * procedure and the other, simultaneously, calls a method that acquires a lock on the
+     * Two threads with different Fabric connections using the same server group
+     * (and consequently the same {@link ReplicationConnectionGroup}) may hit a
+     * deadlock when one executes a failover procedure and the other,
+     * simultaneously, calls a method that acquires a lock on the
      * {@link ReplicationConnection} instance monitor.
      *
-     * This happens when, in one thread, a Fabric connection (performing the failover) and while
-     * owning a lock on {@link ReplicationConnectionGroup}, sequentially tries to lock the object
-     * monitor from each {@link ReplicationConnection} belonging to the same
-     * {@link ReplicationConnectionGroup}, in the attempt of updating their servers lists by calling
-     * the synchronized methods {@link ReplicationConnection#removeMasterHost(String)},
+     * This happens when, in one thread, a Fabric connection (performing the
+     * failover) and while owning a lock on {@link ReplicationConnectionGroup},
+     * sequentially tries to lock the object monitor from each
+     * {@link ReplicationConnection} belonging to the same
+     * {@link ReplicationConnectionGroup}, in the attempt of updating their
+     * servers lists by calling the synchronized methods {@link ReplicationConnection#removeMasterHost(String)},
      * {@link ReplicationConnection#addSlaveHost(String)}, {@link ReplicationConnection#removeSlaveHost(String)}
-     * or {@link ReplicationConnection#promoteSlaveToMaster(String)} while, at the same time, a
-     * second thread is executing one of the synchronized methods from the
-     * {@link ReplicationConnection} instance, such as {@link ReplicationConnection#close()} or
-     * {@link ReplicationConnection#doPing()} (*), in one of those connections. Later on, the second
-     * thread, eventually initiates a failover procedure too and hits the lock on
-     * {@link ReplicationConnectionGroup} owned by the first thread. The first thread, at the same
-     * time, requires that the lock on {@link ReplicationConnection} is released by the second
-     * thread to be able to complete the failover procedure is has initiated before. (*) Executing a
-     * query may trigger this too via locking on {@link LoadBalancedConnectionProxy}.
+     * or {@link ReplicationConnection#promoteSlaveToMaster(String)} while, at
+     * the same time, a second thread is executing one of the synchronized
+     * methods from the {@link ReplicationConnection} instance, such as
+     * {@link ReplicationConnection#close()} or
+     * {@link ReplicationConnection#doPing()} (*), in one of those connections.
+     * Later on, the second thread, eventually initiates a failover procedure
+     * too and hits the lock on {@link ReplicationConnectionGroup} owned by the
+     * first thread. The first thread, at the same time, requires that the lock
+     * on {@link ReplicationConnection} is released by the second thread to be
+     * able to complete the failover procedure is has initiated before. (*)
+     * Executing a query may trigger this too via locking on
+     * {@link LoadBalancedConnectionProxy}.
      *
-     * This test simulates the way Fabric connections operate when they need to synchronize the list
-     * of servers from a {@link ReplicationConnection} with the Fabric's server group. In that
-     * operation we, like Fabric connections, use an {@link ExceptionInterceptor} that ends up
-     * changing the {@link ReplicationConnection}s from a given {@link ReplicationConnectionGroup}.
+     * This test simulates the way Fabric connections operate when they need to
+     * synchronize the list of servers from a {@link ReplicationConnection} with
+     * the Fabric's server group. In that operation we, like Fabric connections,
+     * use an {@link ExceptionInterceptor} that ends up changing the
+     * {@link ReplicationConnection}s from a given
+     * {@link ReplicationConnectionGroup}.
      *
-     * This test is unable to cover the failing scenario since the fix in the main code was also
-     * reproduced here, with the addition of the {@link ReentrantLock}
-     * {@code singleSynchWorkerMonitor} in the {@link TestBug21934573ExceptionInterceptor} the same
-     * way as in {@link ErrorReportingExceptionInterceptor}. The way to reproduce it and observe the
-     * deadlock happening is by setting the connection property {@code __useReplConnGroupLocks__} to
-     * {@code False}.
+     * This test is unable to cover the failing scenario since the fix in the
+     * main code was also reproduced here, with the addition of the {@link ReentrantLock}
+     * {@code singleSynchWorkerMonitor} in the
+     * {@link TestBug21934573ExceptionInterceptor} the same way as in
+     * {@link ErrorReportingExceptionInterceptor}. The way to reproduce it and
+     * observe the deadlock happening is by setting the connection property
+     * {@code __useReplConnGroupLocks__} to {@code False}.
      *
-     * WARNING! If this test fails there is no guarantee that the JVM will remain stable and won't
-     * affect any other tests. It is imperative that this test passes to ensure other tests results.
+     * WARNING! If this test fails there is no guarantee that the JVM will
+     * remain stable and won't affect any other tests. It is imperative that
+     * this test passes to ensure other tests results.
      */
     public void testBug21934573() throws Exception {
         Properties props = new Properties();
@@ -7922,8 +7967,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#21947042, PREFER TLS WHERE SUPPORTED BY MYSQL SERVER.
      *
-     * Requires test certificates from testsuite/ssl-test-certs to be installed on the server being
-     * tested.
+     * Requires test certificates from testsuite/ssl-test-certs to be installed
+     * on the server being tested.
      *
      * @throws Exception if the test fails.
      */
@@ -8097,7 +8142,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#56100 - Replication driver routes DML statements to read-only slaves.
+     * Tests fix for Bug#56100 - Replication driver routes DML statements to
+     * read-only slaves.
      */
     public void testBug56100() throws Exception {
         final String port = getPort(null);
@@ -8207,7 +8253,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * -Dcom.mysql.cj.testsuite.url and commercial server (with OpenSSL) in
      * -Dcom.mysql.cj.testsuite.url.openssl
      *
-     * Test certificates from test/config/ssl-test-certs must be installed on both servers.
+     * Test certificates from test/config/ssl-test-certs must be installed on
+     * both servers.
      */
     public void testTLSVersion() throws Exception {
         // Find out which TLS protocol versions are supported by this JVM.
@@ -8267,16 +8314,18 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#87379. This allows TLS version to be overridden through a new configuration
-     * option - enabledTLSProtocols. When set to some combination of TLSv1, TLSv1.1, or TLSv1.2
-     * (comma-separated, no spaces), the default behavior restricting the TLS version based on JRE
-     * and MySQL Server version is bypassed to enable or restrict specific TLS versions.
+     * Tests fix for Bug#87379. This allows TLS version to be overridden through
+     * a new configuration option - enabledTLSProtocols. When set to some
+     * combination of TLSv1, TLSv1.1, or TLSv1.2 (comma-separated, no spaces),
+     * the default behavior restricting the TLS version based on JRE and MySQL
+     * Server version is bypassed to enable or restrict specific TLS versions.
      *
      * This test requires community server (preferably compiled with yaSSL) in
      * -Dcom.mysql.cj.testsuite.url and commercial server (with OpenSSL) in
      * -Dcom.mysql.cj.testsuite.url.openssl
      *
-     * Test certificates from testsuite/ssl-test-certs must be installed on both servers.
+     * Test certificates from testsuite/ssl-test-certs must be installed on both
+     * servers.
      */
     public void testEnableTLSVersion() throws Exception {
         // Find out which TLS protocol versions are supported by this JVM.
@@ -8347,7 +8396,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#56122 - JDBC4 functionality failure when using replication connections.
+     * Tests fix for Bug#56122 - JDBC4 functionality failure when using
+     * replication connections.
      */
     public void testBug56122() throws Exception {
         for (final Connection testConn : new Connection[]{this.conn, getFailoverConnection(), getLoadBalancedConnection(),
@@ -8377,7 +8427,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#21286268 - CONNECTOR/J REPLICATION USE MASTER IF SLAVE IS UNAVAILABLE.
+     * Tests fix for Bug#21286268 - CONNECTOR/J REPLICATION USE MASTER IF SLAVE
+     * IS UNAVAILABLE.
      */
     public void testBug21286268() throws Exception {
         final String MASTER = "master";
@@ -8697,12 +8748,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#77171 - On every connect getting sql_mode from server creates unnecessary
-     * exception.
+     * Tests fix for Bug#77171 - On every connect getting sql_mode from server
+     * creates unnecessary exception.
      *
-     * This fix is a refactoring on ConnectorImpl.initializePropsFromServer() to improve performance
-     * when processing the SQL_MODE value. No behavior was changed. This test guarantees that
-     * nothing was broken in these matters, for the relevant MySQL versions, after this fix.
+     * This fix is a refactoring on ConnectorImpl.initializePropsFromServer() to
+     * improve performance when processing the SQL_MODE value. No behavior was
+     * changed. This test guarantees that nothing was broken in these matters,
+     * for the relevant MySQL versions, after this fix.
      */
     public void testBug77171() throws Exception {
         String sqlMode = getMysqlVariable("sql_mode");
@@ -8749,8 +8801,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * Tests fix for Bug#22730682 - ARRAYINDEXOUTOFBOUNDSEXCEPTION FROM
      * CONNECTIONGROUPMANAGER.REMOVEHOST().
      *
-     * This bug was caused by an incorrect array handling when removing an host from a load balanced
-     * connection group, with the option to affect existing connections.
+     * This bug was caused by an incorrect array handling when removing an host
+     * from a load balanced connection group, with the option to affect existing
+     * connections.
      */
     public void testBug22730682() throws Exception {
         final String currentHost = mainConnectionUrl.getMainHost().getHostPortPair();
@@ -8783,10 +8836,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#22848249 - LOADBALANCECONNECTIONGROUPMANAGER.REMOVEHOST() NOT WORKING AS
-     * EXPECTED.
+     * Tests fix for Bug#22848249 -
+     * LOADBALANCECONNECTIONGROUPMANAGER.REMOVEHOST() NOT WORKING AS EXPECTED.
      *
-     * Tests a sequence of additions and removals of hosts from a load-balanced connection group.
+     * Tests a sequence of additions and removals of hosts from a load-balanced
+     * connection group.
      */
     public void testBug22848249() throws Exception {
         /*
@@ -9356,16 +9410,19 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for Bug#22678872 - NPE DURING UPDATE WITH FABRIC.
      *
-     * Although the bug was reported against a Fabric connection, it can't be systematically
-     * reproduced there. A deep analysis revealed that the bug occurs due to a defect in the dynamic
-     * hosts management of replication connections, specifically when one or both of the internal
-     * hosts lists (masters and/or slaves) becomes empty. As such, the bug is reproducible and
-     * tested resorting to replication connections and dynamic hosts management of replication
-     * connections only. This test reproduces the relevant steps involved in the original stack
-     * trace, originated in the FabricMySQLConnectionProxy.getActiveConnection() code: - The
-     * replication connections are initialized with the same properties as in a Fabric connection. -
-     * Hosts are removed using the same options as in a Fabric connection. - The method tested after
-     * any host change is Connection.setAutoCommit(), which is the method that triggered the
+     * Although the bug was reported against a Fabric connection, it can't be
+     * systematically reproduced there. A deep analysis revealed that the bug
+     * occurs due to a defect in the dynamic hosts management of replication
+     * connections, specifically when one or both of the internal hosts lists
+     * (masters and/or slaves) becomes empty. As such, the bug is reproducible
+     * and tested resorting to replication connections and dynamic hosts
+     * management of replication connections only. This test reproduces the
+     * relevant steps involved in the original stack trace, originated in the
+     * FabricMySQLConnectionProxy.getActiveConnection() code: - The replication
+     * connections are initialized with the same properties as in a Fabric
+     * connection. - Hosts are removed using the same options as in a Fabric
+     * connection. - The method tested after any host change is
+     * Connection.setAutoCommit(), which is the method that triggered the
      * original NPE.
      */
     public void testBug22678872() throws Exception {
@@ -9702,8 +9759,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#77649 - URL start with word "address",JDBC can't parse the "host:port"
-     * Correctly.
+     * Tests fix for Bug#77649 - URL start with word "address",JDBC can't parse
+     * the "host:port" Correctly.
      */
     public void testBug77649() throws Exception {
         String host = getHostFromTestsuiteUrl();
@@ -9727,8 +9784,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     /**
      * Tests fix for Bug#74711 - FORGOTTEN WORKAROUND FOR BUG#36326.
      *
-     * This test requires a server started with the options '--query_cache_type=1' and
-     * '--query_cache_size=N', (N > 0).
+     * This test requires a server started with the options
+     * '--query_cache_type=1' and '--query_cache_size=N', (N > 0).
      */
     public void testBug74711() throws Exception {
         if (!((MysqlConnection) this.conn).getSession().getServerSession().isQueryCacheEnabled()) {
@@ -9762,8 +9819,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#75209 - Set useLocalTransactionState may result in partially committed
-     * transaction.
+     * Tests fix for Bug#75209 - Set useLocalTransactionState may result in
+     * partially committed transaction.
      */
     public void testBug75209() throws Exception {
         createTable("testBug75209", "(id INT PRIMARY KEY)", "InnoDB");
@@ -9802,11 +9859,12 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#75615 - Incorrect implementation of Connection.setNetworkTimeout().
+     * Tests fix for Bug#75615 - Incorrect implementation of
+     * Connection.setNetworkTimeout().
      *
-     * Note: this test exploits a non deterministic race condition. Usually the failure was observed
-     * under 10 consecutive executions, as such the siginficant part of the test is run up to 25
-     * times.
+     * Note: this test exploits a non deterministic race condition. Usually the
+     * failure was observed under 10 consecutive executions, as such the
+     * siginficant part of the test is run up to 25 times.
      */
     Future<?> testBug75615Future = null;
 
@@ -9850,7 +9908,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#70785 - MySQL Connector/J inconsistent init state for autocommit.
+     * Tests fix for Bug#70785 - MySQL Connector/J inconsistent init state for
+     * autocommit.
      */
     public void testBug70785() throws Exception {
         // Make sure that both client and server have autocommit turned on.
@@ -9916,16 +9975,18 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * This test requires two server instances: 1) main test server pointed to by the
-     * com.mysql.cj.testsuite.url variable configured without RSA encryption support
-     * (sha256_password_private_key_path, sha256_password_public_key_path,
-     * caching_sha2_password_private_key_path and caching_sha2_password_public_key_path config
-     * options are unset). 2) additional server instance pointed to by the
+     * This test requires two server instances: 1) main test server pointed to
+     * by the com.mysql.cj.testsuite.url variable configured without RSA
+     * encryption support (sha256_password_private_key_path,
+     * sha256_password_public_key_path, caching_sha2_password_private_key_path
+     * and caching_sha2_password_public_key_path config options are unset). 2)
+     * additional server instance pointed to by the
      * com.mysql.cj.testsuite.url.openssl variable configured with
-     * default-authentication-plugin=sha256_password, RSA encryption enabled, and server
-     * configuration options "caching_sha2_password_private_key_path" and
-     * "caching_sha2_password_public_key_path" set to the same values as
-     * "sha256_password_private_key_path" and "sha256_password_public_key_path" respectively.
+     * default-authentication-plugin=sha256_password, RSA encryption enabled,
+     * and server configuration options "caching_sha2_password_private_key_path"
+     * and "caching_sha2_password_public_key_path" set to the same values as
+     * "sha256_password_private_key_path" and "sha256_password_public_key_path"
+     * respectively.
      *
      * To run this test, please add this variable to the ant call:
      * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
@@ -10428,12 +10489,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#88242 - autoReconnect and socketTimeout JDBC option makes wrong order of
-     * client packet.
+     * Tests fix for Bug#88242 - autoReconnect and socketTimeout JDBC option
+     * makes wrong order of client packet.
      *
-     * The wrong behavior may not be observed in all systems or configurations. It seems to be
-     * easier to reproduce when SSL is enabled. Without it, the data packets flow faster and
-     * desynchronization occurs rarely, which is the root cause for this problem.
+     * The wrong behavior may not be observed in all systems or configurations.
+     * It seems to be easier to reproduce when SSL is enabled. Without it, the
+     * data packets flow faster and desynchronization occurs rarely, which is
+     * the root cause for this problem.
      */
     public void testBug88242() throws Exception {
         Properties props = new Properties();
@@ -10475,9 +10537,11 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#88232 - c/J does not rollback transaction when autoReconnect=true.
+     * Tests fix for Bug#88232 - c/J does not rollback transaction when
+     * autoReconnect=true.
      *
-     * This is essentially a duplicate of Bug#88242, but observed in a different use case.
+     * This is essentially a duplicate of Bug#88242, but observed in a different
+     * use case.
      */
     public void testBug88232() throws Exception {
         createTable("testBug88232", "(id INT)", "INNODB");
@@ -10543,8 +10607,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#79612 (22362474), CONNECTION ATTRIBUTES LOST WHEN CONNECTING WITHOUT
-     * DEFAULT DATABASE.
+     * Tests fix for Bug#79612 (22362474), CONNECTION ATTRIBUTES LOST WHEN
+     * CONNECTING WITHOUT DEFAULT DATABASE.
      */
     public void testBug79612() throws Exception {
         // The case with database present in URL is covered by testConnectionAttributes() test case.
@@ -10558,8 +10622,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#88227 (27029657), Connector/J 5.1.44 cannot be used against MySQL 5.7.20
-     * without warnings.
+     * Tests fix for Bug#88227 (27029657), Connector/J 5.1.44 cannot be used
+     * against MySQL 5.7.20 without warnings.
      */
     public void testBug88227() throws Exception {
         java.sql.Connection testConn = getConnectionWithProps("statementInterceptors=" + Bug88227QueryInterceptor.class.getName());
@@ -10589,7 +10653,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#26819691, SETTING PACKETDEBUGBUFFERSIZE=0 RESULTS IN CONNECTION FAILURE.
+     * Tests fix for Bug#26819691, SETTING PACKETDEBUGBUFFERSIZE=0 RESULTS IN
+     * CONNECTION FAILURE.
      */
     public void testBug26819691() throws Exception {
         assertThrows(SQLException.class, "The connection property 'packetDebugBufferSize' only accepts integer values in the range of 1 - 2147483647, "
@@ -10604,8 +10669,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#86741 (26314325), Multi-Host connection with autocommit=0 getAutoCommit
-     * maybe wrong.
+     * Tests fix for Bug#86741 (26314325), Multi-Host connection with
+     * autocommit=0 getAutoCommit maybe wrong.
      */
     public void testBug86741() throws Exception {
         this.rs = this.stmt.executeQuery("SELECT @@global.autocommit");
@@ -10652,7 +10717,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#90753 (27977617), WAIT_TIMEOUT EXCEEDED MESSAGE NOT TRIGGERED.
+     * Tests fix for Bug#90753 (27977617), WAIT_TIMEOUT EXCEEDED MESSAGE NOT
+     * TRIGGERED.
      */
     public void testBug90753() throws Exception {
         String initialWaitTimeout = getMysqlVariable("wait_timeout");
@@ -10691,7 +10757,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#26089880, GETCONNECTION("MYSQLX://..") RETURNS NON-X PROTOCOL CONNECTION.
+     * Tests fix for BUG#26089880, GETCONNECTION("MYSQLX://..") RETURNS NON-X
+     * PROTOCOL CONNECTION.
      *
      * @throws Exception if an error occurs.
      */
@@ -10705,8 +10772,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#87600 (26724154), CONNECTOR THROWS 'MALFORMED DATABASE URL' ON NON MYSQL
-     * CONNECTION-URLS.
+     * Tests fix for BUG#87600 (26724154), CONNECTOR THROWS 'MALFORMED DATABASE
+     * URL' ON NON MYSQL CONNECTION-URLS.
      *
      * @throws Exception if an error ocurrs.
      */
@@ -10720,8 +10787,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#91421 (28246270), ALLOWED VALUES FOR ZERODATETIMEBEHAVIOR ARE INCOMPATIBLE
-     * WITH NETBEANS.
+     * Tests fix for BUG#91421 (28246270), ALLOWED VALUES FOR
+     * ZERODATETIMEBEHAVIOR ARE INCOMPATIBLE WITH NETBEANS.
      *
      * @throws Exception if an error occurs.
      */
@@ -10749,8 +10816,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#28150662, CONNECTOR/J 8 MALFORMED DATABASE URL EXCEPTION WHIT CORRECT URL
-     * STRING.
+     * Tests fix for BUG#28150662, CONNECTOR/J 8 MALFORMED DATABASE URL
+     * EXCEPTION WHIT CORRECT URL STRING.
      *
      * @throws Exception if an error occurs.
      */
@@ -10781,7 +10848,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#27102307, CHANGE USESSL AND VERIFYSERVERCERTIFICATE TO SSLMODE OPTION.
+     * Tests fix for BUG#27102307, CHANGE USESSL AND VERIFYSERVERCERTIFICATE TO
+     * SSLMODE OPTION.
      *
      * @throws Exception if an error ocurrs.
      */
@@ -10923,8 +10991,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test fix for Bug#89948 (27658489), Batched statements are not committed for
-     * useLocalTransactionState=true.
+     * Test fix for Bug#89948 (27658489), Batched statements are not committed
+     * for useLocalTransactionState=true.
      */
     public void testBug89948() throws Exception {
         createTable("testBug89948", "(id INT PRIMARY KEY)");
@@ -11070,7 +11138,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#25642226, CHANGEUSER() NOT SETTING THE DATABASE PROPERLY WITH SHA USER.
+     * Tests fix for Bug#25642226, CHANGEUSER() NOT SETTING THE DATABASE
+     * PROPERLY WITH SHA USER.
      */
     public void testBug25642226() throws Exception {
         testBug25642226Task(dbUrl, "\u4F5C\u4F5C\u4F5C");
@@ -11165,7 +11234,8 @@ public class ConnectionRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#92625 (28731795), CONTRIBUTION: FIX OBSERVED NPE IN CLEARINPUTSTREAM.
+     * Tests fix for BUG#92625 (28731795), CONTRIBUTION: FIX OBSERVED NPE IN
+     * CLEARINPUTSTREAM.
      *
      * @throws Exception
      */

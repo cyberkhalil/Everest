@@ -570,8 +570,8 @@ public class UpdatableResultSet extends ResultSetImpl {
     }
 
     /**
-     * Figure out whether or not this ResultSet is updatable, and if so, generate the
-     * PreparedStatements to support updates.
+     * Figure out whether or not this ResultSet is updatable, and if so,
+     * generate the PreparedStatements to support updates.
      *
      * @throws SQLException if an error occurs
      * @throws NotUpdatable if result set was marked as not updatable
@@ -1122,8 +1122,8 @@ public class UpdatableResultSet extends ResultSetImpl {
     }
 
     /**
-     * Reset UPDATE prepared statement to value in current row. This_Row MUST point to current,
-     * valid row.
+     * Reset UPDATE prepared statement to value in current row. This_Row MUST
+     * point to current, valid row.
      *
      * @throws SQLException if an error occurs
      */
@@ -1541,9 +1541,9 @@ public class UpdatableResultSet extends ResultSetImpl {
     }
 
     /**
-     * Internal setObject implementation. Although targetType is not part of default ResultSet
-     * methods signatures, it is used for type conversions from JDBC42UpdatableResultSet new JDBC
-     * 4.2 updateObject() methods.
+     * Internal setObject implementation. Although targetType is not part of
+     * default ResultSet methods signatures, it is used for type conversions
+     * from JDBC42UpdatableResultSet new JDBC 4.2 updateObject() methods.
      *
      * @param columnIndex column index
      * @param x value

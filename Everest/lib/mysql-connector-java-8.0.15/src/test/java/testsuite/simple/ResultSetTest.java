@@ -404,8 +404,9 @@ public class ResultSetTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Updatable)ResultSet.[update|get]Object(). Note: ResultSet.getObject() is covered in
-     * methods TestJDBC42Statemet.validateTestData[Local|Offset]DTTypes.
+     * Test for (Updatable)ResultSet.[update|get]Object(). Note:
+     * ResultSet.getObject() is covered in methods
+     * TestJDBC42Statemet.validateTestData[Local|Offset]DTTypes.
      */
     public void testUpdResultSetUpdateObjectAndNewSupportedTypes() throws Exception {
         /*
@@ -703,8 +704,8 @@ public class ResultSetTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Updatable)ResultSet.updateObject(), unsupported SQL types TIME_WITH_TIMEZONE,
-     * TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for (Updatable)ResultSet.updateObject(), unsupported SQL types
+     * TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      */
     public void testUpdResultSetUpdateObjectAndNewUnsupportedTypes() throws SQLException {
         createTable("testUnsupportedTypes", "(id INT PRIMARY KEY, col VARCHAR(20))");

@@ -48,9 +48,9 @@ public class DefaultColumnDefinition implements ColumnDefinition {
     private Map<String, Integer> columnLabelToIndex = null;
 
     /**
-     * The above map is a case-insensitive tree-map, it can be slow, this caches lookups into that
-     * map, because the other alternative is to create new object instances for every call to
-     * findColumn()....
+     * The above map is a case-insensitive tree-map, it can be slow, this caches
+     * lookups into that map, because the other alternative is to create new
+     * object instances for every call to findColumn()....
      */
     private Map<String, Integer> columnToIndexCache = new HashMap<>();
 
@@ -214,9 +214,10 @@ public class DefaultColumnDefinition implements ColumnDefinition {
     }
 
     /**
-     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in
-     * this ColumnDefinition. This check is used for making a decision about whether we want to
-     * force a buffer row (better for rows with large fields).
+     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or
+     * LONGTEXT exist in this ColumnDefinition. This check is used for making a
+     * decision about whether we want to force a buffer row (better for rows
+     * with large fields).
      *
      * @return true if this ColumnDefinition has large fields
      */

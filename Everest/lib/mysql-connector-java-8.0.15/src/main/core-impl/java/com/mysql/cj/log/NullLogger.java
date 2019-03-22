@@ -29,7 +29,8 @@
 package com.mysql.cj.log;
 
 /**
- * A logger that does nothing. Used before the log is configured via the URL or properties.
+ * A logger that does nothing. Used before the log is configured via the URL or
+ * properties.
  */
 public class NullLogger implements Log {
 

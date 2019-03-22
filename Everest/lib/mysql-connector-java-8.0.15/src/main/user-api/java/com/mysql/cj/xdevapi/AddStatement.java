@@ -60,7 +60,8 @@ public interface AddStatement extends Statement<AddStatement, AddResult> {
      * Set upsert flag on this statement. Used internally by the
      * {@link Collection#addOrReplaceOne(String, DbDoc)} method.
      *
-     * @param upsert if true then this statement will be executed as an upsert statement
+     * @param upsert if true then this statement will be executed as an upsert
+     * statement
      * @return {@link AddStatement}
      */
     AddStatement setUpsert(boolean upsert);

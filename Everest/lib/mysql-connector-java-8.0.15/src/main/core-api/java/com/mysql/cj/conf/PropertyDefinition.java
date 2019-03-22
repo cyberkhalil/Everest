@@ -96,7 +96,8 @@ public interface PropertyDefinition<T> {
     String getDescription();
 
     /**
-     * Returns the driver version where the property was introduced first. Used for documentation.
+     * Returns the driver version where the property was introduced first. Used
+     * for documentation.
      *
      * @return the driver version where the property was introduced first
      */
@@ -110,8 +111,8 @@ public interface PropertyDefinition<T> {
     String getCategory();
 
     /**
-     * Returns the property order. Used as preferred property position in properties table in
-     * documentation.
+     * Returns the property order. Used as preferred property position in
+     * properties table in documentation.
      *
      * @return property order
      */
@@ -139,8 +140,8 @@ public interface PropertyDefinition<T> {
     int getUpperBound();
 
     /**
-     * Returns the value object parsed from it's string representation and checked against allowable
-     * values.
+     * Returns the value object parsed from it's string representation and
+     * checked against allowable values.
      *
      * @param value value
      * @param exceptionInterceptor exception interceptor
@@ -150,8 +151,8 @@ public interface PropertyDefinition<T> {
     T parseObject(String value, ExceptionInterceptor exceptionInterceptor);
 
     /**
-     * Creates instance of ReadableProperty or ModifiableProperty depending on isRuntimeModifiable()
-     * result.
+     * Creates instance of ReadableProperty or ModifiableProperty depending on
+     * isRuntimeModifiable() result.
      *
      * @return {@link RuntimeProperty} instance
      */

@@ -73,13 +73,14 @@ import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
 public class MessageConstants {
 
     /**
-     * Store a mapping of "ServerMessages" class to message parsers. This is used to get the
-     * de-serializer after reading the type tag.
+     * Store a mapping of "ServerMessages" class to message parsers. This is
+     * used to get the de-serializer after reading the type tag.
      */
     public static final Map<Class<? extends GeneratedMessageV3>, Parser<? extends GeneratedMessageV3>> MESSAGE_CLASS_TO_PARSER;
 
     /**
-     * Map of class to "ServerMessages" type tag for validation of parsed message class.
+     * Map of class to "ServerMessages" type tag for validation of parsed
+     * message class.
      */
     // TODO Find a clever way to generate both maps with a single set of input pairs.
     public static final Map<Class<? extends GeneratedMessageV3>, Integer> MESSAGE_CLASS_TO_TYPE;
@@ -90,8 +91,8 @@ public class MessageConstants {
     public static final Map<Integer, Class<? extends GeneratedMessageV3>> MESSAGE_TYPE_TO_CLASS;
 
     /**
-     * Store a mapping of message class to "ClientMessages" type tag. This is used to generate the
-     * header when sending a message.
+     * Store a mapping of message class to "ClientMessages" type tag. This is
+     * used to generate the header when sending a message.
      */
     public static final Map<Class<? extends MessageLite>, Integer> MESSAGE_CLASS_TO_CLIENT_MESSAGE_TYPE;
 
@@ -159,7 +160,8 @@ public class MessageConstants {
     }
 
     /**
-     * Lookup the "ClientMessages" type tag for a Protocol buffers message class.
+     * Lookup the "ClientMessages" type tag for a Protocol buffers message
+     * class.
      *
      * @param msgClass message class extending {@link MessageLite}
      * @return type tag for this message class

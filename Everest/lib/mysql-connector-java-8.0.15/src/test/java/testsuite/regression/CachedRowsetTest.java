@@ -59,8 +59,8 @@ public class CachedRowsetTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5188, CachedRowSet errors using PreparedStatement. Uses Sun's
-     * "com.sun.rowset.CachedRowSetImpl"
+     * Tests fix for BUG#5188, CachedRowSet errors using PreparedStatement. Uses
+     * Sun's "com.sun.rowset.CachedRowSetImpl"
      *
      * @throws Exception
      */

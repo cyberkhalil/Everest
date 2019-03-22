@@ -39,19 +39,23 @@ import com.mysql.cj.conf.PropertySet;
 public interface SocketFactory extends SocketMetadata {
 
     /**
-     * Creates a new socket or channel using the given properties. Properties are parsed by the
-     * driver from the URL. All properties other than sensitive ones (user and password) are passed
-     * to this method. The driver will instantiate the socket factory with the class name given in
-     * the property &quot;socketFactory&quot;, where the standard is
-     * <code>com.mysql.cj.protocol.StandardSocketFactory</code> Implementing classes are responsible
-     * for handling synchronization of this method (if needed).
+     * Creates a new socket or channel using the given properties. Properties
+     * are parsed by the driver from the URL. All properties other than
+     * sensitive ones (user and password) are passed to this method. The driver
+     * will instantiate the socket factory with the class name given in the
+     * property &quot;socketFactory&quot;, where the standard is
+     * <code>com.mysql.cj.protocol.StandardSocketFactory</code> Implementing
+     * classes are responsible for handling synchronization of this method (if
+     * needed).
      *
-     * @param host the hostname passed in the URL. It will be a single hostname, as the driver
-     * parses multi-hosts (for failover) and calls this method for each host connection attempt.
+     * @param host the hostname passed in the URL. It will be a single hostname,
+     * as the driver parses multi-hosts (for failover) and calls this method for
+     * each host connection attempt.
      *
      * @param portNumber the port number to connect to (if required).
      *
-     * @param props properties passed to the driver via the URL and/or properties instance.
+     * @param props properties passed to the driver via the URL and/or
+     * properties instance.
      * @param loginTimeout login timeout in milliseconds
      * @param <T> result type
      *
@@ -69,8 +73,8 @@ public interface SocketFactory extends SocketMetadata {
     }
 
     /**
-     * If required, called by the driver during MySQL protocol handshake to transform original
-     * socket to SSL socket and perform TLS handshake.
+     * If required, called by the driver during MySQL protocol handshake to
+     * transform original socket to SSL socket and perform TLS handshake.
      *
      * @param socketConnection current SocketConnection
      * @param serverSession current ServerSession
@@ -81,8 +85,8 @@ public interface SocketFactory extends SocketMetadata {
     <T extends Closeable> T performTlsHandshake(SocketConnection socketConnection, ServerSession serverSession) throws IOException;
 
     /**
-     * Called by the driver after completing the MySQL protocol handshake and reading the results of
-     * the authentication.
+     * Called by the driver after completing the MySQL protocol handshake and
+     * reading the results of the authentication.
      *
      * @throws IOException if an I/O error occurs
      */

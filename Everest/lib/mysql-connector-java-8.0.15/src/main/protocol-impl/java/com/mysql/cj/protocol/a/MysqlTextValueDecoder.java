@@ -38,8 +38,9 @@ import com.mysql.cj.result.ValueFactory;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * Implementation of {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL text protocol. All
- * values will be received as <i>LengthEncodedString</i> values.
+ * Implementation of {@link com.mysql.cj.protocol.ValueDecoder} for the MySQL
+ * text protocol. All values will be received as <i>LengthEncodedString</i>
+ * values.
  * <p>
  * Refer to MySQL documentation for format of values as strings.
  * <p>
@@ -56,25 +57,29 @@ public class MysqlTextValueDecoder implements ValueDecoder {
      */
     public static final int TIME_STR_LEN_MIN = 8;
     /**
-     * Max string length of MySQL time string (with microsecs): '-HHH:MM:SS.mmmmmm'.
+     * Max string length of MySQL time string (with microsecs):
+     * '-HHH:MM:SS.mmmmmm'.
      */
     public static final int TIME_STR_LEN_MAX = 17;
     /**
-     * String length of MySQL timestamp string (no microsecs): 'YYYY-MM-DD HH:MM:SS'.
+     * String length of MySQL timestamp string (no microsecs): 'YYYY-MM-DD
+     * HH:MM:SS'.
      */
     public static final int TIMESTAMP_NOFRAC_STR_LEN = 19;
     /**
-     * Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD HH:MM:SS.mmmmmm'.
+     * Max string length of MySQL timestamp (with microsecs): 'YYYY-MM-DD
+     * HH:MM:SS.mmmmmm'.
      */
     public static final int TIMESTAMP_STR_LEN_MAX = TIMESTAMP_NOFRAC_STR_LEN + 7;
     /**
-     * String length of String timestamp with nanos. This does not come from MySQL server but we
-     * support it via string conversion.
+     * String length of String timestamp with nanos. This does not come from
+     * MySQL server but we support it via string conversion.
      */
     public static final int TIMESTAMP_STR_LEN_WITH_NANOS = TIMESTAMP_NOFRAC_STR_LEN + 10;
 
     /**
-     * Max string length of a signed long = 9223372036854775807 (19+1 for minus sign)
+     * Max string length of a signed long = 9223372036854775807 (19+1 for minus
+     * sign)
      */
     private static final int MAX_SIGNED_LONG_LEN = 20;
 

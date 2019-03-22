@@ -165,8 +165,8 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
 
     /**
      * Set the value of a property from a string value. It involves the
-     * {@link PropertyDefinition#parseObject(String, ExceptionInterceptor)} to validate and parse
-     * the string.
+     * {@link PropertyDefinition#parseObject(String, ExceptionInterceptor)} to
+     * validate and parse the string.
      *
      * @param value value
      * @param exceptionInterceptor exception interceptor
@@ -176,7 +176,8 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
     }
 
     /**
-     * Internal method for setting property value; ignoring the RUNTIME_NOT_MODIFIABLE flag.
+     * Internal method for setting property value; ignoring the
+     * RUNTIME_NOT_MODIFIABLE flag.
      *
      * @param value value
      * @param valueAsString value represented by String
@@ -191,7 +192,8 @@ public abstract class AbstractRuntimeProperty<T> implements RuntimeProperty<T>, 
     }
 
     /**
-     * For range-based property, checks that value fit into range given by PropertyDefinition.
+     * For range-based property, checks that value fit into range given by
+     * PropertyDefinition.
      *
      * @param val value
      * @param valueAsString value represented by String

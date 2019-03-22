@@ -73,9 +73,10 @@ public class Ipv6SupportTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests the creation of {@link Session}s referencing the host by its IPv6. This feature was
-     * introduced in MySQL 5.7.17 and requires a server started with the option
-     * "mysqlx-bind-address=*" (future versions may set this value by default).
+     * Tests the creation of {@link Session}s referencing the host by its IPv6.
+     * This feature was introduced in MySQL 5.7.17 and requires a server started
+     * with the option "mysqlx-bind-address=*" (future versions may set this
+     * value by default).
      */
     @Test
     public void testIpv6SupportInSession() {

@@ -375,8 +375,9 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
     }
 
     /**
-     * Apply the given filter params to the builder object (represented by the method args).
-     * Abstract the process of setting the filter params on the operation message builder.
+     * Apply the given filter params to the builder object (represented by the
+     * method args). Abstract the process of setting the filter params on the
+     * operation message builder.
      *
      * @param filterParams the filter params to apply
      * @param setOrder the "builder.addAllOrder()" method reference

@@ -36,8 +36,8 @@ import com.mysql.cj.protocol.ProtocolEntity;
 import com.mysql.cj.protocol.Warning;
 
 /**
- * The returned information from a successfully executed statement. All fields are optional and may
- * be <i>null</i>.
+ * The returned information from a successfully executed statement. All fields
+ * are optional and may be <i>null</i>.
  */
 public class StatementExecuteOk implements ProtocolEntity, QueryResult {
 

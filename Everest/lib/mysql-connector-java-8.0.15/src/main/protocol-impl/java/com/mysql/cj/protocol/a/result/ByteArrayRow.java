@@ -36,7 +36,8 @@ import com.mysql.cj.protocol.result.AbstractResultsetRow;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * A RowHolder implementation that is for cached results (a-la mysql_store_result()).
+ * A RowHolder implementation that is for cached results (a-la
+ * mysql_store_result()).
  */
 public class ByteArrayRow extends AbstractResultsetRow {
 
@@ -81,8 +82,8 @@ public class ByteArrayRow extends AbstractResultsetRow {
     }
 
     /**
-     * Implementation of getValue() based on the underlying byte array. Delegate to superclass for
-     * decoding.
+     * Implementation of getValue() based on the underlying byte array. Delegate
+     * to superclass for decoding.
      */
     @Override
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {

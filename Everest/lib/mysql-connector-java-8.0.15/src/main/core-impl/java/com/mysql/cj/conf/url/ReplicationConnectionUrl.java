@@ -51,11 +51,11 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     private List<HostInfo> slaveHosts = new ArrayList<>();
 
     /**
-     * Constructs an instance of {@link ReplicationConnectionUrl}, performing all the required
-     * initializations.
+     * Constructs an instance of {@link ReplicationConnectionUrl}, performing
+     * all the required initializations.
      *
-     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
-     * the original connection string
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing
+     * the parsed version of the original connection string
      * @param info the connection arguments map
      */
     public ReplicationConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {
@@ -101,9 +101,10 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Constructs an instance of a {@link ReplicationConnectionUrl} based on a list of master hosts,
-     * a list of slave hosts and a global set of properties instead of connection string parsing.
-     * {@link ConnectionUrl} instances created by this process are not cached.
+     * Constructs an instance of a {@link ReplicationConnectionUrl} based on a
+     * list of master hosts, a list of slave hosts and a global set of
+     * properties instead of connection string parsing. {@link ConnectionUrl}
+     * instances created by this process are not cached.
      *
      * @param masters the master hosts list to use in this connection string
      * @param slaves the slave hosts list to use in this connection string
@@ -122,8 +123,9 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns an existing master host info with the same host:port part or spawns a new isolated
-     * host info based on this connection URL if none was found.
+     * Returns an existing master host info with the same host:port part or
+     * spawns a new isolated host info based on this connection URL if none was
+     * found.
      *
      * @param hostPortPair the host:port part to search for
      * @return the existing host info or a new independent one
@@ -142,29 +144,33 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns a list of this connection URL master hosts in the form of host:port pairs.
+     * Returns a list of this connection URL master hosts in the form of
+     * host:port pairs.
      *
-     * @return a list of this connection URL master hosts in the form of host:port pairs
+     * @return a list of this connection URL master hosts in the form of
+     * host:port pairs
      */
     public List<String> getMastersListAsHostPortPairs() {
         return this.masterHosts.stream().map(hi -> hi.getHostPortPair()).collect(Collectors.toList());
     }
 
     /**
-     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port
-     * pairs in the corresponding hosts list. Isolated host info elements are spawned for the
-     * missing elements.
+     * Returns the list of {@link HostInfo} instances that matches the given
+     * collection of host:port pairs in the corresponding hosts list. Isolated
+     * host info elements are spawned for the missing elements.
      *
      * @param hostPortPairs a list of host:port pairs
-     * @return a list of {@link HostInfo} instances corresponding to the given host:port pairs
+     * @return a list of {@link HostInfo} instances corresponding to the given
+     * host:port pairs
      */
     public List<HostInfo> getMasterHostsListFromHostPortPairs(Collection<String> hostPortPairs) {
         return hostPortPairs.stream().map(this::getMasterHostOrSpawnIsolated).collect(Collectors.toList());
     }
 
     /**
-     * Returns an existing slave host info with the same host:port part or spawns a new isolated
-     * host info based on this connection URL if none was found.
+     * Returns an existing slave host info with the same host:port part or
+     * spawns a new isolated host info based on this connection URL if none was
+     * found.
      *
      * @param hostPortPair the host:port part to search for
      * @return the existing host info or a new independent one
@@ -183,21 +189,24 @@ public class ReplicationConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns a list of this connection URL master hosts in the form of host:port pairs.
+     * Returns a list of this connection URL master hosts in the form of
+     * host:port pairs.
      *
-     * @return a list of this connection URL master hosts in the form of host:port pairs
+     * @return a list of this connection URL master hosts in the form of
+     * host:port pairs
      */
     public List<String> getSlavesListAsHostPortPairs() {
         return this.slaveHosts.stream().map(hi -> hi.getHostPortPair()).collect(Collectors.toList());
     }
 
     /**
-     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port
-     * pairs in the corresponding hosts list. Isolated host info elements are spawned for the
-     * missing elements.
+     * Returns the list of {@link HostInfo} instances that matches the given
+     * collection of host:port pairs in the corresponding hosts list. Isolated
+     * host info elements are spawned for the missing elements.
      *
      * @param hostPortPairs a list of host:port pairs
-     * @return a list of {@link HostInfo} instances corresponding to the given host:port pairs
+     * @return a list of {@link HostInfo} instances corresponding to the given
+     * host:port pairs
      */
     public List<HostInfo> getSlaveHostsListFromHostPortPairs(Collection<String> hostPortPairs) {
         return hostPortPairs.stream().map(this::getSlaveHostOrSpawnIsolated).collect(Collectors.toList());

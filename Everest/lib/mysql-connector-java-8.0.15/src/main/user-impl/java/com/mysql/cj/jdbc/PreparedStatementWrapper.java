@@ -59,7 +59,8 @@ import com.mysql.cj.exceptions.MysqlErrorNumbers;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 /**
- * Wraps prepared statements so that errors can be reported correctly to ConnectionEventListeners.
+ * Wraps prepared statements so that errors can be reported correctly to
+ * ConnectionEventListeners.
  */
 public class PreparedStatementWrapper extends StatementWrapper implements PreparedStatement {
 

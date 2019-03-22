@@ -38,8 +38,9 @@ import com.mysql.cj.protocol.MessageReader;
 import com.mysql.cj.protocol.SocketConnection;
 
 /**
- * Simple implementation of {@link MessageReader} which handles the receiving of logical MySQL
- * packets from the provided socket input stream. Multi-packets are handled outside of this reader.
+ * Simple implementation of {@link MessageReader} which handles the receiving of
+ * logical MySQL packets from the provided socket input stream. Multi-packets
+ * are handled outside of this reader.
  */
 public class SimplePacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 

@@ -357,8 +357,8 @@ public class CollectionAddTest extends BaseCollectionTestCase {
     }
 
     /**
-     * Test for Bug#92264 (28594434), JSONPARSER PUTS UNNECESSARY MAXIMUM LIMIT ON JSONNUMBER TO 10
-     * DIGITS.
+     * Test for Bug#92264 (28594434), JSONPARSER PUTS UNNECESSARY MAXIMUM LIMIT
+     * ON JSONNUMBER TO 10 DIGITS.
      *
      * @throws Exception
      */

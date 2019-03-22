@@ -100,8 +100,9 @@ public class NativeConstants {
     public static final int COM_RESET_CONNECTION = 31;
 
     /**
-     * Used to indicate that the server sent no field-level character set information, so the driver
-     * should use the connection-level character encoding instead.
+     * Used to indicate that the server sent no field-level character set
+     * information, so the driver should use the connection-level character
+     * encoding instead.
      */
     public static final int NO_CHARSET_INFO = -1;
 
@@ -144,19 +145,20 @@ public class NativeConstants {
 
     /**
      * Basic protocol data types as they are defined in
-     * http://dev.mysql.com/doc/internals/en/string.html which require explicit length
-     * specification.
+     * http://dev.mysql.com/doc/internals/en/string.html which require explicit
+     * length specification.
      *
      */
     public static enum StringLengthDataType {
 
         /**
-         * Protocol::FixedLengthString Fixed-length strings have a known, hardcoded length.
+         * Protocol::FixedLengthString Fixed-length strings have a known,
+         * hardcoded length.
          */
         STRING_FIXED,
         /**
-         * Protocol::VariableLengthString The length of the string is determined by another field or
-         * is calculated at runtime
+         * Protocol::VariableLengthString The length of the string is determined
+         * by another field or is calculated at runtime
          */
         STRING_VAR;
     }
@@ -169,18 +171,20 @@ public class NativeConstants {
     public static enum StringSelfDataType {
 
         /**
-         * Protocol::NulTerminatedString Strings that are terminated by a [00] byte.
+         * Protocol::NulTerminatedString Strings that are terminated by a [00]
+         * byte.
          */
         STRING_TERM,
         /**
-         * Protocol::LengthEncodedString A length encoded string is a string that is prefixed with
-         * length encoded integer describing the length of the string. It is a special case of
-         * Protocol::VariableLengthString
+         * Protocol::LengthEncodedString A length encoded string is a string
+         * that is prefixed with length encoded integer describing the length of
+         * the string. It is a special case of Protocol::VariableLengthString
          */
         STRING_LENENC,
         /**
-         * Protocol::RestOfPacketString If a string is the last component of a packet, its length
-         * can be calculated from the overall packet length minus the current position.
+         * Protocol::RestOfPacketString If a string is the last component of a
+         * packet, its length can be calculated from the overall packet length
+         * minus the current position.
          */
         STRING_EOF;
     }

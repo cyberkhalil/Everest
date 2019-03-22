@@ -117,7 +117,8 @@ public interface ProfilerEvent {
     String getMessage();
 
     /**
-     * Returns the time (in System.currentTimeMillis() form) when this event was created
+     * Returns the time (in System.currentTimeMillis() form) when this event was
+     * created
      *
      * @return the time this event was created
      */

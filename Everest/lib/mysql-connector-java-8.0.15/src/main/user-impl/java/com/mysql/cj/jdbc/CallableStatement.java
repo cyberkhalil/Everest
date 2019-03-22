@@ -147,11 +147,11 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
         boolean isReadOnlySafeChecked = false;
 
         /**
-         * Constructor that converts a full list of parameter metadata into one that only represents
-         * the placeholders present in the {CALL ()}.
+         * Constructor that converts a full list of parameter metadata into one
+         * that only represents the placeholders present in the {CALL ()}.
          *
-         * @param fullParamInfo the metadata for all parameters for this stored procedure or
-         * function.
+         * @param fullParamInfo the metadata for all parameters for this stored
+         * procedure or function.
          */
         CallableStatementParamInfo(CallableStatementParamInfo fullParamInfo) {
             this.nativeSql = ((PreparedQuery<?>) CallableStatement.this.query).getOriginalSql();
@@ -629,8 +629,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     /**
      * @param paramIndex parameter index
      *
-     * @throws SQLException if a database access error occurs or this method is called on a closed
-     * PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is
+     * called on a closed PreparedStatement
      */
     private void checkParameterIndexBounds(int paramIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -639,8 +639,9 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * Checks whether or not this statement is supposed to be providing streamable result sets...If
-     * output parameters are registered, the driver can not stream the results.
+     * Checks whether or not this statement is supposed to be providing
+     * streamable result sets...If output parameters are registered, the driver
+     * can not stream the results.
      *
      * @throws SQLException if a database access error occurs
      */
@@ -667,8 +668,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * Used to fake up some metadata when we don't have access to SHOW CREATE PROCEDURE or
-     * mysql.proc.
+     * Used to fake up some metadata when we don't have access to SHOW CREATE
+     * PROCEDURE or mysql.proc.
      *
      * @param isReallyProcedure is it a procedure or function
      *
@@ -1399,15 +1400,15 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * Returns the ResultSet that holds the output parameters, or throws an appropriate exception if
-     * none exist, or they weren't returned.
+     * Returns the ResultSet that holds the output parameters, or throws an
+     * appropriate exception if none exist, or they weren't returned.
      *
      * @param paramIndex parameter index
      *
      * @return the ResultSet that holds the output parameters
      *
-     * @throws SQLException if no output parameters were defined, or if no output parameters were
-     * returned.
+     * @throws SQLException if no output parameters were defined, or if no
+     * output parameters were returned.
      */
     protected ResultSetInternalMethods getOutputParameters(int paramIndex) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -2224,11 +2225,12 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * Check whether the stored procedure alters any data or is safe for read-only usage.
+     * Check whether the stored procedure alters any data or is safe for
+     * read-only usage.
      *
      * @return true if procedure does not alter data
-     * @throws SQLException if a database access error occurs or this method is called on a closed
-     * PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is
+     * called on a closed PreparedStatement
      */
     private boolean checkReadOnlyProcedure() throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -2464,7 +2466,8 @@ public class CallableStatement extends ClientPreparedStatement implements java.s
     }
 
     /**
-     * Converts the given string to bytes, using the connection's character encoding.
+     * Converts the given string to bytes, using the connection's character
+     * encoding.
      *
      * @param s string
      * @return bytes

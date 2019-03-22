@@ -150,14 +150,16 @@ public class NativeCapabilities implements ServerCapabilities {
 
     /**
      *
-     * @return Collation index which server provided in handshake greeting packet
+     * @return Collation index which server provided in handshake greeting
+     * packet
      */
     public int getServerDefaultCollationIndex() {
         return this.serverDefaultCollationIndex;
     }
 
     /**
-     * Stores collation index which server provided in handshake greeting packet.
+     * Stores collation index which server provided in handshake greeting
+     * packet.
      *
      * @param serverDefaultCollationIndex server default collation index
      */

@@ -113,7 +113,8 @@ public class CharsetTest extends BaseTestCase {
     }
 
     /**
-     * Test data of sjis. sjis consists of ASCII, JIS-Roman, JISX0201 and JISX0208.
+     * Test data of sjis. sjis consists of ASCII, JIS-Roman, JISX0201 and
+     * JISX0208.
      */
     public static final char[] SJIS_CHARS = new char[]{0xFF71, // halfwidth katakana letter A, 0xB100 of SJIS, one of JISX0201.
         0x65E5, // CJK unified ideograph, 0x93FA of SJIS, one of JISX0208.
@@ -122,8 +123,9 @@ public class CharsetTest extends BaseTestCase {
 };
 
     /**
-     * Test data of cp932. WINDOWS-31J consists of ASCII, JIS-Roman, JISX0201, JISX0208, NEC special
-     * characters(row13), NEC selected IBM special characters, and IBM special characters.
+     * Test data of cp932. WINDOWS-31J consists of ASCII, JIS-Roman, JISX0201,
+     * JISX0208, NEC special characters(row13), NEC selected IBM special
+     * characters, and IBM special characters.
      */
     private static final char[] CP932_CHARS = new char[]{0xFF71, // halfwidth katakana letter A, 0xB100 of WINDOWS-31J, one of JISX0201.
         0x65E5, // CJK unified ideograph, 0x93FA of WINDOWS-31J, one of JISX0208.
@@ -135,7 +137,8 @@ public class CharsetTest extends BaseTestCase {
 };
 
     /**
-     * Test data of ujis. ujis consists of ASCII, JIS-Roman, JISX0201, JISX0208, JISX0212.
+     * Test data of ujis. ujis consists of ASCII, JIS-Roman, JISX0201, JISX0208,
+     * JISX0212.
      */
     public static final char[] UJIS_CHARS = new char[]{0xFF71, // halfwidth katakana letter A, 0x8EB1 of ujis, one of JISX0201.
         0x65E5, // CJK unified ideograph, 0xC6FC of ujis, one of JISX0208.
@@ -144,8 +147,8 @@ public class CharsetTest extends BaseTestCase {
 };
 
     /**
-     * Test data of eucjpms. ujis consists of ASCII, JIS-Roman, JISX0201, JISX0208, JISX0212, NEC
-     * special characters(row13)
+     * Test data of eucjpms. ujis consists of ASCII, JIS-Roman, JISX0201,
+     * JISX0208, JISX0212, NEC special characters(row13)
      */
     public static final char[] EUCJPMS_CHARS = new char[]{0xFF71, // halfwidth katakana letter A, 0x8EB1 of ujis, one of JISX0201.
         0x65E5, // CJK unified ideograph, 0xC6FC of ujis, one of JISX0208.

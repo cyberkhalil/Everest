@@ -109,8 +109,9 @@ public class AsyncMessageSender implements MessageSender<XMessage> {
     }
 
     /**
-     * Allow overwriting the channel once the writer has been established. Required for SSL/TLS
-     * connections when the encryption doesn't start until we send the capability flag to X Plugin.
+     * Allow overwriting the channel once the writer has been established.
+     * Required for SSL/TLS connections when the encryption doesn't start until
+     * we send the capability flag to X Plugin.
      *
      * @param channel {@link AsynchronousSocketChannel}
      */

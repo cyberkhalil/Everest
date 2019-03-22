@@ -37,7 +37,8 @@ import com.mysql.cj.protocol.x.Notice.XSessionStateChanged;
 import com.mysql.cj.protocol.x.Notice.XWarning;
 
 /**
- * Handle state necessary to accumulate noticed and build a {@link StatementExecuteOk} response.
+ * Handle state necessary to accumulate noticed and build a
+ * {@link StatementExecuteOk} response.
  */
 public class StatementExecuteOkBuilder {
 

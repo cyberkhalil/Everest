@@ -120,8 +120,9 @@ public class Field {
     }
 
     /**
-     * Used by prepared statements to re-use result set data conversion methods when generating
-     * bound parameter retrieval instance for statement interceptors.
+     * Used by prepared statements to re-use result set data conversion methods
+     * when generating bound parameter retrieval instance for statement
+     * interceptors.
      *
      * @param tableName not used
      * @param columnName not used
@@ -275,7 +276,8 @@ public class Field {
     /**
      * Is this field _definitely_ not writable?
      *
-     * @return true if this field can not be written to in an INSERT/UPDATE statement.
+     * @return true if this field can not be written to in an INSERT/UPDATE
+     * statement.
      */
     public boolean isReadOnly() {
         return this.originalColumnName.length() == 0 && this.originalTableName.length() == 0;

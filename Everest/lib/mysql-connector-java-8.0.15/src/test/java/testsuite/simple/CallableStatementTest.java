@@ -404,8 +404,8 @@ public class CallableStatementTest extends BaseTestCase {
     }
 
     /**
-     * Tests the new parameter parser that doesn't require "BEGIN" or "\n" at end of parameter
-     * declaration
+     * Tests the new parameter parser that doesn't require "BEGIN" or "\n" at
+     * end of parameter declaration
      *
      * @throws Exception
      */

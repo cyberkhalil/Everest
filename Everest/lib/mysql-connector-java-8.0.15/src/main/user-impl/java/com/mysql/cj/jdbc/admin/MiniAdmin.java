@@ -76,7 +76,8 @@ public class MiniAdmin {
     }
 
     /**
-     * Create a new MiniAdmin, connecting using the given JDBC URL and properties
+     * Create a new MiniAdmin, connecting using the given JDBC URL and
+     * properties
      *
      * @param jdbcUrl the JDBC URL to use
      * @param props the properties to use when connecting
@@ -88,8 +89,8 @@ public class MiniAdmin {
     }
 
     /**
-     * Shuts down the MySQL server at the other end of the connection that this MiniAdmin was
-     * created from/for.
+     * Shuts down the MySQL server at the other end of the connection that this
+     * MiniAdmin was created from/for.
      *
      * @throws SQLException if an error occurs
      */

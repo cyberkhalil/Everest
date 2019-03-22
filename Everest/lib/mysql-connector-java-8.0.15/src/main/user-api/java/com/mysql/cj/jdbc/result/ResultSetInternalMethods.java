@@ -38,19 +38,20 @@ import com.mysql.cj.protocol.Resultset;
 import com.mysql.cj.protocol.ResultsetRowsOwner;
 
 /**
- * This interface is intended to be used by implementors of statement interceptors so that
- * implementors can create static or dynamic (via java.lang.reflect.Proxy) proxy instances of
- * ResultSets. It consists of methods outside of java.sql.Result that are used internally by other
- * classes in the driver.
+ * This interface is intended to be used by implementors of statement
+ * interceptors so that implementors can create static or dynamic (via
+ * java.lang.reflect.Proxy) proxy instances of ResultSets. It consists of
+ * methods outside of java.sql.Result that are used internally by other classes
+ * in the driver.
  *
- * This interface, although public is <strong>not</strong> designed to be consumed publicly other
- * than for the statement interceptor use case.
+ * This interface, although public is <strong>not</strong> designed to be
+ * consumed publicly other than for the statement interceptor use case.
  */
 public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetRowsOwner, Resultset {
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type (as registered during
-     * CallableStatement.registerOutParameter()).
+     * Functions like ResultSet.getObject(), but using the given SQL type (as
+     * registered during CallableStatement.registerOutParameter()).
      *
      * @param columnIndex 1-based column index
      * @param desiredSqlType desired column type, one of {@link Types}
@@ -60,8 +61,8 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(int columnIndex, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type (as registered during
-     * CallableStatement.registerOutParameter()).
+     * Functions like ResultSet.getObject(), but using the given SQL type (as
+     * registered during CallableStatement.registerOutParameter()).
      *
      * @param i 1-based column index
      * @param map map
@@ -72,8 +73,8 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(int i, java.util.Map<Object, Object> map, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type (as registered during
-     * CallableStatement.registerOutParameter()).
+     * Functions like ResultSet.getObject(), but using the given SQL type (as
+     * registered during CallableStatement.registerOutParameter()).
      *
      * @param columnName column name
      * @param desiredSqlType desired column type, one of {@link Types}
@@ -83,8 +84,8 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(String columnName, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type (as registered during
-     * CallableStatement.registerOutParameter()).
+     * Functions like ResultSet.getObject(), but using the given SQL type (as
+     * registered during CallableStatement.registerOutParameter()).
      *
      * @param colName column name
      * @param map map
@@ -97,31 +98,32 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     /**
      * Closes this ResultSet and releases resources.
      *
-     * @param calledExplicitly was realClose called by the standard ResultSet.close() method, or was
-     * it closed internally by the driver?
+     * @param calledExplicitly was realClose called by the standard
+     * ResultSet.close() method, or was it closed internally by the driver?
      * @throws SQLException if an error occurs
      */
     void realClose(boolean calledExplicitly) throws SQLException;
 
     /**
-     * Sets the first character of the query that was issued to create this result set. The
-     * character should be upper-cased.
+     * Sets the first character of the query that was issued to create this
+     * result set. The character should be upper-cased.
      *
      * @param firstCharUpperCase character
      */
     void setFirstCharOfQuery(char firstCharUpperCase);
 
     /**
-     * Sets the statement that "owns" this result set (usually used when the result set should
-     * internally "belong" to one statement, but is created by another.
+     * Sets the statement that "owns" this result set (usually used when the
+     * result set should internally "belong" to one statement, but is created by
+     * another.
      *
      * @param owningStatement the statement this result set will belong to
      */
     void setOwningStatement(JdbcStatement owningStatement);
 
     /**
-     * Returns the first character of the query that was issued to create this result set,
-     * upper-cased.
+     * Returns the first character of the query that was issued to create this
+     * result set, upper-cased.
      *
      * @return character
      */

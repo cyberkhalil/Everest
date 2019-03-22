@@ -42,8 +42,8 @@ import java.util.TreeMap;
  * </pre>
  *
  * <b>key</b> is a JSON <b>string</b>.
- * <b>value</b> is any of JSON <b>object</b>, <b>array</b>, <b>number</b>, <b>string</b>, true,
- * false, null.
+ * <b>value</b> is any of JSON <b>object</b>, <b>array</b>, <b>number</b>,
+ * <b>string</b>, true, false, null.
  *
  * Example of valid JSON object:
  *
@@ -75,9 +75,9 @@ import java.util.TreeMap;
  * </pre>
  *
  * You can construct JSON document by
- * {@link DbDoc}, {@link JsonString}, {@link JsonNumber}, {@link JsonArray} and {@link JsonLiteral}
- * methods and get JSON string representation by using {@link #toString()} method. For example, to
- * get the document shown above:
+ * {@link DbDoc}, {@link JsonString}, {@link JsonNumber}, {@link JsonArray} and
+ * {@link JsonLiteral} methods and get JSON string representation by using
+ * {@link #toString()} method. For example, to get the document shown above:
  *
  * <pre>
  * DbDoc doc = new DbDoc().add(&quot;field1&quot;, new JsonString().setValue(&quot;value 1&quot;)).add(&quot;field2&quot;, new JsonNumber().setValue(&quot;12345.44E22&quot;))

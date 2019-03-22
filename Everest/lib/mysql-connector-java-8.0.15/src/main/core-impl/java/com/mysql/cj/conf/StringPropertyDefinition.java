@@ -50,8 +50,8 @@ public class StringPropertyDefinition extends AbstractPropertyDefinition<String>
     }
 
     /**
-     * Creates instance of ReadableStringProperty or ModifiableStringProperty depending on
-     * isRuntimeModifiable() result.
+     * Creates instance of ReadableStringProperty or ModifiableStringProperty
+     * depending on isRuntimeModifiable() result.
      *
      * @return RuntimeProperty
      */

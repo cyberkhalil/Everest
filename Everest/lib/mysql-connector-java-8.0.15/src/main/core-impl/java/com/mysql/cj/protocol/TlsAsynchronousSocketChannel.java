@@ -49,13 +49,14 @@ import com.mysql.cj.exceptions.AssertionFailedException;
 import com.mysql.cj.exceptions.CJCommunicationsException;
 
 /**
- * FilterInputStream-esque byte channel that decrypts incoming packets. We proxy calls to the read
- * method from the caller. We replace the provided completion handler with our own handler that
- * decrypts the incoming message and an then delegates to the original handler.
+ * FilterInputStream-esque byte channel that decrypts incoming packets. We proxy
+ * calls to the read method from the caller. We replace the provided completion
+ * handler with our own handler that decrypts the incoming message and an then
+ * delegates to the original handler.
  *
  * <p>
- * Note: This implementation does not support attachments for reads. They are not used in
- * AsyncMessageReader which this class is in direct support of.
+ * Note: This implementation does not support attachments for reads. They are
+ * not used in AsyncMessageReader which this class is in direct support of.
  * </p>
  */
 public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel implements CompletionHandler<Integer, Void> {
@@ -70,13 +71,13 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
      */
     private SSLEngine sslEngine;
     /**
-     * Buffer for cipher text data. This is where reads from the underlying channel will be directed
-     * to.
+     * Buffer for cipher text data. This is where reads from the underlying
+     * channel will be directed to.
      */
     private ByteBuffer cipherTextBuffer;
     /**
-     * Buffer for clear text data. This is where the SSLEngine will write the result of decrypting
-     * the cipher text buffer.
+     * Buffer for clear text data. This is where the SSLEngine will write the
+     * result of decrypting the cipher text buffer.
      */
     private ByteBuffer clearTextBuffer;
     /**
@@ -98,7 +99,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
      * Create a new decrypting input stream.
      *
      * @param in The underlying inputstream to read encrypted data from.
-     * @param sslEngine A configured {@link SSLEngine} which has already completed the handshake.
+     * @param sslEngine A configured {@link SSLEngine} which has already
+     * completed the handshake.
      */
     public TlsAsynchronousSocketChannel(AsynchronousSocketChannel in, SSLEngine sslEngine) {
         super(null);
@@ -115,8 +117,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Completion handler for a read. Prepare the buffer for decryption and continue with
-     * {@link #decryptAndDispatch()}.
+     * Completion handler for a read. Prepare the buffer for decryption and
+     * continue with {@link #decryptAndDispatch()}.
      *
      * @param result number of processed bytes
      * @param attachment Void
@@ -139,13 +141,14 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Handle the read callback from the underlying stream. Modulo error handling, we do the
-     * following:
+     * Handle the read callback from the underlying stream. Modulo error
+     * handling, we do the following:
      * <ul>
      * <li>Attempt to decrypt the current cipher text buffer.</li>
-     * <li>If successful, deliver as much as possible to the client's completion handler.</li>
-     * <li>If not successful, we will need to read more data to accumulate enough to decrypt. Issue
-     * a new read request.</li>
+     * <li>If successful, deliver as much as possible to the client's completion
+     * handler.</li>
+     * <li>If not successful, we will need to read more data to accumulate
+     * enough to decrypt. Issue a new read request.</li>
      * </ul>
      */
     private synchronized void decryptAndDispatch() {
@@ -217,9 +220,9 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Dispatch data to the caller's buffer and signal the completion handler. This represents the
-     * end of one completed read operation. The handler and destination will be reset for the next
-     * request.
+     * Dispatch data to the caller's buffer and signal the completion handler.
+     * This represents the end of one completed read operation. The handler and
+     * destination will be reset for the next request.
      */
     private synchronized void dispatchData() {
         int transferred = Math.min(this.dst.remaining(), this.clearTextBuffer.remaining());
@@ -281,7 +284,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Internal class used for easy propagation of error to the {@link CompletionHandler}.
+     * Internal class used for easy propagation of error to the
+     * {@link CompletionHandler}.
      *
      * @param <V> result type
      */
@@ -320,8 +324,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Handle a request to write an array of buffers to the channel. We build one or more encrypted
-     * packets and write them to the server.
+     * Handle a request to write an array of buffers to the channel. We build
+     * one or more encrypted packets and write them to the server.
      *
      * @param srcs source buffers to write
      * @param offset offset into buffer array
@@ -329,7 +333,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
      * @param timeout ignored
      * @param unit ignored
      * @param attachment ignored
-     * @param hdlr completion handler to be called when all buffers have been written
+     * @param hdlr completion handler to be called when all buffers have been
+     * written
      */
     @Override
     public <A> void write(ByteBuffer[] srcs, int offset, int length, long timeout, TimeUnit unit, A attachment, CompletionHandler<Long, ? super A> hdlr) {
@@ -370,7 +375,8 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
     }
 
     /**
-     * Acquire a new buffer to use as the destination and subsequent transmission of encrypted data.
+     * Acquire a new buffer to use as the destination and subsequent
+     * transmission of encrypted data.
      *
      * @return {@link ByteBuffer}
      */

@@ -36,7 +36,8 @@ import com.mysql.cj.conf.PropertyDefinition;
 import com.mysql.cj.conf.PropertyDefinitions;
 
 /**
- * Creates docbook table of connection properties from ConnectionProperties class.
+ * Creates docbook table of connection properties from ConnectionProperties
+ * class.
  */
 public class PropertiesDocGenerator {
 

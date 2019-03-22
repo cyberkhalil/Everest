@@ -49,7 +49,8 @@ public class AssertionFailedException extends CJException {
     }
 
     /**
-     * Create (and caller should subsequently throw) an <code>AssertionFailedException</code>.
+     * Create (and caller should subsequently throw) an
+     * <code>AssertionFailedException</code>.
      *
      * <P>
      * Typical use is as follows:
@@ -61,8 +62,8 @@ public class AssertionFailedException extends CJException {
      * </PRE>
      *
      * @param assertion message
-     * @return the exception. exception should be thrown by the caller to satisfy compiler checks
-     * for data-flow, etc
+     * @return the exception. exception should be thrown by the caller to
+     * satisfy compiler checks for data-flow, etc
      * @throws AssertionFailedException if exception occurs
      */
     public static AssertionFailedException shouldNotHappen(String assertion) throws AssertionFailedException {
@@ -70,8 +71,8 @@ public class AssertionFailedException extends CJException {
     }
 
     /**
-     * Creates an AssertionFailedException for the given exception that should never have been
-     * thrown.
+     * Creates an AssertionFailedException for the given exception that should
+     * never have been thrown.
      *
      * @param ex the exception that should never have been thrown.
      */

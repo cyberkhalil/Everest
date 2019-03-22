@@ -67,8 +67,8 @@ public interface PropertySet {
     <T extends Enum<T>> RuntimeProperty<T> getEnumProperty(PropertyKey key);
 
     /**
-     * Initializes the property set with driver properties that come from URL or passed to the
-     * driver manager.
+     * Initializes the property set with driver properties that come from URL or
+     * passed to the driver manager.
      *
      * @param props properties
      */

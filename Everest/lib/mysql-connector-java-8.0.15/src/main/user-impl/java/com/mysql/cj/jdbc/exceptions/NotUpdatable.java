@@ -41,8 +41,8 @@ public class NotUpdatable extends SQLException {
     private static final long serialVersionUID = 6004153665887216929L;
 
     /**
-     * Create a new NotUpdatable exception. Append the given reason to the not updatable message if
-     * the reason is not null.
+     * Create a new NotUpdatable exception. Append the given reason to the not
+     * updatable message if the reason is not null.
      *
      * @param reason message for this exception.
      */

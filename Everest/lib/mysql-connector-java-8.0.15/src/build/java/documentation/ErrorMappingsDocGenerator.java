@@ -35,7 +35,8 @@ import java.util.TreeMap;
 import com.mysql.cj.exceptions.MysqlErrorNumbers;
 
 /**
- * Creates XML file describing mapping of MySQL error #'s to SQL92 and X/Open states.
+ * Creates XML file describing mapping of MySQL error #'s to SQL92 and X/Open
+ * states.
  */
 public class ErrorMappingsDocGenerator {
 

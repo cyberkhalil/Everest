@@ -43,9 +43,10 @@ import com.mysql.cj.protocol.ServerSession;
 import com.mysql.cj.result.Row;
 
 /**
- * {@link Session} exposes logical level which user API uses internally to call {@link Protocol}
- * methods. It's a higher-level abstraction than MySQL server session ({@link ServerSession}).
- * {@link Protocol} and {@link ServerSession} methods should never be used directly from user API.
+ * {@link Session} exposes logical level which user API uses internally to call
+ * {@link Protocol} methods. It's a higher-level abstraction than MySQL server
+ * session ({@link ServerSession}). {@link Protocol} and {@link ServerSession}
+ * methods should never be used directly from user API.
  *
  */
 public interface Session {
@@ -75,12 +76,14 @@ public interface Session {
     void quit();
 
     /**
-     * Clobbers the physical network connection and marks this session as closed.
+     * Clobbers the physical network connection and marks this session as
+     * closed.
      */
     void forceClose();
 
     /**
-     * Does the version of the MySQL server we are connected to meet the given minimums?
+     * Does the version of the MySQL server we are connected to meet the given
+     * minimums?
      *
      * @param major major version number
      * @param minor minor version number

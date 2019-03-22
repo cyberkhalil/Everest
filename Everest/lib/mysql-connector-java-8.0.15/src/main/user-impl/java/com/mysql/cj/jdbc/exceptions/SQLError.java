@@ -44,8 +44,8 @@ import com.mysql.cj.protocol.PacketSentTimeHolder;
 import com.mysql.cj.util.Util;
 
 /**
- * SQLError is a utility class that maps MySQL error codes to SQL error codes as is required by the
- * JDBC spec.
+ * SQLError is a utility class that maps MySQL error codes to SQL error codes as
+ * is required by the JDBC spec.
  */
 public class SQLError {
 
@@ -203,9 +203,9 @@ public class SQLError {
     }
 
     /**
-     * Create a BatchUpdateException taking in consideration the JDBC version in use. For JDBC
-     * version prior to 4.2 the updates count array has int elements while JDBC 4.2 and beyond uses
-     * long values.
+     * Create a BatchUpdateException taking in consideration the JDBC version in
+     * use. For JDBC version prior to 4.2 the updates count array has int
+     * elements while JDBC 4.2 and beyond uses long values.
      *
      * @param underlyingEx underlying exception
      * @param updateCounts update counts of completed queries in this batch
@@ -223,8 +223,8 @@ public class SQLError {
     }
 
     /**
-     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC
-     * version in use.
+     * Create a SQLFeatureNotSupportedException or a NotImplemented exception
+     * according to the JDBC version in use.
      *
      * @return SQLException
      */
@@ -233,8 +233,8 @@ public class SQLError {
     }
 
     /**
-     * Create a SQLFeatureNotSupportedException or a NotImplemented exception according to the JDBC
-     * version in use.
+     * Create a SQLFeatureNotSupportedException or a NotImplemented exception
+     * according to the JDBC version in use.
      *
      * @param message error message
      * @param sqlState sqlState

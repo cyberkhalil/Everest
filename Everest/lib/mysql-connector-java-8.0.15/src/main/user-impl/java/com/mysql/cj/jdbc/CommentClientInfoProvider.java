@@ -37,11 +37,11 @@ import java.util.Map.Entry;
 import java.util.Properties;
 
 /**
- * An implementation of ClientInfoProvider that exposes the client info as a comment prepended to
- * all statements issued by the driver.
+ * An implementation of ClientInfoProvider that exposes the client info as a
+ * comment prepended to all statements issued by the driver.
  *
- * Client information is <i>never</i> read from the server with this implementation, it is always
- * cached locally.
+ * Client information is <i>never</i> read from the server with this
+ * implementation, it is always cached locally.
  */
 public class CommentClientInfoProvider implements ClientInfoProvider {
 

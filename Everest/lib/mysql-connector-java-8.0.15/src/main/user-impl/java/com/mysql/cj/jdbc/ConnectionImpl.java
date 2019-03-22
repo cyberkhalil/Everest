@@ -97,13 +97,14 @@ import com.mysql.cj.util.StringUtils;
 import com.mysql.cj.util.Util;
 
 /**
- * A Connection represents a session with a specific database. Within the context of a Connection,
- * SQL statements are executed and results are returned.
+ * A Connection represents a session with a specific database. Within the
+ * context of a Connection, SQL statements are executed and results are
+ * returned.
  *
  * <P>
- * A Connection's database is able to provide information describing its tables, its supported SQL
- * grammar, its stored procedures, the capabilities of this connection, etc. This information is
- * obtained with the getMetaData method.
+ * A Connection's database is able to provide information describing its tables,
+ * its supported SQL grammar, its stored procedures, the capabilities of this
+ * connection, etc. This information is obtained with the getMetaData method.
  * </p>
  */
 public class ConnectionImpl implements JdbcConnection, SessionEventListener, Serializable {
@@ -155,9 +156,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Used as a key for caching callable statements which (may) depend on current catalog...In
-     * 5.0.x, they don't (currently), but stored procedure names soon will, so current catalog is a
-     * (hidden) component of the name.
+     * Used as a key for caching callable statements which (may) depend on
+     * current catalog...In 5.0.x, they don't (currently), but stored procedure
+     * names soon will, so current catalog is a (hidden) component of the name.
      */
     static class CompoundCacheKey {
 
@@ -198,8 +199,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * The mapping between MySQL charset names and Java charset names. Initialized by
-     * loadCharacterSetMapping()
+     * The mapping between MySQL charset names and Java charset names.
+     * Initialized by loadCharacterSetMapping()
      */
     public static Map<?, ?> charsetMap;
 
@@ -209,7 +210,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     protected static final String DEFAULT_LOGGER_CLASS = StandardLogger.class.getName();
 
     /**
-     * Map mysql transaction isolation level name to java.sql.Connection.TRANSACTION_XXX
+     * Map mysql transaction isolation level name to
+     * java.sql.Connection.TRANSACTION_XXX
      */
     private static Map<String, Integer> mapTransIsolationNameToValue = null;
 
@@ -303,8 +305,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     //	private long masterFailTimeMillis = 0L;
     /**
      * An array of currently open statements. Copy-on-write used here to avoid
-     * ConcurrentModificationException when statements unregister themselves while we iterate over
-     * the list.
+     * ConcurrentModificationException when statements unregister themselves
+     * while we iterate over the list.
      */
     private final CopyOnWriteArrayList<JdbcStatement> openStatements = new CopyOnWriteArrayList<>();
 
@@ -336,8 +338,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     protected LRUCache<String, CachedResultSetMetaData> resultSetMetadataCache;
 
     /**
-     * The type map for UDTs (not implemented, but used by some third-party vendors, most notably
-     * IBM WebSphere)
+     * The type map for UDTs (not implemented, but used by some third-party
+     * vendors, most notably IBM WebSphere)
      */
     private Map<String, Class<?>> typeMap;
 
@@ -393,8 +395,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     /**
      * Creates a connection to a MySQL Server.
      *
-     * @param hostInfo the {@link HostInfo} instance that contains the host, user and connections
-     * attributes for this connection
+     * @param hostInfo the {@link HostInfo} instance that contains the host,
+     * user and connections attributes for this connection
      * @exception SQLException if a database access error occurs
      */
     public ConnectionImpl(HostInfo hostInfo) throws SQLException {
@@ -609,8 +611,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Set transaction isolation level to the value received from server if any. Is called by
-     * connectionInit(...)
+     * Set transaction isolation level to the value received from server if any.
+     * Is called by connectionInit(...)
      */
     private void checkTransactionIsolationLevel() {
         String s = this.session.getServerSession().getServerVariable("transaction_isolation");
@@ -1139,7 +1141,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Return the connections current catalog name, or null if no catalog name is set.
+     * Return the connections current catalog name, or null if no catalog name
+     * is set.
      * <p>
      * <b>Note:</b> MySQL's notion of catalogs are individual databases.
      * </p>
@@ -1172,11 +1175,12 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * NOT JDBC-Compliant, but clients can use this method to determine how long this connection has
-     * been idle. This time (reported in milliseconds) is updated once a query has completed.
+     * NOT JDBC-Compliant, but clients can use this method to determine how long
+     * this connection has been idle. This time (reported in milliseconds) is
+     * updated once a query has completed.
      *
-     * @return number of ms that this connection has been idle, 0 if the driver is busy retrieving
-     * results.
+     * @return number of ms that this connection has been idle, 0 if the driver
+     * is busy retrieving results.
      */
     @Override
     public long getIdleFor() {
@@ -1297,8 +1301,8 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Sets varying properties that depend on server information. Called once we have connected to
-     * the server.
+     * Sets varying properties that depend on server information. Called once we
+     * have connected to the server.
      *
      * @throws SQLException if a database access error occurs
      */
@@ -1359,9 +1363,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * Resets a default auto-commit value of 0 to 1, as required by JDBC specification. Takes into
-     * account that the default auto-commit value of 0 may have been changed on the server via
-     * init_connect.
+     * Resets a default auto-commit value of 0 to 1, as required by JDBC
+     * specification. Takes into account that the default auto-commit value of 0
+     * may have been changed on the server via init_connect.
      *
      * @throws SQLException if a database access error occurs
      */
@@ -2091,8 +2095,9 @@ public class ConnectionImpl implements JdbcConnection, SessionEventListener, Ser
     }
 
     /**
-     * A sub-space of this Connection's database may be selected by setting a catalog name. If the
-     * driver does not support catalogs, it will silently ignore this request
+     * A sub-space of this Connection's database may be selected by setting a
+     * catalog name. If the driver does not support catalogs, it will silently
+     * ignore this request
      * <p>
      * <b>Note:</b> MySQL's notion of catalogs are individual databases.
      * </p>

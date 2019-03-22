@@ -37,7 +37,8 @@ import com.mysql.cj.protocol.MessageReader;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * A decorating {@link MessageReader} which traces all received packets to the provided logger.
+ * A decorating {@link MessageReader} which traces all received packets to the
+ * provided logger.
  */
 public class TracingPacketReader implements MessageReader<NativePacketHeader, NativePacketPayload> {
 

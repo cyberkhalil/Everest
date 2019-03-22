@@ -103,8 +103,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Sets up this test, calling registerDataSource() to bind a DataSource into JNDI, using the
-     * FSContext JNDI provider from Sun
+     * Sets up this test, calling registerDataSource() to bind a DataSource into
+     * JNDI, using the FSContext JNDI provider from Sun
      *
      * @throws Exception if an error occurs.
      */
@@ -130,7 +130,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4808- Calling .close() twice on a PooledConnection causes NPE.
+     * Tests fix for BUG#4808- Calling .close() twice on a PooledConnection
+     * causes NPE.
      *
      * @throws Exception if an error occurs.
      */
@@ -203,7 +204,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests that we can get a connection from the DataSource bound in JNDI during test setup
+     * Tests that we can get a connection from the DataSource bound in JNDI
+     * during test setup
      *
      * @throws Exception if an error occurs
      */
@@ -277,8 +279,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#19169 - ConnectionProperties (and thus some subclasses) are not
-     * serializable, even though some J2EE containers expect them to be.
+     * Tests fix for BUG#19169 - ConnectionProperties (and thus some subclasses)
+     * are not serializable, even though some J2EE containers expect them to be.
      *
      * @throws Exception if the test fails.
      */
@@ -313,8 +315,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#20242 - MysqlValidConnectionChecker for JBoss doesn't work with
-     * MySQLXADataSources.
+     * Tests fix for BUG#20242 - MysqlValidConnectionChecker for JBoss doesn't
+     * work with MySQLXADataSources.
      *
      * @throws Exception if the test fails.
      */
@@ -339,9 +341,9 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * This method is separated from the rest of the example since you normally would NOT register a
-     * JDBC driver in your code. It would likely be configered into your naming and directory
-     * service using some GUI.
+     * This method is separated from the rest of the example since you normally
+     * would NOT register a JDBC driver in your code. It would likely be
+     * configered into your naming and directory service using some GUI.
      *
      * @throws Exception if an error occurs
      */
@@ -425,8 +427,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#16791 - NullPointerException in MysqlDataSourceFactory due to Reference
-     * containing RefAddrs with null content.
+     * Tests fix for BUG#16791 - NullPointerException in MysqlDataSourceFactory
+     * due to Reference containing RefAddrs with null content.
      *
      * @throws Exception if the test fails
      */
@@ -459,8 +461,9 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#32101 - When using a connection from our ConnectionPoolDataSource, some
-     * Connection.prepareStatement() methods would return null instead of a prepared statement.
+     * Tests fix for BUG#32101 - When using a connection from our
+     * ConnectionPoolDataSource, some Connection.prepareStatement() methods
+     * would return null instead of a prepared statement.
      *
      * @throws Exception
      */
@@ -512,8 +515,8 @@ public class DataSourceRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#72890 - Java jdbc driver returns incorrect return code when it's part of XA
-     * transaction
+     * Tests fix for BUG#72890 - Java jdbc driver returns incorrect return code
+     * when it's part of XA transaction
      *
      * @throws Exception if the test fails.
      */

@@ -29,8 +29,8 @@
 package com.mysql.cj.util;
 
 /**
- * This decoder implements standard Base64 decoding except it allows and silently ignores non-base64
- * input characters (spaces, line breaks etc)
+ * This decoder implements standard Base64 decoding except it allows and
+ * silently ignores non-base64 input characters (spaces, line breaks etc)
  *
  * Note: Java 6+ provide standard decoders
  */

@@ -49,8 +49,8 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from date fields. The fields are formatted in a YYYY-mm-dd format. A
-     * point-in-time is not calculated.
+     * Create a string from date fields. The fields are formatted in a
+     * YYYY-mm-dd format. A point-in-time is not calculated.
      *
      * @param year year
      * @param month month
@@ -63,8 +63,8 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from time fields. The fields are formatted in a HH:MM:SS[.nnnnnnnnn] format.
-     * A point-in-time is not calculated.
+     * Create a string from time fields. The fields are formatted in a
+     * HH:MM:SS[.nnnnnnnnn] format. A point-in-time is not calculated.
      *
      * @param hours hours
      * @param minutes minutes
@@ -80,8 +80,8 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Create a string from time fields. The fields are formatted by concatening the result of
-     * {@link #createFromDate(int,int,int)} and {@link
+     * Create a string from time fields. The fields are formatted by concatening
+     * the result of {@link #createFromDate(int,int,int)} and {@link
      * #createFromTime(int,int,int,int)}. A point-in-time is not calculated.
      *
      * @param year year
@@ -114,9 +114,9 @@ public class StringValueFactory implements ValueFactory<String> {
     }
 
     /**
-     * Interpret the given byte array as a string. This value factory needs to know the encoding to
-     * interpret the string. The default (null) will interpet the byte array using the platform
-     * encoding.
+     * Interpret the given byte array as a string. This value factory needs to
+     * know the encoding to interpret the string. The default (null) will
+     * interpet the byte array using the platform encoding.
      *
      * @param bytes byte array
      * @param offset offset

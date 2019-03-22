@@ -46,7 +46,8 @@ import com.mysql.cj.x.protobuf.MysqlxResultset.Row;
 import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
 
 /**
- * A {@link MessageListener} to handle result data and propagate it to a {@link ResultListener}.
+ * A {@link MessageListener} to handle result data and propagate it to a
+ * {@link ResultListener}.
  */
 public class ResultMessageListener implements MessageListener<XMessage> {
 

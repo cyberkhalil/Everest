@@ -70,9 +70,11 @@ public class SyntaxRegressionTest extends BaseTestCase {
      *
      * ALTER TABLE ... , algorithm, concurrency
      *
-     * algorithm: | ALGORITHM [=] DEFAULT | ALGORITHM [=] INPLACE | ALGORITHM [=] COPY
+     * algorithm: | ALGORITHM [=] DEFAULT | ALGORITHM [=] INPLACE | ALGORITHM
+     * [=] COPY
      *
-     * concurrency: | LOCK [=] DEFAULT | LOCK [=] NONE | LOCK [=] SHARED | LOCK [=] EXCLUSIVE
+     * concurrency: | LOCK [=] DEFAULT | LOCK [=] NONE | LOCK [=] SHARED | LOCK
+     * [=] EXCLUSIVE
      *
      * @throws SQLException
      */
@@ -126,13 +128,13 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * CREATE TABLE syntax changed in 5.6GA
      *
-     * InnoDB: Allow the location of file-per-table tablespaces to be chosen CREATE TABLE ... DATA
-     * DIRECTORY = 'absolute/path/to/directory/'
+     * InnoDB: Allow the location of file-per-table tablespaces to be chosen
+     * CREATE TABLE ... DATA DIRECTORY = 'absolute/path/to/directory/'
      *
-     * Notes: - DATA DIRECTORY option can't be used with temporary tables. - DATA DIRECTORY and
-     * INDEX DIRECTORY can't be used together for InnoDB. - Using these options result in an 'option
-     * ignored' warning for servers below MySQL 5.7.7. This syntax isn't allowed for MySQL 5.7.7 and
-     * higher.
+     * Notes: - DATA DIRECTORY option can't be used with temporary tables. -
+     * DATA DIRECTORY and INDEX DIRECTORY can't be used together for InnoDB. -
+     * Using these options result in an 'option ignored' warning for servers
+     * below MySQL 5.7.7. This syntax isn't allowed for MySQL 5.7.7 and higher.
      *
      * @throws SQLException
      */
@@ -206,8 +208,8 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * Test case for transportable tablespaces syntax support:
      *
-     * FLUSH TABLES ... FOR EXPORT ALTER TABLE ... DISCARD TABLESPACE ALTER TABLE ... IMPORT
-     * TABLESPACE
+     * FLUSH TABLES ... FOR EXPORT ALTER TABLE ... DISCARD TABLESPACE ALTER
+     * TABLE ... IMPORT TABLESPACE
      *
      * @throws SQLException
      */
@@ -330,7 +332,8 @@ public class SyntaxRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Test case for ALTER [IGNORE] TABLE t1 EXCHANGE PARTITION p1 WITH TABLE t2 syntax
+     * Test case for ALTER [IGNORE] TABLE t1 EXCHANGE PARTITION p1 WITH TABLE t2
+     * syntax
      *
      * @throws SQLException
      */
@@ -748,7 +751,8 @@ public class SyntaxRegressionTest extends BaseTestCase {
      *
      * CREATE TABLE syntax changed in 5.6GA
      *
-     * InnoDB engine accepts FULLTEXT indexes. CREATE TABLE ... FULLTEXT(...) ... ENGINE=InnoDB
+     * InnoDB engine accepts FULLTEXT indexes. CREATE TABLE ... FULLTEXT(...)
+     * ... ENGINE=InnoDB
      *
      * @throws SQLException
      */
@@ -821,9 +825,9 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#6406 - Stacked diagnostic areas
      *
-     * "STACKED" in "GET [CURRENT | STACKED] DIAGNOSTICS" syntax was added in 5.7.0. Final behavior
-     * was implemented in version 5.7.2, by WL#5928 - Most statements should clear the diagnostic
-     * area.
+     * "STACKED" in "GET [CURRENT | STACKED] DIAGNOSTICS" syntax was added in
+     * 5.7.0. Final behavior was implemented in version 5.7.2, by WL#5928 - Most
+     * statements should clear the diagnostic area.
      *
      * @throws SQLException
      */
@@ -914,8 +918,9 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#6868 - Support transportable tablespaces for single innodb partition.
      *
-     * New syntax introduced in MySQL 5.7.4. ALTER TABLE t DISCARD PARTITION {p[[,p1]..]|ALL}
-     * TABLESPACE; ALTER TABLE t IMPORT PARTITION {p[[,p1]..]|ALL} TABLESPACE;
+     * New syntax introduced in MySQL 5.7.4. ALTER TABLE t DISCARD PARTITION
+     * {p[[,p1]..]|ALL} TABLESPACE; ALTER TABLE t IMPORT PARTITION
+     * {p[[,p1]..]|ALL} TABLESPACE;
      */
     public void testDiscardImportPartitions() throws Exception {
 
@@ -956,19 +961,23 @@ public class SyntaxRegressionTest extends BaseTestCase {
      *
      * Test support for data type JSON.
      *
-     * New JSON functions added in MySQL 5.7.8: - JSON_APPEND(), Append data to JSON document (only
-     * in 5.7.8) - JSON_ARRAY_APPEND(), Append data to JSON document (added in 5.7.9+) -
-     * JSON_ARRAY_INSERT(), Insert into JSON array - JSON_ARRAY(), Create JSON array -
-     * JSON_CONTAINS_PATH(), Whether JSON document contains any data at path - JSON_CONTAINS(),
-     * Whether JSON document contains specific object at path - JSON_DEPTH(), Maximum depth of JSON
-     * document - JSON_EXTRACT(), Return data from JSON document - JSON_INSERT(), Insert data into
-     * JSON document - JSON_KEYS(), Array of keys from JSON document - JSON_LENGTH(), Number of
-     * elements in JSON document - JSON_MERGE(), Merge JSON documents (up to 8.0.2) -
-     * JSON_MERGE_PRESERVE(), Merge JSON documents (since to 8.0.3) - JSON_OBJECT(), Create JSON
-     * object - JSON_QUOTE(), Quote JSON document - JSON_REMOVE(), Remove data from JSON document -
-     * JSON_REPLACE(), Replace values in JSON document - JSON_SEARCH(), Path to value within JSON
-     * document - JSON_SET(), Insert data into JSON document - JSON_TYPE(), Type of JSON value -
-     * JSON_UNQUOTE(), Unquote JSON value - JSON_VALID(), Whether JSON value is valid
+     * New JSON functions added in MySQL 5.7.8: - JSON_APPEND(), Append data to
+     * JSON document (only in 5.7.8) - JSON_ARRAY_APPEND(), Append data to JSON
+     * document (added in 5.7.9+) - JSON_ARRAY_INSERT(), Insert into JSON array
+     * - JSON_ARRAY(), Create JSON array - JSON_CONTAINS_PATH(), Whether JSON
+     * document contains any data at path - JSON_CONTAINS(), Whether JSON
+     * document contains specific object at path - JSON_DEPTH(), Maximum depth
+     * of JSON document - JSON_EXTRACT(), Return data from JSON document -
+     * JSON_INSERT(), Insert data into JSON document - JSON_KEYS(), Array of
+     * keys from JSON document - JSON_LENGTH(), Number of elements in JSON
+     * document - JSON_MERGE(), Merge JSON documents (up to 8.0.2) -
+     * JSON_MERGE_PRESERVE(), Merge JSON documents (since to 8.0.3) -
+     * JSON_OBJECT(), Create JSON object - JSON_QUOTE(), Quote JSON document -
+     * JSON_REMOVE(), Remove data from JSON document - JSON_REPLACE(), Replace
+     * values in JSON document - JSON_SEARCH(), Path to value within JSON
+     * document - JSON_SET(), Insert data into JSON document - JSON_TYPE(), Type
+     * of JSON value - JSON_UNQUOTE(), Unquote JSON value - JSON_VALID(),
+     * Whether JSON value is valid
      */
     public void testJsonType() throws Exception {
         if (!versionMeetsMinimum(5, 7, 8)) {
@@ -1062,14 +1071,16 @@ public class SyntaxRegressionTest extends BaseTestCase {
      *
      * Test syntax for optimizer hints.
      *
-     * New optimizer hints feature added in MySQL 5.7.7. Hints are permitted in these contexts: At
-     * the beginning of DML statements - SELECT /*+ ... *&#47 ... - INSERT /*+ ... *&#47 ... -
-     * REPLACE /*+ ... *&#47 ... - UPDATE /*+ ... *&#47 ... - DELETE /*+ ... *&#47 ... At the
-     * beginning of query blocks: - (SELECT /*+ ... *&#47 ... ) - (SELECT ... ) UNION (SELECT /*+
-     * ... *&#47 ... ) - (SELECT /*+ ... *&#47 ... ) UNION (SELECT /*+ ... *&#47 ... ) - UPDATE ...
-     * WHERE x IN (SELECT /*+ ... *&#47 ...) - INSERT ... SELECT /*+ ... *&#47 ... In hintable
-     * statements prefaced by EXPLAIN. For example: - EXPLAIN SELECT /*+ ... *&#47 ... - EXPLAIN
-     * UPDATE ... WHERE x IN (SELECT /*+ ... *&#47 ...)
+     * New optimizer hints feature added in MySQL 5.7.7. Hints are permitted in
+     * these contexts: At the beginning of DML statements - SELECT /*+ ... *&#47
+     * ... - INSERT /*+ ... *&#47 ... - REPLACE /*+ ... *&#47 ... - UPDATE /*+
+     * ... *&#47 ... - DELETE /*+ ... *&#47 ... At the beginning of query
+     * blocks: - (SELECT /*+ ... *&#47 ... ) - (SELECT ... ) UNION (SELECT /*+
+     * ... *&#47 ... ) - (SELECT /*+ ... *&#47 ... ) UNION (SELECT /*+ ... *&#47
+     * ... ) - UPDATE ... WHERE x IN (SELECT /*+ ... *&#47 ...) - INSERT ...
+     * SELECT /*+ ... *&#47 ... In hintable statements prefaced by EXPLAIN. For
+     * example: - EXPLAIN SELECT /*+ ... *&#47 ... - EXPLAIN UPDATE ... WHERE x
+     * IN (SELECT /*+ ... *&#47 ...)
      */
     public void testHints() throws Exception {
         if (!versionMeetsMinimum(5, 7, 7)) {
@@ -1227,10 +1238,11 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#6205 - InnoDB: Implement CREATE TABLESPACE for general use.
      *
-     * Tests support for new CREATE TABLESPACE syntax that extends this feature to InnoDB.
+     * Tests support for new CREATE TABLESPACE syntax that extends this feature
+     * to InnoDB.
      *
-     * CREATE TABLESPACE tablespace_name ADD DATAFILE 'file_name' [FILE_BLOCK_SIZE = value] [ENGINE
-     * [=] engine_name]
+     * CREATE TABLESPACE tablespace_name ADD DATAFILE 'file_name'
+     * [FILE_BLOCK_SIZE = value] [ENGINE [=] engine_name]
      */
     public void testCreateTablespace() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -1300,7 +1312,8 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#6747 - InnoDB: make fill factor settable.
      *
-     * Tests support for new syntax for setting indices MERGE_THRESHOLD on CREATE TABLE.
+     * Tests support for new syntax for setting indices MERGE_THRESHOLD on
+     * CREATE TABLE.
      *
      * index_option: COMMENT 'MERGE_THRESHOLD=n'
      */
@@ -1393,10 +1406,12 @@ public class SyntaxRegressionTest extends BaseTestCase {
     }
 
     /**
-     * WL#1326 - GIS: Precise spatial operations WL#8055 - Consistent naming scheme for GIS
-     * functions - Deprecation WL#8034 - More user friendly GIS functions WL#7541 - GIS MBR spatial
-     * operations enhancement WL#8157 - Remove deprecated GIS functions WL#8055 - Consistent naming
-     * scheme for GIS functions - Deprecation WL#9435 - Axis order in WKB parsing functions (...)
+     * WL#1326 - GIS: Precise spatial operations WL#8055 - Consistent naming
+     * scheme for GIS functions - Deprecation WL#8034 - More user friendly GIS
+     * functions WL#7541 - GIS MBR spatial operations enhancement WL#8157 -
+     * Remove deprecated GIS functions WL#8055 - Consistent naming scheme for
+     * GIS functions - Deprecation WL#9435 - Axis order in WKB parsing functions
+     * (...)
      *
      * Test syntax for all GIS functions.
      */
@@ -1768,7 +1783,8 @@ public class SyntaxRegressionTest extends BaseTestCase {
     /**
      * WL#8252 - GCS Replication: Plugin [SERVER CHANGES]
      *
-     * Test syntax for GCS Replication commands: - START GROUP_REPLICATION - STOP GROUP_REPLICATION
+     * Test syntax for GCS Replication commands: - START GROUP_REPLICATION -
+     * STOP GROUP_REPLICATION
      */
     public void testGcsReplicationCmds() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -1874,12 +1890,13 @@ public class SyntaxRegressionTest extends BaseTestCase {
     }
 
     /**
-     * WL#7131 - Add timestamp in mysql.user on the last time the password was changed
+     * WL#7131 - Add timestamp in mysql.user on the last time the password was
+     * changed
      *
      * Test user account password expiration syntax:
      *
-     * CREATE|ALTER USER (...) - password_option: { PASSWORD EXPIRE | PASSWORD EXPIRE DEFAULT |
-     * PASSWORD EXPIRE NEVER | PASSWORD EXPIRE INTERVAL N DAY }
+     * CREATE|ALTER USER (...) - password_option: { PASSWORD EXPIRE | PASSWORD
+     * EXPIRE DEFAULT | PASSWORD EXPIRE NEVER | PASSWORD EXPIRE INTERVAL N DAY }
      */
     public void testUserAccountPwdExpiration() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -1945,11 +1962,11 @@ public class SyntaxRegressionTest extends BaseTestCase {
     }
 
     /**
-     * WL#8548 - InnoDB: Transparent data encryption. WL#8821 - Innodb tablespace encryption key
-     * rotation SQL commands.
+     * WL#8548 - InnoDB: Transparent data encryption. WL#8821 - Innodb
+     * tablespace encryption key rotation SQL commands.
      *
-     * Test new syntax: - CREATE|ALTER TABLE (...) ENCRYPTION [=] {'Y' | 'N'} - ALTER INSTANCE
-     * ROTATE INNODB MASTER KEY
+     * Test new syntax: - CREATE|ALTER TABLE (...) ENCRYPTION [=] {'Y' | 'N'} -
+     * ALTER INSTANCE ROTATE INNODB MASTER KEY
      */
     public void testInnodbTablespaceEncryption() throws Exception {
         if (!versionMeetsMinimum(5, 7, 11)) {

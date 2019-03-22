@@ -59,9 +59,9 @@ public class DbDocValueFactory extends DefaultValueFactory<DbDoc> {
     }
 
     /**
-     * Interpret the given byte array as a string. This value factory needs to know the encoding to
-     * interpret the string. The default (null) will interpret the byte array using the platform
-     * encoding.
+     * Interpret the given byte array as a string. This value factory needs to
+     * know the encoding to interpret the string. The default (null) will
+     * interpret the byte array using the platform encoding.
      */
     @Override
     public DbDoc createFromBytes(byte[] bytes, int offset, int length) {

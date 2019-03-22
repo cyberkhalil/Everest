@@ -170,8 +170,9 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     protected int fetchSize = 0;
 
     /**
-     * First character of the query that created this result set...Used to determine whether or not
-     * to parse server info messages in certain circumstances.
+     * First character of the query that created this result set...Used to
+     * determine whether or not to parse server info messages in certain
+     * circumstances.
      */
     protected char firstCharOfQuery;
 
@@ -519,9 +520,11 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Ensures that the cursor is positioned on a valid row and that the result set is not closed
+     * Ensures that the cursor is positioned on a valid row and that the result
+     * set is not closed
      *
-     * @throws SQLException if the result set is not in a valid state for traversal
+     * @throws SQLException if the result set is not in a valid state for
+     * traversal
      */
     protected void checkRowPos() throws SQLException {
         checkClosed();
@@ -640,11 +643,12 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Get a non-string value from a row. All requests to obtain non-string values should use this
-     * method. This method implements the "indirect" conversion of values that are returned as
-     * strings from the server. This is an expensive conversion which first requires interpreting
-     * the value as a string in it's given character set and converting it to an ASCII string which
-     * can then be parsed as a numeric/date value.
+     * Get a non-string value from a row. All requests to obtain non-string
+     * values should use this method. This method implements the "indirect"
+     * conversion of values that are returned as strings from the server. This
+     * is an expensive conversion which first requires interpreting the value as
+     * a string in it's given character set and converting it to an ASCII string
+     * which can then be parsed as a numeric/date value.
      *
      * @param columnIndex column index
      * @param vf value factory
@@ -664,7 +668,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Get a Date of Timestamp value from a row. This implements the "yearIsDateType=true" behavior.
+     * Get a Date of Timestamp value from a row. This implements the
+     * "yearIsDateType=true" behavior.
      *
      * @param columnIndex column index
      * @param vf value factory
@@ -1840,12 +1845,13 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * The <i>prev</i> method is not part of JDBC, but because of the architecture of this driver it
-     * is possible to move both forward and backward within the result set.
+     * The <i>prev</i> method is not part of JDBC, but because of the
+     * architecture of this driver it is possible to move both forward and
+     * backward within the result set.
      *
      * <p>
-     * If an input stream from the previous row is open, it is implicitly closed. The ResultSet's
-     * warning chain is cleared when a new row is read
+     * If an input stream from the previous row is open, it is implicitly
+     * closed. The ResultSet's warning chain is cleared when a new row is read
      * </p>
      *
      * @return true if the new current is valid; false if there are no more rows
@@ -2125,7 +2131,8 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     /**
      * Sets the result set type
      *
-     * @param typeFlag SCROLL_SENSITIVE or SCROLL_INSENSITIVE (we only support SCROLL_INSENSITIVE)
+     * @param typeFlag SCROLL_SENSITIVE or SCROLL_INSENSITIVE (we only support
+     * SCROLL_INSENSITIVE)
      */
     public synchronized void setResultSetType(int typeFlag) {
         try {

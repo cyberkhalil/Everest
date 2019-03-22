@@ -48,14 +48,16 @@ public interface ResultListener<OK extends ProtocolEntity> {
     void onRow(Row r);
 
     /**
-     * Called when result processing is complete. No additional notifications will be delivered.
+     * Called when result processing is complete. No additional notifications
+     * will be delivered.
      *
      * @param ok {@link ProtocolEntity}
      */
     void onComplete(OK ok);
 
     /**
-     * Called when an exception occurs. No additional notifications will be delivered.
+     * Called when an exception occurs. No additional notifications will be
+     * delivered.
      *
      * @param t {@link Throwable}
      */

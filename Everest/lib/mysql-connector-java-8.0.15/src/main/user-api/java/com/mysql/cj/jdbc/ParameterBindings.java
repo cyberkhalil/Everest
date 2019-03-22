@@ -42,8 +42,8 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * Interface to allow PreparedStatement implementations to expose their parameter bindings to
- * QueryInterceptors.
+ * Interface to allow PreparedStatement implementations to expose their
+ * parameter bindings to QueryInterceptors.
  */
 public interface ParameterBindings {
 

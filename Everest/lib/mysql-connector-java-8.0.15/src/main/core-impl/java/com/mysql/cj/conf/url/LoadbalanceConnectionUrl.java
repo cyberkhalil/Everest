@@ -43,12 +43,12 @@ import com.mysql.cj.util.StringUtils;
 public class LoadbalanceConnectionUrl extends ConnectionUrl {
 
     /**
-     * Constructs an instance of {@link LoadbalanceConnectionUrl}, performing all the required
-     * initializations and validations. A loadbalance connection cannot deal with multiple hosts
-     * with same host:port.
+     * Constructs an instance of {@link LoadbalanceConnectionUrl}, performing
+     * all the required initializations and validations. A loadbalance
+     * connection cannot deal with multiple hosts with same host:port.
      *
-     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
-     * the original connection string
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing
+     * the parsed version of the original connection string
      * @param info the connection arguments map
      */
     public LoadbalanceConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {
@@ -69,9 +69,10 @@ public class LoadbalanceConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Constructs an instance of a {@link LoadbalanceConnectionUrl} based on a list of hosts and a
-     * global set of properties instead of connection string parsing. {@link ConnectionUrl}
-     * instances created by this process are not cached.
+     * Constructs an instance of a {@link LoadbalanceConnectionUrl} based on a
+     * list of hosts and a global set of properties instead of connection string
+     * parsing. {@link ConnectionUrl} instances created by this process are not
+     * cached.
      *
      * @param hosts the hosts list to use in this connection URL
      * @param properties the properties common to all hosts
@@ -86,9 +87,11 @@ public class LoadbalanceConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Injects additional properties into the connection arguments while it's being constructed.
+     * Injects additional properties into the connection arguments while it's
+     * being constructed.
      *
-     * @param props the properties already containing all known connection arguments
+     * @param props the properties already containing all known connection
+     * arguments
      */
     @Override
     protected void injectPerTypeProperties(Map<String, String> props) {
@@ -111,20 +114,24 @@ public class LoadbalanceConnectionUrl extends ConnectionUrl {
     }
 
     /**
-     * Returns a list of this connection URL hosts in the form of host:port pairs.
+     * Returns a list of this connection URL hosts in the form of host:port
+     * pairs.
      *
-     * @return a list of this connection URL hosts in the form of host:port pairs
+     * @return a list of this connection URL hosts in the form of host:port
+     * pairs
      */
     public List<String> getHostInfoListAsHostPortPairs() {
         return this.hosts.stream().map(hi -> hi.getHostPortPair()).collect(Collectors.toList());
     }
 
     /**
-     * Returns the list of {@link HostInfo} instances that matches the given collection of host:port
-     * pairs. Isolated host info elements are spawned for the missing elements.
+     * Returns the list of {@link HostInfo} instances that matches the given
+     * collection of host:port pairs. Isolated host info elements are spawned
+     * for the missing elements.
      *
      * @param hostPortPairs a list of host:port pairs
-     * @return a list of {@link HostInfo} instances corresponding to the given host:port pairs
+     * @return a list of {@link HostInfo} instances corresponding to the given
+     * host:port pairs
      */
     public List<HostInfo> getHostInfoListFromHostPortPairs(Collection<String> hostPortPairs) {
         return hostPortPairs.stream().map(this::getHostOrSpawnIsolated).collect(Collectors.toList());

@@ -40,7 +40,8 @@ public class DatabaseObjectDescription {
      * Constructor.
      *
      * @param name database object name
-     * @param type database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
+     * @param type database object type, one of COLLECTION, TABLE, VIEW or
+     * COLLECTION_VIEW
      */
     public DatabaseObjectDescription(String name, String type) {
         this.objectName = name;

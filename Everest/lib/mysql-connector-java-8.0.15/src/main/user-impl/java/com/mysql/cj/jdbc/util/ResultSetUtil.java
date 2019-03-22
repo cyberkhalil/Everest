@@ -54,8 +54,9 @@ public class ResultSetUtil {
     }
 
     /**
-     * Given a ResultSet and an index into the columns of that ResultSet, read binary data from the
-     * column which represents a serialized object, and re-create the object.
+     * Given a ResultSet and an index into the columns of that ResultSet, read
+     * binary data from the column which represents a serialized object, and
+     * re-create the object.
      *
      * @param resultSet the ResultSet to use.
      * @param index an index into the ResultSet.

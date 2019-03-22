@@ -104,14 +104,15 @@ public class NativeServerSession implements ServerSession {
     private int metadataCollationIndex;
 
     /**
-     * The character set we want results and result metadata returned in (null == results in any
-     * charset, metadata in UTF-8).
+     * The character set we want results and result metadata returned in (null
+     * == results in any charset, metadata in UTF-8).
      */
     private String characterSetResultsOnServer = null;
 
     /**
-     * The (Java) encoding used to interpret error messages received from the server. We use
-     * character_set_results (since MySQL 5.5) if it is not null or UTF-8 otherwise.
+     * The (Java) encoding used to interpret error messages received from the
+     * server. We use character_set_results (since MySQL 5.5) if it is not null
+     * or UTF-8 otherwise.
      */
     private String errorMessageEncoding = "Cp1252"; // to begin with, changes after we talk to the server
 
@@ -126,7 +127,8 @@ public class NativeServerSession implements ServerSession {
     private TimeZone serverTimeZone = null;
 
     /**
-     * c.f. getDefaultTimeZone(). this value may be overridden during connection initialization
+     * c.f. getDefaultTimeZone(). this value may be overridden during connection
+     * initialization
      */
     private TimeZone defaultTimeZone = TimeZone.getDefault();
 
@@ -310,7 +312,8 @@ public class NativeServerSession implements ServerSession {
     }
 
     /**
-     * Should SET AUTOCOMMIT be sent to server if we are going to set autoCommitFlag in driver
+     * Should SET AUTOCOMMIT be sent to server if we are going to set
+     * autoCommitFlag in driver
      *
      * @param autoCommitFlag autocommit status we are going to set in driver
      * @param elideSetAutoCommitsFlag 'elideSetAutoCommits' property value
@@ -507,7 +510,8 @@ public class NativeServerSession implements ServerSession {
     }
 
     /**
-     * Is the server in a sql_mode that does not allow us to use \\ to escape things?
+     * Is the server in a sql_mode that does not allow us to use \\ to escape
+     * things?
      *
      * @return Returns the noBackslashEscapes.
      */

@@ -247,8 +247,9 @@ public class MysqlDataSource extends JdbcPropertySetImpl implements DataSource, 
     }
 
     /**
-     * Initializes driver properties that come from a JNDI reference (in the case of a
-     * javax.sql.DataSource bound into some name service that doesn't handle Java objects directly).
+     * Initializes driver properties that come from a JNDI reference (in the
+     * case of a javax.sql.DataSource bound into some name service that doesn't
+     * handle Java objects directly).
      *
      * @param ref The JNDI Reference that holds RefAddrs for all properties
      * @throws SQLException if error occurs
@@ -340,9 +341,9 @@ public class MysqlDataSource extends JdbcPropertySetImpl implements DataSource, 
     }
 
     /**
-     * This method is used by the app server to set the url string specified within the datasource
-     * deployment descriptor. It is discovered using introspection and matches if property name in
-     * descriptor is "url".
+     * This method is used by the app server to set the url string specified
+     * within the datasource deployment descriptor. It is discovered using
+     * introspection and matches if property name in descriptor is "url".
      *
      * @param url url to be used within driver.connect
      */

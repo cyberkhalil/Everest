@@ -169,8 +169,8 @@ public class ExprUnparser {
     }
 
     /**
-     * Create a string from a list of (already stringified) parameters. Surround by parens and
-     * separate by commas.
+     * Create a string from a list of (already stringified) parameters. Surround
+     * by parens and separate by commas.
      *
      * @param params list of param strings
      * @return param list string
@@ -189,8 +189,8 @@ public class ExprUnparser {
     }
 
     /**
-     * Convert an operator to a string. Includes special cases for chosen infix operators (AND, OR)
-     * and special forms such as LIKE and BETWEEN.
+     * Convert an operator to a string. Includes special cases for chosen infix
+     * operators (AND, OR) and special forms such as LIKE and BETWEEN.
      *
      * @param e {@link Operator}
      * @return Operator string

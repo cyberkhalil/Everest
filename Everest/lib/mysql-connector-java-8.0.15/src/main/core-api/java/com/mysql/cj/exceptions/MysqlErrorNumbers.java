@@ -34,7 +34,8 @@ import java.util.Map;
 import com.mysql.cj.Messages;
 
 /**
- * Constants representing MySQL error numbers returned by the server in error messages.
+ * Constants representing MySQL error numbers returned by the server in error
+ * messages.
  */
 public final class MysqlErrorNumbers {
 

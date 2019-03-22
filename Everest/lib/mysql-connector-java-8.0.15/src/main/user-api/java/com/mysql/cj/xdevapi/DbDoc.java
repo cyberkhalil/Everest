@@ -48,8 +48,8 @@ import java.util.Map;
  * <b>key</b> is a JSON <b>string</b>.
  * </p>
  * <p>
- * <b>value</b> is any one of JSON <b>object</b>, <b>array</b>, <b>number</b>, <b>string</b>, true,
- * false, null.
+ * <b>value</b> is any one of JSON <b>object</b>, <b>array</b>, <b>number</b>,
+ * <b>string</b>, true, false, null.
  * </p>
  *
  * <p>
@@ -83,9 +83,9 @@ import java.util.Map;
  * DbDoc doc = JsonParser.parseDoc(new StringReader(&quot;{\&quot;key1\&quot; : \&quot;value1\&quot;}&quot;));
  * </pre>
  *
- * To construct a JSON document you can use the DbDoc, JsonString, JsonNumber, JsonArray, or
- * JsonLiteral method. To get a JSON string representation use the toString() method. For example,
- * to get the document shown above:
+ * To construct a JSON document you can use the DbDoc, JsonString, JsonNumber,
+ * JsonArray, or JsonLiteral method. To get a JSON string representation use the
+ * toString() method. For example, to get the document shown above:
  *
  * <pre>
  * DbDoc doc = new DbDocImpl().add(&quot;field1&quot;, new JsonString().setValue(&quot;value 1&quot;)).add(&quot;field2&quot;, new JsonNumber().setValue(&quot;12345.44E22&quot;))

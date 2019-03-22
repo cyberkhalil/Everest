@@ -34,8 +34,8 @@ import com.mysql.cj.util.LogUtils;
 import com.mysql.cj.util.Util;
 
 /**
- * Provides logging facilities for those platforms that don't have built-in facilities. Simply logs
- * messages to STDERR.
+ * Provides logging facilities for those platforms that don't have built-in
+ * facilities. Simply logs messages to STDERR.
  */
 public class StandardLogger implements Log {
 

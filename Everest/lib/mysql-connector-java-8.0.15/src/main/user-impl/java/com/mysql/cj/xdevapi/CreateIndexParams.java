@@ -52,8 +52,8 @@ public class CreateIndexParams {
      * Constructor.
      *
      * @param indexName index name
-     * @param indexDefinition special JSON document containing index definition; see
-     * {@link Collection#createIndex(String, DbDoc)} description
+     * @param indexDefinition special JSON document containing index definition;
+     * see {@link Collection#createIndex(String, DbDoc)} description
      */
     public CreateIndexParams(String indexName, DbDoc indexDefinition) {
         init(indexName, indexDefinition);
@@ -63,8 +63,9 @@ public class CreateIndexParams {
      * Constructor.
      *
      * @param indexName index name
-     * @param jsonIndexDefinition special JSON document containing index definition; see
-     * {@link Collection#createIndex(String, String)} description
+     * @param jsonIndexDefinition special JSON document containing index
+     * definition; see {@link Collection#createIndex(String, String)}
+     * description
      */
     public CreateIndexParams(String indexName, String jsonIndexDefinition) {
         if (jsonIndexDefinition == null || jsonIndexDefinition.trim().length() == 0) {
@@ -160,21 +161,22 @@ public class CreateIndexParams {
     public static class IndexField {
 
         /**
-         * The full document path to the document member or field to be indexed *
+         * The full document path to the document member or field to be indexed
+         * *
          */
         private String field;
 
         /**
-         * One of the supported SQL column types to map the field into. For numeric types, the
-         * optional UNSIGNED keyword may follow. For the TEXT type, the length to consider for
-         * indexing may be added.
+         * One of the supported SQL column types to map the field into. For
+         * numeric types, the optional UNSIGNED keyword may follow. For the TEXT
+         * type, the length to consider for indexing may be added.
          *
          */
         private String type;
 
         /**
-         * (optional) true if the field is required to exist in the document. defaults to false,
-         * except for GEOJSON where it defaults to true *
+         * (optional) true if the field is required to exist in the document.
+         * defaults to false, except for GEOJSON where it defaults to true *
          */
         private boolean required = false;
 
@@ -191,18 +193,22 @@ public class CreateIndexParams {
         /**
          * Constructor.
          *
-         * @param indexField a special JSON document, part of indexDefinition document, consisting
-         * of the following fields:
+         * @param indexField a special JSON document, part of indexDefinition
+         * document, consisting of the following fields:
          * <ul>
-         * <li>field: string, the full document path to the document member or field to be
-         * indexed</li>
-         * <li>type: string, one of the supported SQL column types to map the field into. For
-         * numeric types, the optional UNSIGNED keyword may follow. For the TEXT type, the length to
-         * consider for indexing may be added. Type descriptions are case insensitive.</li>
-         * <li>required: bool, (optional) true if the field is required to exist in the document.
-         * Defaults to false, except for GEOJSON where it defaults to true</li>
-         * <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
-         * <li>srid: int, (optional) srid value for use when decoding GEOJSON data</li>
+         * <li>field: string, the full document path to the document member or
+         * field to be indexed</li>
+         * <li>type: string, one of the supported SQL column types to map the
+         * field into. For numeric types, the optional UNSIGNED keyword may
+         * follow. For the TEXT type, the length to consider for indexing may be
+         * added. Type descriptions are case insensitive.</li>
+         * <li>required: bool, (optional) true if the field is required to exist
+         * in the document. Defaults to false, except for GEOJSON where it
+         * defaults to true</li>
+         * <li>options: int, (optional) special option flags for use when
+         * decoding GEOJSON data</li>
+         * <li>srid: int, (optional) srid value for use when decoding GEOJSON
+         * data</li>
          * </ul>
          */
         public IndexField(DbDoc indexField) {
@@ -277,7 +283,8 @@ public class CreateIndexParams {
         }
 
         /**
-         * Get the full document path to the document member or field to be indexed.
+         * Get the full document path to the document member or field to be
+         * indexed.
          *
          * @return field string
          */

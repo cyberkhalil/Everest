@@ -40,14 +40,15 @@ public abstract class AbstractResultsetRows implements ResultsetRows {
     protected final static int BEFORE_START_OF_ROWS = -1;
 
     /**
-     * Field-level metadata from the server. We need this, because it is not sent for each batch of
-     * rows, but we need the metadata to unpack the results for each field.
+     * Field-level metadata from the server. We need this, because it is not
+     * sent for each batch of rows, but we need the metadata to unpack the
+     * results for each field.
      */
     protected ColumnDefinition metadata;
 
     /**
-     * Position in cache of rows, used to determine if we need to fetch more rows from the server to
-     * satisfy a request for the next row.
+     * Position in cache of rows, used to determine if we need to fetch more
+     * rows from the server to satisfy a request for the next row.
      */
     protected int currentPositionInFetchedRows = BEFORE_START_OF_ROWS;
 

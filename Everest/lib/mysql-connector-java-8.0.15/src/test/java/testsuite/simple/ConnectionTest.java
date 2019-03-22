@@ -138,8 +138,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests a cluster connection for failover, requires a two-node cluster URL specfied in
-     * com.mysql.jdbc.testsuite.ClusterUrl system proeprty.
+     * Tests a cluster connection for failover, requires a two-node cluster URL
+     * specfied in com.mysql.jdbc.testsuite.ClusterUrl system proeprty.
      *
      * @throws Exception
      */
@@ -208,8 +208,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * @throws Exception Old test was passing due to http://bugs.mysql.com/bug.php?id=989 which is
-     * fixed for 5.5+
+     * @throws Exception Old test was passing due to
+     * http://bugs.mysql.com/bug.php?id=989 which is fixed for 5.5+
      */
     public void testDeadlockDetection() throws Exception {
         try {
@@ -872,9 +872,9 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests whether or not the configuration 'useLocalSessionState' actually prevents non-needed
-     * 'set autocommit=', 'set session transaction isolation ...' and 'show variables like
-     * tx_isolation' queries.
+     * Tests whether or not the configuration 'useLocalSessionState' actually
+     * prevents non-needed 'set autocommit=', 'set session transaction isolation
+     * ...' and 'show variables like tx_isolation' queries.
      *
      * @throws Exception if the test fails.
      */
@@ -1217,13 +1217,14 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Tests feature of "localSocketAddress", by enumerating local IF's and trying each one in turn.
-     * This test might take a long time to run, since we can't set timeouts if we're using
-     * localSocketAddress. We try and keep the time down on the testcase by spawning the checking of
-     * each interface off into separate threads.
+     * Tests feature of "localSocketAddress", by enumerating local IF's and
+     * trying each one in turn. This test might take a long time to run, since
+     * we can't set timeouts if we're using localSocketAddress. We try and keep
+     * the time down on the testcase by spawning the checking of each interface
+     * off into separate threads.
      *
-     * @throws Exception if the test can't use at least one of the local machine's interfaces to
-     * make an outgoing connection to the server.
+     * @throws Exception if the test can't use at least one of the local
+     * machine's interfaces to make an outgoing connection to the server.
      */
     public void testLocalSocketAddress() throws Exception {
         Enumeration<NetworkInterface> allInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -1457,8 +1458,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Checks if setting useCursorFetch to "true" automatically enables server-side prepared
-     * statements.
+     * Checks if setting useCursorFetch to "true" automatically enables
+     * server-side prepared statements.
      */
     public void testCouplingOfCursorFetch() throws Exception {
         Connection fetchConn = null;
@@ -1788,8 +1789,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test for Driver.acceptsURL() behavior clarification: - acceptsURL() throws SQLException if
-     * URL is null.
+     * Test for Driver.acceptsURL() behavior clarification: - acceptsURL()
+     * throws SQLException if URL is null.
      */
     public void testDriverAcceptsURLNullArgument() {
         assertThrows(SQLException.class, "The database URL cannot be null.", new Callable<Void>() {
@@ -1802,8 +1803,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test for Driver.connect() behavior clarifications: - connect() throws SQLException if URL is
-     * null.
+     * Test for Driver.connect() behavior clarifications: - connect() throws
+     * SQLException if URL is null.
      */
     public void testDriverConnectNullArgument() throws Exception {
         assertThrows(SQLException.class,
@@ -1825,8 +1826,8 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test for Driver.connect() behavior clarifications: - connect() properties precedence is
-     * implementation-defined.
+     * Test for Driver.connect() behavior clarifications: - connect() properties
+     * precedence is implementation-defined.
      */
     public void testDriverConnectPropertiesPrecedence() throws Exception {
         assertThrows(SQLException.class, "Access denied for user 'dummy'@'[^']+' \\(using password: YES\\)", new Callable<Void>() {
@@ -1884,13 +1885,15 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test the new connection property 'enableEscapeProcessing', as well as the old connection
-     * property 'processEscapeCodesForPrepStmts' and interrelation between them.
+     * Test the new connection property 'enableEscapeProcessing', as well as the
+     * old connection property 'processEscapeCodesForPrepStmts' and
+     * interrelation between them.
      *
-     * This test uses a QueryInterceptor to capture the query sent to the server and assert whether
-     * escape processing has been done in the client side or if the query is sent untouched and
-     * escape processing will be done at server side, according to provided connection properties
-     * and type of Statement objects in use.
+     * This test uses a QueryInterceptor to capture the query sent to the server
+     * and assert whether escape processing has been done in the client side or
+     * if the query is sent untouched and escape processing will be done at
+     * server side, according to provided connection properties and type of
+     * Statement objects in use.
      */
     public void testEnableEscapeProcessing() throws Exception {
         // make sure the connection string doesn't contain 'enableEscapeProcessing'
@@ -2107,8 +2110,8 @@ public class ConnectionTest extends BaseTestCase {
      * Test authentication with a user that requires an SSL connection.
      *
      * This test requires the CA truststore and the client keystore available in
-     * src/test/config/ssl-test-certs. The server needs to be configured with the CA and server
-     * certificates from src/test/config/ssl-test-certs.
+     * src/test/config/ssl-test-certs. The server needs to be configured with
+     * the CA and server certificates from src/test/config/ssl-test-certs.
      */
     public void testUserRequireSSL() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {
@@ -2195,12 +2198,12 @@ public class ConnectionTest extends BaseTestCase {
     }
 
     /**
-     * Test authentication with a user that requires an SSL connection and an authorized client
-     * certificate.
+     * Test authentication with a user that requires an SSL connection and an
+     * authorized client certificate.
      *
      * This test requires the CA truststore and the client keystore available in
-     * src/test/config/ssl-test-certs. The server needs to be configured with the CA and server
-     * certificates from src/test/config/ssl-test-certs.
+     * src/test/config/ssl-test-certs. The server needs to be configured with
+     * the CA and server certificates from src/test/config/ssl-test-certs.
      */
     public void testUserRequireX509() throws Exception {
         if (!versionMeetsMinimum(5, 7, 6)) {

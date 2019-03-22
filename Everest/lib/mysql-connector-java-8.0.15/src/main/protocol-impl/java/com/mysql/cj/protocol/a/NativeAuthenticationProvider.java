@@ -84,10 +84,11 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Initialize communications with the MySQL server. Handles logging on, and handling initial
-     * connection errors.
+     * Initialize communications with the MySQL server. Handles logging on, and
+     * handling initial connection errors.
      *
-     * @param sessState The session state object. It's intended to be updated from the handshake
+     * @param sessState The session state object. It's intended to be updated
+     * from the handshake
      * @param user user name
      * @param password password
      * @param database database name
@@ -203,14 +204,15 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Contains instances of authentication plugins which implements {@link AuthenticationPlugin}
-     * interface. Key values are mysql protocol plugin names, for example "mysql_native_password"
-     * and "mysql_old_password" for built-in plugins.
+     * Contains instances of authentication plugins which implements
+     * {@link AuthenticationPlugin} interface. Key values are mysql protocol
+     * plugin names, for example "mysql_native_password" and
+     * "mysql_old_password" for built-in plugins.
      */
     private Map<String, AuthenticationPlugin<NativePacketPayload>> authenticationPlugins = null;
     /**
-     * Contains names of classes or mechanisms ("mysql_native_password" for example) of
-     * authentication plugins which must be disabled.
+     * Contains names of classes or mechanisms ("mysql_native_password" for
+     * example) of authentication plugins which must be disabled.
      */
     private List<String> disabledAuthenticationPlugins = null;
     /**
@@ -227,15 +229,19 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     private String serverDefaultAuthenticationPluginName = null;
 
     /**
-     * Fill the authentication plugins map. First this method fill the map with instances of
+     * Fill the authentication plugins map. First this method fill the map with
+     * instances of
      * {@link MysqlNativePasswordPlugin}, {@link MysqlClearPasswordPlugin}, {@link Sha256PasswordPlugin}
-     * and {@link MysqlOldPasswordPlugin}. Then it creates instances of plugins listed in
-     * "authenticationPlugins" connection property and adds them to the map too.
+     * and {@link MysqlOldPasswordPlugin}. Then it creates instances of plugins
+     * listed in "authenticationPlugins" connection property and adds them to
+     * the map too.
      *
-     * The key for the map entry is got by {@link AuthenticationPlugin#getProtocolPluginName()} thus
-     * it is possible to replace built-in plugin with custom implementation. To do it custom plugin
-     * should return value "mysql_native_password", "mysql_old_password", "mysql_clear_password" or
-     * "sha256_password" from it's own getProtocolPluginName() method.
+     * The key for the map entry is got by
+     * {@link AuthenticationPlugin#getProtocolPluginName()} thus it is possible
+     * to replace built-in plugin with custom implementation. To do it custom
+     * plugin should return value "mysql_native_password", "mysql_old_password",
+     * "mysql_clear_password" or "sha256_password" from it's own
+     * getProtocolPluginName() method.
      *
      */
     @SuppressWarnings("unchecked")
@@ -339,19 +345,22 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Get authentication plugin instance from authentication plugins map by pluginName key. If such
-     * plugin is found it's {@link AuthenticationPlugin#isReusable()} method is checked, when it's
-     * false this method returns a new instance of plugin and the same instance otherwise.
+     * Get authentication plugin instance from authentication plugins map by
+     * pluginName key. If such plugin is found it's
+     * {@link AuthenticationPlugin#isReusable()} method is checked, when it's
+     * false this method returns a new instance of plugin and the same instance
+     * otherwise.
      *
-     * If plugin is not found method returns null, in such case the subsequent behavior of handshake
-     * process depends on type of last packet received from server: if it was Auth Challenge Packet
-     * then handshake will proceed with default plugin, if it was Auth Method Switch Request Packet
-     * then handshake will be interrupted with exception.
+     * If plugin is not found method returns null, in such case the subsequent
+     * behavior of handshake process depends on type of last packet received
+     * from server: if it was Auth Challenge Packet then handshake will proceed
+     * with default plugin, if it was Auth Method Switch Request Packet then
+     * handshake will be interrupted with exception.
      *
-     * @param pluginName mysql protocol plugin names, for example "mysql_native_password" and
-     * "mysql_old_password" for built-in plugins
-     * @return null if plugin is not found or authentication plugin instance initialized with
-     * current connection properties
+     * @param pluginName mysql protocol plugin names, for example
+     * "mysql_native_password" and "mysql_old_password" for built-in plugins
+     * @return null if plugin is not found or authentication plugin instance
+     * initialized with current connection properties
      */
     @SuppressWarnings("unchecked")
     private AuthenticationPlugin<NativePacketPayload> getAuthenticationPlugin(String pluginName) {
@@ -373,7 +382,8 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Check if given plugin requires confidentiality, but connection is without SSL
+     * Check if given plugin requires confidentiality, but connection is without
+     * SSL
      *
      * @param plugin {@link AuthenticationPlugin}
      */
@@ -386,20 +396,21 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Performs an authentication handshake to authorize connection to a given database as a given
-     * MySQL user. This can happen upon initial connection to the server, after receiving Auth
-     * Challenge Packet, or at any moment during the connection life-time via a Change User request.
+     * Performs an authentication handshake to authorize connection to a given
+     * database as a given MySQL user. This can happen upon initial connection
+     * to the server, after receiving Auth Challenge Packet, or at any moment
+     * during the connection life-time via a Change User request.
      *
-     * This method is aware of pluggable authentication and will use registered authentication
-     * plugins as requested by the server.
+     * This method is aware of pluggable authentication and will use registered
+     * authentication plugins as requested by the server.
      *
      * @param sessState The current state of the session
      * @param user the MySQL user account to log into
-     * @param password authentication data for the user account (depends on authentication method
-     * used - can be empty)
+     * @param password authentication data for the user account (depends on
+     * authentication method used - can be empty)
      * @param database database to connect to (can be empty)
-     * @param challenge the Auth Challenge Packet received from server if this method is used during
-     * the initial connection. Otherwise null.
+     * @param challenge the Auth Challenge Packet received from server if this
+     * method is used during the initial connection. Otherwise null.
      */
     private void proceedHandshakeWithPluggableAuthentication(ServerSession sessState, String user, String password, String database,
             NativePacketPayload challenge) {
@@ -733,7 +744,8 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Get the Java encoding to be used for the handshake response. Defaults to UTF-8.
+     * Get the Java encoding to be used for the handshake response. Defaults to
+     * UTF-8.
      *
      * @return encoding name
      */
@@ -750,8 +762,8 @@ public class NativeAuthenticationProvider implements AuthenticationProvider<Nati
     }
 
     /**
-     * Negotiates the SSL communications channel used when connecting to a MySQL server that
-     * understands SSL.
+     * Negotiates the SSL communications channel used when connecting to a MySQL
+     * server that understands SSL.
      *
      * @param packLength packet length
      */

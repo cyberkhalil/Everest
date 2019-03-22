@@ -39,42 +39,42 @@ import com.mysql.cj.jdbc.Driver;
  *
  * <p>
  * MySQL AB, 2008 Sun Microsystems, 2009 Oracle Corporation <b>really</b>
- * appreciates repeatable testcases when reporting bugs, so we're giving you this class to make that
- * job a bit easier (and standarized).
+ * appreciates repeatable testcases when reporting bugs, so we're giving you
+ * this class to make that job a bit easier (and standarized).
  *
  * <p>
  * To create a testcase, create a class that inherits from this class
- * (com.mysql.cj.jdbc.util.BaseBugReport), and override the methods 'setUp', 'tearDown' and
- * 'runTest'.
+ * (com.mysql.cj.jdbc.util.BaseBugReport), and override the methods 'setUp',
+ * 'tearDown' and 'runTest'.
  *
  * <p>
- * In the 'setUp' method, create code that creates your tables, and populates them with any data
- * needed to demonstrate the bug.
+ * In the 'setUp' method, create code that creates your tables, and populates
+ * them with any data needed to demonstrate the bug.
  *
  * <p>
- * In the 'runTest' method, create code that demonstrates the bug using the tables and data you
- * created in the 'setUp' method.
+ * In the 'runTest' method, create code that demonstrates the bug using the
+ * tables and data you created in the 'setUp' method.
  *
  * <p>
  * In the 'tearDown' method, drop any tables you created in the 'setUp' method.
  *
  * <p>
- * In any of the above three methods, you should use one of the variants of the 'getConnection'
- * method to create a JDBC connection to MySQL, which will use the default JDBC URL of
- * 'jdbc:mysql:///test'.
+ * In any of the above three methods, you should use one of the variants of the
+ * 'getConnection' method to create a JDBC connection to MySQL, which will use
+ * the default JDBC URL of 'jdbc:mysql:///test'.
  *
  * <p>
- * If you need to use a JDBC URL that is different than 'jdbc:mysql:///test', then override the
- * method 'getUrl' as well.
+ * If you need to use a JDBC URL that is different than 'jdbc:mysql:///test',
+ * then override the method 'getUrl' as well.
  *
  * <p>
- * Use the 'assertTrue' methods to create conditions that must be met in your testcase demonstrating
- * the behavior you are expecting (vs. the behavior you are observing, which is why you are most
- * likely filing a bug report).
+ * Use the 'assertTrue' methods to create conditions that must be met in your
+ * testcase demonstrating the behavior you are expecting (vs. the behavior you
+ * are observing, which is why you are most likely filing a bug report).
  *
  * <p>
- * Finally, create a 'main' method that creates a new instance of your testcase, and calls the 'run'
- * method:
+ * Finally, create a 'main' method that creates a new instance of your testcase,
+ * and calls the 'run' method:
  *
  * <pre>
  * public static void main(String[] args) throws Exception {
@@ -83,8 +83,9 @@ import com.mysql.cj.jdbc.Driver;
  * </pre>
  *
  * <p>
- * When filing a potential bug with MySQL Connector/J at http://bugs.mysql.com/ or on the bugs
- * mailing list, please include the code that you have just written using this class.
+ * When filing a potential bug with MySQL Connector/J at http://bugs.mysql.com/
+ * or on the bugs mailing list, please include the code that you have just
+ * written using this class.
  */
 public abstract class BaseBugReport {
 
@@ -93,7 +94,8 @@ public abstract class BaseBugReport {
     private Driver driver;
 
     /**
-     * Constructor for this BugReport, sets up JDBC driver used to create connections.
+     * Constructor for this BugReport, sets up JDBC driver used to create
+     * connections.
      */
     public BaseBugReport() {
         try {
@@ -104,33 +106,36 @@ public abstract class BaseBugReport {
     }
 
     /**
-     * Override this method with code that sets up the testcase for demonstrating your bug (creating
-     * tables, populating data, etc).
+     * Override this method with code that sets up the testcase for
+     * demonstrating your bug (creating tables, populating data, etc).
      *
      * @throws Exception if an error occurs during the 'setUp' phase.
      */
     public abstract void setUp() throws Exception;
 
     /**
-     * Override this method with code that cleans up anything created in the setUp() method.
+     * Override this method with code that cleans up anything created in the
+     * setUp() method.
      *
      * @throws Exception if an error occurs during the 'tearDown' phase.
      */
     public abstract void tearDown() throws Exception;
 
     /**
-     * Override this method with code that demonstrates the bug. This method will be called after
-     * setUp(), and before tearDown().
+     * Override this method with code that demonstrates the bug. This method
+     * will be called after setUp(), and before tearDown().
      *
      * @throws Exception if an error occurs during your test run.
      */
     public abstract void runTest() throws Exception;
 
     /**
-     * Runs the testcase by calling the setUp(), runTest() and tearDown() methods. The tearDown()
-     * method is run regardless of any errors occuring in the other methods.
+     * Runs the testcase by calling the setUp(), runTest() and tearDown()
+     * methods. The tearDown() method is run regardless of any errors occuring
+     * in the other methods.
      *
-     * @throws Exception if an error occurs in any of the aforementioned methods.
+     * @throws Exception if an error occurs in any of the aforementioned
+     * methods.
      */
     public final void run() throws Exception {
         try {
@@ -143,7 +148,8 @@ public abstract class BaseBugReport {
     }
 
     /**
-     * Throws an exception with the given message if condition evalutates to 'false'.
+     * Throws an exception with the given message if condition evalutates to
+     * 'false'.
      *
      * @param message the message to use in the exception
      * @param condition the condition to test for
@@ -166,8 +172,9 @@ public abstract class BaseBugReport {
     }
 
     /**
-     * Provides the JDBC URL to use to demonstrate the bug. The java.sql.Connection that you use to
-     * demonstrate this bug will be provided by the getConnection() method using this URL.
+     * Provides the JDBC URL to use to demonstrate the bug. The
+     * java.sql.Connection that you use to demonstrate this bug will be provided
+     * by the getConnection() method using this URL.
      *
      * The default value is 'jdbc:mysql:///test'
      *
@@ -180,8 +187,8 @@ public abstract class BaseBugReport {
     /**
      * Provides a connection to the JDBC URL specified in getUrl().
      *
-     * If a connection already exists, that connection is returned. Otherwise a new connection is
-     * created.
+     * If a connection already exists, that connection is returned. Otherwise a
+     * new connection is created.
      *
      * @return a connection to the JDBC URL specified in getUrl().
      *
@@ -196,8 +203,8 @@ public abstract class BaseBugReport {
     }
 
     /**
-     * Use this if you need to get a new connection for your bug report (i.e. there's more than one
-     * connection involved).
+     * Use this if you need to get a new connection for your bug report (i.e.
+     * there's more than one connection involved).
      *
      * @return a new connection to the JDBC URL specified in getUrl().
      *

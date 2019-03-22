@@ -56,8 +56,9 @@ public class ServerPreparedQueryBindings extends AbstractQueryBindings<ServerPre
     private AtomicBoolean sendTypesToServer = new AtomicBoolean(false);
 
     /**
-     * Flag indicating whether or not the long parameters have been 'switched' back to normal
-     * parameters. We cannot execute() if clearParameters() has not been called in this case.
+     * Flag indicating whether or not the long parameters have been 'switched'
+     * back to normal parameters. We cannot execute() if clearParameters() has
+     * not been called in this case.
      */
     private boolean longParameterSwitchDetected = false;
 
@@ -88,8 +89,8 @@ public class ServerPreparedQueryBindings extends AbstractQueryBindings<ServerPre
     }
 
     /**
-     * Returns the structure representing the value that (can be)/(is) bound at the given parameter
-     * index.
+     * Returns the structure representing the value that (can be)/(is) bound at
+     * the given parameter index.
      *
      * @param parameterIndex 0-based
      * @param forLongData is this for a stream?

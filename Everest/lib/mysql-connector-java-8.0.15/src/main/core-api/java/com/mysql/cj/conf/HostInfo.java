@@ -64,10 +64,11 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port and user
-     * info.
+     * Constructs a {@link HostInfo} instance initialized with the provided
+     * host, port and user info.
      *
-     * @param url a reference to the original database URL that produced this host info
+     * @param url a reference to the original database URL that produced this
+     * host info
      * @param host the host ip or name
      * @param port the port
      * @param user the user name
@@ -78,10 +79,11 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port, user,
-     * password and connection arguments.
+     * Constructs a {@link HostInfo} instance initialized with the provided
+     * host, port, user, password and connection arguments.
      *
-     * @param url a reference to the original database URL that produced this host info
+     * @param url a reference to the original database URL that produced this
+     * host info
      * @param host the host ip or name
      * @param port the port
      * @param user the user name
@@ -93,15 +95,17 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Constructs a {@link HostInfo} instance initialized with the provided host, port, user,
-     * password and connection arguments.
+     * Constructs a {@link HostInfo} instance initialized with the provided
+     * host, port, user, password and connection arguments.
      *
-     * @param url a reference to the original database URL that produced this host info
+     * @param url a reference to the original database URL that produced this
+     * host info
      * @param host the host ip or name
      * @param port the port
      * @param user the user name
      * @param password this user's password
-     * @param isPasswordless no password was provided in the connection URL or arguments?
+     * @param isPasswordless no password was provided in the connection URL or
+     * arguments?
      * @param properties a connection arguments map.
      */
     public HostInfo(DatabaseUrlContainer url, String host, int port, String user, String password, boolean isPasswordless, Map<String, String> properties) {
@@ -162,10 +166,11 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Returns true if the is the default one, i.e., no password was provided in the connection URL
-     * or arguments.
+     * Returns true if the is the default one, i.e., no password was provided in
+     * the connection URL or arguments.
      *
-     * @return true if no password was provided in the connection URL or arguments.
+     * @return true if no password was provided in the connection URL or
+     * arguments.
      */
     public boolean isPasswordless() {
         return this.isPasswordless;
@@ -202,10 +207,12 @@ public class HostInfo implements DatabaseUrlContainer {
     }
 
     /**
-     * Exposes this host info as a single properties instance. The values for host, port, user and
-     * password are added to the properties map with their standard keys.
+     * Exposes this host info as a single properties instance. The values for
+     * host, port, user and password are added to the properties map with their
+     * standard keys.
      *
-     * @return a {@link Properties} instance containing the full host information.
+     * @return a {@link Properties} instance containing the full host
+     * information.
      */
     public Properties exposeAsProperties() {
         Properties props = new Properties();

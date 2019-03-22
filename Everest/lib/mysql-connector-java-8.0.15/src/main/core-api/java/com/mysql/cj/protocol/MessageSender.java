@@ -35,8 +35,8 @@ import com.mysql.cj.exceptions.CJOperationNotSupportedException;
 import com.mysql.cj.exceptions.ExceptionFactory;
 
 /**
- * This interface provides a facility for sending messages to server. The destination, transmission
- * method, etc are determined by the implementation.
+ * This interface provides a facility for sending messages to server. The
+ * destination, transmission method, etc are determined by the implementation.
  *
  * @param <M> Message type
  */
@@ -64,12 +64,12 @@ public interface MessageSender<M extends Message> {
     }
 
     /**
-     * Asynchronously write a message with a notification being delivered to <code>callback</code>
-     * upon completion of write of entire message.
+     * Asynchronously write a message with a notification being delivered to
+     * <code>callback</code> upon completion of write of entire message.
      *
      * @param message message extending {@link Message}
-     * @param callback an optional callback to receive notification of when the message is
-     * completely written
+     * @param callback an optional callback to receive notification of when the
+     * message is completely written
      */
     default void send(M message, CompletionHandler<Long, Void> callback) {
         throw ExceptionFactory.createException(CJOperationNotSupportedException.class, "Not supported");
@@ -94,8 +94,8 @@ public interface MessageSender<M extends Message> {
     }
 
     /**
-     * Return the previous PacketSender instance from the decorators chain or the current
-     * PacketSender if it is the first entry in a chain.
+     * Return the previous PacketSender instance from the decorators chain or
+     * the current PacketSender if it is the first entry in a chain.
      *
      * @return {@link MessageSender} instance
      */

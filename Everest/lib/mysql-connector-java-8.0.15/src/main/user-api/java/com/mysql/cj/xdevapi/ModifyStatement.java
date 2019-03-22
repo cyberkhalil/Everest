@@ -50,8 +50,8 @@ public interface ModifyStatement extends Statement<ModifyStatement, Result> {
     ModifyStatement limit(long numberOfRows);
 
     /**
-     * Add an update to the statement setting the field as the document path to the given value for
-     * all documents matching the search criteria.
+     * Add an update to the statement setting the field as the document path to
+     * the given value for all documents matching the search criteria.
      *
      * @param docPath document path to the given value
      * @param value value to set
@@ -60,8 +60,8 @@ public interface ModifyStatement extends Statement<ModifyStatement, Result> {
     ModifyStatement set(String docPath, Object value);
 
     /**
-     * Add an update to the statement setting the field, if it exists at the document path, to the
-     * given value.
+     * Add an update to the statement setting the field, if it exists at the
+     * document path, to the given value.
      *
      * @param docPath document path to the given value
      * @param value value to set
@@ -78,9 +78,10 @@ public interface ModifyStatement extends Statement<ModifyStatement, Result> {
     ModifyStatement unset(String... fields);
 
     /**
-     * Takes in a patch object and applies it on all documents matching the modify() filter, using
-     * the JSON_MERGE_PATCH() function. Please note that {@link DbDoc} does not support expressions
-     * as a field values, please use {@link #patch(String)} method if you need such functionality.
+     * Takes in a patch object and applies it on all documents matching the
+     * modify() filter, using the JSON_MERGE_PATCH() function. Please note that
+     * {@link DbDoc} does not support expressions as a field values, please use
+     * {@link #patch(String)} method if you need such functionality.
      *
      * @param document patch object
      * @return {@link ModifyStatement}
@@ -88,15 +89,15 @@ public interface ModifyStatement extends Statement<ModifyStatement, Result> {
     ModifyStatement patch(DbDoc document);
 
     /**
-     * Takes in a document patch and applies it on all documents matching the modify() filter, using
-     * the JSON_MERGE_PATCH() function. A document patch is similar to a JSON object, with the key
-     * difference that document field values can be nested expressions in addition to literal
-     * values.
+     * Takes in a document patch and applies it on all documents matching the
+     * modify() filter, using the JSON_MERGE_PATCH() function. A document patch
+     * is similar to a JSON object, with the key difference that document field
+     * values can be nested expressions in addition to literal values.
      * <br>
      * Example:<br>
      * collection.modify("_id = :id")<br>
-     * .patch("{\"zip\": address.zip-300000, \"street\": CONCAT($.name, '''s street: ',
-     * $.address.street)}")<br>
+     * .patch("{\"zip\": address.zip-300000, \"street\": CONCAT($.name, '''s
+     * street: ', $.address.street)}")<br>
      * .bind("id", "2").execute();
      *
      * @param document patch object

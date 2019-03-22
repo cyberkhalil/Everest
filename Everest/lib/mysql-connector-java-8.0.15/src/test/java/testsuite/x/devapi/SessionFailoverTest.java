@@ -58,10 +58,11 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
     private String testsHost = "";
 
     /**
-     * Builds a connection string with the given hosts while setting priorities according to their
-     * positions.
+     * Builds a connection string with the given hosts while setting priorities
+     * according to their positions.
      *
-     * @param hosts the hosts list, 1st has priority=100, 2nd has priority=99, and so on
+     * @param hosts the hosts list, 1st has priority=100, 2nd has priority=99,
+     * and so on
      * @return a single host or a multi-host connection string
      */
     private String buildConnectionString(String... hosts) {
@@ -206,11 +207,13 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
     /**
      * Tests xdevapi.connect-timeout and connectTimeout functionality.
      *
-     * The real socket connect timeout can be revealed only when trying to connect to the
-     * unavailable remote host pointed by IP address. Neither localhost IP nor domain names are
-     * working, they fail much faster then the timeout is reached. If default 10.77.77.77:37070
-     * doesn't work in a particular testing setup (if the ip address is available) please add this
-     * variable to ant call: -Dcom.mysql.cj.testsuite.unavailable.host=unavailable_ip:port
+     * The real socket connect timeout can be revealed only when trying to
+     * connect to the unavailable remote host pointed by IP address. Neither
+     * localhost IP nor domain names are working, they fail much faster then the
+     * timeout is reached. If default 10.77.77.77:37070 doesn't work in a
+     * particular testing setup (if the ip address is available) please add this
+     * variable to ant call:
+     * -Dcom.mysql.cj.testsuite.unavailable.host=unavailable_ip:port
      */
     @Test
     public void testConnectionTimeout() throws Exception {

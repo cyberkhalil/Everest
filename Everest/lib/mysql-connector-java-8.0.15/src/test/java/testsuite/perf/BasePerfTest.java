@@ -141,7 +141,8 @@ public abstract class BasePerfTest extends BaseTestCase {
     /**
      * Adds one test result to the statistics.
      *
-     * @param value a single result representing the value being measured in the test.
+     * @param value a single result representing the value being measured in the
+     * test.
      */
     protected void addResult(double value) {
         this.numIterations++;
@@ -160,8 +161,8 @@ public abstract class BasePerfTest extends BaseTestCase {
     }
 
     /**
-     * Calls doIteration() the <code>numIterations</code> times, displaying the mean, std, margin of
-     * error and confidence level.
+     * Calls doIteration() the <code>numIterations</code> times, displaying the
+     * mean, std, margin of error and confidence level.
      *
      * @param num_iterations the number of iterations to perform ( < 30)
      * @throws Exception if an error occurs.
@@ -173,10 +174,11 @@ public abstract class BasePerfTest extends BaseTestCase {
     }
 
     /**
-     * Reports the current results to STDOUT, preceeded by <code>additionalMessage</code> if not
-     * null.
+     * Reports the current results to STDOUT, preceeded by
+     * <code>additionalMessage</code> if not null.
      *
-     * @param additionalMessage the additional message to print, or null if no message.
+     * @param additionalMessage the additional message to print, or null if no
+     * message.
      */
     protected synchronized void reportResults(String additionalMessage) {
         StringBuilder messageBuf = new StringBuilder();

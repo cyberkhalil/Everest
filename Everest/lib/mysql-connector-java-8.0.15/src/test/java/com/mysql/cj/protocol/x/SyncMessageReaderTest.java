@@ -127,8 +127,8 @@ public class SyncMessageReaderTest {
     }
 
     /**
-     * This is a 'mini'-stress test that encompasses the check of <i>clearHeader()</i> being called
-     * correctly.
+     * This is a 'mini'-stress test that encompasses the check of
+     * <i>clearHeader()</i> being called correctly.
      */
     @Test
     public void testSeveralMessages() throws IOException {
@@ -169,8 +169,8 @@ public class SyncMessageReaderTest {
     }
 
     /**
-     * Verification test to help prevent bugs in the typecode/class/parser mapping tables. We check
-     * that all classes that are mapped have a parser.
+     * Verification test to help prevent bugs in the typecode/class/parser
+     * mapping tables. We check that all classes that are mapped have a parser.
      *
      * @todo Test in the other direction also
      */

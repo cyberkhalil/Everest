@@ -104,9 +104,9 @@ abstract class WrapperBase {
         }
 
         /**
-         * Recursively checks for interfaces on the given object to determine if it implements a
-         * java.sql interface, and if so, proxies the instance so that we can catch and fire SQL
-         * errors.
+         * Recursively checks for interfaces on the given object to determine if
+         * it implements a java.sql interface, and if so, proxies the instance
+         * so that we can catch and fire SQL errors.
          *
          * @param toProxy object to be proxied
          * @param clazz desired class

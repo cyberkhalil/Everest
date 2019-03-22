@@ -37,8 +37,8 @@ import com.mysql.cj.protocol.MessageSender;
 /**
  * A {@link MessageSender} for the compressed protocol.
  *
- * TODO: add support for pre-allocated buffer for large packets (if there's a demonstrable perf
- * improvement)
+ * TODO: add support for pre-allocated buffer for large packets (if there's a
+ * demonstrable perf improvement)
  */
 public class CompressedPacketSender implements MessageSender<NativePacketPayload> {
 
@@ -78,7 +78,8 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
     }
 
     /**
-     * Add and compress the header for the raw packet into the compressed packet.
+     * Add and compress the header for the raw packet into the compressed
+     * packet.
      *
      * @param packetSequence sequence id
      * @param uncompressedPacketLen uncompressed packet length
@@ -106,7 +107,8 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
     }
 
     /**
-     * Complete compression of the current payload contents to the compressed packet.
+     * Complete compression of the current payload contents to the compressed
+     * packet.
      */
     private void completeCompression() {
         this.deflater.finish();
@@ -154,15 +156,17 @@ public class CompressedPacketSender implements MessageSender<NativePacketPayload
     }
 
     /**
-     * Packet sender implementation for the compressed MySQL protocol. For compressed transmission
-     * of multi-packets, split the packets up in the same way as the uncompressed protocol. We fit
-     * up to MAX_PACKET_SIZE bytes of split uncompressed packet, including the header, into an
-     * compressed packet. The first packet of the multi-packet is 4 bytes of header and
-     * MAX_PACKET_SIZE - 4 bytes of the payload. The next packet must send the remaining four bytes
-     * of the payload followed by a new header and payload. If the second split packet is also
-     * around MAX_PACKET_SIZE in length, then only MAX_PACKET_SIZE - 4 (from the previous packet) -
-     * 4 (for the new header) can be sent. This means the payload will be limited by 8 bytes and
-     * this will continue to increase by 4 at every iteration.
+     * Packet sender implementation for the compressed MySQL protocol. For
+     * compressed transmission of multi-packets, split the packets up in the
+     * same way as the uncompressed protocol. We fit up to MAX_PACKET_SIZE bytes
+     * of split uncompressed packet, including the header, into an compressed
+     * packet. The first packet of the multi-packet is 4 bytes of header and
+     * MAX_PACKET_SIZE - 4 bytes of the payload. The next packet must send the
+     * remaining four bytes of the payload followed by a new header and payload.
+     * If the second split packet is also around MAX_PACKET_SIZE in length, then
+     * only MAX_PACKET_SIZE - 4 (from the previous packet) - 4 (for the new
+     * header) can be sent. This means the payload will be limited by 8 bytes
+     * and this will continue to increase by 4 at every iteration.
      *
      * @param packet data bytes
      * @param packetLen packet length

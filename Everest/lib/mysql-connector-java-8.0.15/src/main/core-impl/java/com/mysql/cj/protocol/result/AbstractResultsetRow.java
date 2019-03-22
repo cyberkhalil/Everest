@@ -221,8 +221,8 @@ public abstract class AbstractResultsetRow implements ResultsetRow {
 
     /**
      * Get a value from a byte array. The byte array is interpreted by the
-     * {@link com.mysql.cj.protocol.ValueDecoder} which uses the value factory create the return
-     * value.
+     * {@link com.mysql.cj.protocol.ValueDecoder} which uses the value factory
+     * create the return value.
      *
      * @param columnIndex The (internal) index of the column
      * @param bytes byte array

@@ -67,7 +67,8 @@ import com.mysql.cj.util.Util;
 import junit.framework.TestCase;
 
 /**
- * Base class for all test cases. Creates connections, statements, etc. and closes them.
+ * Base class for all test cases. Creates connections, statements, etc. and
+ * closes them.
  */
 public abstract class BaseTestCase extends TestCase {
 
@@ -82,15 +83,15 @@ public abstract class BaseTestCase extends TestCase {
     protected boolean DISABLED_testBug5874 = true; // TODO this test is working in c/J 5.1 but fails here; disabled for later analysis
 
     /**
-     * JDBC URL, initialized from com.mysql.cj.testsuite.url system property, or defaults to
-     * jdbc:mysql:///test and its connection URL.
+     * JDBC URL, initialized from com.mysql.cj.testsuite.url system property, or
+     * defaults to jdbc:mysql:///test and its connection URL.
      */
     public static String dbUrl = "jdbc:mysql:///test";
     protected static ConnectionUrl mainConnectionUrl = null;
 
     /**
-     * JDBC URL, initialized from com.mysql.cj.testsuite.url.openssl system property and its
-     * connection URL
+     * JDBC URL, initialized from com.mysql.cj.testsuite.url.openssl system
+     * property and its connection URL
      */
     protected static String sha256Url = null;
     protected static ConnectionUrl sha256ConnectionUrl = null;
@@ -133,7 +134,8 @@ public abstract class BaseTestCase extends TestCase {
     protected final String dbName;
 
     /**
-     * PreparedStatement to be used in tests, not initialized. Cleaned up in tearDown().
+     * PreparedStatement to be used in tests, not initialized. Cleaned up in
+     * tearDown().
      */
     protected PreparedStatement pstmt = null;
 
@@ -145,7 +147,8 @@ public abstract class BaseTestCase extends TestCase {
     protected ResultSet sha256Rs = null;
 
     /**
-     * Statement to be used in tests, initialized in setUp(). Cleaned up in tearDown().
+     * Statement to be used in tests, initialized in setUp(). Cleaned up in
+     * tearDown().
      */
     protected Statement stmt = null;
 
@@ -380,7 +383,8 @@ public abstract class BaseTestCase extends TestCase {
     /**
      * Returns a new connection with the given properties
      *
-     * @param props the properties to use (the URL will come from the standard for this testcase).
+     * @param props the properties to use (the URL will come from the standard
+     * for this testcase).
      *
      * @return a new connection using the given properties.
      *
@@ -408,7 +412,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Returns the per-instance counter (for messages when multi-threading stress tests)
+     * Returns the per-instance counter (for messages when multi-threading
+     * stress tests)
      *
      * @return int the instance number
      */
@@ -441,7 +446,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Returns the properties that represent the default URL used for connections for all testcases.
+     * Returns the properties that represent the default URL used for
+     * connections for all testcases.
      *
      * @return properties parsed from com.mysql.jdbc.testsuite.url
      *
@@ -474,13 +480,14 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Some tests build connections strings for internal usage but, in order for them to work, they
-     * may require some connection properties set in the main test suite URL. For example
-     * 'serverTimezone' is one of those properties.
+     * Some tests build connections strings for internal usage but, in order for
+     * them to work, they may require some connection properties set in the main
+     * test suite URL. For example 'serverTimezone' is one of those properties.
      *
-     * @param props the Properties object where to add the missing connection properties
-     * @return the modified Properties objects or a new one if <code>props</code> is
-     * <code>null</code>
+     * @param props the Properties object where to add the missing connection
+     * properties
+     * @return the modified Properties objects or a new one if
+     * <code>props</code> is <code>null</code>
      */
     protected Properties appendRequiredProperties(Properties props) {
         if (props == null) {
@@ -629,7 +636,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether a certain system property is defined, in order to run/not-run certain tests
+     * Checks whether a certain system property is defined, in order to
+     * run/not-run certain tests
      *
      * @param propName the property name to check for
      *
@@ -792,7 +800,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether the database we're connected to meets the given version minimum
+     * Checks whether the database we're connected to meets the given version
+     * minimum
      *
      * @param major the major version to meet
      * @param minor the minor version to meet
@@ -806,7 +815,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether the database we're connected to meets the given version minimum
+     * Checks whether the database we're connected to meets the given version
+     * minimum
      *
      * @param major the major version to meet
      * @param minor the minor version to meet
@@ -827,7 +837,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Checks whether the server we're connected to is an MySQL Enterprise edition
+     * Checks whether the server we're connected to is an MySQL Enterprise
+     * edition
      */
     protected boolean isEnterpriseEdition() {
         return Util.isEnterpriseEdition(((JdbcConnection) this.conn).getServerVersion().toString());
@@ -989,14 +1000,14 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Asserts the most recent history of connection attempts from the global data in
-     * UnreliableSocketFactory.
+     * Asserts the most recent history of connection attempts from the global
+     * data in UnreliableSocketFactory.
      *
      * @param expectedConnectionsHistory The list of expected events. Use
      * UnreliableSocketFactory.getHostConnectedStatus(String),
      * UnreliableSocketFactory.getHostFailedStatus(String) and
-     * UnreliableSocketFactory.getHostUnknownStatus(String) to build proper syntax for host+status
-     * identification.
+     * UnreliableSocketFactory.getHostUnknownStatus(String) to build proper
+     * syntax for host+status identification.
      */
     protected static void assertConnectionsHistory(String... expectedConnectionsHistory) {
         List<String> actualConnectionsHistory = UnreliableSocketFactory.getHostsFromLastConnections(expectedConnectionsHistory.length);
@@ -1048,7 +1059,8 @@ public abstract class BaseTestCase extends TestCase {
     }
 
     /**
-     * Retrieve the current system time in milliseconds, using the nanosecond time if possible.
+     * Retrieve the current system time in milliseconds, using the nanosecond
+     * time if possible.
      */
     protected static final long currentTimeMillis() {
         try {

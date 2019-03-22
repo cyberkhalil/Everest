@@ -248,7 +248,8 @@ public class AsyncQueryTest extends BaseCollectionTestCase {
     }
 
     /**
-     * This test addresses the "correlation" of messages to their proper async listeners.
+     * This test addresses the "correlation" of messages to their proper async
+     * listeners.
      */
     @Test
     public void manyFutures() throws Exception {

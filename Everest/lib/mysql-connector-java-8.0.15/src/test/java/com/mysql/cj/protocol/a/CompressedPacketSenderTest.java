@@ -48,7 +48,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     private MessageSender<NativePacketPayload> sender = new CompressedPacketSender(new BufferedOutputStream(this.outputStream));
 
     /**
-     * Test utility to transform a buffer containing compressed packets into a sequence of payloads.
+     * Test utility to transform a buffer containing compressed packets into a
+     * sequence of payloads.
      */
     static class CompressedPackets {
 
@@ -125,8 +126,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * Test the situation where a single packet is split into two and the second part doesn't exceed
-     * the capacity of the second compressed packet.
+     * Test the situation where a single packet is split into two and the second
+     * part doesn't exceed the capacity of the second compressed packet.
      */
     @Test
     public void basicTwoPartSplitPacketTest() throws IOException {
@@ -171,8 +172,9 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * Test the situation where a single packet is split into two and the second part exceeds the
-     * capacity of the second compressed packet requiring a third compressed packet.
+     * Test the situation where a single packet is split into two and the second
+     * part exceeds the capacity of the second compressed packet requiring a
+     * third compressed packet.
      */
     @Test
     public void twoPacketToThreeCompressedPacketNoBoundary() throws IOException {
@@ -199,8 +201,8 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * This tests that the splitting of MySQL packets includes an additional empty packet to signal
-     * the end of the multi-packet sequence.
+     * This tests that the splitting of MySQL packets includes an additional
+     * empty packet to signal the end of the multi-packet sequence.
      */
     @Test
     public void twoPacketToThreeWithEmptyUncompressedPacket() throws IOException {

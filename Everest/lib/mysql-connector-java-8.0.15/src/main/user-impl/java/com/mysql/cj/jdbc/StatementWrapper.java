@@ -41,7 +41,8 @@ import com.mysql.cj.exceptions.MysqlErrorNumbers;
 import com.mysql.cj.jdbc.exceptions.SQLError;
 
 /**
- * Wraps statements so that errors can be reported correctly to ConnectionEventListeners.
+ * Wraps statements so that errors can be reported correctly to
+ * ConnectionEventListeners.
  */
 public class StatementWrapper extends WrapperBase implements Statement {
 

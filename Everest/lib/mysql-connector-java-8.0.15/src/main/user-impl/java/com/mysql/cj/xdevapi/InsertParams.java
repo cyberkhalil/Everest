@@ -83,7 +83,8 @@ public class InsertParams {
     }
 
     /**
-     * Fill insert parameters from projection_expression -&gt; value_expression map.
+     * Fill insert parameters from projection_expression -&gt; value_expression
+     * map.
      *
      * @param fieldsAndValues projection_expression -&gt; value_expression map
      */

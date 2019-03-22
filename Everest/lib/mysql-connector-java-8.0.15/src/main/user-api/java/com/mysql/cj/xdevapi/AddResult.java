@@ -36,8 +36,8 @@ import java.util.List;
 public interface AddResult extends Result {
 
     /**
-     * Get a list of document ids generated in the server for the documents added by
-     * collection.add().
+     * Get a list of document ids generated in the server for the documents
+     * added by collection.add().
      *
      * @return all generated document ids
      */

@@ -32,8 +32,8 @@ import java.nio.channels.CompletionHandler;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Base class that propagates any error to the given future allowing only implementation of the
- * success callback.
+ * Base class that propagates any error to the given future allowing only
+ * implementation of the success callback.
  *
  * @param <T> result type
  */

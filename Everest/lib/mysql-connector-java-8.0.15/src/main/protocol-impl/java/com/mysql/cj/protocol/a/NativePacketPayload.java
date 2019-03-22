@@ -39,13 +39,15 @@ import com.mysql.cj.protocol.a.NativeConstants.StringSelfDataType;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * PacketPayload is the content of a full single packet (independent from on-wire splitting)
- * communicated with the server. We can manipulate the packet's underlying buffer when sending
- * commands with writeInteger(), writeBytes(), etc. We can check the packet type with isEOFPacket(),
- * etc predicates.
+ * PacketPayload is the content of a full single packet (independent from
+ * on-wire splitting) communicated with the server. We can manipulate the
+ * packet's underlying buffer when sending commands with writeInteger(),
+ * writeBytes(), etc. We can check the packet type with isEOFPacket(), etc
+ * predicates.
  *
- * A position is maintained for reading/writing data. A payload length is maintained allowing the
- * PacketPayload to be decoupled from the size of the underlying buffer.
+ * A position is maintained for reading/writing data. A payload length is
+ * maintained allowing the PacketPayload to be decoupled from the size of the
+ * underlying buffer.
  *
  */
 public class NativePacketPayload implements Message {
@@ -57,7 +59,8 @@ public class NativePacketPayload implements Message {
     public static final short TYPE_ID_ERROR = 0xFF;
     public static final short TYPE_ID_EOF = 0xFE;
     /**
-     * It has the same signature as EOF, but may be issued by server only during handshake phase *
+     * It has the same signature as EOF, but may be issued by server only during
+     * handshake phase *
      */
     public static final short TYPE_ID_AUTH_SWITCH = 0xFE;
     public static final short TYPE_ID_LOCAL_INFILE = 0xFB;
@@ -105,9 +108,9 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Checks that underlying buffer has enough space to store additionalData bytes starting from
-     * current position. If buffer size is smaller than required then it is re-allocated with bigger
-     * size.
+     * Checks that underlying buffer has enough space to store additionalData
+     * bytes starting from current position. If buffer size is smaller than
+     * required then it is re-allocated with bigger size.
      *
      * @param additionalData additional data size in bytes
      */
@@ -148,8 +151,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Get the actual length of payload the buffer contains. It can be smaller than underlying
-     * buffer size because it can be reused after a big packet.
+     * Get the actual length of payload the buffer contains. It can be smaller
+     * than underlying buffer size because it can be reused after a big packet.
      *
      * @return payload length
      */
@@ -158,8 +161,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Set the actual length of payload written to buffer. It can be smaller or equal to underlying
-     * buffer size.
+     * Set the actual length of payload written to buffer. It can be smaller or
+     * equal to underlying buffer size.
      *
      * @param bufLengthToSet length
      */
@@ -171,8 +174,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * To be called after write operations to ensure that payloadLength contains the real size of
-     * written data.
+     * To be called after write operations to ensure that payloadLength contains
+     * the real size of written data.
      */
     private void adjustPayloadLength() {
         if (this.position > this.payloadLength) {
@@ -204,7 +207,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Is it a EOF packet. See http://dev.mysql.com/doc/internals/en/packet-EOF_Packet.html
+     * Is it a EOF packet. See
+     * http://dev.mysql.com/doc/internals/en/packet-EOF_Packet.html
      *
      * @return true if it is a EOF packet
      */
@@ -223,7 +227,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Is it an OK packet. See http://dev.mysql.com/doc/internals/en/packet-OK_Packet.html
+     * Is it an OK packet. See
+     * http://dev.mysql.com/doc/internals/en/packet-OK_Packet.html
      *
      * @return true if it is an OK packet
      */
@@ -232,7 +237,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Is it an OK packet for ResultSet. Unlike usual 0x00 signature it has 0xfe signature. See
+     * Is it an OK packet for ResultSet. Unlike usual 0x00 signature it has 0xfe
+     * signature. See
      * http://dev.mysql.com/doc/internals/en/packet-OK_Packet.html
      *
      * @return true if it is an OK packet for ResultSet
@@ -391,8 +397,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Write all bytes from given byte array into internal buffer starting with current buffer
-     * position.
+     * Write all bytes from given byte array into internal buffer starting with
+     * current buffer position.
      *
      * @param type on-wire data type
      * @param b from byte array
@@ -402,8 +408,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Write all bytes from given byte array into internal buffer starting with current buffer
-     * position.
+     * Write all bytes from given byte array into internal buffer starting with
+     * current buffer position.
      *
      * @param type on-wire data type
      * @param b from byte array
@@ -413,8 +419,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Write len bytes from given byte array into internal buffer. Read starts from given offset,
-     * write starts with current buffer position.
+     * Write len bytes from given byte array into internal buffer. Read starts
+     * from given offset, write starts with current buffer position.
      *
      * @param type on-wire data type
      * @param b from byte array
@@ -444,8 +450,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Write len bytes from given byte array into internal buffer. Read starts from given offset,
-     * write starts with current buffer position.
+     * Write len bytes from given byte array into internal buffer. Read starts
+     * from given offset, write starts with current buffer position.
      *
      * @param type on-wire data type
      * @param b from byte array
@@ -466,8 +472,9 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Read bytes from internal buffer starting from current position into the new byte array. The
-     * length of data to read depends on {@link StringSelfDataType}.
+     * Read bytes from internal buffer starting from current position into the
+     * new byte array. The length of data to read depends on
+     * {@link StringSelfDataType}.
      *
      * @param type {@link StringSelfDataType}
      * @return bytes
@@ -495,8 +502,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Set position to next value in internal buffer skipping the current value according to
-     * {@link StringSelfDataType}.
+     * Set position to next value in internal buffer skipping the current value
+     * according to {@link StringSelfDataType}.
      *
      * @param type {@link StringSelfDataType}
      */
@@ -523,7 +530,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Read len bytes from internal buffer starting from current position into the new byte array.
+     * Read len bytes from internal buffer starting from current position into
+     * the new byte array.
      *
      * @param type {@link StringLengthDataType}
      * @param len length
@@ -543,9 +551,9 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Read bytes from internal buffer starting from current position decoding them into String
-     * using the specified character encoding. The length of data to read depends on
-     * {@link StringSelfDataType}.
+     * Read bytes from internal buffer starting from current position decoding
+     * them into String using the specified character encoding. The length of
+     * data to read depends on {@link StringSelfDataType}.
      *
      * @param type {@link StringSelfDataType}
      * @param encoding if null then platform default encoding is used
@@ -575,8 +583,8 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Read len bytes from internal buffer starting from current position decoding them into String
-     * using the specified character encoding.
+     * Read len bytes from internal buffer starting from current position
+     * decoding them into String using the specified character encoding.
      *
      * @param type {@link StringLengthDataType}
      * @param encoding if null then platform default encoding is used

@@ -65,7 +65,8 @@ public class NativeUtils {
      *
      * @param type type
      *
-     * @return the length (&gt;0), 0 for a length-prefixed type, or -1 for unknown
+     * @return the length (&gt;0), 0 for a length-prefixed type, or -1 for
+     * unknown
      */
     public static int getBinaryEncodedLength(int type) {
         switch (type) {

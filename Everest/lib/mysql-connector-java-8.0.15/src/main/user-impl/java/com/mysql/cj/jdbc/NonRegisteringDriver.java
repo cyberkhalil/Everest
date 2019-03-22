@@ -54,23 +54,25 @@ import com.mysql.cj.jdbc.ha.ReplicationConnectionProxy;
 import com.mysql.cj.util.StringUtils;
 
 /**
- * The Java SQL framework allows for multiple database drivers. Each driver should supply a class
- * that implements the Driver interface
+ * The Java SQL framework allows for multiple database drivers. Each driver
+ * should supply a class that implements the Driver interface
  *
  * <p>
- * The DriverManager will try to load as many drivers as it can find and then for any given
- * connection request, it will ask each driver in turn to try to connect to the target URL.
+ * The DriverManager will try to load as many drivers as it can find and then
+ * for any given connection request, it will ask each driver in turn to try to
+ * connect to the target URL.
  * </p>
  *
  * <p>
- * It is strongly recommended that each Driver class should be small and standalone so that the
- * Driver class can be loaded and queried without bringing in vast quantities of supporting code.
+ * It is strongly recommended that each Driver class should be small and
+ * standalone so that the Driver class can be loaded and queried without
+ * bringing in vast quantities of supporting code.
  * </p>
  *
  * <p>
- * When a Driver class is loaded, it should create an instance of itself and register it with the
- * DriverManager. This means that a user can load and register a driver by doing
- * Class.forName("foo.bah.Driver")
+ * When a Driver class is loaded, it should create an instance of itself and
+ * register it with the DriverManager. This means that a user can load and
+ * register a driver by doing Class.forName("foo.bah.Driver")
  * </p>
  */
 public class NonRegisteringDriver implements java.sql.Driver {
@@ -131,14 +133,16 @@ public class NonRegisteringDriver implements java.sql.Driver {
     }
 
     /**
-     * Typically, drivers will return true if they understand the subprotocol specified in the URL
-     * and false if they don't. This driver's protocols start with jdbc:mysql:
+     * Typically, drivers will return true if they understand the subprotocol
+     * specified in the URL and false if they don't. This driver's protocols
+     * start with jdbc:mysql:
      *
      * @param url the URL of the driver
      *
      * @return true if this driver accepts the given URL
      *
-     * @exception SQLException if a database access error occurs or the url is null
+     * @exception SQLException if a database access error occurs or the url is
+     * null
      */
     @Override
     public boolean acceptsURL(String url) throws SQLException {
@@ -149,19 +153,22 @@ public class NonRegisteringDriver implements java.sql.Driver {
     // return the database name property
     //
     /**
-     * Try to make a database connection to the given URL. The driver should return "null" if it
-     * realizes it is the wrong kind of driver to connect to the given URL. This will be common, as
-     * when the JDBC driverManager is asked to connect to a given URL, it passes the URL to each
-     * loaded driver in turn.
+     * Try to make a database connection to the given URL. The driver should
+     * return "null" if it realizes it is the wrong kind of driver to connect to
+     * the given URL. This will be common, as when the JDBC driverManager is
+     * asked to connect to a given URL, it passes the URL to each loaded driver
+     * in turn.
      *
      * <p>
-     * The driver should raise an SQLException if the URL is null or if it is the right driver to
-     * connect to the given URL, but has trouble connecting to the database.
+     * The driver should raise an SQLException if the URL is null or if it is
+     * the right driver to connect to the given URL, but has trouble connecting
+     * to the database.
      * </p>
      *
      * <p>
-     * The java.util.Properties argument can be used to pass arbitrary string tag/value pairs as
-     * connection arguments. These properties take precedence over any properties sent in the URL.
+     * The java.util.Properties argument can be used to pass arbitrary string
+     * tag/value pairs as connection arguments. These properties take precedence
+     * over any properties sent in the URL.
      * </p>
      *
      * <p>
@@ -173,7 +180,8 @@ public class NonRegisteringDriver implements java.sql.Driver {
      *
      * @return a connection to the URL or null if it isn't us
      *
-     * @exception SQLException if a database access error occurs or the url is {@code null}
+     * @exception SQLException if a database access error occurs or the url is
+     * {@code null}
      */
     @Override
     public java.sql.Connection connect(String url, Properties info) throws SQLException {

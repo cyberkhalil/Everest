@@ -38,8 +38,8 @@ import com.mysql.cj.protocol.SocketFactory;
 import com.mysql.cj.protocol.StandardSocketFactory;
 
 /**
- * Wraps the legacy com.mysql.jdbc.SocketFactory implementations so they can be used as
- * {@link SocketFactory}
+ * Wraps the legacy com.mysql.jdbc.SocketFactory implementations so they can be
+ * used as {@link SocketFactory}
  */
 public class SocketFactoryWrapper extends StandardSocketFactory implements SocketFactory {
 

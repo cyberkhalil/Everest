@@ -44,7 +44,8 @@ import com.mysql.cj.result.RowList;
 /**
  * Create an entire (buffered) result from the data fed to this result listener.
  *
- * @param <RES_T> The type of result that will be created (and posted to the future)
+ * @param <RES_T> The type of result that will be created (and posted to the
+ * future)
  */
 public class ResultCreatingResultListener<RES_T> implements ResultListener<StatementExecuteOk> {
 

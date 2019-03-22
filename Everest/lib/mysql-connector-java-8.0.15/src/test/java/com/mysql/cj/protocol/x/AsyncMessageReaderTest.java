@@ -65,8 +65,8 @@ import com.mysql.cj.x.protobuf.Mysqlx.ServerMessages;
 public class AsyncMessageReaderTest {
 
     /**
-     * Base implementation of a mock test channel. Provides facilities to manipulate the channel
-     * that the reader is using.
+     * Base implementation of a mock test channel. Provides facilities to
+     * manipulate the channel that the reader is using.
      */
     static class BaseTestChannel extends AsynchronousSocketChannel {
 
@@ -266,10 +266,10 @@ public class AsyncMessageReaderTest {
     }
 
     /**
-     * Test that an operation does not hang due to waiting on a socket that is closed. This happens
-     * when the socket is closed after a message listener is added. If the close message (read with
-     * size = -1) is not properly propagated to the SyncReader, the thread will hang waiting for
-     * data.
+     * Test that an operation does not hang due to waiting on a socket that is
+     * closed. This happens when the socket is closed after a message listener
+     * is added. If the close message (read with size = -1) is not properly
+     * propagated to the SyncReader, the thread will hang waiting for data.
      *
      * Bug#22972057
      */

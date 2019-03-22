@@ -162,8 +162,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map. This is the default if no
-     * ssl-mode is provided.
+     * Tests secure {@link Session}s created via URL and properties map. This is
+     * the default if no ssl-mode is provided.
      */
     @Test
     public void testSecureSessionDefaultAndRequired() {
@@ -211,8 +211,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, with the SSL system
-     * properties also defined.
+     * Tests secure {@link Session}s created via URL and properties map, with
+     * the SSL system properties also defined.
      */
     @Test
     public void testSecureSessionDefaultAndRequiredWithSystemPropsPresent() {
@@ -263,8 +263,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, verifying server
-     * certificate.
+     * Tests secure {@link Session}s created via URL and properties map,
+     * verifying server certificate.
      */
     @Test
     public void testSecureSessionVerifyServerCertificate() {
@@ -299,8 +299,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map combined with SSL system
-     * properties, verifying server certificate.
+     * Tests secure {@link Session}s created via URL and properties map combined
+     * with SSL system properties, verifying server certificate.
      */
     @Test
     public void testSecureSessionVerifyServerCertificateUsingSystemProps() {
@@ -333,8 +333,9 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests secure {@link Session}s created via URL and properties map, verifying server
-     * certificate. This test would pass if the server certificate had "CN=<host_name>", with
+     * Tests secure {@link Session}s created via URL and properties map,
+     * verifying server certificate. This test would pass if the server
+     * certificate had "CN=<host_name>", with
      * <host_name> equals to the host name in the test URL.
      */
     @Test
@@ -377,7 +378,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests exception thrown on missing truststore for a secure {@link Session}.
+     * Tests exception thrown on missing truststore for a secure
+     * {@link Session}.
      */
     @Test
     public void testSecureSessionMissingTrustStore() {
@@ -412,8 +414,9 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests exception thrown on verifying server certificate identity failure. The server
-     * certificate used in this test has "CN=MySQL Connector/J Server".
+     * Tests exception thrown on verifying server certificate identity failure.
+     * The server certificate used in this test has "CN=MySQL Connector/J
+     * Server".
      */
     @Test
     public void testSecureSessionVerifyServerCertificateIdentityFailure() {
@@ -445,7 +448,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests exception thrown on incompatible settings for a secure {@link Session}.
+     * Tests exception thrown on incompatible settings for a secure
+     * {@link Session}.
      */
     @Test
     public void testSecureSessionIncompatibleSettings() {
@@ -502,7 +506,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests that PLAIN, MYSQL41, SHA256_MEMORY, and EXTERNAL authentication mechanisms.
+     * Tests that PLAIN, MYSQL41, SHA256_MEMORY, and EXTERNAL authentication
+     * mechanisms.
      *
      * @throws Throwable
      */
@@ -1004,9 +1009,10 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     /**
      * Tests TLSv1.2
      *
-     * This test requires two server instances: 1) main xplugin server pointed to by the
-     * com.mysql.cj.testsuite.mysqlx.url variable, compiled with yaSSL 2) additional xplugin server
-     * instance pointed to by com.mysql.cj.testsuite.mysqlx.url.openssl, variable compiled with
+     * This test requires two server instances: 1) main xplugin server pointed
+     * to by the com.mysql.cj.testsuite.mysqlx.url variable, compiled with yaSSL
+     * 2) additional xplugin server instance pointed to by
+     * com.mysql.cj.testsuite.mysqlx.url.openssl, variable compiled with
      * OpenSSL.
      *
      * For example, add these variables to the ant call:
@@ -1177,8 +1183,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#25494338, ENABLEDSSLCIPHERSUITES PARAMETER NOT WORKING AS EXPECTED WITH
-     * X-PLUGIN.
+     * Tests fix for Bug#25494338, ENABLEDSSLCIPHERSUITES PARAMETER NOT WORKING
+     * AS EXPECTED WITH X-PLUGIN.
      */
     @Test
     public void testBug25494338() {
@@ -1252,8 +1258,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#23597281, GETNODESESSION() CALL WITH SSL PARAMETERS RETURNS
-     * CJCOMMUNICATIONSEXCEPTION
+     * Tests fix for Bug#23597281, GETNODESESSION() CALL WITH SSL PARAMETERS
+     * RETURNS CJCOMMUNICATIONSEXCEPTION
      */
     @Test
     public void testBug23597281() {
@@ -1284,8 +1290,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
      * Tests fix for Bug#26227653, WL#10528 DIFF BEHAVIOUR WHEN SYSTEM PROP
      * JAVAX.NET.SSL.TRUSTSTORETYPE IS SET
      *
-     * The actual bug is: if wrong system-wide SSL settings are provided, the session should not
-     * fail if 'xdevapi.ssl-mode=REQUIRED'.
+     * The actual bug is: if wrong system-wide SSL settings are provided, the
+     * session should not fail if 'xdevapi.ssl-mode=REQUIRED'.
      */
     @Test
     public void testBug26227653() {
@@ -1337,7 +1343,8 @@ public class SecureSessionTest extends DevApiBaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#27629553, NPE FROM GETSESSION() FOR SSL CONNECTION WHEN NO PASSWORD PASSED.
+     * Tests fix for Bug#27629553, NPE FROM GETSESSION() FOR SSL CONNECTION WHEN
+     * NO PASSWORD PASSED.
      */
     @Test
     public void testBug27629553() {

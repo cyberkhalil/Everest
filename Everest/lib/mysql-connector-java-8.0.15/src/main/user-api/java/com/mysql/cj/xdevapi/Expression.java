@@ -50,7 +50,8 @@ public class Expression {
     }
 
     /**
-     * Static method for static import to allow: <code>set("b", expr("a + 1"))</code>
+     * Static method for static import to allow:
+     * <code>set("b", expr("a + 1"))</code>
      *
      * @param expressionString expression string
      * @return {@link Expression}

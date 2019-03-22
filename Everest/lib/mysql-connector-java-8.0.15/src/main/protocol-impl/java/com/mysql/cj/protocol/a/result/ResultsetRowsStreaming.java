@@ -54,10 +54,10 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.util.Util;
 
 /**
- * Provides streaming of Resultset rows. Each next row is consumed from the input stream only on
- * {@link #next()} call. Consumed rows are not cached thus we only stream result sets when they are
- * forward-only, read-only, and the fetch size has been set to Integer.MIN_VALUE (rows are read one
- * by one).
+ * Provides streaming of Resultset rows. Each next row is consumed from the
+ * input stream only on {@link #next()} call. Consumed rows are not cached thus
+ * we only stream result sets when they are forward-only, read-only, and the
+ * fetch size has been set to Integer.MIN_VALUE (rows are read one by one).
  *
  * @param <T> ProtocolEntity type
  */

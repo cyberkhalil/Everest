@@ -49,11 +49,11 @@ public class XDevAPIConnectionUrl extends ConnectionUrl {
     private static final int DEFAULT_PORT = 33060;
 
     /**
-     * Constructs an instance of {@link XDevAPIConnectionUrl}, performing all the required
-     * initializations.
+     * Constructs an instance of {@link XDevAPIConnectionUrl}, performing all
+     * the required initializations.
      *
-     * @param connStrParser a {@link ConnectionUrlParser} instance containing the parsed version of
-     * the original connection string
+     * @param connStrParser a {@link ConnectionUrlParser} instance containing
+     * the parsed version of the original connection string
      * @param info the connection arguments map
      */
     public XDevAPIConnectionUrl(ConnectionUrlParser connStrParser, Properties info) {

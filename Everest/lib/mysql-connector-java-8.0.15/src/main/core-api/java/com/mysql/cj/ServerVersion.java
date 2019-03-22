@@ -62,9 +62,10 @@ public class ServerVersion implements Comparable<ServerVersion> {
     }
 
     /**
-     * A string representation of this version. If this version was parsed from, or provided with, a
-     * "complete" string which may contain more than just the version number, this string is
-     * returned verbatim. Otherwise, a string representation of the version numbers is given.
+     * A string representation of this version. If this version was parsed from,
+     * or provided with, a "complete" string which may contain more than just
+     * the version number, this string is returned verbatim. Otherwise, a string
+     * representation of the version numbers is given.
      *
      * @return string version representation
      */

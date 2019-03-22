@@ -44,23 +44,26 @@ import com.mysql.cj.result.Row;
 import com.mysql.cj.result.ValueFactory;
 
 /**
- * A BufferRow implementation that holds one row packet from a server-side prepared statement (which
- * is re-used by the driver, and thus saves memory allocations), and tries when possible to avoid
- * allocations to break out the results as individual byte[]s. Rows from a server-side prepared
- * statement are encoded differently, so we have different ways of finding where each column is, and
- * unpacking them.
+ * A BufferRow implementation that holds one row packet from a server-side
+ * prepared statement (which is re-used by the driver, and thus saves memory
+ * allocations), and tries when possible to avoid allocations to break out the
+ * results as individual byte[]s. Rows from a server-side prepared statement are
+ * encoded differently, so we have different ways of finding where each column
+ * is, and unpacking them.
  *
  * (this isn't possible when doing things like reading floating point values).
  */
 public class BinaryBufferRow extends AbstractBufferRow {
 
     /**
-     * The home position before the is-null bitmask for server-side prepared statement result sets
+     * The home position before the is-null bitmask for server-side prepared
+     * statement result sets
      */
     private int preNullBitmaskHomePosition = 0;
 
     /**
-     * If binary-encoded, the NULL status of each column is at the beginning of the row, so we
+     * If binary-encoded, the NULL status of each column is at the beginning of
+     * the row, so we
      */
     private boolean[] isNull;
 
@@ -188,8 +191,9 @@ public class BinaryBufferRow extends AbstractBufferRow {
     }
 
     /**
-     * Unpacks the bitmask at the head of the row packet that tells us what columns hold null
-     * values, and sets the "home" position directly after the bitmask.
+     * Unpacks the bitmask at the head of the row packet that tells us what
+     * columns hold null values, and sets the "home" position directly after the
+     * bitmask.
      */
     private void setupIsNullBitmask() {
         if (this.isNull != null) {
@@ -224,8 +228,8 @@ public class BinaryBufferRow extends AbstractBufferRow {
     }
 
     /**
-     * Implementation of getValue() based on the underlying Buffer object. Delegate to superclass
-     * for decoding.
+     * Implementation of getValue() based on the underlying Buffer object.
+     * Delegate to superclass for decoding.
      */
     @Override
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {

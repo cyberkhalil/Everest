@@ -58,8 +58,8 @@ public class MysqlParameterMetadata implements ParameterMetaData {
     }
 
     /**
-     * Used for "fake" basic metadata for client-side prepared statements when we don't know the
-     * parameter types.
+     * Used for "fake" basic metadata for client-side prepared statements when
+     * we don't know the parameter types.
      *
      * @param count parameters number
      */

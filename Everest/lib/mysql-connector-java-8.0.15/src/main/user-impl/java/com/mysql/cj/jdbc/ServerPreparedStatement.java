@@ -442,14 +442,14 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Returns the structure representing the value that (can be)/(is) bound at the given parameter
-     * index.
+     * Returns the structure representing the value that (can be)/(is) bound at
+     * the given parameter index.
      *
      * @param parameterIndex 1-based
      * @param forLongData is this for a stream?
      * @return {@link ServerPreparedQueryBindValue}
-     * @throws SQLException if a database access error occurs or this method is called on a closed
-     * PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is
+     * called on a closed PreparedStatement
      */
     protected ServerPreparedQueryBindValue getBinding(int parameterIndex, boolean forLongData) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {
@@ -537,7 +537,8 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Used by Connection when auto-reconnecting to retrieve 'lost' prepared statements.
+     * Used by Connection when auto-reconnecting to retrieve 'lost' prepared
+     * statements.
      *
      * @throws CJException if an error occurs.
      */
@@ -583,7 +584,8 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
     }
 
     /**
-     * Tells the server to execute this prepared statement with the current parameter bindings.
+     * Tells the server to execute this prepared statement with the current
+     * parameter bindings.
      *
      * <pre>
      *    -   Server gets the command 'COM_EXECUTE' to execute the
@@ -605,8 +607,8 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
      * @param createStreamingResultSet should c/J create a streaming result?
      * @param metadata use this metadata instead of the one provided on wire
      * @return result set
-     * @throws SQLException if a database access error occurs or this method is called on a closed
-     * PreparedStatement
+     * @throws SQLException if a database access error occurs or this method is
+     * called on a closed PreparedStatement
      */
     protected ResultSetInternalMethods serverExecute(int maxRowsToRetrieve, boolean createStreamingResultSet, ColumnDefinition metadata) throws SQLException {
         synchronized (checkClosed().getConnectionMutex()) {

@@ -35,7 +35,8 @@ import java.util.stream.Collectors;
 import com.mysql.cj.x.protobuf.MysqlxCrud.Projection;
 
 /**
- * {@link FilterParams} implementation for {@link com.mysql.cj.xdevapi.Collection} syntax.
+ * {@link FilterParams} implementation for
+ * {@link com.mysql.cj.xdevapi.Collection} syntax.
  */
 public class DocFilterParams extends AbstractFilterParams {
 

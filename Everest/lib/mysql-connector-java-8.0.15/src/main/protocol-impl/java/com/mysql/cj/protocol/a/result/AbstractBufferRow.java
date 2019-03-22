@@ -33,9 +33,9 @@ import com.mysql.cj.protocol.a.NativePacketPayload;
 import com.mysql.cj.protocol.result.AbstractResultsetRow;
 
 /**
- * A ResultSetRow implementation that holds one row packet (which is re-used by the driver, and thus
- * saves memory allocations), and tries when possible to avoid allocations to break out the results
- * as individual byte[]s.
+ * A ResultSetRow implementation that holds one row packet (which is re-used by
+ * the driver, and thus saves memory allocations), and tries when possible to
+ * avoid allocations to break out the results as individual byte[]s.
  *
  * (this isn't possible when doing things like reading floating point values).
  */
@@ -49,14 +49,16 @@ public abstract class AbstractBufferRow extends AbstractResultsetRow {
     protected int homePosition = 0;
 
     /**
-     * The last-requested index, used as an optimization, if you ask for the same index, we won't
-     * seek to find it. If you ask for an index that is greater than the last one requested, we
-     * start seeking from the last requested index.
+     * The last-requested index, used as an optimization, if you ask for the
+     * same index, we won't seek to find it. If you ask for an index that is
+     * greater than the last one requested, we start seeking from the last
+     * requested index.
      */
     protected int lastRequestedIndex = -1;
 
     /**
-     * The position of the last-requested index, optimization in concert with lastRequestedIndex.
+     * The position of the last-requested index, optimization in concert with
+     * lastRequestedIndex.
      */
     protected int lastRequestedPos;
 

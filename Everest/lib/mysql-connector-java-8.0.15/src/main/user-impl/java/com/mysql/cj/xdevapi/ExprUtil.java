@@ -65,7 +65,8 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar DOUBLE type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar DOUBLE
+     * type.
      *
      * @param d value
      * @return {@link Expr}
@@ -75,7 +76,8 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar SINT (signed int) type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar SINT
+     * (signed int) type.
      *
      * @param l value
      * @return {@link Expr}
@@ -85,7 +87,8 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar STRING type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar STRING
+     * type.
      *
      * @param str value
      * @return {@link Expr}
@@ -95,7 +98,8 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar OCTETS type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar OCTETS
+     * type.
      *
      * @param bytes value
      * @return {@link Expr}
