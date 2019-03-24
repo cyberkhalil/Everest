@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO : {create createUser method, use this instead of UserEntry for
+ * TODO : {use createUser instead of UserEntry for
  * manipulate users,set user privilege}
  *
  * @author User
