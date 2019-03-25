@@ -1,4 +1,4 @@
-package mainFrames;
+package gui.mainFrames;
 
 
 import all.AddCourseFrame;
@@ -10,7 +10,7 @@ import all.EnrollFrame;
 import all.PaymentTableJFrame;
 import all.StudentJFrame;
 import all.StudentTableJframe;
-import login.Login;
+import gui.loginFrames.Login;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;

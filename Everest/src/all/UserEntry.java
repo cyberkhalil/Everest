@@ -1,7 +1,6 @@
 package all;
 
-
-import login.Login;
+import gui.loginFrames.Login;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,28 +13,6 @@ import javax.swing.JOptionPane;
 public class UserEntry {
 
     Student s = new Student();
-
-    public void userEntry() {
-    }
-
-    public String createUser(User u, String str1, String str2, String Str3) {
-        try {
-            Connection connect = DBConnection.getConnection();
-            String query = " insert into user (Username,Password,Privilege)"
-                    + " values (?,?,?)";
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = connect.prepareStatement(query);
-            preparedStmt.setString(1, u.getUsername());
-            preparedStmt.setString(2, u.getPassword());
-            preparedStmt.setString(3, Str3);
-            preparedStmt.execute();
-            return "Successfully Data Insert";
-        } catch (SQLException ex) {
-            System.err.println("Got an exception!");
-            System.err.println(ex.getMessage());
-            return " Data Insert Fail";
-        }
-    }
 
     public void createStudent(Student s, String name, int ID, int phone, String paymentMethod, double paid, double totalprice, double discount, double net) {
         try {

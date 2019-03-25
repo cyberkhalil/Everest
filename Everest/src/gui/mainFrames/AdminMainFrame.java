@@ -1,4 +1,4 @@
-package mainFrames;
+package gui.mainFrames;
 
 import all.AddCourseFrame;
 import all.AddNewPayment;

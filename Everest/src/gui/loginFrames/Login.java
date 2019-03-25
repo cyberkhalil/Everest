@@ -1,7 +1,7 @@
-package login;
+package gui.loginFrames;
 
-import mainFrames.AdminMainFrame;
-import mainFrames.SecretaryMainFrame;
+import gui.mainFrames.AdminMainFrame;
+import gui.mainFrames.SecretaryMainFrame;
 import users.User;
 import db.DBConnection;
 import java.awt.event.KeyEvent;
@@ -210,11 +210,11 @@ public class Login extends javax.swing.JFrame {
                     new SecretaryMainFrame(this).setVisible(true);
                 }
             } catch (LoginException ex) {
-                JOptionPane.showMessageDialog(rootPane,
+                JOptionPane.showMessageDialog(this,
                         ex.getClass().getSimpleName() + "\n" + ex.getMessage());
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,
+            JOptionPane.showMessageDialog(this,
                     ex.getClass().getSimpleName() + "\n" + ex.getMessage());
         }
         this.PasswordField.setText(null);

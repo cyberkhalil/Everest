@@ -1,14 +1,18 @@
 package all;
 
-
+import gui.loginFrames.Login;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NoPermissionException;
 import utils.Hashing;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import users.UserUtil;
 
 public class SignUp extends javax.swing.JFrame {
 
     User user = new User();
-    UserEntry UserEntry = new UserEntry();
 
     public SignUp() {
         initComponents();
@@ -305,8 +309,12 @@ public class SignUp extends javax.swing.JFrame {
             AdminRadioButton.setActionCommand("Admin");
             NormalUserRadioButton.setActionCommand("Normal User");
             String Str = buttonGroup1.getSelection().getActionCommand();
-            System.out.println(Str);
-            UserEntry.createUser(user, user.getUsername(), user.getPassword(), Str);
+            try {
+                UserUtil.createUser(Login.user, user.getUsername(), user.getPassword(), Str);
+            } catch (NoPermissionException | SQLException ex) {
+                JOptionPane.showMessageDialog(this,
+                        ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            }
             JOptionPane.showMessageDialog(null, "User has been added sucessfully");
         } else {
             Label6.setText("The Passwords are not Equal, Please Try again");

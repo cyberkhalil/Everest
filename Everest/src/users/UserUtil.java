@@ -9,8 +9,7 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO : {use createUser instead of UserEntry for manipulate users,set user
- * privilege}
+ * TODO : {use createUser instead of UserEntry for manipulate users}
  *
  * @author User
  */
@@ -38,7 +37,7 @@ public final class UserUtil {
         return new User(userId);
     }
 
-    public void createUser(User admin, String newUsername, String newPassword,
+    public static void createUser(User admin, String newUsername, String newPassword,
             String newPrivilege) throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {

@@ -1,6 +1,6 @@
 package all;
 
-import login.Login;
+import gui.loginFrames.Login;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;

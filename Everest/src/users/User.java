@@ -107,13 +107,7 @@ public class User {
         return privilege;
     }
 
-    void setPrivilege(String privilege) throws SQLException {
-        String query = "Update user set Privilege =? where userid= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, privilege);
-        preparedStatement.setInt(2, userId);
-        preparedStatement.executeUpdate();
+    void setPrivilege(String privilege) {
         this.privilege = privilege;
     }
 

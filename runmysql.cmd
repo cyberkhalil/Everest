@@ -1,1 +1,0 @@
-mysql -u test -p test everest < everest.sql
