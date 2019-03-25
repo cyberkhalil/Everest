@@ -47,7 +47,7 @@ public final class UserUtil {
         newPassword = Hashing.toMD5(newPassword);
 
         Connection connect = DBConnection.getConnection();
-        String query = " insert into user (Username,Password,Privilege)"
+        String query = " insert into user (user_name,user_password,user_privilege)"
                 + " values (?,?,?)";
         // create the mysql insert preparedstatement
         PreparedStatement preparedStmt = connect.prepareStatement(query);
@@ -64,7 +64,7 @@ public final class UserUtil {
             throw new NoPermissionException(
                     "You must be admin to do this operation");
         }
-        String query = "select userid from user ";
+        String query = "select user_id from user ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
@@ -101,7 +101,7 @@ public final class UserUtil {
             throw new NoPermissionException(
                     "You Can't delete the last Admin user");
         }
-        String query = "delete from user where userid=? ";
+        String query = "delete from user where user_id=? ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
@@ -135,7 +135,7 @@ public final class UserUtil {
             throw new NoPermissionException(
                     "You must be admin to do this operation");
         }
-        String query = "select count(*) from user where Privilege=?";
+        String query = "select count(*) from user where user_privilege=?";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement
@@ -154,7 +154,7 @@ public final class UserUtil {
                     "You must be admin to do this operation");
         }
 
-        String query = "Update user set Privilege=? where userid=? ";
+        String query = "Update user set user_privilege=? where user_id=? ";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, newPrivilege);

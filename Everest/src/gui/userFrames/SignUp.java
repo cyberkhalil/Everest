@@ -1,5 +1,6 @@
-package all;
+package gui.userFrames;
 
+import all.User;
 import gui.loginFrames.Login;
 import java.sql.SQLException;
 import java.util.logging.Level;

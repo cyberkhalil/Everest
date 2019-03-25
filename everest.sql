@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
 
 -- Dumping data for table `exam`
 INSERT INTO `exam` (`exam_id`, `exam_name`, `exam_price`, `exam_time`) VALUES
-(1, 'exam_1', 100, '2019-04-20 02:00');
+(1, 'exam_1', 100, '2019-04-20');
 
 -- --------------------------------------------------------
 

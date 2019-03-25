@@ -23,7 +23,7 @@ public class User {
             throws SQLException, LoginException {
         try {
             password = Hashing.toMD5(password);
-            String query = "select * from user where Username =? ";
+            String query = "select * from user where user_name =? ";
 
             PreparedStatement preparedStatement
                     = DBConnection.getConnection().prepareStatement(query);
@@ -31,10 +31,10 @@ public class User {
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
-            this.username = rs.getString("Username");
-            this.passwordMD5 = rs.getString("Password");
-            this.userId = rs.getInt("userid");
-            this.privilege = rs.getString("Privilege");
+            this.username = rs.getString("user_name");
+            this.passwordMD5 = rs.getString("user_password");
+            this.userId = rs.getInt("user_id");
+            this.privilege = rs.getString("user_privilege");
         } catch (SQLException ex) {
             if (ex.getMessage().equals("Illegal operation on empty result set.")) {
                 throw new LoginException("Entered username is inncorrect !");
@@ -50,31 +50,31 @@ public class User {
     }
 
     User(String username) throws SQLException {
-        String query = "select * from user where Username =? ";
+        String query = "select * from user where user_name =? ";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, username);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        this.username = rs.getString("Username");
-        this.passwordMD5 = rs.getString("Password");
-        this.userId = rs.getInt("userid");
-        this.privilege = rs.getString("Privilege");
+        this.username = rs.getString("user_name");
+        this.passwordMD5 = rs.getString("user_password");
+        this.userId = rs.getInt("user_id");
+        this.privilege = rs.getString("user_privilege");
     }
 
     User(int userId) throws SQLException {
-        String query = "select * from user where userid =? ";
+        String query = "select * from user where user_id =? ";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, userId);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        this.username = rs.getString("Username");
-        this.passwordMD5 = rs.getString("Password");
-        this.userId = rs.getInt("userid");
-        this.privilege = rs.getString("Privilege");
+        this.username = rs.getString("user_name");
+        this.passwordMD5 = rs.getString("user_password");
+        this.userId = rs.getInt("user_id");
+        this.privilege = rs.getString("user_privilege");
     }
 
     public String getUsername() {
@@ -87,7 +87,7 @@ public class User {
 
     public void setPassword(String password) throws SQLException {
         password = Hashing.toMD5(password);
-        String query = "Update user set Password =? where userid= ?";
+        String query = "Update user set user_password =? where user_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, password);
@@ -112,7 +112,7 @@ public class User {
     }
 
     public void setUsername(String newUsername) throws SQLException {
-        String query = "Update user set Username =? where userid= ?";
+        String query = "Update user set user_name =? where user_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, newUsername);
@@ -126,7 +126,7 @@ public class User {
     }
 
     public void remove() throws SQLException {
-        String query = "Delete user where userid= ?";
+        String query = "Delete user where user_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, userId);

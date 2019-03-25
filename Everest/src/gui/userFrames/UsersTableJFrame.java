@@ -1,5 +1,7 @@
-package all;
+package gui.userFrames;
 
+import all.StudentTableJframe;
+import all.User;
 import gui.loginFrames.Login;
 import db.DBConnection;
 import java.sql.Connection;
@@ -41,7 +43,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             rs = st.executeQuery(query);
 
             while (rs.next()) {
-                User u = new User(rs.getInt("userid"), rs.getString("Username"), rs.getString("Privilege"));
+                User u = new User(rs.getInt("user_id"), rs.getString("user_name"), rs.getString("user_privilege"));
                 arrayList.add(u);
             }
 
