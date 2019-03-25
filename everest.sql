@@ -1,6 +1,8 @@
--- removing old database if exist ..
+/*
+This sql script is made for java Everest software & it's under GPL3 license
+*/
 
-DROP DATABASE If EXISTS everest;
+DROP DATABASE If EXISTS everest;	-- removing old database if exist
 CREATE SCHEMA everest;
 create user if not exists 'test'@'localhost' identified by 'test';
 USE everest;
@@ -16,45 +18,29 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `everest`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `book`
---
-
 CREATE TABLE IF NOT EXISTS `book` (
-  `BookId` int(11) NOT NULL,
-  `BookName` varchar(50) NOT NULL,
-  `Price` double NOT NULL,
-  `Bought` varchar(3) NOT NULL DEFAULT 'No',
-  PRIMARY KEY (`BookId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
+    `BookId` INT(11) NOT NULL,
+    `BookName` VARCHAR(50) NOT NULL,
+    `Price` DOUBLE NOT NULL,
+    `Bought` VARCHAR(3) NOT NULL DEFAULT 'No',
+    PRIMARY KEY (`BookId`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `course`
---
 
 CREATE TABLE IF NOT EXISTS `course` (
-  `CourseId` int(11) NOT NULL AUTO_INCREMENT,
-  `CourseName` varchar(50) DEFAULT NULL,
-  `CourseDateStart` varchar(11) DEFAULT NULL,
-  `Teacher_TeacherId` int(11) DEFAULT NULL,
-  `CoursePrice` int(11) DEFAULT NULL,
-  `HourFrom` varchar(10) DEFAULT NULL,
-  `HourTo` varchar(10) DEFAULT NULL,
-  `CourseDays` varchar(50) DEFAULT NULL,
-  `CourseDateEnd` varchar(11) DEFAULT NULL,
-  PRIMARY KEY (`CourseId`),
-  KEY `Teacher_TeacherId` (`Teacher_TeacherId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+    `CourseId` INT(11) NOT NULL AUTO_INCREMENT,
+    `CourseName` VARCHAR(50) DEFAULT NULL,
+    `CourseDateStart` VARCHAR(11) DEFAULT NULL,
+    `Teacher_TeacherId` INT(11) DEFAULT NULL,
+    `CoursePrice` INT(11) DEFAULT NULL,
+    `HourFrom` VARCHAR(10) DEFAULT NULL,
+    `HourTo` VARCHAR(10) DEFAULT NULL,
+    `CourseDays` VARCHAR(50) DEFAULT NULL,
+    `CourseDateEnd` VARCHAR(11) DEFAULT NULL,
+    PRIMARY KEY (`CourseId`),
+    KEY `Teacher_TeacherId` (`Teacher_TeacherId`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8;
 
 --
 -- Dumping data for table `course`
@@ -66,154 +52,114 @@ INSERT INTO `course` (`CourseId`, `CourseName`, `CourseDateStart`, `Teacher_Teac
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `exam`
---
-
 CREATE TABLE IF NOT EXISTS `exam` (
-  `ExamID` int(5) NOT NULL AUTO_INCREMENT,
-  `ExamName` varchar(50) NOT NULL,
-  `ExamPrice` double(5,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`ExamID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+    `ExamID` INT(5) NOT NULL AUTO_INCREMENT,
+    `ExamName` VARCHAR(50) NOT NULL,
+    `ExamPrice` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    PRIMARY KEY (`ExamID`)
+)  ENGINE=INNODB AUTO_INCREMENT=3 DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `invoice`
---
 
 CREATE TABLE IF NOT EXISTS `invoice` (
-  `invoiceId` int(10) NOT NULL AUTO_INCREMENT,
-  `StdId_fk` int(11) DEFAULT NULL,
-  `TotalPrice` double(5,2) NOT NULL DEFAULT '0.00',
-  `paymentValue` double(5,2) NOT NULL DEFAULT '0.00',
-  `Net` double(5,2) NOT NULL DEFAULT '0.00',
-  `remaindCash` double(5,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`invoiceId`),
-  KEY `invoice_ibfk_1` (`StdId_fk`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `payments`
---
+    `invoiceId` INT(10) NOT NULL AUTO_INCREMENT,
+    `StdId_fk` INT(11) DEFAULT NULL,
+    `TotalPrice` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `paymentValue` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `Net` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `remaindCash` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    PRIMARY KEY (`invoiceId`),
+    KEY `invoice_ibfk_1` (`StdId_fk`)
+)  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
 
 CREATE TABLE IF NOT EXISTS `payments` (
-  `PaymentNo` int(5) NOT NULL AUTO_INCREMENT,
-  `StdID` int(11) DEFAULT NULL,
-  `paymentValue` double(5,2) NOT NULL DEFAULT '0.00',
-  `remaindCash` double(5,2) NOT NULL DEFAULT '0.00',
-  `paymentTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Net` double(5,2) NOT NULL DEFAULT '0.00',
-  `paymentMethod` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`PaymentNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+    `PaymentNo` INT(5) NOT NULL AUTO_INCREMENT,
+    `StdID` INT(11) DEFAULT NULL,
+    `paymentValue` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `remaindCash` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `paymentTime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `Net` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `paymentMethod` VARCHAR(50) DEFAULT NULL,
+    PRIMARY KEY (`PaymentNo`)
+)  ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `payment_item`
---
 
 CREATE TABLE IF NOT EXISTS `payment_item` (
-  `PaymentID` int(10) NOT NULL AUTO_INCREMENT,
-  `Item` varchar(50) DEFAULT NULL,
-  `ItemID` int(10) NOT NULL,
-  `PaidFor` text NOT NULL,
-  PRIMARY KEY (`PaymentID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `PaymentID` INT(10) NOT NULL AUTO_INCREMENT,
+    `Item` VARCHAR(50) DEFAULT NULL,
+    `ItemID` INT(10) NOT NULL,
+    `PaidFor` TEXT NOT NULL,
+    PRIMARY KEY (`PaymentID`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `student`
---
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `StdID` int(11) NOT NULL AUTO_INCREMENT,
-  `StdName` varchar(50) NOT NULL,
-  `IDCardNum` int(9) NOT NULL DEFAULT '0',
-  `StdPhoneNum` int(10) NOT NULL,
-  `AddedBy` varchar(20) NOT NULL,
-  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `discount` double(5,2) NOT NULL DEFAULT '0.00',
-  PRIMARY KEY (`StdID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+    `StdID` INT(11) NOT NULL AUTO_INCREMENT,
+    `StdName` VARCHAR(50) NOT NULL,
+    `IDCardNum` INT(9) NOT NULL DEFAULT '0',
+    `StdPhoneNum` INT(10) NOT NULL,
+    `AddedBy` VARCHAR(20) NOT NULL,
+    `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `discount` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    PRIMARY KEY (`StdID`)
+)  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `student_book`
---
 
 CREATE TABLE IF NOT EXISTS `student_book` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `StdID` int(11) NOT NULL,
-  `BookID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `student_book_ibfk_1` (`StdID`),
-  KEY `student_book_ibfk_2` (`BookID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+    `ID` INT(11) NOT NULL AUTO_INCREMENT,
+    `StdID` INT(11) NOT NULL,
+    `BookID` INT(11) NOT NULL,
+    PRIMARY KEY (`ID`),
+    KEY `student_book_ibfk_1` (`StdID`),
+    KEY `student_book_ibfk_2` (`BookID`)
+)  ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `student_course`
---
 
 CREATE TABLE IF NOT EXISTS `student_course` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `StdID` int(11) NOT NULL,
-  `courseID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_StdID1` (`StdID`),
-  KEY `FK_courseID` (`courseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `ID` INT(11) NOT NULL AUTO_INCREMENT,
+    `StdID` INT(11) NOT NULL,
+    `courseID` INT(11) NOT NULL,
+    PRIMARY KEY (`ID`),
+    KEY `FK_StdID1` (`StdID`),
+    KEY `FK_courseID` (`courseID`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `student_exam`
---
 
 CREATE TABLE IF NOT EXISTS `student_exam` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `StdID` int(11) NOT NULL,
-  `examID` int(5) NOT NULL,
-  PRIMARY KEY (`ID`),
-  KEY `FK_StdID` (`StdID`),
-  KEY `FK_examID` (`examID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `ID` INT(11) NOT NULL AUTO_INCREMENT,
+    `StdID` INT(11) NOT NULL,
+    `examID` INT(5) NOT NULL,
+    PRIMARY KEY (`ID`),
+    KEY `FK_StdID` (`StdID`),
+    KEY `FK_examID` (`examID`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `teacher`
---
 
 CREATE TABLE IF NOT EXISTS `teacher` (
-  `TeacherId` int(11) NOT NULL AUTO_INCREMENT,
-  `TeacherName` varchar(100) NOT NULL,
-  `TeacherPhoneNumber` int(11) NOT NULL DEFAULT '0',
-  `CourseHours` int(5) NOT NULL DEFAULT '0',
-  `HourPrice` double(5,2) NOT NULL DEFAULT '0.00',
-  `TotalPrice` double(5,2) DEFAULT '0.00',
-  PRIMARY KEY (`TeacherId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    `TeacherId` INT(11) NOT NULL AUTO_INCREMENT,
+    `TeacherName` VARCHAR(100) NOT NULL,
+    `TeacherPhoneNumber` INT(11) NOT NULL DEFAULT '0',
+    `CourseHours` INT(5) NOT NULL DEFAULT '0',
+    `HourPrice` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    `TotalPrice` DOUBLE(5 , 2 ) DEFAULT '0.00',
+    PRIMARY KEY (`TeacherId`)
+)  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `user`
---
-
 CREATE TABLE IF NOT EXISTS `user` (
-  `userid` int(11) NOT NULL AUTO_INCREMENT,
-  `Username` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
-  `Privilege` varchar(15) NOT NULL,
-  PRIMARY KEY (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2342 DEFAULT CHARSET=utf8;
+    `userid` INT(11) NOT NULL AUTO_INCREMENT,
+    `Username` VARCHAR(50) NOT NULL,
+    `Password` VARCHAR(50) NOT NULL,
+    `Privilege` VARCHAR(15) NOT NULL,
+    PRIMARY KEY (`userid`)
+)  ENGINE=INNODB AUTO_INCREMENT=2342 DEFAULT CHARSET=UTF8;
 
 --
 -- Dumping data for table `user`

@@ -1,13 +1,12 @@
 package login;
 
-import all.AdminMainFrame;
-import all.SecretaryMainFrame;
+import mainFrames.AdminMainFrame;
+import mainFrames.SecretaryMainFrame;
 import users.User;
 import db.DBConnection;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -16,7 +15,6 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_HORIZ);
         setResizable(false);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -213,26 +211,24 @@ public class Login extends javax.swing.JFrame {
                 }
             } catch (LoginException ex) {
                 JOptionPane.showMessageDialog(rootPane,
-                        "Username or Password is inncorrect");
+                        ex.getClass().getSimpleName() + "\n" + ex.getMessage());
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(rootPane,
+                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
         }
         this.PasswordField.setText(null);
     }
 
     public static void main(String args[]) {
         try {
-
             DBConnection.establishConnection();
             java.awt.EventQueue.invokeLater(() -> {
                 new Login().setVisible(true);
             });
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error in MySQL Connection"
-                    + "\n Please check if the MySQL database is running ..");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
         }
     }
 }

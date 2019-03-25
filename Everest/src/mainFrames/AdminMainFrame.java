@@ -1,6 +1,20 @@
-package all;
+package mainFrames;
 
-
+import all.AddCourseFrame;
+import all.AddNewPayment;
+import all.AddTeacherFrame;
+import all.BookJFrame;
+import all.BookTable;
+import all.BookTableJframe;
+import all.CourseTableJframe;
+import all.EnrollFrame;
+import all.PaymentTableJFrame;
+import all.RegistraionTableJframe;
+import all.SignUp;
+import all.StudentJFrame;
+import all.StudentTableJframe;
+import all.TeacherTableJframe;
+import all.UsersTableJFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -15,7 +29,6 @@ public class AdminMainFrame extends JFrame {
     AddTeacherFrame addTeacherFrame = new AddTeacherFrame();
 
     public AdminMainFrame(JFrame root) {
-//        TODO set root visible on close
         root.setVisible(false);
         this.root = root;
 

@@ -1,6 +1,15 @@
-package all;
+package mainFrames;
 
 
+import all.AddCourseFrame;
+import all.AddNewPayment;
+import all.BookJFrame;
+import all.BookTableJframe;
+import all.CourseTableJframe;
+import all.EnrollFrame;
+import all.PaymentTableJFrame;
+import all.StudentJFrame;
+import all.StudentTableJframe;
 import login.Login;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO : {use createUser instead of UserEntry for
- * manipulate users,set user privilege}
+ * TODO : {use createUser instead of UserEntry for manipulate users,set user
+ * privilege}
  *
  * @author User
  */
@@ -22,7 +22,8 @@ public final class UserUtil {
     public static User getUser(User admin, String username)
             throws SQLException, NoPermissionException {
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to create users");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         return new User(username);
     }
@@ -31,7 +32,8 @@ public final class UserUtil {
             throws SQLException, NoPermissionException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to create users");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         return new User(userId);
     }
@@ -40,7 +42,8 @@ public final class UserUtil {
             String newPrivilege) throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to create users");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         newPassword = Hashing.toMD5(newPassword);
 
@@ -59,7 +62,8 @@ public final class UserUtil {
             throws SQLException, NoPermissionException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to get users list");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         String query = "select userid from user ";
 
@@ -74,7 +78,8 @@ public final class UserUtil {
             throws SQLException, NoPermissionException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to get users list");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         String query = "select * from user ";
 
@@ -87,13 +92,15 @@ public final class UserUtil {
     }
 
     public static void deleteUser(User admin, User u)
-            throws NoPermissionException, SQLException, IllegalStateException {
+            throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to get users list");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         if (u.isAdmin() && UserUtil.getNumberOfAdminUsers(admin) == 1) {
-            throw new IllegalStateException("You Can't delete the last Admin user");
+            throw new NoPermissionException(
+                    "You Can't delete the last Admin user");
         }
         String query = "delete from user where userid=? ";
 
@@ -109,7 +116,8 @@ public final class UserUtil {
             throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to get users list");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         String query = "select count(*) from user";
 
@@ -125,7 +133,8 @@ public final class UserUtil {
             throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException("You must be admin to get users list");
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
         }
         String query = "select count(*) from user where Privilege=?";
 
@@ -136,5 +145,22 @@ public final class UserUtil {
         ResultSet result = preparedStatement.executeQuery();
         result.next();
         return result.getInt("count(*)");
+    }
+
+    public static void setUserPrivilege(
+            User admin, User user, String newPrivilege)
+            throws NoPermissionException, SQLException {
+        if (!admin.isAdmin()) {
+            throw new NoPermissionException(
+                    "You must be admin to do this operation");
+        }
+
+        String query = "Update user set Privilege=? where userid=? ";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, newPrivilege);
+        preparedStatement.setInt(2, user.getUserId());
+        preparedStatement.executeUpdate();
+        user.setPrivilege(newPrivilege);
     }
 }

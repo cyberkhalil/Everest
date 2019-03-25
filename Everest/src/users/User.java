@@ -21,21 +21,27 @@ public class User {
 
     public User(String username, String password)
             throws SQLException, LoginException {
+        try {
+            password = Hashing.toMD5(password);
+            String query = "select * from user where Username =? ";
 
-        password = Hashing.toMD5(password);
-        String query = "select * from user where Username =? ";
+            PreparedStatement preparedStatement
+                    = DBConnection.getConnection().prepareStatement(query);
+            preparedStatement.setString(1, username);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next();
 
-        // create the mysql insert preparedstatement
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, username);
-        ResultSet rs = preparedStatement.executeQuery();
-        rs.next();
-
-        this.username = rs.getString("Username");
-        this.passwordMD5 = rs.getString("Password");
-        this.userId = rs.getInt("userid");
-        this.privilege = rs.getString("Privilege");
+            this.username = rs.getString("Username");
+            this.passwordMD5 = rs.getString("Password");
+            this.userId = rs.getInt("userid");
+            this.privilege = rs.getString("Privilege");
+        } catch (SQLException ex) {
+            if (ex.getMessage().equals("Illegal operation on empty result set.")) {
+                throw new LoginException("Entered username is inncorrect !");
+            } else {
+                throw ex;
+            }
+        }
 
         if (password == null ? passwordMD5 != null
                 : !password.equals(passwordMD5)) {
@@ -101,10 +107,7 @@ public class User {
         return privilege;
     }
 
-    /**
-     * TODO remove this method !
-     */
-    public void setPrivilege(String privilege) throws SQLException {
+    void setPrivilege(String privilege) throws SQLException {
         String query = "Update user set Privilege =? where userid= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

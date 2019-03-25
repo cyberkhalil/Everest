@@ -1,6 +1,5 @@
 package all;
 
-
 import login.Login;
 import db.DBConnection;
 import java.sql.Connection;
@@ -152,6 +151,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jUsersTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jUsersTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jUsersTableMouseClicked(evt);
@@ -426,22 +426,22 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
                 new Object[]{"Admin", "Normal User"},
                 "Admin");
 
-        if (choice < 0) {
-            // nothing selected
+        if (choice < 0) { // nothing selected
             return;
         }
         try {
             users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
             if (choice == 0) {
-                selectedUser.setPrivilege("Admin");
+                UserUtil.setUserPrivilege(Login.user, selectedUser, "Admin");
             } else {
-                selectedUser.setPrivilege("Normal User");
+                UserUtil.setUserPrivilege(Login.user, selectedUser,
+                        "Normal User");
             }
 
-        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+        } catch (SQLException | NoPermissionException ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+
         }
         update_users_table();
     }//GEN-LAST:event_jButtonSetPrivilegeActionPerformed
