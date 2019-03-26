@@ -1,6 +1,11 @@
 package gui.examFrames;
 
+import exams.Exam;
+import exams.ExamUtil;
+import java.sql.Date;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class ExamAddFrame extends JFrame {
@@ -10,15 +15,13 @@ public class ExamAddFrame extends JFrame {
     public ExamAddFrame(JFrame root) {
         initComponents();
         this.root = root;
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker3 = new org.jdesktop.swingx.JXDatePicker();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -94,6 +97,11 @@ public class ExamAddFrame extends JFrame {
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
         jButton1.setText("Create new Exam");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,6 +150,20 @@ public class ExamAddFrame extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Exam newOne = ExamUtil.createExam(
+                    examNameJTextField.getText(),
+                    (double) examPricejSpinner.getValue(),
+                    new Date(ExamDatejXDatePicker.getDateInMillis()));
+            JOptionPane.showMessageDialog(this,
+                    "New Exam created successfully");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker ExamDatejXDatePicker;
     private javax.swing.JTextField examNameJTextField;
@@ -154,9 +176,6 @@ public class ExamAddFrame extends JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker3;
     // End of variables declaration//GEN-END:variables
 
 }

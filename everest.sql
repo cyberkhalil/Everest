@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 
 -- Dumping data for table `user`
-INSERT INTO `user` (`user_id`, `user_name`, `user_password`, `user_privilege`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
+INSERT INTO `user` (`user_id`, `user_name`, `user_password`, `user_privilege`) 
+VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
 -- --------------------------------------------------------
 /*	This table is created for exams	*/
@@ -31,12 +31,13 @@ CREATE TABLE IF NOT EXISTS `exam` (
     `exam_name` VARCHAR(50) NOT NULL,
     `exam_price` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
     `exam_time` TIMESTAMP NOT NULL,
-    PRIMARY KEY (`exam_id`)
+    PRIMARY KEY (`exam_id`),
+    UNIQUE (`exam_name` , `exam_time`)
 );
 
 -- Dumping data for table `exam`
-INSERT INTO `exam` (`exam_id`, `exam_name`, `exam_price`, `exam_time`) VALUES
-(1, 'exam_1', 100, '2019-04-20');
+INSERT INTO `exam` (`exam_id`, `exam_name`, `exam_price`, `exam_time`) 
+VALUES(1, 'exam_1', 100, '2019-04-20');
 
 -- --------------------------------------------------------
 
