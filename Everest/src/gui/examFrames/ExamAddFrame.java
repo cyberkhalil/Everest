@@ -1,20 +1,25 @@
 package gui.examFrames;
 
-import exams.Exam;
 import exams.ExamUtil;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class ExamAddFrame extends JFrame {
 
-    final JFrame root;
-
-    public ExamAddFrame(JFrame root) {
+    public ExamAddFrame(JButton addExamBtn) {
         initComponents();
-        this.root = root;
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                addExamBtn.setEnabled(true);
+            }
+        });
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
@@ -152,12 +157,13 @@ public class ExamAddFrame extends JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Exam newOne = ExamUtil.createExam(
-                    examNameJTextField.getText(),
+            ExamUtil.createExam(examNameJTextField.getText(),
                     (double) examPricejSpinner.getValue(),
                     new Date(ExamDatejXDatePicker.getDateInMillis()));
+
             JOptionPane.showMessageDialog(this,
                     "New Exam created successfully");
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getClass().getSimpleName() + "\n" + ex.getMessage());

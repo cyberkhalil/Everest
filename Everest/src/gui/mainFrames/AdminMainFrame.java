@@ -7,14 +7,13 @@ import all.EnrollFrame;
 import gui.userFrames.SignUp;
 import all.StudentJFrame;
 import all.StudentTableJframe;
+import gui.examFrames.EditExamsFrame;
 import gui.userFrames.UsersTableJFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import gui.examFrames.ExamAddFrame;
-
 
 public class AdminMainFrame extends JFrame {
 
@@ -26,7 +25,7 @@ public class AdminMainFrame extends JFrame {
 
         initComponents();
         setResizable(false);
-        WindowListener exitListener = new WindowAdapter() {
+        this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 int confirm = JOptionPane.showConfirmDialog(
@@ -37,8 +36,7 @@ public class AdminMainFrame extends JFrame {
                     System.exit(0);
                 }
             }
-        };
-        this.addWindowListener(exitListener);
+        });
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setSize(710, 560);
     }
@@ -71,9 +69,8 @@ public class AdminMainFrame extends JFrame {
         AddUserBtn = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        add_teacherJB4 = new javax.swing.JButton();
-        display_teacherJB4 = new javax.swing.JButton();
-        display_teacherJB5 = new javax.swing.JButton();
+        new_examjButton = new javax.swing.JButton();
+        edit_examsjButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -307,24 +304,17 @@ public class AdminMainFrame extends JFrame {
         jLabel13.setText("exam");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        add_teacherJB4.setText("new exam");
-        add_teacherJB4.addActionListener(new java.awt.event.ActionListener() {
+        new_examjButton.setText("new exam");
+        new_examjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_teacherJB4ActionPerformed(evt);
+                new_examjButtonActionPerformed(evt);
             }
         });
 
-        display_teacherJB4.setText("exam's Information");
-        display_teacherJB4.addActionListener(new java.awt.event.ActionListener() {
+        edit_examsjButton.setText("edit exams");
+        edit_examsjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                display_teacherJB4ActionPerformed(evt);
-            }
-        });
-
-        display_teacherJB5.setText("edit exam's");
-        display_teacherJB5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                display_teacherJB5ActionPerformed(evt);
+                edit_examsjButtonActionPerformed(evt);
             }
         });
 
@@ -336,9 +326,8 @@ public class AdminMainFrame extends JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(display_teacherJB5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(add_teacherJB4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(display_teacherJB4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(edit_examsjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(new_examjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
         jPanel14Layout.setVerticalGroup(
@@ -346,12 +335,10 @@ public class AdminMainFrame extends JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addComponent(jLabel13)
                 .addGap(15, 15, 15)
-                .addComponent(add_teacherJB4)
-                .addGap(15, 15, 15)
-                .addComponent(display_teacherJB4)
-                .addGap(15, 15, 15)
-                .addComponent(display_teacherJB5)
-                .addGap(20, 20, 20))
+                .addComponent(new_examjButton)
+                .addGap(26, 26, 26)
+                .addComponent(edit_examsjButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -400,6 +387,8 @@ public class AdminMainFrame extends JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel4.getAccessibleContext().setAccessibleDescription("");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -429,13 +418,10 @@ public class AdminMainFrame extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void display_teacherJB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_teacherJB4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_display_teacherJB4ActionPerformed
-
-    private void add_teacherJB4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_teacherJB4ActionPerformed
-        new ExamAddFrame(this).setVisible(true);
-    }//GEN-LAST:event_add_teacherJB4ActionPerformed
+    private void new_examjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_examjButtonActionPerformed
+        new ExamAddFrame(new_examjButton).setVisible(true);
+        new_examjButton.setEnabled(false);
+    }//GEN-LAST:event_new_examjButtonActionPerformed
 
     private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
         SignUp s = new SignUp();
@@ -443,8 +429,15 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_AddUserBtnActionPerformed
 
     private void display_usersJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_usersJBActionPerformed
-        UsersTableJFrame usr = new UsersTableJFrame();
-        usr.setVisible(true);
+        JFrame frame = new UsersTableJFrame();
+        frame.setVisible(true);
+        display_usersJB.setEnabled(false);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                display_usersJB.setEnabled(true);
+            }
+        });
     }//GEN-LAST:event_display_usersJBActionPerformed
 
     private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
@@ -482,9 +475,19 @@ public class AdminMainFrame extends JFrame {
         this.dispose();
     }//GEN-LAST:event_LogOutBtnActionPerformed
 
-    private void display_teacherJB5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_teacherJB5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_display_teacherJB5ActionPerformed
+    private void edit_examsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_examsjButtonActionPerformed
+        JFrame frame = new EditExamsFrame();
+        frame.setVisible(true);
+        edit_examsjButton.setEnabled(false);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                edit_examsjButton.setEnabled(true);
+            }
+        });
+
+
+    }//GEN-LAST:event_edit_examsjButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserBtn;
@@ -493,12 +496,10 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JButton LogOutBtn;
     private javax.swing.JButton add_BookJB;
     private javax.swing.JButton add_studentJB;
-    private javax.swing.JButton add_teacherJB4;
     private javax.swing.JButton display_BookJB;
     private javax.swing.JButton display_studentJB;
-    private javax.swing.JButton display_teacherJB4;
-    private javax.swing.JButton display_teacherJB5;
     private javax.swing.JButton display_usersJB;
+    private javax.swing.JButton edit_examsjButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -514,5 +515,6 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JButton new_examjButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -80,4 +80,15 @@ public class Exam {
         preparedStatement.executeUpdate();
         this.exam_time = newExamTime;
     }
+
+    public void delete() throws SQLException {
+        String query = "Delete exam where exam_id= ?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, exam_id);
+        preparedStatement.executeUpdate();
+        this.exam_name = "";
+        this.exam_price = -1;
+        this.exam_time = new Date(0);
+    }
 }

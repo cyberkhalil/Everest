@@ -185,6 +185,9 @@
                   <Dimension value="[573, 450]"/>
                 </Property>
               </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
+              </AccessibilityProperties>
 
               <Layout>
                 <DimensionLayout dim="0">
@@ -523,9 +526,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="display_teacherJB5" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="add_teacherJB4" min="-2" pref="170" max="-2" attributes="0"/>
-                                  <Component id="display_teacherJB4" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="edit_examsjButton" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="new_examjButton" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
@@ -536,12 +538,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="add_teacherJB4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="display_teacherJB4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Component id="display_teacherJB5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                              <Component id="new_examjButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="edit_examsjButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -566,28 +566,20 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="add_teacherJB4">
+                    <Component class="javax.swing.JButton" name="new_examjButton">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="new exam"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="add_teacherJB4ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="new_examjButtonActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="display_teacherJB4">
+                    <Component class="javax.swing.JButton" name="edit_examsjButton">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="exam&apos;s Information"/>
+                        <Property name="text" type="java.lang.String" value="edit exams"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="display_teacherJB4ActionPerformed"/>
-                      </Events>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="display_teacherJB5">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="edit exam&apos;s"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="display_teacherJB5ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="edit_examsjButtonActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>
