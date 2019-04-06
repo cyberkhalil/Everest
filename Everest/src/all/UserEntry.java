@@ -1,6 +1,5 @@
 package all;
 
-import gui.loginFrames.Login;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +23,7 @@ public class UserEntry {
             preparedStmt.setInt(2, ID);
             preparedStmt.setInt(3, s.getPhoneNumber());
             preparedStmt.setString(4, s.getPaymentMethod());
-            preparedStmt.setString(5, Login.user.getUsername());
+            preparedStmt.setString(5, "Login.user.getUsername()");
             preparedStmt.setDouble(6, s.getDiscount());
             preparedStmt.execute();
 

@@ -1,27 +1,17 @@
 package gui.userFrames;
 
-import all.StudentTableJframe;
-import all.User;
 import gui.loginFrames.Login;
-import db.DBConnection;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NoPermissionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import users.UserUtil;
+import users.*;
+import utils.Model;
 
 public final class UsersTableJFrame extends javax.swing.JFrame {
 
-    users.User selectedUser;
-
+// TODO    User selectedUser;
     public UsersTableJFrame() {
         initComponents();
         update_users_table();
@@ -30,67 +20,15 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
-    public ArrayList<User> getUsersArrayList() {
-        ArrayList<User> arrayList = new ArrayList<>();
-
-        Connection conn = DBConnection.getConnection();
-        String query = "select * from user ";
-        Statement st;
-        ResultSet rs;
+    public void update_users_table() {
 
         try {
-            st = conn.createStatement();
-            rs = st.executeQuery(query);
-
-            while (rs.next()) {
-                User u = new User(rs.getInt("user_id"), rs.getString("user_name"), rs.getString("user_privilege"));
-                arrayList.add(u);
-            }
-
-        } catch (SQLException ex) {
+            this.jUsersTable.setModel(
+                    Model.buildTableModel(UserUtil.getUsersResultSet(Login.user)));
+        } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
-        }
-        return arrayList;
-    }
-
-    public void update_users_table() {
-        { // remove all rows
-            DefaultTableModel dm = (DefaultTableModel) jUsersTable.getModel();
-            int rowCount = dm.getRowCount();
-
-            for (int i = rowCount - 1; i >= 0; i--) {
-                dm.removeRow(i);
-            }
-        }
-        ArrayList<User> arrayList = getUsersArrayList();
-        DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
-        Object[] rObjects = new Object[3];
-        for (int i = 0; i < arrayList.size(); i++) {
-            rObjects[0] = arrayList.get(i).getUserId();
-            rObjects[1] = arrayList.get(i).getUsername();
-            rObjects[2] = arrayList.get(i).getPassword();
-
-            model.addRow(rObjects);
-        }
-    }
-
-    public void excuteSQLQuery(String Query, String message) {
-        Connection conn = DBConnection.getConnection();
-        Statement st;
-        try {
-            st = conn.createStatement();
-            if (st.executeUpdate(Query) == 1) {
-                DefaultTableModel model = (DefaultTableModel) jUsersTable.getModel();
-                model.setRowCount(0);
-                update_users_table();
-                JOptionPane.showMessageDialog(null, "Data " + message + " Successfully");
-            } else {
-                JOptionPane.showMessageDialog(null, "Do not " + message);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -355,7 +293,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
             selectedUser.setPassword(pass);
         } catch (SQLException | NoPermissionException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
@@ -367,7 +305,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
     private void jButtonDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteUserActionPerformed
 
         try {
-            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
             UserUtil.deleteUser(Login.user, selectedUser);
         } catch (SQLException | NoPermissionException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
@@ -395,7 +333,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
             selectedUser.setUsername(username);
         } catch (SQLException | NoPermissionException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
@@ -420,7 +358,7 @@ public final class UsersTableJFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            users.User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
+            User selectedUser = UserUtil.getUser(Login.user, usernameTF.getText());
             if (choice == 0) {
                 UserUtil.setUserPrivilege(Login.user, selectedUser, "Admin");
             } else {

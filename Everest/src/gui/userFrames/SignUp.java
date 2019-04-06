@@ -1,10 +1,7 @@
 package gui.userFrames;
 
-import all.User;
 import gui.loginFrames.Login;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.naming.NoPermissionException;
 import utils.Hashing;
 import javax.swing.JFrame;
@@ -12,8 +9,6 @@ import javax.swing.JOptionPane;
 import users.UserUtil;
 
 public class SignUp extends javax.swing.JFrame {
-
-    User user = new User();
 
     public SignUp() {
         initComponents();
@@ -305,18 +300,20 @@ public class SignUp extends javax.swing.JFrame {
             Label6.setText("The Passwords are Equal");
             Label6.setForeground(new java.awt.Color(0, 204, 0));
             String Str3 = Hashing.toMD5(Str1);
-            user.setUsername(usernameField4.getText());
-            user.setPassword(Str3);
+            String username = (usernameField4.getText());
+            String userPassword = (Str3);
             AdminRadioButton.setActionCommand("Admin");
             NormalUserRadioButton.setActionCommand("Normal User");
             String Str = buttonGroup1.getSelection().getActionCommand();
             try {
-                UserUtil.createUser(Login.user, user.getUsername(), user.getPassword(), Str);
-            } catch (NoPermissionException | SQLException ex) {
-                JOptionPane.showMessageDialog(this,
-                        ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+                UserUtil.createUser(Login.user, username, userPassword, Str);
+            } catch (SQLException | NoPermissionException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                        + "\n" + ex.getMessage()
+                );
             }
-            JOptionPane.showMessageDialog(null, "User has been added sucessfully");
+            JOptionPane.showMessageDialog(null,
+                    "User has been added sucessfully");
         } else {
             Label6.setText("The Passwords are not Equal, Please Try again");
             Label6.setForeground(new java.awt.Color(255, 0, 0));

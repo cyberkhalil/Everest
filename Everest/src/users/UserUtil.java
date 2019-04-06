@@ -80,7 +80,7 @@ public final class UserUtil {
             throw new NoPermissionException(
                     "You must be admin to do this operation");
         }
-        String query = "select * from user ";
+        String query = "select user_id,user_name,user_privilege from user ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement

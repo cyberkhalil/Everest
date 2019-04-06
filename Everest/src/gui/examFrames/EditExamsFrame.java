@@ -3,20 +3,16 @@ package gui.examFrames;
 import exams.Exam;
 import exams.ExamUtil;
 import java.awt.event.ActionEvent;
-import java.io.NotActiveException;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import org.jdesktop.swingx.JXDatePicker;
 import utils.Model;
 
 public class EditExamsFrame extends javax.swing.JFrame {
 
+    // TODO Exam selectedExam;
     public EditExamsFrame() {
         initComponents();
         try {
@@ -326,16 +322,15 @@ public class EditExamsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setDate_BActionPerformed
 
     private void deleteExam_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExam_BActionPerformed
-        int deleteConfirmationInt = JOptionPane
+
+        boolean deleteConfirmation = JOptionPane
                 .showConfirmDialog(rootPane,
                         "Are you sure you want delete Exam "
                         + examName_TF.getText() + " ?", "Exam Delete",
-                        JOptionPane.YES_NO_OPTION);
-        boolean deleteConfirmation = deleteConfirmationInt == 1;
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
-
         try {
             Exam selectedExam = new Exam(Integer.parseInt(examId_TF.getText()));
             selectedExam.delete();
@@ -344,32 +339,32 @@ public class EditExamsFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
-
         updateExamsTable();
+        examsTable_T.setRowSelectionInterval(0, 0);
+        this.examsTable_TMouseClicked(null);
     }//GEN-LAST:event_deleteExam_BActionPerformed
 
     private void setPrice_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPrice_BActionPerformed
-        try {
-            throw new NotActiveException("not yet man ..");
-            // TODO implement this method
-//            if (examName == null || examName.isEmpty()) {
-//                JOptionPane.showMessageDialog(
-//                        rootPane, "You didn't change password");
-//                return;
-//            }
-//
-//            try {
-//                Exam exam = new Exam(Integer.parseInt(examId_TF.getText()));
-//                exam.setExam_name(examName);
-//            } catch (SQLException | IllegalStateException ex) {
-//                JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-//                        + "\n" + ex.getMessage());
-//            }
-//            updateExamsTable();
-        } catch (NotActiveException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage());
-        }
+        PromoteExamPriceFrame pExamPriceFrame = new PromoteExamPriceFrame();
+        pExamPriceFrame.setPriceBtn.setAction(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Exam selectedExam = new Exam(
+                            Integer.parseInt(examId_TF.getText()));
+                    selectedExam.setExam_price(
+                            (double) pExamPriceFrame.examPricejSpinner
+                                    .getValue());
+                } catch (SQLException | IllegalStateException ex) {
+                    JOptionPane.showMessageDialog(rootPane,
+                            ex.getClass().getName() + "\n" + ex.getMessage());
+                }
+                updateExamsTable();
+                pExamPriceFrame.dispose();
+            }
+        });
+        pExamPriceFrame.setPriceBtn.setText("Set Date");
+        pExamPriceFrame.setVisible(true);
     }//GEN-LAST:event_setPrice_BActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
