@@ -82,7 +82,7 @@ public class Exam {
     }
 
     public void delete() throws SQLException {
-        String query = "Delete exam where exam_id= ?";
+        String query = "Delete from exam where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, exam_id);

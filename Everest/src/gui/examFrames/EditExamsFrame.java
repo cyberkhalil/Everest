@@ -7,6 +7,7 @@ import java.io.NotActiveException;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -79,18 +80,8 @@ public class EditExamsFrame extends javax.swing.JFrame {
         jLabel1.setText("Exam name :");
 
         examDate_TF.setEditable(false);
-        examDate_TF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                examDate_TFActionPerformed(evt);
-            }
-        });
 
         examId_TF.setEditable(false);
-        examId_TF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                examId_TFKeyReleased(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 153));
@@ -101,22 +92,12 @@ public class EditExamsFrame extends javax.swing.JFrame {
         jLabel2.setText("Exam Date :");
 
         examName_TF.setEditable(false);
-        examName_TF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                examName_TFActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setText("Exam Price :");
 
         examPrice_TF.setEditable(false);
-        examPrice_TF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                examPrice_TFActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -301,25 +282,13 @@ public class EditExamsFrame extends javax.swing.JFrame {
         examDate_TF.setText(tableModel.getValueAt(i, 3).toString());
     }//GEN-LAST:event_examsTable_TMouseClicked
 
-    private void examDate_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examDate_TFActionPerformed
-        //TODO remove this !
-    }//GEN-LAST:event_examDate_TFActionPerformed
-
-    private void examId_TFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_examId_TFKeyReleased
-        //TODO remove this !
-    }//GEN-LAST:event_examId_TFKeyReleased
-
-    private void examName_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examName_TFActionPerformed
-        // TODO remove this !
-    }//GEN-LAST:event_examName_TFActionPerformed
-
     private void setName_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setName_BActionPerformed
         String examName = JOptionPane.showInputDialog(
                 rootPane, "New Exam Name:", DISPOSE_ON_CLOSE);
 
         if (examName == null || examName.isEmpty()) {
             JOptionPane.showMessageDialog(
-                    rootPane, "You didn't change password");
+                    rootPane, "Exam name can't be " + examName);
             return;
         }
 
@@ -335,42 +304,32 @@ public class EditExamsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setName_BActionPerformed
 
     private void setDate_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDate_BActionPerformed
-        // TODO new frame conatins date thing ..
-        JFrame f = new JFrame("Choose Date");
-        f.setSize(300, 300);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        // TODO change layout some how here !
-
-        JXDatePicker jxdate = new JXDatePicker();
-        jxdate.getMonthView();
-        f.add(jxdate);
-
-        JButton button = new JButton("Done");
-        button.setSize(180, 50);
-        button.setAction(new AbstractAction() {
+        PromoteExamDateFrame pExamDateFrame = new PromoteExamDateFrame();
+        pExamDateFrame.setDateBtn.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Exam exam = new Exam(Integer.parseInt(examId_TF.getText()));
-                    exam.setExam_time(new Date(jxdate.getDateInMillis()));
-                    f.dispose();
+                    Exam selectedExam = new Exam(
+                            Integer.parseInt(examId_TF.getText()));
+                    selectedExam.setExam_time(new Date(
+                            pExamDateFrame.jXDatePicker1.getDateInMillis()));
                 } catch (SQLException | IllegalStateException ex) {
                     JOptionPane.showMessageDialog(rootPane,
-                            ex.getClass().getName() + "\n" + ex.getMessage()
-                    );
+                            ex.getClass().getName() + "\n" + ex.getMessage());
                 }
+                updateExamsTable();
+                pExamDateFrame.dispose();
             }
         });
-        f.add(button);
-        f.setVisible(true);
-        updateExamsTable();
+        pExamDateFrame.setDateBtn.setText("Set Date");
+        pExamDateFrame.setVisible(true);
     }//GEN-LAST:event_setDate_BActionPerformed
 
     private void deleteExam_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExam_BActionPerformed
         int deleteConfirmationInt = JOptionPane
                 .showConfirmDialog(rootPane,
-                        "Are you sure you want delete Exam ?",
-                        "Exam Delete",
+                        "Are you sure you want delete Exam "
+                        + examName_TF.getText() + " ?", "Exam Delete",
                         JOptionPane.YES_NO_OPTION);
         boolean deleteConfirmation = deleteConfirmationInt == 1;
         if (!deleteConfirmation) {
@@ -378,8 +337,8 @@ public class EditExamsFrame extends javax.swing.JFrame {
         }
 
         try {
-            Exam exam = new Exam(Integer.parseInt(examId_TF.getText()));
-            exam.delete();
+            Exam selectedExam = new Exam(Integer.parseInt(examId_TF.getText()));
+            selectedExam.delete();
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
@@ -393,9 +352,6 @@ public class EditExamsFrame extends javax.swing.JFrame {
         try {
             throw new NotActiveException("not yet man ..");
             // TODO implement this method
-//            String examName = JOptionPane.showInputDialog(
-//                    rootPane, "New Price:", DISPOSE_ON_CLOSE);
-//
 //            if (examName == null || examName.isEmpty()) {
 //                JOptionPane.showMessageDialog(
 //                        rootPane, "You didn't change password");
@@ -415,11 +371,6 @@ public class EditExamsFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage());
         }
     }//GEN-LAST:event_setPrice_BActionPerformed
-
-    private void examPrice_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examPrice_TFActionPerformed
-        // TODO remove this
-    }//GEN-LAST:event_examPrice_TFActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteExam_B;
