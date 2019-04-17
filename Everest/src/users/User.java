@@ -7,11 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
 
-/**
- * TODO use this instead of User
- *
- * @author User
- */
 public class User {
 
     private String username;

@@ -1,6 +1,5 @@
 package all;
 
-
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -358,7 +357,7 @@ public final class TeacherTableJframe extends javax.swing.JFrame {
             show_teacher();
             JOptionPane.showMessageDialog(null, "Updated sucessfully");
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -377,7 +376,7 @@ public final class TeacherTableJframe extends javax.swing.JFrame {
             phone_numberTF.setText("");
             JOptionPane.showMessageDialog(null, "deleted sucessfully");
         } catch (SQLException ex) {
-            Logger.getLogger(BookTableJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherTableJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_deleteButtonActionPerformed
 

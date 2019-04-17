@@ -1,5 +1,6 @@
 package all;
 
+import books.Book;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -156,8 +157,8 @@ public class UserEntry {
                     + " values (?,?,?)";
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setInt(1, b.getBookId());
-            preparedStmt.setString(2, b.getBookName());
+            preparedStmt.setInt(1, b.getID());
+            preparedStmt.setString(2, b.getName());
             preparedStmt.setDouble(3, b.getPrice());
             // execute the preparedstatement
             preparedStmt.execute();

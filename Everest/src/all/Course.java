@@ -1,6 +1,5 @@
 package all;
 
-
 public class Course {
 
     private String CourseDays;

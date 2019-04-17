@@ -40,14 +40,20 @@ INSERT INTO `exam` (`exam_id`, `exam_name`, `exam_price`, `exam_time`)
 VALUES(1, 'exam_1', 100, '2019-04-20');
 
 -- --------------------------------------------------------
+/*	This table is created for books */
+CREATE TABLE IF NOT EXISTS `book` (
+    `book_id` INT(11) NOT NULL,
+    `book_name` VARCHAR(50) NOT NULL,
+    `book_price` DOUBLE NOT NULL,
+    `book_qunatity` INT NOT NULL,
+    `book_sold` INT NOT NULL,
+    `book_isbn` VARCHAR(13),
+    PRIMARY KEY (`book_id`)
+);
 
--- CREATE TABLE IF NOT EXISTS `book` (
---     `BookId` INT(11) NOT NULL,
---     `BookName` VARCHAR(50) NOT NULL,
---     `Price` DOUBLE NOT NULL,
---     `Bought` VARCHAR(3) NOT NULL DEFAULT 'No',
---     PRIMARY KEY (`BookId`)
--- );
+-- Dumping data for table `book`
+INSERT INTO `book` (`book_id`,`book_name`,`book_price`,`book_qunatity`,`book_sold`,`book_isbn`)
+Values(1,'Book1',100,10,5,'some isbn');
 
 -- -- --------------------------------------------------------
 

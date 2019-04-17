@@ -34,7 +34,7 @@ public interface WatchableStream {
 
     int size();
 
-    byte toByteArray    ()
+    byte toByteArray      ()
 
     [];
 

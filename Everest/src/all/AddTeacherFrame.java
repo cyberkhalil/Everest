@@ -1,6 +1,5 @@
 package all;
 
-
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,5 @@
 package all;
 
-
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-public class StudentJFrame extends javax.swing.JFrame {
+public final class StudentJFrame extends javax.swing.JFrame {
 
     static double totalprice = 0;
     static double net = 0;
@@ -22,7 +21,6 @@ public class StudentJFrame extends javax.swing.JFrame {
     double ExamCost = 0;
     int ExamID = 0;
     Student student = new Student();
-    Book b = new Book();
     UserEntry UserEntry = new UserEntry();
     Course c = new Course();
 

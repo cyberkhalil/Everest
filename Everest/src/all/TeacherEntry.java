@@ -1,6 +1,5 @@
 package all;
 
-
 import db.DBConnection;
 import java.awt.HeadlessException;
 import java.sql.Connection;

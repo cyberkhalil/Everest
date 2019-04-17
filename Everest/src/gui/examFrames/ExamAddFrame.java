@@ -20,7 +20,6 @@ public class ExamAddFrame extends JFrame {
                 addExamBtn.setEnabled(true);
             }
         });
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,7 +38,8 @@ public class ExamAddFrame extends JFrame {
         ExamDatejXDatePicker = new org.jdesktop.swingx.JXDatePicker();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));

@@ -71,7 +71,6 @@ public class PromoteExamPriceFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JSpinner examPricejSpinner;
     private javax.swing.JLabel jLabel5;

@@ -1,6 +1,5 @@
 package all;
 
-
 public class Student extends Person {
 
     private double net;

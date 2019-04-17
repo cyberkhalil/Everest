@@ -1,12 +1,11 @@
 package gui.mainFrames;
 
-import all.BookJFrame;
-import all.BookTable;
-import all.BookTableJframe;
+import gui.bookFrames.BookAddFrame;
 import all.EnrollFrame;
 import gui.userFrames.SignUp;
 import all.StudentJFrame;
 import all.StudentTableJframe;
+import gui.bookFrames.EditBooksFrame;
 import gui.examFrames.EditExamsFrame;
 import gui.userFrames.UsersTableJFrame;
 import java.awt.event.WindowAdapter;
@@ -454,17 +453,16 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_display_usersJBActionPerformed
 
     private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
-        BookTableJframe bj = new BookTableJframe();
+        EditBooksFrame bj = new EditBooksFrame();
         bj.setVisible(true);
     }//GEN-LAST:event_AvailableBooksBtnActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        BookTable book = new BookTable();
-        book.setVisible(true);
+
     }//GEN-LAST:event_display_BookJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        BookJFrame bookJFrame = new BookJFrame();
+        BookAddFrame bookJFrame = new BookAddFrame(add_BookJB);
         bookJFrame.setVisible(true);
     }//GEN-LAST:event_add_BookJBActionPerformed
 

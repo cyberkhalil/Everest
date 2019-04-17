@@ -1,6 +1,5 @@
 package all;
 
-
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +12,7 @@ public class TeacherCut extends javax.swing.JFrame {
 
     static double totalprice = 0;
     Student student = new Student();
-    Book b = new Book();
+//    Book b = new Book();
     UserEntry UserEntry = new UserEntry();
     Course c = new Course();
 

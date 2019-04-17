@@ -1,6 +1,5 @@
 package all;
 
-
 import javax.swing.JFrame;
 
 public class AddCourseFrame extends javax.swing.JFrame {

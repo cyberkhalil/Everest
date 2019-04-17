@@ -1,15 +1,14 @@
 package gui.mainFrames;
 
-
 import all.AddCourseFrame;
 import all.AddNewPayment;
-import all.BookJFrame;
-import all.BookTableJframe;
+import gui.bookFrames.BookAddFrame;
 import all.CourseTableJframe;
 import all.EnrollFrame;
 import all.PaymentTableJFrame;
 import all.StudentJFrame;
 import all.StudentTableJframe;
+import gui.bookFrames.EditBooksFrame;
 import gui.loginFrames.Login;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -424,12 +423,12 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        BookJFrame bookJFrame = new BookJFrame();
+        BookAddFrame bookJFrame = new BookAddFrame(add_BookJB);
         bookJFrame.setVisible(true);
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        BookTableJframe Display_book = new BookTableJframe();
+        EditBooksFrame Display_book = new EditBooksFrame();
         Display_book.setVisible(true);
     }//GEN-LAST:event_display_BookJBActionPerformed
 

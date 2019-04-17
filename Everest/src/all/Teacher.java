@@ -1,6 +1,5 @@
 package all;
 
-
 public class Teacher extends Person {
 
     private int TeacherID;
