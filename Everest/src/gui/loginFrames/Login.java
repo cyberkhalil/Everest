@@ -5,9 +5,13 @@ import gui.mainFrames.SecretaryMainFrame;
 import users.User;
 import db.DBConnection;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
+import static utils.PreRun.check_mysql;
 
 public class Login extends javax.swing.JFrame {
 
@@ -222,11 +226,13 @@ public class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
+//            check_mysql();
             DBConnection.establishConnection();
             java.awt.EventQueue.invokeLater(() -> {
                 new Login().setVisible(true);
             });
         } catch (SQLException ex) {
+//        } catch (IOException | InterruptedException | SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     ex.getClass().getSimpleName() + "\n" + ex.getMessage());
         }
