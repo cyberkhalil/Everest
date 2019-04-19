@@ -52,34 +52,49 @@ CREATE TABLE IF NOT EXISTS `book` (
 );
 
 -- Dumping data for table `book`
-INSERT INTO `book` (`book_id`,`book_name`,`book_price`,`book_qunatity`,`book_sold`,`book_isbn`)
+INSERT INTO `book` 
+(`book_id`,`book_name`,`book_price`,`book_qunatity`,`book_sold`,`book_isbn`)
 Values(1,'Book1',100,10,5,'some isbn');
 
+-- --------------------------------------------------------
+/*	This table is created for teachers */
+CREATE TABLE IF NOT EXISTS `teacher` (
+    `teacher_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `teacher_name` VARCHAR(100) NOT NULL,
+    `teacher_phone` INT(11) NOT NULL,
+    PRIMARY KEY (`teacher_id`)
+);
+-- Dumping data for table `teacher`
+INSERT INTO `teacher`(`teacher_id`,`teacher_name`,`teacher_phone`)
+values(1,'Teacher 1','0591234567');
+
+-- --------------------------------------------------------
+/*	This table is created for teacher */
+CREATE TABLE IF NOT EXISTS `course` (
+    `course_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `course_name` VARCHAR(50) NOT NULL,
+    `course_start_date` VARCHAR(11) NOT NULL,
+    `course_end_date` VARCHAR(11) NOT NULL,
+    `course_price` INT(11) NOT NULL,
+    `course_time_hour_from` VARCHAR(10) NOT NULL,
+    `course_time_hour_to` VARCHAR(10) NOT NULL,
+    `course_days` VARCHAR(20) NOT NULL,
+    PRIMARY KEY (`course_id`)
+);
+
+
+-- Dumping data for table `course`
+INSERT INTO `course` 
+(`course_id`,`course_name`,`course_start_date`,`course_end_date`,
+`course_teacher_id`,`course_price`,`course_time_hour_from`,
+`course_time_hour_to`,`course_days`)value
+(1, 'course 1', '01-01-2018','02-02-2018', 1, 500, '5:30', '10:30', 'Su,Tu,Th'),
+(2, 'course 2', '01-01-2018','02-02-2018', 1, 200, '10:00', '3:30', 'Sa,Su,Mo');
+
 -- -- --------------------------------------------------------
-
--- CREATE TABLE IF NOT EXISTS `course` (
---     `CourseId` INT(11) NOT NULL AUTO_INCREMENT,
---     `CourseName` VARCHAR(50) DEFAULT NULL,
---     `CourseDateStart` VARCHAR(11) DEFAULT NULL,
---     `Teacher_TeacherId` INT(11) DEFAULT NULL,
---     `CoursePrice` INT(11) DEFAULT NULL,
---     `HourFrom` VARCHAR(10) DEFAULT NULL,
---     `HourTo` VARCHAR(10) DEFAULT NULL,
---     `CourseDays` VARCHAR(50) DEFAULT NULL,
---     `CourseDateEnd` VARCHAR(11) DEFAULT NULL,
---     PRIMARY KEY (`CourseId`),
---     KEY `Teacher_TeacherId` (`Teacher_TeacherId`)
--- )  AUTO_INCREMENT=3;
-
--- --
--- -- Dumping data for table `course`
--- --
-
--- INSERT INTO `course` (`CourseId`, `CourseName`, `CourseDateStart`, `Teacher_TeacherId`, `CoursePrice`, `HourFrom`, `HourTo`, `CourseDays`, `CourseDateEnd`) VALUES
--- (1, 'cpm', '01-01-2018', NULL, 500, '5:30', '10:30', 'Sunday,Tuesday,Thursday', '02-02-2018'),
--- (2, 'cpa', '01-01-2018', NULL, 200, '10:00', '3:00', 'Saturday,Sunday,Monday', '03-03-2018');
-
--- -- --------------------------------------------------------
+-- in new table (teacher_courses)
+-- FOREIGN KEY `course_teacher_id` REFERENCES `teacher`(`teacher_id`)
+-- FOREIGN KEY `course_id` REFERENCES `course`(`course_id`)
 
 -- CREATE TABLE IF NOT EXISTS `invoice` (
 --     `invoiceId` INT(10) NOT NULL AUTO_INCREMENT,
@@ -160,22 +175,6 @@ Values(1,'Book1',100,10,5,'some isbn');
 -- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- -- --------------------------------------------------------
-
--- CREATE TABLE IF NOT EXISTS `teacher` (
---     `TeacherId` INT(11) NOT NULL AUTO_INCREMENT,
---     `TeacherName` VARCHAR(100) NOT NULL,
---     `TeacherPhoneNumber` INT(11) NOT NULL DEFAULT '0',
---     `CourseHours` INT(5) NOT NULL DEFAULT '0',
---     `HourPrice` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     `TotalPrice` DOUBLE(5 , 2 ) DEFAULT '0.00',
---     PRIMARY KEY (`TeacherId`)
--- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
--- --
--- -- Constraints for dumped tables
--- --
 
 -- --
 -- -- Constraints for table `course`
