@@ -6,7 +6,8 @@ import javax.naming.NoPermissionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
-import users.*;
+import users.User;
+import users.UserUtil;
 import utils.Model;
 
 public final class UsersTableJFrame extends javax.swing.JFrame {

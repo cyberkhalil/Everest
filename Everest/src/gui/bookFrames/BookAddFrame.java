@@ -1,24 +1,14 @@
 package gui.bookFrames;
 
 import books.BookUtil;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class BookAddFrame extends javax.swing.JFrame {
 
-    public BookAddFrame(JButton addBookButton) {
-        addBookButton.setVisible(false);
+    public BookAddFrame() {
         initComponents();
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                addBookButton.setEnabled(true);
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -101,7 +91,7 @@ public class BookAddFrame extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(0, 51, 153));
         jLabel16.setText("Quantity:");
 
-        bookQuantity.setModel(new SpinnerNumberModel(0,0,999.99,1));
+        bookQuantity.setModel(new SpinnerNumberModel(0,0,1000,1));
 
         bookISBN.setEditable(false);
 

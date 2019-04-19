@@ -11,26 +11,23 @@ public class BookUtil {
             String name, double price, int quantity, String isbn)
             throws SQLException {
 
-        String query = "select max(book_id) from exam";
+        String query = "insert into book(book_name,book_price,book_quantity,"
+                + "book_isbn) values(?,?,?,?)";
         PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setDouble(2, price);
+        preparedStatement.setInt(3, quantity);
+        preparedStatement.setString(4, isbn);
+        preparedStatement.executeUpdate();
+
+        query = "select max(book_id) from book";
+        preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        int newBookId = rs.getInt("max(book_id)") + 1;
-
-        query = "insert into exam(book_id,book_name,book_price,book_quantity"
-                + ",book_isbn) values(?,?,?,?)";
-        preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, newBookId);
-        preparedStatement.setString(2, name);
-        preparedStatement.setDouble(3, price);
-        preparedStatement.setInt(4, quantity);
-        preparedStatement.setString(5, isbn);
-        preparedStatement.executeUpdate();
-
-        return new Book(newBookId, name, price, quantity, isbn);
+        return new Book(rs.getInt("max(book_id)"), name, price, quantity, isbn);
     }
 
     public static ResultSet getBooks() throws SQLException {

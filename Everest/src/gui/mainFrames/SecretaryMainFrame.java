@@ -16,6 +16,7 @@ import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import static utils.GUIUtil.link_frame_to_button;
 
 public class SecretaryMainFrame extends javax.swing.JFrame {
 
@@ -423,8 +424,9 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        BookAddFrame bookJFrame = new BookAddFrame(add_BookJB);
+        BookAddFrame bookJFrame = new BookAddFrame();
         bookJFrame.setVisible(true);
+        link_frame_to_button(bookJFrame, add_BookJB);
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed

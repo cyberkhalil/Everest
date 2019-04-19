@@ -1,25 +1,16 @@
 package gui.examFrames;
 
 import exams.ExamUtil;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.Date;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
 public class ExamAddFrame extends JFrame {
 
-    public ExamAddFrame(JButton addExamBtn) {
+    public ExamAddFrame() {
         initComponents();
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                addExamBtn.setEnabled(true);
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -93,7 +84,7 @@ public class ExamAddFrame extends JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
         jLabel4.setText("Exam price :");
 
-        examPricejSpinner.setModel(new SpinnerNumberModel(0,0,999.99,10));
+        examPricejSpinner.setModel(new SpinnerNumberModel(0,0,9999.99,10));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));

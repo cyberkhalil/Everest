@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
 /**
- * TODO : {use createUser instead of UserEntry for manipulate users}
  *
  * @author User
  */

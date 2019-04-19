@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
     `exam_time` TIMESTAMP NOT NULL,
     PRIMARY KEY (`exam_id`),
     UNIQUE (`exam_name` , `exam_time`)
-);
+)  AUTO_INCREMENT=1;
 
 -- Dumping data for table `exam`
 INSERT INTO `exam` (`exam_id`, `exam_name`, `exam_price`, `exam_time`) 
@@ -42,18 +42,18 @@ VALUES(1, 'exam_1', 100, '2019-04-20');
 -- --------------------------------------------------------
 /*	This table is created for books */
 CREATE TABLE IF NOT EXISTS `book` (
-    `book_id` INT(11) NOT NULL,
+    `book_id` INT(11) NOT NULL AUTO_INCREMENT,
     `book_name` VARCHAR(50) NOT NULL,
     `book_price` DOUBLE NOT NULL,
-    `book_qunatity` INT NOT NULL,
-    `book_sold` INT NOT NULL,
+    `book_quantity` INT NOT NULL,
+    `book_sold` INT NOT NULL DEFAULT 0,
     `book_isbn` VARCHAR(13),
     PRIMARY KEY (`book_id`)
-);
+)  AUTO_INCREMENT=1;
 
 -- Dumping data for table `book`
 INSERT INTO `book` 
-(`book_id`,`book_name`,`book_price`,`book_qunatity`,`book_sold`,`book_isbn`)
+(`book_id`,`book_name`,`book_price`,`book_quantity`,`book_sold`,`book_isbn`)
 Values(1,'Book1',100,10,5,'some isbn');
 
 -- --------------------------------------------------------
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `teacher` (
     `teacher_name` VARCHAR(100) NOT NULL,
     `teacher_phone` INT(11) NOT NULL,
     PRIMARY KEY (`teacher_id`)
-);
+)  AUTO_INCREMENT=1;
 -- Dumping data for table `teacher`
 INSERT INTO `teacher`(`teacher_id`,`teacher_name`,`teacher_phone`)
 values(1,'Teacher 1','0591234567');
@@ -80,16 +80,16 @@ CREATE TABLE IF NOT EXISTS `course` (
     `course_time_hour_to` VARCHAR(10) NOT NULL,
     `course_days` VARCHAR(20) NOT NULL,
     PRIMARY KEY (`course_id`)
-);
+)  AUTO_INCREMENT=1;
 
 
 -- Dumping data for table `course`
 INSERT INTO `course` 
 (`course_id`,`course_name`,`course_start_date`,`course_end_date`,
-`course_teacher_id`,`course_price`,`course_time_hour_from`,
+`course_price`,`course_time_hour_from`,
 `course_time_hour_to`,`course_days`)value
-(1, 'course 1', '01-01-2018','02-02-2018', 1, 500, '5:30', '10:30', 'Su,Tu,Th'),
-(2, 'course 2', '01-01-2018','02-02-2018', 1, 200, '10:00', '3:30', 'Sa,Su,Mo');
+(1, 'course 1', '01-01-2018','02-02-2018', 500, '5:30', '10:30', 'Su,Tu,Th'),
+(2, 'course 2', '01-01-2018','02-02-2018', 200, '10:00', '3:30', 'Sa,Su,Mo');
 
 -- -- --------------------------------------------------------
 -- in new table (teacher_courses)

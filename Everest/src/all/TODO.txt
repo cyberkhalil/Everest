@@ -1,5 +1,5 @@
 * Book
+* Teacher
 * Course
 * Student
-* Teacher
-* payment
+* Payment

@@ -21,24 +21,23 @@ public final class ExamUtil {
     public static Exam createExam(
             String exam_name, double exam_price, Date exam_time)
             throws SQLException {
-        String query = "select max(exam_id) from exam";
+
+        String query = "insert into exam(exam_name,exam_price,exam_time)"
+                + " values(?,?,?)";
         PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, exam_name);
+        preparedStatement.setDouble(2, exam_price);
+        preparedStatement.setDate(3, exam_time);
+        preparedStatement.executeUpdate();
+
+        query = "select max(exam_id) from exam";
+        preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        int newExamId = rs.getInt("max(exam_id)") + 1;
-
-        query = "insert into exam(exam_id,exam_name,exam_price,exam_time)"
-                + " values(?,?,?,?)";
-        preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, newExamId);
-        preparedStatement.setString(2, exam_name);
-        preparedStatement.setDouble(3, exam_price);
-        preparedStatement.setDate(4, exam_time);
-        preparedStatement.executeUpdate();
-
-        return new Exam(newExamId, exam_name, exam_price, exam_time);
+        return new Exam(rs.getInt("max(exam_id)"),
+                exam_name, exam_price, exam_time);
     }
 }

@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import gui.examFrames.ExamAddFrame;
+import static utils.GUIUtil.link_frame_to_button;
 
 public class AdminMainFrame extends JFrame {
 
@@ -420,19 +421,13 @@ public class AdminMainFrame extends JFrame {
     private void edit_examsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_examsjButtonActionPerformed
         JFrame frame = new EditExamsFrame();
         frame.setVisible(true);
-        edit_examsjButton.setEnabled(false);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                edit_examsjButton.setEnabled(true);
-            }
-        });
-
+        link_frame_to_button(frame, edit_examsjButton);
     }//GEN-LAST:event_edit_examsjButtonActionPerformed
 
     private void new_examjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_examjButtonActionPerformed
-        new ExamAddFrame(new_examjButton).setVisible(true);
-        new_examjButton.setEnabled(false);
+        ExamAddFrame frame = new ExamAddFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, new_examjButton);
     }//GEN-LAST:event_new_examjButtonActionPerformed
 
     private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
@@ -443,32 +438,29 @@ public class AdminMainFrame extends JFrame {
     private void display_usersJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_usersJBActionPerformed
         JFrame frame = new UsersTableJFrame();
         frame.setVisible(true);
-        display_usersJB.setEnabled(false);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                display_usersJB.setEnabled(true);
-            }
-        });
+        link_frame_to_button(frame, display_usersJB);
     }//GEN-LAST:event_display_usersJBActionPerformed
 
     private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
         EditBooksFrame bj = new EditBooksFrame();
         bj.setVisible(true);
+        link_frame_to_button(bj, AvailableBooksBtn);
     }//GEN-LAST:event_AvailableBooksBtnActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-
+        // TODO check this
     }//GEN-LAST:event_display_BookJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        BookAddFrame bookJFrame = new BookAddFrame(add_BookJB);
+        BookAddFrame bookJFrame = new BookAddFrame();
         bookJFrame.setVisible(true);
+        link_frame_to_button(bookJFrame, add_BookJB);
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void EnrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollBtnActionPerformed
         EnrollFrame ef = new EnrollFrame();
         ef.setVisible(true);
+        link_frame_to_button(ef, EnrollBtn);
     }//GEN-LAST:event_EnrollBtnActionPerformed
 
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed

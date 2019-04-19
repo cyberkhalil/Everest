@@ -237,7 +237,7 @@
         <Component class="javax.swing.JSpinner" name="bookQuantity">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new SpinnerNumberModel(0,0,999.99,1)" type="code"/>
+              <Connection code="new SpinnerNumberModel(0,0,1000,1)" type="code"/>
             </Property>
           </Properties>
         </Component>
