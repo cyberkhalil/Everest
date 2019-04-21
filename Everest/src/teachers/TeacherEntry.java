@@ -1,4 +1,4 @@
-package all;
+package teachers;
 
 import db.DBConnection;
 import java.awt.HeadlessException;

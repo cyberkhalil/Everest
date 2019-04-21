@@ -69,7 +69,7 @@ INSERT INTO `teacher`(`teacher_id`,`teacher_name`,`teacher_phone`)
 values(1,'Teacher 1','0591234567');
 
 -- --------------------------------------------------------
-/*	This table is created for teacher */
+/*	This table is created for course */
 CREATE TABLE IF NOT EXISTS `course` (
     `course_id` INT(11) NOT NULL AUTO_INCREMENT,
     `course_name` VARCHAR(50) NOT NULL,
@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `course` (
     PRIMARY KEY (`course_id`)
 )  AUTO_INCREMENT=1;
 
-
 -- Dumping data for table `course`
 INSERT INTO `course` 
 (`course_id`,`course_name`,`course_start_date`,`course_end_date`,
@@ -91,7 +90,27 @@ INSERT INTO `course`
 (1, 'course 1', '01-01-2018','02-02-2018', 500, '5:30', '10:30', 'Su,Tu,Th'),
 (2, 'course 2', '01-01-2018','02-02-2018', 200, '10:00', '3:30', 'Sa,Su,Mo');
 
--- -- --------------------------------------------------------
+
+-- --------------------------------------------------------
+/*	This table is created for student */
+CREATE TABLE IF NOT EXISTS `student` (
+    `student_id` INT(11) NOT NULL AUTO_INCREMENT,
+    `student_name` VARCHAR(50) NOT NULL,
+    `student_phone` INT(10) NOT NULL,
+    `student_added_by` INT(11) REFERENCES `student`(`student_id`),
+    PRIMARY KEY (`student_id`)
+)  AUTO_INCREMENT=1;
+
+-- Dumping data for table `student`
+INSERT INTO `student`(`student_id`,`student_name`,`student_phone`)
+values(1,'Student 1','0591234567');
+
+INSERT INTO `student`
+(`student_id`,`student_name`,`student_phone`,`student_added_by`)
+values(2,'Student 2','0591234567',1);
+
+
+-- --------------------------------------------------------
 -- in new table (teacher_courses)
 -- FOREIGN KEY `course_teacher_id` REFERENCES `teacher`(`teacher_id`)
 -- FOREIGN KEY `course_id` REFERENCES `course`(`course_id`)
@@ -130,19 +149,6 @@ INSERT INTO `course`
 
 -- -- --------------------------------------------------------
 
--- CREATE TABLE IF NOT EXISTS `student` (
---     `StdID` INT(11) NOT NULL AUTO_INCREMENT,
---     `StdName` VARCHAR(50) NOT NULL,
---     `IDCardNum` INT(9),
---     `StdPhoneNum` INT(10) NOT NULL,
---     `AddedBy` VARCHAR(20),
---     `Time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     `discount` DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     PRIMARY KEY (`StdID`)
--- )  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
 -- CREATE TABLE IF NOT EXISTS `student_book` (
 --     `ID` INT(11) NOT NULL AUTO_INCREMENT,
 --     `StdID` INT(11) NOT NULL,
@@ -175,12 +181,6 @@ INSERT INTO `course`
 -- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 -- -- --------------------------------------------------------
-
--- --
--- -- Constraints for table `course`
--- --
--- ALTER TABLE `course`
---   ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`Teacher_TeacherId`) REFERENCES `teacher` (`TeacherId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- --
 -- -- Constraints for table `invoice`

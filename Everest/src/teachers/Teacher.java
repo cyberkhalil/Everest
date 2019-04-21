@@ -1,6 +1,6 @@
-package all;
+package teachers;
 
-public class Teacher extends Person {
+public class Teacher {
 
     private int TeacherID;
     private String TeacherName;

@@ -1,5 +1,6 @@
-package all;
+package courses;
 
+import students.StudentEntry;
 import utils.DateUtil;
 import db.DBConnection;
 import java.awt.HeadlessException;
@@ -10,8 +11,7 @@ import javax.swing.JOptionPane;
 
 public class CourseEntry {
 
-    static UserEntry e = new UserEntry();
-    static Student std = new Student();
+    static StudentEntry e = new StudentEntry();
 
     public static void createCourse(Course c, String CourseName, String CourseDay1,
             String CourseDay2, String CourseDay3, double CoursePrice, int CourseStartDay, int CourseStartMonth,

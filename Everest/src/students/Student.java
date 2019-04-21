@@ -1,6 +1,6 @@
-package all;
+package students;
 
-public class Student extends Person {
+public class Student {
 
     private double net;
     private int StdID;
@@ -10,6 +10,10 @@ public class Student extends Person {
     private double paid;
     private double TotalPrice;
     private double discount;
+
+    public Student() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public double getNet() {
         return net;
@@ -35,12 +39,7 @@ public class Student extends Person {
         this.TotalPrice = TotalPrice;
     }
 
-    public Student() {
-
-    }
-
     public Student(int id, String name, int phone_number, String payment_method) {
-        super(id, name, phone_number);
         this.paymentMethod = payment_method;
     }
 

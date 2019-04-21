@@ -1,5 +1,6 @@
-package all;
+package students;
 
+import all.AddNewPayment;
 import books.Book;
 import db.DBConnection;
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class UserEntry {
+public class StudentEntry {
 
     Student s = new Student();
 
@@ -20,9 +21,9 @@ public class UserEntry {
             String query = " insert into Student(StdName,IDCardNum,StdPhoneNum,paymentMethod,AddedBy,discount)"
                     + " values (?,?,?,?,?,?)";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, s.getName());
+            preparedStmt.setString(1, s.getStdName());
             preparedStmt.setInt(2, ID);
-            preparedStmt.setInt(3, s.getPhoneNumber());
+            preparedStmt.setInt(3, s.getStdPhoneNum());
             preparedStmt.setString(4, s.getPaymentMethod());
             preparedStmt.setString(5, "Login.user.getUsername()");
             preparedStmt.setDouble(6, s.getDiscount());
@@ -35,15 +36,15 @@ public class UserEntry {
             while (rs.next()) {
                 StdID = rs.getInt("stdId");
             }
-            double remaindCash = paid - StudentJFrame.net;
+//            double remaindCash = paid - StudentJFrame.net;
             String query3 = " insert into invoice(StdId_fk,TotalPrice,paymentValue,Net,remaindCash)"
                     + " values (?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query3);
             ps.setInt(1, StdID);
-            ps.setDouble(2, StudentJFrame.totalprice);
+//            ps.setDouble(2, StudentJFrame.totalprice);
             ps.setDouble(3, paid);
             ps.setDouble(4, net);
-            ps.setDouble(5, remaindCash);
+//            ps.setDouble(5, remaindCash);
             ps.execute();
 
             String query4 = " insert into payments(StdId_fk,paymentValue,remaindCash,Net)"
@@ -51,7 +52,7 @@ public class UserEntry {
             PreparedStatement ps2 = conn.prepareStatement(query4);
             ps2.setInt(1, StdID);
             ps2.setDouble(2, paid);
-            ps2.setDouble(3, remaindCash);
+//            ps2.setDouble(3, remaindCash);
             ps2.setDouble(4, net);
             ps2.execute();
 

@@ -1,4 +1,4 @@
-package all;
+package courses;
 
 public class Course {
 

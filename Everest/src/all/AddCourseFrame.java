@@ -1,5 +1,7 @@
 package all;
 
+import courses.CourseEntry;
+import courses.Course;
 import javax.swing.JFrame;
 
 public class AddCourseFrame extends javax.swing.JFrame {
