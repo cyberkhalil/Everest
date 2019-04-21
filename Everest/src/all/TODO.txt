@@ -1,5 +1,4 @@
 TODO :-
-* Book (gui)
 * Course (classes + gui)
 * Teacher (classes + gui)
 * Student (classes + gui)

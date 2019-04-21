@@ -2,17 +2,21 @@ package gui.examFrames;
 
 import exams.Exam;
 import exams.ExamUtil;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import utils.GUIUtil;
 import utils.Model;
 
 public class EditExamsFrame extends javax.swing.JFrame {
 
-    // TODO Exam selectedExam;
+    private Exam selectedExam;
+
     public EditExamsFrame() {
         initComponents();
         try {
@@ -23,7 +27,6 @@ public class EditExamsFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -50,7 +53,7 @@ public class EditExamsFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         examsTable_T.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -272,48 +275,65 @@ public class EditExamsFrame extends javax.swing.JFrame {
     private void examsTable_TMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_examsTable_TMouseClicked
         int i = examsTable_T.getSelectedRow();
         TableModel tableModel = examsTable_T.getModel();
-        examId_TF.setText(tableModel.getValueAt(i, 0).toString());
-        examName_TF.setText(tableModel.getValueAt(i, 1).toString());
-        examPrice_TF.setText(tableModel.getValueAt(i, 2).toString());
-        examDate_TF.setText(tableModel.getValueAt(i, 3).toString());
+        try {
+            selectedExam = new Exam((int) tableModel.getValueAt(i, 0));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Selected Exam doesn't Exist");
+        }
+        updateTable();
     }//GEN-LAST:event_examsTable_TMouseClicked
 
     private void setName_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setName_BActionPerformed
+        if (checkSelection()) {
+            return;
+        }
         String examName = JOptionPane.showInputDialog(
                 rootPane, "New Exam Name:", DISPOSE_ON_CLOSE);
 
-        if (examName == null || examName.isEmpty()) {
+        if (examName == null) {
+            return;
+        } else if (examName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(
-                    rootPane, "Exam name can't be " + examName);
+                    rootPane, "Exam name can't be nothing");
             return;
         }
 
         try {
-            Exam exam = new Exam(Integer.parseInt(examId_TF.getText()));
-            exam.setExam_name(examName);
+            selectedExam.setName(examName);
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
         }
-        updateExamsTable();
+        updateTable();
     }//GEN-LAST:event_setName_BActionPerformed
 
+    private boolean checkSelection() throws HeadlessException {
+        if (selectedExam == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Choose a Exam to make this opreation !");
+            return true;
+        }
+        return false;
+    }
+
     private void setDate_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDate_BActionPerformed
+        if (checkSelection()) {
+            return;
+        }
         PromoteExamDateFrame pExamDateFrame = new PromoteExamDateFrame();
         pExamDateFrame.setDateBtn.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Exam selectedExam = new Exam(
-                            Integer.parseInt(examId_TF.getText()));
-                    selectedExam.setExam_time(new Date(
+                    selectedExam.setTime(new Date(
                             pExamDateFrame.jXDatePicker1.getDateInMillis()));
                 } catch (SQLException | IllegalStateException ex) {
                     JOptionPane.showMessageDialog(rootPane,
                             ex.getClass().getName() + "\n" + ex.getMessage());
                 }
-                updateExamsTable();
+                updateTable();
                 pExamDateFrame.dispose();
             }
         });
@@ -322,7 +342,9 @@ public class EditExamsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setDate_BActionPerformed
 
     private void deleteExam_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExam_BActionPerformed
-
+        if (checkSelection()) {
+            return;
+        }
         boolean deleteConfirmation = JOptionPane
                 .showConfirmDialog(rootPane,
                         "Are you sure you want delete Exam "
@@ -332,39 +354,35 @@ public class EditExamsFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            Exam selectedExam = new Exam(Integer.parseInt(examId_TF.getText()));
             selectedExam.delete();
+            selectedExam = null;
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
         }
-        updateExamsTable();
-        examsTable_T.setRowSelectionInterval(0, 0);
-        this.examsTable_TMouseClicked(null);
+        updateTable();
     }//GEN-LAST:event_deleteExam_BActionPerformed
 
     private void setPrice_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPrice_BActionPerformed
-        PromoteExamPriceFrame pExamPriceFrame = new PromoteExamPriceFrame();
-        pExamPriceFrame.setPriceBtn.setAction(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Exam selectedExam = new Exam(
-                            Integer.parseInt(examId_TF.getText()));
-                    selectedExam.setExam_price(
-                            (double) pExamPriceFrame.examPricejSpinner
-                                    .getValue());
-                } catch (SQLException | IllegalStateException ex) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            ex.getClass().getName() + "\n" + ex.getMessage());
-                }
-                updateExamsTable();
-                pExamPriceFrame.dispose();
-            }
-        });
-        pExamPriceFrame.setPriceBtn.setText("Set Date");
-        pExamPriceFrame.setVisible(true);
+        if (checkSelection()) {
+            return;
+        }
+        GUIUtil.promoteSpinner("Change Exam Price", "Exam New Price :",
+                new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price",
+                (double spinnerValue) -> {
+                    try {
+                        selectedExam.setPrice(spinnerValue);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Exam Price Updated Successfully");
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane,
+                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        return false;
+                    }
+                });
+        updateTable();
     }//GEN-LAST:event_setPrice_BActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -389,7 +407,7 @@ public class EditExamsFrame extends javax.swing.JFrame {
     private javax.swing.JButton setPrice_B;
     // End of variables declaration//GEN-END:variables
 
-    private void updateExamsTable() {
+    private void updateTable() {
         try {
             this.examsTable_T.setModel(
                     Model.buildTableModel(ExamUtil.getExams()));
@@ -397,6 +415,17 @@ public class EditExamsFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
+        }
+        if (selectedExam == null) {
+            examId_TF.setText("");
+            examName_TF.setText("");
+            examPrice_TF.setText("");
+            examDate_TF.setText("");
+        } else {
+            examId_TF.setText(String.valueOf(selectedExam.getId()));
+            examName_TF.setText(selectedExam.getName());
+            examPrice_TF.setText(String.valueOf(selectedExam.getPrice()));
+            examDate_TF.setText(selectedExam.getTime().toString());
         }
     }
 }
