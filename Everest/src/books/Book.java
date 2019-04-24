@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Book {
 
-    private final int ID;
+    private final int id;
     private String name;
     private double price;
     private int quantity;
@@ -21,7 +21,7 @@ public class Book {
         preparedStatement.setInt(1, bookID);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
-        this.ID = bookID;
+        this.id = bookID;
         this.name = rs.getString("book_name");
         this.price = rs.getDouble("book_price");
         this.quantity = rs.getInt("book_quantity");
@@ -30,7 +30,7 @@ public class Book {
     }
 
     Book(int ID, String name, double price, int quantity, String isbn) {
-        this.ID = ID;
+        this.id = ID;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -39,7 +39,7 @@ public class Book {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public String getName() {
@@ -51,7 +51,7 @@ public class Book {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.name = name;
     }
@@ -65,7 +65,7 @@ public class Book {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDouble(1, price);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.price = price;
     }
@@ -79,7 +79,7 @@ public class Book {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, quantity);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.quantity = quantity;
     }
@@ -93,7 +93,7 @@ public class Book {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, sold);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.sold = sold;
     }
@@ -106,7 +106,7 @@ public class Book {
         sold += many;
         try {
             preparedStatement.setInt(1, sold);
-            preparedStatement.setInt(2, ID);
+            preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             sold -= many;
@@ -123,9 +123,22 @@ public class Book {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, isbn);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.isbn = isbn;
+    }
+
+    public void delete() throws SQLException {
+        String query = "Delete from book where book_id= ?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+        this.name = "";
+        this.price = -1;
+        this.quantity = -1;
+        this.isbn = "";
+        this.sold = -1;
     }
 
 }

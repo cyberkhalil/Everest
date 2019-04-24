@@ -1,5 +1,6 @@
 package all;
 
+import students.StudentEntry;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ public class AddNewPayment extends javax.swing.JFrame {
 
     Connection conn = DBConnection.getConnection();
     ArrayList<Integer> ids = new ArrayList<>();
-    UserEntry us = new UserEntry();
+    StudentEntry us = new StudentEntry();
 
     public AddNewPayment() {
         initComponents();

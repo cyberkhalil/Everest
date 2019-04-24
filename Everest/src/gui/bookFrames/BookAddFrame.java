@@ -172,11 +172,18 @@ public class BookAddFrame extends javax.swing.JFrame {
 
     private void AddBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBookBtnActionPerformed
         try {
-            BookUtil.createBook(
-                    bookName.getText(),
-                    (double) bookPrice.getValue(),
-                    (int) bookQuantity.getValue(),
-                    bookISBN.getText());
+            if (jCheckBox1.isSelected()) {
+                BookUtil.createBook(
+                        bookName.getText(),
+                        (double) bookPrice.getValue(),
+                        (int) bookQuantity.getValue(),
+                        bookISBN.getText());
+            } else {
+                BookUtil.createBook(
+                        bookName.getText(),
+                        (double) bookPrice.getValue(),
+                        (int) bookQuantity.getValue());
+            }
             JOptionPane.showMessageDialog(this,
                     "New book created successfully");
 
@@ -187,7 +194,7 @@ public class BookAddFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBookBtnActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        bookISBN.setEditable(true);
+        bookISBN.setEditable(jCheckBox1.isSelected());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

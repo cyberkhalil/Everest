@@ -1,5 +1,7 @@
 package all;
 
+import teachers.Teacher;
+import courses.Course;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

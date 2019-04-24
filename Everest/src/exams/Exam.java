@@ -33,15 +33,15 @@ public class Exam {
         this.time = exam_time;
     }
 
-    public int getExam_id() {
+    public int getId() {
         return id;
     }
 
-    public String getExam_name() {
+    public String getName() {
         return name;
     }
 
-    public void setExam_name(String newExamName) throws SQLException {
+    public void setName(String newExamName) throws SQLException {
         String query = "Update exam set exam_name =? where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -51,11 +51,11 @@ public class Exam {
         this.name = newExamName;
     }
 
-    public double getExam_price() {
+    public double getPrice() {
         return price;
     }
 
-    public void setExam_price(double newExamPrice) throws SQLException {
+    public void setPrice(double newExamPrice) throws SQLException {
         String query = "Update exam set exam_price =? where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
@@ -65,11 +65,11 @@ public class Exam {
         this.price = newExamPrice;
     }
 
-    public Date getExam_time() {
+    public Date getTime() {
         return time;
     }
 
-    public void setExam_time(Date newExamTime) throws SQLException {
+    public void setTime(Date newExamTime) throws SQLException {
         String query = "Update exam set exam_time =? where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

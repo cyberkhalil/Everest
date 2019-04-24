@@ -1,5 +1,6 @@
 package all;
 
+import students.Student;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,9 +53,6 @@ public final class StudentTableJframe extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Students.getModel();
         Object[] rObjects = new Object[5];
         for (int i = 0; i < arrayList.size(); i++) {
-            rObjects[0] = arrayList.get(i).getID();
-            rObjects[1] = arrayList.get(i).getName();
-            rObjects[2] = arrayList.get(i).getPhoneNumber();
             rObjects[3] = arrayList.get(i).getPaymentMethod();
 
             model.addRow(rObjects);

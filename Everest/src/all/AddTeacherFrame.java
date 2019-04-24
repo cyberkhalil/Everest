@@ -1,5 +1,7 @@
 package all;
 
+import teachers.TeacherEntry;
+import teachers.Teacher;
 import db.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

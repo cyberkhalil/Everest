@@ -1,14 +1,19 @@
 package gui.bookFrames;
 
+import books.Book;
 import books.BookUtil;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import utils.GUIUtil;
 import utils.Model;
 
 public class EditBooksFrame extends javax.swing.JFrame {
 
-    // TODO Book selectedBook;
+    private Book selectedBook;
+
     public EditBooksFrame() {
         initComponents();
         try {
@@ -19,7 +24,6 @@ public class EditBooksFrame extends javax.swing.JFrame {
                     + "\n" + ex.getMessage()
             );
         }
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,12 +48,11 @@ public class EditBooksFrame extends javax.swing.JFrame {
         setQuantity = new javax.swing.JButton();
         setPrice_B = new javax.swing.JButton();
         deleteBook_B = new javax.swing.JButton();
-        setSold_B = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         booksTable_T.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -96,7 +99,7 @@ public class EditBooksFrame extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel4.setText("Book Sold :");
+        jLabel4.setText("Sold Books :");
 
         bookSold_TF.setEditable(false);
 
@@ -167,18 +170,35 @@ public class EditBooksFrame extends javax.swing.JFrame {
 
         setName_B.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setName_B.setText("Set Name");
+        setName_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setName_BActionPerformed(evt);
+            }
+        });
 
         setQuantity.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setQuantity.setText("Set Quantity");
+        setQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setQuantityActionPerformed(evt);
+            }
+        });
 
         setPrice_B.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setPrice_B.setText("Set Price");
+        setPrice_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setPrice_BActionPerformed(evt);
+            }
+        });
 
         deleteBook_B.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         deleteBook_B.setText("Delete Book");
-
-        setSold_B.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setSold_B.setText("Set Sold");
+        deleteBook_B.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBook_BActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,28 +211,25 @@ public class EditBooksFrame extends javax.swing.JFrame {
                     .addComponent(setPrice_B, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(setQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(setSold_B, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(deleteBook_B, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(setQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(deleteBook_B, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setName_B)
                     .addComponent(setQuantity))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setPrice_B)
-                    .addComponent(setSold_B))
-                .addGap(18, 18, 18)
-                .addComponent(deleteBook_B)
-                .addContainerGap())
+                    .addComponent(deleteBook_B))
+                .addGap(20, 20, 20))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -266,7 +283,7 @@ public class EditBooksFrame extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -275,11 +292,112 @@ public class EditBooksFrame extends javax.swing.JFrame {
     private void booksTable_TMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTable_TMouseClicked
         int i = booksTable_T.getSelectedRow();
         TableModel tableModel = booksTable_T.getModel();
-        bookId_TF.setText(tableModel.getValueAt(i, 0).toString());
-        bookName_TF.setText(tableModel.getValueAt(i, 1).toString());
-        bookPrice_TF.setText(tableModel.getValueAt(i, 2).toString());
-        bookQuantity_TF.setText(tableModel.getValueAt(i, 3).toString());
+        try {
+            selectedBook = new Book((int) tableModel.getValueAt(i, 0));
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Selected Book doesn't Exist !");
+        }
+        updateTable();
     }//GEN-LAST:event_booksTable_TMouseClicked
+
+    private void setName_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setName_BActionPerformed
+        if (checkSelection()) {
+            return;
+        }
+        String newBookName = JOptionPane.showInputDialog(
+                rootPane, "New Book Name:", DISPOSE_ON_CLOSE);
+
+        if (newBookName == null) {
+            return;
+        } else if (newBookName.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    rootPane, "Book name can't be nothing");
+            return;
+        }
+        try {
+            selectedBook.setName(newBookName);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+        updateTable();
+    }//GEN-LAST:event_setName_BActionPerformed
+
+    private void deleteBook_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBook_BActionPerformed
+        if (checkSelection()) {
+            return;
+        }
+        boolean deleteConfirmation = JOptionPane
+                .showConfirmDialog(rootPane,
+                        "Are you sure you want to delete Book "
+                        + bookName_TF.getText() + " ?", "Book Delete",
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        if (!deleteConfirmation) {
+            return;
+        }
+        try {
+            selectedBook.delete();
+            selectedBook = null;
+        } catch (SQLException | IllegalStateException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
+                    + "\n" + ex.getMessage()
+            );
+        }
+        updateTable();
+    }//GEN-LAST:event_deleteBook_BActionPerformed
+
+    private boolean checkSelection() throws HeadlessException {
+        if (selectedBook == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Choose a Book to make this opreation !");
+            return true;
+        }
+        return false;
+    }
+
+    private void setQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setQuantityActionPerformed
+        if (checkSelection()) {
+            return;
+        }
+        GUIUtil.promoteSpinner("Change Book Quantity", "Book New Quantity :",
+                new SpinnerNumberModel(0, 0, 9999, 10), "Set Quantity",
+                (double spinnerValue) -> {
+                    try {
+                        selectedBook.setQuantity((int) spinnerValue);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Book Quantity Updated Successfully");
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane,
+                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        return false;
+                    }
+                });
+        updateTable();
+    }//GEN-LAST:event_setQuantityActionPerformed
+
+    private void setPrice_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPrice_BActionPerformed
+        if (checkSelection()) {
+            return;
+        }
+        GUIUtil.promoteSpinner("Change Book Price", "Book New Price :",
+                new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price",
+                (double spinnerValue) -> {
+                    try {
+                        selectedBook.setPrice((double) spinnerValue);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Book Price Updated Successfully");
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane,
+                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        return false;
+                    }
+                });
+        updateTable();
+    }//GEN-LAST:event_setPrice_BActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bookId_TF;
@@ -303,10 +421,9 @@ public class EditBooksFrame extends javax.swing.JFrame {
     private javax.swing.JButton setName_B;
     private javax.swing.JButton setPrice_B;
     private javax.swing.JButton setQuantity;
-    private javax.swing.JButton setSold_B;
     // End of variables declaration//GEN-END:variables
 
-    private void updateExamsTable() {
+    private void updateTable() {
         try {
             this.booksTable_T.setModel(
                     Model.buildTableModel(BookUtil.getBooks()));
@@ -314,6 +431,19 @@ public class EditBooksFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
+        }
+        if (selectedBook == null) {
+            bookId_TF.setText("");
+            bookName_TF.setText("");
+            bookPrice_TF.setText("");
+            bookQuantity_TF.setText("");
+            bookSold_TF.setText("");
+        } else {
+            bookId_TF.setText(String.valueOf(selectedBook.getID()));
+            bookName_TF.setText(selectedBook.getName());
+            bookPrice_TF.setText(String.valueOf(selectedBook.getPrice()));
+            bookQuantity_TF.setText(String.valueOf(selectedBook.getQuantity()));
+            bookSold_TF.setText(String.valueOf(selectedBook.getSold()));
         }
     }
 }

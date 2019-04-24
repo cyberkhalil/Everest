@@ -1,6 +1,10 @@
 package all;
 
+import students.StudentEntry;
+import students.Student;
+import courses.Course;
 import db.DBConnection;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +25,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
     double ExamCost = 0;
     int ExamID = 0;
     Student student = new Student();
-    UserEntry UserEntry = new UserEntry();
+    StudentEntry UserEntry = new StudentEntry();
     Course c = new Course();
 
     public StudentJFrame() {
@@ -403,8 +407,8 @@ public final class StudentJFrame extends javax.swing.JFrame {
             double payValue = Double.parseDouble(this.paymentValue.getText());
             int ID = Integer.parseInt(IDField.getText());
             //----------------------------------
-            student.setName(studentName);
-            student.setPhoneNumber(student_phone_num);
+            student.setStdName(studentName);
+            student.setStdPhoneNum(student_phone_num);
             student.setPaymentMethod(payMethod);
             student.setPaid(payValue);
             student.setDiscount(discountValue);
@@ -412,7 +416,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
             student.setTotalPrice(totalprice);
             net = totalprice - discountValue;
             student.setNet(net);
-            UserEntry.createStudent(student, student.getName(), ID, student.getPhoneNumber(), student.getPaymentMethod(), student.getPaid(), student.getTotalPrice(), student.getDiscount(), student.getNet());
+            UserEntry.createStudent(student, student.getStdName(), ID, student.getStdPhoneNum(), student.getPaymentMethod(), student.getPaid(), student.getTotalPrice(), student.getDiscount(), student.getNet());
             //System.out.println(student.getName());++
             String query3 = "select max(StdId) as stdid from student";
             PreparedStatement preparedStmt3 = conn.prepareStatement(query3);
@@ -477,11 +481,11 @@ public final class StudentJFrame extends javax.swing.JFrame {
             }
             if (this.GenInvoiceBox.isSelected()) {
                 JOptionPane.showMessageDialog(null, "new student has been added sucessfully, Press Ok to generate Invoice");
-                InvoiceToPdf.invoicetopdf();
+//                InvoiceToPdf.invoicetopdf();
             } else if (this.GenInvoiceBox.isSelected() == false) {
                 JOptionPane.showMessageDialog(null, "new student has been added sucessfully");
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Exception: " + e);
         }
     }//GEN-LAST:event_AddStdBtnActionPerformed
@@ -506,39 +510,48 @@ public final class StudentJFrame extends javax.swing.JFrame {
         String name = "";
         Connection conn = DBConnection.getConnection();
         try {
-            if (item.equals("Book")) {
-                String query1 = "select BookName from book where BookId = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, id);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+            switch (item) {
+                case "Book": {
+                    String query1 = "select BookName from book where BookId = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, id);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        name = rs.getString("BookName");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    name = rs.getString("BookName");
+                case "Course": {
+                    String query1 = "select CourseName from course where CourseId = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, id);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        name = rs.getString("CourseName");
+                    }
+                    break;
                 }
-            } else if (item.equals("Course")) {
-                String query1 = "select CourseName from course where CourseId = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, id);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
+                case "Exam": {
+                    String query1 = "select ExamName from exam where ExamID = ?";
+                    PreparedStatement ps = conn.prepareStatement(query1);
+                    ps.setInt(1, id);
+                    ResultSet rs = ps.executeQuery();
+                    if (!rs.next()) {
+                        JOptionPane.showMessageDialog(null, "No data found");
+                    }
+                    while (rs.next()) {
+                        name = rs.getString("ExamName");
+                    }
+                    break;
                 }
-                while (rs.next()) {
-                    name = rs.getString("CourseName");
-                }
-            } else if (item.equals("Exam")) {
-                String query1 = "select ExamName from exam where ExamID = ?";
-                PreparedStatement ps = conn.prepareStatement(query1);
-                ps.setInt(1, id);
-                ResultSet rs = ps.executeQuery();
-                if (!rs.next()) {
-                    JOptionPane.showMessageDialog(null, "No data found");
-                }
-                while (rs.next()) {
-                    name = rs.getString("ExamName");
-                }
+                default:
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
@@ -558,7 +571,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
                 String course_name = rs1.getString("courseName");
                 courseName.addItem(course_name);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
@@ -575,7 +588,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
                 String Exam_name = rs1.getString("ExamName");
                 ExamBox.addItem(Exam_name);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
     }
