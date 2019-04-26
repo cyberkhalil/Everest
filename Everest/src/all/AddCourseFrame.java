@@ -1,13 +1,10 @@
 package all;
 
-import courses.CourseEntry;
-import courses.Course;
 import javax.swing.JFrame;
 
 public class AddCourseFrame extends javax.swing.JFrame {
 
-    Course c = new Course();
-
+//    Course c = new Course();
     public AddCourseFrame() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_HORIZ);
@@ -444,37 +441,37 @@ public class AddCourseFrame extends javax.swing.JFrame {
 
     private void AddCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCourseBtnActionPerformed
         double CoursePrice = Double.parseDouble(CoursePriceField.getText());
-        c.setCoursePrice(CoursePrice);
+//        c.setCoursePrice(CoursePrice);
         String CourseName = CourseNameField.getText();
-        c.setCourseName(CourseName);
+//        c.setCourseName(CourseName);
         int daystart = Integer.parseInt(DaysComboBox.getSelectedItem().toString());
-        c.setCourseStartDay(daystart);
+//        c.setCourseStartDay(daystart);
         int monthstart = Integer.parseInt(MonthsBox.getSelectedItem().toString());
-        c.setCourseStartMonth(monthstart);
+//        c.setCourseStartMonth(monthstart);
         int yearstart = Integer.parseInt(yearsBox.getSelectedItem().toString());
-        c.setCourseStartYear(yearstart);
+//        c.setCourseStartYear(yearstart);
         int dayEnd = Integer.parseInt(DaysToComboBox.getSelectedItem().toString());
-        c.setCourseEndDay(dayEnd);
+//        c.setCourseEndDay(dayEnd);
         int monthEnd = Integer.parseInt(MonthEndBox.getSelectedItem().toString());
-        c.setCourseEndMonth(monthEnd);
+//        c.setCourseEndMonth(monthEnd);
         int yearEnd = Integer.parseInt(YearEndBox.getSelectedItem().toString());
-        c.setCourseEndYear(yearEnd);
+//        c.setCourseEndYear(yearEnd);
         String TimeFrom = TimeFromField.getText() + ":" + FromMinuteField.getText();
-        c.setHourFrom(TimeFrom);
+//        c.setHourFrom(TimeFrom);
         String TimeTo = TimeToField.getText() + ":" + ToMinuteField.getText();
-        c.setHourTo(TimeTo);
+//        c.setHourTo(TimeTo);
         String Day1 = Day1Box.getSelectedItem().toString();
-        c.setCourseDay1(Day1);
+//        c.setCourseDay1(Day1);
         String Day2 = Day2Box.getSelectedItem().toString();
-        c.setCourseDay2(Day2);
+//        c.setCourseDay2(Day2);
         String Day3 = Day3Box.getSelectedItem().toString();
-        c.setCourseDay3(Day3);
+//        c.setCourseDay3(Day3);
         double ExamCost = Double.parseDouble(ExamCostField.getText());
-        c.setExamCost(ExamCost);
+//        c.setExamCost(ExamCost);
 
-        CourseEntry.createCourse(c, CourseName, Day1,
-                Day2, Day3, CoursePrice, daystart, monthstart, yearstart, dayEnd,
-                monthEnd, yearEnd, TimeFrom, TimeTo, ExamCost);
+//        CourseEntry.createCourse(c, CourseName, Day1,
+//                Day2, Day3, CoursePrice, daystart, monthstart, yearstart, dayEnd,
+//                monthEnd, yearEnd, TimeFrom, TimeTo, ExamCost);
 
     }//GEN-LAST:event_AddCourseBtnActionPerformed
 

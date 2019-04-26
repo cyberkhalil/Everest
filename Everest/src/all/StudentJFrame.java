@@ -26,7 +26,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
     int ExamID = 0;
     Student student = new Student();
     StudentEntry UserEntry = new StudentEntry();
-    Course c = new Course();
+//    Course c = new Course();
 
     public StudentJFrame() {
         initComponents();
@@ -465,7 +465,7 @@ public final class StudentJFrame extends javax.swing.JFrame {
                 int courseid = 0;
                 while (rss.next()) {
                     courseid = rss.getInt("CourseId");
-                    c.setCourseId(courseid);
+//                    c.setCourseId(courseid);
                 }
                 String query = " insert into student_course (student_id_fk,course_id_fk) values (?,?)";
                 // create the mysql insert preparedstatement

@@ -18,7 +18,7 @@ public final class ExamUtil {
         return preparedStatement.executeQuery();
     }
 
-    public static Exam createExam(
+    public static void createExam(
             String exam_name, double exam_price, Date exam_time)
             throws SQLException {
 
@@ -31,13 +31,5 @@ public final class ExamUtil {
         preparedStatement.setDate(3, exam_time);
         preparedStatement.executeUpdate();
 
-        query = "select max(exam_id) from exam";
-        preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        ResultSet rs = preparedStatement.executeQuery();
-        rs.next();
-
-        return new Exam(rs.getInt("max(exam_id)"),
-                exam_name, exam_price, exam_time);
     }
 }

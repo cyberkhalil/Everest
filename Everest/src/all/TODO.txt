@@ -1,5 +1,5 @@
 TODO :-
-* Course (classes + gui)
+* Course (gui)
 * Teacher (classes + gui)
 * Student (classes + gui)
 * Student Books (classes + gui)
@@ -11,3 +11,4 @@ TODO :-
 * Invoice to pdf (classes + gui)
 * Secretary Frame (gui)
 * remove the (`) hell from sql file
+* check maximum number of characters in classes and implement proper GUI exception therefore.

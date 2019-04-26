@@ -26,13 +26,6 @@ public class Exam {
         this.time = rs.getDate("exam_time");
     }
 
-    Exam(int exam_id, String exam_name, double exam_price, Date exam_time) {
-        this.id = exam_id;
-        this.name = exam_name;
-        this.price = exam_price;
-        this.time = exam_time;
-    }
-
     public int getId() {
         return id;
     }

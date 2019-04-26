@@ -15,7 +15,7 @@ public class TeacherCut extends javax.swing.JFrame {
     static double totalprice = 0;
 //    Book b = new Book();
     StudentEntry UserEntry = new StudentEntry();
-    Course c = new Course();
+//    Course c = new Course();
 
     public TeacherCut() {
         initComponents();

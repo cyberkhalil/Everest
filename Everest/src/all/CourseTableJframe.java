@@ -42,7 +42,7 @@ public final class CourseTableJframe extends javax.swing.JFrame {
             PreparedStatement st = conn.prepareStatement(query);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                course = new Course(rs.getInt("CourseId"), rs.getString("CourseName"), rs.getString("CourseDateStart"), rs.getString("CourseDateEnd"), rs.getInt("CoursePrice"), rs.getString("HourTo"), rs.getString("HourFrom"), rs.getString("CourseDays"));
+//                course = new Course(rs.getInt("CourseId"), rs.getString("CourseName"), rs.getString("CourseDateStart"), rs.getString("CourseDateEnd"), rs.getInt("CoursePrice"), rs.getString("HourTo"), rs.getString("HourFrom"), rs.getString("CourseDays"));
                 arrayList.add(course);
             }
 
@@ -63,13 +63,13 @@ public final class CourseTableJframe extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTable_Display_Course.getModel();
         Object[] rObjects = new Object[11];
         for (int i = 0; i < arrayList.size(); i++) {
-            rObjects[0] = arrayList.get(i).getCourseName();
-            rObjects[1] = arrayList.get(i).getStartDate();
-            rObjects[2] = arrayList.get(i).getEndDate();
-            rObjects[3] = arrayList.get(i).getCoursePrice();
-            rObjects[4] = arrayList.get(i).getCourseEndHour();
-            rObjects[5] = arrayList.get(i).getCourseStartHour();
-            rObjects[6] = arrayList.get(i).getCourseDays();
+//            rObjects[0] = arrayList.get(i).getCourseName();
+//            rObjects[1] = arrayList.get(i).getStartDate();
+//            rObjects[2] = arrayList.get(i).getEndDate();
+//            rObjects[3] = arrayList.get(i).getCoursePrice();
+//            rObjects[4] = arrayList.get(i).getCourseEndHour();
+//            rObjects[5] = arrayList.get(i).getCourseStartHour();
+//            rObjects[6] = arrayList.get(i).getCourseDays();
             rObjects[7] = Student_num;
             model.addRow(rObjects);
         }
