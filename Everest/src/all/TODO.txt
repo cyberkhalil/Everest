@@ -1,14 +1,14 @@
 TODO :-
-* Books (gui{Display_sold_books})
+* Books ( gui{ Display_sold_books } )
 * Course (
-    gui{ add_courses, edit_courses, Display_courses_enrollments}
+    gui{ add_courses, edit_courses, Display_courses_enrollments }
 )
 * Teacher (
-classes{
-Teacher{constractor,getters,setters,delete},
-TeacherUtil{createTeacher,getTeachers}
-},
-gui
+    classes{
+        Teacher{ constractor, getters, setters, delete }
+        ,TeacherUtil{ createTeacher ,getTeachers }
+    }
+    ,gui{ add_teacher , edit_teachers }
 )
 * Student (classes + gui)
 * Student Books (classes + gui)
@@ -19,5 +19,4 @@ gui
 * Invoice for Students & Teachers (sql + classes + gui)
 * Invoice to pdf (classes + gui)
 * Secretary Frame (gui)
-* remove the (`) hell from sql file
 * check maximum number of characters in classes and implement proper GUI exception therefore.

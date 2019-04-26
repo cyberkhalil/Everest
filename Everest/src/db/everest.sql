@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS student (
     student_id INT(11) NOT NULL AUTO_INCREMENT,
     student_name VARCHAR(50) NOT NULL,
     student_phone INT(10) NOT NULL,
-    student_added_by INT(11) REFERENCES student(student_id),
+    student_added_by INT(11) REFERENCES student (student_id),
     PRIMARY KEY (student_id)
 )  AUTO_INCREMENT=1;
 
@@ -114,12 +114,14 @@ values(2,'Student 2','0591234567',1);
 CREATE TABLE IF NOT EXISTS student_books (
     student_id INT(11),
     book_id INT(11),
-    CONSTRAINT FOREIGN KEY (book_id) REFERENCES book(book_id) 
-     ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id) REFERENCES student(student_id)
-     ON DELETE RESTRICT,
-    PRIMARY KEY(student_id,book_id)
-)ENGINE=InnoDB;
+    CONSTRAINT FOREIGN KEY (book_id)
+        REFERENCES book (book_id)
+        ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (student_id)
+        REFERENCES student (student_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (student_id , book_id)
+)  ENGINE=INNODB;
 
 -- Dumping data for table student
 INSERT INTO student_books(student_id,book_id)
@@ -130,12 +132,14 @@ values(1,1);
 CREATE TABLE IF NOT EXISTS student_exams (
     student_id INT(11),
     exam_id INT(11),
-    CONSTRAINT FOREIGN KEY (exam_id) REFERENCES exam(exam_id) 
-     ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id) REFERENCES student(student_id)
-     ON DELETE RESTRICT,
-    PRIMARY KEY(student_id,exam_id)
-)ENGINE=InnoDB;
+    CONSTRAINT FOREIGN KEY (exam_id)
+        REFERENCES exam (exam_id)
+        ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (student_id)
+        REFERENCES student (student_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (student_id , exam_id)
+)  ENGINE=INNODB;
 
 -- Dumping data for table student
 INSERT INTO student_exams(student_id,exam_id)
@@ -146,12 +150,14 @@ values(1,1);
 CREATE TABLE IF NOT EXISTS student_courses (
     student_id INT(11),
     course_id INT(11),
-    CONSTRAINT FOREIGN KEY (course_id) REFERENCES course(course_id) 
-     ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id) REFERENCES student(student_id)
-     ON DELETE RESTRICT,
-    PRIMARY KEY(student_id,course_id)
-)ENGINE=InnoDB;
+    CONSTRAINT FOREIGN KEY (course_id)
+        REFERENCES course (course_id)
+        ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (student_id)
+        REFERENCES student (student_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (student_id , course_id)
+)  ENGINE=INNODB;
 
 -- Dumping data for table student
 INSERT INTO student_courses(student_id,course_id)
@@ -162,12 +168,14 @@ values(1,1);
 CREATE TABLE IF NOT EXISTS teacher_courses (
     teacher_id INT(11),
     course_id INT(11),
-    CONSTRAINT FOREIGN KEY (course_id) REFERENCES course(course_id) 
-     ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
-     ON DELETE RESTRICT,
-    PRIMARY KEY(teacher_id,course_id)
-)ENGINE=InnoDB;
+    CONSTRAINT FOREIGN KEY (course_id)
+        REFERENCES course (course_id)
+        ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (teacher_id)
+        REFERENCES teacher (teacher_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (teacher_id , course_id)
+)  ENGINE=INNODB;
 
 -- Dumping data for table student
 INSERT INTO teacher_courses(teacher_id,course_id)
@@ -195,21 +203,3 @@ values(1,1);
 --     paymentMethod VARCHAR(50) DEFAULT NULL,
 --     PRIMARY KEY (PaymentNo)
 -- )  ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
--- CREATE TABLE IF NOT EXISTS payment_item (
---     PaymentID INT(10) NOT NULL AUTO_INCREMENT,
---     Item VARCHAR(50) DEFAULT NULL,
---     ItemID INT(10) NOT NULL,
---     PaidFor TEXT NOT NULL,
---     PRIMARY KEY (PaymentID)
--- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
--- --
--- -- Constraints for table invoice
--- --
--- ALTER TABLE invoice
---   ADD CONSTRAINT invoice_ibfk_1 FOREIGN KEY (StdId_fk) REFERENCES student (StdID) ON DELETE CASCADE ON UPDATE CASCADE;
