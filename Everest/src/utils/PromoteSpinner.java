@@ -9,7 +9,7 @@ class PromoteSpinner extends JFrame {
 
     public PromoteSpinner(String title, String label,
             SpinnerNumberModel spinnerNumberModel, String button,
-            GUIUtil.DoSomethingWithSpinner dsws) {
+            GUI_Util.DoSomethingWithSpinner dsws) {
 
         initComponents();
         jLabel.setText(label);

@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
 
-public class GUIUtil {
+public class GUI_Util {
 
     public static void link_frame_to_button(JFrame frame, JButton button) {
         button.setEnabled(false);

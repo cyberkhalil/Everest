@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.GUIUtil;
+import utils.GUI_Util;
 import utils.Model;
 
 public class EditBooksFrame extends javax.swing.JFrame {
@@ -361,7 +361,7 @@ public class EditBooksFrame extends javax.swing.JFrame {
         if (checkSelection()) {
             return;
         }
-        GUIUtil.promoteSpinner("Change Book Quantity", "Book New Quantity :",
+        GUI_Util.promoteSpinner("Change Book Quantity", "Book New Quantity :",
                 new SpinnerNumberModel(0, 0, 9999, 10), "Set Quantity",
                 (double spinnerValue) -> {
                     try {
@@ -382,7 +382,7 @@ public class EditBooksFrame extends javax.swing.JFrame {
         if (checkSelection()) {
             return;
         }
-        GUIUtil.promoteSpinner("Change Book Price", "Book New Price :",
+        GUI_Util.promoteSpinner("Change Book Price", "Book New Price :",
                 new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price",
                 (double spinnerValue) -> {
                     try {

@@ -25,34 +25,34 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="jPanel3" max="32767" attributes="0"/>
+                  <Component id="data_Pnl" max="32767" attributes="0"/>
+                  <Component id="Buttons_Pnl" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="495" max="-2" attributes="0"/>
+              <Component id="jScrollPane" min="-2" pref="495" max="-2" attributes="0"/>
           </Group>
-          <Component id="jPanel4" max="32767" attributes="0"/>
+          <Component id="TitlejPanel" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+              <Component id="TitlejPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="data_Pnl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jPanel3" max="32767" attributes="0"/>
+                      <Component id="Buttons_Pnl" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" pref="435" max="32767" attributes="0"/>
+                  <Component id="jScrollPane" pref="435" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="jScrollPane">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -100,7 +100,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="data_Pnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -120,15 +120,15 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="36" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="privilege_Lbl" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="userName_Lbl" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="userId_Lbl" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="user_idTF" min="-2" pref="192" max="-2" attributes="0"/>
-                      <Component id="userprivilege" min="-2" pref="192" max="-2" attributes="0"/>
-                      <Component id="usernameTF" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
+                      <Component id="userId_TF" min="-2" pref="192" max="-2" attributes="0"/>
+                      <Component id="privilege_TF" min="-2" pref="192" max="-2" attributes="0"/>
+                      <Component id="username_TF" alignment="0" min="-2" pref="192" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="37" max="32767" attributes="0"/>
               </Group>
@@ -139,18 +139,18 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="user_idTF" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="userId_TF" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="userId_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="usernameTF" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="userName_Lbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="username_TF" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="userprivilege" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="privilege_TF" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="privilege_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
@@ -158,7 +158,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="userName_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -169,20 +169,20 @@
             <Property name="text" type="java.lang.String" value="Username :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="userprivilege">
+        <Component class="javax.swing.JTextField" name="privilege_TF">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="user_idTF">
+        <Component class="javax.swing.JTextField" name="userId_TF">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="user_idTFKeyReleased"/>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="userId_TFKeyReleased"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="userId_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -193,7 +193,7 @@
             <Property name="text" type="java.lang.String" value="User ID :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="privilege_Lbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -204,17 +204,17 @@
             <Property name="text" type="java.lang.String" value="privilege :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="usernameTF">
+        <Component class="javax.swing.JTextField" name="username_TF">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameTFActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="username_TFActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel3">
+    <Container class="javax.swing.JPanel" name="Buttons_Pnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -311,7 +311,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel4">
+    <Container class="javax.swing.JPanel" name="TitlejPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>

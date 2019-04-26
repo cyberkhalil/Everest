@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
-public class ExamAddFrame extends JFrame {
+public class AddExamFrame extends JFrame {
 
-    public ExamAddFrame() {
+    public AddExamFrame() {
         initComponents();
     }
 

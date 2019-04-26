@@ -10,7 +10,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.GUIUtil;
+import utils.GUI_Util;
 import utils.Model;
 
 public class EditExamsFrame extends javax.swing.JFrame {
@@ -368,7 +368,7 @@ public class EditExamsFrame extends javax.swing.JFrame {
         if (checkSelection()) {
             return;
         }
-        GUIUtil.promoteSpinner("Change Exam Price", "Exam New Price :",
+        GUI_Util.promoteSpinner("Change Exam Price", "Exam New Price :",
                 new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price",
                 (double spinnerValue) -> {
                     try {

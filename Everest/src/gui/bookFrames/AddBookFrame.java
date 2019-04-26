@@ -5,9 +5,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 
-public class BookAddFrame extends javax.swing.JFrame {
+public class AddBookFrame extends javax.swing.JFrame {
 
-    public BookAddFrame() {
+    public AddBookFrame() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class BookAddFrame extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 51, 153));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Add a new book");
+        jLabel13.setText("Add a new Book");
 
         AddBookBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         AddBookBtn.setForeground(new java.awt.Color(0, 51, 153));
