@@ -193,7 +193,7 @@ values(1,1);
 --     KEY invoice_ibfk_1 (StdId_fk)
 -- )  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
 
--- CREATE TABLE IF NOT EXISTS payments (
+-- CREATE TABLE IF NOT EXISTS purchases (
 --     PaymentNo INT(5) NOT NULL AUTO_INCREMENT,
 --     StdID INT(11) DEFAULT NULL,
 --     paymentValue DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',

@@ -1,22 +1,30 @@
 TODO :-
-* Books ( gui{ Display_sold_books } )
 * Course (
-    gui{ add_courses, edit_courses, Display_courses_enrollments }
+    gui{ add_courses ,edit_courses }
 )
 * Teacher (
-    classes{
-        Teacher{ constractor, getters, setters, delete }
-        ,TeacherUtil{ createTeacher ,getTeachers }
-    }
-    ,gui{ add_teacher , edit_teachers }
+    gui{ add_teacher ,edit_teachers }
 )
-* Student (classes + gui)
-* Student Books (classes + gui)
-* Student Exams (classes + gui)
-* Student Courses (classes + gui)
-* Teacher Courses (classes + gui)
-* Payment for Students & Teachers (sql + classes + gui)
-* Invoice for Students & Teachers (sql + classes + gui)
-* Invoice to pdf (classes + gui)
+* Student (
+    classes{
+        Student{ constractor ,getters ,setters ,delete }
+        ,StudentUtil{ createStudent ,getStudents }
+    }
+    ,gui{ add_student ,edit_students }
+)
+* Student Books (
+    classes{ 
+        StudentUtil{ buy_book ,getStudentBooks } 
+        ,BookUtil{ getSoldBooks } 
+    } 
+    ,gui{ Display_sold_books ,Display_student_books } 
+)
+* Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
+* Student Courses (classes ,gui{ Display_courses_enrollments ,Display_student_courses } )
+* Teacher Courses (classes ,gui)
+* Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
+* Invoice for Students & Teachers (sql ,classes ,gui)
+* Invoice to pdf (classes ,gui)
 * Secretary Frame (gui)
 * check maximum number of characters in classes and implement proper GUI exception therefore.
+* check a proper conversion between integer in mysql & java or use String instead.

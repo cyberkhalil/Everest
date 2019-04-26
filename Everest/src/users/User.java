@@ -120,12 +120,14 @@ public class User {
         return "Admin".equals(privilege);
     }
 
-    public void remove() throws SQLException {
+    public void delete() throws SQLException {
         String query = "Delete user where user_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, userId);
         preparedStatement.execute();
-
+        this.passwordMD5 = null;
+        this.privilege = null;
+        this.username = null;
     }
 }

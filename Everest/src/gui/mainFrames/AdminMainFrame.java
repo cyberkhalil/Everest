@@ -1,10 +1,7 @@
 package gui.mainFrames;
 
 import gui.bookFrames.BookAddFrame;
-import all.EnrollFrame;
 import gui.userFrames.SignUp;
-import all.StudentJFrame;
-import all.StudentTableJframe;
 import gui.bookFrames.EditBooksFrame;
 import gui.examFrames.EditExamsFrame;
 import gui.userFrames.UsersTableJFrame;
@@ -22,23 +19,7 @@ public class AdminMainFrame extends JFrame {
     public AdminMainFrame(JFrame root) {
         root.setVisible(false);
         this.root = root;
-
         initComponents();
-        setResizable(false);
-        this.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                int confirm = JOptionPane.showConfirmDialog(
-                        rootPane, "Are You Sure to Close Application?",
-                        "Exit Confirmation", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE);
-                if (confirm == JOptionPane.YES_OPTION) {
-                    System.exit(0);
-                }
-            }
-        });
-        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        this.setSize(710, 560);
     }
 
     @SuppressWarnings("unchecked")
@@ -72,7 +53,14 @@ public class AdminMainFrame extends JFrame {
         new_examjButton = new javax.swing.JButton();
         edit_examsjButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setResizable(false);
+        setSize(new java.awt.Dimension(710, 560));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -458,25 +446,35 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void EnrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollBtnActionPerformed
-        EnrollFrame ef = new EnrollFrame();
-        ef.setVisible(true);
-        link_frame_to_button(ef, EnrollBtn);
+//        EnrollFrame ef = new EnrollFrame();
+//        ef.setVisible(true);
+//        link_frame_to_button(ef, EnrollBtn);
     }//GEN-LAST:event_EnrollBtnActionPerformed
 
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-        StudentTableJframe studenttableJframe = new StudentTableJframe();
-        studenttableJframe.setVisible(true);
+//        StudentTableJframe studenttableJframe = new StudentTableJframe();
+//        studenttableJframe.setVisible(true);
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_studentJBActionPerformed
-        StudentJFrame sjf = new StudentJFrame();
-        sjf.setVisible(true);
+//        StudentJFrame sjf = new StudentJFrame();
+//        sjf.setVisible(true);
     }//GEN-LAST:event_add_studentJBActionPerformed
 
     private void LogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBtnActionPerformed
         root.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_LogOutBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int confirm = JOptionPane.showConfirmDialog(
+                rootPane, "Are You Sure to Close Application?",
+                "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddUserBtn;

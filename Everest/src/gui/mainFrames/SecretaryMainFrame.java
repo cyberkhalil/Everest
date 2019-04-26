@@ -1,13 +1,6 @@
 package gui.mainFrames;
 
-import all.AddCourseFrame;
-import all.AddNewPayment;
 import gui.bookFrames.BookAddFrame;
-import all.CourseTableJframe;
-import all.EnrollFrame;
-import all.PaymentTableJFrame;
-import all.StudentJFrame;
-import all.StudentTableJframe;
 import gui.bookFrames.EditBooksFrame;
 import gui.loginFrames.Login;
 import java.awt.event.WindowAdapter;
@@ -15,7 +8,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 import static utils.GUIUtil.link_frame_to_button;
 
 public class SecretaryMainFrame extends javax.swing.JFrame {
@@ -415,12 +407,12 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void add_studentJBActionPerformed(java.awt.event.ActionEvent evt) {
-        StudentJFrame sjf = new StudentJFrame();
-        sjf.setVisible(true);
+//        StudentJFrame sjf = new StudentJFrame();
+//        sjf.setVisible(true);
     }
     private void display_studentJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_studentJBActionPerformed
-        StudentTableJframe studenttableJframe = new StudentTableJframe();
-        studenttableJframe.setVisible(true);
+//        StudentTableJframe studenttableJframe = new StudentTableJframe();
+//        studenttableJframe.setVisible(true);
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
@@ -435,13 +427,13 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_display_BookJBActionPerformed
 
     private void ShowPaymentTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPaymentTableActionPerformed
-        PaymentTableJFrame py = new PaymentTableJFrame();
-        py.setVisible(true);
+//        PaymentTableJFrame py = new PaymentTableJFrame();
+//        py.setVisible(true);
     }//GEN-LAST:event_ShowPaymentTableActionPerformed
 
     private void AddNewPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNewPaymentActionPerformed
-        AddNewPayment ap = new AddNewPayment();
-        ap.setVisible(true);
+//        AddNewPayment ap = new AddNewPayment();
+//        ap.setVisible(true);
     }//GEN-LAST:event_AddNewPaymentActionPerformed
 
     private void LogoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutBtnActionPerformed
@@ -450,18 +442,18 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_LogoutBtnActionPerformed
 
     private void EnrollBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnrollBtnActionPerformed
-        EnrollFrame ef = new EnrollFrame();
-        ef.setVisible(true);
+//        EnrollFrame ef = new EnrollFrame();
+//        ef.setVisible(true);
     }//GEN-LAST:event_EnrollBtnActionPerformed
 
     private void add_courseJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_courseJBActionPerformed
-        AddCourseFrame addCourseFrame = new AddCourseFrame();
-        addCourseFrame.setVisible(true);
+//        AddCourseFrame addCourseFrame = new AddCourseFrame();
+//        addCourseFrame.setVisible(true);
     }//GEN-LAST:event_add_courseJBActionPerformed
 
     private void DisplayCourse2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayCourse2BtnActionPerformed
-        CourseTableJframe cf = new CourseTableJframe();
-        cf.setVisible(true);
+//        CourseTableJframe cf = new CourseTableJframe();
+//        cf.setVisible(true);
     }//GEN-LAST:event_DisplayCourse2BtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddNewPayment;

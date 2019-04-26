@@ -1,42 +1,69 @@
 package teachers;
 
+import db.DBConnection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Teacher {
 
-    private int TeacherID;
-    private String TeacherName;
-    private int TeacherPhoneNumber;
+    private final int id;
+    private String name;
+    private String phone;
 
-    public Teacher() {
-
+    public Teacher(int id) throws SQLException {
+        String query = "Select * from teacher where teacher_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        rs.next();
+        this.name = rs.getString("teacher_name");
+        this.phone = rs.getString("teacher_phone");
+        this.id = id;
     }
 
-    public Teacher(int TeacherID, String Teacher_name, int Teacher_phone_number) {
-        this.TeacherName = Teacher_name;
-        this.TeacherPhoneNumber = Teacher_phone_number;
-        this.TeacherID = TeacherID;
+    public int getId() {
+        return id;
     }
 
-    public int getTeacherID() {
-        return TeacherID;
+    public String getName() {
+        return name;
     }
 
-    public void setTeacherID(int TeacherID) {
-        this.TeacherID = TeacherID;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getTeacherName() {
-        return TeacherName;
+    public void setName(String name) throws SQLException {
+        String query = "Update teacher set teacher_name=? where teacher_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+
+        this.name = name;
     }
 
-    public void setTeacherName(String TeacherName) {
-        this.TeacherName = TeacherName;
+    public void setPhone(String phone) throws SQLException {
+        String query = "Update teacher set teacher_phone=? where teacher_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, phone);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+
+        this.phone = phone;
     }
 
-    public int getTeacherPhoneNumber() {
-        return TeacherPhoneNumber;
-    }
-
-    public void setTeacherPhoneNumber(int TeacherPhoneNumber) {
-        this.TeacherPhoneNumber = TeacherPhoneNumber;
+    public void delete() throws SQLException {
+        String query = "Delete from teacher where teacher_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+        this.name = null;
+        this.phone = null;
     }
 }

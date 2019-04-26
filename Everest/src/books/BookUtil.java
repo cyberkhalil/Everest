@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class BookUtil {
 
-    public static Book createBook(
+    public static void createBook(
             String name, double price, int quantity, String isbn)
             throws SQLException {
 
@@ -20,14 +20,6 @@ public class BookUtil {
         preparedStatement.setInt(3, quantity);
         preparedStatement.setString(4, isbn);
         preparedStatement.executeUpdate();
-
-        query = "select max(book_id) from book";
-        preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        ResultSet rs = preparedStatement.executeQuery();
-        rs.next();
-
-        return new Book(rs.getInt("max(book_id)"), name, price, quantity, isbn);
     }
 
     public static Book createBook(String name, double price, int quantity)

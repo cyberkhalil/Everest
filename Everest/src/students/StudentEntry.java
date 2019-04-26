@@ -1,6 +1,5 @@
 package students;
 
-import all.AddNewPayment;
 import books.Book;
 import db.DBConnection;
 import java.sql.Connection;
@@ -110,7 +109,7 @@ public class StudentEntry {
                     break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
@@ -129,7 +128,7 @@ public class StudentEntry {
                 paymentID = rs.getInt("id");
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
         }
         return paymentID;
     }
@@ -146,7 +145,7 @@ public class StudentEntry {
             ps2.setInt(3, ItemID);
             ps2.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(AddNewPayment.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

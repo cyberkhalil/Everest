@@ -134,10 +134,10 @@ public class Book {
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
-        this.name = "";
+        this.name = null;
         this.price = -1;
         this.quantity = -1;
-        this.isbn = "";
+        this.isbn = null;
         this.sold = -1;
     }
 

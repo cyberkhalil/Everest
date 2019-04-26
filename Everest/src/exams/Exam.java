@@ -78,8 +78,8 @@ public class Exam {
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
-        this.name = "";
+        this.name = null;
         this.price = -1;
-        this.time = new Date(0);
+        this.time = null;
     }
 }
