@@ -1,6 +1,15 @@
 TODO :-
-* Course (gui)
-* Teacher (classes + gui)
+* Books (gui{Display_sold_books})
+* Course (
+    gui{ add_courses, edit_courses, Display_courses_enrollments}
+)
+* Teacher (
+classes{
+Teacher{constractor,getters,setters,delete},
+TeacherUtil{createTeacher,getTeachers}
+},
+gui
+)
 * Student (classes + gui)
 * Student Books (classes + gui)
 * Student Exams (classes + gui)
