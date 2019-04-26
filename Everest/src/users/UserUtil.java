@@ -8,10 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 
-/**
- *
- * @author User
- */
 public final class UserUtil {
 
     private UserUtil() {
@@ -26,8 +22,8 @@ public final class UserUtil {
         return new User(username);
     }
 
-    public static User getUser(User admin, int userId)
-            throws SQLException, NoPermissionException {
+    public static User getUser(User admin, int userId) throws SQLException,
+            NoPermissionException {
 
         if (!admin.isAdmin()) {
             throw new NoPermissionException(
@@ -36,8 +32,9 @@ public final class UserUtil {
         return new User(userId);
     }
 
-    public static void createUser(User admin, String newUsername, String newPassword,
-            String newPrivilege) throws NoPermissionException, SQLException {
+    public static void createUser(User admin, String newUsername,
+            String newPassword, String newPrivilege)
+            throws NoPermissionException, SQLException {
 
         if (!admin.isAdmin()) {
             throw new NoPermissionException(
@@ -46,8 +43,8 @@ public final class UserUtil {
         newPassword = Hashing.toMD5(newPassword);
 
         Connection connect = DBConnection.getConnection();
-        String query = " insert into user (user_name,user_password,user_privilege)"
-                + " values (?,?,?)";
+        String query = " insert into user (user_name,user_password"
+                + ",user_privilege) values (?,?,?)";
         // create the mysql insert preparedstatement
         PreparedStatement preparedStmt = connect.prepareStatement(query);
         preparedStmt.setString(1, newUsername);
@@ -100,7 +97,7 @@ public final class UserUtil {
             throw new NoPermissionException(
                     "You Can't delete the last Admin user");
         }
-        String query = "delete from user where user_id=? ";
+        String query = "Delete from user where user_id=? ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement

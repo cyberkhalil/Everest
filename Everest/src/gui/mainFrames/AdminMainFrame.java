@@ -1,14 +1,14 @@
 package gui.mainFrames;
 
-import gui.bookFrames.AddBookFrame;
-import gui.userFrames.SignUp;
-import gui.bookFrames.EditBooksFrame;
-import gui.courseFrames.AddCourseFrame;
-import gui.examFrames.EditExamsFrame;
-import gui.userFrames.UsersTableJFrame;
+import gui.bookFrames.BookAddFrame;
+import gui.userFrames.UserAddFrame;
+import gui.bookFrames.BooksEditFrame;
+import gui.courseFrames.CourseAddFrame;
+import gui.examFrames.ExamsEditFrame;
+import gui.userFrames.UsersEditFrame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import gui.examFrames.AddExamFrame;
+import gui.examFrames.ExamAddFrame;
 import static utils.GUI_Util.link_frame_to_button;
 
 public class AdminMainFrame extends JFrame {
@@ -25,34 +25,33 @@ public class AdminMainFrame extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        main_jPanel = new javax.swing.JPanel();
-        title_jPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        LogOutBtn = new javax.swing.JButton();
+        titlePnl = new javax.swing.JPanel();
+        imgLbl = new javax.swing.JLabel();
+        titleLbl = new javax.swing.JLabel();
+        logoutBtn = new javax.swing.JButton();
         content_jPanel = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        add_studentJB = new javax.swing.JButton();
-        display_studentJB = new javax.swing.JButton();
-        EnrollBtn = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        add_BookJB = new javax.swing.JButton();
-        display_BookJB = new javax.swing.JButton();
-        AvailableBooksBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        display_usersJB = new javax.swing.JButton();
-        AddUserBtn = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        new_examjButton = new javax.swing.JButton();
-        edit_examsjButton = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        add_course_JB = new javax.swing.JButton();
+        studentsPnl = new javax.swing.JPanel();
+        studentTitleLbl = new javax.swing.JLabel();
+        studentAddBtn = new javax.swing.JButton();
+        studentsInfoBtn = new javax.swing.JButton();
+        studentOperationsBtn = new javax.swing.JButton();
+        booksPnl = new javax.swing.JPanel();
+        bookLbl = new javax.swing.JLabel();
+        bookAddBtn = new javax.swing.JButton();
+        booksSoldoutDisplayBtn = new javax.swing.JButton();
+        booksDisplayBtn = new javax.swing.JButton();
+        contentTitleLbl = new javax.swing.JLabel();
+        usersPnl = new javax.swing.JPanel();
+        userLbl = new javax.swing.JLabel();
+        usersEditBtn = new javax.swing.JButton();
+        userAddBtn = new javax.swing.JButton();
+        examsPnl = new javax.swing.JPanel();
+        examsLbl = new javax.swing.JLabel();
+        examAddBtn = new javax.swing.JButton();
+        examEditBtn = new javax.swing.JButton();
+        coursesPnl = new javax.swing.JPanel();
+        coursesTitleLbl = new javax.swing.JLabel();
+        courseAddBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -63,55 +62,53 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
-        main_jPanel.setBackground(new java.awt.Color(255, 255, 255));
+        titlePnl.setBackground(new java.awt.Color(255, 255, 255));
+        titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        title_jPanel.setBackground(new java.awt.Color(255, 255, 255));
-        title_jPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        imgLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
+        titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        titleLbl.setForeground(new java.awt.Color(0, 51, 153));
+        titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleLbl.setText("Everest Training Center");
+        titleLbl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titleLbl.setInheritsPopupMenu(false);
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Everest Training Center");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setInheritsPopupMenu(false);
-
-        LogOutBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        LogOutBtn.setForeground(new java.awt.Color(0, 51, 153));
-        LogOutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
-        LogOutBtn.setText("Log out");
-        LogOutBtn.addActionListener(new java.awt.event.ActionListener() {
+        logoutBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        logoutBtn.setForeground(new java.awt.Color(0, 51, 153));
+        logoutBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
+        logoutBtn.setText("Log out");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LogOutBtnActionPerformed(evt);
+                logoutBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout title_jPanelLayout = new javax.swing.GroupLayout(title_jPanel);
-        title_jPanel.setLayout(title_jPanelLayout);
-        title_jPanelLayout.setHorizontalGroup(
-            title_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(title_jPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
+        titlePnl.setLayout(titlePnlLayout);
+        titlePnlLayout.setHorizontalGroup(
+            titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGroup(title_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(title_jPanelLayout.createSequentialGroup()
+                .addComponent(imgLbl)
+                .addGroup(titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(titlePnlLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LogOutBtn)
+                        .addComponent(logoutBtn)
                         .addContainerGap())
-                    .addGroup(title_jPanelLayout.createSequentialGroup()
+                    .addGroup(titlePnlLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
-        title_jPanelLayout.setVerticalGroup(
-            title_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-            .addGroup(title_jPanelLayout.createSequentialGroup()
+        titlePnlLayout.setVerticalGroup(
+            titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imgLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+            .addGroup(titlePnlLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(LogOutBtn)
+                .addComponent(logoutBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -120,229 +117,229 @@ public class AdminMainFrame extends JFrame {
         content_jPanel.setToolTipText("");
         content_jPanel.setPreferredSize(new java.awt.Dimension(573, 450));
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        studentsPnl.setBackground(new java.awt.Color(255, 255, 255));
+        studentsPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("student");
-        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        studentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
+        studentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        studentTitleLbl.setText("Students");
+        studentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        add_studentJB.setText("new student");
+        studentAddBtn.setText("new student");
 
-        display_studentJB.setText("student's Information");
+        studentsInfoBtn.setText("student's Information");
 
-        EnrollBtn.setText("student operation");
+        studentOperationsBtn.setText("student operations");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout studentsPnlLayout = new javax.swing.GroupLayout(studentsPnl);
+        studentsPnl.setLayout(studentsPnlLayout);
+        studentsPnlLayout.setHorizontalGroup(
+            studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(studentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(studentsPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(add_studentJB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(display_studentJB, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(EnrollBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(studentAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentsInfoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(studentOperationsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel3)
+        studentsPnlLayout.setVerticalGroup(
+            studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(studentsPnlLayout.createSequentialGroup()
+                .addComponent(studentTitleLbl)
                 .addGap(15, 15, 15)
-                .addComponent(add_studentJB)
+                .addComponent(studentAddBtn)
                 .addGap(15, 15, 15)
-                .addComponent(display_studentJB)
+                .addComponent(studentsInfoBtn)
                 .addGap(15, 15, 15)
-                .addComponent(EnrollBtn)
+                .addComponent(studentOperationsBtn)
                 .addGap(20, 20, 20))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        booksPnl.setBackground(new java.awt.Color(255, 255, 255));
+        booksPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Book");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        bookLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        bookLbl.setForeground(new java.awt.Color(0, 51, 153));
+        bookLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bookLbl.setText("Books");
+        bookLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        add_BookJB.setText("new book");
-        add_BookJB.addActionListener(new java.awt.event.ActionListener() {
+        bookAddBtn.setText("new book");
+        bookAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_BookJBActionPerformed(evt);
+                bookAddBtnActionPerformed(evt);
             }
         });
 
-        display_BookJB.setText("Display Sold Out Books");
+        booksSoldoutDisplayBtn.setText("Display Sold Out Books");
 
-        AvailableBooksBtn.setText("Display available Books");
-        AvailableBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+        booksDisplayBtn.setText("Display available Books");
+        booksDisplayBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AvailableBooksBtnActionPerformed(evt);
+                booksDisplayBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout booksPnlLayout = new javax.swing.GroupLayout(booksPnl);
+        booksPnl.setLayout(booksPnlLayout);
+        booksPnlLayout.setHorizontalGroup(
+            booksPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bookLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(booksPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(add_BookJB, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(display_BookJB, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AvailableBooksBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(booksPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bookAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(booksSoldoutDisplayBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(booksDisplayBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel5)
+        booksPnlLayout.setVerticalGroup(
+            booksPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(booksPnlLayout.createSequentialGroup()
+                .addComponent(bookLbl)
                 .addGap(15, 15, 15)
-                .addComponent(add_BookJB)
+                .addComponent(bookAddBtn)
                 .addGap(15, 15, 15)
-                .addComponent(display_BookJB)
+                .addComponent(booksSoldoutDisplayBtn)
                 .addGap(15, 15, 15)
-                .addComponent(AvailableBooksBtn)
+                .addComponent(booksDisplayBtn)
                 .addGap(20, 20, 20))
         );
 
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Main Page");
-        jLabel4.setToolTipText("");
-        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
+        contentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        contentTitleLbl.setText("Main Page");
+        contentTitleLbl.setToolTipText("");
+        contentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        usersPnl.setBackground(new java.awt.Color(255, 255, 255));
+        usersPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Users");
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        userLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        userLbl.setForeground(new java.awt.Color(0, 51, 153));
+        userLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userLbl.setText("Users");
+        userLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        display_usersJB.setText("Edit Users");
-        display_usersJB.addActionListener(new java.awt.event.ActionListener() {
+        usersEditBtn.setText("Edit Users");
+        usersEditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                display_usersJBActionPerformed(evt);
+                usersEditBtnActionPerformed(evt);
             }
         });
 
-        AddUserBtn.setText("Add User");
-        AddUserBtn.addActionListener(new java.awt.event.ActionListener() {
+        userAddBtn.setText("Add User");
+        userAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddUserBtnActionPerformed(evt);
+                userAddBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel9Layout.createSequentialGroup()
+        javax.swing.GroupLayout usersPnlLayout = new javax.swing.GroupLayout(usersPnl);
+        usersPnl.setLayout(usersPnlLayout);
+        usersPnlLayout.setHorizontalGroup(
+            usersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(userLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(usersPnlLayout.createSequentialGroup()
                 .addContainerGap(17, Short.MAX_VALUE)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AddUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(display_usersJB, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                .addGroup(usersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(usersEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jLabel8)
+        usersPnlLayout.setVerticalGroup(
+            usersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usersPnlLayout.createSequentialGroup()
+                .addComponent(userLbl)
                 .addGap(11, 11, 11)
-                .addComponent(AddUserBtn)
+                .addComponent(userAddBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(display_usersJB)
+                .addComponent(usersEditBtn)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        examsPnl.setBackground(new java.awt.Color(255, 255, 255));
+        examsPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("exam");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        examsLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        examsLbl.setForeground(new java.awt.Color(0, 51, 153));
+        examsLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        examsLbl.setText("Exams");
+        examsLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        new_examjButton.setText("new exam");
-        new_examjButton.addActionListener(new java.awt.event.ActionListener() {
+        examAddBtn.setText("new exam");
+        examAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new_examjButtonActionPerformed(evt);
+                examAddBtnActionPerformed(evt);
             }
         });
 
-        edit_examsjButton.setText("edit exams");
-        edit_examsjButton.addActionListener(new java.awt.event.ActionListener() {
+        examEditBtn.setText("edit exams");
+        examEditBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                edit_examsjButtonActionPerformed(evt);
+                examEditBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel14Layout.createSequentialGroup()
+        javax.swing.GroupLayout examsPnlLayout = new javax.swing.GroupLayout(examsPnl);
+        examsPnl.setLayout(examsPnlLayout);
+        examsPnlLayout.setHorizontalGroup(
+            examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(examsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(examsPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edit_examsjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(new_examjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(examEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(examAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(jLabel13)
+        examsPnlLayout.setVerticalGroup(
+            examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(examsPnlLayout.createSequentialGroup()
+                .addComponent(examsLbl)
                 .addGap(15, 15, 15)
-                .addComponent(new_examjButton)
+                .addComponent(examAddBtn)
                 .addGap(26, 26, 26)
-                .addComponent(edit_examsjButton)
+                .addComponent(examEditBtn)
                 .addContainerGap())
         );
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        coursesPnl.setBackground(new java.awt.Color(255, 255, 255));
+        coursesPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Course");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        coursesTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        coursesTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
+        coursesTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        coursesTitleLbl.setText("Courses");
+        coursesTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        add_course_JB.setText("new course");
-        add_course_JB.addActionListener(new java.awt.event.ActionListener() {
+        courseAddBtn.setText("new course");
+        courseAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_course_JBActionPerformed(evt);
+                courseAddBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout coursesPnlLayout = new javax.swing.GroupLayout(coursesPnl);
+        coursesPnl.setLayout(coursesPnlLayout);
+        coursesPnlLayout.setHorizontalGroup(
+            coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(coursesTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coursesPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(add_course_JB, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(courseAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel6)
+        coursesPnlLayout.setVerticalGroup(
+            coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(coursesPnlLayout.createSequentialGroup()
+                .addComponent(coursesTitleLbl)
                 .addGap(27, 27, 27)
-                .addComponent(add_course_JB)
+                .addComponent(courseAddBtn)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -353,48 +350,32 @@ public class AdminMainFrame extends JFrame {
             .addGroup(content_jPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(content_jPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(examsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(15, Short.MAX_VALUE))
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(booksPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         content_jPanelLayout.setVerticalGroup(
             content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, content_jPanelLayout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addComponent(contentTitleLbl)
                 .addGap(20, 20, 20)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(examsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(booksPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(studentsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
-        );
-
-        javax.swing.GroupLayout main_jPanelLayout = new javax.swing.GroupLayout(main_jPanel);
-        main_jPanel.setLayout(main_jPanelLayout);
-        main_jPanelLayout.setHorizontalGroup(
-            main_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
-            .addComponent(title_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        main_jPanelLayout.setVerticalGroup(
-            main_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(main_jPanelLayout.createSequentialGroup()
-                .addComponent(title_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(content_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -403,59 +384,63 @@ public class AdminMainFrame extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(main_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(content_jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+                    .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(main_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(content_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void edit_examsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edit_examsjButtonActionPerformed
-        JFrame frame = new EditExamsFrame();
+    private void examEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examEditBtnActionPerformed
+        JFrame frame = new ExamsEditFrame();
         frame.setVisible(true);
-        link_frame_to_button(frame, edit_examsjButton);
-    }//GEN-LAST:event_edit_examsjButtonActionPerformed
+        link_frame_to_button(frame, examEditBtn);
+    }//GEN-LAST:event_examEditBtnActionPerformed
 
-    private void new_examjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_examjButtonActionPerformed
-        AddExamFrame frame = new AddExamFrame();
+    private void examAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examAddBtnActionPerformed
+        ExamAddFrame frame = new ExamAddFrame();
         frame.setVisible(true);
-        link_frame_to_button(frame, new_examjButton);
-    }//GEN-LAST:event_new_examjButtonActionPerformed
+        link_frame_to_button(frame, examAddBtn);
+    }//GEN-LAST:event_examAddBtnActionPerformed
 
-    private void AddUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddUserBtnActionPerformed
-        SignUp s = new SignUp();
+    private void userAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userAddBtnActionPerformed
+        UserAddFrame s = new UserAddFrame();
         s.setVisible(true);
-    }//GEN-LAST:event_AddUserBtnActionPerformed
+    }//GEN-LAST:event_userAddBtnActionPerformed
 
-    private void display_usersJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_usersJBActionPerformed
-        JFrame frame = new UsersTableJFrame();
+    private void usersEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usersEditBtnActionPerformed
+        JFrame frame = new UsersEditFrame();
         frame.setVisible(true);
-        link_frame_to_button(frame, display_usersJB);
-    }//GEN-LAST:event_display_usersJBActionPerformed
+        link_frame_to_button(frame, usersEditBtn);
+    }//GEN-LAST:event_usersEditBtnActionPerformed
 
-    private void AvailableBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AvailableBooksBtnActionPerformed
-        EditBooksFrame bj = new EditBooksFrame();
+    private void booksDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksDisplayBtnActionPerformed
+        BooksEditFrame bj = new BooksEditFrame();
         bj.setVisible(true);
-        link_frame_to_button(bj, AvailableBooksBtn);
-    }//GEN-LAST:event_AvailableBooksBtnActionPerformed
+        link_frame_to_button(bj, booksDisplayBtn);
+    }//GEN-LAST:event_booksDisplayBtnActionPerformed
 
-    private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        AddBookFrame bookJFrame = new AddBookFrame();
+    private void bookAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookAddBtnActionPerformed
+        BookAddFrame bookJFrame = new BookAddFrame();
         bookJFrame.setVisible(true);
-        link_frame_to_button(bookJFrame, add_BookJB);
-    }//GEN-LAST:event_add_BookJBActionPerformed
+        link_frame_to_button(bookJFrame, bookAddBtn);
+    }//GEN-LAST:event_bookAddBtnActionPerformed
 
-    private void LogOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutBtnActionPerformed
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         root.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_LogOutBtnActionPerformed
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         int confirm = JOptionPane.showConfirmDialog(
@@ -467,40 +452,39 @@ public class AdminMainFrame extends JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void add_course_JBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_course_JBActionPerformed
-        AddCourseFrame frame = new AddCourseFrame();
+    private void courseAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseAddBtnActionPerformed
+        CourseAddFrame frame = new CourseAddFrame();
         frame.setVisible(true);
-        link_frame_to_button(frame, add_course_JB);
-    }//GEN-LAST:event_add_course_JBActionPerformed
+        link_frame_to_button(frame, courseAddBtn);
+    }//GEN-LAST:event_courseAddBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddUserBtn;
-    private javax.swing.JButton AvailableBooksBtn;
-    private javax.swing.JButton EnrollBtn;
-    private javax.swing.JButton LogOutBtn;
-    private javax.swing.JButton add_BookJB;
-    private javax.swing.JButton add_course_JB;
-    private javax.swing.JButton add_studentJB;
+    private javax.swing.JButton bookAddBtn;
+    private javax.swing.JLabel bookLbl;
+    private javax.swing.JButton booksDisplayBtn;
+    private javax.swing.JPanel booksPnl;
+    private javax.swing.JButton booksSoldoutDisplayBtn;
+    private javax.swing.JLabel contentTitleLbl;
     private javax.swing.JPanel content_jPanel;
-    private javax.swing.JButton display_BookJB;
-    private javax.swing.JButton display_studentJB;
-    private javax.swing.JButton display_usersJB;
-    private javax.swing.JButton edit_examsjButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel9;
-    private javax.swing.JPanel main_jPanel;
-    private javax.swing.JButton new_examjButton;
-    private javax.swing.JPanel title_jPanel;
+    private javax.swing.JButton courseAddBtn;
+    private javax.swing.JPanel coursesPnl;
+    private javax.swing.JLabel coursesTitleLbl;
+    private javax.swing.JButton examAddBtn;
+    private javax.swing.JButton examEditBtn;
+    private javax.swing.JLabel examsLbl;
+    private javax.swing.JPanel examsPnl;
+    private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton studentAddBtn;
+    private javax.swing.JButton studentOperationsBtn;
+    private javax.swing.JLabel studentTitleLbl;
+    private javax.swing.JButton studentsInfoBtn;
+    private javax.swing.JPanel studentsPnl;
+    private javax.swing.JLabel titleLbl;
+    private javax.swing.JPanel titlePnl;
+    private javax.swing.JButton userAddBtn;
+    private javax.swing.JLabel userLbl;
+    private javax.swing.JButton usersEditBtn;
+    private javax.swing.JPanel usersPnl;
     // End of variables declaration//GEN-END:variables
 }

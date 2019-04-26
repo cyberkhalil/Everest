@@ -1,8 +1,8 @@
 package gui.examFrames;
 
-public class PromoteExamDateFrame extends javax.swing.JFrame {
+public class ExamDatePromoteFrame extends javax.swing.JFrame {
 
-    public PromoteExamDateFrame() {
+    public ExamDatePromoteFrame() {
         initComponents();
     }
 

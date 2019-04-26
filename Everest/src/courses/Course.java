@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Course {
 
-    private final int id;
+    private final int ID;
     private String name;
     private Date startDate;
     private Date endDate;
@@ -17,14 +17,14 @@ public class Course {
     private String timeHourTo;
     private String days;
 
-    public Course(int id) throws SQLException {
+    public Course(int ID) throws SQLException {
         String query = "Select * from course where course_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(1, ID);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
-        this.id = rs.getInt("course_id");
+        this.ID = rs.getInt("course_id");
         this.name = rs.getString("course_name");
         this.startDate = rs.getDate("course_start_date");
         this.endDate = rs.getDate("course_end_date");
@@ -34,8 +34,8 @@ public class Course {
         this.days = rs.getString("course_days");
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
     public String getName() {
@@ -71,7 +71,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.name = name;
@@ -82,7 +82,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDate(1, startDate);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.startDate = startDate;
@@ -93,7 +93,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDate(1, endDate);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.endDate = endDate;
@@ -104,7 +104,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDouble(1, price);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.price = price;
@@ -115,7 +115,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, timeHourFrom);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.timeHourFrom = timeHourFrom;
@@ -126,7 +126,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, timeHourTo);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.timeHourTo = timeHourTo;
@@ -137,7 +137,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, days);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.days = days;
@@ -147,7 +147,7 @@ public class Course {
         String query = "Delete from course where course_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(1, ID);
         preparedStatement.executeUpdate();
         this.days = null;
         this.endDate = null;

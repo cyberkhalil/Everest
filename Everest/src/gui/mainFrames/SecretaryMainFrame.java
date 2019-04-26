@@ -1,7 +1,7 @@
 package gui.mainFrames;
 
-import gui.bookFrames.AddBookFrame;
-import gui.bookFrames.EditBooksFrame;
+import gui.bookFrames.BookAddFrame;
+import gui.bookFrames.BooksEditFrame;
 import gui.loginFrames.Login;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -416,13 +416,13 @@ public class SecretaryMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_display_studentJBActionPerformed
 
     private void add_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_BookJBActionPerformed
-        AddBookFrame bookJFrame = new AddBookFrame();
+        BookAddFrame bookJFrame = new BookAddFrame();
         bookJFrame.setVisible(true);
         link_frame_to_button(bookJFrame, add_BookJB);
     }//GEN-LAST:event_add_BookJBActionPerformed
 
     private void display_BookJBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_display_BookJBActionPerformed
-        EditBooksFrame Display_book = new EditBooksFrame();
+        BooksEditFrame Display_book = new BooksEditFrame();
         Display_book.setVisible(true);
     }//GEN-LAST:event_display_BookJBActionPerformed
 

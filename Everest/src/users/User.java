@@ -9,10 +9,10 @@ import javax.security.auth.login.LoginException;
 
 public class User {
 
-    private String username;
+    private final int id;
+    private String name;
     private String passwordMD5;
     private String privilege;
-    private final int userId;
 
     public User(String username, String password)
             throws SQLException, LoginException {
@@ -26,9 +26,9 @@ public class User {
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
 
-            this.username = rs.getString("user_name");
+            this.name = rs.getString("user_name");
             this.passwordMD5 = rs.getString("user_password");
-            this.userId = rs.getInt("user_id");
+            this.id = rs.getInt("user_id");
             this.privilege = rs.getString("user_privilege");
         } catch (SQLException ex) {
             if (ex.getMessage().equals("Illegal operation on empty result set.")) {
@@ -52,9 +52,9 @@ public class User {
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        this.username = rs.getString("user_name");
+        this.name = rs.getString("user_name");
         this.passwordMD5 = rs.getString("user_password");
-        this.userId = rs.getInt("user_id");
+        this.id = rs.getInt("user_id");
         this.privilege = rs.getString("user_privilege");
     }
 
@@ -66,14 +66,14 @@ public class User {
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
 
-        this.username = rs.getString("user_name");
+        this.name = rs.getString("user_name");
         this.passwordMD5 = rs.getString("user_password");
-        this.userId = rs.getInt("user_id");
+        this.id = rs.getInt("user_id");
         this.privilege = rs.getString("user_privilege");
     }
 
     public String getUsername() {
-        return username;
+        return name;
     }
 
     public String getPassword() {
@@ -86,7 +86,7 @@ public class User {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, password);
-        preparedStatement.setInt(2, userId);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
         this.passwordMD5 = password;
     }
@@ -95,7 +95,7 @@ public class User {
      * @return the userID
      */
     public int getUserId() {
-        return userId;
+        return id;
     }
 
     public String getPrivilege() {
@@ -111,9 +111,9 @@ public class User {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, newUsername);
-        preparedStatement.setInt(2, userId);
+        preparedStatement.setInt(2, id);
         preparedStatement.executeUpdate();
-        this.username = newUsername;
+        this.name = newUsername;
     }
 
     public boolean isAdmin() {
@@ -124,10 +124,10 @@ public class User {
         String query = "Delete user where user_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, userId);
+        preparedStatement.setInt(1, id);
         preparedStatement.execute();
         this.passwordMD5 = null;
         this.privilege = null;
-        this.username = null;
+        this.name = null;
     }
 }

@@ -8,26 +8,26 @@ import java.sql.SQLException;
 
 public class Exam {
 
-    private final int id;
+    private final int ID;
     private String name;
     private double price;
     private Date time;
 
-    public Exam(int exam_id) throws SQLException {
+    public Exam(int ID) throws SQLException {
         String query = "Select * from exam where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, exam_id);
+        preparedStatement.setInt(1, ID);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
         this.name = rs.getString("exam_name");
         this.price = rs.getDouble("exam_price");
-        this.id = exam_id;
+        this.ID = ID;
         this.time = rs.getDate("exam_time");
     }
 
-    public int getId() {
-        return id;
+    public int getID() {
+        return ID;
     }
 
     public String getName() {
@@ -39,7 +39,7 @@ public class Exam {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, newExamName);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
         this.name = newExamName;
     }
@@ -53,7 +53,7 @@ public class Exam {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDouble(1, newExamPrice);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
         this.price = newExamPrice;
     }
@@ -67,7 +67,7 @@ public class Exam {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDate(1, newExamTime);
-        preparedStatement.setInt(2, id);
+        preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
         this.time = newExamTime;
     }
@@ -76,7 +76,7 @@ public class Exam {
         String query = "Delete from exam where exam_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(1, ID);
         preparedStatement.executeUpdate();
         this.name = null;
         this.price = -1;

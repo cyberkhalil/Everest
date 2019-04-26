@@ -23,23 +23,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
-          <Component id="jPanel6" alignment="1" max="32767" attributes="0"/>
+          <Component id="titlePnl" alignment="1" max="32767" attributes="0"/>
+          <Component id="contentPnl" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="titlePnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+              <Component id="contentPnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="titlePnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -57,31 +57,31 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel2" min="-2" pref="92" max="-2" attributes="0"/>
+                  <Component id="imgLbl" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="titleLbl" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+              <Component id="imgLbl" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="titleLbl" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="imgLbl">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Images/Everest_logo.jpg"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="titleLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
@@ -95,7 +95,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel6">
+    <Container class="javax.swing.JPanel" name="contentPnl">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -112,31 +112,31 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel13" alignment="0" max="32767" attributes="0"/>
+              <Component id="contentTitleLbl" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="AddBookBtn" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                      <Component id="addCourseBtn" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
+                      <Component id="endDateLbl" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="courseNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="coursePriceLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="startDateLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="startTimeLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="endTimeLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="daysLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="courseName_TF" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
+                              <Component id="courseNameTf" alignment="0" min="-2" pref="210" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="days_FTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="endTime_FtF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="startTime_FTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="startDate_XDP" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cousrePrice_JS" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="endDate_XDP" alignment="1" pref="110" max="32767" attributes="0"/>
+                                  <Component id="courseDaysFtf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="courseEndTimeFtf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="courseStartTimeFtf" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="courseStartDateDP" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cousrePriceSp" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="courseEndDateDP" alignment="1" pref="110" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -149,51 +149,51 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                  <Component id="contentTitleLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="courseName_TF" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="courseNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cousrePrice_JS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="coursePriceLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cousrePriceSp" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="startDate_XDP" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel17" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseStartDateDP" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="startDateLbl" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="endDate_XDP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="endDateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseEndDateDP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="startTime_FTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseStartTimeFtf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="startTimeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="endTime_FtF" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="endTimeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseEndTimeFtf" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="days_FTF" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="courseDaysFtf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="daysLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="AddBookBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="addCourseBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel13">
+        <Component class="javax.swing.JLabel" name="contentTitleLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="0"/>
@@ -205,7 +205,7 @@
             <Property name="text" type="java.lang.String" value="Add a new course"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="AddBookBtn">
+        <Component class="javax.swing.JButton" name="addCourseBtn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -216,10 +216,10 @@
             <Property name="text" type="java.lang.String" value="Add"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddBookBtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCourseBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="courseNameLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -230,7 +230,7 @@
             <Property name="text" type="java.lang.String" value="Course name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
+        <Component class="javax.swing.JLabel" name="coursePriceLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -241,16 +241,16 @@
             <Property name="text" type="java.lang.String" value="Price:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="courseName_TF">
+        <Component class="javax.swing.JTextField" name="courseNameTf">
         </Component>
-        <Component class="javax.swing.JSpinner" name="cousrePrice_JS">
+        <Component class="javax.swing.JSpinner" name="cousrePriceSp">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new SpinnerNumberModel(0,0,999.99,1)" type="code"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel16">
+        <Component class="javax.swing.JLabel" name="daysLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -261,9 +261,9 @@
             <Property name="text" type="java.lang.String" value="Days:"/>
           </Properties>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="startDate_XDP">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="courseStartDateDP">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel17">
+        <Component class="javax.swing.JLabel" name="startDateLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -274,7 +274,7 @@
             <Property name="text" type="java.lang.String" value="Start Date:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel18">
+        <Component class="javax.swing.JLabel" name="endDateLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -285,9 +285,9 @@
             <Property name="text" type="java.lang.String" value="End Date:"/>
           </Properties>
         </Component>
-        <Component class="org.jdesktop.swingx.JXDatePicker" name="endDate_XDP">
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="courseEndDateDP">
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="startTime_FTF">
+        <Component class="javax.swing.JFormattedTextField" name="courseStartTimeFtf">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##:##" subtype="-1" type="5"/>
@@ -295,7 +295,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel19">
+        <Component class="javax.swing.JLabel" name="startTimeLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -306,7 +306,7 @@
             <Property name="text" type="java.lang.String" value="Start Time:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel20">
+        <Component class="javax.swing.JLabel" name="endTimeLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -317,7 +317,7 @@
             <Property name="text" type="java.lang.String" value="End Time:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="endTime_FtF">
+        <Component class="javax.swing.JFormattedTextField" name="courseEndTimeFtf">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##:##" subtype="-1" type="5"/>
@@ -325,7 +325,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="days_FTF">
+        <Component class="javax.swing.JFormattedTextField" name="courseDaysFtf">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="UL,UL,UL,UL,UL,UL,UL" subtype="-1" type="5"/>

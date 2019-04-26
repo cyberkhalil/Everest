@@ -22,7 +22,7 @@ public class BookUtil {
         preparedStatement.executeUpdate();
     }
 
-    public static Book createBook(String name, double price, int quantity)
+    public static void createBook(String name, double price, int quantity)
             throws SQLException {
 
         String query = "insert into book(book_name,book_price,book_quantity)"
@@ -33,14 +33,6 @@ public class BookUtil {
         preparedStatement.setDouble(2, price);
         preparedStatement.setInt(3, quantity);
         preparedStatement.executeUpdate();
-
-        query = "select max(book_id) from book";
-        preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        ResultSet rs = preparedStatement.executeQuery();
-        rs.next();
-
-        return new Book(rs.getInt("max(book_id)"), name, price, quantity, null);
     }
 
     public static ResultSet getBooks() throws SQLException {

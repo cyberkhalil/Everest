@@ -1,6 +1,6 @@
 TODO :-
 * Course (
-    gui{ add_courses ,edit_courses }
+    gui{ edit_courses }
 )
 * Teacher (
     gui{ add_teacher ,edit_teachers }
@@ -24,8 +24,6 @@ TODO :-
 * Secretary Frame (gui)
 * check maximum number of characters in classes and implement proper GUI exception therefore.
 * check a proper conversion between integer in mysql & java or use String instead.
-* Update SignUp frame to Register frame & stop using deprecated api.
 * make program execute sql if there is not everest user implemented.
 * modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
 * check startDate always before endDate in everything.
-* change variable names to the conventions.
