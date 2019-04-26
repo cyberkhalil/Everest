@@ -142,4 +142,12 @@ public class Course {
 
         this.days = days;
     }
+
+    public void delete() throws SQLException {
+            String query = "Delete from course where course_id= ?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+    }
 }
