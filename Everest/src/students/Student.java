@@ -1,100 +1,79 @@
 package students;
 
+import db.DBConnection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Student {
 
-    private double net;
-    private int StdID;
-    private String StdName;
-    private int StdPhoneNum;
-    private String paymentMethod;
-    private double paid;
-    private double TotalPrice;
-    private double discount;
+    private final int id;
+    private String name;
+    private String phone;
+    private int addedBy;
 
-    public Student() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Student(int id) {
+        this.id = id;
     }
 
-    public double getNet() {
-        return net;
+    public int getId() {
+        return id;
     }
 
-    public void setNet(double net) {
-        this.net = net;
+    public String getName() {
+        return name;
     }
 
-    public double getDiscount() {
-        return discount;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public int getAddedBy() {
+        return addedBy;
     }
 
-    public double getTotalPrice() {
-        return TotalPrice;
+    public void setName(String name) throws SQLException {
+        String query = "Update student set student_name=? where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+
+        this.name = name;
     }
 
-    public void setTotalPrice(double TotalPrice) {
-        this.TotalPrice = TotalPrice;
+    public void setPhone(String phone) throws SQLException {
+        String query = "Update student set student_phone=? where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, phone);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+
+        this.phone = phone;
     }
 
-    public Student(int id, String name, int phone_number, String payment_method) {
-        this.paymentMethod = payment_method;
+    public void setAddedBy(int addBy) throws SQLException {
+        String query = "Update student set student_added_by=?"
+                + " where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, addBy);
+        preparedStatement.setInt(2, id);
+        preparedStatement.executeUpdate();
+
+        this.addedBy = addBy;
     }
 
-    public Student(String name, int phone_number) {
-        this.StdName = name;
-        this.StdPhoneNum = phone_number;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    /**
-     * @param paymentMethod the paymentMethod to set
-     */
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    /**
-     * @return the paid
-     */
-    public double getPaid() {
-        return paid;
-    }
-
-    /**
-     * @param paid the paid to set
-     */
-    public void setPaid(double paid) {
-        this.paid = paid;
-    }
-
-    public int getStdID() {
-        return StdID;
-    }
-
-    public void setStdID(int StdID) {
-        this.StdID = StdID;
-    }
-
-    public String getStdName() {
-        return StdName;
-    }
-
-    public void setStdName(String StdName) {
-        this.StdName = StdName;
-    }
-
-    public int getStdPhoneNum() {
-        return StdPhoneNum;
-    }
-
-    public void setStdPhoneNum(int StdPhoneNum) {
-        this.StdPhoneNum = StdPhoneNum;
+    public void delete() throws SQLException {
+        String query = "Delete from student where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.executeUpdate();
+        this.name = null;
+        this.addedBy = -1;
+        this.phone = null;
     }
 
 }

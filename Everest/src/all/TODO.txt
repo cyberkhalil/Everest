@@ -6,11 +6,7 @@ TODO :-
     gui{ add_teacher ,edit_teachers }
 )
 * Student (
-    classes{
-        Student{ constractor ,getters ,setters ,delete }
-        ,StudentUtil{ createStudent ,getStudents }
-    }
-    ,gui{ add_student ,edit_students }
+    gui{ add_student ,edit_students }
 )
 * Student Books (
     classes{ 
@@ -28,3 +24,4 @@ TODO :-
 * Secretary Frame (gui)
 * check maximum number of characters in classes and implement proper GUI exception therefore.
 * check a proper conversion between integer in mysql & java or use String instead.
+* Update SignUp frame to Register frame & stop using deprecated api.
