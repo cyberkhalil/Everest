@@ -109,12 +109,71 @@ INSERT INTO `student`
 (`student_id`,`student_name`,`student_phone`,`student_added_by`)
 values(2,'Student 2','0591234567',1);
 
+-- --------------------------------------------------------
+/*	This table is created for student books */
+CREATE TABLE IF NOT EXISTS `student_books` (
+    `student_id` INT(11),
+    `book_id` INT(11),
+    CONSTRAINT FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`) 
+     ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`)
+     ON DELETE RESTRICT,
+    PRIMARY KEY(`student_id`,`book_id`)
+)ENGINE=InnoDB;
+
+-- Dumping data for table `student`
+INSERT INTO `student_books`(`student_id`,`book_id`)
+values(1,1);
 
 -- --------------------------------------------------------
--- in new table (teacher_courses)
--- FOREIGN KEY `course_teacher_id` REFERENCES `teacher`(`teacher_id`)
--- FOREIGN KEY `course_id` REFERENCES `course`(`course_id`)
+/*	This table is created for student exams */
+CREATE TABLE IF NOT EXISTS `student_exams` (
+    `student_id` INT(11),
+    `exam_id` INT(11),
+    CONSTRAINT FOREIGN KEY (`exam_id`) REFERENCES `exam`(`exam_id`) 
+     ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`)
+     ON DELETE RESTRICT,
+    PRIMARY KEY(`student_id`,`exam_id`)
+)ENGINE=InnoDB;
 
+-- Dumping data for table `student`
+INSERT INTO `student_exams`(`student_id`,`exam_id`)
+values(1,1);
+
+-- --------------------------------------------------------
+/*	This table is created for student courses */
+CREATE TABLE IF NOT EXISTS `student_courses` (
+    `student_id` INT(11),
+    `course_id` INT(11),
+    CONSTRAINT FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`) 
+     ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (`student_id`) REFERENCES `student`(`student_id`)
+     ON DELETE RESTRICT,
+    PRIMARY KEY(`student_id`,`course_id`)
+)ENGINE=InnoDB;
+
+-- Dumping data for table `student`
+INSERT INTO `student_courses`(`student_id`,`course_id`)
+values(1,1);
+
+-- --------------------------------------------------------
+/*	This table is created for teacher courses */
+CREATE TABLE IF NOT EXISTS `teacher_courses` (
+    `teacher_id` INT(11),
+    `course_id` INT(11),
+    CONSTRAINT FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`) 
+     ON DELETE RESTRICT,
+    CONSTRAINT FOREIGN KEY (`teacher_id`) REFERENCES `teacher`(`teacher_id`)
+     ON DELETE RESTRICT,
+    PRIMARY KEY(`teacher_id`,`course_id`)
+)ENGINE=InnoDB;
+
+-- Dumping data for table `student`
+INSERT INTO `teacher_courses`(`teacher_id`,`course_id`)
+values(1,1);
+
+-- --------------------------------------------------------
 -- CREATE TABLE IF NOT EXISTS `invoice` (
 --     `invoiceId` INT(10) NOT NULL AUTO_INCREMENT,
 --     `StdId_fk` INT(11) DEFAULT NULL,
@@ -149,59 +208,8 @@ values(2,'Student 2','0591234567',1);
 
 -- -- --------------------------------------------------------
 
--- CREATE TABLE IF NOT EXISTS `student_book` (
---     `ID` INT(11) NOT NULL AUTO_INCREMENT,
---     `StdID` INT(11) NOT NULL,
---     `BookID` INT(11) NOT NULL,
---     PRIMARY KEY (`ID`),
---     KEY `student_book_ibfk_1` (`StdID`),
---     KEY `student_book_ibfk_2` (`BookID`)
--- )  ENGINE=INNODB AUTO_INCREMENT=2 DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
--- CREATE TABLE IF NOT EXISTS `student_course` (
---     `ID` INT(11) NOT NULL AUTO_INCREMENT,
---     `StdID` INT(11) NOT NULL,
---     `courseID` INT(11) NOT NULL,
---     PRIMARY KEY (`ID`),
---     KEY `FK_StdID1` (`StdID`),
---     KEY `FK_courseID` (`courseID`)
--- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
--- CREATE TABLE IF NOT EXISTS `student_exam` (
---     `ID` INT(11) NOT NULL AUTO_INCREMENT,
---     `StdID` INT(11) NOT NULL,
---     `examID` INT(5) NOT NULL,
---     PRIMARY KEY (`ID`),
---     KEY `FK_StdID` (`StdID`),
---     KEY `FK_examID` (`examID`)
--- )  ENGINE=INNODB DEFAULT CHARSET=UTF8;
-
--- -- --------------------------------------------------------
-
 -- --
 -- -- Constraints for table `invoice`
 -- --
 -- ALTER TABLE `invoice`
 --   ADD CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`StdId_fk`) REFERENCES `student` (`StdID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- --
--- -- Constraints for table `student_book`
--- --
--- ALTER TABLE `student_book`
---   ADD CONSTRAINT `student_book_ibfk_2` FOREIGN KEY (`BookID`) REFERENCES `book` (`BookId`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
--- --
--- -- Constraints for table `student_course`
--- --
--- ALTER TABLE `student_course`
---   ADD CONSTRAINT `FK_courseID` FOREIGN KEY (`courseID`) REFERENCES `course` (`CourseId`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
--- --
--- -- Constraints for table `student_exam`
--- --
--- ALTER TABLE `student_exam`
---   ADD CONSTRAINT `FK_examID` FOREIGN KEY (`examID`) REFERENCES `exam` (`ExamID`) ON DELETE NO ACTION ON UPDATE CASCADE

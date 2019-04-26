@@ -33,8 +33,8 @@ public class BookUtil {
     public static Book createBook(String name, double price, int quantity)
             throws SQLException {
 
-        String query = "insert into book(book_name,book_price,book_quantity,"
-                + "book_isbn) values(?,?,?,?)";
+        String query = "insert into book(book_name,book_price,book_quantity)"
+                + " values(?,?,?)";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
