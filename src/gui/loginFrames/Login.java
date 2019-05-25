@@ -5,11 +5,13 @@ import gui.mainFrames.SecretaryMainFrame;
 import users.User;
 import db.DBConnection;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import static utils.PreRun.check_mysql;
 
 public class Login extends javax.swing.JFrame {
 
@@ -204,12 +206,12 @@ public class Login extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-//        try {
-//            check_mysql();
-//        } catch (IOException | InterruptedException ex) {
-//            JOptionPane.showMessageDialog(null, ex);
-//            return;
-//        }
+        try {
+            check_mysql();
+        } catch (IOException | InterruptedException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            return;
+        }
         try {
             DBConnection.establishConnection();
         } catch (SQLException ex) {
