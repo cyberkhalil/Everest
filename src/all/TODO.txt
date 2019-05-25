@@ -1,7 +1,4 @@
 TODO :-
-* Teacher (
-    gui{ edit_teachers }
-)
 * Student (
     gui{ add_student ,edit_students }
 )
@@ -25,3 +22,4 @@ TODO :-
 * modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
 * check startDate always before endDate in everything.
 * TODO 1
+* TODO 2

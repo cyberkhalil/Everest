@@ -10,6 +10,8 @@ import gui.userFrames.UsersEditFrame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import gui.examFrames.ExamAddFrame;
+import gui.teacherFrames.TeacherAddFrame;
+import gui.teacherFrames.TeachersEditFrame;
 import static utils.GUI_Util.link_frame_to_button;
 
 public class AdminMainFrame extends JFrame {
@@ -54,6 +56,10 @@ public class AdminMainFrame extends JFrame {
         coursesTitleLbl = new javax.swing.JLabel();
         courseAddBtn = new javax.swing.JButton();
         editCoursesBtn = new javax.swing.JButton();
+        teachersPnl = new javax.swing.JPanel();
+        teacherLbl = new javax.swing.JLabel();
+        teachersEditBtn = new javax.swing.JButton();
+        teacherAddBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -356,6 +362,52 @@ public class AdminMainFrame extends JFrame {
                 .addContainerGap())
         );
 
+        teachersPnl.setBackground(new java.awt.Color(255, 255, 255));
+        teachersPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+
+        teacherLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        teacherLbl.setForeground(new java.awt.Color(0, 51, 153));
+        teacherLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        teacherLbl.setText("Teachers");
+        teacherLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+
+        teachersEditBtn.setText("Edit Teachers");
+        teachersEditBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teachersEditBtnActionPerformed(evt);
+            }
+        });
+
+        teacherAddBtn.setText("Add Teacher");
+        teacherAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherAddBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout teachersPnlLayout = new javax.swing.GroupLayout(teachersPnl);
+        teachersPnl.setLayout(teachersPnlLayout);
+        teachersPnlLayout.setHorizontalGroup(
+            teachersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(teacherLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(teachersPnlLayout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(teachersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(teacherAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(teachersEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        teachersPnlLayout.setVerticalGroup(
+            teachersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(teachersPnlLayout.createSequentialGroup()
+                .addComponent(teacherLbl)
+                .addGap(11, 11, 11)
+                .addComponent(teacherAddBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(teachersEditBtn)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout content_jPanelLayout = new javax.swing.GroupLayout(content_jPanel);
         content_jPanel.setLayout(content_jPanelLayout);
         content_jPanelLayout.setHorizontalGroup(
@@ -367,11 +419,12 @@ public class AdminMainFrame extends JFrame {
                     .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(content_jPanelLayout.createSequentialGroup()
-                        .addComponent(examsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(booksPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(examsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(teachersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(booksPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
             .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -387,7 +440,8 @@ public class AdminMainFrame extends JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(teachersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -477,6 +531,18 @@ public class AdminMainFrame extends JFrame {
         link_frame_to_button(frame, editCoursesBtn);
     }//GEN-LAST:event_editCoursesBtnActionPerformed
 
+    private void teachersEditBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teachersEditBtnActionPerformed
+        TeachersEditFrame frame = new TeachersEditFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, teachersEditBtn);
+    }//GEN-LAST:event_teachersEditBtnActionPerformed
+
+    private void teacherAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherAddBtnActionPerformed
+        TeacherAddFrame frame = new TeacherAddFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, teacherAddBtn);
+    }//GEN-LAST:event_teacherAddBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;
     private javax.swing.JLabel bookLbl;
@@ -500,6 +566,10 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JLabel studentTitleLbl;
     private javax.swing.JButton studentsInfoBtn;
     private javax.swing.JPanel studentsPnl;
+    private javax.swing.JButton teacherAddBtn;
+    private javax.swing.JLabel teacherLbl;
+    private javax.swing.JButton teachersEditBtn;
+    private javax.swing.JPanel teachersPnl;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     private javax.swing.JButton userAddBtn;
