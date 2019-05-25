@@ -10,8 +10,8 @@ public class Course {
 
     private final int ID;
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private double price;
     private String timeHourFrom;
     private String timeHourTo;
@@ -26,8 +26,8 @@ public class Course {
         rs.next();
         this.ID = rs.getInt("course_id");
         this.name = rs.getString("course_name");
-        this.startDate = rs.getDate("course_start_date");
-        this.endDate = rs.getDate("course_end_date");
+        this.startDate = rs.getString("course_start_date");
+        this.endDate = rs.getString("course_end_date");
         this.price = rs.getDouble("course_price");
         this.timeHourFrom = rs.getString("course_time_hour_from");
         this.timeHourTo = rs.getString("course_time_hour_to");
@@ -42,11 +42,11 @@ public class Course {
         return name;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
@@ -77,22 +77,22 @@ public class Course {
         this.name = name;
     }
 
-    public void setStartDate(Date startDate) throws SQLException {
+    public void setStartDate(String startDate) throws SQLException {
         String query = "Update course set course_start_date =? where course_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDate(1, startDate);
+        preparedStatement.setString(1, startDate);
         preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) throws SQLException {
+    public void setEndDate(String endDate) throws SQLException {
         String query = "Update course set course_end_date =? where course_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDate(1, endDate);
+        preparedStatement.setString(1, endDate);
         preparedStatement.setInt(2, ID);
         preparedStatement.executeUpdate();
 

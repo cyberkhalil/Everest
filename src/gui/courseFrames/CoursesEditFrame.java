@@ -34,18 +34,26 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         coursesTbl = new javax.swing.JTable();
         courseDataPnl = new javax.swing.JPanel();
         courseNameLbl = new javax.swing.JLabel();
-        courseDateTf = new javax.swing.JTextField();
+        courseStartDateTf = new javax.swing.JTextField();
         courseIdTf = new javax.swing.JTextField();
         courseIdLbl = new javax.swing.JLabel();
-        courseDateLbl = new javax.swing.JLabel();
+        courseStartDateLbl = new javax.swing.JLabel();
         courseNameTf = new javax.swing.JTextField();
         coursePriceLbl = new javax.swing.JLabel();
         coursePriceTf = new javax.swing.JTextField();
+        courseEndDateLbl = new javax.swing.JLabel();
+        courseEndDateTf = new javax.swing.JTextField();
+        courseTimeLbl = new javax.swing.JLabel();
+        courseTimeTf = new javax.swing.JTextField();
+        courseDaysLbl = new javax.swing.JLabel();
+        courseDaysTf = new javax.swing.JTextField();
         courseButtonsPnl = new javax.swing.JPanel();
         setNameBtn = new javax.swing.JButton();
         setDateBtn = new javax.swing.JButton();
         deleteCourseBtn = new javax.swing.JButton();
         setPriceBtn = new javax.swing.JButton();
+        setDaysBtn = new javax.swing.JButton();
+        setTimeBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -75,7 +83,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         courseNameLbl.setForeground(new java.awt.Color(0, 51, 153));
         courseNameLbl.setText("Course name :");
 
-        courseDateTf.setEditable(false);
+        courseStartDateTf.setEditable(false);
 
         courseIdTf.setEditable(false);
 
@@ -83,9 +91,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         courseIdLbl.setForeground(new java.awt.Color(0, 51, 153));
         courseIdLbl.setText("Course ID   :");
 
-        courseDateLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseDateLbl.setForeground(new java.awt.Color(0, 51, 153));
-        courseDateLbl.setText("Course Date :");
+        courseStartDateLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        courseStartDateLbl.setForeground(new java.awt.Color(0, 51, 153));
+        courseStartDateLbl.setText("Start Date :");
 
         courseNameTf.setEditable(false);
 
@@ -95,56 +103,95 @@ public class CoursesEditFrame extends javax.swing.JFrame {
 
         coursePriceTf.setEditable(false);
 
+        courseEndDateLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        courseEndDateLbl.setForeground(new java.awt.Color(0, 51, 153));
+        courseEndDateLbl.setText("End Date :");
+
+        courseEndDateTf.setEditable(false);
+
+        courseTimeLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        courseTimeLbl.setForeground(new java.awt.Color(0, 51, 153));
+        courseTimeLbl.setText("Course Time :");
+
+        courseTimeTf.setEditable(false);
+
+        courseDaysLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        courseDaysLbl.setForeground(new java.awt.Color(0, 51, 153));
+        courseDaysLbl.setText("Course Days :");
+
+        courseDaysTf.setEditable(false);
+
         javax.swing.GroupLayout courseDataPnlLayout = new javax.swing.GroupLayout(courseDataPnl);
         courseDataPnl.setLayout(courseDataPnlLayout);
         courseDataPnlLayout.setHorizontalGroup(
             courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(courseDataPnlLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseDataPnlLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseDataPnlLayout.createSequentialGroup()
-                                .addComponent(courseIdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(courseIdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseDataPnlLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(courseNameLbl)
-                                .addGap(18, 18, 18)
-                                .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(courseIdLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(courseIdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(courseDataPnlLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(courseDateLbl)
+                        .addComponent(courseStartDateLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(courseStartDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(courseDataPnlLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(coursePriceLbl)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coursePriceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(coursePriceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(courseDataPnlLayout.createSequentialGroup()
+                        .addComponent(courseEndDateLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(courseEndDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(courseDataPnlLayout.createSequentialGroup()
+                        .addComponent(courseTimeLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(courseTimeTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(courseDataPnlLayout.createSequentialGroup()
+                            .addComponent(courseNameLbl)
+                            .addGap(18, 18, 18)
+                            .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(courseDataPnlLayout.createSequentialGroup()
+                            .addComponent(courseDaysLbl)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(courseDaysTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         courseDataPnlLayout.setVerticalGroup(
             courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(courseDataPnlLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(20, 20, 20)
                 .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseIdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseIdLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(courseIdLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseIdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(courseNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseDateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(courseStartDateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseStartDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseEndDateLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseEndDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(coursePriceLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(coursePriceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                .addGap(18, 18, 18)
+                .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseTimeLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseTimeTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(courseDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseDaysLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseDaysTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         courseButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -161,7 +208,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         });
 
         setDateBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setDateBtn.setText("Set Date");
+        setDateBtn.setText("Set Dates");
         setDateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 setDateBtnActionPerformed(evt);
@@ -184,33 +231,55 @@ public class CoursesEditFrame extends javax.swing.JFrame {
             }
         });
 
+        setDaysBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setDaysBtn.setText("Set Days");
+        setDaysBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setDaysBtnActionPerformed(evt);
+            }
+        });
+
+        setTimeBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        setTimeBtn.setText("Set Time");
+        setTimeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setTimeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout courseButtonsPnlLayout = new javax.swing.GroupLayout(courseButtonsPnl);
         courseButtonsPnl.setLayout(courseButtonsPnlLayout);
         courseButtonsPnlLayout.setHorizontalGroup(
             courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseButtonsPnlLayout.createSequentialGroup()
+            .addGroup(courseButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(setNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(setPriceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setPriceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setDaysBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deleteCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(setDateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(setTimeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(setDateBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
         );
         courseButtonsPnlLayout.setVerticalGroup(
             courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(courseButtonsPnlLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setNameBtn)
                     .addComponent(setDateBtn))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteCourseBtn)
-                    .addComponent(setPriceBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(setPriceBtn)
+                    .addComponent(setTimeBtn))
+                .addGap(15, 15, 15)
+                .addGroup(courseButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(setDaysBtn)
+                    .addComponent(deleteCourseBtn))
+                .addGap(20, 20, 20))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -250,8 +319,8 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(courseDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(courseButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, 0)
-                .addComponent(coursesSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(coursesSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -262,9 +331,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(courseDataPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(courseButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(coursesSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
+                    .addComponent(coursesSPnl)))
         );
 
         pack();
@@ -319,7 +388,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
         if (isBadSelection()) {
         }
-        // TODO !
+        // TODO 1 implement code here
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -366,24 +435,44 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
+    private void setDaysBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDaysBtnActionPerformed
+        if (isBadSelection()) {
+        }
+        // TODO 1 add your handling code here:
+    }//GEN-LAST:event_setDaysBtnActionPerformed
+
+    private void setTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTimeBtnActionPerformed
+        if (isBadSelection()) {
+        }
+        // TODO 1 add your handling code here:
+    }//GEN-LAST:event_setTimeBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel courseButtonsPnl;
     private javax.swing.JPanel courseDataPnl;
-    private javax.swing.JLabel courseDateLbl;
-    private javax.swing.JTextField courseDateTf;
+    private javax.swing.JLabel courseDaysLbl;
+    private javax.swing.JTextField courseDaysTf;
+    private javax.swing.JLabel courseEndDateLbl;
+    private javax.swing.JTextField courseEndDateTf;
     private javax.swing.JLabel courseIdLbl;
     private javax.swing.JTextField courseIdTf;
     private javax.swing.JLabel courseNameLbl;
     private javax.swing.JTextField courseNameTf;
     private javax.swing.JLabel coursePriceLbl;
     private javax.swing.JTextField coursePriceTf;
+    private javax.swing.JLabel courseStartDateLbl;
+    private javax.swing.JTextField courseStartDateTf;
+    private javax.swing.JLabel courseTimeLbl;
+    private javax.swing.JTextField courseTimeTf;
     private javax.swing.JScrollPane coursesSPnl;
     private javax.swing.JTable coursesTbl;
     private javax.swing.JButton deleteCourseBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton setDateBtn;
+    private javax.swing.JButton setDaysBtn;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPriceBtn;
+    private javax.swing.JButton setTimeBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables
@@ -400,12 +489,20 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (selectedCourse == null) {
             courseIdTf.setText("");
             courseNameTf.setText("");
+            courseStartDateTf.setText("");
+            courseEndDateTf.setText("");
             coursePriceTf.setText("");
-            courseDateTf.setText("");
+            courseTimeTf.setText("");
+            courseDaysTf.setText("");
         } else {
             courseIdTf.setText(String.valueOf(selectedCourse.getID()));
             courseNameTf.setText(selectedCourse.getName());
             coursePriceTf.setText(String.valueOf(selectedCourse.getPrice()));
+            courseStartDateTf.setText(selectedCourse.getStartDate());
+            courseEndDateTf.setText(selectedCourse.getEndDate());
+            courseTimeTf.setText(selectedCourse.getTimeHourFrom()
+                    + " -> " + selectedCourse.getTimeHourTo());
+            courseDaysTf.setText(selectedCourse.getDays());
         }
     }
 }

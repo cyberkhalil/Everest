@@ -1,7 +1,4 @@
 TODO :-
-* Course (
-    gui{ edit_courses }
-)
 * Teacher (
     gui{ add_teacher ,edit_teachers }
 )
@@ -27,3 +24,4 @@ TODO :-
 * make program execute sql if there is not everest user implemented.
 * modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
 * check startDate always before endDate in everything.
+* TODO 1

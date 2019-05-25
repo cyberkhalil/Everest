@@ -570,7 +570,10 @@
                   <Component id="coursesTitleLbl" alignment="0" pref="205" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="courseAddBtn" min="-2" pref="155" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="editCoursesBtn" min="-2" pref="155" max="-2" attributes="0"/>
+                          <Component id="courseAddBtn" min="-2" pref="155" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -579,9 +582,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="coursesTitleLbl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="courseAddBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
+                      <Component id="editCoursesBtn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -608,10 +613,18 @@
             </Component>
             <Component class="javax.swing.JButton" name="courseAddBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="new course"/>
+                <Property name="text" type="java.lang.String" value="New course"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="courseAddBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="editCoursesBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Edit courses"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editCoursesBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

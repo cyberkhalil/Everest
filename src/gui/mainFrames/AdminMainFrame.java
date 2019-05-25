@@ -4,6 +4,7 @@ import gui.bookFrames.BookAddFrame;
 import gui.userFrames.UserAddFrame;
 import gui.bookFrames.BooksEditFrame;
 import gui.courseFrames.CourseAddFrame;
+import gui.courseFrames.CoursesEditFrame;
 import gui.examFrames.ExamsEditFrame;
 import gui.userFrames.UsersEditFrame;
 import javax.swing.JFrame;
@@ -52,6 +53,7 @@ public class AdminMainFrame extends JFrame {
         coursesPnl = new javax.swing.JPanel();
         coursesTitleLbl = new javax.swing.JLabel();
         courseAddBtn = new javax.swing.JButton();
+        editCoursesBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -317,10 +319,17 @@ public class AdminMainFrame extends JFrame {
         coursesTitleLbl.setText("Courses");
         coursesTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        courseAddBtn.setText("new course");
+        courseAddBtn.setText("New course");
         courseAddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 courseAddBtnActionPerformed(evt);
+            }
+        });
+
+        editCoursesBtn.setText("Edit courses");
+        editCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editCoursesBtnActionPerformed(evt);
             }
         });
 
@@ -331,16 +340,20 @@ public class AdminMainFrame extends JFrame {
             .addComponent(coursesTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, coursesPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(courseAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(editCoursesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
         coursesPnlLayout.setVerticalGroup(
             coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coursesPnlLayout.createSequentialGroup()
                 .addComponent(coursesTitleLbl)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(courseAddBtn)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(editCoursesBtn)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout content_jPanelLayout = new javax.swing.GroupLayout(content_jPanel);
@@ -458,6 +471,12 @@ public class AdminMainFrame extends JFrame {
         link_frame_to_button(frame, courseAddBtn);
     }//GEN-LAST:event_courseAddBtnActionPerformed
 
+    private void editCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCoursesBtnActionPerformed
+        CoursesEditFrame frame = new CoursesEditFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, editCoursesBtn);
+    }//GEN-LAST:event_editCoursesBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;
     private javax.swing.JLabel bookLbl;
@@ -469,6 +488,7 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JButton courseAddBtn;
     private javax.swing.JPanel coursesPnl;
     private javax.swing.JLabel coursesTitleLbl;
+    private javax.swing.JButton editCoursesBtn;
     private javax.swing.JButton examAddBtn;
     private javax.swing.JButton examEditBtn;
     private javax.swing.JLabel examsLbl;
