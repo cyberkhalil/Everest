@@ -302,7 +302,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_booksTblMouseClicked
 
     private void setNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setNameBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         String newBookName = JOptionPane.showInputDialog(
@@ -326,7 +326,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setNameBtnActionPerformed
 
     private void deleteBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBookBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         boolean deleteConfirmation = JOptionPane
@@ -348,7 +348,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_deleteBookBtnActionPerformed
 
-    private boolean checkSelection() throws HeadlessException {
+    private boolean isBadSelection() throws HeadlessException {
         if (selectedBook == null) {
             JOptionPane.showMessageDialog(rootPane,
                     "Choose a Book to make this opreation !");
@@ -358,7 +358,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     }
 
     private void setQuantityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setQuantityBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         GUI_Util.promoteSpinner("Change Book Quantity", "Book New Quantity :",
@@ -379,7 +379,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setQuantityBtnActionPerformed
 
     private void setPriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriceBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         GUI_Util.promoteSpinner("Change Book Price", "Book New Price :",

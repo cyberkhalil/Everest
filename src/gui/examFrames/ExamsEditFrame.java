@@ -285,7 +285,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_examsTblMouseClicked
 
     private void setNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setNameBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         String examName = JOptionPane.showInputDialog(
@@ -309,7 +309,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
 
-    private boolean checkSelection() throws HeadlessException {
+    private boolean isBadSelection() throws HeadlessException {
         if (selectedExam == null) {
             JOptionPane.showMessageDialog(rootPane,
                     "Choose a Exam to make this opreation !");
@@ -319,7 +319,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     }
 
     private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         ExamDatePromoteFrame pExamDateFrame = new ExamDatePromoteFrame();
@@ -342,7 +342,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteExamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExamBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         boolean deleteConfirmation = JOptionPane
@@ -365,7 +365,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteExamBtnActionPerformed
 
     private void setPriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriceBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         GUI_Util.promoteSpinner("Change Exam Price", "Exam New Price :",

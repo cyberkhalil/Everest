@@ -283,7 +283,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_coursesTblMouseClicked
 
     private void setNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setNameBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         String courseName = JOptionPane.showInputDialog(
@@ -307,7 +307,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
 
-    private boolean checkSelection() throws HeadlessException {
+    private boolean isBadSelection() throws HeadlessException {
         if (selectedCourse == null) {
             JOptionPane.showMessageDialog(rootPane,
                     "Choose a Course to make this opreation !");
@@ -317,13 +317,13 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     }
 
     private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
         }
         // TODO !
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         boolean deleteConfirmation = JOptionPane
@@ -346,7 +346,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void setPriceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPriceBtnActionPerformed
-        if (checkSelection()) {
+        if (isBadSelection()) {
             return;
         }
         GUI_Util.promoteSpinner("Change Course Price", "Course New Price :",

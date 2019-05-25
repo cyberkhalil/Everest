@@ -98,11 +98,6 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         userPrivilegeTf.setEditable(false);
 
         userIdTf.setEditable(false);
-        userIdTf.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                userIdTfKeyReleased(evt);
-            }
-        });
 
         userIdLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         userIdLbl.setForeground(new java.awt.Color(0, 51, 153));
@@ -113,11 +108,6 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         userPrivilegeLbl.setText("privilege :");
 
         userNameTf.setEditable(false);
-        userNameTf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userNameTfActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout dataPnlLayout = new javax.swing.GroupLayout(dataPnl);
         dataPnl.setLayout(dataPnlLayout);
@@ -306,23 +296,17 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
 
         try {
-            User selectedUser = UserUtil.getUser(Login.user, userNameTf.getText());
+            User selectedUser = UserUtil.getUser(Login.user,
+                    userNameTf.getText());
             UserUtil.deleteUser(Login.user, selectedUser);
-        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+        } catch (SQLException | NoPermissionException
+                | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
             );
         }
         update_users_table();
     }//GEN-LAST:event_deleteUserBtnActionPerformed
-
-    private void userIdTfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userIdTfKeyReleased
-        //TODO remove this !
-    }//GEN-LAST:event_userIdTfKeyReleased
-
-    private void userNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTfActionPerformed
-        // TODO remove this !
-    }//GEN-LAST:event_userNameTfActionPerformed
 
     private void setUserNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserNameBtnActionPerformed
         String username = JOptionPane.showInputDialog(
