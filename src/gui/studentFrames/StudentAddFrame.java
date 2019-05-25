@@ -1,12 +1,13 @@
-package gui.teacherFrames;
+package gui.studentFrames;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import students.StudentUtil;
 import teachers.TeacherUtil;
 
-public class TeacherAddFrame extends javax.swing.JFrame {
+public class StudentAddFrame extends javax.swing.JFrame {
 
-    public TeacherAddFrame() {
+    public StudentAddFrame() {
         initComponents();
     }
 
@@ -20,10 +21,10 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         contentPnl = new javax.swing.JPanel();
         contentTitleLbl = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
-        teacherNameLbl = new javax.swing.JLabel();
-        teacherNameTf = new javax.swing.JTextField();
-        teacherPhoneTf = new javax.swing.JTextField();
-        teacherPhoneLbl = new javax.swing.JLabel();
+        studentNameLbl = new javax.swing.JLabel();
+        studentNameTf = new javax.swing.JTextField();
+        studentPhoneTf = new javax.swing.JTextField();
+        studentPhoneLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,7 +61,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
         contentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentTitleLbl.setText("Add a new teacher");
+        contentTitleLbl.setText("Add new student");
 
         addBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         addBtn.setForeground(new java.awt.Color(0, 51, 153));
@@ -71,13 +72,13 @@ public class TeacherAddFrame extends javax.swing.JFrame {
             }
         });
 
-        teacherNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        teacherNameLbl.setForeground(new java.awt.Color(0, 51, 153));
-        teacherNameLbl.setText("Teacher name:");
+        studentNameLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentNameLbl.setForeground(new java.awt.Color(0, 51, 153));
+        studentNameLbl.setText("Student name:");
 
-        teacherPhoneLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        teacherPhoneLbl.setForeground(new java.awt.Color(0, 51, 153));
-        teacherPhoneLbl.setText("Teacher Phone:");
+        studentPhoneLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentPhoneLbl.setForeground(new java.awt.Color(0, 51, 153));
+        studentPhoneLbl.setText("Student Phone:");
 
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
@@ -89,12 +90,12 @@ public class TeacherAddFrame extends javax.swing.JFrame {
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(teacherNameLbl)
-                            .addComponent(teacherPhoneLbl))
+                            .addComponent(studentNameLbl)
+                            .addComponent(studentPhoneLbl))
                         .addGap(28, 28, 28)
                         .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(teacherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(studentNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(studentPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -107,12 +108,12 @@ public class TeacherAddFrame extends javax.swing.JFrame {
                 .addComponent(contentTitleLbl)
                 .addGap(41, 41, 41)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(teacherNameLbl)
-                    .addComponent(teacherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentNameLbl)
+                    .addComponent(studentNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(teacherPhoneLbl)
-                    .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentPhoneLbl)
+                    .addComponent(studentPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(addBtn)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -139,11 +140,12 @@ public class TeacherAddFrame extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try {
-            TeacherUtil.createTeacher(
-                    teacherNameTf.getText(),
-                    teacherPhoneTf.getText());
+            StudentUtil.createStudent(
+                    studentNameTf.getText(),
+                    studentPhoneTf.getText());
             JOptionPane.showMessageDialog(this,
-                    "New Teacher created successfully");
+                    "New Student created successfully");
+            // TODO 4 make the ability to use addedBy
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,
                     ex.getClass().getSimpleName() + "\n" + ex.getMessage());
@@ -155,10 +157,10 @@ public class TeacherAddFrame extends javax.swing.JFrame {
     private javax.swing.JPanel contentPnl;
     private javax.swing.JLabel contentTitleLbl;
     private javax.swing.JLabel imgLbl;
-    private javax.swing.JLabel teacherNameLbl;
-    private javax.swing.JTextField teacherNameTf;
-    private javax.swing.JLabel teacherPhoneLbl;
-    private javax.swing.JTextField teacherPhoneTf;
+    private javax.swing.JLabel studentNameLbl;
+    private javax.swing.JTextField studentNameTf;
+    private javax.swing.JLabel studentPhoneLbl;
+    private javax.swing.JTextField studentPhoneTf;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

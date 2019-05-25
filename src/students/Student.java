@@ -2,6 +2,7 @@ package students;
 
 import db.DBConnection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Student {
@@ -11,7 +12,16 @@ public class Student {
     private String phone;
     private int addedBy;
 
-    public Student(int id) {
+    public Student(int id) throws SQLException {
+        String query = "Select * from student where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        ResultSet rs = preparedStatement.executeQuery();
+        rs.next();
+        this.name = rs.getString("student_name");
+        this.phone = rs.getString("student_phone");
+        this.addedBy = rs.getInt("student_added_by");
         this.id = id;
     }
 

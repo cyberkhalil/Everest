@@ -118,13 +118,13 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="teacherNameLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="teacherPhoneLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="studentNameLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="studentPhoneLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="teacherNameTf" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="teacherPhoneTf" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="studentNameTf" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="studentPhoneTf" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -143,13 +143,13 @@
                   <Component id="contentTitleLbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="teacherNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="teacherNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="studentNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="teacherPhoneLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="teacherPhoneTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="studentPhoneLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentPhoneTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="addBtn" min="-2" max="-2" attributes="0"/>
@@ -168,7 +168,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Add a new teacher"/>
+            <Property name="text" type="java.lang.String" value="Add new student"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="addBtn">
@@ -185,7 +185,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="teacherNameLbl">
+        <Component class="javax.swing.JLabel" name="studentNameLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -193,14 +193,14 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Teacher name:"/>
+            <Property name="text" type="java.lang.String" value="Student name:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="teacherNameTf">
+        <Component class="javax.swing.JTextField" name="studentNameTf">
         </Component>
-        <Component class="javax.swing.JTextField" name="teacherPhoneTf">
+        <Component class="javax.swing.JTextField" name="studentPhoneTf">
         </Component>
-        <Component class="javax.swing.JLabel" name="teacherPhoneLbl">
+        <Component class="javax.swing.JLabel" name="studentPhoneLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
@@ -208,7 +208,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Teacher Phone:"/>
+            <Property name="text" type="java.lang.String" value="Student Phone:"/>
           </Properties>
         </Component>
       </SubComponents>

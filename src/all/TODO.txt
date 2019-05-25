@@ -1,7 +1,4 @@
 TODO :-
-* Student (
-    gui{ add_student ,edit_students }
-)
 * Student Books (
     classes{ 
         StudentUtil{ buy_book ,getStudentBooks } 
@@ -23,3 +20,7 @@ TODO :-
 * check startDate always before endDate in everything.
 * TODO 1
 * TODO 2
+* TODO 3
+* TODO 4
+* TODO 5
+* TODO 6

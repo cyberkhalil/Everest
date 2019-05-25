@@ -35,7 +35,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         teacherIdLbl = new javax.swing.JLabel();
         teacherPhoneLbl = new javax.swing.JLabel();
         teacherNameTf = new javax.swing.JTextField();
-        examButtonsPnl = new javax.swing.JPanel();
+        ButtonsPnl = new javax.swing.JPanel();
         setNameBtn = new javax.swing.JButton();
         setPhoneBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -44,7 +44,6 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         titleLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(808, 470));
 
         teachersTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,10 +124,10 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                 .addGap(50, 50, 50))
         );
 
-        examButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
-        examButtonsPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
-        examButtonsPnl.setAlignmentX(0.0F);
-        examButtonsPnl.setAlignmentY(0.0F);
+        ButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
+        ButtonsPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        ButtonsPnl.setAlignmentX(0.0F);
+        ButtonsPnl.setAlignmentY(0.0F);
 
         setNameBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         setNameBtn.setText("Set Name");
@@ -154,26 +153,26 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout examButtonsPnlLayout = new javax.swing.GroupLayout(examButtonsPnl);
-        examButtonsPnl.setLayout(examButtonsPnlLayout);
-        examButtonsPnlLayout.setHorizontalGroup(
-            examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examButtonsPnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
+        ButtonsPnl.setLayout(ButtonsPnlLayout);
+        ButtonsPnlLayout.setHorizontalGroup(
+            ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(setNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(setPhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
-            .addGroup(examButtonsPnlLayout.createSequentialGroup()
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(deleteBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        examButtonsPnlLayout.setVerticalGroup(
-            examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examButtonsPnlLayout.createSequentialGroup()
+        ButtonsPnlLayout.setVerticalGroup(
+            ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPnlLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setNameBtn)
                     .addComponent(setPhoneBtn))
                 .addGap(18, 18, 18)
@@ -217,7 +216,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(teacherDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(examButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addComponent(teachersSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -231,7 +230,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(teacherDataPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(examButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(teachersSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)))
         );
 
@@ -311,8 +310,8 @@ public class TeachersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JPanel examButtonsPnl;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPhoneBtn;
