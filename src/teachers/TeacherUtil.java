@@ -10,7 +10,7 @@ public final class TeacherUtil {
     private TeacherUtil() {
     }
 
-    public void createTeacher(String name, String phone) throws SQLException {
+    public static void createTeacher(String name, String phone) throws SQLException {
 
         String query = "insert into teacher(teacher_name,teacher_phone) "
                 + "values(?,?)";

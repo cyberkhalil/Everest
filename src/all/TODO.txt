@@ -1,6 +1,6 @@
 TODO :-
 * Teacher (
-    gui{ add_teacher ,edit_teachers }
+    gui{ edit_teachers }
 )
 * Student (
     gui{ add_student ,edit_students }
