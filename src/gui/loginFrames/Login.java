@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Login extends javax.swing.JFrame {
 
@@ -202,16 +204,27 @@ public class Login extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
-        try {
+//        try {
 //            check_mysql();
+//        } catch (IOException | InterruptedException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//            return;
+//        }
+        try {
             DBConnection.establishConnection();
-            java.awt.EventQueue.invokeLater(() -> {
-                new Login().setVisible(true);
-            });
         } catch (SQLException ex) {
-//        } catch (IOException | InterruptedException | SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     ex.getClass().getSimpleName() + "\n" + ex.getMessage());
         }
+        try {
+            UIManager.
+                    setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException | IllegalAccessException
+                | InstantiationException | UnsupportedLookAndFeelException ex) {
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new Login().setVisible(true);
+        });
     }
 }
