@@ -10,6 +10,8 @@ import gui.userFrames.UsersEditFrame;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import gui.examFrames.ExamAddFrame;
+import gui.studentFrames.StudentAddFrame;
+import gui.studentFrames.StudentsEditFrame;
 import gui.teacherFrames.TeacherAddFrame;
 import gui.teacherFrames.TeachersEditFrame;
 import static utils.GUI_Util.link_frame_to_button;
@@ -135,8 +137,18 @@ public class AdminMainFrame extends JFrame {
         studentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         studentAddBtn.setText("new student");
+        studentAddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAddBtnActionPerformed(evt);
+            }
+        });
 
         studentsInfoBtn.setText("student's Information");
+        studentsInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentsInfoBtnActionPerformed(evt);
+            }
+        });
 
         studentOperationsBtn.setText("student operations");
 
@@ -542,6 +554,18 @@ public class AdminMainFrame extends JFrame {
         frame.setVisible(true);
         link_frame_to_button(frame, teacherAddBtn);
     }//GEN-LAST:event_teacherAddBtnActionPerformed
+
+    private void studentAddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAddBtnActionPerformed
+        StudentAddFrame frame = new StudentAddFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, studentAddBtn);
+    }//GEN-LAST:event_studentAddBtnActionPerformed
+
+    private void studentsInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentsInfoBtnActionPerformed
+        StudentsEditFrame frame = new StudentsEditFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, studentsInfoBtn);
+    }//GEN-LAST:event_studentsInfoBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;

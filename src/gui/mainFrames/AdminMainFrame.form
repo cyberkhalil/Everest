@@ -274,11 +274,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="new student"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentAddBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="studentsInfoBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="student&apos;s Information"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentsInfoBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="studentOperationsBtn">
               <Properties>
