@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.GUI_Util;
-import utils.Model;
+import utils.gui.GUI_Util;
 
 public class CoursesEditFrame extends javax.swing.JFrame {
 
@@ -18,7 +17,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         initComponents();
         try {
             this.coursesTbl.setModel(
-                    Model.buildTableModel(CourseUtil.getCourses()));
+                    GUI_Util.buildTableModel(CourseUtil.getCourses()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
@@ -480,7 +479,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     private void updateTable() {
         try {
             this.coursesTbl.setModel(
-                    Model.buildTableModel(CourseUtil.getCourses()));
+                    GUI_Util.buildTableModel(CourseUtil.getCourses()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()

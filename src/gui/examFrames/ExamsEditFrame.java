@@ -10,8 +10,7 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.GUI_Util;
-import utils.Model;
+import utils.gui.GUI_Util;
 
 public class ExamsEditFrame extends javax.swing.JFrame {
 
@@ -21,7 +20,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         initComponents();
         try {
             this.examsTbl.setModel(
-                    Model.buildTableModel(ExamUtil.getExams()));
+                    GUI_Util.buildTableModel(ExamUtil.getExams()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
@@ -410,7 +409,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     private void updateTable() {
         try {
             this.examsTbl.setModel(
-                    Model.buildTableModel(ExamUtil.getExams()));
+                    GUI_Util.buildTableModel(ExamUtil.getExams()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()

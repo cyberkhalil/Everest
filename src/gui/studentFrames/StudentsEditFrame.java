@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
-import utils.Model;
+import utils.gui.GUI_Util;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
 
@@ -16,7 +16,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         initComponents();
         try {
             this.studentsTbl.setModel(
-                    Model.buildTableModel(StudentUtil.getStudents()));
+                    GUI_Util.buildTableModel(StudentUtil.getStudents()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -365,7 +365,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
     private void updateTable() {
         try {
             this.studentsTbl.setModel(
-                    Model.buildTableModel(StudentUtil.getStudents()));
+                    GUI_Util.buildTableModel(StudentUtil.getStudents()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()

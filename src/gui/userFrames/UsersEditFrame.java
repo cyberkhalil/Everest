@@ -8,11 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import users.User;
 import users.UserUtil;
-import utils.Model;
+import utils.gui.GUI_Util;
 
 public final class UsersEditFrame extends javax.swing.JFrame {
 
-// TODO    User selectedUser;
+// TODO 7 use //User selectedUser;
     public UsersEditFrame() {
         initComponents();
         update_users_table();
@@ -25,7 +25,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
 
         try {
             this.usersTbl.setModel(
-                    Model.buildTableModel(UserUtil.getUsersResultSet(Login.user)));
+                    GUI_Util.buildTableModel(UserUtil.getUsersResultSet(Login.user)));
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()

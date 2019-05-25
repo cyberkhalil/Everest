@@ -14,7 +14,7 @@ import gui.studentFrames.StudentAddFrame;
 import gui.studentFrames.StudentsEditFrame;
 import gui.teacherFrames.TeacherAddFrame;
 import gui.teacherFrames.TeachersEditFrame;
-import static utils.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.link_frame_to_button;
 
 public class AdminMainFrame extends JFrame {
 

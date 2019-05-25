@@ -1,4 +1,10 @@
-TODO :-
+TODO's list :-
+* TODO 1
+* TODO 2
+* TODO 3
+* TODO 4
+* TODO 5
+* TODO 6
 * Student Books (
     classes{ 
         StudentUtil{ buy_book ,getStudentBooks } 
@@ -18,9 +24,4 @@ TODO :-
 * make program execute sql if there is not everest user implemented.
 * modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
 * check startDate always before endDate in everything.
-* TODO 1
-* TODO 2
-* TODO 3
-* TODO 4
-* TODO 5
-* TODO 6
+* TODO 7

@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.GUI_Util;
-import utils.Model;
+import utils.gui.GUI_Util;
 
 public class BooksEditFrame extends javax.swing.JFrame {
 
@@ -18,7 +17,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         initComponents();
         try {
             this.booksTbl.setModel(
-                    Model.buildTableModel(BookUtil.getBooks()));
+                    GUI_Util.buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()
@@ -426,7 +425,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     private void updateTable() {
         try {
             this.booksTbl.setModel(
-                    Model.buildTableModel(BookUtil.getBooks()));
+                    GUI_Util.buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
                     + "\n" + ex.getMessage()

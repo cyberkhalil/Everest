@@ -8,7 +8,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import static utils.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.link_frame_to_button;
 
 public class SecretaryMainFrame extends javax.swing.JFrame {
 
