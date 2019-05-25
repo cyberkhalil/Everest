@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
@@ -42,7 +44,16 @@ public class GUI_Util {
                 return false;
             }
         };
+    }
 
+    public static DefaultComboBoxModel buildComboBoxModel(ResultSet rs)
+            throws SQLException {
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        while (rs.next()) {
+            arrayList.add(rs.getString(1));
+        }
+        return new DefaultComboBoxModel(arrayList.toArray());
     }
 
     public static void link_frame_to_button(JFrame frame, JButton button) {
@@ -71,4 +82,25 @@ public class GUI_Util {
          */
         abstract boolean doSomething(double spinnerValue);
     }
+
+    public static JFrame promoteComboBox(String title, String labelTxt,
+            String buttonTxt, ComboBoxModel comboBoxModel,
+            DoSomethingWithComboBox dswcb) {
+
+        JFrame promoteFrame = new PromoteComboBox(
+                title, labelTxt, comboBoxModel, buttonTxt, dswcb);
+
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
+    public static abstract interface DoSomethingWithComboBox {
+
+        /**
+         * @param choice
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String choice);
+    }
+
 }
