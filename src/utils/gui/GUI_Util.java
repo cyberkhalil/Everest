@@ -94,6 +94,16 @@ public class GUI_Util {
         return promoteFrame;
     }
 
+    public static JFrame promoteFormatedTextField(String title, String labelTxt,
+            String format, String buttonTxt,
+            DoSomethingWithFormatedTextField dswftf) {
+
+        JFrame promoteFrame = new PromoteFormatedTextField(
+                title, labelTxt, format, buttonTxt, dswftf);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
     public static abstract interface DoSomethingWithSpinner {
 
         /**
@@ -119,5 +129,14 @@ public class GUI_Util {
          * @return true to close or false to not close
          */
         abstract boolean doSomething(long DateInMillis);
+    }
+
+    public static abstract interface DoSomethingWithFormatedTextField {
+
+        /**
+         * @param formatedText
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String formatedText);
     }
 }

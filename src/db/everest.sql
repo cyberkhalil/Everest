@@ -61,12 +61,12 @@ Values(1,'Book1',100,10,5,'some isbn');
 CREATE TABLE IF NOT EXISTS teacher (
     teacher_id INT(11) NOT NULL AUTO_INCREMENT,
     teacher_name VARCHAR(100) NOT NULL,
-    teacher_phone INT(11) NOT NULL,
+    teacher_phone VARCHAR(12) NOT NULL,
     PRIMARY KEY (teacher_id)
 )  AUTO_INCREMENT=1;
 -- Dumping data for table teacher
 INSERT INTO teacher(teacher_id,teacher_name,teacher_phone)
-values(1,'Teacher 1','0591234567');
+values(1,'Teacher 1','059-123-4567');
 
 -- --------------------------------------------------------
 /*	This table is created for course */
@@ -96,18 +96,18 @@ course_time_hour_to,course_days)value
 CREATE TABLE IF NOT EXISTS student (
     student_id INT(11) NOT NULL AUTO_INCREMENT,
     student_name VARCHAR(50) NOT NULL,
-    student_phone INT(10) NOT NULL,
-    student_added_by INT(11) REFERENCES student (student_id),
+    student_phone VARCHAR(12) NOT NULL,
+    student_added_by INT(12) REFERENCES student (student_id),
     PRIMARY KEY (student_id)
 )  AUTO_INCREMENT=1;
 
 -- Dumping data for table student
 INSERT INTO student(student_id,student_name,student_phone)
-values(1,'Student 1','0591234567');
+values(1,'Student 1','059-123-4567');
 
 INSERT INTO student
 (student_id,student_name,student_phone,student_added_by)
-values(2,'Student 2','0591234567',1);
+values(2,'Student 2','059-123-4567',1);
 
 -- --------------------------------------------------------
 /*	This table is created for student books */

@@ -389,6 +389,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
+        // TODO 15 : check start date is always before end date
         GUI_Util.promoteDatePicker("Change Course Start Date",
                 "Course New Start Date :", "Set Start Date", (DateInMillis) -> {
                     try {
