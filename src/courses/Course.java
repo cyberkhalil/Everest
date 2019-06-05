@@ -1,7 +1,6 @@
 package courses;
 
 import db.DBConnection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -156,5 +155,12 @@ public class Course {
         this.timeHourFrom = null;
         this.timeHourTo = null;
         this.price = -1;
+    }
+
+    /*
+     * TODO 11 : implement this
+     */
+    public ResultSet getCourseStudents() {
+        return null;
     }
 }

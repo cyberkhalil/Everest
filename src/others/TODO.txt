@@ -5,12 +5,14 @@ TODO's list :-
 * TODO 4
 * TODO 5
 * TODO 6
+* TODO 7
+* TODO 8
+* TODO 9
+* TODO 10
+* TODO 11
+* TODO 12
 * Student Books (
-    classes{ 
-        StudentUtil{ buy_book ,getStudentBooks } 
-        ,BookUtil{ getSoldBooks } 
-    } 
-    ,gui{ Display_sold_books ,Display_student_books } 
+    gui{ Display_sold_books ,Display_student_books } 
 )
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Student Courses (classes ,gui{ Display_courses_enrollments ,Display_student_courses } )
@@ -24,4 +26,3 @@ TODO's list :-
 * make program execute sql if there is not everest user implemented.
 * modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
 * check startDate always before endDate in everything.
-* TODO 7

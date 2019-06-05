@@ -86,4 +86,31 @@ public class Student {
         this.phone = null;
     }
 
+    /**
+     * TODO 3 : implement this
+     */
+    public void addToCourse(int courseId) {
+
+    }
+
+
+    /*
+     * TODO 8 : implement this
+     */
+    public ResultSet getBooks() {
+        return null;
+    }
+
+    /*
+     * TODO 9 : implement this
+     */
+    public ResultSet getCourses() {
+        return null;
+    }
+
+    /*
+     * TODO 10 : implement this
+     */
+    public void buyBook(int bookId) {
+    }
 }

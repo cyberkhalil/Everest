@@ -37,10 +37,4 @@ public class StudentUtil {
         return preparedStatement.executeQuery();
     }
 
-    /**
-     * @deprecated TODO 3 : implement this
-     */
-    public void addToStudentCourse() {
-
-    }
 }
