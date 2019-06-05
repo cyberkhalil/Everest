@@ -290,6 +290,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="student operations"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentOperationsBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

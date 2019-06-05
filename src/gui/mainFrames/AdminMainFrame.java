@@ -151,6 +151,11 @@ public class AdminMainFrame extends JFrame {
         });
 
         studentOperationsBtn.setText("student operations");
+        studentOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentOperationsBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentsPnlLayout = new javax.swing.GroupLayout(studentsPnl);
         studentsPnl.setLayout(studentsPnlLayout);
@@ -566,6 +571,10 @@ public class AdminMainFrame extends JFrame {
         frame.setVisible(true);
         link_frame_to_button(frame, studentsInfoBtn);
     }//GEN-LAST:event_studentsInfoBtnActionPerformed
+
+    private void studentOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentOperationsBtnActionPerformed
+        // TODO 16 : implement this
+    }//GEN-LAST:event_studentOperationsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;

@@ -86,11 +86,13 @@ public class Student {
         this.phone = null;
     }
 
-    /**
-     * TODO 3 : implement this
-     */
-    public void addToCourse(int courseId) {
-
+    public void addToCourse(int courseId) throws SQLException {
+        String query = "Insert into student_courses values(?,?)";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, courseId);
+        preparedStatement.executeUpdate();
     }
 
 
