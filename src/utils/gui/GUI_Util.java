@@ -74,15 +74,6 @@ public class GUI_Util {
         promoteFrame.setVisible(true);
     }
 
-    public static abstract interface DoSomethingWithSpinner {
-
-        /**
-         * @param spinnerValue the value of the spinner
-         * @return true to close or false to not close
-         */
-        abstract boolean doSomething(double spinnerValue);
-    }
-
     public static JFrame promoteComboBox(String title, String labelTxt,
             String buttonTxt, ComboBoxModel comboBoxModel,
             DoSomethingWithComboBox dswcb) {
@@ -94,6 +85,24 @@ public class GUI_Util {
         return promoteFrame;
     }
 
+    public static JFrame promoteDatePicker(String title, String labelTxt,
+            String buttonTxt, DoSomethingWithDatePicker dswdp) {
+
+        JFrame promoteFrame
+                = new PromoteDatePicker(title, labelTxt, buttonTxt, dswdp);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
+    public static abstract interface DoSomethingWithSpinner {
+
+        /**
+         * @param spinnerValue the value of the spinner
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(double spinnerValue);
+    }
+
     public static abstract interface DoSomethingWithComboBox {
 
         /**
@@ -103,4 +112,12 @@ public class GUI_Util {
         abstract boolean doSomething(String choice);
     }
 
+    public static abstract interface DoSomethingWithDatePicker {
+
+        /**
+         * @param DateInMillis
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(long DateInMillis);
+    }
 }

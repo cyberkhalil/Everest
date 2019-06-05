@@ -3,7 +3,6 @@ package gui.studentFrames;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import students.StudentUtil;
-import teachers.TeacherUtil;
 
 public class StudentAddFrame extends javax.swing.JFrame {
 

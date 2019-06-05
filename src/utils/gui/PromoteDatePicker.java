@@ -1,24 +1,23 @@
 package utils.gui;
 
 import java.awt.event.ActionEvent;
+
 import javax.swing.AbstractAction;
-import javax.swing.ComboBoxModel;
 import javax.swing.JFrame;
 
-class PromoteComboBox extends JFrame {
+class PromoteDatePicker extends JFrame {
 
-    public PromoteComboBox(String title, String label, ComboBoxModel model,
-            String button, GUI_Util.DoSomethingWithComboBox dswcb) {
+    public PromoteDatePicker(String title, String label,
+            String button, GUI_Util.DoSomethingWithDatePicker dswdp) {
 
         initComponents();
         jLabel.setText(label);
         jTitle_lbl.setText(title);
-        jComboBox1.setModel(model);
         JFrame temp = this;
         jbutton.setAction(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (dswcb.doSomething((String) jComboBox1.getSelectedItem())) {
+                if (dswdp.doSomething(jXDatePicker1.getDateInMillis())) {
                     temp.dispose();
                 }
             }
@@ -33,7 +32,7 @@ class PromoteComboBox extends JFrame {
         jLabel = new javax.swing.JLabel();
         jTitle_lbl = new javax.swing.JLabel();
         jbutton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -51,8 +50,6 @@ class PromoteComboBox extends JFrame {
         jbutton.setForeground(new java.awt.Color(0, 51, 153));
         jbutton.setText("Set Example");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,30 +57,27 @@ class PromoteComboBox extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(34, Short.MAX_VALUE)
-                        .addComponent(jLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addComponent(jbutton))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addComponent(jbutton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jTitle_lbl)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(60, 60, 60)
+                        .addComponent(jTitle_lbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jTitle_lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jbutton)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -93,9 +87,9 @@ class PromoteComboBox extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jTitle_lbl;
+    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JButton jbutton;
     // End of variables declaration//GEN-END:variables
 }

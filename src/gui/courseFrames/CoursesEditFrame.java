@@ -3,6 +3,7 @@ package gui.courseFrames;
 import courses.Course;
 import courses.CourseUtil;
 import java.awt.HeadlessException;
+import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
@@ -386,8 +387,37 @@ public class CoursesEditFrame extends javax.swing.JFrame {
 
     private void setDateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDateBtnActionPerformed
         if (isBadSelection()) {
+            return;
         }
-        // TODO 1 implement code here
+        GUI_Util.promoteDatePicker("Change Course Start Date",
+                "Course New Start Date :", "Set Start Date", (DateInMillis) -> {
+                    try {
+                        final Date start = new Date(DateInMillis);
+                        selectedCourse.setStartDate(start.toString());
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Course Start Date Updated Successfully");
+                        updateTable();
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.toString());
+                        return false;
+                    }
+                });
+
+        GUI_Util.promoteDatePicker("Change Course End Date",
+                "Course New End Date :", "Set End Date", (DateInMillis) -> {
+                    try {
+                        final Date end = new Date(DateInMillis);
+                        selectedCourse.setEndDate(end.toString());
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Course End Date Updated Successfully");
+                        updateTable();
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.toString());
+                        return false;
+                    }
+                });
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -424,26 +454,25 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         selectedCourse.setPrice(spinnerValue);
                         JOptionPane.showMessageDialog(rootPane,
                                 "Course Price Updated Successfully");
+                        updateTable();
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane,
-                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        JOptionPane.showMessageDialog(rootPane, ex.toString());
                         return false;
                     }
                 });
-        updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
     private void setDaysBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setDaysBtnActionPerformed
         if (isBadSelection()) {
         }
-        // TODO 1 add your handling code here:
+        // TODO 13 : add your handling code here:
     }//GEN-LAST:event_setDaysBtnActionPerformed
 
     private void setTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTimeBtnActionPerformed
         if (isBadSelection()) {
         }
-        // TODO 1 add your handling code here:
+        // TODO 14 : add your handling code here:
     }//GEN-LAST:event_setTimeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
