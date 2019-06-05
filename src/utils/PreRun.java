@@ -21,6 +21,7 @@ public class PreRun {
                 JOptionPane.showMessageDialog(null, "MySQL service isn't "
                         + "running , Please run it to start this program");
             }
+            // TODO check schema and user
         }
     }
 
