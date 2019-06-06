@@ -524,7 +524,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
             courseTimeTf.setText("");
             courseDaysTf.setText("");
         } else {
-            courseIdTf.setText(String.valueOf(selectedCourse.getID()));
+            courseIdTf.setText(String.valueOf(selectedCourse.getId()));
             courseNameTf.setText(selectedCourse.getName());
             coursePriceTf.setText(String.valueOf(selectedCourse.getPrice()));
             courseStartDateTf.setText(selectedCourse.getStartDate());

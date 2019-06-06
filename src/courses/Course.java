@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Course {
 
-    private final int ID;
+    private final int Id;
     private String name;
     private String startDate;
     private String endDate;
@@ -23,7 +23,7 @@ public class Course {
         preparedStatement.setInt(1, ID);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
-        this.ID = rs.getInt("course_id");
+        this.Id = rs.getInt("course_id");
         this.name = rs.getString("course_name");
         this.startDate = rs.getString("course_start_date");
         this.endDate = rs.getString("course_end_date");
@@ -33,8 +33,8 @@ public class Course {
         this.days = rs.getString("course_days");
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return Id;
     }
 
     public String getName() {
@@ -70,7 +70,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.name = name;
@@ -81,7 +81,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, startDate);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.startDate = startDate;
@@ -92,7 +92,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, endDate);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.endDate = endDate;
@@ -103,7 +103,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setDouble(1, price);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.price = price;
@@ -114,7 +114,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, timeHourFrom);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.timeHourFrom = timeHourFrom;
@@ -125,7 +125,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, timeHourTo);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.timeHourTo = timeHourTo;
@@ -136,7 +136,7 @@ public class Course {
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, days);
-        preparedStatement.setInt(2, ID);
+        preparedStatement.setInt(2, Id);
         preparedStatement.executeUpdate();
 
         this.days = days;
@@ -146,7 +146,7 @@ public class Course {
         String query = "Delete from course where course_id= ?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, ID);
+        preparedStatement.setInt(1, Id);
         preparedStatement.executeUpdate();
         this.days = null;
         this.endDate = null;
@@ -157,10 +157,12 @@ public class Course {
         this.price = -1;
     }
 
-    /*
-     * TODO 11 : implement this
-     */
-    public ResultSet getCourseStudents() {
-        return null;
+    public ResultSet getCourseStudents() throws SQLException {
+        String query = "Select student_id from student_courses where "
+                + "course_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, Id);
+        return preparedStatement.executeQuery();
     }
 }

@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 11 : implement courses.Course.getCourseStudents method
 * TODO 12 : implement books.BookUtil.getSoldBooks method
 * TODO 13 : implement CoursesEditFrame.setDaysBtnActionPerformed method
 * TODO 14 : implement CoursesEditFrame.setTimeBtnActionPerformed method

@@ -105,7 +105,7 @@ public class Student {
     }
 
     public ResultSet getCourses() throws SQLException {
-        String query = "Select  from course_id from student_courses where "
+        String query = "Select course_id from student_courses where "
                 + "student_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
