@@ -95,12 +95,13 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
-
-    /*
-     * TODO 8 : implement this
-     */
-    public ResultSet getBooks() {
-        return null;
+    public ResultSet getBooks() throws SQLException {
+        String query = "Select book_id,book_quantity from "
+                + "student_books where student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
     }
 
     /*

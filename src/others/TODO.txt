@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 8 : implement students.Student.getBooks method
 * TODO 9 : implement students.Student.getCourses method
 * TODO 10 : implement students.Student.buyBook method
 * TODO 11 : implement courses.Course.getCourseStudents method
@@ -20,7 +19,6 @@ TODO's list :-
 * TODO 25 : implement getCourses gui Student Operation
 * TODO 26 : check user & schema & run schema sql if not exist
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
-* Student Courses (classes ,gui{ Display_courses_enrollments ,Display_student_courses } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
 * Invoice for Students & Teachers (sql ,classes ,gui)

@@ -114,6 +114,7 @@ values(2,'Student 2','059-123-4567',1);
 CREATE TABLE IF NOT EXISTS student_books (
     student_id INT(11),
     book_id INT(11),
+    book_quantity INT NOT NULL,
     CONSTRAINT FOREIGN KEY (book_id)
         REFERENCES book (book_id)
         ON DELETE RESTRICT,
@@ -124,8 +125,8 @@ CREATE TABLE IF NOT EXISTS student_books (
 )  ENGINE=INNODB;
 
 -- Dumping data for table student
-INSERT INTO student_books(student_id,book_id)
-values(1,1);
+INSERT INTO student_books(student_id,book_id,book_quantity)
+values(1,1,1);
 
 -- --------------------------------------------------------
 /*	This table is created for student exams */
