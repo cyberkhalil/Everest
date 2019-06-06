@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 7
 * TODO 8
 * TODO 9
 * TODO 10
@@ -9,6 +8,7 @@ TODO's list :-
 * TODO 14
 * TODO 15
 * TODO 16
+* TODO 17 : make exception messages just ex not ex.getMessage or something else.
 * Student Books (
     gui{ Display_sold_books ,Display_student_books } 
 )

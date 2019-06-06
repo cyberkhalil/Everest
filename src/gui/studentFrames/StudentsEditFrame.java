@@ -3,8 +3,6 @@ package gui.studentFrames;
 import students.StudentUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
