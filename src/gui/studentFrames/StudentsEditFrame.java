@@ -3,6 +3,8 @@ package gui.studentFrames;
 import students.StudentUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
@@ -351,7 +353,26 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        // TODO 6
+        try {
+            GUI_Util.promoteComboBox("Change Student AddedBy",
+                    "Student New AddedBy :", "Set Student AddedBy",
+                    GUI_Util.buildComboBoxModel(StudentUtil.getStudentsId()),
+                    (AddedById) -> {
+                        try {
+                            selectedStudent.setAddedBy(
+                                    Integer.parseInt(AddedById));
+                            updateTable();
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student AddedBy change successfully");
+                            return true;
+                        } catch (SQLException | IllegalStateException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                            return false;
+                        }
+                    });
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
     }//GEN-LAST:event_setAddedByBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
