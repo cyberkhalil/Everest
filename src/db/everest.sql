@@ -87,8 +87,8 @@ INSERT INTO course
 (course_id,course_name,course_start_date,course_end_date,
 course_price,course_time_hour_from,
 course_time_hour_to,course_days)value
-(1, 'course 1', '2018-01-01','2018-02-02', 500, '5:30', '10:30', 'Su,Tu,Th'),
-(2, 'course 2', '2018-01-01','2018-02-02', 200, '10:00', '3:30', 'Sa,Su,Mo');
+(1, 'course 1', '2018-01-01','2018-02-02', 500, '5:30', '10:30', 'Su,Tu,Th,  ,  ,  ,  '),
+(2, 'course 2', '2018-01-01','2018-02-02', 200, '10:00', '3:30', 'Sa,Su,Mo,  ,  ,  ,  ');
 
 
 -- --------------------------------------------------------
