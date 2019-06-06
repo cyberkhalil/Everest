@@ -438,7 +438,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
             bookQuantityTf.setText("");
             bookSoldTf.setText("");
         } else {
-            bookIdTf.setText(String.valueOf(selectedBook.getID()));
+            bookIdTf.setText(String.valueOf(selectedBook.getId()));
             bookNameTf.setText(selectedBook.getName());
             bookPriceTf.setText(String.valueOf(selectedBook.getPrice()));
             bookQuantityTf.setText(String.valueOf(selectedBook.getQuantity()));

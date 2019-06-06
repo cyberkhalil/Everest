@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 12 : implement books.BookUtil.getSoldBooks method
 * TODO 13 : implement CoursesEditFrame.setDaysBtnActionPerformed method
 * TODO 14 : implement CoursesEditFrame.setTimeBtnActionPerformed method
 * TODO 15 : check startDate always before endDate in CoursesEditFrame.setDateBtnActionPerformed

@@ -41,11 +41,4 @@ public class BookUtil {
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
-
-    /*
-     * TODO 12 : implement this
-     */
-    public static ResultSet getSoldBooks() {
-        return null;
-    }
 }
