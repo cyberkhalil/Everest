@@ -1,13 +1,24 @@
 package gui.studentFrames;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import students.StudentUtil;
+import utils.gui.GUI_Util;
 
 public class StudentAddFrame extends javax.swing.JFrame {
 
     public StudentAddFrame() {
         initComponents();
+        try {
+            studentAddedByIdCb.setModel(
+                    GUI_Util.buildComboBoxModel(
+                            StudentUtil.getStudentsId()
+                    ));
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(rootPane, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -22,8 +33,11 @@ public class StudentAddFrame extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         studentNameLbl = new javax.swing.JLabel();
         studentNameTf = new javax.swing.JTextField();
-        studentPhoneTf = new javax.swing.JTextField();
         studentPhoneLbl = new javax.swing.JLabel();
+        studentAddedByIdCb = new javax.swing.JComboBox<>();
+        studentPhoneLbl1 = new javax.swing.JLabel();
+        studentAddedByIdTb = new javax.swing.JToggleButton();
+        studentPhoneFtf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,7 +58,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
             .addGroup(titlePnlLayout.createSequentialGroup()
                 .addComponent(imgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         titlePnlLayout.setVerticalGroup(
             titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,57 +93,92 @@ public class StudentAddFrame extends javax.swing.JFrame {
         studentPhoneLbl.setForeground(new java.awt.Color(0, 51, 153));
         studentPhoneLbl.setText("Student Phone:");
 
+        studentAddedByIdCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        studentPhoneLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentPhoneLbl1.setForeground(new java.awt.Color(0, 51, 153));
+        studentPhoneLbl1.setText("Student Added By Id:");
+
+        studentAddedByIdTb.setText("OFF");
+        studentAddedByIdTb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentAddedByIdTbActionPerformed(evt);
+            }
+        });
+
+        try {
+            studentPhoneFtf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        studentPhoneFtf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
         contentPnlLayout.setHorizontalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contentPnlLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(studentPhoneLbl1)
+                    .addComponent(studentNameLbl)
+                    .addComponent(studentPhoneLbl))
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(studentNameLbl)
-                            .addComponent(studentPhoneLbl))
-                        .addGap(28, 28, 28)
-                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(studentNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(studentPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(studentAddedByIdCb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(studentAddedByIdTb))
                     .addGroup(contentPnlLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(studentPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPnlLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(109, 109, 109))
         );
         contentPnlLayout.setVerticalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(contentTitleLbl)
-                .addGap(41, 41, 41)
+                .addGap(35, 35, 35)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentNameLbl)
                     .addComponent(studentNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(35, 35, 35)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentPhoneLbl)
-                    .addComponent(studentPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                    .addComponent(studentPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentAddedByIdCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(studentPhoneLbl1)
+                    .addComponent(studentAddedByIdTb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addComponent(addBtn)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(contentPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(titlePnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(contentPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(2, 2, 2)
                 .addComponent(contentPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -139,27 +188,39 @@ public class StudentAddFrame extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try {
-            StudentUtil.createStudent(
-                    studentNameTf.getText(),
-                    studentPhoneTf.getText());
+            if (studentAddedByIdTb.isSelected()) {
+                StudentUtil.createStudent(studentNameTf.getText(),
+                        studentPhoneFtf.getText(),
+                        (int) studentAddedByIdTb.getSelectedObjects()[0]);
+            } else {
+                StudentUtil.createStudent(
+                        studentNameTf.getText(),
+                        studentPhoneFtf.getText());
+            }
             JOptionPane.showMessageDialog(this,
                     "New Student created successfully");
-            // TODO 4 make the ability to use addedBy
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void studentAddedByIdTbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAddedByIdTbActionPerformed
+        studentAddedByIdTb.setText(
+                studentAddedByIdTb.isSelected() ? "ON" : "OFF");
+    }//GEN-LAST:event_studentAddedByIdTbActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JLabel contentTitleLbl;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JComboBox<String> studentAddedByIdCb;
+    private javax.swing.JToggleButton studentAddedByIdTb;
     private javax.swing.JLabel studentNameLbl;
     private javax.swing.JTextField studentNameTf;
+    private javax.swing.JFormattedTextField studentPhoneFtf;
     private javax.swing.JLabel studentPhoneLbl;
-    private javax.swing.JTextField studentPhoneTf;
+    private javax.swing.JLabel studentPhoneLbl1;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

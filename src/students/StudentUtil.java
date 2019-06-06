@@ -37,4 +37,11 @@ public class StudentUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getStudentsId() throws SQLException {
+        String query = "Select student_id from student";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
 }

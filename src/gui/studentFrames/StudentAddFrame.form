@@ -23,15 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="titlePnl" alignment="1" max="32767" attributes="0"/>
-          <Component id="contentPnl" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="titlePnl" alignment="0" max="32767" attributes="0"/>
+                  <Component id="contentPnl" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="titlePnl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               <Component id="contentPnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
@@ -59,7 +64,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="imgLbl" min="-2" pref="92" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="titleLbl" pref="250" max="32767" attributes="0"/>
+                  <Component id="titleLbl" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -113,26 +118,34 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="contentTitleLbl" alignment="0" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="studentPhoneLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentNameLbl" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentPhoneLbl" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="studentNameLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="studentPhoneLbl" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="studentNameTf" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="studentAddedByIdCb" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="studentNameTf" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="studentPhoneTf" min="-2" pref="170" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="studentAddedByIdTb" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                          <Component id="addBtn" min="-2" pref="120" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="studentPhoneFtf" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="19" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="addBtn" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -141,19 +154,25 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="contentTitleLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="studentNameLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="studentNameTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="studentPhoneLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="studentPhoneTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="studentPhoneFtf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="studentAddedByIdCb" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="studentPhoneLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentAddedByIdTb" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="addBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -198,8 +217,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="studentNameTf">
         </Component>
-        <Component class="javax.swing.JTextField" name="studentPhoneTf">
-        </Component>
         <Component class="javax.swing.JLabel" name="studentPhoneLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -209,6 +226,48 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Student Phone:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="studentAddedByIdCb">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="studentPhoneLbl1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="33" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Student Added By Id:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="studentAddedByIdTb">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="OFF"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="studentAddedByIdTbActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="studentPhoneFtf">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="###-###-####" subtype="-1" type="5"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>
