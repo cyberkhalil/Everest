@@ -7,12 +7,12 @@ TODO's list :-
 * TODO 21 : link studentOperationsGUI to studentOperationsBtnActionPerformed
 * TODO 22 : link booksSoldoutDisplay frame to booksSoldoutDisplayBtnActionPerformed
 * TODO 23 : implement buyBook gui Student Operation
-* TODO 26 : implement getBooks gui Student Operation
 * TODO 24 : implement addToCourse gui Student Operation
 * TODO 25 : implement getCourses gui Student Operation
-* TODO 26 : check user & schema & run schema sql if not exist
+* TODO 26 : implement getBooks gui Student Operation
 * TODO 27 : check end time always after start time in CoursesEditFrame.setTimeBtnActionPerformed
 * TODO 28 : check end time and end date is always after start time and date in CourseAddFrame
+* TODO 29 : check user & schema & run schema sql if not exist
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
