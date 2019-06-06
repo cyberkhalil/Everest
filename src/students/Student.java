@@ -113,9 +113,12 @@ public class Student {
         return preparedStatement.executeQuery();
     }
 
-    /*
-     * TODO 10 : implement this
-     */
-    public void buyBook(int bookId) {
+    public void buyBook(int bookId) throws SQLException {
+        String query = "Insert into student_books values(?,?)";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, bookId);
+        preparedStatement.executeUpdate();
     }
 }
