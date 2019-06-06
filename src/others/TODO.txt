@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 9 : implement students.Student.getCourses method
 * TODO 10 : implement students.Student.buyBook method
 * TODO 11 : implement courses.Course.getCourseStudents method
 * TODO 12 : implement books.BookUtil.getSoldBooks method

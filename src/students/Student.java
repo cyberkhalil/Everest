@@ -96,19 +96,21 @@ public class Student {
     }
 
     public ResultSet getBooks() throws SQLException {
-        String query = "Select book_id,book_quantity from "
-                + "student_books where student_id=?";
+        String query = "Select book_id,book_quantity from student_books where "
+                + "student_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
 
-    /*
-     * TODO 9 : implement this
-     */
-    public ResultSet getCourses() {
-        return null;
+    public ResultSet getCourses() throws SQLException {
+        String query = "Select  from course_id from student_courses where "
+                + "student_id=?";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
     }
 
     /*
