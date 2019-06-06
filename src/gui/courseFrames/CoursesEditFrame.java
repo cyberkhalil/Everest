@@ -5,10 +5,14 @@ import courses.CourseUtil;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import utils.PublicStaticFinals;
+import utils.TimeUtil;
 import utils.gui.GUI_Util;
 
 public class CoursesEditFrame extends javax.swing.JFrame {
@@ -390,35 +394,47 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        // TODO 15 : check start date is always before end date
         GUI_Util.promoteDatePicker("Change Course Start Date",
-                "Course New Start Date :", "Set Start Date", (DateInMillis) -> {
+                "Course New Start Date :", "Set Start Date",
+                (DateInMillis) -> {
                     try {
-                        final Date start = new Date(DateInMillis);
-                        selectedCourse.setStartDate(start.toString());
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Course Start Date Updated Successfully");
-                        updateTable();
-                        return true;
+                        String start = new Date(DateInMillis).toString();
+                        if (!TimeUtil.isValidDateOrder(start,
+                                selectedCourse.getEndDate())) {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Start date must be before end date");
+                        } else {
+                            selectedCourse.setStartDate(start);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course Start Date Updated Successfully");
+                            updateTable();
+                            return true;
+                        }
                     } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.toString());
-                        return false;
+                        JOptionPane.showMessageDialog(rootPane, ex);
                     }
+                    return false;
                 });
 
         GUI_Util.promoteDatePicker("Change Course End Date",
                 "Course New End Date :", "Set End Date", (DateInMillis) -> {
                     try {
-                        final Date end = new Date(DateInMillis);
-                        selectedCourse.setEndDate(end.toString());
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Course End Date Updated Successfully");
-                        updateTable();
-                        return true;
+                        String end = new Date(DateInMillis).toString();
+                        if (!TimeUtil.isValidDateOrder(
+                                selectedCourse.getStartDate(), end)) {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "End date must be after start date");
+                        } else {
+                            selectedCourse.setEndDate(end);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course End Date Updated Successfully");
+                            updateTable();
+                            return true;
+                        }
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex.toString());
-                        return false;
                     }
+                    return false;
                 });
     }//GEN-LAST:event_setDateBtnActionPerformed
 

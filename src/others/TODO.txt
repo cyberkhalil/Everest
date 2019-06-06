@@ -1,7 +1,6 @@
 TODO's list :-
-* TODO 15 : check startDate always before endDate in CoursesEditFrame.setDateBtnActionPerformed
 * TODO 16 : create studentOperationsGUI
-* TODO 17 : make exception messages just ex not ex.getMessage or something else
+* TODO 17 : make exception messages just ex not ex.getMessage or ex.toString or something else
 * TODO 18 : make SecretaryMainFrame same as AdminMainFrame but Without UsersPnl
 * TODO 19 : create booksSoldoutDisplay frame
 * TODO 20 : change form PromoteExamDateFrame to promoteDate in GUI_Util.
@@ -13,10 +12,12 @@ TODO's list :-
 * TODO 25 : implement getCourses gui Student Operation
 * TODO 26 : check user & schema & run schema sql if not exist
 * TODO 27 : check end time always after start time in CoursesEditFrame.setTimeBtnActionPerformed
+* TODO 28 : check end time and end date is always after start time and date in CourseAddFrame
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
 * Invoice for Students & Teachers (sql ,classes ,gui)
 * Invoice to pdf (classes ,gui)
-* check maximum number of characters in classes and implement proper GUI exception therefore.
-* check a proper conversion between integer in mysql & java or use String instead.
+* check maximum number of characters in classes and implement proper GUI exception therefore
+* check a proper conversion between integer in mysql & java or use String instead
+* check date in classes not in gui and make a proper type of exception if not valid
