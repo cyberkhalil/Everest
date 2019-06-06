@@ -347,9 +347,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             this.teachersTbl.setModel(
                     GUI_Util.buildTableModel(TeacherUtil.getTeachers()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         if (selectedTeacher == null) {
             teacherIdTf.setText("");

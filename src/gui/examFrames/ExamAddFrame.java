@@ -156,8 +156,7 @@ public class ExamAddFrame extends JFrame {
                     "New Exam created successfully");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addExamBtnActionPerformed
 

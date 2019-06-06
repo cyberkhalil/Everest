@@ -1,6 +1,5 @@
 TODO's list :-
 * TODO 16 : create studentOperationsGUI
-* TODO 17 : make exception messages just ex not ex.getMessage or ex.toString or something else
 * TODO 18 : make SecretaryMainFrame same as AdminMainFrame but Without UsersPnl
 * TODO 19 : create booksSoldoutDisplay frame
 * TODO 20 : change form PromoteExamDateFrame to promoteDate in GUI_Util.
@@ -13,6 +12,7 @@ TODO's list :-
 * TODO 27 : check end time always after start time in CoursesEditFrame.setTimeBtnActionPerformed
 * TODO 28 : check end time and end date is always after start time and date in CourseAddFrame
 * TODO 29 : check user & schema & run schema sql if not exist
+* TODO 30: check static Strings and put in PublicStaticFinals util class
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)

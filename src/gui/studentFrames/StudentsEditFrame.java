@@ -400,9 +400,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             this.studentsTbl.setModel(
                     GUI_Util.buildTableModel(StudentUtil.getStudents()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         if (selectedStudent == null) {
             studentIdTf.setText("");

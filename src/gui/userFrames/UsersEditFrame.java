@@ -290,9 +290,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
                     "Password Changed Successfully");
             updateTable();
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_setPasswordBtnActionPerformed
 
@@ -304,9 +302,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
                     "User Deleted Successfully");
         } catch (SQLException | NoPermissionException
                 | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteUserBtnActionPerformed

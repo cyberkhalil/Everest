@@ -25,9 +25,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
             this.coursesTbl.setModel(
                     GUI_Util.buildTableModel(CourseUtil.getCourses()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
 
@@ -374,9 +372,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         try {
             selectedCourse.setName(courseName);
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -454,9 +450,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
             selectedCourse.delete();
             selectedCourse = null;
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed

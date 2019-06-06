@@ -203,9 +203,7 @@ public class UserAddFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane,
                         "User has been added sucessfully");
             } catch (SQLException | NoPermissionException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                        + "\n" + ex.getMessage()
-                );
+                JOptionPane.showMessageDialog(rootPane, ex);
             }
         }
     }//GEN-LAST:event_userAddBtnActionPerformed

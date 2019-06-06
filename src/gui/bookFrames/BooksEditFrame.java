@@ -19,9 +19,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
             this.booksTbl.setModel(
                     GUI_Util.buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
 
@@ -317,9 +315,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         try {
             selectedBook.setName(newBookName);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -340,9 +336,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
             selectedBook.delete();
             selectedBook = null;
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBookBtnActionPerformed
@@ -369,8 +363,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
                                 "Book Quantity Updated Successfully");
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane,
-                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
                 });
@@ -390,8 +383,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
                                 "Book Price Updated Successfully");
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane,
-                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
                 });
@@ -427,9 +419,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
             this.booksTbl.setModel(
                     GUI_Util.buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         if (selectedBook == null) {
             bookIdTf.setText("");

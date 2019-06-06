@@ -195,12 +195,10 @@ public class Login extends javax.swing.JFrame {
                     new SecretaryMainFrame(this).setVisible(true);
                 }
             } catch (LoginException ex) {
-                JOptionPane.showMessageDialog(this,
-                        ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+                JOptionPane.showMessageDialog(this, ex);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex);
         }
         this.passwordPf.setText(null);
     }
@@ -215,8 +213,7 @@ public class Login extends javax.swing.JFrame {
         try {
             DBConnection.establishConnection();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, ex);
         }
         try {
             UIManager.

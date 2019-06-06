@@ -188,8 +188,7 @@ public class BookAddFrame extends javax.swing.JFrame {
                     "New book created successfully");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addBookBtnActionPerformed
 

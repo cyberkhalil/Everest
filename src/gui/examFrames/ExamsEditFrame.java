@@ -22,9 +22,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
             this.examsTbl.setModel(
                     GUI_Util.buildTableModel(ExamUtil.getExams()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
 
@@ -301,9 +299,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         try {
             selectedExam.setName(examName);
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -329,8 +325,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                     selectedExam.setTime(new Date(
                             pExamDateFrame.jXDatePicker1.getDateInMillis()));
                 } catch (SQLException | IllegalStateException ex) {
-                    JOptionPane.showMessageDialog(rootPane,
-                            ex.getClass().getName() + "\n" + ex.getMessage());
+                    JOptionPane.showMessageDialog(rootPane, ex);
                 }
                 updateTable();
                 pExamDateFrame.dispose();
@@ -356,9 +351,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
             selectedExam.delete();
             selectedExam = null;
         } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteExamBtnActionPerformed
@@ -376,8 +369,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                                 "Exam Price Updated Successfully");
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane,
-                                ex.getClass().getName() + "\n" + ex.getMessage());
+                        JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
                 });
@@ -411,9 +403,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
             this.examsTbl.setModel(
                     GUI_Util.buildTableModel(ExamUtil.getExams()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex.getClass().getName()
-                    + "\n" + ex.getMessage()
-            );
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
         if (selectedExam == null) {
             examIdTf.setText("");

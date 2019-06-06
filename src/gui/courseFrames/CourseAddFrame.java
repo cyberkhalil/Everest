@@ -234,8 +234,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,
                     "New Course created successfully");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,
-                    ex.getClass().getSimpleName() + "\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addCourseBtnActionPerformed
 
