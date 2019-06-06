@@ -58,21 +58,6 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
-        courseDataPnl1 = new javax.swing.JPanel();
-        courseNameLbl1 = new javax.swing.JLabel();
-        courseStartDateTf1 = new javax.swing.JTextField();
-        courseIdTf1 = new javax.swing.JTextField();
-        courseIdLbl1 = new javax.swing.JLabel();
-        courseStartDateLbl1 = new javax.swing.JLabel();
-        courseNameTf1 = new javax.swing.JTextField();
-        coursePriceLbl1 = new javax.swing.JLabel();
-        coursePriceTf1 = new javax.swing.JTextField();
-        courseEndDateLbl1 = new javax.swing.JLabel();
-        courseEndDateTf1 = new javax.swing.JTextField();
-        courseTimeLbl1 = new javax.swing.JLabel();
-        courseTimeTf1 = new javax.swing.JTextField();
-        courseDaysLbl1 = new javax.swing.JLabel();
-        courseDaysTf1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -167,7 +152,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         .addComponent(courseTimeTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(courseDataPnlLayout.createSequentialGroup()
                         .addComponent(courseNameLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                         .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(courseDataPnlLayout.createSequentialGroup()
                         .addComponent(courseDaysLbl)
@@ -326,122 +311,6 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        courseDataPnl1.setBackground(new java.awt.Color(255, 255, 255));
-        courseDataPnl1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
-
-        courseNameLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseNameLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseNameLbl1.setText("Course name :");
-
-        courseStartDateTf1.setEditable(false);
-
-        courseIdTf1.setEditable(false);
-
-        courseIdLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseIdLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseIdLbl1.setText("Course ID : ");
-
-        courseStartDateLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseStartDateLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseStartDateLbl1.setText("Start Date :");
-
-        courseNameTf1.setEditable(false);
-
-        coursePriceLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        coursePriceLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        coursePriceLbl1.setText("Course Price :");
-
-        coursePriceTf1.setEditable(false);
-
-        courseEndDateLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseEndDateLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseEndDateLbl1.setText("End Date :");
-
-        courseEndDateTf1.setEditable(false);
-
-        courseTimeLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseTimeLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseTimeLbl1.setText("Course Time :");
-
-        courseTimeTf1.setEditable(false);
-
-        courseDaysLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        courseDaysLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        courseDaysLbl1.setText("Course Days :");
-
-        courseDaysTf1.setEditable(false);
-
-        javax.swing.GroupLayout courseDataPnl1Layout = new javax.swing.GroupLayout(courseDataPnl1);
-        courseDataPnl1.setLayout(courseDataPnl1Layout);
-        courseDataPnl1Layout.setHorizontalGroup(
-            courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseIdLbl1)
-                        .addGap(18, 21, Short.MAX_VALUE)
-                        .addComponent(courseIdTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseStartDateLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseStartDateTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(coursePriceLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(coursePriceTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseEndDateLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseEndDateTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseTimeLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseTimeTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseNameLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseNameTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                        .addComponent(courseDaysLbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(courseDaysTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        courseDataPnl1Layout.setVerticalGroup(
-            courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(courseDataPnl1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseIdLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseIdTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseNameLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseNameTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseStartDateLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseStartDateTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseEndDateLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseEndDateTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(coursePriceLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coursePriceTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseTimeLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseTimeTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(courseDataPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseDaysLbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(courseDaysTf1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -449,10 +318,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(courseDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(courseButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(courseDataPnl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(3, 3, 3)
-                .addComponent(coursesSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE))
+                    .addComponent(courseButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(coursesSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 647, Short.MAX_VALUE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -462,7 +330,6 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(courseDataPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(courseDataPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -620,42 +487,56 @@ public class CoursesEditFrame extends javax.swing.JFrame {
 
     private void setTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTimeBtnActionPerformed
         if (isBadSelection()) {
+            return;
         }
-        // TODO 14 : add your handling code here:
+        GUI_Util.promoteFormatedTextField("Change Course Start Time",
+                "Course New Start Time :", PublicStaticFinals.TIME_FORMAT,
+                "Set Start Time", (formatedText) -> {
+                    try {
+                        selectedCourse.setTimeHourFrom(formatedText);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Course Start Time Updated Successfully");
+                        updateTable();
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                        return false;
+                    }
+                });
+        GUI_Util.promoteFormatedTextField("Change Course End Time",
+                "Course New End Time :", PublicStaticFinals.TIME_FORMAT,
+                "Set End Time", (formatedText) -> {
+                    try {
+                        selectedCourse.setTimeHourFrom(formatedText);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Course End Time Updated Successfully");
+                        updateTable();
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                        return false;
+                    }
+                });
+        // TODO 27 : check end time always after start time.
     }//GEN-LAST:event_setTimeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel courseButtonsPnl;
     private javax.swing.JPanel courseDataPnl;
-    private javax.swing.JPanel courseDataPnl1;
     private javax.swing.JLabel courseDaysLbl;
-    private javax.swing.JLabel courseDaysLbl1;
     private javax.swing.JTextField courseDaysTf;
-    private javax.swing.JTextField courseDaysTf1;
     private javax.swing.JLabel courseEndDateLbl;
-    private javax.swing.JLabel courseEndDateLbl1;
     private javax.swing.JTextField courseEndDateTf;
-    private javax.swing.JTextField courseEndDateTf1;
     private javax.swing.JLabel courseIdLbl;
-    private javax.swing.JLabel courseIdLbl1;
     private javax.swing.JTextField courseIdTf;
-    private javax.swing.JTextField courseIdTf1;
     private javax.swing.JLabel courseNameLbl;
-    private javax.swing.JLabel courseNameLbl1;
     private javax.swing.JTextField courseNameTf;
-    private javax.swing.JTextField courseNameTf1;
     private javax.swing.JLabel coursePriceLbl;
-    private javax.swing.JLabel coursePriceLbl1;
     private javax.swing.JTextField coursePriceTf;
-    private javax.swing.JTextField coursePriceTf1;
     private javax.swing.JLabel courseStartDateLbl;
-    private javax.swing.JLabel courseStartDateLbl1;
     private javax.swing.JTextField courseStartDateTf;
-    private javax.swing.JTextField courseStartDateTf1;
     private javax.swing.JLabel courseTimeLbl;
-    private javax.swing.JLabel courseTimeLbl1;
     private javax.swing.JTextField courseTimeTf;
-    private javax.swing.JTextField courseTimeTf1;
     private javax.swing.JScrollPane coursesSPnl;
     private javax.swing.JTable coursesTbl;
     private javax.swing.JButton deleteCourseBtn;

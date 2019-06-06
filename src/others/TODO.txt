@@ -1,6 +1,4 @@
 TODO's list :-
-* TODO 13 : implement CoursesEditFrame.setDaysBtnActionPerformed method
-* TODO 14 : implement CoursesEditFrame.setTimeBtnActionPerformed method
 * TODO 15 : check startDate always before endDate in CoursesEditFrame.setDateBtnActionPerformed
 * TODO 16 : create studentOperationsGUI
 * TODO 17 : make exception messages just ex not ex.getMessage or something else
@@ -14,6 +12,7 @@ TODO's list :-
 * TODO 24 : implement addToCourse gui Student Operation
 * TODO 25 : implement getCourses gui Student Operation
 * TODO 26 : check user & schema & run schema sql if not exist
+* TODO 27 : check end time always after start time in CoursesEditFrame.setTimeBtnActionPerformed
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
