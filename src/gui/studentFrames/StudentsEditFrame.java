@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
+import utils.PublicStaticFinals;
 import utils.gui.GUI_Util;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
@@ -309,7 +310,20 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        // TODO 5
+        GUI_Util.promoteFormatedTextField("Change Student Phone",
+                "Student New Phone :", PublicStaticFinals.PHONE_FORMAT,
+                "Set Student Phone", (phone) -> {
+                    try {
+                        selectedStudent.setPhone(phone);
+                        updateTable();
+                        JOptionPane.showMessageDialog(rootPane, "Phone number"
+                                + " change successfully");
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                        return false;
+                    }
+                });
     }//GEN-LAST:event_setPhoneBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
