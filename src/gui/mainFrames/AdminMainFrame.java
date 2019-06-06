@@ -54,6 +54,7 @@ public class AdminMainFrame extends JFrame {
         examsLbl = new javax.swing.JLabel();
         examAddBtn = new javax.swing.JButton();
         examEditBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         coursesPnl = new javax.swing.JPanel();
         coursesTitleLbl = new javax.swing.JLabel();
         courseAddBtn = new javax.swing.JButton();
@@ -200,6 +201,11 @@ public class AdminMainFrame extends JFrame {
         });
 
         booksSoldoutDisplayBtn.setText("Display Sold Out Books");
+        booksSoldoutDisplayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                booksSoldoutDisplayBtnActionPerformed(evt);
+            }
+        });
 
         booksDisplayBtn.setText("Display available Books");
         booksDisplayBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +316,13 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
+        jButton1.setText("exam operations");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout examsPnlLayout = new javax.swing.GroupLayout(examsPnl);
         examsPnl.setLayout(examsPnlLayout);
         examsPnlLayout.setHorizontalGroup(
@@ -317,9 +330,10 @@ public class AdminMainFrame extends JFrame {
             .addComponent(examsLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(examsPnlLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(examEditBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(examAddBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(examEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(examAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         examsPnlLayout.setVerticalGroup(
@@ -328,8 +342,10 @@ public class AdminMainFrame extends JFrame {
                 .addComponent(examsLbl)
                 .addGap(15, 15, 15)
                 .addComponent(examAddBtn)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(examEditBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -573,8 +589,16 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_studentsInfoBtnActionPerformed
 
     private void studentOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentOperationsBtnActionPerformed
-        // TODO 16 : implement this
+        // TODO 21 : implement this
     }//GEN-LAST:event_studentOperationsBtnActionPerformed
+
+    private void booksSoldoutDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksSoldoutDisplayBtnActionPerformed
+        // TODO 22 : implement this
+    }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO 20 : impement this
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;
@@ -593,6 +617,7 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JLabel examsLbl;
     private javax.swing.JPanel examsPnl;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton studentAddBtn;
     private javax.swing.JButton studentOperationsBtn;

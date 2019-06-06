@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static utils.gui.GUI_Util.link_frame_to_button;
 
+/*
+ *  TODO 18 : make this as AdminMainFrame Without UsersPanel
+ */
 public class SecretaryMainFrame extends javax.swing.JFrame {
 
     private final JFrame root;

@@ -1,26 +1,29 @@
 TODO's list :-
-* TODO 8
-* TODO 9
-* TODO 10
-* TODO 11
-* TODO 12
-* TODO 13
-* TODO 14
-* TODO 15
-* TODO 16
-* TODO 17 : make exception messages just ex not ex.getMessage or something else.
-* Student Books (
-    gui{ Display_sold_books ,Display_student_books } 
-)
+* TODO 8 : implement students.Student.getBooks method
+* TODO 9 : implement students.Student.getCourses method
+* TODO 10 : implement students.Student.buyBook method
+* TODO 11 : implement courses.Course.getCourseStudents method
+* TODO 12 : implement books.BookUtil.getSoldBooks method
+* TODO 13 : implement CoursesEditFrame.setDaysBtnActionPerformed method
+* TODO 14 : implement CoursesEditFrame.setTimeBtnActionPerformed method
+* TODO 15 : check startDate always before endDate in CoursesEditFrame.setDateBtnActionPerformed
+* TODO 16 : create studentOperationsGUI
+* TODO 17 : make exception messages just ex not ex.getMessage or something else
+* TODO 18 : make SecretaryMainFrame same as AdminMainFrame but Without UsersPnl
+* TODO 19 : create booksSoldoutDisplay frame
+* TODO 20 : change form PromoteExamDateFrame to promoteDate in GUI_Util.
+* TODO 21 : link studentOperationsGUI to studentOperationsBtnActionPerformed
+* TODO 22 : link booksSoldoutDisplay frame to booksSoldoutDisplayBtnActionPerformed
+* TODO 23 : implement buyBook gui Student Operation
+* TODO 26 : implement getBooks gui Student Operation
+* TODO 24 : implement addToCourse gui Student Operation
+* TODO 25 : implement getCourses gui Student Operation
+* TODO 26 : check user & schema & run schema sql if not exist
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Student Courses (classes ,gui{ Display_courses_enrollments ,Display_student_courses } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
 * Invoice for Students & Teachers (sql ,classes ,gui)
 * Invoice to pdf (classes ,gui)
-* Secretary Frame (gui)
 * check maximum number of characters in classes and implement proper GUI exception therefore.
 * check a proper conversion between integer in mysql & java or use String instead.
-* make program execute sql if there is not everest user implemented.
-* modularize PromoteExamDateFrame to promoteDate method in GUI_Util class.
-* check startDate always before endDate in everything.
