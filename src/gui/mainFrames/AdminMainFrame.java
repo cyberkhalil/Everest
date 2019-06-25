@@ -39,7 +39,6 @@ public class AdminMainFrame extends JFrame {
         studentTitleLbl = new javax.swing.JLabel();
         studentAddBtn = new javax.swing.JButton();
         studentsInfoBtn = new javax.swing.JButton();
-        studentOperationsBtn = new javax.swing.JButton();
         booksPnl = new javax.swing.JPanel();
         bookLbl = new javax.swing.JLabel();
         bookAddBtn = new javax.swing.JButton();
@@ -151,13 +150,6 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
-        studentOperationsBtn.setText("student operations");
-        studentOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentOperationsBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout studentsPnlLayout = new javax.swing.GroupLayout(studentsPnl);
         studentsPnl.setLayout(studentsPnlLayout);
         studentsPnlLayout.setHorizontalGroup(
@@ -167,21 +159,18 @@ public class AdminMainFrame extends JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(studentAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(studentsInfoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(studentOperationsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(studentsInfoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         studentsPnlLayout.setVerticalGroup(
             studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentsPnlLayout.createSequentialGroup()
                 .addComponent(studentTitleLbl)
-                .addGap(15, 15, 15)
+                .addGap(30, 30, 30)
                 .addComponent(studentAddBtn)
-                .addGap(15, 15, 15)
+                .addGap(30, 30, 30)
                 .addComponent(studentsInfoBtn)
-                .addGap(15, 15, 15)
-                .addComponent(studentOperationsBtn)
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30))
         );
 
         booksPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -231,13 +220,13 @@ public class AdminMainFrame extends JFrame {
             booksPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(booksPnlLayout.createSequentialGroup()
                 .addComponent(bookLbl)
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addComponent(bookAddBtn)
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addComponent(booksSoldoutDisplayBtn)
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addComponent(booksDisplayBtn)
-                .addGap(20, 20, 20))
+                .addGap(16, 16, 16))
         );
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -340,13 +329,13 @@ public class AdminMainFrame extends JFrame {
             examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(examsPnlLayout.createSequentialGroup()
                 .addComponent(examsLbl)
-                .addGap(15, 15, 15)
+                .addGap(17, 17, 17)
                 .addComponent(examAddBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addComponent(examEditBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(17, 17, 17)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         coursesPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -469,7 +458,7 @@ public class AdminMainFrame extends JFrame {
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(examsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(booksPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(studentsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(studentsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
                 .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -588,10 +577,6 @@ public class AdminMainFrame extends JFrame {
         link_frame_to_button(frame, studentsInfoBtn);
     }//GEN-LAST:event_studentsInfoBtnActionPerformed
 
-    private void studentOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentOperationsBtnActionPerformed
-        // TODO 21 : implement this
-    }//GEN-LAST:event_studentOperationsBtnActionPerformed
-
     private void booksSoldoutDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksSoldoutDisplayBtnActionPerformed
         // TODO 22 : implement this
     }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
@@ -620,7 +605,6 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton studentAddBtn;
-    private javax.swing.JButton studentOperationsBtn;
     private javax.swing.JLabel studentTitleLbl;
     private javax.swing.JButton studentsInfoBtn;
     private javax.swing.JPanel studentsPnl;
