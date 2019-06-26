@@ -64,6 +64,7 @@ public class AdminMainFrame extends JFrame {
         teacherAddBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setName("frame"); // NOI18N
         setResizable(false);
         setSize(new java.awt.Dimension(710, 560));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -232,7 +233,7 @@ public class AdminMainFrame extends JFrame {
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
         contentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        contentTitleLbl.setText("Main Page");
+        contentTitleLbl.setText("Admin Main Page");
         contentTitleLbl.setToolTipText("");
         contentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
@@ -589,34 +590,34 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JButton bookAddBtn;
     private javax.swing.JLabel bookLbl;
     private javax.swing.JButton booksDisplayBtn;
-    private javax.swing.JPanel booksPnl;
+    protected javax.swing.JPanel booksPnl;
     private javax.swing.JButton booksSoldoutDisplayBtn;
-    private javax.swing.JLabel contentTitleLbl;
-    private javax.swing.JPanel content_jPanel;
+    protected javax.swing.JLabel contentTitleLbl;
+    protected javax.swing.JPanel content_jPanel;
     private javax.swing.JButton courseAddBtn;
-    private javax.swing.JPanel coursesPnl;
+    protected javax.swing.JPanel coursesPnl;
     private javax.swing.JLabel coursesTitleLbl;
     private javax.swing.JButton editCoursesBtn;
     private javax.swing.JButton examAddBtn;
     private javax.swing.JButton examEditBtn;
     private javax.swing.JLabel examsLbl;
-    private javax.swing.JPanel examsPnl;
+    protected javax.swing.JPanel examsPnl;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton studentAddBtn;
     private javax.swing.JLabel studentTitleLbl;
     private javax.swing.JButton studentsInfoBtn;
-    private javax.swing.JPanel studentsPnl;
+    protected javax.swing.JPanel studentsPnl;
     private javax.swing.JButton teacherAddBtn;
     private javax.swing.JLabel teacherLbl;
     private javax.swing.JButton teachersEditBtn;
-    private javax.swing.JPanel teachersPnl;
+    protected javax.swing.JPanel teachersPnl;
     private javax.swing.JLabel titleLbl;
-    private javax.swing.JPanel titlePnl;
+    protected javax.swing.JPanel titlePnl;
     private javax.swing.JButton userAddBtn;
     private javax.swing.JLabel userLbl;
     private javax.swing.JButton usersEditBtn;
-    private javax.swing.JPanel usersPnl;
+    protected javax.swing.JPanel usersPnl;
     // End of variables declaration//GEN-END:variables
 }

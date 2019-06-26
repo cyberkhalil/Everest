@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 18 : make SecretaryMainFrame same as AdminMainFrame but Without UsersPnl
 * TODO 19 : create booksSoldoutDisplay frame
 * TODO 20 : change form PromoteExamDateFrame to promoteDate in GUI_Util.
 * TODO 21 : link studentOperationsGUI to studentOperationsBtnActionPerformed
