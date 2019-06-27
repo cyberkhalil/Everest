@@ -8,6 +8,14 @@ TODO's list :-
 * TODO 29 : check user & schema & run schema sql if not exist
 * TODO 30 : check static Strings and put in PublicStaticFinals util class
 * TODO 31 : show book and and student name in BooksSoldOutDisplay
+--
+* TODO 32 : make AddStudentFrame unresizable.
+* TODO 33 : make ON/OFF button in AddStudentFrame in the same size
+* TODO 34 : link setAddedBy button with the frame in EditStudentFrame
+* TODO 35 :in AddExam  the date shuold be more from today and  more
+* TODO 36 :in AddExam  when i put price less than 0 like  -20 he put it 0
+
+
 * Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
 * Teacher Courses (classes ,gui)
 * Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
