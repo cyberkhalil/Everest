@@ -537,7 +537,6 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         return false;
                     }
                 });
-        // TODO 27 : check end time always after start time.
     }//GEN-LAST:event_setTimeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

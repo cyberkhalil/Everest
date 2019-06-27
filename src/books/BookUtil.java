@@ -49,9 +49,11 @@ public class BookUtil {
         return preparedStatement.executeQuery();
     }
 
-    /* TODO 31 : show book and and student name in BooksSoldOutDisplay */
     public static ResultSet getSoldOutBooks() throws SQLException {
-        String query = "Select book_id,book_quantity,student_id from student_books";
+        String query = "Select b.book_name,sb.book_quantity,s.student_name"
+                + " from student_books sb,book b,student s"
+                + " where b.book_id = sb.book_id"
+                + " and s.student_id= sb.student_id";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
