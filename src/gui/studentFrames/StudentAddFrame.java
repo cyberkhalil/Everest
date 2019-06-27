@@ -69,6 +69,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
 
         contentPnl.setBackground(new java.awt.Color(255, 255, 255));
         contentPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 171, 112)));
+        contentPnl.setMinimumSize(new java.awt.Dimension(415, 309));
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
@@ -134,7 +135,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(studentPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPnlLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
