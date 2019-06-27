@@ -41,4 +41,12 @@ public class BookUtil {
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
+
+    /* TODO 31 : show book and and student name in BooksSoldOutDisplay */
+    public static ResultSet getSoldOutBooks() throws SQLException {
+        String query = "Select * from student_books";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
 }
