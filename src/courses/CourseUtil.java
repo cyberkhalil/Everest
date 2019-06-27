@@ -17,6 +17,13 @@ public final class CourseUtil {
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
+    
+    public static ResultSet getCoursesId() throws SQLException {
+        String query = "Select course_id from course";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
 
     public static void createCourse(String name, Date startDate, Date endDate,
             double price, String timeHourFrom, String timeHourTo, String days)

@@ -1,6 +1,7 @@
 package gui.studentFrames;
 
 import books.BookUtil;
+import courses.CourseUtil;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import students.Student;
@@ -21,6 +22,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
         ButtonsPnl = new javax.swing.JPanel();
         buyBookBtn = new javax.swing.JButton();
+        enrolToCourseBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -39,6 +41,13 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        enrolToCourseBtn.setText("Enrol to course");
+        enrolToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enrolToCourseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
@@ -46,13 +55,17 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(buyBookBtn)
+                .addGap(67, 67, 67)
+                .addComponent(enrolToCourseBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(buyBookBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyBookBtn)
+                    .addComponent(enrolToCourseBtn))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -126,9 +139,30 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buyBookBtnActionPerformed
 
+    private void enrolToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrolToCourseBtnActionPerformed
+        try {
+            GUI_Util.promoteComboBox("Enrol To Course", "Choose Course Id to enrol",
+                    "Enrol To Course", GUI_Util.buildComboBoxModel(CourseUtil.getCoursesId()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.addToCourse(Integer.parseInt(choice));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student enrolled to this course successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    });
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_enrolToCourseBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton buyBookBtn;
+    private javax.swing.JButton enrolToCourseBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
