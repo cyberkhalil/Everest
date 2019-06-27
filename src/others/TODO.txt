@@ -1,4 +1,3 @@
 TODO's list :-
-* TODO 34 : link setAddedBy button with the frame in EditStudentFrame
 * TODO 35 :in AddExam  the date shuold be more from today and  more
 * TODO 36 :in AddExam  when i put price less than 0 like  -20 he put it 0

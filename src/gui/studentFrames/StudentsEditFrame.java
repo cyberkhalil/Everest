@@ -370,7 +370,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            GUI_Util.promoteComboBox("Change Student AddedBy",
+            JFrame frame = GUI_Util.promoteComboBox("Change Student AddedBy",
                     "Student New AddedBy :", "Set Student AddedBy",
                     GUI_Util.buildComboBoxModel(StudentUtil.getStudentsId()),
                     (AddedById) -> {
@@ -386,6 +386,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                             return false;
                         }
                     });
+            GUI_Util.link_frame_to_button(frame, setAddedByBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
