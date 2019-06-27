@@ -243,7 +243,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="bookISBN_Tf">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="BookISBN_CB">

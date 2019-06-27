@@ -93,7 +93,7 @@ public class BookAddFrame extends javax.swing.JFrame {
 
         bookQuantitySp.setModel(new SpinnerNumberModel(0,0,1000,1));
 
-        bookISBN_Tf.setEditable(false);
+        bookISBN_Tf.setEnabled(false);
 
         BookISBN_CB.setBackground(new java.awt.Color(255, 255, 255));
         BookISBN_CB.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -193,7 +193,12 @@ public class BookAddFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBookBtnActionPerformed
 
     private void BookISBN_CBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookISBN_CBActionPerformed
-        bookISBN_Tf.setEditable(BookISBN_CB.isSelected());
+        if (BookISBN_CB.isSelected()) {
+            bookISBN_Tf.setEnabled(true);
+        } else {
+            bookISBN_Tf.setText("");
+            bookISBN_Tf.setEnabled(false);
+        }
     }//GEN-LAST:event_BookISBN_CBActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
