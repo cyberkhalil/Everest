@@ -188,7 +188,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         try {
-            if (studentAddedByIdTb.isSelected()) {
+            if (!studentAddedByIdTb.isSelected()) {
                 StudentUtil.createStudent(studentNameTf.getText(),
                         studentPhoneFtf.getText(),
                         (int) studentAddedByIdTb.getSelectedObjects()[0]);
