@@ -5,12 +5,37 @@ import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class ExamAddFrame extends JFrame {
 
     public ExamAddFrame() {
         initComponents();
+        JSpinner.DefaultEditor editor = (JSpinner.DefaultEditor) examPriceSp.getEditor();
+        JTextField textField = editor.getTextField();
+        textField.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (!textField.getText().matches("[0-9]*")) {
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Input MUST be only possitive numbers");
+                    examPriceSp.setEditor(new JSpinner().getEditor());
+                    examPriceSp.setEditor(editor);
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -169,6 +194,7 @@ public class ExamAddFrame extends JFrame {
     private void examDateDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examDateDPActionPerformed
         if (examDateDP.getDateInMillis() < System.currentTimeMillis()) {
             JOptionPane.showMessageDialog(rootPane, "Exam Date MUST be after current date");
+            examDateDP.setDateInMillis(System.currentTimeMillis());
         }
     }//GEN-LAST:event_examDateDPActionPerformed
 

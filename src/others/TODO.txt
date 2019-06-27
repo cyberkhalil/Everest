@@ -1,2 +1,1 @@
-TODO's list :-
-* TODO 36 :in AddExam  when i put price less than 0 like  -20 he put it 0
+TODO's list moved to Issues in gitlab repo
