@@ -374,11 +374,11 @@ public class AdminMainFrame extends JFrame {
             coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coursesPnlLayout.createSequentialGroup()
                 .addComponent(coursesTitleLbl)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addComponent(courseAddBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editCoursesBtn)
-                .addContainerGap())
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         teachersPnl.setBackground(new java.awt.Color(255, 255, 255));
