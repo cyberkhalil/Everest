@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 28 : check end time and end date is always after start time and date in CourseAddFrame
 * TODO 29 : check user & schema & run schema sql if not exist
 * TODO 30 : check static Strings and put in PublicStaticFinals util class
 * TODO 31 : show book and and student name in BooksSoldOutDisplay

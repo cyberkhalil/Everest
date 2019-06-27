@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import static utils.TimeUtil.isValidDateOrder;
 
 public class CourseAddFrame extends javax.swing.JFrame {
 
@@ -222,6 +223,11 @@ public class CourseAddFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
+        if (!isValidDateOrder(courseStartTimeFtf.getText(), courseEndTimeFtf.getText())) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Course start time MUST be after course end time");
+            return;
+        }
         try {
             CourseUtil.createCourse(courseNameTf.getText(),
                     new Date(courseStartDateDP.getDateInMillis()),
