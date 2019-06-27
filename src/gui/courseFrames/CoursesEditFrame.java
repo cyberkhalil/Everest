@@ -10,6 +10,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import utils.PublicStaticFinals;
 import utils.TimeUtil;
+import static utils.TimeUtil.isValidDateOrder;
 import utils.gui.GUI_Util;
 
 public class CoursesEditFrame extends javax.swing.JFrame {
@@ -500,11 +501,17 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 "Course New Start Time :", PublicStaticFinals.TIME_FORMAT,
                 "Set Start Time", (formatedText) -> {
                     try {
-                        selectedCourse.setTimeHourFrom(formatedText);
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Course Start Time Updated Successfully");
-                        updateTable();
-                        return true;
+                        if (isValidDateOrder(formatedText, selectedCourse.getEndDate())) {
+                            selectedCourse.setTimeHourFrom(formatedText);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course Start Time Updated Successfully");
+                            updateTable();
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course start time MUST be after course end time");
+                            return false;
+                        }
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
@@ -514,11 +521,17 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                 "Course New End Time :", PublicStaticFinals.TIME_FORMAT,
                 "Set End Time", (formatedText) -> {
                     try {
-                        selectedCourse.setTimeHourFrom(formatedText);
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Course End Time Updated Successfully");
-                        updateTable();
-                        return true;
+                        if (isValidDateOrder(selectedCourse.getStartDate(), formatedText)) {
+                            selectedCourse.setTimeHourFrom(formatedText);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course End Time Updated Successfully");
+                            updateTable();
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course start time MUST be after course end time");
+                            return false;
+                        }
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
