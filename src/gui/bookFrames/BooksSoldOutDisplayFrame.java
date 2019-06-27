@@ -1,15 +1,11 @@
 package gui.bookFrames;
 
-import books.Book;
 import books.BookUtil;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 import utils.gui.GUI_Util;
 
 public class BooksSoldOutDisplayFrame extends javax.swing.JFrame {
-
-    private Book selectedBook;
 
     public BooksSoldOutDisplayFrame() {
         initComponents();
@@ -32,6 +28,7 @@ public class BooksSoldOutDisplayFrame extends javax.swing.JFrame {
         titleLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         booksTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,14 +96,6 @@ public class BooksSoldOutDisplayFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void booksTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_booksTblMouseClicked
-        int i = booksTbl.getSelectedRow();
-        TableModel tableModel = booksTbl.getModel();
-        try {
-            selectedBook = new Book((int) tableModel.getValueAt(i, 0));
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Selected Book doesn't Exist !");
-        }
         updateTable();
     }//GEN-LAST:event_booksTblMouseClicked
 

@@ -44,7 +44,7 @@ public class BookUtil {
 
     /* TODO 31 : show book and and student name in BooksSoldOutDisplay */
     public static ResultSet getSoldOutBooks() throws SQLException {
-        String query = "Select * from student_books";
+        String query = "Select book_id,book_quantity,student_id from student_books";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();

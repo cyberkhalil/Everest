@@ -1,5 +1,4 @@
 TODO's list :-
-* TODO 22 : link booksSoldoutDisplay frame to booksSoldoutDisplayBtnActionPerformed
 * TODO 23 : implement buyBook gui Student Operation
 * TODO 24 : implement addToCourse gui Student Operation
 * TODO 25 : implement getCourses gui Student Operation

@@ -3,6 +3,7 @@ package gui.mainFrames;
 import gui.bookFrames.BookAddFrame;
 import gui.userFrames.UserAddFrame;
 import gui.bookFrames.BooksEditFrame;
+import gui.bookFrames.BooksSoldOutDisplayFrame;
 import gui.courseFrames.CourseAddFrame;
 import gui.courseFrames.CoursesEditFrame;
 import gui.examFrames.ExamsEditFrame;
@@ -197,7 +198,7 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
-        booksDisplayBtn.setText("Display available Books");
+        booksDisplayBtn.setText("Edit available Books");
         booksDisplayBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 booksDisplayBtnActionPerformed(evt);
@@ -224,10 +225,10 @@ public class AdminMainFrame extends JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(bookAddBtn)
                 .addGap(17, 17, 17)
-                .addComponent(booksSoldoutDisplayBtn)
-                .addGap(17, 17, 17)
                 .addComponent(booksDisplayBtn)
-                .addGap(16, 16, 16))
+                .addGap(17, 17, 17)
+                .addComponent(booksSoldoutDisplayBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -579,7 +580,9 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_studentsInfoBtnActionPerformed
 
     private void booksSoldoutDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksSoldoutDisplayBtnActionPerformed
-        // TODO 22 : implement this
+        BooksSoldOutDisplayFrame frame = new BooksSoldOutDisplayFrame();
+        frame.setVisible(true);
+        link_frame_to_button(frame, booksSoldoutDisplayBtn);
     }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
