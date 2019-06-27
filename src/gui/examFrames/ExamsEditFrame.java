@@ -3,10 +3,8 @@ package gui.examFrames;
 import exams.Exam;
 import exams.ExamUtil;
 import java.awt.HeadlessException;
-import java.awt.event.ActionEvent;
 import java.sql.Date;
 import java.sql.SQLException;
-import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -317,22 +315,21 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        ExamDatePromoteFrame pExamDateFrame = new ExamDatePromoteFrame();
-        pExamDateFrame.setDateBtn.setAction(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    selectedExam.setTime(new Date(
-                            pExamDateFrame.jXDatePicker1.getDateInMillis()));
-                } catch (SQLException | IllegalStateException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                }
-                updateTable();
-                pExamDateFrame.dispose();
-            }
-        });
-        pExamDateFrame.setDateBtn.setText("Set Date");
-        pExamDateFrame.setVisible(true);
+        GUI_Util.promoteDatePicker("Change Exam Date",
+                "Exam New Date :", "Set Exam Date",
+                (DateInMillis) -> {
+                    try {
+                        selectedExam.setTime(new Date(DateInMillis));
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Exam Date Updated Successfully");
+                        updateTable();
+                        return true;
+                    } catch (IllegalStateException | SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    return false;
+                });
+
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteExamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteExamBtnActionPerformed
