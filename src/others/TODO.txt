@@ -1,1 +1,0 @@
-TODO's list moved to Issues in gitlab repo
