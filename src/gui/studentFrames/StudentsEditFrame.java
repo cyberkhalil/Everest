@@ -44,7 +44,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         setPhoneBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         setAddedByBtn = new javax.swing.JButton();
-        setAddedByBtn1 = new javax.swing.JButton();
+        studentOperationsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -178,11 +178,11 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             }
         });
 
-        setAddedByBtn1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setAddedByBtn1.setText("Other Operations");
-        setAddedByBtn1.addActionListener(new java.awt.event.ActionListener() {
+        studentOperationsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentOperationsBtn.setText("Other Operations");
+        studentOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setAddedByBtn1ActionPerformed(evt);
+                studentOperationsBtnActionPerformed(evt);
             }
         });
 
@@ -202,7 +202,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(setAddedByBtn1)
+                .addComponent(studentOperationsBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
@@ -217,7 +217,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                     .addComponent(deleteBtn)
                     .addComponent(setAddedByBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(setAddedByBtn1)
+                .addComponent(studentOperationsBtn)
                 .addGap(15, 15, 15))
         );
 
@@ -389,21 +389,21 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_setAddedByBtnActionPerformed
 
-    private void setAddedByBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setAddedByBtn1ActionPerformed
+    private void studentOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentOperationsBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
         JFrame frame = new StudentsOperationsFrame(selectedStudent);
+        GUI_Util.link_frame_to_button(frame, studentOperationsBtn);
         frame.setVisible(true);
         frame.setAlwaysOnTop(true);
-    }//GEN-LAST:event_setAddedByBtn1ActionPerformed
+    }//GEN-LAST:event_studentOperationsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton setAddedByBtn;
-    private javax.swing.JButton setAddedByBtn1;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPhoneBtn;
     private javax.swing.JLabel studentAddedByLbl;
@@ -413,6 +413,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
     private javax.swing.JTextField studentIdTf;
     private javax.swing.JLabel studentNameLbl;
     private javax.swing.JTextField studentNameTf;
+    private javax.swing.JButton studentOperationsBtn;
     private javax.swing.JLabel studentPhoneLbl;
     private javax.swing.JTextField studentPhoneTf;
     private javax.swing.JScrollPane studentsSPnl;

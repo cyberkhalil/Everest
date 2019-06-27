@@ -18,7 +18,6 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonsPnl = new javax.swing.JPanel();
-        setAddedByBtn1 = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -30,29 +29,15 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentX(0.0F);
         ButtonsPnl.setAlignmentY(0.0F);
 
-        setAddedByBtn1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        setAddedByBtn1.setText("Back");
-        setAddedByBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setAddedByBtn1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(setAddedByBtn1)
-                .addGap(154, 154, 154))
+            .addGap(0, 416, Short.MAX_VALUE)
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPnlLayout.createSequentialGroup()
-                .addContainerGap(171, Short.MAX_VALUE)
-                .addComponent(setAddedByBtn1)
-                .addContainerGap())
+            .addGap(0, 207, Short.MAX_VALUE)
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,9 +76,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))
+                    .addComponent(ButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -116,17 +99,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         return false;
     }
 
-    private void setAddedByBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setAddedByBtn1ActionPerformed
-        if (isBadSelection()) {
-            return;
-        }
-        this.dispose();
-    }//GEN-LAST:event_setAddedByBtn1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JLabel imgLbl;
-    private javax.swing.JButton setAddedByBtn1;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables
