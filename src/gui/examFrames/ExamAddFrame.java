@@ -90,6 +90,12 @@ public class ExamAddFrame extends JFrame {
         examDateLbl.setForeground(new java.awt.Color(0, 51, 153));
         examDateLbl.setText("Exam Date :");
 
+        examDateDP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                examDateDPActionPerformed(evt);
+            }
+        });
+
         addExamBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         addExamBtn.setForeground(new java.awt.Color(0, 51, 153));
         addExamBtn.setText("Create new Exam");
@@ -159,6 +165,12 @@ public class ExamAddFrame extends JFrame {
             JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addExamBtnActionPerformed
+
+    private void examDateDPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examDateDPActionPerformed
+        if (examDateDP.getDateInMillis() < System.currentTimeMillis()) {
+            JOptionPane.showMessageDialog(rootPane, "Exam Date MUST be after current date");
+        }
+    }//GEN-LAST:event_examDateDPActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addExamBtn;

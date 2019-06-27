@@ -208,6 +208,9 @@
       </Properties>
     </Component>
     <Component class="org.jdesktop.swingx.JXDatePicker" name="examDateDP">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="examDateDPActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addExamBtn">
       <Properties>
