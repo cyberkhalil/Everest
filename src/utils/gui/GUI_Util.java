@@ -10,6 +10,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -104,6 +105,12 @@ public class GUI_Util {
         return promoteFrame;
     }
 
+    public static JFrame displayItemsInJTable(UpdateTableOperation uto) {
+        JFrame displayFrame = new DisplayItemsInJTable(uto);
+        displayFrame.setVisible(true);
+        return displayFrame;
+    }
+
     public static abstract interface DoSomethingWithSpinner {
 
         /**
@@ -138,5 +145,13 @@ public class GUI_Util {
          * @return true to close or false to not close
          */
         abstract boolean doSomething(String formatedText);
+    }
+
+    public static abstract interface UpdateTableOperation {
+
+        /**
+         * @param table
+         */
+        abstract void updateTable(JTable table);
     }
 }
