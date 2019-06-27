@@ -42,6 +42,13 @@ public class BookUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getBooksId() throws SQLException {
+        String query = "Select book_id from book";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
     /* TODO 31 : show book and and student name in BooksSoldOutDisplay */
     public static ResultSet getSoldOutBooks() throws SQLException {
         String query = "Select book_id,book_quantity,student_id from student_books";

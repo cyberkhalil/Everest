@@ -1,8 +1,10 @@
 package gui.studentFrames;
 
-import java.awt.HeadlessException;
+import books.BookUtil;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import students.Student;
+import utils.gui.GUI_Util;
 
 public class StudentsOperationsFrame extends javax.swing.JFrame {
 
@@ -18,6 +20,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonsPnl = new javax.swing.JPanel();
+        buyBookBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -29,15 +32,28 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentX(0.0F);
         ButtonsPnl.setAlignmentY(0.0F);
 
+        buyBookBtn.setText("Buy Book");
+        buyBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buyBookBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(buyBookBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(buyBookBtn)
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -90,17 +106,29 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private boolean isBadSelection() throws HeadlessException {
-        if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Student to make this opreation !");
-            return true;
+    private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
+        try {
+            GUI_Util.promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
+                    GUI_Util.buildComboBoxModel(BookUtil.getBooksId()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.buyBook(Integer.parseInt(choice));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student bought this book successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    });
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
         }
-        return false;
-    }
+    }//GEN-LAST:event_buyBookBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
+    private javax.swing.JButton buyBookBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;

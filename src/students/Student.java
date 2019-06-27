@@ -114,7 +114,7 @@ public class Student {
     }
 
     public void buyBook(int bookId) throws SQLException {
-        String query = "Insert into student_books values(?,?)";
+        String query = "Insert into student_books values(?,?,1)";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);

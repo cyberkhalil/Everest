@@ -396,7 +396,6 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         JFrame frame = new StudentsOperationsFrame(selectedStudent);
         GUI_Util.link_frame_to_button(frame, studentOperationsBtn);
         frame.setVisible(true);
-        frame.setAlwaysOnTop(true);
     }//GEN-LAST:event_studentOperationsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
