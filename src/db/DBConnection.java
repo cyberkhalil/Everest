@@ -22,8 +22,10 @@ public final class DBConnection {
         String db = "everest";
         String url = "jdbc:mysql://localhost:3306/";
         String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
+        String time = "&useLegacyDatetimeCode=false&serverTimezone=America/New_York";
+
         try {
-            connection = DriverManager.getConnection(url + db + unicode, "test", "test");
+            connection = DriverManager.getConnection(url + db + unicode + time, "test", "test");
             isConnected = true;
         } catch (SQLException exception) {
             isConnected = false;
