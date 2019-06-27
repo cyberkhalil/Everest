@@ -38,6 +38,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
         studentPhoneFtf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
         titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));

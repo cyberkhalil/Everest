@@ -3,6 +3,7 @@
 <Form version="1.6" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -29,7 +30,8 @@
                   <Component id="ButtonsPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="studentsSPnl" min="-2" pref="495" max="-2" attributes="0"/>
+              <Component id="studentsSPnl" min="-2" pref="600" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
           <Component id="titlePnl" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -45,7 +47,7 @@
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="ButtonsPnl" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="studentsSPnl" pref="0" max="32767" attributes="0"/>
+                  <Component id="studentsSPnl" pref="415" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -109,7 +111,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="studentPhoneLbl" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="studentPhoneTf" min="-2" pref="192" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -242,7 +244,7 @@
                       <Component id="setNameBtn" min="-2" pref="114" max="-2" attributes="0"/>
                       <Component id="setAddedByBtn" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="51" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="setPhoneBtn" alignment="1" min="-2" pref="111" max="-2" attributes="0"/>
                       <Component id="deleteBtn" alignment="1" min="-2" max="-2" attributes="0"/>
