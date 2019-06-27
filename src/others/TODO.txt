@@ -10,11 +10,3 @@ TODO's list :-
 * TODO 34 : link setAddedBy button with the frame in EditStudentFrame
 * TODO 35 :in AddExam  the date shuold be more from today and  more
 * TODO 36 :in AddExam  when i put price less than 0 like  -20 he put it 0
-* Student Exams (classes ,gui{ Display_student_exams ,Display_exam_students } )
-* Teacher Courses (classes ,gui)
-* Purchases for Students & Teachers (sql( purchases_view ) ,classes ,gui)
-* Invoice for Students & Teachers (sql ,classes ,gui)
-* Invoice to pdf (classes ,gui)
-* check maximum number of characters in classes and implement proper GUI exception therefore
-* check a proper conversion between integer in mysql & java or use String instead
-* check date in classes not in gui and make a proper type of exception if not valid
