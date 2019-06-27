@@ -65,12 +65,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="enrolToCourseBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="displayCoursesBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="buyBookBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="enrolToCourseBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="buyBookBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="displayBooksBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayCoursesBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -80,7 +81,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                  <Component id="buyBookBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="buyBookBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayBooksBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="enrolToCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -114,6 +118,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayCoursesBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="displayBooksBtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="display Books"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBooksBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

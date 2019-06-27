@@ -26,6 +26,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         buyBookBtn = new javax.swing.JButton();
         enrolToCourseBtn = new javax.swing.JButton();
         displayCoursesBtn = new javax.swing.JButton();
+        displayBooksBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -58,6 +59,13 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        displayBooksBtn.setText("display Books");
+        displayBooksBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBooksBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
@@ -65,18 +73,21 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                        .addComponent(enrolToCourseBtn)
-                        .addGap(49, 49, 49)
-                        .addComponent(displayCoursesBtn))
+                    .addComponent(enrolToCourseBtn)
                     .addComponent(buyBookBtn))
+                .addGap(49, 49, 49)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(displayBooksBtn)
+                    .addComponent(displayCoursesBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(buyBookBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buyBookBtn)
+                    .addComponent(displayBooksBtn))
                 .addGap(26, 26, 26)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enrolToCourseBtn)
@@ -184,9 +195,20 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_displayCoursesBtnActionPerformed
 
+    private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
+        GUI_Util.displayItemsInJTable((table) -> {
+            try {
+                table.setModel(GUI_Util.buildTableModel(selectedStudent.getBooks()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+        });
+    }//GEN-LAST:event_displayBooksBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton buyBookBtn;
+    private javax.swing.JButton displayBooksBtn;
     private javax.swing.JButton displayCoursesBtn;
     private javax.swing.JButton enrolToCourseBtn;
     private javax.swing.JLabel imgLbl;
