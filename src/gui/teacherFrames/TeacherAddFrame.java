@@ -22,8 +22,8 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         teacherNameLbl = new javax.swing.JLabel();
         teacherNameTf = new javax.swing.JTextField();
-        teacherPhoneTf = new javax.swing.JTextField();
         teacherPhoneLbl = new javax.swing.JLabel();
+        teacherPhoneFtf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -79,6 +79,13 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         teacherPhoneLbl.setForeground(new java.awt.Color(0, 51, 153));
         teacherPhoneLbl.setText("Teacher Phone:");
 
+        try {
+            teacherPhoneFtf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        teacherPhoneFtf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
         contentPnlLayout.setHorizontalGroup(
@@ -92,13 +99,13 @@ public class TeacherAddFrame extends javax.swing.JFrame {
                             .addComponent(teacherNameLbl)
                             .addComponent(teacherPhoneLbl))
                         .addGap(28, 28, 28)
-                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(teacherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(teacherPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         contentPnlLayout.setVerticalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +119,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teacherPhoneLbl)
-                    .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(teacherPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(addBtn)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -141,7 +148,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         try {
             TeacherUtil.createTeacher(
                     teacherNameTf.getText(),
-                    teacherPhoneTf.getText());
+                    teacherPhoneFtf.getText());
             JOptionPane.showMessageDialog(this,
                     "New Teacher created successfully");
         } catch (SQLException ex) {
@@ -156,8 +163,8 @@ public class TeacherAddFrame extends javax.swing.JFrame {
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel teacherNameLbl;
     private javax.swing.JTextField teacherNameTf;
+    private javax.swing.JFormattedTextField teacherPhoneFtf;
     private javax.swing.JLabel teacherPhoneLbl;
-    private javax.swing.JTextField teacherPhoneTf;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

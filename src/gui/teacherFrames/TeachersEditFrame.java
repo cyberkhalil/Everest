@@ -31,11 +31,11 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         teachersTbl = new javax.swing.JTable();
         teacherDataPnl = new javax.swing.JPanel();
         teacherNameLbl = new javax.swing.JLabel();
-        teacherPhoneTf = new javax.swing.JTextField();
         teacherIdTf = new javax.swing.JTextField();
         teacherIdLbl = new javax.swing.JLabel();
         teacherPhoneLbl = new javax.swing.JLabel();
         teacherNameTf = new javax.swing.JTextField();
+        teacherPhoneFtf = new javax.swing.JFormattedTextField();
         ButtonsPnl = new javax.swing.JPanel();
         setNameBtn = new javax.swing.JButton();
         setPhoneBtn = new javax.swing.JButton();
@@ -69,8 +69,6 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         teacherNameLbl.setForeground(new java.awt.Color(0, 51, 153));
         teacherNameLbl.setText("Teacher name :");
 
-        teacherPhoneTf.setEditable(false);
-
         teacherIdTf.setEditable(false);
 
         teacherIdLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -82,6 +80,13 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         teacherPhoneLbl.setText("Teacher phone :");
 
         teacherNameTf.setEditable(false);
+
+        teacherPhoneFtf.setEditable(false);
+        try {
+            teacherPhoneFtf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###-###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout teacherDataPnlLayout = new javax.swing.GroupLayout(teacherDataPnl);
         teacherDataPnl.setLayout(teacherDataPnlLayout);
@@ -100,11 +105,12 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                                 .addComponent(teacherNameLbl)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(teacherNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(teacherDataPnlLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherDataPnlLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(teacherPhoneLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(teacherPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         teacherDataPnlLayout.setVerticalGroup(
@@ -120,9 +126,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                     .addComponent(teacherNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(teacherDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(teacherPhoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(teacherPhoneLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addComponent(teacherPhoneLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(teacherPhoneFtf, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47))
         );
 
         ButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -339,8 +345,8 @@ public class TeachersEditFrame extends javax.swing.JFrame {
     private javax.swing.JTextField teacherIdTf;
     private javax.swing.JLabel teacherNameLbl;
     private javax.swing.JTextField teacherNameTf;
+    private javax.swing.JFormattedTextField teacherPhoneFtf;
     private javax.swing.JLabel teacherPhoneLbl;
-    private javax.swing.JTextField teacherPhoneTf;
     private javax.swing.JScrollPane teachersSPnl;
     private javax.swing.JTable teachersTbl;
     private javax.swing.JLabel titleLbl;
@@ -357,11 +363,11 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         if (selectedTeacher == null) {
             teacherIdTf.setText("");
             teacherNameTf.setText("");
-            teacherPhoneTf.setText("");
+            teacherPhoneFtf.setText("");
         } else {
             teacherIdTf.setText(String.valueOf(selectedTeacher.getId()));
             teacherNameTf.setText(selectedTeacher.getName());
-            teacherPhoneTf.setText(selectedTeacher.getPhone());
+            teacherPhoneFtf.setText(selectedTeacher.getPhone());
         }
     }
 }

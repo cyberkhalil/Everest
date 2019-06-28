@@ -122,9 +122,9 @@
                               <Component id="teacherPhoneLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="teacherNameTf" min="-2" pref="170" max="-2" attributes="0"/>
-                              <Component id="teacherPhoneTf" min="-2" pref="170" max="-2" attributes="0"/>
+                              <Component id="teacherPhoneFtf" min="-2" pref="170" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -132,7 +132,7 @@
                           <Component id="addBtn" min="-2" pref="120" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="42" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -149,7 +149,7 @@
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="teacherPhoneLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="teacherPhoneTf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="teacherPhoneFtf" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="addBtn" min="-2" max="-2" attributes="0"/>
@@ -198,8 +198,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="teacherNameTf">
         </Component>
-        <Component class="javax.swing.JTextField" name="teacherPhoneTf">
-        </Component>
         <Component class="javax.swing.JLabel" name="teacherPhoneLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -209,6 +207,14 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Teacher Phone:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="teacherPhoneFtf">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+              <Format format="###-###-####" subtype="-1" type="5"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
       </SubComponents>
