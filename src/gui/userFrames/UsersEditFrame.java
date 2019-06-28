@@ -413,7 +413,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     private boolean isBadSelection() throws HeadlessException {
         if (selectedUser == null) {
             JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Teacher to make this opreation !");
+                    "Choose a User to make this opreation !");
             return true;
         }
         return false;
