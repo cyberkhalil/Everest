@@ -148,7 +148,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
             GUI_Util.promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
-                    GUI_Util.buildComboBoxModel(BookUtil.getBooksId()),
+                    GUI_Util.buildComboBoxModel(BookUtil.getBooksIdAlongWithName()),
                     (choice) -> {
                         try {
                             selectedStudent.buyBook(Integer.parseInt(choice));
