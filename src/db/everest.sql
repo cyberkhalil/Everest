@@ -13,7 +13,7 @@ GRANT ALL PRIVILEGES ON * . * TO test@localhost;
 /*	This table created for login users	*/
 CREATE TABLE IF NOT EXISTS user (
     user_id INT(11) NOT NULL AUTO_INCREMENT,
-    user_name VARCHAR(50) NOT NULL,
+    user_name VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(50) NOT NULL,
     user_privilege VARCHAR(15) NOT NULL,
     PRIMARY KEY (user_id)

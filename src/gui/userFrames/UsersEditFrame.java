@@ -265,29 +265,25 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             selectedUser = UserUtil.getUser(
                     Login.user, tableModel.getValueAt(i, 1).toString());
         } catch (SQLException | NoPermissionException ex) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Selected User Doesn't Exist");
+            JOptionPane.showMessageDialog(rootPane, "Selected User Doesn't Exist");
         }
         updateTable();
     }//GEN-LAST:event_usersTblMouseClicked
 
     private void setPasswordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPasswordBtnActionPerformed
-        String pass = JOptionPane.showInputDialog(
-                rootPane, "New Password :", DISPOSE_ON_CLOSE);
+        String pass = JOptionPane.showInputDialog(rootPane, "New Password :", DISPOSE_ON_CLOSE);
 
         if (pass == null) {
             return;
         }
 
         if (pass.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Can't set Password as an empty text");
+            JOptionPane.showMessageDialog(rootPane, "Can't set Password as an empty text");
             return;
         }
         try {
             selectedUser.setPassword(pass);
-            JOptionPane.showMessageDialog(rootPane,
-                    "Password Changed Successfully");
+            JOptionPane.showMessageDialog(rootPane, "Password Changed Successfully");
             updateTable();
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
@@ -295,16 +291,22 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setPasswordBtnActionPerformed
 
     private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(
+                rootPane,
+                "Are you sure you want delete User " + selectedUser + " ?",
+                "Delete User",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        if (!deleteConfirmation) {
+            return;
+        }
 
         try {
             UserUtil.deleteUser(Login.user, selectedUser);
-            JOptionPane.showMessageDialog(rootPane,
-                    "User Deleted Successfully");
-        } catch (SQLException | NoPermissionException
-                | IllegalStateException ex) {
+            updateTable();
+            JOptionPane.showMessageDialog(rootPane, "User Deleted Successfully");
+        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
-        updateTable();
     }//GEN-LAST:event_deleteUserBtnActionPerformed
 
     private void setUserNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserNameBtnActionPerformed
@@ -315,14 +317,12 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             return;
         }
         if (username.isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    rootPane, "Username can't be an empty text");
+            JOptionPane.showMessageDialog(rootPane, "Username can't be an empty text");
             return;
         }
         try {
             selectedUser.setUsername(username);
-            JOptionPane.showMessageDialog(
-                    rootPane, "Username Changed Successfully");
+            JOptionPane.showMessageDialog(rootPane, "Username Changed Successfully");
             updateTable();
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
