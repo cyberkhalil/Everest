@@ -295,15 +295,14 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                 "Teacher New Phone :", PublicStaticFinals.PHONE_FORMAT,
                 "Set Teacher Phone", (phone) -> {
                     try {
-                        if (phone.isEmpty()) {
+                        if (phone.trim().length() < 12) {
                             JOptionPane.showMessageDialog(rootPane,
                                     "Please enter a valid phone number");
                             return false;
                         }
                         selectedTeacher.setPhone(phone);
                         updateTable();
-                        JOptionPane.showMessageDialog(rootPane, "Phone number"
-                                + " change successfully");
+                        JOptionPane.showMessageDialog(rootPane, "Phone number change successfully");
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
