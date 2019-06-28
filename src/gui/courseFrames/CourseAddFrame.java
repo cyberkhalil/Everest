@@ -1,8 +1,10 @@
 package gui.courseFrames;
 
 import courses.CourseUtil;
+import java.awt.Component;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import static utils.TimeUtil.isValidDateOrder;
@@ -36,12 +38,26 @@ public class CourseAddFrame extends javax.swing.JFrame {
         startTimeLbl = new javax.swing.JLabel();
         endTimeLbl = new javax.swing.JLabel();
         courseEndTimeFtf = new javax.swing.JFormattedTextField();
-        courseDaysFtf = new javax.swing.JFormattedTextField();
+        daysPnl = new javax.swing.JPanel();
+        daysCB1 = new javax.swing.JCheckBox();
+        daysCB2 = new javax.swing.JCheckBox();
+        daysCB3 = new javax.swing.JCheckBox();
+        daysCB4 = new javax.swing.JCheckBox();
+        daysCB5 = new javax.swing.JCheckBox();
+        daysCB6 = new javax.swing.JCheckBox();
+        daysCB7 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(420, 560));
+        setMinimumSize(new java.awt.Dimension(420, 560));
+        setName("frame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(420, 560));
+        setResizable(false);
+        setSize(new java.awt.Dimension(420, 560));
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
         titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        titlePnl.setPreferredSize(new java.awt.Dimension(300, 102));
 
         imgLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Everest_logo.jpg"))); // NOI18N
 
@@ -69,6 +85,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
 
         contentPnl.setBackground(new java.awt.Color(255, 255, 255));
         contentPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 171, 112)));
+        contentPnl.setPreferredSize(new java.awt.Dimension(300, 400));
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
@@ -106,6 +123,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
         endDateLbl.setForeground(new java.awt.Color(0, 51, 153));
         endDateLbl.setText("End Date:");
 
+        courseEndDateDP.setDate(new java.util.Date(System.currentTimeMillis()+2_592_000_000l));
+
         try {
             courseStartTimeFtf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
@@ -128,12 +147,67 @@ public class CourseAddFrame extends javax.swing.JFrame {
         }
         courseEndTimeFtf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        try {
-            courseDaysFtf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UL,UL,UL,UL,UL,UL,UL")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        courseDaysFtf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        daysCB1.setBackground(getBackground());
+        daysCB1.setText("Saturday");
+
+        daysCB2.setBackground(getBackground());
+        daysCB2.setText("Sunday");
+
+        daysCB3.setBackground(getBackground());
+        daysCB3.setText("Monday");
+
+        daysCB4.setBackground(getBackground());
+        daysCB4.setText("Tuesday");
+
+        daysCB5.setBackground(getBackground());
+        daysCB5.setText("Wednesday");
+
+        daysCB6.setBackground(getBackground());
+        daysCB6.setText("Thursday");
+
+        daysCB7.setBackground(getBackground());
+        daysCB7.setText("Friday");
+
+        javax.swing.GroupLayout daysPnlLayout = new javax.swing.GroupLayout(daysPnl);
+        daysPnl.setLayout(daysPnlLayout);
+        daysPnlLayout.setHorizontalGroup(
+            daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(daysPnlLayout.createSequentialGroup()
+                .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(daysPnlLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(daysCB2)
+                            .addComponent(daysCB1)
+                            .addComponent(daysCB3))
+                        .addGap(22, 22, 22)
+                        .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(daysCB6)
+                            .addComponent(daysCB4)
+                            .addComponent(daysCB5)))
+                    .addGroup(daysPnlLayout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(daysCB7)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        daysPnlLayout.setVerticalGroup(
+            daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(daysPnlLayout.createSequentialGroup()
+                .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(daysCB1)
+                    .addComponent(daysCB4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(daysCB2)
+                    .addComponent(daysCB5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(daysCB3)
+                    .addComponent(daysCB6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(daysCB7)
+                .addGap(0, 0, 0))
+        );
 
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
@@ -143,27 +217,34 @@ public class CourseAddFrame extends javax.swing.JFrame {
             .addGroup(contentPnlLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endDateLbl)
                     .addGroup(contentPnlLayout.createSequentialGroup()
                         .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(courseNameLbl)
                             .addComponent(coursePriceLbl)
                             .addComponent(startDateLbl)
-                            .addComponent(startTimeLbl)
                             .addComponent(endTimeLbl)
-                            .addComponent(daysLbl))
+                            .addComponent(startTimeLbl)
+                            .addGroup(contentPnlLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(daysLbl)))
                         .addGap(33, 33, 33)
                         .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(courseDaysFtf, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(courseEndTimeFtf, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(courseStartTimeFtf, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(courseStartDateDP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cousrePriceSp, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(courseEndDateDP, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                                .addComponent(courseEndDateDP, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                            .addGroup(contentPnlLayout.createSequentialGroup()
+                                .addComponent(daysPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)))))
+                .addGap(37, 37, 37))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
         contentPnlLayout.setVerticalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,39 +276,46 @@ public class CourseAddFrame extends javax.swing.JFrame {
                     .addComponent(endTimeLbl)
                     .addComponent(courseEndTimeFtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseDaysFtf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(daysLbl))
-                .addGap(18, 18, 18)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contentPnlLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(daysLbl))
+                    .addComponent(daysPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addComponent(addCourseBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(70, 70, 70))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titlePnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(contentPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(titlePnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(contentPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(contentPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
-        if (!isValidDateOrder(courseStartTimeFtf.getText(), courseEndTimeFtf.getText())) {
+        if (!isValidDateOrder(courseStartDateDP.getDate(), courseEndDateDP.getDate())) {
             JOptionPane.showMessageDialog(rootPane,
                     "Course start time MUST be after course end time");
             return;
         }
+        if (courseNameTf.getText() == null || courseNameTf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Course MUST have course name");
+            return;
+        }
+
         try {
             CourseUtil.createCourse(courseNameTf.getText(),
                     new Date(courseStartDateDP.getDateInMillis()),
@@ -235,7 +323,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
                     (double) cousrePriceSp.getValue(),
                     courseEndTimeFtf.getText(),
                     courseStartTimeFtf.getText(),
-                    courseDaysFtf.getText());
+                    getDays()
+            );
 
             JOptionPane.showMessageDialog(this,
                     "New Course created successfully");
@@ -248,7 +337,6 @@ public class CourseAddFrame extends javax.swing.JFrame {
     private javax.swing.JButton addCourseBtn;
     private javax.swing.JPanel contentPnl;
     private javax.swing.JLabel contentTitleLbl;
-    private javax.swing.JFormattedTextField courseDaysFtf;
     private org.jdesktop.swingx.JXDatePicker courseEndDateDP;
     private javax.swing.JFormattedTextField courseEndTimeFtf;
     private javax.swing.JLabel courseNameLbl;
@@ -257,7 +345,15 @@ public class CourseAddFrame extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker courseStartDateDP;
     private javax.swing.JFormattedTextField courseStartTimeFtf;
     private javax.swing.JSpinner cousrePriceSp;
+    private javax.swing.JCheckBox daysCB1;
+    private javax.swing.JCheckBox daysCB2;
+    private javax.swing.JCheckBox daysCB3;
+    private javax.swing.JCheckBox daysCB4;
+    private javax.swing.JCheckBox daysCB5;
+    private javax.swing.JCheckBox daysCB6;
+    private javax.swing.JCheckBox daysCB7;
     private javax.swing.JLabel daysLbl;
+    private javax.swing.JPanel daysPnl;
     private javax.swing.JLabel endDateLbl;
     private javax.swing.JLabel endTimeLbl;
     private javax.swing.JLabel imgLbl;
@@ -266,4 +362,36 @@ public class CourseAddFrame extends javax.swing.JFrame {
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables
+private String getDays() {
+        String days = "";
+        if (daysCB1.isSelected()) {
+            days += "Sa,";
+        }
+        if (daysCB2.isSelected()) {
+            days += "Su,";
+        }
+        if (daysCB3.isSelected()) {
+            days += "Mo,";
+        }
+        if (daysCB4.isSelected()) {
+            days += "Tu,";
+        }
+        if (daysCB5.isSelected()) {
+            days += "We,";
+        }
+        if (daysCB6.isSelected()) {
+            days += "Th,";
+        }
+        if (daysCB7.isSelected()) {
+            days += "Fr";
+        }
+        while (days.length() != 20) {
+            if (days.length() > 18) {
+                days += "  ,";
+            } else {
+                days += "  ";
+            }
+        }
+        return days;
+    }
 }
