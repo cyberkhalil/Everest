@@ -322,7 +322,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         }
 
         String username = (String) JOptionPane.showInputDialog(
-                rootPane, "Set Username", "New Username :",
+                rootPane, "New Username :", "Set Username",
                 JOptionPane.QUESTION_MESSAGE, null, null, selectedUser.getUsername());
 
         if (username == null) {

@@ -299,8 +299,9 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String examName = JOptionPane.showInputDialog(
-                rootPane, "New Exam Name:", DISPOSE_ON_CLOSE);
+        String examName = (String) JOptionPane.showInputDialog(
+                rootPane, "New Exam Name:", "Set Exam Name",
+                JOptionPane.QUESTION_MESSAGE, null, null, selectedExam.getName());
 
         if (examName == null) {
             return;

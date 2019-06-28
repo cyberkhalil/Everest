@@ -295,19 +295,21 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String examName = JOptionPane.showInputDialog(
-                rootPane, "New Student Name:", DISPOSE_ON_CLOSE);
 
-        if (examName == null) {
+        String studentName = (String) JOptionPane.showInputDialog(
+                rootPane, "New Student Name:", "Set Student Name",
+                JOptionPane.QUESTION_MESSAGE, null, null, selectedStudent.getName());
+
+        if (studentName == null) {
             return;
-        } else if (examName.trim().isEmpty()) {
+        } else if (studentName.trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     rootPane, "Student name can't be nothing");
             return;
         }
 
         try {
-            selectedStudent.setName(examName);
+            selectedStudent.setName(studentName);
         } catch (SQLException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
