@@ -100,6 +100,7 @@ public class UserAddFrame extends javax.swing.JFrame {
 
         userPrivilegeBG.add(userNormalPrivilegeRB);
         userNormalPrivilegeRB.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        userNormalPrivilegeRB.setSelected(true);
         userNormalPrivilegeRB.setText("Normal user");
 
         userPrivilegeLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
