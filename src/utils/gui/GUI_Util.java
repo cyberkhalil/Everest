@@ -111,6 +111,14 @@ public class GUI_Util {
         return displayFrame;
     }
 
+    public static JFrame promoteDays(String title, String labelTxt, String buttonTxt,
+            DoSomethingWithDays dswd) {
+
+        JFrame promoteFrame = new PromoteDays(title, labelTxt, buttonTxt, dswd);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
     public static abstract interface DoSomethingWithSpinner {
 
         /**
@@ -145,6 +153,16 @@ public class GUI_Util {
          * @return true to close or false to not close
          */
         abstract boolean doSomething(String formatedText);
+    }
+
+    public static abstract interface DoSomethingWithDays {
+
+        /**
+         *
+         * @param days
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String days);
     }
 
     public static abstract interface UpdateTableOperation {

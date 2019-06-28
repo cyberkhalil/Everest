@@ -477,11 +477,10 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteFormatedTextField("Change Course Days",
-                "Course New Days :", PublicStaticFinals.DAYS_FORMAT,
-                "Set Days", (formatedText) -> {
+        GUI_Util.promoteDays("Change Course Days",
+                "Course New Days :", "Set Days", (days) -> {
                     try {
-                        selectedCourse.setDays(formatedText);
+                        selectedCourse.setDays(days);
                         JOptionPane.showMessageDialog(rootPane,
                                 "Course Days Updated Successfully");
                         updateTable();
