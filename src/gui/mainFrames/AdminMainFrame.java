@@ -54,7 +54,6 @@ public class AdminMainFrame extends JFrame {
         examsLbl = new javax.swing.JLabel();
         examAddBtn = new javax.swing.JButton();
         examEditBtn = new javax.swing.JButton();
-        examOperationsBtn = new javax.swing.JButton();
         coursesPnl = new javax.swing.JPanel();
         coursesTitleLbl = new javax.swing.JLabel();
         courseAddBtn = new javax.swing.JButton();
@@ -307,8 +306,6 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
-        examOperationsBtn.setText("exam operations");
-
         javax.swing.GroupLayout examsPnlLayout = new javax.swing.GroupLayout(examsPnl);
         examsPnl.setLayout(examsPnlLayout);
         examsPnlLayout.setHorizontalGroup(
@@ -318,21 +315,18 @@ public class AdminMainFrame extends JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(examEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(examAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                    .addComponent(examOperationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(examAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         examsPnlLayout.setVerticalGroup(
             examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(examsPnlLayout.createSequentialGroup()
                 .addComponent(examsLbl)
-                .addGap(17, 17, 17)
+                .addGap(30, 30, 30)
                 .addComponent(examAddBtn)
-                .addGap(17, 17, 17)
+                .addGap(30, 30, 30)
                 .addComponent(examEditBtn)
-                .addGap(17, 17, 17)
-                .addComponent(examOperationsBtn)
-                .addGap(16, 16, 16))
+                .addGap(30, 30, 30))
         );
 
         coursesPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -594,7 +588,6 @@ public class AdminMainFrame extends JFrame {
     private javax.swing.JButton editCoursesBtn;
     private javax.swing.JButton examAddBtn;
     private javax.swing.JButton examEditBtn;
-    private javax.swing.JButton examOperationsBtn;
     private javax.swing.JLabel examsLbl;
     protected javax.swing.JPanel examsPnl;
     private javax.swing.JLabel imgLbl;

@@ -44,7 +44,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         setPhoneBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         setAddedByBtn = new javax.swing.JButton();
-        studentOperationsBtn = new javax.swing.JButton();
+        otherOperationsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -179,11 +179,11 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             }
         });
 
-        studentOperationsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        studentOperationsBtn.setText("Other Operations");
-        studentOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
+        otherOperationsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        otherOperationsBtn.setText("Other Operations");
+        otherOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                studentOperationsBtnActionPerformed(evt);
+                otherOperationsBtnActionPerformed(evt);
             }
         });
 
@@ -203,7 +203,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
-                .addComponent(studentOperationsBtn)
+                .addComponent(otherOperationsBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
@@ -218,7 +218,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                     .addComponent(deleteBtn)
                     .addComponent(setAddedByBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(studentOperationsBtn)
+                .addComponent(otherOperationsBtn)
                 .addGap(15, 15, 15))
         );
 
@@ -260,8 +260,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                     .addComponent(studentDataPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addComponent(studentsSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(studentsSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -392,19 +391,20 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_setAddedByBtnActionPerformed
 
-    private void studentOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentOperationsBtnActionPerformed
+    private void otherOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherOperationsBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
         JFrame frame = new StudentsOperationsFrame(selectedStudent);
-        GUI_Util.link_frame_to_button(frame, studentOperationsBtn);
+        GUI_Util.link_frame_to_button(frame, otherOperationsBtn);
         frame.setVisible(true);
-    }//GEN-LAST:event_studentOperationsBtnActionPerformed
+    }//GEN-LAST:event_otherOperationsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton otherOperationsBtn;
     private javax.swing.JButton setAddedByBtn;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPhoneBtn;
@@ -415,7 +415,6 @@ public class StudentsEditFrame extends javax.swing.JFrame {
     private javax.swing.JTextField studentIdTf;
     private javax.swing.JLabel studentNameLbl;
     private javax.swing.JTextField studentNameTf;
-    private javax.swing.JButton studentOperationsBtn;
     private javax.swing.JLabel studentPhoneLbl;
     private javax.swing.JTextField studentPhoneTf;
     private javax.swing.JScrollPane studentsSPnl;

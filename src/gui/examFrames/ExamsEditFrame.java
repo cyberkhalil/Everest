@@ -5,6 +5,7 @@ import exams.ExamUtil;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -44,6 +45,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         setDateBtn = new javax.swing.JButton();
         deleteExamBtn = new javax.swing.JButton();
         setPriceBtn = new javax.swing.JButton();
+        otherOperationsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -181,6 +183,14 @@ public class ExamsEditFrame extends javax.swing.JFrame {
             }
         });
 
+        otherOperationsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        otherOperationsBtn.setText("Other Operations");
+        otherOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherOperationsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout examButtonsPnlLayout = new javax.swing.GroupLayout(examButtonsPnl);
         examButtonsPnl.setLayout(examButtonsPnlLayout);
         examButtonsPnlLayout.setHorizontalGroup(
@@ -190,16 +200,20 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                 .addGroup(examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(setNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(setPriceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(deleteExamBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(setDateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18))
+            .addGroup(examButtonsPnlLayout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(otherOperationsBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         examButtonsPnlLayout.setVerticalGroup(
             examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(examButtonsPnlLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addGroup(examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setNameBtn)
                     .addComponent(setDateBtn))
@@ -207,7 +221,9 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                 .addGroup(examButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteExamBtn)
                     .addComponent(setPriceBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(otherOperationsBtn)
+                .addGap(14, 14, 14))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -259,9 +275,9 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(examDataPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, 0)
                         .addComponent(examButtonsPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(examsSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)))
+                    .addComponent(examsSPnl)))
         );
 
         pack();
@@ -373,6 +389,15 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
+    private void otherOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherOperationsBtnActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
+        JFrame frame = new ExamOperationsFrame(selectedExam);
+        GUI_Util.link_frame_to_button(frame, otherOperationsBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_otherOperationsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteExamBtn;
     private javax.swing.JPanel examButtonsPnl;
@@ -388,6 +413,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane examsSPnl;
     private javax.swing.JTable examsTbl;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton otherOperationsBtn;
     private javax.swing.JButton setDateBtn;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPriceBtn;
