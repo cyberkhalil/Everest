@@ -1,6 +1,7 @@
 package gui.userFrames;
 
 import gui.loginFrames.Login;
+import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 import javax.swing.JOptionPane;
@@ -271,6 +272,9 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_usersTblMouseClicked
 
     private void setPasswordBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPasswordBtnActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
         String pass = JOptionPane.showInputDialog(rootPane, "New Password :", DISPOSE_ON_CLOSE);
 
         if (pass == null) {
@@ -291,9 +295,12 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setPasswordBtnActionPerformed
 
     private void deleteUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserBtnActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
         boolean deleteConfirmation = JOptionPane.showConfirmDialog(
                 rootPane,
-                "Are you sure you want delete User " + selectedUser + " ?",
+                "Are you sure you want delete User " + selectedUser.getUsername() + " ?",
                 "Delete User",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
@@ -310,6 +317,9 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteUserBtnActionPerformed
 
     private void setUserNameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setUserNameBtnActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
         String username = JOptionPane.showInputDialog(
                 rootPane, "New Username :", DISPOSE_ON_CLOSE);
 
@@ -331,7 +341,9 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_setUserNameBtnActionPerformed
 
     private void setPrivilegeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPrivilegeBtnActionPerformed
-
+        if (isBadSelection()) {
+            return;
+        }
         int choice = JOptionPane.showOptionDialog(rootPane,
                 "Select User new privilege ",
                 "Set User Privilege",
@@ -397,4 +409,14 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             userPrivilegeTf.setText(selectedUser.getPrivilege());
         }
     }
+
+    private boolean isBadSelection() throws HeadlessException {
+        if (selectedUser == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Choose a Teacher to make this opreation !");
+            return true;
+        }
+        return false;
+    }
+
 }
