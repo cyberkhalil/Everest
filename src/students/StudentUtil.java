@@ -44,7 +44,7 @@ public class StudentUtil {
     }
 
     public static ResultSet getStudentsIdAlongWithName() throws SQLException {
-        String query = "Select contact('(',student_id,') ',student_name) from student";
+        String query = "Select CONCAT('(',student_id,') ',student_name) from student";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }

@@ -362,13 +362,13 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         }
         try {
             link_frame_to_button(promoteComboBox("Change Student AddedBy", "Student New AddedBy :",
-                    "Set Student AddedBy",
-                    buildComboBoxModel(StudentUtil.getStudentsIdAlongWithName()), (AddedById) -> {
+                    "Set Student AddedBy", buildComboBoxModel(
+                            StudentUtil.getStudentsIdAlongWithName()), (AddedById) -> {
                 try {
-                    selectedStudent.setAddedBy(Integer.parseInt(AddedById));
+                    selectedStudent.setAddedBy(Integer.parseInt(AddedById.substring(1,
+                            AddedById.indexOf(")"))));
                     updateTable();
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Student AddedBy change successfully");
+                    JOptionPane.showMessageDialog(rootPane, "Student AddedBy change successfully");
                     return true;
                 } catch (SQLException | IllegalStateException ex) {
                     JOptionPane.showMessageDialog(rootPane, ex);
