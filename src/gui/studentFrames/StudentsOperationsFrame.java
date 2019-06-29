@@ -170,7 +170,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             promoteComboBox("Enrol To Course", "Choose Course Id to enrol", "Enrol To Course",
                     buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()), (choice) -> {
                 try {
-                    selectedStudent.addToCourse(Integer.parseInt(choice));
+                    selectedStudent.enrollToCourse(Integer.parseInt(choice));
                     JOptionPane.showMessageDialog(rootPane,
                             "Student enrolled to this course successfully");
                     return true;

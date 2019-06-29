@@ -86,7 +86,7 @@ public class Student {
         this.phone = null;
     }
 
-    public void addToCourse(int courseId) throws SQLException {
+    public void enrollToCourse(int courseId) throws SQLException {
         String query = "Insert into student_courses values(?,?)";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);

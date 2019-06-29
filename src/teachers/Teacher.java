@@ -66,4 +66,19 @@ public class Teacher {
         this.name = null;
         this.phone = null;
     }
+
+    public ResultSet getCourses() throws SQLException {
+        String query = "Select course_id from teacher_courses where teacher_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
+
+    public void enrollToCourse(int courseId) throws SQLException {
+        String query = "Insert into teacher_courses values(?,?)";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, courseId);
+        preparedStatement.executeUpdate();
+    }
 }
