@@ -178,6 +178,10 @@ public class ExamAddFrame extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addExamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addExamBtnActionPerformed
+        if (examNameTf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Exam MUST have an exam name");
+            return;
+        }
         try {
             ExamUtil.createExam(examNameTf.getText(),
                     (double) examPriceSp.getValue(),

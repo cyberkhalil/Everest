@@ -172,7 +172,7 @@ public class BookAddFrame extends javax.swing.JFrame {
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         if (bookNameTf.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Book MUST have a a book name");
+            JOptionPane.showMessageDialog(rootPane, "Book MUST have a book name");
             return;
         }
         try {
