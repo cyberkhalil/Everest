@@ -28,6 +28,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         enrolToCourseBtn = new javax.swing.JButton();
         displayCoursesBtn = new javax.swing.JButton();
         displayBooksBtn = new javax.swing.JButton();
+        displayExamsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -39,6 +40,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentX(0.0F);
         ButtonsPnl.setAlignmentY(0.0F);
 
+        buyBookBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         buyBookBtn.setText("Buy Book");
         buyBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +48,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        enrolToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         enrolToCourseBtn.setText("Enrol to course");
         enrolToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +56,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        displayCoursesBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         displayCoursesBtn.setText("display Courses");
         displayCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,10 +64,19 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        displayBooksBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         displayBooksBtn.setText("display Books");
         displayBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayBooksBtnActionPerformed(evt);
+            }
+        });
+
+        displayExamsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        displayExamsBtn.setText("display Exams");
+        displayExamsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayExamsBtnActionPerformed(evt);
             }
         });
 
@@ -78,6 +91,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     .addComponent(buyBookBtn))
                 .addGap(49, 49, 49)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(displayExamsBtn)
                     .addComponent(displayBooksBtn)
                     .addComponent(displayCoursesBtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -89,11 +103,13 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyBookBtn)
                     .addComponent(displayBooksBtn))
-                .addGap(26, 26, 26)
+                .addGap(25, 25, 25)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enrolToCourseBtn)
                     .addComponent(displayCoursesBtn))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(displayExamsBtn)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -204,11 +220,22 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_displayBooksBtnActionPerformed
 
+    private void displayExamsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayExamsBtnActionPerformed
+        displayItemsInJTable((table) -> {
+            try {
+                table.setModel(buildTableModel(selectedStudent.getExams()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+        });
+    }//GEN-LAST:event_displayExamsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton buyBookBtn;
     private javax.swing.JButton displayBooksBtn;
     private javax.swing.JButton displayCoursesBtn;
+    private javax.swing.JButton displayExamsBtn;
     private javax.swing.JButton enrolToCourseBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel titleLbl;

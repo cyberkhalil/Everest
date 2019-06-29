@@ -1,6 +1,10 @@
 package gui.examFrames;
 
 import exams.Exam;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import static utils.gui.GUI_Util.displayItemsInJTable;
+import static utils.gui.GUI_Util.buildTableModel;
 
 public class ExamOperationsFrame extends javax.swing.JFrame {
 
@@ -16,6 +20,7 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ButtonsPnl = new javax.swing.JPanel();
+        displayStudentsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -27,15 +32,29 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentX(0.0F);
         ButtonsPnl.setAlignmentY(0.0F);
 
+        displayStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        displayStudentsBtn.setText("display Students");
+        displayStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayStudentsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(displayStudentsBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(displayStudentsBtn)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -88,8 +107,19 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void displayStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStudentsBtnActionPerformed
+        displayItemsInJTable((table) -> {
+            try {
+                table.setModel(buildTableModel(selectedExam.getStudents()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+        });
+    }//GEN-LAST:event_displayStudentsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
+    private javax.swing.JButton displayStudentsBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;

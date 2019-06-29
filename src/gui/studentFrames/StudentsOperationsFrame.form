@@ -70,6 +70,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="displayExamsBtn" min="-2" max="-2" attributes="0"/>
                       <Component id="displayBooksBtn" min="-2" max="-2" attributes="0"/>
                       <Component id="displayCoursesBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -85,12 +86,14 @@
                       <Component id="buyBookBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="displayBooksBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="enrolToCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="displayCoursesBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="96" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="displayExamsBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -98,6 +101,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="buyBookBtn">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Buy Book"/>
           </Properties>
           <Events>
@@ -106,6 +112,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="enrolToCourseBtn">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Enrol to course"/>
           </Properties>
           <Events>
@@ -114,6 +123,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="displayCoursesBtn">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="display Courses"/>
           </Properties>
           <Events>
@@ -122,10 +134,24 @@
         </Component>
         <Component class="javax.swing.JButton" name="displayBooksBtn">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="display Books"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBooksBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="displayExamsBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="display Exams"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayExamsBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -82,4 +82,12 @@ public class Exam {
         this.price = -1;
         this.time = null;
     }
+
+    public ResultSet getStudents() throws SQLException {
+        String query = "Select student_id from student_exams where exam_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, ID);
+        return preparedStatement.executeQuery();
+    }
+
 }

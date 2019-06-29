@@ -105,20 +105,24 @@ public class Student {
     }
 
     public ResultSet getCourses() throws SQLException {
-        String query = "Select course_id from student_courses where "
-                + "student_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "Select course_id from student_courses where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
 
     public void buyBook(int bookId) throws SQLException {
         String query = "Insert into student_books values(?,?,1)";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.setInt(2, bookId);
         preparedStatement.executeUpdate();
+    }
+
+    public ResultSet getExams() throws SQLException {
+        String query = "Select exam_id from student_exams where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
     }
 }
