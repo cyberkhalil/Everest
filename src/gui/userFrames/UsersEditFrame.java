@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import users.User;
 import users.UserUtil;
-import utils.gui.GUI_Util;
+import static utils.gui.GUI_Util.buildTableModel;
 
 public final class UsersEditFrame extends javax.swing.JFrame {
 
@@ -17,10 +17,8 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     public UsersEditFrame() {
         initComponents();
         try {
-            this.usersTbl.setModel(
-                    GUI_Util.buildTableModel(
-                            UserUtil.getUsersResultSet(Login.user)
-                    ));
+            this.usersTbl.setModel(buildTableModel(UserUtil.getUsersResultSet(Login.user))
+            );
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -346,14 +344,9 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        int choice = JOptionPane.showOptionDialog(rootPane,
-                "Select User new privilege ",
-                "Set User Privilege",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.INFORMATION_MESSAGE,
-                null,
-                new Object[]{"Admin", "Normal User"},
-                "Admin");
+        int choice = JOptionPane.showOptionDialog(rootPane, "Select User new privilege ",
+                "Set User Privilege", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
+                null, new Object[]{"Admin", "Normal User"}, "Admin");
 
         if (choice < 0) { // nothing selected
             return;
@@ -394,10 +387,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.usersTbl.setModel(
-                    GUI_Util.buildTableModel(
-                            UserUtil.getUsersResultSet(Login.user)
-                    ));
+            this.usersTbl.setModel(buildTableModel(UserUtil.getUsersResultSet(Login.user)));
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

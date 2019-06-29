@@ -8,7 +8,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
 import utils.PublicStaticFinals;
-import utils.gui.GUI_Util;
+import static utils.gui.GUI_Util.buildComboBoxModel;
+import static utils.gui.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.promoteFormatedTextField;
+import static utils.gui.GUI_Util.promoteComboBox;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
 
@@ -17,8 +21,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
     public StudentsEditFrame() {
         initComponents();
         try {
-            this.studentsTbl.setModel(
-                    GUI_Util.buildTableModel(StudentUtil.getStudents()));
+            this.studentsTbl.setModel(buildTableModel(StudentUtil.getStudents()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -285,8 +288,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         try {
             selectedStudent = new Student((int) tableModel.getValueAt(i, 0));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Selected Student doesn't Exist");
+            JOptionPane.showMessageDialog(rootPane, "Selected Student doesn't Exist");
         }
         updateTable();
     }//GEN-LAST:event_studentsTblMouseClicked
@@ -296,15 +298,14 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             return;
         }
 
-        String studentName = (String) JOptionPane.showInputDialog(
-                rootPane, "New Student Name:", "Set Student Name",
-                JOptionPane.QUESTION_MESSAGE, null, null, selectedStudent.getName());
+        String studentName = (String) JOptionPane.showInputDialog(rootPane, "New Student Name:",
+                "Set Student Name", JOptionPane.QUESTION_MESSAGE, null, null,
+                selectedStudent.getName());
 
         if (studentName == null) {
             return;
         } else if (studentName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    rootPane, "Student name can't be nothing");
+            JOptionPane.showMessageDialog(rootPane, "Student name can't be nothing");
             return;
         }
 
@@ -316,22 +317,12 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
 
-    private boolean isBadSelection() throws HeadlessException {
-        if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Student to make this opreation !");
-            return true;
-        }
-        return false;
-    }
-
     private void setPhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPhoneBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteFormatedTextField("Change Student Phone",
-                "Student New Phone :", PublicStaticFinals.PHONE_FORMAT,
-                "Set Student Phone", (phone) -> {
+        link_frame_to_button(promoteFormatedTextField("Change Student Phone", "Student New Phone :",
+                PublicStaticFinals.PHONE_FORMAT, "Set Student Phone", (phone) -> {
                     try {
                         selectedStudent.setPhone(phone);
                         updateTable();
@@ -342,18 +333,17 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), setPhoneBtn);
     }//GEN-LAST:event_setPhoneBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
-        boolean deleteConfirmation = JOptionPane
-                .showConfirmDialog(rootPane,
-                        "Are you sure you want delete Student "
-                        + studentNameTf.getText() + " ?", "Student Delete",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane,
+                "Are you sure you want delete Student "
+                + studentNameTf.getText() + " ?", "Student Delete",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
@@ -371,13 +361,11 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             return;
         }
         try {
-            JFrame frame = GUI_Util.promoteComboBox("Change Student AddedBy",
-                    "Student New AddedBy :", "Set Student AddedBy",
-                    GUI_Util.buildComboBoxModel(StudentUtil.getStudentsId()),
+            link_frame_to_button(promoteComboBox("Change Student AddedBy", "Student New AddedBy :",
+                    "Set Student AddedBy", buildComboBoxModel(StudentUtil.getStudentsId()),
                     (AddedById) -> {
                         try {
-                            selectedStudent.setAddedBy(
-                                    Integer.parseInt(AddedById));
+                            selectedStudent.setAddedBy(Integer.parseInt(AddedById));
                             updateTable();
                             JOptionPane.showMessageDialog(rootPane,
                                     "Student AddedBy change successfully");
@@ -386,8 +374,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, ex);
                             return false;
                         }
-                    });
-            GUI_Util.link_frame_to_button(frame, setAddedByBtn);
+                    }), setAddedByBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -398,7 +385,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             return;
         }
         JFrame frame = new StudentsOperationsFrame(selectedStudent);
-        GUI_Util.link_frame_to_button(frame, otherOperationsBtn);
+        link_frame_to_button(frame, otherOperationsBtn);
         frame.setVisible(true);
     }//GEN-LAST:event_otherOperationsBtnActionPerformed
 
@@ -427,8 +414,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.studentsTbl.setModel(
-                    GUI_Util.buildTableModel(StudentUtil.getStudents()));
+            this.studentsTbl.setModel(buildTableModel(StudentUtil.getStudents()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -444,5 +430,13 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             studentAddedByTf.
                     setText(Integer.toString(selectedStudent.getAddedBy()));
         }
+    }
+
+    private boolean isBadSelection() throws HeadlessException {
+        if (selectedStudent == null) {
+            JOptionPane.showMessageDialog(rootPane, "Choose a Student to make this opreation !");
+            return true;
+        }
+        return false;
     }
 }

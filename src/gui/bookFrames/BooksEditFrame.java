@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
-import utils.gui.GUI_Util;
+import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.promoteSpinner;
 
 public class BooksEditFrame extends javax.swing.JFrame {
 
@@ -16,8 +18,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     public BooksEditFrame() {
         initComponents();
         try {
-            this.booksTbl.setModel(
-                    GUI_Util.buildTableModel(BookUtil.getBooks()));
+            this.booksTbl.setModel(buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -292,8 +293,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         try {
             selectedBook = new Book((int) tableModel.getValueAt(i, 0));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Selected Book doesn't Exist !");
+            JOptionPane.showMessageDialog(rootPane, "Selected Book doesn't Exist !");
         }
         updateTable();
     }//GEN-LAST:event_booksTblMouseClicked
@@ -302,15 +302,13 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String newBookName = (String) JOptionPane.showInputDialog(
-                rootPane, "New Book Name:", "Set Book Name",
-                JOptionPane.QUESTION_MESSAGE, null, null, selectedBook.getName());
+        String newBookName = (String) JOptionPane.showInputDialog(rootPane, "New Book Name:",
+                "Set Book Name", JOptionPane.QUESTION_MESSAGE, null, null, selectedBook.getName());
 
         if (newBookName == null) {
             return;
         } else if (newBookName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    rootPane, "Book name can't be nothing");
+            JOptionPane.showMessageDialog(rootPane, "Book name can't be nothing");
             return;
         }
         try {
@@ -325,11 +323,9 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        boolean deleteConfirmation = JOptionPane
-                .showConfirmDialog(rootPane,
-                        "Are you sure you want to delete Book "
-                        + bookNameTf.getText() + " ?", "Book Delete",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane,
+                "Are you sure you want to delete Book " + bookNameTf.getText() + " ?",
+                "Book Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
@@ -344,8 +340,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
 
     private boolean isBadSelection() throws HeadlessException {
         if (selectedBook == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Book to make this opreation !");
+            JOptionPane.showMessageDialog(rootPane, "Choose a Book to make this opreation !");
             return true;
         }
         return false;
@@ -355,9 +350,8 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteSpinner("Change Book Quantity", "Book New Quantity :",
-                new SpinnerNumberModel(0, 0, 9999, 10), "Set Quantity",
-                (double spinnerValue) -> {
+        link_frame_to_button(promoteSpinner("Change Book Quantity", "Book New Quantity :",
+                new SpinnerNumberModel(0, 0, 9999, 10), "Set Quantity", (double spinnerValue) -> {
                     try {
                         selectedBook.setQuantity((int) spinnerValue);
                         JOptionPane.showMessageDialog(rootPane,
@@ -367,7 +361,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), setQuantityBtn);
         updateTable();
     }//GEN-LAST:event_setQuantityBtnActionPerformed
 
@@ -375,19 +369,17 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteSpinner("Change Book Price", "Book New Price :",
-                new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price",
-                (double spinnerValue) -> {
+        link_frame_to_button(promoteSpinner("Change Book Price", "Book New Price :",
+                new SpinnerNumberModel(0, 0, 999.99, 10), "Set Price", (double spinnerValue) -> {
                     try {
                         selectedBook.setPrice((double) spinnerValue);
-                        JOptionPane.showMessageDialog(rootPane,
-                                "Book Price Updated Successfully");
+                        JOptionPane.showMessageDialog(rootPane, "Book Price Updated Successfully");
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), setPriceBtn);
         updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
 
@@ -417,8 +409,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.booksTbl.setModel(
-                    GUI_Util.buildTableModel(BookUtil.getBooks()));
+            this.booksTbl.setModel(buildTableModel(BookUtil.getBooks()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

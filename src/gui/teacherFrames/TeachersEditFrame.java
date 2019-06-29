@@ -7,7 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import teachers.Teacher;
 import utils.PublicStaticFinals;
-import utils.gui.GUI_Util;
+import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.promoteFormatedTextField;
 
 public class TeachersEditFrame extends javax.swing.JFrame {
 
@@ -16,8 +18,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
     public TeachersEditFrame() {
         initComponents();
         try {
-            this.teachersTbl.setModel(
-                    GUI_Util.buildTableModel(TeacherUtil.getTeachers()));
+            this.teachersTbl.setModel(buildTableModel(TeacherUtil.getTeachers()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -248,8 +249,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         try {
             selectedTeacher = new Teacher((int) tableModel.getValueAt(i, 0));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Selected Teacher doesn't Exist");
+            JOptionPane.showMessageDialog(rootPane, "Selected Teacher doesn't Exist");
         }
         updateTable();
     }//GEN-LAST:event_teachersTblMouseClicked
@@ -278,22 +278,13 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
 
-    private boolean isBadSelection() throws HeadlessException {
-        if (selectedTeacher == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Teacher to make this opreation !");
-            return true;
-        }
-        return false;
-    }
-
     private void setPhoneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setPhoneBtnActionPerformed
         if (isBadSelection()) {
             return;
         }
-        GUI_Util.promoteFormatedTextField("Change Teacher Phone",
-                "Teacher New Phone :", PublicStaticFinals.PHONE_FORMAT,
-                "Set Teacher Phone", (phone) -> {
+        link_frame_to_button(promoteFormatedTextField("Change Teacher Phone",
+                "Teacher New Phone :", PublicStaticFinals.PHONE_FORMAT, "Set Teacher Phone",
+                (phone) -> {
                     try {
                         if (phone.trim().length() < 12) {
                             JOptionPane.showMessageDialog(rootPane,
@@ -308,7 +299,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }), setPhoneBtn);
     }//GEN-LAST:event_setPhoneBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -353,8 +344,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.teachersTbl.setModel(
-                    GUI_Util.buildTableModel(TeacherUtil.getTeachers()));
+            this.teachersTbl.setModel(buildTableModel(TeacherUtil.getTeachers()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -367,5 +357,14 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             teacherNameTf.setText(selectedTeacher.getName());
             teacherPhoneFtf.setText(selectedTeacher.getPhone());
         }
+    }
+
+    private boolean isBadSelection() throws HeadlessException {
+        if (selectedTeacher == null) {
+            JOptionPane.showMessageDialog(rootPane,
+                    "Choose a Teacher to make this opreation !");
+            return true;
+        }
+        return false;
     }
 }

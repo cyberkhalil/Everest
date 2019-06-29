@@ -64,15 +64,47 @@ public class GUI_Util {
             public void windowClosing(WindowEvent e) {
                 button.setEnabled(true);
             }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                button.setEnabled(true);
+            }
+
         });
     }
 
-    public static void promoteSpinner(String title, String label,
+    public static void link_2frames_to_button(JFrame frame1, JFrame frame2, JButton button) {
+        button.setEnabled(false);
+        frame1.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                button.setEnabled(!frame2.isActive());
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                button.setEnabled(!frame2.isActive());
+            }
+        });
+        frame2.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                button.setEnabled(frame1 == null || !frame1.isVisible());
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                button.setEnabled(frame1 == null || !frame1.isVisible());
+            }
+        });
+    }
+
+    public static JFrame promoteSpinner(String title, String label,
             SpinnerNumberModel spinnerNumberModel, String button,
             DoSomethingWithSpinner dsws) {
-        JFrame promoteFrame
-                = new PromoteSpinner(title, label, spinnerNumberModel, button, dsws);
+        JFrame promoteFrame = new PromoteSpinner(title, label, spinnerNumberModel, button, dsws);
         promoteFrame.setVisible(true);
+        return promoteFrame;
     }
 
     public static JFrame promoteComboBox(String title, String labelTxt,
