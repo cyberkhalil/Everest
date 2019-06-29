@@ -1,8 +1,10 @@
 package gui.teacherFrames;
 
+import gui.studentFrames.StudentsOperationsFrame;
 import teachers.TeacherUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import teachers.Teacher;
@@ -41,6 +43,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         setNameBtn = new javax.swing.JButton();
         setPhoneBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
+        otherOperationsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -159,20 +162,28 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             }
         });
 
+        otherOperationsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        otherOperationsBtn.setText("Other Operations");
+        otherOperationsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otherOperationsBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ButtonsPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(setNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(setPhoneBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(deleteBtn)
-                .addGap(100, 100, 100))
+                .addGap(20, 20, 20)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(setNameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(setPhoneBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(otherOperationsBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(20, 20, 20))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,7 +193,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                     .addComponent(setNameBtn)
                     .addComponent(setPhoneBtn))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(deleteBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deleteBtn)
+                    .addComponent(otherOperationsBtn))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -323,10 +336,20 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    private void otherOperationsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherOperationsBtnActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
+        JFrame frame = new TeacherOperationsFrame(selectedTeacher);
+        link_frame_to_button(frame, otherOperationsBtn);
+        frame.setVisible(true);
+    }//GEN-LAST:event_otherOperationsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton otherOperationsBtn;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPhoneBtn;
     private javax.swing.JPanel teacherDataPnl;
