@@ -59,8 +59,7 @@ public class Teacher {
 
     public void delete() throws SQLException {
         String query = "Delete from teacher where teacher_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
         this.name = null;

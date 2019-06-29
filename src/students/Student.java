@@ -96,10 +96,10 @@ public class Student {
     }
 
     public ResultSet getBooks() throws SQLException {
-        String query = "Select book_id,book_quantity from student_books where "
-                + "student_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "Select b.book_name,sb.book_quantity from student_books sb , book b"
+                + " where sb.student_id=? & b.book_id=sb.book_id";
+
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
