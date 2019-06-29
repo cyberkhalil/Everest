@@ -163,7 +163,7 @@ public class BookAddFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(contentPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -171,6 +171,10 @@ public class BookAddFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
+        if (bookNameTf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Book MUST have a a book name");
+            return;
+        }
         try {
             if (BookISBN_CB.isSelected()) {
                 BookUtil.createBook(
@@ -184,8 +188,7 @@ public class BookAddFrame extends javax.swing.JFrame {
                         (double) bookPriceSp.getValue(),
                         (int) bookQuantitySp.getValue());
             }
-            JOptionPane.showMessageDialog(this,
-                    "New book created successfully");
+            JOptionPane.showMessageDialog(this, "New book created successfully");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
