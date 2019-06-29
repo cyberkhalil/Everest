@@ -119,6 +119,21 @@ public class GUI_Util {
         return promoteFrame;
     }
 
+    public static JFrame promoteDays(String title, String labelTxt, String buttonTxt,
+            DoSomethingWithDays dswd, String defaultDays) {
+        PromoteDays promoteFrame = new PromoteDays(title, labelTxt, buttonTxt, dswd);
+        promoteFrame.daysCB1.setSelected(defaultDays.contains("Sa"));
+        promoteFrame.daysCB2.setSelected(defaultDays.contains("Su"));
+        promoteFrame.daysCB3.setSelected(defaultDays.contains("Mo"));
+        promoteFrame.daysCB4.setSelected(defaultDays.contains("Tu"));
+        promoteFrame.daysCB5.setSelected(defaultDays.contains("We"));
+        promoteFrame.daysCB6.setSelected(defaultDays.contains("Th"));
+        promoteFrame.daysCB7.setSelected(defaultDays.contains("Fr"));
+
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
     public static abstract interface DoSomethingWithSpinner {
 
         /**

@@ -32,13 +32,6 @@ class PromoteDays extends JFrame {
         jTitle_lbl = new javax.swing.JLabel();
         jbutton = new javax.swing.JButton();
         daysPnl = new javax.swing.JPanel();
-        daysCB1 = new javax.swing.JCheckBox();
-        daysCB2 = new javax.swing.JCheckBox();
-        daysCB3 = new javax.swing.JCheckBox();
-        daysCB4 = new javax.swing.JCheckBox();
-        daysCB5 = new javax.swing.JCheckBox();
-        daysCB6 = new javax.swing.JCheckBox();
-        daysCB7 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -150,13 +143,13 @@ class PromoteDays extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox daysCB1;
-    private javax.swing.JCheckBox daysCB2;
-    private javax.swing.JCheckBox daysCB3;
-    private javax.swing.JCheckBox daysCB4;
-    private javax.swing.JCheckBox daysCB5;
-    private javax.swing.JCheckBox daysCB6;
-    private javax.swing.JCheckBox daysCB7;
+    public final javax.swing.JCheckBox daysCB1 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB2 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB3 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB4 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB5 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB6 = new javax.swing.JCheckBox();
+    public final javax.swing.JCheckBox daysCB7 = new javax.swing.JCheckBox();
     private javax.swing.JPanel daysPnl;
     private javax.swing.JLabel jLabel;
     private javax.swing.JLabel jTitle_lbl;

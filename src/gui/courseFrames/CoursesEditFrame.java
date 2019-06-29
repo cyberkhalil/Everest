@@ -5,6 +5,7 @@ import courses.CourseUtil;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -356,8 +357,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String courseName = JOptionPane.showInputDialog(
-                rootPane, "New Course Name:", DISPOSE_ON_CLOSE);
+        String courseName = (String) JOptionPane.showInputDialog(
+                rootPane, "New Course Name:", "Set Course Name",
+                JOptionPane.QUESTION_MESSAGE, null, null, selectedCourse.getName());
 
         if (courseName == null) {
             return;
@@ -436,11 +438,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        boolean deleteConfirmation = JOptionPane
-                .showConfirmDialog(rootPane,
-                        "Are you sure you want delete Course "
-                        + courseNameTf.getText() + " ?", "Course Delete",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane,
+                "Are you sure you want delete Course " + courseNameTf.getText() + " ?",
+                "Course Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
@@ -489,7 +489,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                });
+                }, selectedCourse.getDays());
     }//GEN-LAST:event_setDaysBtnActionPerformed
 
     private void setTimeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTimeBtnActionPerformed

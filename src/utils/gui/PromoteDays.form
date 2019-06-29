@@ -162,36 +162,57 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Saturday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sunday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB3">
           <Properties>
             <Property name="text" type="java.lang.String" value="Monday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB4">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tuesday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB5">
           <Properties>
             <Property name="text" type="java.lang.String" value="Wednesday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Thursday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="daysCB7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Friday"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="17"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

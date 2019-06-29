@@ -173,7 +173,6 @@ public class CourseAddFrame extends javax.swing.JFrame {
             .addGroup(daysPnlLayout.createSequentialGroup()
                 .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(daysPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(daysPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(daysCB2)
                             .addComponent(daysCB1)

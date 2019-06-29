@@ -28,7 +28,7 @@
                   <Component id="bookDataPnl" alignment="0" max="32767" attributes="0"/>
                   <Component id="bookButtonsPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="booksViewSPnl" min="-2" pref="495" max="-2" attributes="0"/>
           </Group>
           <Component id="titlePnl" alignment="0" max="32767" attributes="0"/>
@@ -42,7 +42,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="bookDataPnl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="bookButtonsPnl" max="32767" attributes="0"/>
                   </Group>
                   <Component id="booksViewSPnl" pref="0" max="32767" attributes="0"/>
@@ -97,7 +97,7 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <EmptySpace pref="21" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="bookIdLbl" min="-2" pref="69" max="-2" attributes="0"/>
