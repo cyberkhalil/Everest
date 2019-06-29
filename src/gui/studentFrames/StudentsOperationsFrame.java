@@ -3,11 +3,12 @@ package gui.studentFrames;
 import books.BookUtil;
 import courses.CourseUtil;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import students.Student;
-import utils.gui.GUI_Util;
+import static utils.gui.GUI_Util.buildComboBoxModel;
+import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.displayItemsInJTable;
+import static utils.gui.GUI_Util.promoteComboBox;
 
 public class StudentsOperationsFrame extends javax.swing.JFrame {
 
@@ -147,19 +148,18 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
-            GUI_Util.promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
-                    GUI_Util.buildComboBoxModel(BookUtil.getBooksIdAlongWithName()),
-                    (choice) -> {
-                        try {
-                            selectedStudent.buyBook(Integer.parseInt(choice));
-                            JOptionPane.showMessageDialog(rootPane,
-                                    "Student bought this book successfully");
-                            return true;
-                        } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
-                        }
-                        return false;
-                    });
+            promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
+                    buildComboBoxModel(BookUtil.getBooksIdAlongWithName()), (choice) -> {
+                try {
+                    selectedStudent.buyBook(Integer.parseInt(choice));
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Student bought this book successfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            });
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -167,28 +167,27 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void enrolToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrolToCourseBtnActionPerformed
         try {
-            GUI_Util.promoteComboBox("Enrol To Course", "Choose Course Id to enrol",
-                    "Enrol To Course", GUI_Util.buildComboBoxModel(CourseUtil.getCoursesId()),
-                    (choice) -> {
-                        try {
-                            selectedStudent.addToCourse(Integer.parseInt(choice));
-                            JOptionPane.showMessageDialog(rootPane,
-                                    "Student enrolled to this course successfully");
-                            return true;
-                        } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
-                        }
-                        return false;
-                    });
+            promoteComboBox("Enrol To Course", "Choose Course Id to enrol", "Enrol To Course",
+                    buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()), (choice) -> {
+                try {
+                    selectedStudent.addToCourse(Integer.parseInt(choice));
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Student enrolled to this course successfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            });
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_enrolToCourseBtnActionPerformed
 
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
-        GUI_Util.displayItemsInJTable((table) -> {
+        displayItemsInJTable((table) -> {
             try {
-                table.setModel(GUI_Util.buildTableModel(selectedStudent.getCourses()));
+                table.setModel(buildTableModel(selectedStudent.getCourses()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -196,9 +195,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_displayCoursesBtnActionPerformed
 
     private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
-        GUI_Util.displayItemsInJTable((table) -> {
+        displayItemsInJTable((table) -> {
             try {
-                table.setModel(GUI_Util.buildTableModel(selectedStudent.getBooks()));
+                table.setModel(buildTableModel(selectedStudent.getBooks()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }

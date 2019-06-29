@@ -37,22 +37,19 @@ public class BookUtil {
 
     public static ResultSet getBooks() throws SQLException {
         String query = "Select * from book";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 
     public static ResultSet getBooksId() throws SQLException {
         String query = "Select book_id from book";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 
     public static ResultSet getBooksIdAlongWithName() throws SQLException {
-        String query = "Select CONCAT(book_id,'   ',book_name) AS book_id_and_name from book";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "Select CONCAT('(',book_id,') ',book_name) AS book_id_and_name from book";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 
@@ -61,8 +58,7 @@ public class BookUtil {
                 + " from student_books sb,book b,student s"
                 + " where b.book_id = sb.book_id"
                 + " and s.student_id= sb.student_id";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 }

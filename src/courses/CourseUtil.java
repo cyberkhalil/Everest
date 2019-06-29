@@ -17,7 +17,7 @@ public final class CourseUtil {
                 = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
-    
+
     public static ResultSet getCoursesId() throws SQLException {
         String query = "Select course_id from course";
         PreparedStatement preparedStatement
@@ -25,9 +25,14 @@ public final class CourseUtil {
         return preparedStatement.executeQuery();
     }
 
-    public static void createCourse(String name, Date startDate, Date endDate,
-            double price, String timeHourFrom, String timeHourTo, String days)
-            throws SQLException {
+    public static ResultSet getCoursesIdAlongWithName() throws SQLException {
+        String query = "Select CONCAT('(',course_id,') ',course_name) from course";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
+    public static void createCourse(String name, Date startDate, Date endDate, double price,
+            String timeHourFrom, String timeHourTo, String days) throws SQLException {
         String query = "insert into course(course_name,course_start_date,"
                 + "course_end_date,course_price,course_time_hour_from,"
                 + "course_time_hour_to,course_days)"
