@@ -287,7 +287,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         int i = examsTbl.getSelectedRow();
         TableModel tableModel = examsTbl.getModel();
         try {
-            selectedExam = new Exam((int) tableModel.getValueAt(i, 0));
+            selectedExam = new Exam(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected Exam doesn't Exist");
         }

@@ -2,18 +2,16 @@ package gui.studentFrames;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import students.StudentUtil;
-import utils.gui.GUI_Util;
+import static students.StudentUtil.createStudent;
+import static students.StudentUtil.getStudentsIdAlongWithName;
+import static utils.gui.GUI_Util.buildComboBoxModel;
 
 public class StudentAddFrame extends javax.swing.JFrame {
 
     public StudentAddFrame() {
         initComponents();
         try {
-            studentAddedByIdCb.setModel(
-                    GUI_Util.buildComboBoxModel(
-                            StudentUtil.getStudentsId()
-                    ));
+            studentAddedByIdCb.setModel(buildComboBoxModel(getStudentsIdAlongWithName()));
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(rootPane, ex);
         }
@@ -194,13 +192,12 @@ public class StudentAddFrame extends javax.swing.JFrame {
 
         try {
             if (!studentAddedByIdTb.isSelected()) {
-                StudentUtil.createStudent(studentNameTf.getText(),
-                        studentPhoneFtf.getText(),
-                        (int) studentAddedByIdTb.getSelectedObjects()[0]);
+                String studentAddedById = studentAddedByIdCb.getSelectedObjects()[0].toString();
+                createStudent(studentNameTf.getText(), studentPhoneFtf.getText(),
+                        Integer.parseInt(studentAddedById.substring(1,
+                                studentAddedById.indexOf(")"))));
             } else {
-                StudentUtil.createStudent(
-                        studentNameTf.getText(),
-                        studentPhoneFtf.getText());
+                createStudent(studentNameTf.getText(), studentPhoneFtf.getText());
             }
             JOptionPane.showMessageDialog(this,
                     "New Student created successfully");
@@ -210,8 +207,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void studentAddedByIdTbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAddedByIdTbActionPerformed
-        studentAddedByIdTb.setText(
-                studentAddedByIdTb.isSelected() ? "ON" : "OFF");
+        studentAddedByIdTb.setText(studentAddedByIdTb.isSelected() ? "ON" : "OFF");
     }//GEN-LAST:event_studentAddedByIdTbActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

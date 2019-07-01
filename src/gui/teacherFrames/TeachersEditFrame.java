@@ -259,7 +259,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         int i = teachersTbl.getSelectedRow();
         TableModel tableModel = teachersTbl.getModel();
         try {
-            selectedTeacher = new Teacher((int) tableModel.getValueAt(i, 0));
+            selectedTeacher = new Teacher(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected Teacher doesn't Exist");
         }

@@ -348,7 +348,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         int i = coursesTbl.getSelectedRow();
         TableModel tableModel = coursesTbl.getModel();
         try {
-            selectedCourse = new Course((int) tableModel.getValueAt(i, 0));
+            selectedCourse = new Course(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected Course doesn't Exist");
         }

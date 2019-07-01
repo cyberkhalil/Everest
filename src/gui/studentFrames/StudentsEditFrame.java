@@ -287,7 +287,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         int i = studentsTbl.getSelectedRow();
         TableModel tableModel = studentsTbl.getModel();
         try {
-            selectedStudent = new Student((int) tableModel.getValueAt(i, 0));
+            selectedStudent = new Student(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected Student doesn't Exist");
         }

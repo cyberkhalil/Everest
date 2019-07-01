@@ -14,8 +14,7 @@ public class Student {
 
     public Student(int id) throws SQLException {
         String query = "Select * from student where student_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
         rs.next();
@@ -109,7 +108,7 @@ public class Student {
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
-    
+
     public ResultSet getCoursesName() throws SQLException {
         String query = "Select c.course_name from student_courses sc,course c where sc.student_id=?"
                 + " and sc.course_id=c.course_id";
