@@ -61,7 +61,7 @@ public class GUI_Util {
         button.setEnabled(false);
         frame.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosed(WindowEvent e) {
                 button.setEnabled(true);
             }
         });
@@ -71,13 +71,13 @@ public class GUI_Util {
         button.setEnabled(false);
         frame1.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosed(WindowEvent e) {
                 button.setEnabled(!frame2.isActive());
             }
         });
         frame2.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosed(WindowEvent e) {
                 button.setEnabled(!frame1.isVisible());
             }
         });
