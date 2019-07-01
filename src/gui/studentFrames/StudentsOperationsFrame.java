@@ -183,10 +183,11 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void enrolToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrolToCourseBtnActionPerformed
         try {
-            promoteComboBox("Enrol To Course", "Choose Course Id to enrol", "Enrol To Course",
+            promoteComboBox("Course Enroll", "Choose course to enroll", "Enroll to course",
                     buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()), (choice) -> {
                 try {
-                    selectedStudent.enrollToCourse(Integer.parseInt(choice));
+                    selectedStudent.enrollToCourse(Integer.parseInt(choice.substring(1, choice.
+                            indexOf(")"))));
                     JOptionPane.showMessageDialog(rootPane,
                             "Student enrolled to this course successfully");
                     return true;
