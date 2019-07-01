@@ -8,6 +8,7 @@ import students.Student;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
+import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
 
 public class StudentsOperationsFrame extends javax.swing.JFrame {
@@ -164,7 +165,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
-            promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
+            link_frame_to_button(promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
                     buildComboBoxModel(BookUtil.getBooksIdAlongWithName()), (choice) -> {
                 try {
                     selectedStudent.buyBook(Integer.parseInt(choice));
@@ -175,7 +176,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, ex);
                 }
                 return false;
-            });
+            }), buyBookBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -183,52 +184,53 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void enrolToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrolToCourseBtnActionPerformed
         try {
-            promoteComboBox("Course Enroll", "Choose course to enroll", "Enroll to course",
-                    buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()), (choice) -> {
-                try {
-                    selectedStudent.enrollToCourse(Integer.parseInt(choice.substring(1, choice.
-                            indexOf(")"))));
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Student enrolled to this course successfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                }
-                return false;
-            });
+            link_frame_to_button(promoteComboBox("Course Enroll", "Choose course to enroll",
+                    "Enroll to course", buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.enrollToCourse(Integer.parseInt(choice.substring(1,
+                                    choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student enrolled to this course successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), enrolToCourseBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_enrolToCourseBtnActionPerformed
 
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
-        displayItemsInJTable((table) -> {
+        link_frame_to_button(displayItemsInJTable((table) -> {
             try {
                 table.setModel(buildTableModel(selectedStudent.getCoursesName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
-        });
+        }), displayCoursesBtn);
     }//GEN-LAST:event_displayCoursesBtnActionPerformed
 
     private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
-        displayItemsInJTable((table) -> {
+        link_frame_to_button(displayItemsInJTable((table) -> {
             try {
                 table.setModel(buildTableModel(selectedStudent.getBooksId()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
-        });
+        }), displayBooksBtn);
     }//GEN-LAST:event_displayBooksBtnActionPerformed
 
     private void displayExamsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayExamsBtnActionPerformed
-        displayItemsInJTable((table) -> {
+        link_frame_to_button(displayItemsInJTable((table) -> {
             try {
                 table.setModel(buildTableModel(selectedStudent.getExamsName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
-        });
+        }), displayExamsBtn);
     }//GEN-LAST:event_displayExamsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

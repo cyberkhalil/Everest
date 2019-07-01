@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.link_frame_to_button;
 
 public class ExamOperationsFrame extends javax.swing.JFrame {
 
@@ -108,13 +109,13 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStudentsBtnActionPerformed
-        displayItemsInJTable((table) -> {
+        link_frame_to_button(displayItemsInJTable((table) -> {
             try {
                 table.setModel(buildTableModel(selectedExam.getStudentsName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
-        });
+        }), displayStudentsBtn);
     }//GEN-LAST:event_displayStudentsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
