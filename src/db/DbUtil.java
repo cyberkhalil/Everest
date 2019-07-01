@@ -23,7 +23,8 @@ public final class DbUtil {
     public static boolean checkSchema() throws SQLException {
         String query = "Select SCHEMA_NAME From INFORMATION_SCHEMA.SCHEMATA"
                 + " WHERE SCHEMA_NAME = 'Everest'";
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/", "root", "mysql");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost?"
+                + "useLegacyDatetimeCode=false&serverTimezone=America/New_York", "root", "mysql");
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         while (rs.next()) {
