@@ -24,12 +24,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="examDataPnl" alignment="0" max="32767" attributes="0"/>
-                  <Component id="examButtonsPnl" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="examDataPnl" max="32767" attributes="0"/>
+                  <Component id="examButtonsPnl" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="examsSPnl" min="-2" pref="495" max="-2" attributes="0"/>
+              <Component id="examsSPnl" pref="495" max="32767" attributes="0"/>
           </Group>
           <Component id="titlePnl" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -37,12 +37,12 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="titlePnl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="titlePnl" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="examDataPnl" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="examDataPnl" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                       <Component id="examButtonsPnl" max="32767" attributes="0"/>
                   </Group>
                   <Component id="examsSPnl" max="32767" attributes="0"/>
@@ -131,27 +131,27 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="examIdTf" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="examIdLbl" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="examNameTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="examNameLbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="examDateTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="examDateLbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="examPriceLbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="examPriceTf" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -248,7 +248,7 @@
                       <Component id="setNameBtn" min="-2" pref="114" max="-2" attributes="0"/>
                       <Component id="setPriceBtn" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="deleteExamBtn" min="-2" pref="114" max="-2" attributes="0"/>
                       <Component id="setDateBtn" min="-2" pref="111" max="-2" attributes="0"/>
@@ -265,19 +265,19 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="setNameBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="setDateBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="deleteExamBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="setPriceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Component id="otherOperationsBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -358,20 +358,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="imgLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="imgLbl" min="-2" pref="100" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="titleLbl" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="imgLbl" alignment="0" pref="88" max="32767" attributes="0"/>
+              <Component id="imgLbl" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="titleLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="titleLbl" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
