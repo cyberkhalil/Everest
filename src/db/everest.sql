@@ -180,6 +180,35 @@ CREATE TABLE IF NOT EXISTS teacher_courses (
 INSERT INTO teacher_courses(teacher_id,course_id)
 values(1,1);
 
+CREATE TABLE IF NOT EXISTS student_purchases (
+    student_id INT(11),
+    purchase_id INT(11),
+    purchase_price DOUBLE(5 , 2 ) NOT NULL,
+    purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT FOREIGN KEY (student_id)
+        REFERENCES student (student_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (student_id , purchase_id)
+)  ENGINE=INNODB;
+
+CREATE VIEW students_financials AS 
+SELECT s.student_id,s.student_name,b.book_price AS "Money","Buying book"
+FROM student s,student_books sb,book b
+WHERE s.student_id = sb.student_id AND sb.book_id = b.book_id
+UNION SELECT  s.student_id,s.student_name,c.course_price AS "Money","Enrolling to course"
+FROM student s,student_courses sc,course c
+WHERE s.student_id = sc.student_id AND sc.course_id = c.course_id
+UNION SELECT  s.student_id,s.student_name,e.exam_price AS "Money","Enrolling to exam"
+FROM student s,student_exams se,exam e
+WHERE s.student_id = se.student_id AND se.exam_id = e.exam_id
+UNION SELECT  s.student_id,s.student_name,sp.purchase_price AS "Money","Paying money"
+FROM student s,student_purchases sp
+WHERE s.student_id = sp.student_id;
+
+CREATE VIEW students_financial AS 
+SELECT * from students_financials
+UNION SELECT student_id,student_name,SUM(Money),"Sum" from students_financials;
+
 -- --------------------------------------------------------
 -- CREATE TABLE IF NOT EXISTS invoice (
 --     invoiceId INT(10) NOT NULL AUTO_INCREMENT,
@@ -191,14 +220,3 @@ values(1,1);
 --     PRIMARY KEY (invoiceId),
 --     KEY invoice_ibfk_1 (StdId_fk)
 -- )  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
-
--- CREATE TABLE IF NOT EXISTS purchases (
---     PaymentNo INT(5) NOT NULL AUTO_INCREMENT,
---     StdID INT(11) DEFAULT NULL,
---     paymentValue DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     remaindCash DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     paymentTime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---     Net DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     paymentMethod VARCHAR(50) DEFAULT NULL,
---     PRIMARY KEY (PaymentNo)
--- )  ENGINE=INNODB AUTO_INCREMENT=15 DEFAULT CHARSET=UTF8;
