@@ -206,7 +206,7 @@ public class Login extends javax.swing.JFrame {
     public static void main(String args[]) {
         try {
             check_mysql();
-        } catch (IOException | InterruptedException ex) {
+        } catch (IOException | InterruptedException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
             return;
         }

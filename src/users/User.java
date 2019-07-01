@@ -31,7 +31,6 @@ public class User {
             this.id = rs.getInt("user_id");
             this.privilege = rs.getString("user_privilege");
         } catch (SQLException ex) {
-            // TODO 30: check static Strings and put in PublicStaticFinals util class
             if (ex.getMessage().equals("Illegal operation on empty result set.")) {
                 throw new LoginException("Entered username is inncorrect !");
             } else {

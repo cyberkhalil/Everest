@@ -1,5 +1,7 @@
 package utils;
 
+import static db.DbUtil.applySchema;
+import static db.DbUtil.checkSchema;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -9,19 +11,28 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class PreRun {
 
-    public static void check_mysql() throws IOException, InterruptedException {
+    public static void check_mysql() throws IOException, InterruptedException, SQLException {
         if (!mysqlServiceExists()) {
             offer_install_mysql();
         } else {
             if (!mysqlServiceRunning()) {
-                JOptionPane.showMessageDialog(null, "MySQL service isn't "
-                        + "running , Please run it to start this program");
+                JOptionPane.showMessageDialog(null, "MySQL service isn't running,"
+                        + " Please run it then press ok to start this program");
             }
-            // TODO 29 : check user & schema & run schema sql if not exist
+            if (!checkSchema()) {
+                if (JOptionPane.showConfirmDialog(null, "Everest database doesn't exist,"
+                        + " Do you want to create it ?") == JOptionPane.YES_OPTION) {
+                    applySchema();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sorry but you can't use this program"
+                            + " without creating everest database");
+                }
+            }
         }
     }
 
@@ -45,7 +56,8 @@ public class PreRun {
             if (line.startsWith("SERVICE_NAME: MySQL")) {
                 while (!(line = reader.readLine().trim()).equals("")) {
                     if (line.startsWith("STATE")) {
-                        switch (line.substring(line.indexOf(":") + 1, line.indexOf(":") + 4).trim()) {
+                        switch (line.substring(line.indexOf(":") + 1, line.indexOf(":") + 4)
+                                .trim()) {
                             case "1":
                                 break;
                             case "2":

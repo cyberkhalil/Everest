@@ -64,8 +64,7 @@ public class Student {
     }
 
     public void setAddedBy(int addBy) throws SQLException {
-        String query = "Update student set student_added_by=?"
-                + " where student_id=?";
+        String query = "Update student set student_added_by=? where student_id=?";
         PreparedStatement preparedStatement
                 = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, addBy);

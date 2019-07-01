@@ -1,6 +1,4 @@
-/*
-This sql script is made for java Everest software & it's under GPL3 license
-*/
+/* This sql script is made for java Everest software & it's under GPL3 license */
 
 DROP DATABASE If EXISTS everest;	-- removing old database if exist
 CREATE SCHEMA everest;
