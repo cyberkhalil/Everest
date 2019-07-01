@@ -94,7 +94,7 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
-    public ResultSet getBooks() throws SQLException {
+    public ResultSet getBooksId() throws SQLException {
         String query = "Select b.book_name,sb.book_quantity from student_books sb , book b"
                 + " where sb.student_id=? & b.book_id=sb.book_id";
 
@@ -103,8 +103,16 @@ public class Student {
         return preparedStatement.executeQuery();
     }
 
-    public ResultSet getCourses() throws SQLException {
+    public ResultSet getCoursesId() throws SQLException {
         String query = "Select course_id from student_courses where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
+    
+    public ResultSet getCoursesName() throws SQLException {
+        String query = "Select c.course_name from student_courses sc,course c where sc.student_id=?"
+                + " and sc.course_id=c.course_id";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
@@ -118,8 +126,16 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
-    public ResultSet getExams() throws SQLException {
-        String query = "Select exam_id from student_exams where student_id=?";
+    public ResultSet getExamsId() throws SQLException {
+        String query = "Select exam_name from student_exams where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet getExamsName() throws SQLException {
+        String query = "Select e.exam_name from student_exams se,exam e where se.student_id=? and "
+                + "se.exam_id=e.exam_id";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();

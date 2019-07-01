@@ -204,7 +204,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
         displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getCourses()));
+                table.setModel(buildTableModel(selectedStudent.getCoursesName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -214,7 +214,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
         displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getBooks()));
+                table.setModel(buildTableModel(selectedStudent.getBooksId()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -224,7 +224,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void displayExamsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayExamsBtnActionPerformed
         displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getExams()));
+                table.setModel(buildTableModel(selectedStudent.getExamsName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
