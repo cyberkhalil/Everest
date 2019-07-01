@@ -26,6 +26,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         teacherPhoneFtf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
         titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
@@ -149,8 +150,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
             TeacherUtil.createTeacher(
                     teacherNameTf.getText(),
                     teacherPhoneFtf.getText());
-            JOptionPane.showMessageDialog(this,
-                    "New Teacher created successfully");
+            JOptionPane.showMessageDialog(this, "New Teacher created successfully");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
