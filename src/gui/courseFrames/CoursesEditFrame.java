@@ -5,6 +5,7 @@ import static courses.CourseUtil.getCoursesFormated;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -382,11 +383,12 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        link_2frames_to_button(promoteDatePicker("Change Course Start Date",
+        JFrame frame1 = promoteDatePicker("Change Course Start Date",
                 "Course New Start Date :", "Set Start Date", (DateInMillis) -> {
                     try {
                         String start = new Date(DateInMillis).toString();
-                        if (!isValidDateOrder(start, selectedCourse.getEndDate())) {
+                        if (!isValidDateOrder(start, selectedCourse.
+                                getEndDate())) {
                             JOptionPane.showMessageDialog(rootPane,
                                     "Start date must be before end date");
                         } else {
@@ -400,26 +402,29 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     return false;
-                }), promoteDatePicker("Change Course End Date", "Course New End Date :",
-                        "Set End Date", (DateInMillis) -> {
-                            try {
-                                String end = new Date(DateInMillis).toString();
-                                if (!isValidDateOrder(selectedCourse.getStartDate(), end)) {
-                                    JOptionPane.showMessageDialog(rootPane,
-                                            "End date must be after start date");
-                                } else {
-                                    selectedCourse.setEndDate(end);
-                                    JOptionPane.showMessageDialog(rootPane,
-                                            "Course End Date Updated Successfully");
-                                    updateTable();
-                                    return true;
-                                }
-                            } catch (SQLException | IllegalStateException ex) {
-                                JOptionPane.showMessageDialog(rootPane, ex.toString());
-                            }
-                            return false;
-                        }), setDateBtn);
-
+                });
+        JFrame frame2 = promoteDatePicker("Change Course End Date",
+                "Course New End Date :", "Set End Date", (DateInMillis) -> {
+                    try {
+                        String end = new Date(DateInMillis).toString();
+                        if (!isValidDateOrder(selectedCourse.getStartDate(),
+                                end)) {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "End date must be after start date");
+                        } else {
+                            selectedCourse.setEndDate(end);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course End Date Updated Successfully");
+                            updateTable();
+                            return true;
+                        }
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex.toString());
+                    }
+                    return false;
+                });
+        frame2.setLocation(frame1.getWidth(), 0);
+        link_2frames_to_button(frame1, frame2, setDateBtn);
     }//GEN-LAST:event_setDateBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -482,7 +487,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        link_2frames_to_button(promoteFormatedTextField(
+        JFrame frame1 = promoteFormatedTextField(
                 "Change Course Start Time", "Course New Start Time :",
                 PublicStaticFinals.TIME_FORMAT, "Set Start Time", (formatedText) -> {
                     try {
@@ -501,27 +506,30 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                         return false;
                     }
-                }), promoteFormatedTextField("Change Course End Time",
-                        "Course New End Time :", PublicStaticFinals.TIME_FORMAT, "Set End Time",
-                        (formatedText) -> {
-                            try {
-                                if (isValidDateOrder(selectedCourse.getStartDate(),
-                                        formatedText)) {
-                                    selectedCourse.setTimeHourFrom(formatedText);
-                                    JOptionPane.showMessageDialog(rootPane,
-                                            "Course End Time Updated Successfully");
-                                    updateTable();
-                                    return true;
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane,
-                                            "Course start time MUST be after course end time");
-                                    return false;
-                                }
-                            } catch (SQLException | IllegalStateException ex) {
-                                JOptionPane.showMessageDialog(rootPane, ex);
-                                return false;
-                            }
-                        }), setTimeBtn);
+                });
+        JFrame frame2 = promoteFormatedTextField("Change Course End Time",
+                "Course New End Time :", PublicStaticFinals.TIME_FORMAT, "Set End Time",
+                (formatedText) -> {
+                    try {
+                        if (isValidDateOrder(selectedCourse.getStartDate(),
+                                formatedText)) {
+                            selectedCourse.setTimeHourFrom(formatedText);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course End Time Updated Successfully");
+                            updateTable();
+                            return true;
+                        } else {
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Course start time MUST be after course end time");
+                            return false;
+                        }
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                        return false;
+                    }
+                });
+        frame2.setLocation(frame1.getWidth(), 0);
+        link_2frames_to_button(frame1, frame2, setTimeBtn);
     }//GEN-LAST:event_setTimeBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
