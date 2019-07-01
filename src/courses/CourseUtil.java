@@ -18,6 +18,20 @@ public final class CourseUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getCoursesFormated() throws SQLException {
+        String query = "Select CONCAT(course_id) as 'Course Id',"
+                + "CONCAT(course_name) as 'Course Name',"
+                + "CONCAT(course_start_date) as 'Course Start Date',"
+                + "CONCAT(course_end_date) as 'Course End Date',"
+                + "CONCAT(course_price) as 'Course Price',"
+                + "CONCAT(course_time_hour_from) as 'Course Time From',"
+                + "CONCAT(course_time_hour_to) as 'Course Time Hour To',"
+                + "CONCAT(course_days) as 'Course Days' "
+                + "from course";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
     public static ResultSet getCoursesId() throws SQLException {
         String query = "Select course_id from course";
         PreparedStatement preparedStatement

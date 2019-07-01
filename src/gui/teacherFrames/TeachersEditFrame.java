@@ -1,13 +1,12 @@
 package gui.teacherFrames;
 
-import gui.studentFrames.StudentsOperationsFrame;
-import teachers.TeacherUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import teachers.Teacher;
+import static teachers.TeacherUtil.getTeachersFormated;
 import utils.PublicStaticFinals;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
@@ -20,7 +19,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
     public TeachersEditFrame() {
         initComponents();
         try {
-            this.teachersTbl.setModel(buildTableModel(TeacherUtil.getTeachers()));
+            this.teachersTbl.setModel(buildTableModel(getTeachersFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -367,7 +366,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.teachersTbl.setModel(buildTableModel(TeacherUtil.getTeachers()));
+            this.teachersTbl.setModel(buildTableModel(getTeachersFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

@@ -11,11 +11,8 @@ public final class TeacherUtil {
     }
 
     public static void createTeacher(String name, String phone) throws SQLException {
-
-        String query = "insert into teacher(teacher_name,teacher_phone) "
-                + "values(?,?)";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "insert into teacher(teacher_name,teacher_phone) values(?,?)";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
         preparedStatement.setString(2, phone);
         preparedStatement.executeUpdate();
@@ -23,8 +20,15 @@ public final class TeacherUtil {
 
     public static ResultSet getTeachers() throws SQLException {
         String query = "Select * from teacher";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+    public static ResultSet getTeachersFormated() throws SQLException {
+        String query = "Select CONCAT(teacher_id) as 'Teacher Id',"
+                + "CONCAT(teacher_name) as 'Teacher Name',"
+                + "CONCAT(teacher_phone) as 'Teacher Phone' "
+                + "from teacher";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 

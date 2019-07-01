@@ -1,7 +1,7 @@
 package gui.examFrames;
 
 import exams.Exam;
-import exams.ExamUtil;
+import static exams.ExamUtil.getExamsFormated;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
     public ExamsEditFrame() {
         initComponents();
         try {
-            this.examsTbl.setModel(buildTableModel(ExamUtil.getExams()));
+            this.examsTbl.setModel(buildTableModel(getExamsFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -249,11 +249,10 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         );
         titlePnlLayout.setVerticalGroup(
             titlePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imgLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(imgLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(titlePnlLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(32, 32, 32))
+                .addComponent(titleLbl))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,7 +270,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -407,7 +406,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.examsTbl.setModel(buildTableModel(ExamUtil.getExams()));
+            this.examsTbl.setModel(buildTableModel(getExamsFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -426,8 +425,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
 
     private boolean isBadSelection() throws HeadlessException {
         if (selectedExam == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Exam to make this opreation !");
+            JOptionPane.showMessageDialog(rootPane, "Choose a Exam to make this opreation !");
             return true;
         }
         return false;

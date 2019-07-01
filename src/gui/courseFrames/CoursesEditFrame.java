@@ -1,7 +1,7 @@
 package gui.courseFrames;
 
 import courses.Course;
-import courses.CourseUtil;
+import static courses.CourseUtil.getCoursesFormated;
 import java.awt.HeadlessException;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
     public CoursesEditFrame() {
         initComponents();
         try {
-            this.coursesTbl.setModel(buildTableModel(CourseUtil.getCourses()));
+            this.coursesTbl.setModel(buildTableModel(getCoursesFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -556,7 +556,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.coursesTbl.setModel(buildTableModel(CourseUtil.getCourses()));
+            this.coursesTbl.setModel(buildTableModel(getCoursesFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

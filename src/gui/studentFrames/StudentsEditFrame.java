@@ -1,6 +1,5 @@
 package gui.studentFrames;
 
-import students.StudentUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -8,6 +7,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
 import utils.PublicStaticFinals;
+import static students.StudentUtil.getStudentsFormated;
+import static students.StudentUtil.getStudentsIdAlongWithName;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.buildTableModel;
@@ -21,7 +22,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
     public StudentsEditFrame() {
         initComponents();
         try {
-            this.studentsTbl.setModel(buildTableModel(StudentUtil.getStudents()));
+            this.studentsTbl.setModel(buildTableModel(getStudentsFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -363,18 +364,18 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         try {
             link_frame_to_button(promoteComboBox("Change Student AddedBy", "Student New AddedBy :",
                     "Set Student AddedBy", buildComboBoxModel(
-                            StudentUtil.getStudentsIdAlongWithName()), (AddedById) -> {
-                try {
-                    selectedStudent.setAddedBy(Integer.parseInt(AddedById.substring(1,
-                            AddedById.indexOf(")"))));
-                    updateTable();
-                    JOptionPane.showMessageDialog(rootPane, "Student AddedBy change successfully");
-                    return true;
-                } catch (SQLException | IllegalStateException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                    return false;
-                }
-            }), setAddedByBtn);
+                            getStudentsIdAlongWithName()), (AddedById) -> {
+                        try {
+                            selectedStudent.setAddedBy(Integer.parseInt(AddedById.substring(1,
+                                    AddedById.indexOf(")"))));
+                            updateTable();
+                            JOptionPane.showMessageDialog(rootPane, "Student AddedBy change successfully");
+                            return true;
+                        } catch (SQLException | IllegalStateException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                            return false;
+                        }
+                    }), setAddedByBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -414,7 +415,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.studentsTbl.setModel(buildTableModel(StudentUtil.getStudents()));
+            this.studentsTbl.setModel(buildTableModel(getStudentsFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

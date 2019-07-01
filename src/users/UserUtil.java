@@ -69,14 +69,16 @@ public final class UserUtil {
         return rs;
     }
 
-    public static ResultSet getUsersResultSet(User admin)
-            throws SQLException, NoPermissionException {
+    public static ResultSet getUsersFromated(User admin) throws SQLException,
+            NoPermissionException {
 
         if (!admin.isAdmin()) {
-            throw new NoPermissionException(
-                    "You must be admin to do this operation");
+            throw new NoPermissionException("You must be admin to do this operation");
         }
-        String query = "select user_id,user_name,user_privilege from user ";
+        String query = "select CONCAT(user_id) as 'User Id',"
+                + "CONCAT(user_name) as 'User Name',"
+                + "CONCAT(user_privilege) as 'User Privilege' "
+                + "from user ";
 
         // create the mysql insert preparedstatement
         PreparedStatement preparedStatement

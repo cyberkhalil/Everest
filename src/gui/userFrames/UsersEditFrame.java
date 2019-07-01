@@ -7,7 +7,10 @@ import javax.naming.NoPermissionException;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import users.User;
-import users.UserUtil;
+import static users.UserUtil.deleteUser;
+import static users.UserUtil.getUser;
+import static users.UserUtil.getUsersFromated;
+import static users.UserUtil.setUserPrivilege;
 import static utils.gui.GUI_Util.buildTableModel;
 
 public final class UsersEditFrame extends javax.swing.JFrame {
@@ -17,8 +20,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     public UsersEditFrame() {
         initComponents();
         try {
-            this.usersTbl.setModel(buildTableModel(UserUtil.getUsersResultSet(Login.user))
-            );
+            this.usersTbl.setModel(buildTableModel(getUsersFromated(Login.user)));
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -261,8 +263,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         int i = usersTbl.getSelectedRow();
         TableModel tableModel = usersTbl.getModel();
         try {
-            selectedUser = UserUtil.getUser(
-                    Login.user, tableModel.getValueAt(i, 1).toString());
+            selectedUser = getUser(Login.user, tableModel.getValueAt(i, 1).toString());
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected User Doesn't Exist");
         }
@@ -306,7 +307,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         }
 
         try {
-            UserUtil.deleteUser(Login.user, selectedUser);
+            deleteUser(Login.user, selectedUser);
             updateTable();
             JOptionPane.showMessageDialog(rootPane, "User Deleted Successfully");
         } catch (SQLException | NoPermissionException | IllegalStateException ex) {
@@ -353,10 +354,9 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         }
         try {
             if (choice == 0) {
-                UserUtil.setUserPrivilege(Login.user, selectedUser, "Admin");
+                setUserPrivilege(Login.user, selectedUser, "Admin");
             } else {
-                UserUtil.setUserPrivilege(Login.user, selectedUser,
-                        "Normal User");
+                setUserPrivilege(Login.user, selectedUser, "Normal User");
             }
             updateTable();
         } catch (SQLException | NoPermissionException ex) {
@@ -387,7 +387,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.usersTbl.setModel(buildTableModel(UserUtil.getUsersResultSet(Login.user)));
+            this.usersTbl.setModel(buildTableModel(getUsersFromated(Login.user)));
         } catch (SQLException | NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -404,8 +404,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
 
     private boolean isBadSelection() throws HeadlessException {
         if (selectedUser == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a User to make this opreation !");
+            JOptionPane.showMessageDialog(rootPane, "Choose a User to make this opreation !");
             return true;
         }
         return false;
