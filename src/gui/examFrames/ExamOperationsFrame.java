@@ -110,7 +110,7 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
     private void displayStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStudentsBtnActionPerformed
         displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedExam.getStudents()));
+                table.setModel(buildTableModel(selectedExam.getStudentsName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
