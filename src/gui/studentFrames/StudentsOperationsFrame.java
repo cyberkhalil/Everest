@@ -1,7 +1,8 @@
 package gui.studentFrames;
 
-import books.BookUtil;
-import courses.CourseUtil;
+import static books.BookUtil.getBooksIdAndName;
+import static courses.CourseUtil.getCoursesIdAndName;
+import static exams.ExamUtil.getExamsIdAndName;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import students.Student;
@@ -31,6 +32,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         displayBooksBtn = new javax.swing.JButton();
         displayExamsBtn = new javax.swing.JButton();
         removeFromCourseBtn = new javax.swing.JButton();
+        addToExamBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -43,7 +45,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentY(0.0F);
 
         buyBookBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        buyBookBtn.setText("Buy Book");
+        buyBookBtn.setText("buy Book");
         buyBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyBookBtnActionPerformed(evt);
@@ -51,7 +53,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         enrollToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        enrollToCourseBtn.setText("Enroll to course");
+        enrollToCourseBtn.setText("enroll to course");
         enrollToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enrollToCourseBtnActionPerformed(evt);
@@ -83,10 +85,18 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         removeFromCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        removeFromCourseBtn.setText("Remove from course");
+        removeFromCourseBtn.setText("remove from course");
         removeFromCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeFromCourseBtnActionPerformed(evt);
+            }
+        });
+
+        addToExamBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addToExamBtn.setText("add to exam");
+        addToExamBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToExamBtnActionPerformed(evt);
             }
         });
 
@@ -98,7 +108,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enrollToCourseBtn)
-                    .addComponent(buyBookBtn))
+                    .addComponent(buyBookBtn)
+                    .addComponent(addToExamBtn))
                 .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(displayExamsBtn)
@@ -122,7 +133,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     .addComponent(displayCoursesBtn)
                     .addComponent(removeFromCourseBtn))
                 .addGap(25, 25, 25)
-                .addComponent(displayExamsBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayExamsBtn)
+                    .addComponent(addToExamBtn))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
@@ -179,7 +192,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
             link_frame_to_button(promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
-                    buildComboBoxModel(BookUtil.getBooksIdAndName()), (choice) -> {
+                    buildComboBoxModel(getBooksIdAndName()), (choice) -> {
                 try {
                     selectedStudent.buyBook(Integer.parseInt(choice));
                     JOptionPane.showMessageDialog(rootPane,
@@ -198,7 +211,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void enrollToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollToCourseBtnActionPerformed
         try {
             link_frame_to_button(promoteComboBox("Course Enroll", "Choose course to enroll",
-                    "Enroll to course", buildComboBoxModel(CourseUtil.getCoursesIdAndName()),
+                    "Enroll to course", buildComboBoxModel(getCoursesIdAndName()),
                     (choice) -> {
                         try {
                             selectedStudent.enrollToCourse(Integer.parseInt(
@@ -255,7 +268,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                             selectedStudent.removeFromCourse(Integer.parseInt(
                                     choice.substring(1, choice.indexOf(")"))));
                             JOptionPane.showMessageDialog(rootPane,
-                                    "Student enrolled to this course successfully");
+                                    "Student removed from this course successfully");
                             return true;
                         } catch (SQLException ex) {
                             JOptionPane.showMessageDialog(rootPane, ex);
@@ -267,8 +280,29 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeFromCourseBtnActionPerformed
 
+    private void addToExamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToExamBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Exam Add", "Choose exam to add", "Add to exam",
+                    buildComboBoxModel(getExamsIdAndName()), (choice) -> {
+                try {
+                    selectedStudent.addToExam(Integer.parseInt(
+                            choice.substring(1, choice.indexOf(")"))));
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Student added to this exam successfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            }), enrollToCourseBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_addToExamBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
+    private javax.swing.JButton addToExamBtn;
     private javax.swing.JButton buyBookBtn;
     private javax.swing.JButton displayBooksBtn;
     private javax.swing.JButton displayCoursesBtn;

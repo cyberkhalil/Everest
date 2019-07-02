@@ -119,6 +119,14 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
+    public void addToExam(int examId) throws SQLException {
+        String query = "Insert into student_exams values(?,?,1)";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, examId);
+        preparedStatement.executeUpdate();
+    }
+
     public ResultSet getExamsId() throws SQLException {
         String query = "Select exam_name from student_exams where student_id=?";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);

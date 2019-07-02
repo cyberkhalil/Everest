@@ -67,6 +67,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="enrollToCourseBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="buyBookBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="addToExamBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -97,7 +98,10 @@
                       <Component id="removeFromCourseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="displayExamsBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="displayExamsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addToExamBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -109,7 +113,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Buy Book"/>
+            <Property name="text" type="java.lang.String" value="buy Book"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buyBookBtnActionPerformed"/>
@@ -120,7 +124,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enroll to course"/>
+            <Property name="text" type="java.lang.String" value="enroll to course"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enrollToCourseBtnActionPerformed"/>
@@ -164,10 +168,21 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Remove from course"/>
+            <Property name="text" type="java.lang.String" value="remove from course"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeFromCourseBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="addToExamBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="add to exam"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addToExamBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
