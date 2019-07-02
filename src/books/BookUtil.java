@@ -47,7 +47,7 @@ public class BookUtil {
         return preparedStatement.executeQuery();
     }
 
-    public static ResultSet getBooksIdAlongWithName() throws SQLException {
+    public static ResultSet getBooksIdAndName() throws SQLException {
         String query = "Select CONCAT('(',book_id,') ',book_name) AS book_id_and_name from book";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();

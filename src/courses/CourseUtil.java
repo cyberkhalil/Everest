@@ -39,7 +39,7 @@ public final class CourseUtil {
         return preparedStatement.executeQuery();
     }
 
-    public static ResultSet getCoursesIdAlongWithName() throws SQLException {
+    public static ResultSet getCoursesIdAndName() throws SQLException {
         String query = "Select CONCAT('(',course_id,') ',course_name) from course";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();

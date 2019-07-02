@@ -26,10 +26,11 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
         ButtonsPnl = new javax.swing.JPanel();
         buyBookBtn = new javax.swing.JButton();
-        enrolToCourseBtn = new javax.swing.JButton();
+        enrollToCourseBtn = new javax.swing.JButton();
         displayCoursesBtn = new javax.swing.JButton();
         displayBooksBtn = new javax.swing.JButton();
         displayExamsBtn = new javax.swing.JButton();
+        removeFromCourseBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -49,11 +50,11 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
-        enrolToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        enrolToCourseBtn.setText("Enrol to course");
-        enrolToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+        enrollToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        enrollToCourseBtn.setText("Enroll to course");
+        enrollToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enrolToCourseBtnActionPerformed(evt);
+                enrollToCourseBtnActionPerformed(evt);
             }
         });
 
@@ -81,21 +82,32 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        removeFromCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeFromCourseBtn.setText("Remove from course");
+        removeFromCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromCourseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enrolToCourseBtn)
+                    .addComponent(enrollToCourseBtn)
                     .addComponent(buyBookBtn))
-                .addGap(49, 49, 49)
+                .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(displayExamsBtn)
                     .addComponent(displayBooksBtn)
-                    .addComponent(displayCoursesBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                        .addComponent(displayCoursesBtn)
+                        .addGap(30, 30, 30)
+                        .addComponent(removeFromCourseBtn)))
+                .addGap(40, 40, 40))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,8 +118,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     .addComponent(displayBooksBtn))
                 .addGap(25, 25, 25)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enrolToCourseBtn)
-                    .addComponent(displayCoursesBtn))
+                    .addComponent(enrollToCourseBtn)
+                    .addComponent(displayCoursesBtn)
+                    .addComponent(removeFromCourseBtn))
                 .addGap(25, 25, 25)
                 .addComponent(displayExamsBtn)
                 .addContainerGap(43, Short.MAX_VALUE))
@@ -130,7 +143,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             .addGroup(titlePnlLayout.createSequentialGroup()
                 .addComponent(imgLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         titlePnlLayout.setVerticalGroup(
@@ -166,7 +179,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
             link_frame_to_button(promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
-                    buildComboBoxModel(BookUtil.getBooksIdAlongWithName()), (choice) -> {
+                    buildComboBoxModel(BookUtil.getBooksIdAndName()), (choice) -> {
                 try {
                     selectedStudent.buyBook(Integer.parseInt(choice));
                     JOptionPane.showMessageDialog(rootPane,
@@ -182,14 +195,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buyBookBtnActionPerformed
 
-    private void enrolToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrolToCourseBtnActionPerformed
+    private void enrollToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enrollToCourseBtnActionPerformed
         try {
             link_frame_to_button(promoteComboBox("Course Enroll", "Choose course to enroll",
-                    "Enroll to course", buildComboBoxModel(CourseUtil.getCoursesIdAlongWithName()),
+                    "Enroll to course", buildComboBoxModel(CourseUtil.getCoursesIdAndName()),
                     (choice) -> {
                         try {
-                            selectedStudent.enrollToCourse(Integer.parseInt(choice.substring(1,
-                                    choice.indexOf(")"))));
+                            selectedStudent.enrollToCourse(Integer.parseInt(
+                                    choice.substring(1, choice.indexOf(")"))));
                             JOptionPane.showMessageDialog(rootPane,
                                     "Student enrolled to this course successfully");
                             return true;
@@ -197,16 +210,16 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(rootPane, ex);
                         }
                         return false;
-                    }), enrolToCourseBtn);
+                    }), enrollToCourseBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
-    }//GEN-LAST:event_enrolToCourseBtnActionPerformed
+    }//GEN-LAST:event_enrollToCourseBtnActionPerformed
 
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getCoursesName()));
+                table.setModel(buildTableModel(selectedStudent.getCoursesIdAndName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -216,7 +229,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getBooksId()));
+                table.setModel(buildTableModel(selectedStudent.getBooksNameAndQuantity()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -233,14 +246,36 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }), displayExamsBtn);
     }//GEN-LAST:event_displayExamsBtnActionPerformed
 
+    private void removeFromCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCourseBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Course Enroll", "Choose course to remove",
+                    "Enroll to course", buildComboBoxModel(selectedStudent.getCoursesIdAndName()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.removeFromCourse(Integer.parseInt(
+                                    choice.substring(1, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student enrolled to this course successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removeFromCourseBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeFromCourseBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton buyBookBtn;
     private javax.swing.JButton displayBooksBtn;
     private javax.swing.JButton displayCoursesBtn;
     private javax.swing.JButton displayExamsBtn;
-    private javax.swing.JButton enrolToCourseBtn;
+    private javax.swing.JButton enrollToCourseBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton removeFromCourseBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

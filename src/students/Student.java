@@ -93,7 +93,7 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
-    public ResultSet getBooksId() throws SQLException {
+    public ResultSet getBooksNameAndQuantity() throws SQLException {
         String query = "Select b.book_name,sb.book_quantity from student_books sb , book b"
                 + " where sb.student_id=? & b.book_id=sb.book_id";
 
@@ -102,16 +102,10 @@ public class Student {
         return preparedStatement.executeQuery();
     }
 
-    public ResultSet getCoursesId() throws SQLException {
-        String query = "Select course_id from student_courses where student_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
-    }
-
-    public ResultSet getCoursesName() throws SQLException {
-        String query = "Select c.course_name from student_courses sc,course c where sc.student_id=?"
-                + " and sc.course_id=c.course_id";
+    public ResultSet getCoursesIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',c.course_id,') ',c.course_name) as 'Courses' "
+                + "from student_courses sc,course c "
+                + "where sc.student_id=? and sc.course_id=c.course_id";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
@@ -139,4 +133,14 @@ public class Student {
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
+
+    public void removeFromCourse(int courseId) throws SQLException {
+        String query = "Delete * from student_courses values(?,?)";
+        PreparedStatement preparedStatement
+                = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, courseId);
+        preparedStatement.executeUpdate();
+    }
+
 }
