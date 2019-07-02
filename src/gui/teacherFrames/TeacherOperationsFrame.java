@@ -114,7 +114,7 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
         displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedTeacher.getCourses()));
+                table.setModel(buildTableModel(selectedTeacher.getCoursesIdAndName()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }

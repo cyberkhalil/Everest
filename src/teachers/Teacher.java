@@ -66,7 +66,7 @@ public class Teacher {
         this.phone = null;
     }
 
-    public ResultSet getCourses() throws SQLException {
+    public ResultSet getCoursesId() throws SQLException {
         String query = "Select course_id from teacher_courses where teacher_id=?";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
@@ -79,5 +79,14 @@ public class Teacher {
         preparedStatement.setInt(1, id);
         preparedStatement.setInt(2, courseId);
         preparedStatement.executeUpdate();
+    }
+
+    public ResultSet getCoursesIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',c.course_id,') ',c.course_name) as '(Course Id) & Name' "
+                + "from teacher_courses tc,course c "
+                + "where tc.teacher_id=? and tc.course_id=c.course_id";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
     }
 }
