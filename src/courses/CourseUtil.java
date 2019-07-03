@@ -11,31 +11,20 @@ public final class CourseUtil {
     private CourseUtil() {
     }
 
-    public static ResultSet getCourses() throws SQLException {
-        String query = "Select * from course";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        return preparedStatement.executeQuery();
-    }
-
     public static ResultSet getCoursesFormated() throws SQLException {
-        String query = "Select CONCAT(course_id) as 'Course Id',"
-                + "CONCAT(course_name) as 'Course Name',"
-                + "CONCAT(course_start_date) as 'Course Start Date',"
-                + "CONCAT(course_end_date) as 'Course End Date',"
-                + "CONCAT(course_price) as 'Course Price',"
-                + "CONCAT(course_time_hour_from) as 'Course Time From',"
-                + "CONCAT(course_time_hour_to) as 'Course Time Hour To',"
-                + "CONCAT(course_days) as 'Course Days' "
-                + "from course";
+        String query = "Select CONCAT(c.course_id) as 'Course Id',"
+                + "CONCAT(c.course_name) as 'Course Name',"
+                + "CONCAT(c.course_start_date) as 'Course Start Date',"
+                + "CONCAT(c.course_end_date) as 'Course End Date',"
+                + "CONCAT(c.course_price) as 'Course Price',"
+                + "CONCAT(c.course_time_hour_from) as 'Course Time From',"
+                + "CONCAT(c.course_time_hour_to) as 'Course Time Hour To',"
+                + "CONCAT(c.course_days) as 'Course Days',"
+                + "CONCAT(tc.teacher_name) as 'Course Teacher' "
+                + "from course c LEFT JOIN "
+                + "(select t.teacher_name,tc.course_id from teacher t,teacher_courses tc "
+                + "where t.teacher_id=tc.teacher_id) tc on tc.course_id=c.course_id";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        return preparedStatement.executeQuery();
-    }
-
-    public static ResultSet getCoursesId() throws SQLException {
-        String query = "Select course_id from course";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
 
@@ -51,8 +40,7 @@ public final class CourseUtil {
                 + "course_end_date,course_price,course_time_hour_from,"
                 + "course_time_hour_to,course_days)"
                 + " values(?,?,?,?,?,?,?)";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setString(1, name);
         preparedStatement.setDate(2, startDate);
         preparedStatement.setDate(3, endDate);
