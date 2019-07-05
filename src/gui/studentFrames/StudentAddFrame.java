@@ -199,8 +199,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
             } else {
                 createStudent(studentNameTf.getText(), studentPhoneFtf.getText());
             }
-            JOptionPane.showMessageDialog(this,
-                    "New Student created successfully");
+            JOptionPane.showMessageDialog(this, "New Student created successfully");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }

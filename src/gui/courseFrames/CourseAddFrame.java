@@ -1,16 +1,25 @@
 package gui.courseFrames;
 
-import courses.CourseUtil;
+import static courses.CourseUtil.createCourse;
+import static courses.CourseUtil.createCourser;
 import java.sql.Date;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import teachers.Teacher;
+import static teachers.TeacherUtil.getTeachersIdAndName;
 import static utils.TimeUtil.isValidDateOrder;
+import static utils.gui.GUI_Util.buildComboBoxModel;
 
 public class CourseAddFrame extends javax.swing.JFrame {
 
     public CourseAddFrame() {
         initComponents();
+        try {
+            courseTeacherCb.setModel(buildComboBoxModel(getTeachersIdAndName()));
+        } catch (SQLException ex) {
+            JOptionPane.showConfirmDialog(rootPane, ex);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -44,14 +53,17 @@ public class CourseAddFrame extends javax.swing.JFrame {
         daysCB5 = new javax.swing.JCheckBox();
         daysCB6 = new javax.swing.JCheckBox();
         daysCB7 = new javax.swing.JCheckBox();
+        courseTeacherTb = new javax.swing.JToggleButton();
+        courseTeacherCb = new javax.swing.JComboBox<>();
+        daysLbl1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(420, 560));
-        setMinimumSize(new java.awt.Dimension(420, 560));
+        setMaximumSize(null);
+        setMinimumSize(null);
         setName("frame"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(420, 560));
         setResizable(false);
-        setSize(new java.awt.Dimension(420, 560));
+        setSize(this.contentPnl.getSize()
+        );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
         titlePnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
@@ -83,7 +95,6 @@ public class CourseAddFrame extends javax.swing.JFrame {
 
         contentPnl.setBackground(new java.awt.Color(255, 255, 255));
         contentPnl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 171, 112)));
-        contentPnl.setPreferredSize(new java.awt.Dimension(300, 400));
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
@@ -206,13 +217,26 @@ public class CourseAddFrame extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        courseTeacherTb.setText("OFF");
+        courseTeacherTb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courseTeacherTbActionPerformed(evt);
+            }
+        });
+
+        courseTeacherCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        daysLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        daysLbl1.setForeground(new java.awt.Color(0, 51, 153));
+        daysLbl1.setText("Teacher");
+
         javax.swing.GroupLayout contentPnlLayout = new javax.swing.GroupLayout(contentPnl);
         contentPnl.setLayout(contentPnlLayout);
         contentPnlLayout.setHorizontalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contentTitleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
             .addGroup(contentPnlLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addGap(40, 40, 40)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(endDateLbl)
                     .addGroup(contentPnlLayout.createSequentialGroup()
@@ -222,9 +246,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
                             .addComponent(startDateLbl)
                             .addComponent(endTimeLbl)
                             .addComponent(startTimeLbl)
-                            .addGroup(contentPnlLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(daysLbl)))
+                            .addComponent(daysLbl))
                         .addGap(33, 33, 33)
                         .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(courseNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -234,12 +256,13 @@ public class CourseAddFrame extends javax.swing.JFrame {
                                 .addComponent(courseStartDateDP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cousrePriceSp, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(courseEndDateDP, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
-                            .addComponent(daysPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contentPnlLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
+                            .addComponent(daysPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(contentPnlLayout.createSequentialGroup()
+                                .addComponent(courseTeacherCb, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(courseTeacherTb))
+                            .addComponent(addCourseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(daysLbl1)))
         );
         contentPnlLayout.setVerticalGroup(
             contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,9 +299,14 @@ public class CourseAddFrame extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addComponent(daysLbl))
                     .addComponent(daysPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(11, 11, 11)
+                .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(courseTeacherCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(courseTeacherTb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(daysLbl1))
+                .addGap(11, 11, 11)
                 .addComponent(addCourseBtn)
-                .addGap(70, 70, 70))
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,14 +314,14 @@ public class CourseAddFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titlePnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-            .addComponent(contentPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(contentPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(contentPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
+                .addComponent(contentPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -301,8 +329,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
 
     private void addCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseBtnActionPerformed
         if (courseNameTf.getText() == null || courseNameTf.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Course MUST have course name");
+            JOptionPane.showMessageDialog(rootPane, "Course MUST have course name");
             return;
         }
         if (!isValidDateOrder(courseStartDateDP.getDate(), courseEndDateDP.getDate())) {
@@ -312,21 +339,37 @@ public class CourseAddFrame extends javax.swing.JFrame {
         }
 
         try {
-            CourseUtil.createCourse(courseNameTf.getText(),
-                    new Date(courseStartDateDP.getDateInMillis()),
-                    new Date(courseEndDateDP.getDateInMillis()),
-                    (double) cousrePriceSp.getValue(),
-                    courseEndTimeFtf.getText(),
-                    courseStartTimeFtf.getText(),
-                    getDays()
-            );
-
-            JOptionPane.showMessageDialog(this,
-                    "New Course created successfully");
+            if (courseTeacherTb.isSelected()) {
+                String teacher_item = courseTeacherCb.getSelectedItem().toString();
+                String teacher_id = teacher_item.substring(1, teacher_item.indexOf(")"));
+                new Teacher(Integer.parseInt(teacher_id)).enrollToCourse(
+                        createCourser(courseNameTf.getText(),
+                                new Date(courseStartDateDP.getDateInMillis()),
+                                new Date(courseEndDateDP.getDateInMillis()),
+                                (double) cousrePriceSp.getValue(),
+                                courseEndTimeFtf.getText(),
+                                courseStartTimeFtf.getText(),
+                                getDays()
+                        ).getId());
+                JOptionPane.showMessageDialog(this, "New Course created successfully");
+            } else {
+                createCourse(courseNameTf.getText(),
+                        new Date(courseStartDateDP.getDateInMillis()),
+                        new Date(courseEndDateDP.getDateInMillis()),
+                        (double) cousrePriceSp.getValue(),
+                        courseEndTimeFtf.getText(),
+                        courseStartTimeFtf.getText(),
+                        getDays());
+                JOptionPane.showMessageDialog(this, "New Course created successfully");
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex);
         }
     }//GEN-LAST:event_addCourseBtnActionPerformed
+
+    private void courseTeacherTbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseTeacherTbActionPerformed
+        courseTeacherTb.setText(courseTeacherTb.isSelected() ? "ON" : "OFF");
+    }//GEN-LAST:event_courseTeacherTbActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCourseBtn;
@@ -339,6 +382,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
     private javax.swing.JLabel coursePriceLbl;
     private org.jdesktop.swingx.JXDatePicker courseStartDateDP;
     private javax.swing.JFormattedTextField courseStartTimeFtf;
+    private javax.swing.JComboBox<String> courseTeacherCb;
+    private javax.swing.JToggleButton courseTeacherTb;
     private javax.swing.JSpinner cousrePriceSp;
     private javax.swing.JCheckBox daysCB1;
     private javax.swing.JCheckBox daysCB2;
@@ -348,6 +393,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox daysCB6;
     private javax.swing.JCheckBox daysCB7;
     private javax.swing.JLabel daysLbl;
+    private javax.swing.JLabel daysLbl1;
     private javax.swing.JPanel daysPnl;
     private javax.swing.JLabel endDateLbl;
     private javax.swing.JLabel endTimeLbl;

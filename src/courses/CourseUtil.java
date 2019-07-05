@@ -50,4 +50,35 @@ public final class CourseUtil {
         preparedStatement.setString(7, days);
         preparedStatement.executeUpdate();
     }
+
+    public static Course createCourser(String name, Date startDate, Date endDate, double price,
+            String timeHourFrom, String timeHourTo, String days) throws SQLException {
+        String query = "insert into course(course_name,course_start_date,"
+                + "course_end_date,course_price,course_time_hour_from,"
+                + "course_time_hour_to,course_days)"
+                + " values(?,?,?,?,?,?,?)";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setString(1, name);
+        preparedStatement.setDate(2, startDate);
+        preparedStatement.setDate(3, endDate);
+        preparedStatement.setDouble(4, price);
+        preparedStatement.setString(5, timeHourFrom);
+        preparedStatement.setString(6, timeHourTo);
+        preparedStatement.setString(7, days);
+        preparedStatement.executeUpdate();
+        
+        startDate.setTime(startDate.getTime() - 86_400_000);
+        endDate.setTime(endDate.getTime() - 86_400_000);
+        query = "select * from course where "
+                + "course_name='" + name + "' and "
+                + "course_start_date='" + startDate.toString() + "' and "
+                + "course_end_date='" + endDate.toString() + "' and "
+                + "course_price=" + price;
+        preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        ResultSet rs = preparedStatement.executeQuery();
+        Course c;
+        rs.next();
+        c = new Course(rs.getInt("course_id"));
+        return c;
+    }
 }

@@ -23,6 +23,13 @@ public final class TeacherUtil {
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         return preparedStatement.executeQuery();
     }
+
+    public static ResultSet getTeachersIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',teacher_id,') ',teacher_name) from teacher";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
     public static ResultSet getTeachersFormated() throws SQLException {
         String query = "Select CONCAT(teacher_id) as 'Teacher Id',"
                 + "CONCAT(teacher_name) as 'Teacher Name',"
