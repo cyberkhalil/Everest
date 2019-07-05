@@ -119,6 +119,15 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
+    public void buyBook(int bookId, int quanitity) throws SQLException {
+        String query = "Insert into student_books values(?,?,?)";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, bookId);
+        preparedStatement.setInt(3, quanitity);
+        preparedStatement.executeUpdate();
+    }
+
     public void addToExam(int examId) throws SQLException {
         String query = "Insert into student_exams values(?,?)";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);

@@ -4,12 +4,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 import javax.swing.SpinnerNumberModel;
+import utils.gui.GUI_Util.DoSomethingWithSpinner;
 
 class PromoteSpinner extends JFrame {
 
-    public PromoteSpinner(String title, String label,
-            SpinnerNumberModel spinnerNumberModel, String button,
-            GUI_Util.DoSomethingWithSpinner dsws) {
+    public PromoteSpinner(String title, String label, SpinnerNumberModel spinnerNumberModel,
+            String button, DoSomethingWithSpinner dsws) {
 
         initComponents();
         jLabel.setText(label);

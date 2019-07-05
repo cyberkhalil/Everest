@@ -84,37 +84,37 @@ public class GUI_Util {
     }
 
     public static JFrame promoteSpinner(String title, String label,
-            SpinnerNumberModel spinnerNumberModel, String button,
-            DoSomethingWithSpinner dsws) {
+            SpinnerNumberModel spinnerNumberModel, String button, DoSomethingWithSpinner dsws) {
         JFrame promoteFrame = new PromoteSpinner(title, label, spinnerNumberModel, button, dsws);
         promoteFrame.setVisible(true);
         return promoteFrame;
     }
 
-    public static JFrame promoteComboBox(String title, String labelTxt,
-            String buttonTxt, ComboBoxModel comboBoxModel,
-            DoSomethingWithComboBox dswcb) {
-
-        JFrame promoteFrame = new PromoteComboBox(
-                title, labelTxt, comboBoxModel, buttonTxt, dswcb);
-
+    public static JFrame promoteComboBox(String title, String labelTxt, String buttonTxt,
+            ComboBoxModel comboBoxModel, DoSomethingWithComboBox dswcb) {
+        JFrame promoteFrame = new PromoteComboBox(title, labelTxt, comboBoxModel, buttonTxt, dswcb);
         promoteFrame.setVisible(true);
         return promoteFrame;
     }
 
-    public static JFrame promoteDatePicker(String title, String labelTxt,
-            String buttonTxt, DoSomethingWithDatePicker dswdp) {
-
-        JFrame promoteFrame
-                = new PromoteDatePicker(title, labelTxt, buttonTxt, dswdp);
+    public static JFrame promoteComboBoxAndSpinner(String title, String comboLblTxt,
+            ComboBoxModel comboBoxModel, String spinnerLblTxt, SpinnerNumberModel spinnerModel,
+            String buttonTxt, DoSomethingWithComboBoxAndSpinner dswcbas) {
+        JFrame promoteFrame = new PromoteComboBoxAndSpinner(title, comboLblTxt, comboBoxModel,
+                spinnerLblTxt, spinnerModel, buttonTxt, dswcbas);
         promoteFrame.setVisible(true);
         return promoteFrame;
     }
 
-    public static JFrame promoteFormatedTextField(String title, String labelTxt,
-            String format, String buttonTxt,
-            DoSomethingWithFormatedTextField dswftf) {
+    public static JFrame promoteDatePicker(String title, String labelTxt, String buttonTxt,
+            DoSomethingWithDatePicker dswdp) {
+        JFrame promoteFrame = new PromoteDatePicker(title, labelTxt, buttonTxt, dswdp);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
 
+    public static JFrame promoteFormatedTextField(String title, String labelTxt, String format,
+            String buttonTxt, DoSomethingWithFormatedTextField dswftf) {
         JFrame promoteFrame = new PromoteFormatedTextField(
                 title, labelTxt, format, buttonTxt, dswftf);
         promoteFrame.setVisible(true);
@@ -129,7 +129,6 @@ public class GUI_Util {
 
     public static JFrame promoteDays(String title, String labelTxt, String buttonTxt,
             DoSomethingWithDays dswd) {
-
         JFrame promoteFrame = new PromoteDays(title, labelTxt, buttonTxt, dswd);
         promoteFrame.setVisible(true);
         return promoteFrame;
@@ -145,7 +144,6 @@ public class GUI_Util {
         promoteFrame.daysCB5.setSelected(defaultDays.contains("We"));
         promoteFrame.daysCB6.setSelected(defaultDays.contains("Th"));
         promoteFrame.daysCB7.setSelected(defaultDays.contains("Fr"));
-
         promoteFrame.setVisible(true);
         return promoteFrame;
     }
@@ -194,6 +192,17 @@ public class GUI_Util {
          * @return true to close or false to not close
          */
         abstract boolean doSomething(String days);
+    }
+
+    public static abstract interface DoSomethingWithComboBoxAndSpinner {
+
+        /**
+         *
+         * @param choise
+         * @param value
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String choise, double value);
     }
 
     public static abstract interface UpdateTableOperation {

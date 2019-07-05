@@ -5,12 +5,14 @@ import static courses.CourseUtil.getCoursesIdAndName;
 import static exams.ExamUtil.getExamsIdAndName;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import students.Student;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
+import static utils.gui.GUI_Util.promoteComboBoxAndSpinner;
 
 public class StudentsOperationsFrame extends javax.swing.JFrame {
 
@@ -191,18 +193,20 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void buyBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyBookBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBox("Buy A Book", "Choose Book Id to buy", "Buy Book",
-                    buildComboBoxModel(getBooksIdAndName()), (choice) -> {
-                try {
-                    selectedStudent.buyBook(Integer.parseInt(choice));
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Student bought this book successfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                }
-                return false;
-            }), buyBookBtn);
+            link_frame_to_button(promoteComboBoxAndSpinner("Buy A Book", "Book Id :",
+                    buildComboBoxModel(getBooksIdAndName()), "Book quantity",
+                    new SpinnerNumberModel(0, 0, 1000, 1), "Buy Book", (choice, value) -> {
+                        try {
+                            selectedStudent.buyBook(Integer.parseInt(choice.substring(1,
+                                    choice.indexOf(")"))), (int) value);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student bought " + value + " from this book successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), buyBookBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

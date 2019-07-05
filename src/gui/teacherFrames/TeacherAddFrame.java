@@ -146,6 +146,10 @@ public class TeacherAddFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        if (teacherNameTf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Teacher name can't be empty");
+            return;
+        }
         try {
             TeacherUtil.createTeacher(
                     teacherNameTf.getText(),
