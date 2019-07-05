@@ -120,7 +120,7 @@ public class Student {
     }
 
     public void addToExam(int examId) throws SQLException {
-        String query = "Insert into student_exams values(?,?,1)";
+        String query = "Insert into student_exams values(?,?)";
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.setInt(2, examId);

@@ -294,7 +294,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, ex);
                 }
                 return false;
-            }), enrollToCourseBtn);
+            }), addToExamBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
