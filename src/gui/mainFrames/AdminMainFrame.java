@@ -1,9 +1,9 @@
 package gui.mainFrames;
 
+import static books.BookUtil.getSoldOutBooks;
 import gui.bookFrames.BookAddFrame;
 import gui.userFrames.UserAddFrame;
 import gui.bookFrames.BooksEditFrame;
-import gui.bookFrames.BooksSoldOutDisplayFrame;
 import gui.courseFrames.CourseAddFrame;
 import gui.courseFrames.CoursesEditFrame;
 import gui.examFrames.ExamsEditFrame;
@@ -15,6 +15,9 @@ import gui.studentFrames.StudentAddFrame;
 import gui.studentFrames.StudentsEditFrame;
 import gui.teacherFrames.TeacherAddFrame;
 import gui.teacherFrames.TeachersEditFrame;
+import java.sql.SQLException;
+import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
 
 public class AdminMainFrame extends JFrame {
@@ -569,9 +572,13 @@ public class AdminMainFrame extends JFrame {
     }//GEN-LAST:event_studentsInfoBtnActionPerformed
 
     private void booksSoldoutDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksSoldoutDisplayBtnActionPerformed
-        BooksSoldOutDisplayFrame frame = new BooksSoldOutDisplayFrame();
-        frame.setVisible(true);
-        link_frame_to_button(frame, booksSoldoutDisplayBtn);
+        link_frame_to_button(displayItemsInJTable((table) -> {
+            try {
+                table.setModel(buildTableModel(getSoldOutBooks()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+        }), booksSoldoutDisplayBtn);
     }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

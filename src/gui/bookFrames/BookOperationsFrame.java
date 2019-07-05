@@ -1,6 +1,6 @@
-package gui.examFrames;
+package gui.bookFrames;
 
-import exams.Exam;
+import books.Book;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import students.Student;
@@ -11,12 +11,12 @@ import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
 
-public class ExamOperationsFrame extends javax.swing.JFrame {
+public class BookOperationsFrame extends javax.swing.JFrame {
 
-    private final Exam selectedExam;
+    private final Book selectedBook;
 
-    public ExamOperationsFrame(Exam exam) {
-        this.selectedExam = exam;
+    public BookOperationsFrame(Book book) {
+        this.selectedBook = book;
         initComponents();
     }
 
@@ -140,21 +140,42 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
     private void displayStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStudentsBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedExam.getStudentsName()));
+                table.setModel(buildTableModel(selectedBook.getStudentsFormated()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
         }), displayStudentsBtn);
     }//GEN-LAST:event_displayStudentsBtnActionPerformed
 
+    private void removeStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentsBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Remove Student", "student id:",
+                    "remove from book", buildComboBoxModel(selectedBook.getStudentsIdAndName()),
+                    (choice) -> {
+                        try {
+                            new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
+                                    removeFromBook(selectedBook.getId());
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student removed from book sucessfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removeStudentsBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeStudentsBtnActionPerformed
+
     private void addStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentsBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
+            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to book",
                     buildComboBoxModel(getStudentsIdAndName()), (choice) -> {
                 try {
                     new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
-                            addToExam(selectedExam.getId());
-                    JOptionPane.showMessageDialog(rootPane, "Student added to exam sucessfully");
+                            buyBook(selectedBook.getId());
+                    JOptionPane.showMessageDialog(rootPane, "Student added to book sucessfully");
                     return true;
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(rootPane, ex);
@@ -165,26 +186,6 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_addStudentsBtnActionPerformed
-
-    private void removeStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentsBtnActionPerformed
-        try {
-            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
-                    buildComboBoxModel(selectedExam.getStudentsIdAndName()), (choice) -> {
-                try {
-                    new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
-                            removeFromExam(selectedExam.getId());
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Student removed from exam sucessfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                }
-                return false;
-            }), removeStudentsBtn);
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
-        }
-    }//GEN-LAST:event_removeStudentsBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;

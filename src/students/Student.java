@@ -167,4 +167,12 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
+    public void removeFromBook(int bookId) throws SQLException {
+        String query = "Delete from student_books where student_id=? and book_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, bookId);
+        preparedStatement.executeUpdate();
+    }
+
 }

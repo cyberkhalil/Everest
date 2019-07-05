@@ -4,6 +4,7 @@ import books.Book;
 import books.BookUtil;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
@@ -196,6 +197,11 @@ public class BooksEditFrame extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jButton1.setText("other Operations");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bookButtonsPnlLayout = new javax.swing.GroupLayout(bookButtonsPnl);
         bookButtonsPnl.setLayout(bookButtonsPnlLayout);
@@ -385,6 +391,15 @@ public class BooksEditFrame extends javax.swing.JFrame {
                 }), setPriceBtn);
         updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (isBadSelection()) {
+            return;
+        }
+        JFrame frame = new BookOperationsFrame(selectedBook);
+        link_frame_to_button(frame, jButton1);
+        frame.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookButtonsPnl;

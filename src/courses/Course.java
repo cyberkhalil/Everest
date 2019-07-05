@@ -157,11 +157,9 @@ public class Course {
         this.price = -1;
     }
 
-    public ResultSet getCourseStudents() throws SQLException {
-        String query = "Select student_id from student_courses where "
-                + "course_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+    public ResultSet getStudentsId() throws SQLException {
+        String query = "Select student_id from student_courses where course_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, Id);
         return preparedStatement.executeQuery();
     }

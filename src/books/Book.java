@@ -142,10 +142,34 @@ public class Book {
     }
 
     public ResultSet getSoldQuantity() throws SQLException {
-        String query = "Select SUM(book_quantity) from student_books where "
-                + "book_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "Select SUM(book_quantity) from student_books "
+                + "where book_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, Id);
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet getStudentsId() throws SQLException {
+        String query = "Select student_id from student_books where book_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, Id);
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet getStudentsIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',s.student_id,') ',s.student_name) "
+                + "from student_books sb ,student s "
+                + "where sb.book_id=? and s.student_id=sb.student_id";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, Id);
+        return preparedStatement.executeQuery();
+    }
+
+    public ResultSet getStudentsFormated() throws SQLException {
+        String query = "Select s.student_id,s.student_name,sb.book_quantity "
+                + "from student_books sb ,student s "
+                + "where sb.book_id=? and s.student_id=sb.student_id";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, Id);
         return preparedStatement.executeQuery();
     }
