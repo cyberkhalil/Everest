@@ -265,8 +265,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void removeFromCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCourseBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBox("Course Enroll", "Choose course to remove",
-                    "Enroll to course", buildComboBoxModel(selectedStudent.getCoursesIdAndName()),
+            link_frame_to_button(promoteComboBox("Course Remove", "Choose course to remove",
+                    "Remove course", buildComboBoxModel(selectedStudent.getCoursesIdAndName()),
                     (choice) -> {
                         try {
                             selectedStudent.removeFromCourse(Integer.parseInt(

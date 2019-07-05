@@ -413,7 +413,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
             examPriceTf.setText("");
             examDateTf.setText("");
         } else {
-            examIdTf.setText(String.valueOf(selectedExam.getID()));
+            examIdTf.setText(String.valueOf(selectedExam.getId()));
             examNameTf.setText(selectedExam.getName());
             examPriceTf.setText(String.valueOf(selectedExam.getPrice()));
             examDateTf.setText(selectedExam.getTime().toString());

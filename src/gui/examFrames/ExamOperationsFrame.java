@@ -2,10 +2,16 @@ package gui.examFrames;
 
 import exams.Exam;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import students.Student;
+import static students.StudentUtil.getStudentsIdAndName;
+import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.promoteComboBox;
 
 public class ExamOperationsFrame extends javax.swing.JFrame {
 
@@ -22,6 +28,8 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
 
         ButtonsPnl = new javax.swing.JPanel();
         displayStudentsBtn = new javax.swing.JButton();
+        addStudentsBtn = new javax.swing.JButton();
+        removeStudentsBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -34,10 +42,26 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentY(0.0F);
 
         displayStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayStudentsBtn.setText("display Students");
+        displayStudentsBtn.setText("display students");
         displayStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayStudentsBtnActionPerformed(evt);
+            }
+        });
+
+        addStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addStudentsBtn.setText("add students");
+        addStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addStudentsBtnActionPerformed(evt);
+            }
+        });
+
+        removeStudentsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeStudentsBtn.setText("remove students");
+        removeStudentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeStudentsBtnActionPerformed(evt);
             }
         });
 
@@ -46,15 +70,22 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(20, 20, 20)
+                .addComponent(addStudentsBtn)
+                .addGap(15, 15, 15)
                 .addComponent(displayStudentsBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addComponent(removeStudentsBtn)
+                .addGap(20, 20, 20))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(displayStudentsBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayStudentsBtn)
+                    .addComponent(addStudentsBtn)
+                    .addComponent(removeStudentsBtn))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
@@ -75,7 +106,7 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
             .addGroup(titlePnlLayout.createSequentialGroup()
                 .addComponent(imgLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         titlePnlLayout.setVerticalGroup(
@@ -118,10 +149,51 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
         }), displayStudentsBtn);
     }//GEN-LAST:event_displayStudentsBtnActionPerformed
 
+    private void addStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentsBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
+                    buildComboBoxModel(getStudentsIdAndName()), (choice) -> {
+                try {
+                    new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
+                            addToExam(selectedExam.getId());
+                    JOptionPane.showMessageDialog(rootPane, "Student added to exam sucessfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            }), addStudentsBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_addStudentsBtnActionPerformed
+
+    private void removeStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStudentsBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
+                    buildComboBoxModel(selectedExam.getStudentsIdAndName()), (choice) -> {
+                try {
+                    new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
+                            removeFromExam(selectedExam.getId());
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Student removed from exam sucessfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            }), removeStudentsBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeStudentsBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
+    private javax.swing.JButton addStudentsBtn;
     private javax.swing.JButton displayStudentsBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton removeStudentsBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

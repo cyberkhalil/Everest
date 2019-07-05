@@ -8,12 +8,12 @@ import javax.swing.table.TableModel;
 import students.Student;
 import utils.PublicStaticFinals;
 import static students.StudentUtil.getStudentsFormated;
-import static students.StudentUtil.getStudentsIdAlongWithName;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.promoteFormatedTextField;
 import static utils.gui.GUI_Util.promoteComboBox;
+import static students.StudentUtil.getStudentsIdAndName;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
 
@@ -363,8 +363,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         }
         try {
             link_frame_to_button(promoteComboBox("Change Student AddedBy", "Student New AddedBy :",
-                    "Set Student AddedBy", buildComboBoxModel(
-                            getStudentsIdAlongWithName()), (AddedById) -> {
+                    "Set Student AddedBy", buildComboBoxModel(getStudentsIdAndName()), (AddedById) -> {
                         try {
                             selectedStudent.setAddedBy(Integer.parseInt(AddedById.substring(1,
                                     AddedById.indexOf(")"))));

@@ -46,6 +46,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         setQuantityBtn = new javax.swing.JButton();
         setPriceBtn = new javax.swing.JButton();
         deleteBookBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -133,7 +134,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         bookDataPnlLayout.setVerticalGroup(
             bookDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookDataPnlLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(bookDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bookIdTf, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bookIdLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +154,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
                 .addGroup(bookDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bookSoldLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bookSoldTf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bookButtonsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -193,6 +194,9 @@ public class BooksEditFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jButton1.setText("other Operations");
+
         javax.swing.GroupLayout bookButtonsPnlLayout = new javax.swing.GroupLayout(bookButtonsPnl);
         bookButtonsPnl.setLayout(bookButtonsPnlLayout);
         bookButtonsPnlLayout.setHorizontalGroup(
@@ -210,11 +214,15 @@ public class BooksEditFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookButtonsPnlLayout.createSequentialGroup()
                         .addComponent(deleteBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookButtonsPnlLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(86, 86, 86))
         );
         bookButtonsPnlLayout.setVerticalGroup(
             bookButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookButtonsPnlLayout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(bookButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setNameBtn)
                     .addComponent(setQuantityBtn))
@@ -222,7 +230,9 @@ public class BooksEditFrame extends javax.swing.JFrame {
                 .addGroup(bookButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(setPriceBtn)
                     .addComponent(deleteBookBtn))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -393,6 +403,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane booksViewSPnl;
     private javax.swing.JButton deleteBookBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton setNameBtn;
     private javax.swing.JButton setPriceBtn;
     private javax.swing.JButton setQuantityBtn;

@@ -3,15 +3,15 @@ package gui.studentFrames;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import static students.StudentUtil.createStudent;
-import static students.StudentUtil.getStudentsIdAlongWithName;
 import static utils.gui.GUI_Util.buildComboBoxModel;
+import static students.StudentUtil.getStudentsIdAndName;
 
 public class StudentAddFrame extends javax.swing.JFrame {
 
     public StudentAddFrame() {
         initComponents();
         try {
-            studentAddedByIdCb.setModel(buildComboBoxModel(getStudentsIdAlongWithName()));
+            studentAddedByIdCb.setModel(buildComboBoxModel(getStudentsIdAndName()));
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(rootPane, ex);
         }

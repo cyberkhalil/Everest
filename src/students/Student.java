@@ -152,11 +152,18 @@ public class Student {
     }
 
     public void removeFromCourse(int courseId) throws SQLException {
-        String query = "Delete * from student_courses values(?,?)";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        String query = "Delete from student_courses where student_id=? and course_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
         preparedStatement.setInt(2, courseId);
+        preparedStatement.executeUpdate();
+    }
+
+    public void removeFromExam(int examId) throws SQLException {
+        String query = "Delete from student_exams where student_id=? and exam_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, examId);
         preparedStatement.executeUpdate();
     }
 
