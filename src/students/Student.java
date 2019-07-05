@@ -95,7 +95,7 @@ public class Student {
 
     public ResultSet getBooksNameAndQuantity() throws SQLException {
         String query = "Select b.book_name,sb.book_quantity from student_books sb , book b"
-                + " where sb.student_id=? & b.book_id=sb.book_id";
+                + " where sb.student_id=? and b.book_id=sb.book_id";
 
         PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
         preparedStatement.setInt(1, id);
