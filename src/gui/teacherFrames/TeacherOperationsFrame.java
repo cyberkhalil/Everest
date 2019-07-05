@@ -1,10 +1,16 @@
 package gui.teacherFrames;
 
+import static courses.CourseUtil.getCoursesIdAndName;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import teachers.Teacher;
+import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.buildTableModel;
+import static utils.gui.GUI_Util.link_frame_to_button;
+import static utils.gui.GUI_Util.promoteComboBox;
 
 public class TeacherOperationsFrame extends javax.swing.JFrame {
 
@@ -21,6 +27,8 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
 
         ButtonsPnl = new javax.swing.JPanel();
         displayCoursesBtn = new javax.swing.JButton();
+        addToCourseBtn = new javax.swing.JButton();
+        removeFromCourseBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -33,10 +41,26 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentY(0.0F);
 
         displayCoursesBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayCoursesBtn.setText("display Courses");
+        displayCoursesBtn.setText("display courses");
         displayCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayCoursesBtnActionPerformed(evt);
+            }
+        });
+
+        addToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        addToCourseBtn.setText("add to course");
+        addToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCourseBtnActionPerformed(evt);
+            }
+        });
+
+        removeFromCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeFromCourseBtn.setText("remove from course");
+        removeFromCourseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromCourseBtnActionPerformed(evt);
             }
         });
 
@@ -44,21 +68,24 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
-            .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(displayCoursesBtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(addToCourseBtn)
+                .addGap(20, 20, 20)
+                .addComponent(displayCoursesBtn)
+                .addGap(20, 20, 20)
+                .addComponent(removeFromCourseBtn)
+                .addGap(20, 20, 20))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
-            .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(ButtonsPnlLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addToCourseBtn)
                     .addComponent(displayCoursesBtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(removeFromCourseBtn))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,7 +105,7 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
             .addGroup(titlePnlLayout.createSequentialGroup()
                 .addComponent(imgLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(titleLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         titlePnlLayout.setVerticalGroup(
@@ -112,19 +139,62 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayCoursesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayCoursesBtnActionPerformed
-        displayItemsInJTable((table) -> {
+        link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedTeacher.getCoursesIdAndName()));
+                table.setModel(buildTableModel(selectedTeacher.getCoursesFormated()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
-        });
+        }), displayCoursesBtn);
     }//GEN-LAST:event_displayCoursesBtnActionPerformed
+
+    private void addToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCourseBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Enroll to course", "Choose course to enroll",
+                    "Enroll to course", buildComboBoxModel(getCoursesIdAndName()), (choice) -> {
+                try {
+                    selectedTeacher.enrollToCourse(Integer.parseInt(
+                            choice.substring(1, choice.indexOf(")"))));
+                    JOptionPane.showMessageDialog(rootPane,
+                            "Teacher enrolled to this course successfully");
+                    return true;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, ex);
+                }
+                return false;
+            }), addToCourseBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_addToCourseBtnActionPerformed
+
+    private void removeFromCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromCourseBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Course Remove", "Choose course to remove",
+                    "remove course", buildComboBoxModel(selectedTeacher.getCoursesIdAndName()),
+                    (choice) -> {
+                        try {
+                            selectedTeacher.removeFromCourse(Integer.parseInt(
+                                    choice.substring(1, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Teacher removed from this course successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removeFromCourseBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeFromCourseBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
+    private javax.swing.JButton addToCourseBtn;
     private javax.swing.JButton displayCoursesBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton removeFromCourseBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

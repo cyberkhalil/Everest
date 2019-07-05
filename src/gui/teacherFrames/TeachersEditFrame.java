@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import teachers.Teacher;
 import static teachers.TeacherUtil.getTeachersFormated;
-import utils.PublicStaticFinals;
+import static utils.PublicStaticFinals.PHONE_FORMAT;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteFormatedTextField;
@@ -270,9 +270,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String teacherName = (String) JOptionPane.showInputDialog(
-                rootPane, "New Teacher Name:", "Set Teacher Name",
-                JOptionPane.QUESTION_MESSAGE, null, null, selectedTeacher.getName());
+        String teacherName = (String) JOptionPane.showInputDialog(rootPane, "New Teacher Name:",
+                "Set Teacher Name", JOptionPane.QUESTION_MESSAGE, null, null,
+                 selectedTeacher.getName());
 
         if (teacherName == null) {
             return;
@@ -295,8 +295,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
             return;
         }
         link_frame_to_button(promoteFormatedTextField("Change Teacher Phone",
-                "Teacher New Phone :", PublicStaticFinals.PHONE_FORMAT, "Set Teacher Phone",
-                (phone) -> {
+                "Teacher New Phone :", PHONE_FORMAT, "Set Teacher Phone", (phone) -> {
                     try {
                         if (phone.trim().length() < 12) {
                             JOptionPane.showMessageDialog(rootPane,
@@ -318,11 +317,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        boolean deleteConfirmation = JOptionPane
-                .showConfirmDialog(rootPane,
-                        "Are you sure you want delete Teacher "
-                        + teacherNameTf.getText() + " ?", "Teacher Delete",
-                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane,
+                "Are you sure you want delete Teacher " + teacherNameTf.getText() + " ?",
+                "Teacher Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
@@ -383,8 +380,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
 
     private boolean isBadSelection() throws HeadlessException {
         if (selectedTeacher == null) {
-            JOptionPane.showMessageDialog(rootPane,
-                    "Choose a Teacher to make this opreation !");
+            JOptionPane.showMessageDialog(rootPane, "Choose a Teacher to make this opreation !");
             return true;
         }
         return false;

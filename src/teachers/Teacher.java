@@ -89,4 +89,20 @@ public class Teacher {
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
+
+    public void removeFromCourse(int courseId) throws SQLException {
+        String query = "Delete from teacher_courses where teacher_id=? and course_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        preparedStatement.setInt(2, courseId);
+        preparedStatement.executeUpdate();
+    }
+
+    public ResultSet getCoursesFormated() throws SQLException {
+        String query = "Select c.course_id,c.course_name from teacher_courses tc,course c "
+                + "where tc.teacher_id=? and tc.course_id=c.course_id";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
 }
