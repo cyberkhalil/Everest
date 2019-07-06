@@ -54,7 +54,7 @@ public class BookUtil {
     }
 
     public static ResultSet getSoldOutBooks() throws SQLException {
-        String query = "Select b.book_name,sb.book_quantity,s.student_name"
+        String query = "Select b.book_name,sb.book_quantity,s.student_name,sb.buy_date"
                 + " from student_books sb,book b,student s"
                 + " where b.book_id = sb.book_id"
                 + " and s.student_id= sb.student_id";
