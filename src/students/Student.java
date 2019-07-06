@@ -1,6 +1,5 @@
 package students;
 
-import books.Book;
 import db.DBConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -162,9 +161,18 @@ public class Student {
     public ResultSet getExamsName() throws SQLException {
         String query = "Select e.exam_name from student_exams se,exam e where se.student_id=? and "
                 + "se.exam_id=e.exam_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
+    }
+
+    public ResultSet getExamsIdAndName() throws SQLException {
+        String query = "Select e.exam_id,e.exam_name "
+                + "from student_exams se,exam e "
+                + "where se.student_id=? and se.exam_id=e.exam_id";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
     }
 
     public void removeFromCourse(int courseId) throws SQLException {

@@ -17,6 +17,12 @@ public final class ExamUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getExamsId() throws SQLException {
+        String query = "Select exam_id from exam";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
     public static ResultSet getExamsFormated() throws SQLException {
         String query = "Select CONCAT(exam_id) as 'Exam Id',CONCAT(exam_name) as 'Exam Name',"
                 + "CONCAT(exam_price) as 'Exam Price',CONCAT(exam_time) as 'Exam Time' from exam";

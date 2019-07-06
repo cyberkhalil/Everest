@@ -1,6 +1,13 @@
 package gui.mainFrames;
 
 import static books.BookUtil.getSoldOutBooks;
+import com.itextpdf.text.DocumentException;
+import courses.Course;
+import static courses.CourseUtil.getCoursesFormated;
+import static courses.CourseUtil.getCoursesId;
+import exams.Exam;
+import static exams.ExamUtil.getExamsFormated;
+import static exams.ExamUtil.getExamsId;
 import gui.bookFrames.BookAddFrame;
 import gui.userFrames.UserAddFrame;
 import gui.bookFrames.BooksEditFrame;
@@ -15,7 +22,15 @@ import gui.studentFrames.StudentAddFrame;
 import gui.studentFrames.StudentsEditFrame;
 import gui.teacherFrames.TeacherAddFrame;
 import gui.teacherFrames.TeachersEditFrame;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFileChooser;
+import static others.InvoiceToPdf.printResultSet;
+import students.Student;
+import static students.StudentUtil.getStudentsFormated;
+import static students.StudentUtil.getStudentsId;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
@@ -53,6 +68,7 @@ public class AdminMainFrame extends JFrame {
         userLbl = new javax.swing.JLabel();
         usersEditBtn = new javax.swing.JButton();
         userAddBtn = new javax.swing.JButton();
+        printOrganizationPdfInfoBtn = new javax.swing.JButton();
         examsPnl = new javax.swing.JPanel();
         examsLbl = new javax.swing.JLabel();
         examAddBtn = new javax.swing.JButton();
@@ -170,11 +186,11 @@ public class AdminMainFrame extends JFrame {
             studentsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(studentsPnlLayout.createSequentialGroup()
                 .addComponent(studentTitleLbl)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(studentAddBtn)
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(studentsInfoBtn)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         booksPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -224,13 +240,13 @@ public class AdminMainFrame extends JFrame {
             booksPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(booksPnlLayout.createSequentialGroup()
                 .addComponent(bookLbl)
-                .addGap(17, 17, 17)
+                .addGap(15, 15, 15)
                 .addComponent(bookAddBtn)
-                .addGap(17, 17, 17)
+                .addGap(10, 10, 10)
                 .addComponent(booksDisplayBtn)
-                .addGap(17, 17, 17)
+                .addGap(10, 10, 10)
                 .addComponent(booksSoldoutDisplayBtn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         contentTitleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
@@ -263,6 +279,13 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
+        printOrganizationPdfInfoBtn.setText("Print Organization Pdf Info");
+        printOrganizationPdfInfoBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printOrganizationPdfInfoBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout usersPnlLayout = new javax.swing.GroupLayout(usersPnl);
         usersPnl.setLayout(usersPnlLayout);
         usersPnlLayout.setHorizontalGroup(
@@ -272,18 +295,21 @@ public class AdminMainFrame extends JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(usersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(userAddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(usersEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                    .addComponent(usersEditBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                    .addComponent(printOrganizationPdfInfoBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         usersPnlLayout.setVerticalGroup(
             usersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usersPnlLayout.createSequentialGroup()
                 .addComponent(userLbl)
-                .addGap(11, 11, 11)
+                .addGap(15, 15, 15)
                 .addComponent(userAddBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(usersEditBtn)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(printOrganizationPdfInfoBtn)
+                .addGap(15, 15, 15))
         );
 
         examsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,11 +351,11 @@ public class AdminMainFrame extends JFrame {
             examsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(examsPnlLayout.createSequentialGroup()
                 .addComponent(examsLbl)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(examAddBtn)
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addComponent(examEditBtn)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         coursesPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -371,11 +397,11 @@ public class AdminMainFrame extends JFrame {
             coursesPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coursesPnlLayout.createSequentialGroup()
                 .addComponent(coursesTitleLbl)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(courseAddBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(editCoursesBtn)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         teachersPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -417,11 +443,11 @@ public class AdminMainFrame extends JFrame {
             teachersPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(teachersPnlLayout.createSequentialGroup()
                 .addComponent(teacherLbl)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(teacherAddBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(teachersEditBtn)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout content_jPanelLayout = new javax.swing.GroupLayout(content_jPanel);
@@ -454,10 +480,10 @@ public class AdminMainFrame extends JFrame {
                     .addComponent(booksPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(studentsPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40)
-                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(usersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(coursesPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(teachersPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(content_jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(usersPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(teachersPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(coursesPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
         );
 
@@ -581,6 +607,114 @@ public class AdminMainFrame extends JFrame {
         }), booksSoldoutDisplayBtn);
     }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
 
+    private void printOrganizationPdfInfoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printOrganizationPdfInfoBtnActionPerformed
+        try {
+            JFileChooser f = new JFileChooser();
+            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            f.showSaveDialog(rootPane);
+
+            File mainDir = f.getSelectedFile();
+            File studentsDir = new File(mainDir.getPath() + File.separator + "Students");
+            studentsDir.mkdir();
+            try {
+                printResultSet(getStudentsFormated(),
+                        studentsDir + File.separator + "AllStudents.pdf");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            try {
+                ResultSet rs = getStudentsId();
+                while (rs.next()) {
+                    int student_id = rs.getInt(1);
+                    File studentDir = new File(studentsDir.getPath() + File.separator + student_id);
+                    studentDir.mkdir();
+                    Student student = new Student(student_id);
+                    try {
+                        printResultSet(student.getBalance(),
+                                studentDir.getPath() + File.separator + "Balance.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    try {
+                        printResultSet(student.getBooksNameAndQuantity(),
+                                studentDir.getPath() + File.separator + "Books.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    try {
+                        printResultSet(student.getExamsIdAndName(),
+                                studentDir.getPath() + File.separator + "Exams.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    try {
+                        printResultSet(student.getCoursesIdAndName(),
+                                studentDir.getPath() + File.separator + "Courses.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            // Courses
+            File coursesDir = new File(mainDir.getPath() + File.separator + "Courses");
+            coursesDir.mkdir();
+            try {
+                printResultSet(getCoursesFormated(),
+                        coursesDir + File.separator + "AllCourses.pdf");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            try {
+                ResultSet rs = getCoursesId();
+                while (rs.next()) {
+                    int course_id = rs.getInt(1);
+                    File courseDir = new File(coursesDir.getPath() + File.separator + course_id);
+                    courseDir.mkdir();
+                    Course course = new Course(course_id);
+                    try {
+                        printResultSet(course.getStudentsFormated(),
+                                courseDir.getPath() + File.separator + "CourseStudents.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            // Exam
+            File examsDir = new File(mainDir.getPath() + File.separator + "Exams");
+            examsDir.mkdir();
+            try {
+                printResultSet(getExamsFormated(), examsDir + File.separator + "AllExams.pdf");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+            try {
+                ResultSet rs = getExamsId();
+                while (rs.next()) {
+                    int exam_id = rs.getInt(1);
+                    File examDir = new File(examsDir.getPath() + File.separator + exam_id);
+                    examDir.mkdir();
+                    Exam exam = new Exam(exam_id);
+                    try {
+                        printResultSet(exam.getStudentsIdAndName(),
+                                examDir.getPath() + File.separator + "ExamStudents.pdf");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+
+            JOptionPane.showMessageDialog(rootPane, "Printed successfully");
+        } catch (FileNotFoundException | DocumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_printOrganizationPdfInfoBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookAddBtn;
     private javax.swing.JLabel bookLbl;
@@ -599,6 +733,7 @@ public class AdminMainFrame extends JFrame {
     protected javax.swing.JPanel examsPnl;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton printOrganizationPdfInfoBtn;
     private javax.swing.JButton studentAddBtn;
     private javax.swing.JLabel studentTitleLbl;
     private javax.swing.JButton studentsInfoBtn;

@@ -34,6 +34,12 @@ public final class CourseUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getCoursesId() throws SQLException {
+        String query = "Select course_id from course";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        return preparedStatement.executeQuery();
+    }
+
     public static void createCourse(String name, Date startDate, Date endDate, double price,
             String timeHourFrom, String timeHourTo, String days) throws SQLException {
         String query = "insert into course(course_name,course_start_date,"
@@ -66,7 +72,7 @@ public final class CourseUtil {
         preparedStatement.setString(6, timeHourTo);
         preparedStatement.setString(7, days);
         preparedStatement.executeUpdate();
-        
+
         startDate.setTime(startDate.getTime() - 86_400_000);
         endDate.setTime(endDate.getTime() - 86_400_000);
         query = "select * from course where "

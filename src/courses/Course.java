@@ -163,4 +163,13 @@ public class Course {
         preparedStatement.setInt(1, Id);
         return preparedStatement.executeQuery();
     }
+
+    public ResultSet getStudentsFormated() throws SQLException {
+        String query = "Select cs.course_id,s.student_id,s.student_name "
+                + "from student_courses cs,student s "
+                + "where course_id=? and s.student_id=cs.student_id";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, Id);
+        return preparedStatement.executeQuery();
+    }
 }

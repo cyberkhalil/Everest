@@ -1,5 +1,10 @@
 package utils.gui;
 
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import others.InvoiceToPdf;
 import utils.gui.GUI_Util.UpdateTableOperation;
 
 class DisplayItemsInJTable extends javax.swing.JFrame {
@@ -21,6 +26,9 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
+        toolsPnl = new javax.swing.JPanel();
+        printTableBtn = new javax.swing.JButton();
+        refreshTableBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,19 +77,60 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        printTableBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        printTableBtn.setText("Print Table");
+        printTableBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printTableBtnActionPerformed(evt);
+            }
+        });
+
+        refreshTableBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        refreshTableBtn.setText("Refresh Table");
+        refreshTableBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshTableBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout toolsPnlLayout = new javax.swing.GroupLayout(toolsPnl);
+        toolsPnl.setLayout(toolsPnlLayout);
+        toolsPnlLayout.setHorizontalGroup(
+            toolsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(toolsPnlLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(printTableBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshTableBtn)
+                .addGap(20, 20, 20))
+        );
+        toolsPnlLayout.setVerticalGroup(
+            toolsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, toolsPnlLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(toolsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(printTableBtn)
+                    .addComponent(refreshTableBtn))
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(itemsViewSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolsPnl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(titlePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(itemsViewSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addComponent(toolsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(itemsViewSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -91,12 +140,32 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
         updateTableOperation.updateTable(itemsTbl);
     }//GEN-LAST:event_itemsTblMouseClicked
 
+    private void refreshTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTableBtnActionPerformed
+        updateTableOperation.updateTable(itemsTbl);
+    }//GEN-LAST:event_refreshTableBtnActionPerformed
+
+    private void printTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printTableBtnActionPerformed
+        try {
+            JFileChooser f = new JFileChooser();
+            f.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            f.showSaveDialog(rootPane);
+
+            InvoiceToPdf.printjTable(itemsTbl, f.getSelectedFile().getPath());
+            JOptionPane.showMessageDialog(rootPane, "Printed successfully");
+        } catch (FileNotFoundException | DocumentException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_printTableBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgLbl;
     private javax.swing.JTable itemsTbl;
     private javax.swing.JScrollPane itemsViewSPnl;
+    private javax.swing.JButton printTableBtn;
+    private javax.swing.JButton refreshTableBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
+    private javax.swing.JPanel toolsPnl;
     // End of variables declaration//GEN-END:variables
 
 }
