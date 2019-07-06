@@ -1,5 +1,6 @@
 package students;
 
+import books.Book;
 import db.DBConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -102,6 +103,13 @@ public class Student {
         return preparedStatement.executeQuery();
     }
 
+    public ResultSet getBooksId() throws SQLException {
+        String query = "Select book_id from student_books where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
+
     public ResultSet getCoursesIdAndName() throws SQLException {
         String query = "Select CONCAT('(',c.course_id,') ',c.course_name) as 'Courses' "
                 + "from student_courses sc,course c "
@@ -112,20 +120,28 @@ public class Student {
     }
 
     public void buyBook(int bookId) throws SQLException {
-        String query = "Insert into student_books values(?,?,1)";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setInt(2, bookId);
-        preparedStatement.executeUpdate();
+        buyBook(bookId, 1);
     }
 
     public void buyBook(int bookId, int quanitity) throws SQLException {
-        String query = "Insert into student_books values(?,?,?)";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setInt(2, bookId);
-        preparedStatement.setInt(3, quanitity);
-        preparedStatement.executeUpdate();
+        if (!hasBook(bookId)) {
+            String query = "Insert into student_books values(?,?,?)";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            ps.setInt(2, bookId);
+            ps.setInt(3, quanitity);
+            ps.executeUpdate();
+        } else {
+            int old_quantity = bookQuantity(bookId);
+            int new_quanitity = old_quantity + quanitity;
+            String query = "Update student_books set book_quantity=? "
+                    + "where student_id=? and book_id=?";
+            PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+            ps.setInt(1, new_quanitity);
+            ps.setInt(2, id);
+            ps.setInt(3, bookId);
+            ps.executeUpdate();
+        }
     }
 
     public void addToExam(int examId) throws SQLException {
@@ -181,4 +197,25 @@ public class Student {
         preparedStatement.setInt(1, id);
         return preparedStatement.executeQuery();
     }
+
+    public boolean hasBook(int bookId) throws SQLException {
+        ResultSet rs = getBooksId();
+        while (rs.next()) {
+            if (rs.getInt("book_id") == bookId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int bookQuantity(int bookId) throws SQLException {
+        String query = "Select * from student_books where student_id=? and book_id=?";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setInt(2, bookId);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt("book_quantity");
+    }
+
 }
