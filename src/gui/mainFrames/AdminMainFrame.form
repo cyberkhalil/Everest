@@ -6,7 +6,7 @@
     <Property name="name" type="java.lang.String" value="frame" noResource="true"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[710, 560]"/>
+      <Dimension value="[0, 0]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -31,10 +31,10 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="content_jPanel" pref="724" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="content_jPanel" min="-2" pref="704" max="-2" attributes="0"/>
                   <Component id="titlePnl" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -47,8 +47,8 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="titlePnl" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="content_jPanel" min="-2" pref="388" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="content_jPanel" min="-2" pref="390" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,6 +65,9 @@
               <Color PropertyName="color" blue="99" green="33" red="0" type="rgb"/>
             </LineBorder>
           </Border>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[704, 105]"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -94,7 +97,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="imgLbl" alignment="0" pref="105" max="32767" attributes="0"/>
+              <Component id="imgLbl" alignment="0" pref="103" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="logoutBtn" min="-2" max="-2" attributes="0"/>
@@ -160,7 +163,7 @@
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[573, 450]"/>
+          <Dimension value="[575, 450]"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -177,18 +180,18 @@
                       <Component id="coursesPnl" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="examsPnl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="usersPnl" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="examsPnl" max="32767" attributes="0"/>
+                      <Component id="usersPnl" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="teachersPnl" min="-2" max="-2" attributes="0"/>
-                      <Component id="booksPnl" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="booksPnl" max="32767" attributes="0"/>
+                      <Component id="teachersPnl" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
-              <Component id="contentTitleLbl" alignment="0" max="32767" attributes="0"/>
+              <Component id="contentTitleLbl" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -201,13 +204,13 @@
                       <Component id="booksPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="studentsPnl" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="usersPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="teachersPnl" alignment="0" max="32767" attributes="0"/>
                       <Component id="coursesPnl" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -433,13 +436,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="userLbl" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="userAddBtn" max="32767" attributes="0"/>
-                          <Component id="usersEditBtn" pref="171" max="32767" attributes="0"/>
+                          <Component id="usersEditBtn" max="32767" attributes="0"/>
                           <Component id="printOrganizationPdfInfoBtn" alignment="1" pref="171" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -529,7 +532,7 @@
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="examEditBtn" pref="170" max="32767" attributes="0"/>
-                          <Component id="examAddBtn" pref="170" max="32767" attributes="0"/>
+                          <Component id="examAddBtn" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
@@ -606,9 +609,9 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="coursesTitleLbl" alignment="0" pref="205" max="32767" attributes="0"/>
+                  <Component id="coursesTitleLbl" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="editCoursesBtn" min="-2" pref="155" max="-2" attributes="0"/>
                           <Component id="courseAddBtn" min="-2" pref="155" max="-2" attributes="0"/>
@@ -690,12 +693,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="teacherLbl" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="teacherAddBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="teachersEditBtn" alignment="0" pref="171" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -203,34 +203,34 @@ CREATE TABLE IF NOT EXISTS teacher_purchases (
 )  AUTO_INCREMENT=1;
 
 CREATE VIEW students_financials AS 
-SELECT s.student_id,s.student_name,b.book_price AS "Money",
-CONCAT('Buying book ','(',b.book_id,') ',b.book_name) As "Description"
+SELECT s.student_id,s.student_name,b.book_price * sb.book_quantity AS 'Money',
+CONCAT('Buying ',sb.book_quantity,' book from ','(',b.book_id,') ',b.book_name) As 'Description'
 FROM student s,student_books sb,book b
 WHERE s.student_id = sb.student_id AND sb.book_id = b.book_id
-UNION SELECT  s.student_id,s.student_name,c.course_price AS "Money",
-CONCAT('Enrolling to course ','(',c.course_id,') ',c.course_name) As "Description"
+UNION SELECT  s.student_id,s.student_name,c.course_price AS 'Money',
+CONCAT('Enrolling to course ','(',c.course_id,') ',c.course_name) As 'Description'
 FROM student s,student_courses sc,course c
 WHERE s.student_id = sc.student_id AND sc.course_id = c.course_id
-UNION SELECT  s.student_id,s.student_name,e.exam_price AS "Money",
-CONCAT('Enrolling to exam ','(',e.exam_id,') ',e.exam_name) As "Description"
+UNION SELECT  s.student_id,s.student_name,e.exam_price AS 'Money',
+CONCAT('Enrolling to exam ','(',e.exam_id,') ',e.exam_name) As 'Description'
 FROM student s,student_exams se,exam e
 WHERE s.student_id = se.student_id AND se.exam_id = e.exam_id
-UNION SELECT  s.student_id,s.student_name,sp.purchase_price AS "Money","Paying money"
+UNION SELECT  s.student_id,s.student_name,sp.purchase_price AS 'Money','Paying money'
 FROM student s,student_purchases sp
 WHERE s.student_id = sp.student_id;
 
 CREATE VIEW teachers_financials AS 
-SELECT t.teacher_id,t.teacher_name,c.course_price AS "Money","Teaching course"
+SELECT t.teacher_id,t.teacher_name,c.course_price AS 'Money','Teaching course'
 FROM teacher t,teacher_courses tc,course c
 WHERE t.teacher_id = tc.teacher_id AND tc.course_id = c.course_id
-UNION SELECT  t.teacher_id,t.teacher_name,tp.purchase_price AS "Money","Paying money"
+UNION SELECT  t.teacher_id,t.teacher_name,tp.purchase_price AS 'Money','Paying money'
 FROM teacher t,teacher_purchases tp
 WHERE t.teacher_id = tp.teacher_id;
 
 CREATE VIEW students_financial AS 
 SELECT * from students_financials
-UNION SELECT student_id,student_name,SUM(Money),"Sum" from students_financials;
+UNION SELECT student_id,student_name,SUM(Money),'Total' from students_financials;
 
 CREATE VIEW teachers_financial AS 
 SELECT * from teachers_financials
-UNION SELECT teacher_id,teacher_name,SUM(Money),"Sum" from teachers_financials;
+UNION SELECT teacher_id,teacher_name,SUM(Money),'Total' from teachers_financials;
