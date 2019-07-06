@@ -220,7 +220,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         });
 
         deleteCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        deleteCourseBtn.setText("Delete Exam");
+        deleteCourseBtn.setText("Delete Course");
         deleteCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
