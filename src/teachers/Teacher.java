@@ -1,6 +1,6 @@
 package teachers;
 
-import db.DBConnection;
+import static db.DBConnection.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,10 +13,9 @@ public class Teacher {
 
     public Teacher(int id) throws SQLException {
         String query = "Select * from teacher where teacher_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        ResultSet rs = preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
         rs.next();
         this.name = rs.getString("teacher_name");
         this.phone = rs.getString("teacher_phone");
@@ -37,72 +36,72 @@ public class Teacher {
 
     public void setName(String name) throws SQLException {
         String query = "Update teacher set teacher_name=? where teacher_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, name);
-        preparedStatement.setInt(2, id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setString(1, name);
+        ps.setInt(2, id);
+        ps.executeUpdate();
 
         this.name = name;
     }
 
     public void setPhone(String phone) throws SQLException {
         String query = "Update teacher set teacher_phone=? where teacher_id=?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, phone);
-        preparedStatement.setInt(2, id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setString(1, phone);
+        ps.setInt(2, id);
+        ps.executeUpdate();
 
         this.phone = phone;
     }
 
     public void delete() throws SQLException {
         String query = "Delete from teacher where teacher_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.executeUpdate();
         this.name = null;
         this.phone = null;
     }
 
     public ResultSet getCoursesId() throws SQLException {
         String query = "Select course_id from teacher_courses where teacher_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
     }
 
     public void enrollToCourse(int courseId) throws SQLException {
         String query = "Insert into teacher_courses values(?,?)";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setInt(2, courseId);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setInt(2, courseId);
+        ps.executeUpdate();
     }
 
     public ResultSet getCoursesIdAndName() throws SQLException {
         String query = "Select CONCAT('(',c.course_id,') ',c.course_name) as '(Course Id) & Name' "
                 + "from teacher_courses tc,course c "
                 + "where tc.teacher_id=? and tc.course_id=c.course_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
     }
 
     public void removeFromCourse(int courseId) throws SQLException {
         String query = "Delete from teacher_courses where teacher_id=? and course_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        preparedStatement.setInt(2, courseId);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setInt(2, courseId);
+        ps.executeUpdate();
     }
 
     public ResultSet getCoursesFormated() throws SQLException {
-        String query = "Select c.course_id,c.course_name from teacher_courses tc,course c "
+        String query = "Select CONCAT('(',c.course_id,') ',c.course_name) AS 'Course',"
+                + "CONCAT(tc.teach_date) as 'Date' "
+                + "from teacher_courses tc,course c "
                 + "where tc.teacher_id=? and tc.course_id=c.course_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
     }
 }

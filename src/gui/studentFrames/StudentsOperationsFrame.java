@@ -258,7 +258,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private void displayBooksBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBooksBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedStudent.getBooksNameAndQuantity()));
+                table.setModel(buildTableModel(selectedStudent.getBooksFormated()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }

@@ -1,6 +1,5 @@
 package gui.mainFrames;
 
-import static books.BookUtil.getSoldOutBooks;
 import com.itextpdf.text.DocumentException;
 import courses.Course;
 import static courses.CourseUtil.getCoursesFormated;
@@ -35,6 +34,7 @@ import static students.StudentUtil.getStudentsId;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
+import static books.BookUtil.getSoldOutBooksFormated;
 
 public class AdminMainFrame extends JFrame {
 
@@ -602,7 +602,7 @@ public class AdminMainFrame extends JFrame {
     private void booksSoldoutDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booksSoldoutDisplayBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(getSoldOutBooks()));
+                table.setModel(buildTableModel(getSoldOutBooksFormated()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
@@ -638,7 +638,7 @@ public class AdminMainFrame extends JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     try {
-                        printResultSet(student.getBooksNameAndQuantity(),
+                        printResultSet(student.getBooksFormated(),
                                 studentDir.getPath() + File.separator + "Books.pdf");
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);

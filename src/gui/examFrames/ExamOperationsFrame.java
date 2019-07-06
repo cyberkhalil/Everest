@@ -140,7 +140,7 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
     private void displayStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayStudentsBtnActionPerformed
         link_frame_to_button(displayItemsInJTable((table) -> {
             try {
-                table.setModel(buildTableModel(selectedExam.getStudentsName()));
+                table.setModel(buildTableModel(selectedExam.getStudentsFormated()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }

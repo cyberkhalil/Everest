@@ -53,12 +53,22 @@ public class BookUtil {
         return preparedStatement.executeQuery();
     }
 
+    public static ResultSet getSoldOutBooksFormated() throws SQLException {
+        String query = "Select CONCAT('(',b.book_id,') ',b.book_name) as 'Book',"
+                + "CONCAT(sb.book_quantity) as 'Quantity',"
+                + "CONCAT('(',s.student_id,') ',s.student_name) as 'Student',"
+                + "CONCAT(sb.buy_date) as 'Date' "
+                + "from student_books sb,book b,student s "
+                + "where b.book_id = sb.book_id and s.student_id= sb.student_id";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+        return ps.executeQuery();
+    }
+
     public static ResultSet getSoldOutBooks() throws SQLException {
-        String query = "Select b.book_name,sb.book_quantity,s.student_name,sb.buy_date"
-                + " from student_books sb,book b,student s"
-                + " where b.book_id = sb.book_id"
-                + " and s.student_id= sb.student_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        return preparedStatement.executeQuery();
+        String query = "Select b.book_name,sb.book_quantity,s.student_name,sb.buy_date "
+                + "from student_books sb,book b,student s "
+                + "where b.book_id = sb.book_id and s.student_id= sb.student_id";
+        PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
+        return ps.executeQuery();
     }
 }
