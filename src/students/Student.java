@@ -175,4 +175,10 @@ public class Student {
         preparedStatement.executeUpdate();
     }
 
+    public ResultSet getBalance() throws SQLException {
+        String query = "Select * from students_financial where student_id=?";
+        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        return preparedStatement.executeQuery();
+    }
 }

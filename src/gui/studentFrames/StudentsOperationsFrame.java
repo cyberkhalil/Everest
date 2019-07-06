@@ -35,6 +35,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         displayExamsBtn = new javax.swing.JButton();
         removeFromCourseBtn = new javax.swing.JButton();
         addToExamBtn = new javax.swing.JButton();
+        displayBalanceBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -47,7 +48,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnl.setAlignmentY(0.0F);
 
         buyBookBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        buyBookBtn.setText("buy Book");
+        buyBookBtn.setText("Buy Book");
         buyBookBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buyBookBtnActionPerformed(evt);
@@ -55,7 +56,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         enrollToCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        enrollToCourseBtn.setText("enroll to course");
+        enrollToCourseBtn.setText("Enroll To Course");
         enrollToCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enrollToCourseBtnActionPerformed(evt);
@@ -63,7 +64,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         displayCoursesBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayCoursesBtn.setText("display Courses");
+        displayCoursesBtn.setText("Display Courses");
         displayCoursesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayCoursesBtnActionPerformed(evt);
@@ -71,7 +72,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         displayBooksBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayBooksBtn.setText("display Books");
+        displayBooksBtn.setText("Display Books");
         displayBooksBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayBooksBtnActionPerformed(evt);
@@ -79,7 +80,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         displayExamsBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        displayExamsBtn.setText("display Exams");
+        displayExamsBtn.setText("Display Exams");
         displayExamsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayExamsBtnActionPerformed(evt);
@@ -87,7 +88,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         removeFromCourseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        removeFromCourseBtn.setText("remove from course");
+        removeFromCourseBtn.setText("Remove From Course");
         removeFromCourseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeFromCourseBtnActionPerformed(evt);
@@ -95,10 +96,18 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         });
 
         addToExamBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        addToExamBtn.setText("add to exam");
+        addToExamBtn.setText("Add To Exam");
         addToExamBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addToExamBtnActionPerformed(evt);
+            }
+        });
+
+        displayBalanceBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        displayBalanceBtn.setText("Display Balance");
+        displayBalanceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBalanceBtnActionPerformed(evt);
             }
         });
 
@@ -107,38 +116,41 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enrollToCourseBtn)
                     .addComponent(buyBookBtn)
                     .addComponent(addToExamBtn))
                 .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(displayBalanceBtn)
                     .addComponent(displayExamsBtn)
                     .addComponent(displayBooksBtn)
                     .addGroup(ButtonsPnlLayout.createSequentialGroup()
                         .addComponent(displayCoursesBtn)
                         .addGap(30, 30, 30)
                         .addComponent(removeFromCourseBtn)))
-                .addGap(40, 40, 40))
+                .addGap(30, 30, 30))
         );
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyBookBtn)
                     .addComponent(displayBooksBtn))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enrollToCourseBtn)
                     .addComponent(displayCoursesBtn)
                     .addComponent(removeFromCourseBtn))
-                .addGap(25, 25, 25)
+                .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(displayExamsBtn)
                     .addComponent(addToExamBtn))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(displayBalanceBtn)
+                .addGap(30, 30, 30))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -304,10 +316,21 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_addToExamBtnActionPerformed
 
+    private void displayBalanceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBalanceBtnActionPerformed
+        link_frame_to_button(displayItemsInJTable((table) -> {
+            try {
+                table.setModel(buildTableModel(selectedStudent.getBalance()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, ex);
+            }
+        }), displayBalanceBtn);
+    }//GEN-LAST:event_displayBalanceBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton addToExamBtn;
     private javax.swing.JButton buyBookBtn;
+    private javax.swing.JButton displayBalanceBtn;
     private javax.swing.JButton displayBooksBtn;
     private javax.swing.JButton displayCoursesBtn;
     private javax.swing.JButton displayExamsBtn;

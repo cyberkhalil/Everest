@@ -1,8 +1,5 @@
 package utils.gui;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import utils.gui.GUI_Util.UpdateTableOperation;
 
 class DisplayItemsInJTable extends javax.swing.JFrame {
@@ -26,7 +23,6 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
         titleLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
 
         itemsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,9 +73,7 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(itemsViewSPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(itemsViewSPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
             .addComponent(titlePnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(

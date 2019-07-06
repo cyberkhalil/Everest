@@ -181,42 +181,56 @@ INSERT INTO teacher_courses(teacher_id,course_id)
 values(1,1);
 
 CREATE TABLE IF NOT EXISTS student_purchases (
-    student_id INT(11),
-    purchase_id INT(11),
+    purchase_id INT(11) NOT NULL AUTO_INCREMENT,
+    student_id INT(11) NOT NULL,
     purchase_price DOUBLE(5 , 2 ) NOT NULL,
     purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (student_id)
         REFERENCES student (student_id)
         ON DELETE RESTRICT,
-    PRIMARY KEY (student_id , purchase_id)
-)  ENGINE=INNODB;
+    PRIMARY KEY (purchase_id)
+)  AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS teacher_purchases (
+    purchase_id INT(11) NOT NULL AUTO_INCREMENT,
+    teacher_id INT(11) NOT NULL,
+    purchase_price DOUBLE(5 , 2 ) NOT NULL,
+    purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT FOREIGN KEY (teacher_id)
+        REFERENCES teacher (teacher_id)
+        ON DELETE RESTRICT,
+    PRIMARY KEY (purchase_id)
+)  AUTO_INCREMENT=1;
 
 CREATE VIEW students_financials AS 
-SELECT s.student_id,s.student_name,b.book_price AS "Money","Buying book"
+SELECT s.student_id,s.student_name,b.book_price AS "Money",
+CONCAT('Buying book ','(',b.book_id,') ',b.book_name) As "Description"
 FROM student s,student_books sb,book b
 WHERE s.student_id = sb.student_id AND sb.book_id = b.book_id
-UNION SELECT  s.student_id,s.student_name,c.course_price AS "Money","Enrolling to course"
+UNION SELECT  s.student_id,s.student_name,c.course_price AS "Money",
+CONCAT('Enrolling to course ','(',c.course_id,') ',c.course_name) As "Description"
 FROM student s,student_courses sc,course c
 WHERE s.student_id = sc.student_id AND sc.course_id = c.course_id
-UNION SELECT  s.student_id,s.student_name,e.exam_price AS "Money","Enrolling to exam"
+UNION SELECT  s.student_id,s.student_name,e.exam_price AS "Money",
+CONCAT('Enrolling to exam ','(',e.exam_id,') ',e.exam_name) As "Description"
 FROM student s,student_exams se,exam e
 WHERE s.student_id = se.student_id AND se.exam_id = e.exam_id
 UNION SELECT  s.student_id,s.student_name,sp.purchase_price AS "Money","Paying money"
 FROM student s,student_purchases sp
 WHERE s.student_id = sp.student_id;
 
+CREATE VIEW teachers_financials AS 
+SELECT t.teacher_id,t.teacher_name,c.course_price AS "Money","Teaching course"
+FROM teacher t,teacher_courses tc,course c
+WHERE t.teacher_id = tc.teacher_id AND tc.course_id = c.course_id
+UNION SELECT  t.teacher_id,t.teacher_name,tp.purchase_price AS "Money","Paying money"
+FROM teacher t,teacher_purchases tp
+WHERE t.teacher_id = tp.teacher_id;
+
 CREATE VIEW students_financial AS 
 SELECT * from students_financials
 UNION SELECT student_id,student_name,SUM(Money),"Sum" from students_financials;
 
--- --------------------------------------------------------
--- CREATE TABLE IF NOT EXISTS invoice (
---     invoiceId INT(10) NOT NULL AUTO_INCREMENT,
---     StdId_fk INT(11) DEFAULT NULL,
---     TotalPrice DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     paymentValue DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     Net DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     remaindCash DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
---     PRIMARY KEY (invoiceId),
---     KEY invoice_ibfk_1 (StdId_fk)
--- )  ENGINE=INNODB AUTO_INCREMENT=12 DEFAULT CHARSET=UTF8;
+CREATE VIEW teachers_financial AS 
+SELECT * from teachers_financials
+UNION SELECT teacher_id,teacher_name,SUM(Money),"Sum" from teachers_financials;
