@@ -71,6 +71,7 @@ values(1,'Teacher 1','059-123-4567');
 CREATE TABLE IF NOT EXISTS course (
     course_id INT(11) NOT NULL AUTO_INCREMENT,
     course_name VARCHAR(50) NOT NULL,
+    course_status VARCHAR(6) NOT NULL Default 'opened',
     course_start_date VARCHAR(11) NOT NULL,
     course_end_date VARCHAR(11) NOT NULL,
     course_price INT(11) NOT NULL,

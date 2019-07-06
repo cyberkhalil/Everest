@@ -14,6 +14,7 @@ public final class CourseUtil {
     public static ResultSet getCoursesFormated() throws SQLException {
         String query = "Select CONCAT(c.course_id) as 'Course Id',"
                 + "CONCAT(c.course_name) as 'Course Name',"
+                + "CONCAT(c.course_status) as 'Status',"
                 + "CONCAT(c.course_start_date) as 'Course Start Date',"
                 + "CONCAT(c.course_end_date) as 'Course End Date',"
                 + "CONCAT(c.course_price) as 'Course Price',"

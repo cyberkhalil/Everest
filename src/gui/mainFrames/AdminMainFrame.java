@@ -644,7 +644,7 @@ public class AdminMainFrame extends JFrame {
                         JOptionPane.showMessageDialog(rootPane, ex);
                     }
                     try {
-                        printResultSet(student.getExamsIdAndName(),
+                        printResultSet(student.getExamsFormated(),
                                 studentDir.getPath() + File.separator + "Exams.pdf");
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);

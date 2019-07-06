@@ -165,15 +165,15 @@ public class Student {
     }
 
     public ResultSet getExamsName() throws SQLException {
-        String query = "Select e.exam_name from student_exams se,exam e where se.student_id=? and "
-                + "se.exam_id=e.exam_id";
+        String query = "Select e.exam_name from student_exams se,exam e "
+                + "where se.student_id=? and se.exam_id=e.exam_id";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         return ps.executeQuery();
     }
 
-    public ResultSet getExamsIdAndName() throws SQLException {
-        String query = "Select e.exam_id,e.exam_name "
+    public ResultSet getExamsFormated() throws SQLException {
+        String query = "Select CONCAT('(',e.exam_id,') ',e.exam_name) AS 'Exam'"
                 + "from student_exams se,exam e "
                 + "where se.student_id=? and se.exam_id=e.exam_id";
         PreparedStatement ps = getConnection().prepareStatement(query);
@@ -206,7 +206,8 @@ public class Student {
     }
 
     public ResultSet getBalance() throws SQLException {
-        String query = "Select * from students_financial where student_id=?";
+        String query = "Select CONCAT('(',student_id,') ',student_name) AS 'Student',"
+                + "Money,Date,Description from students_financial where student_id=?";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         return ps.executeQuery();
