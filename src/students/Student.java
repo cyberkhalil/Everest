@@ -233,4 +233,12 @@ public class Student {
         return rs.getInt("book_quantity");
     }
 
+    public void purchaseMoney(double price) throws SQLException {
+        String query = "Insert into student_purchases(student_id,purchase_price) values(?,?)";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setDouble(2, -price);
+        ps.executeUpdate();
+    }
+
 }

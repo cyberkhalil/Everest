@@ -458,8 +458,8 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         return true;
                     } catch (SQLException | IllegalStateException ex) {
                         JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
                     }
+                    return false;
                 }), setPriceBtn);
     }//GEN-LAST:event_setPriceBtnActionPerformed
 

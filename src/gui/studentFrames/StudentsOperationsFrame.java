@@ -13,6 +13,7 @@ import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
 import static utils.gui.GUI_Util.promoteComboBoxAndSpinner;
+import static utils.gui.GUI_Util.promoteSpinner;
 
 public class StudentsOperationsFrame extends javax.swing.JFrame {
 
@@ -36,6 +37,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         removeFromCourseBtn = new javax.swing.JButton();
         addToExamBtn = new javax.swing.JButton();
         displayBalanceBtn = new javax.swing.JButton();
+        purchaseMoneyBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -111,6 +113,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        purchaseMoneyBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        purchaseMoneyBtn.setText("Purchase Money");
+        purchaseMoneyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                purchaseMoneyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
@@ -120,7 +130,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enrollToCourseBtn)
                     .addComponent(buyBookBtn)
-                    .addComponent(addToExamBtn))
+                    .addComponent(addToExamBtn)
+                    .addComponent(purchaseMoneyBtn))
                 .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(displayBalanceBtn)
@@ -149,8 +160,10 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     .addComponent(displayExamsBtn)
                     .addComponent(addToExamBtn))
                 .addGap(20, 20, 20)
-                .addComponent(displayBalanceBtn)
-                .addGap(30, 30, 30))
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayBalanceBtn)
+                    .addComponent(purchaseMoneyBtn))
+                .addGap(60, 60, 60))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -326,6 +339,21 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         }), displayBalanceBtn);
     }//GEN-LAST:event_displayBalanceBtnActionPerformed
 
+    private void purchaseMoneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseMoneyBtnActionPerformed
+        link_frame_to_button(promoteSpinner("Student Puchase", "Puchase Price :",
+                new SpinnerNumberModel(0, 0, 999.99, 10), "Add Purchase", (double spinnerValue) -> {
+                    try {
+                        selectedStudent.purchaseMoney(spinnerValue);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Student Puchrase Done Successfully");
+                        return true;
+                    } catch (SQLException | IllegalStateException ex) {
+                        JOptionPane.showMessageDialog(rootPane, ex);
+                    }
+                    return false;
+                }), purchaseMoneyBtn);
+    }//GEN-LAST:event_purchaseMoneyBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton addToExamBtn;
@@ -336,6 +364,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private javax.swing.JButton displayExamsBtn;
     private javax.swing.JButton enrollToCourseBtn;
     private javax.swing.JLabel imgLbl;
+    private javax.swing.JButton purchaseMoneyBtn;
     private javax.swing.JButton removeFromCourseBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
