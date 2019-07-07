@@ -27,7 +27,7 @@ VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 CREATE TABLE IF NOT EXISTS exam (
     exam_id INT(5) NOT NULL AUTO_INCREMENT,
     exam_name VARCHAR(50) NOT NULL,
-    exam_price DOUBLE(5 , 2 ) NOT NULL DEFAULT '0.00',
+    exam_price DOUBLE NOT NULL DEFAULT '0.00',
     exam_time TIMESTAMP NOT NULL,
     PRIMARY KEY (exam_id),
     UNIQUE (exam_name , exam_time)
@@ -171,6 +171,8 @@ values(1,1);
 CREATE TABLE IF NOT EXISTS teacher_courses (
     teacher_id INT(11),
     course_id INT(11),
+    teach_price DOUBLE,
+    static_price_status BIT(1) default 1,
     teach_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (course_id)
         REFERENCES course (course_id)
@@ -182,13 +184,13 @@ CREATE TABLE IF NOT EXISTS teacher_courses (
 )  ENGINE=INNODB;
 
 -- Dumping data for table student
-INSERT INTO teacher_courses(teacher_id,course_id)
-values(1,1);
+INSERT INTO teacher_courses(teacher_id,course_id,teach_price)
+values(1,1,100);
 
 CREATE TABLE IF NOT EXISTS student_purchases (
     purchase_id INT(11) NOT NULL AUTO_INCREMENT,
     student_id INT(11) NOT NULL,
-    purchase_price DOUBLE(5 , 2 ) NOT NULL,
+    purchase_price DOUBLE NOT NULL,
     purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (student_id)
         REFERENCES student (student_id)
@@ -199,7 +201,7 @@ CREATE TABLE IF NOT EXISTS student_purchases (
 CREATE TABLE IF NOT EXISTS teacher_purchases (
     purchase_id INT(11) NOT NULL AUTO_INCREMENT,
     teacher_id INT(11) NOT NULL,
-    purchase_price DOUBLE(5 , 2 ) NOT NULL,
+    purchase_price DOUBLE NOT NULL,
     purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (teacher_id)
         REFERENCES teacher (teacher_id)
@@ -208,7 +210,8 @@ CREATE TABLE IF NOT EXISTS teacher_purchases (
 )  AUTO_INCREMENT=1;
 
 CREATE VIEW students_financials AS 
-SELECT s.student_id,s.student_name,b.book_price * sb.book_quantity AS 'Money',sb.buy_date AS 'Date',
+SELECT s.student_id,s.student_name,b.book_price * sb.book_quantity AS 'Money',
+sb.buy_date AS 'Date',
 CONCAT('Buying ',sb.book_quantity,' book from ','(',b.book_id,') ',b.book_name) As 'Description'
 FROM student s,student_books sb,book b
 WHERE s.student_id = sb.student_id AND sb.book_id = b.book_id
@@ -226,8 +229,9 @@ FROM student s,student_purchases sp
 WHERE s.student_id = sp.student_id;
 
 CREATE VIEW teachers_financials AS 
-SELECT t.teacher_id,t.teacher_name,c.course_price AS 'Money',
-tc.teach_date AS 'Date','Teaching course'
+SELECT t.teacher_id,t.teacher_name,
+IF(tc.static_price_status=1,CONCAT(tc.teach_price),CONCAT(tc.teach_price,'%')) as 'Money',
+tc.teach_date AS 'Date','Teaching course' as 'Description'
 FROM teacher t,teacher_courses tc,course c
 WHERE t.teacher_id = tc.teacher_id AND tc.course_id = c.course_id
 UNION SELECT  t.teacher_id,t.teacher_name,tp.purchase_price AS 'Money',
@@ -239,6 +243,7 @@ CREATE VIEW students_financial AS
 SELECT * from students_financials
 UNION SELECT student_id,student_name,SUM(Money),CURRENT_TIMESTAMP,'Total' from students_financials;
 
-CREATE VIEW teachers_financial AS 
+CREATE VIEW teachers_financial AS
 SELECT * from teachers_financials
-UNION SELECT teacher_id,teacher_name,SUM(Money),CURRENT_TIMESTAMP,'Total' from teachers_financials;
+UNION SELECT teacher_id,teacher_name,SUM(Money),CURRENT_TIMESTAMP,CONCAT('Total') as 'Description' 
+from teachers_financials;

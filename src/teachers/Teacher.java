@@ -70,12 +70,35 @@ public class Teacher {
         return ps.executeQuery();
     }
 
-    public void enrollToCourse(int courseId) throws SQLException {
-        String query = "Insert into teacher_courses values(?,?)";
+    public void enrollToCourse(int courseId, double staticPrice) throws SQLException {
+        String query = "Insert into teacher_courses values(?,?,?)";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         ps.setInt(2, courseId);
+        ps.setDouble(3, staticPrice);
         ps.executeUpdate();
+    }
+
+    public void enrollToCourse(int courseId, boolean isStatic, double price) throws SQLException {
+        if (isStatic) {
+            String query = "Insert into teacher_courses(teacher_id,course_id,teach_price) "
+                    + "values(?,?,?)";
+            PreparedStatement ps = getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            ps.setInt(2, courseId);
+            ps.setDouble(3, price);
+            ps.executeUpdate();
+        } else {
+            String query = "Insert into teacher_courses"
+                    + "(teacher_id,course_id,teach_price,static_price_status) "
+                    + "values(?,?,?,?)";
+            PreparedStatement ps = getConnection().prepareStatement(query);
+            ps.setInt(1, id);
+            ps.setInt(2, courseId);
+            ps.setDouble(3, price);
+            ps.setBoolean(4, false);
+            ps.executeUpdate();
+        }
     }
 
     public ResultSet getCoursesIdAndName() throws SQLException {
@@ -97,9 +120,11 @@ public class Teacher {
 
     public ResultSet getCoursesFormated() throws SQLException {
         String query = "Select CONCAT('(',c.course_id,') ',c.course_name) AS 'Course',"
-                + "CONCAT(tc.teach_date) as 'Date' "
+                + "CONCAT(tc.teach_date) as 'Date',"
+                + "IF(tc.static_price_status=1,"
+                + "CONCAT(tc.teach_price),CONCAT(tc.teach_price,'%')) as 'Money' "
                 + "from teacher_courses tc,course c "
-                + "where tc.teacher_id=? and tc.course_id=c.course_id";
+                + "where tc.teacher_id=? and tc.course_id=c.course_id;";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         return ps.executeQuery();

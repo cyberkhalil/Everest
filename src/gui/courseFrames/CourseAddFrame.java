@@ -9,6 +9,7 @@ import javax.swing.SpinnerNumberModel;
 import teachers.Teacher;
 import static teachers.TeacherUtil.getTeachersIdAndName;
 import static utils.TimeUtil.isValidDateOrder;
+import static utils.gui.GUI_Util.promoteTwoOrSpinners;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 
 public class CourseAddFrame extends javax.swing.JFrame {
@@ -342,15 +343,26 @@ public class CourseAddFrame extends javax.swing.JFrame {
             if (courseTeacherTb.isSelected()) {
                 String teacher_item = courseTeacherCb.getSelectedItem().toString();
                 String teacher_id = teacher_item.substring(1, teacher_item.indexOf(")"));
-                new Teacher(Integer.parseInt(teacher_id)).enrollToCourse(
-                        createCourser(courseNameTf.getText(),
-                                new Date(courseStartDateDP.getDateInMillis()),
-                                new Date(courseEndDateDP.getDateInMillis()),
-                                (double) cousrePriceSp.getValue(),
-                                courseEndTimeFtf.getText(),
-                                courseStartTimeFtf.getText(),
-                                getDays()
-                        ).getId());
+                promoteTwoOrSpinners("Add teacher to course", "Static teacher money",
+                        new SpinnerNumberModel(0, 0, 999.99, 1), "Percentage teacher money",
+                        new SpinnerNumberModel(0, 0, 100, 1), "Static teacher money",
+                        "Percentage teacher money", "Add to course", (first, value) -> {
+                            try {
+                                new Teacher(Integer.parseInt(teacher_id)).enrollToCourse(
+                                        createCourser(courseNameTf.getText(),
+                                                new Date(courseStartDateDP.getDateInMillis()),
+                                                new Date(courseEndDateDP.getDateInMillis()),
+                                                (double) cousrePriceSp.getValue(),
+                                                courseEndTimeFtf.getText(),
+                                                courseStartTimeFtf.getText(),
+                                                getDays()
+                                        ).getId(), first, value);
+                                return true;
+                            } catch (SQLException ex) {
+                                JOptionPane.showMessageDialog(rootPane, ex);
+                            }
+                            return false;
+                        });
                 JOptionPane.showMessageDialog(this, "New Course created successfully");
             } else {
                 createCourse(courseNameTf.getText(),

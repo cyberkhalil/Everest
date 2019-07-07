@@ -2,15 +2,16 @@ package gui.teacherFrames;
 
 import static courses.CourseUtil.getCoursesIdAndName;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import teachers.Teacher;
+import utils.gui.GUI_Util;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
+import static utils.gui.GUI_Util.promoteComboBoxAndTwoOrSpinners;
 
 public class TeacherOperationsFrame extends javax.swing.JFrame {
 
@@ -150,19 +151,23 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
 
     private void addToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCourseBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBox("Enroll to course", "Choose course to enroll",
-                    "Enroll to course", buildComboBoxModel(getCoursesIdAndName()), (choice) -> {
-                try {
-                    selectedTeacher.enrollToCourse(Integer.parseInt(
-                            choice.substring(1, choice.indexOf(")"))));
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Teacher enrolled to this course successfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                }
-                return false;
-            }), addToCourseBtn);
+            link_frame_to_button(promoteComboBoxAndTwoOrSpinners("Enroll to course",
+                    "Choose course to enroll", buildComboBoxModel(getCoursesIdAndName()),
+                    "Static teacher money", new SpinnerNumberModel(0, 0, 999.99, 1),
+                    "Percentage teacher money", new SpinnerNumberModel(0, 0, 100, 1),
+                    "Static teacher money", "Percentage teacher money", "Add to course",
+                    (choice, first, price) -> {
+                        try {
+                            selectedTeacher.enrollToCourse(Integer.parseInt(choice.substring(
+                                    1, choice.indexOf(")"))), first, price);
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Teacher enrolled to this course successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), addToCourseBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

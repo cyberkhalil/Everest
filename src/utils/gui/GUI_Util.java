@@ -106,6 +106,29 @@ public class GUI_Util {
         return promoteFrame;
     }
 
+    public static JFrame promoteComboBoxAndTwoOrSpinners(String title, String comboLblTxt,
+            ComboBoxModel comboBoxModel, String spinner1LblTxt, SpinnerNumberModel spinner1Model,
+            String spinner2LblTxt, SpinnerNumberModel spinner2Model, String toggleTextON,
+            String toggleTextOFF, String buttonTxt,
+            DoSomethingWithComboBoxAndTwoOrSpinners dswcbatos) {
+        JFrame promoteFrame = new PromoteComboBoxAndTwoOrSpinners(title, comboLblTxt, comboBoxModel,
+                spinner1LblTxt, spinner1Model, spinner2LblTxt, spinner2Model, toggleTextON,
+                toggleTextOFF, buttonTxt, dswcbatos);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
+    public static JFrame promoteTwoOrSpinners(String title, String spinner1LblTxt,
+            SpinnerNumberModel spinner1Model, String spinner2LblTxt,
+            SpinnerNumberModel spinner2Model, String toggleTextON, String toggleTextOFF,
+            String buttonTxt, DoSomethingWithTwoOrSpinners dswtos) {
+        JFrame promoteFrame = new PromoteTwoOrSpinners(
+                title, spinner1LblTxt, spinner1Model, spinner2LblTxt, spinner2Model, toggleTextON,
+                toggleTextOFF, buttonTxt, dswtos);
+        promoteFrame.setVisible(true);
+        return promoteFrame;
+    }
+
     public static JFrame promoteDatePicker(String title, String labelTxt, String buttonTxt,
             DoSomethingWithDatePicker dswdp) {
         JFrame promoteFrame = new PromoteDatePicker(title, labelTxt, buttonTxt, dswdp);
@@ -203,6 +226,29 @@ public class GUI_Util {
          * @return true to close or false to not close
          */
         abstract boolean doSomething(String choise, double value);
+    }
+
+    public static abstract interface DoSomethingWithComboBoxAndTwoOrSpinners {
+
+        /**
+         *
+         * @param choise
+         * @param first
+         * @param value
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(String choise, boolean first, double value);
+    }
+
+    public static abstract interface DoSomethingWithTwoOrSpinners {
+
+        /**
+         *
+         * @param first
+         * @param value
+         * @return true to close or false to not close
+         */
+        abstract boolean doSomething(boolean first, double value);
     }
 
     public static abstract interface UpdateTableOperation {

@@ -34,11 +34,11 @@ public final class TeacherUtil {
         String query = "Select CONCAT(t.teacher_id) as 'Teacher Id',"
                 + "CONCAT(t.teacher_name) as 'Teacher Name',"
                 + "CONCAT(t.teacher_phone) as 'Teacher Phone',"
-                + "SUM(tf.Money) as 'Balance',"
-                + "(select COUNT(t.teacher_id) from teacher_courses tc "
-                + "where t.teacher_id=tc.teacher_id) as 'Courses Number' "
-                + "from teacher t,teachers_financials tf "
-                + "where t.teacher_id=tf.teacher_id";
+                + "CONVERT(tf.Money USING utf8) as 'Balance',"
+                + "(select COUNT(te.teacher_id) from teacher_courses tc,teacher te where "
+                + "te.teacher_id=tc.teacher_id and te.teacher_id=t.teacher_id) as 'Courses Number' "
+                + "from teacher t,teachers_financial tf "
+                + "where t.teacher_id=tf.teacher_id and tf.Description='Total'";
         PreparedStatement ps = getConnection().prepareStatement(query);
         return ps.executeQuery();
     }
