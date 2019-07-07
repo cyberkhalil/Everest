@@ -149,7 +149,9 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
             JFileChooser f = new JFileChooser();
             f.setFileSelectionMode(JFileChooser.FILES_ONLY);
             f.showSaveDialog(rootPane);
-
+            if (f.getSelectedFile() == null) {
+                return;
+            }
             InvoiceToPdf.printjTable(itemsTbl, f.getSelectedFile().getPath());
             JOptionPane.showMessageDialog(rootPane, "Printed successfully");
         } catch (FileNotFoundException | DocumentException ex) {

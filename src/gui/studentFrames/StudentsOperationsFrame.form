@@ -70,16 +70,19 @@
                       <Component id="addToExamBtn" min="-2" max="-2" attributes="0"/>
                       <Component id="purchaseMoneyBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="displayBalanceBtn" min="-2" max="-2" attributes="0"/>
-                      <Component id="displayExamsBtn" min="-2" max="-2" attributes="0"/>
-                      <Component id="displayBooksBtn" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="displayCoursesBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="removeFromCourseBtn" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="displayCoursesBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayBooksBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayExamsBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="displayBalanceBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="removeFromExamBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="removeFromBookBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="removeFromCourseBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="removePurchaseBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
@@ -92,6 +95,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buyBookBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="displayBooksBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="removeFromBookBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -103,13 +107,15 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="displayExamsBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addToExamBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="removeFromExamBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="displayBalanceBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="purchaseMoneyBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="removePurchaseBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -212,6 +218,39 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="purchaseMoneyBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="removeFromBookBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Remove From Book"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeFromBookBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="removeFromExamBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Remove From Exam"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removeFromExamBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="removePurchaseBtn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Times New Roman" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Remove Purchase"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removePurchaseBtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

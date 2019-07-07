@@ -616,7 +616,11 @@ public class AdminMainFrame extends JFrame {
             f.showSaveDialog(rootPane);
 
             File mainDir = f.getSelectedFile();
+            if (mainDir == null) {
+                return;
+            }
             File studentsDir = new File(mainDir.getPath() + File.separator + "Students");
+
             studentsDir.mkdir();
             try {
                 printResultSet(getStudentsFormated(),

@@ -10,7 +10,7 @@ GRANT ALL PRIVILEGES ON * . * TO test@localhost;
 
 /*	This table created for login users	*/
 CREATE TABLE IF NOT EXISTS user (
-    user_id INT(11) NOT NULL AUTO_INCREMENT,
+    user_id INT NOT NULL AUTO_INCREMENT,
     user_name VARCHAR(50) UNIQUE NOT NULL,
     user_password VARCHAR(50) NOT NULL,
     user_privilege VARCHAR(15) NOT NULL,
@@ -25,7 +25,7 @@ VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 -- --------------------------------------------------------
 /*	This table is created for exams	*/
 CREATE TABLE IF NOT EXISTS exam (
-    exam_id INT(5) NOT NULL AUTO_INCREMENT,
+    exam_id INT NOT NULL AUTO_INCREMENT,
     exam_name VARCHAR(50) NOT NULL,
     exam_price DOUBLE NOT NULL DEFAULT '0.00',
     exam_time TIMESTAMP NOT NULL,
@@ -40,24 +40,23 @@ VALUES(1, 'exam_1', 100, '2019-04-20');
 -- --------------------------------------------------------
 /*	This table is created for books */
 CREATE TABLE IF NOT EXISTS book (
-    book_id INT(11) NOT NULL AUTO_INCREMENT,
+    book_id INT NOT NULL AUTO_INCREMENT,
     book_name VARCHAR(50) NOT NULL,
     book_price DOUBLE NOT NULL,
     book_quantity INT NOT NULL,
-    book_sold INT NOT NULL DEFAULT 0,
     book_isbn VARCHAR(13),
     PRIMARY KEY (book_id)
 )  AUTO_INCREMENT=1;
 
 -- Dumping data for table book
 INSERT INTO book 
-(book_id,book_name,book_price,book_quantity,book_sold,book_isbn)
-Values(1,'Book1',100,10,5,'some isbn');
+(book_id,book_name,book_price,book_quantity,book_isbn)
+Values(1,'Book1',100,10,'some isbn');
 
 -- --------------------------------------------------------
 /*	This table is created for teachers */
 CREATE TABLE IF NOT EXISTS teacher (
-    teacher_id INT(11) NOT NULL AUTO_INCREMENT,
+    teacher_id INT NOT NULL AUTO_INCREMENT,
     teacher_name VARCHAR(100) NOT NULL,
     teacher_phone VARCHAR(12) NOT NULL,
     PRIMARY KEY (teacher_id)
@@ -69,12 +68,12 @@ values(1,'Teacher 1','059-123-4567');
 -- --------------------------------------------------------
 /*	This table is created for course */
 CREATE TABLE IF NOT EXISTS course (
-    course_id INT(11) NOT NULL AUTO_INCREMENT,
+    course_id INT NOT NULL AUTO_INCREMENT,
     course_name VARCHAR(50) NOT NULL,
     course_status VARCHAR(6) NOT NULL Default 'opened',
     course_start_date VARCHAR(11) NOT NULL,
     course_end_date VARCHAR(11) NOT NULL,
-    course_price INT(11) NOT NULL,
+    course_price INT NOT NULL,
     course_time_hour_from VARCHAR(10) NOT NULL,
     course_time_hour_to VARCHAR(10) NOT NULL,
     course_days VARCHAR(20) NOT NULL,
@@ -93,10 +92,10 @@ course_time_hour_to,course_days)value
 -- --------------------------------------------------------
 /*	This table is created for student */
 CREATE TABLE IF NOT EXISTS student (
-    student_id INT(11) NOT NULL AUTO_INCREMENT,
+    student_id INT NOT NULL AUTO_INCREMENT,
     student_name VARCHAR(50) NOT NULL,
     student_phone VARCHAR(12) NOT NULL,
-    student_added_by INT(12) REFERENCES student (student_id),
+    student_added_by INT REFERENCES student (student_id),
     PRIMARY KEY (student_id)
 )  AUTO_INCREMENT=1;
 
@@ -111,8 +110,8 @@ values(2,'Student 2','059-123-4567',1);
 -- --------------------------------------------------------
 /*	This table is created for student books */
 CREATE TABLE IF NOT EXISTS student_books (
-    student_id INT(11),
-    book_id INT(11),
+    student_id INT,
+    book_id INT,
     book_quantity INT NOT NULL,
     buy_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (book_id)
@@ -131,8 +130,8 @@ values(1,1,1);
 -- --------------------------------------------------------
 /*	This table is created for student exams */
 CREATE TABLE IF NOT EXISTS student_exams (
-    student_id INT(11),
-    exam_id INT(11),
+    student_id INT,
+    exam_id INT,
     enroll_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (exam_id)
         REFERENCES exam (exam_id)
@@ -150,8 +149,8 @@ values(1,1);
 -- --------------------------------------------------------
 /*	This table is created for student courses */
 CREATE TABLE IF NOT EXISTS student_courses (
-    student_id INT(11),
-    course_id INT(11),
+    student_id INT,
+    course_id INT,
     enroll_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (course_id)
         REFERENCES course (course_id)
@@ -169,8 +168,8 @@ values(1,1);
 -- --------------------------------------------------------
 /*	This table is created for teacher courses */
 CREATE TABLE IF NOT EXISTS teacher_courses (
-    teacher_id INT(11),
-    course_id INT(11),
+    teacher_id INT,
+    course_id INT,
     teach_price DOUBLE,
     static_price_status BIT(1) default 1,
     teach_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -188,8 +187,8 @@ INSERT INTO teacher_courses(teacher_id,course_id,teach_price)
 values(1,1,100);
 
 CREATE TABLE IF NOT EXISTS student_purchases (
-    purchase_id INT(11) NOT NULL AUTO_INCREMENT,
-    student_id INT(11) NOT NULL,
+    purchase_id INT NOT NULL AUTO_INCREMENT,
+    student_id INT NOT NULL,
     purchase_price DOUBLE NOT NULL,
     purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (student_id)
@@ -199,8 +198,8 @@ CREATE TABLE IF NOT EXISTS student_purchases (
 )  AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS teacher_purchases (
-    purchase_id INT(11) NOT NULL AUTO_INCREMENT,
-    teacher_id INT(11) NOT NULL,
+    purchase_id INT NOT NULL AUTO_INCREMENT,
+    teacher_id INT NOT NULL,
     purchase_price DOUBLE NOT NULL,
     purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (teacher_id)

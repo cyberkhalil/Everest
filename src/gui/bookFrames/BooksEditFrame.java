@@ -1,7 +1,7 @@
 package gui.bookFrames;
 
 import books.Book;
-import books.BookUtil;
+import static books.BookUtil.getBooksFormated;
 import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -19,7 +19,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
     public BooksEditFrame() {
         initComponents();
         try {
-            this.booksTbl.setModel(buildTableModel(BookUtil.getBooks()));
+            this.booksTbl.setModel(buildTableModel(getBooksFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
@@ -300,7 +300,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         int i = booksTbl.getSelectedRow();
         TableModel tableModel = booksTbl.getModel();
         try {
-            selectedBook = new Book((int) tableModel.getValueAt(i, 0));
+            selectedBook = new Book(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected Book doesn't Exist !");
         }
@@ -428,7 +428,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
 
     private void updateTable() {
         try {
-            this.booksTbl.setModel(buildTableModel(BookUtil.getBooks()));
+            this.booksTbl.setModel(buildTableModel(getBooksFormated()));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }

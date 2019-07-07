@@ -38,6 +38,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         addToExamBtn = new javax.swing.JButton();
         displayBalanceBtn = new javax.swing.JButton();
         purchaseMoneyBtn = new javax.swing.JButton();
+        removeFromBookBtn = new javax.swing.JButton();
+        removeFromExamBtn = new javax.swing.JButton();
+        removePurchaseBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -121,6 +124,30 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        removeFromBookBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeFromBookBtn.setText("Remove From Book");
+        removeFromBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromBookBtnActionPerformed(evt);
+            }
+        });
+
+        removeFromExamBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeFromExamBtn.setText("Remove From Exam");
+        removeFromExamBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeFromExamBtnActionPerformed(evt);
+            }
+        });
+
+        removePurchaseBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removePurchaseBtn.setText("Remove Purchase");
+        removePurchaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removePurchaseBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
@@ -132,15 +159,18 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                     .addComponent(buyBookBtn)
                     .addComponent(addToExamBtn)
                     .addComponent(purchaseMoneyBtn))
-                .addGap(30, 30, 30)
+                .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(displayBalanceBtn)
-                    .addComponent(displayExamsBtn)
+                    .addComponent(displayCoursesBtn)
                     .addComponent(displayBooksBtn)
-                    .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                        .addComponent(displayCoursesBtn)
-                        .addGap(30, 30, 30)
-                        .addComponent(removeFromCourseBtn)))
+                    .addComponent(displayExamsBtn)
+                    .addComponent(displayBalanceBtn))
+                .addGap(20, 20, 20)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeFromExamBtn)
+                    .addComponent(removeFromBookBtn)
+                    .addComponent(removeFromCourseBtn)
+                    .addComponent(removePurchaseBtn))
                 .addGap(30, 30, 30))
         );
         ButtonsPnlLayout.setVerticalGroup(
@@ -149,7 +179,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buyBookBtn)
-                    .addComponent(displayBooksBtn))
+                    .addComponent(displayBooksBtn)
+                    .addComponent(removeFromBookBtn))
                 .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enrollToCourseBtn)
@@ -158,12 +189,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(displayExamsBtn)
-                    .addComponent(addToExamBtn))
+                    .addComponent(addToExamBtn)
+                    .addComponent(removeFromExamBtn))
                 .addGap(20, 20, 20)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(displayBalanceBtn)
-                    .addComponent(purchaseMoneyBtn))
-                .addGap(60, 60, 60))
+                    .addComponent(purchaseMoneyBtn)
+                    .addComponent(removePurchaseBtn))
+                .addGap(30, 30, 30))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -354,6 +387,69 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                 }), purchaseMoneyBtn);
     }//GEN-LAST:event_purchaseMoneyBtnActionPerformed
 
+    private void removeFromBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromBookBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Book Remove", "Choose book to remove",
+                    "Remove book", buildComboBoxModel(selectedStudent.getBooksFormated()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.removeFromBook(Integer.parseInt(
+                                    choice.substring(1, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student returned this book successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removeFromBookBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeFromBookBtnActionPerformed
+
+    private void removeFromExamBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeFromExamBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Exam Remove", "Choose exam to remove",
+                    "Remove exam", buildComboBoxModel(selectedStudent.getExamsIdAndName()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.removeFromExam(Integer.parseInt(
+                                    choice.substring(1, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student removed from this exam successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removeFromExamBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removeFromExamBtnActionPerformed
+
+    private void removePurchaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePurchaseBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Purchase Remove", "Choose purchase to remove",
+                    "Remove purchase", buildComboBoxModel(selectedStudent.getPurchasesIdAndPrice()),
+                    (choice) -> {
+                        try {
+                            selectedStudent.removePruchase(Integer.parseInt(
+                                    choice.substring(4, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Student purchase removed successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex);
+                        }
+                        return false;
+                    }), removePurchaseBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex);
+        }
+    }//GEN-LAST:event_removePurchaseBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton addToExamBtn;
@@ -365,7 +461,10 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
     private javax.swing.JButton enrollToCourseBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton purchaseMoneyBtn;
+    private javax.swing.JButton removeFromBookBtn;
     private javax.swing.JButton removeFromCourseBtn;
+    private javax.swing.JButton removeFromExamBtn;
+    private javax.swing.JButton removePurchaseBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

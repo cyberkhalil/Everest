@@ -99,9 +99,10 @@ public class Student {
         return ps.executeQuery();
     }
 
-    public ResultSet getBooksNameAndQuantity() throws SQLException {
-        String query = "Select b.book_name,sb.book_quantity from student_books sb , book b"
-                + " where sb.student_id=? and b.book_id=sb.book_id";
+    public ResultSet getBooksIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',b.book_id,') ',b.book_name) "
+                + "from student_books sb , book b "
+                + "where sb.student_id=? and b.book_id=sb.book_id";
 
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -164,8 +165,9 @@ public class Student {
         return ps.executeQuery();
     }
 
-    public ResultSet getExamsName() throws SQLException {
-        String query = "Select e.exam_name from student_exams se,exam e "
+    public ResultSet getExamsIdAndName() throws SQLException {
+        String query = "Select CONCAT('(',e.exam_id,') ',e.exam_name) "
+                + "from student_exams se,exam e "
                 + "where se.student_id=? and se.exam_id=e.exam_id";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
@@ -241,4 +243,19 @@ public class Student {
         ps.executeUpdate();
     }
 
+    public ResultSet getPurchasesIdAndPrice() throws SQLException {
+        String query = "Select CONCAT('id:(',purchase_id,'), price:(',purchase_price,')') AS 'Purchase' "
+                + "from student_purchases where student_id=?";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        return ps.executeQuery();
+    }
+
+    public void removePruchase(int purchaseId) throws SQLException {
+        String query = "Delete from student_purchases where student_id=? and purchase_id=?";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setInt(2, purchaseId);
+        ps.executeUpdate();
+    }
 }

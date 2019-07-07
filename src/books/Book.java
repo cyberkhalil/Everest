@@ -1,6 +1,6 @@
 package books;
 
-import db.DBConnection;
+import static db.DBConnection.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,11 +15,13 @@ public class Book {
     private String isbn;
 
     public Book(int bookID) throws SQLException {
-        String query = "Select * from book where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, bookID);
-        ResultSet rs = preparedStatement.executeQuery();
+        String query = "Select book_id,book_name,book_price,book_quantity,book_isbn,"
+                + "(select SUM(sb.book_quantity) from student_books sb "
+                + "where sb.book_id=b.book_id) as book_sold "
+                + "from book b where b.book_id=?";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, bookID);
+        ResultSet rs = ps.executeQuery();
         rs.next();
         this.Id = bookID;
         this.name = rs.getString("book_name");
@@ -27,15 +29,6 @@ public class Book {
         this.quantity = rs.getInt("book_quantity");
         this.sold = rs.getInt("book_sold");
         this.isbn = rs.getString("book_isbn");
-    }
-
-    Book(int ID, String name, double price, int quantity, String isbn) {
-        this.Id = ID;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.sold = 0;
-        this.isbn = isbn;
     }
 
     public int getId() {
@@ -48,11 +41,10 @@ public class Book {
 
     public void setName(String name) throws SQLException {
         String query = "Update book set book_name =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, name);
-        preparedStatement.setInt(2, Id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setString(1, name);
+        ps.setInt(2, Id);
+        ps.executeUpdate();
         this.name = name;
     }
 
@@ -62,11 +54,10 @@ public class Book {
 
     public void setPrice(double price) throws SQLException {
         String query = "Update book set book_price =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setDouble(1, price);
-        preparedStatement.setInt(2, Id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setDouble(1, price);
+        ps.setInt(2, Id);
+        ps.executeUpdate();
         this.price = price;
     }
 
@@ -76,11 +67,10 @@ public class Book {
 
     public void setQuantity(int quantity) throws SQLException {
         String query = "Update book set book_quantity =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, quantity);
-        preparedStatement.setInt(2, Id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, quantity);
+        ps.setInt(2, Id);
+        ps.executeUpdate();
         this.quantity = quantity;
     }
 
@@ -88,26 +78,15 @@ public class Book {
         return sold;
     }
 
-    public void setSold(int sold) throws SQLException {
-        String query = "Update book set book_sold =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, sold);
-        preparedStatement.setInt(2, Id);
-        preparedStatement.executeUpdate();
-        this.sold = sold;
-    }
-
     public void sell(int many) throws SQLException {
 
         String query = "Update book set book_sold =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
+        PreparedStatement ps = getConnection().prepareStatement(query);
         sold += many;
         try {
-            preparedStatement.setInt(1, sold);
-            preparedStatement.setInt(2, Id);
-            preparedStatement.executeUpdate();
+            ps.setInt(1, sold);
+            ps.setInt(2, Id);
+            ps.executeUpdate();
         } catch (SQLException ex) {
             sold -= many;
             throw ex;
@@ -120,20 +99,18 @@ public class Book {
 
     public void setIsbn(String isbn) throws SQLException {
         String query = "Update book set book_isbn =? where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setString(1, isbn);
-        preparedStatement.setInt(2, Id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setString(1, isbn);
+        ps.setInt(2, Id);
+        ps.executeUpdate();
         this.isbn = isbn;
     }
 
     public void delete() throws SQLException {
         String query = "Delete from book where book_id= ?";
-        PreparedStatement preparedStatement
-                = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, Id);
-        preparedStatement.executeUpdate();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, Id);
+        ps.executeUpdate();
         this.name = null;
         this.price = -1;
         this.quantity = -1;
@@ -144,33 +121,34 @@ public class Book {
     public ResultSet getSoldQuantity() throws SQLException {
         String query = "Select SUM(book_quantity) from student_books "
                 + "where book_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, Id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, Id);
+        return ps.executeQuery();
     }
 
     public ResultSet getStudentsId() throws SQLException {
         String query = "Select student_id from student_books where book_id=?";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, Id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, Id);
+        return ps.executeQuery();
     }
 
     public ResultSet getStudentsIdAndName() throws SQLException {
         String query = "Select CONCAT('(',s.student_id,') ',s.student_name) "
                 + "from student_books sb ,student s "
                 + "where sb.book_id=? and s.student_id=sb.student_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, Id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, Id);
+        return ps.executeQuery();
     }
 
     public ResultSet getStudentsFormated() throws SQLException {
-        String query = "Select s.student_id,s.student_name,sb.book_quantity "
+        String query = "Select CONCAT('(',s.student_id,') ',s.student_name) as 'Student',"
+                + "CONCAT(sb.book_quantity) as 'Quantity Sold' "
                 + "from student_books sb ,student s "
                 + "where sb.book_id=? and s.student_id=sb.student_id";
-        PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, Id);
-        return preparedStatement.executeQuery();
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, Id);
+        return ps.executeQuery();
     }
 }
