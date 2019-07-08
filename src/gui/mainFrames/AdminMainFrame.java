@@ -21,8 +21,6 @@ import gui.studentFrames.StudentAddFrame;
 import gui.studentFrames.StudentsEditFrame;
 import gui.teacherFrames.TeacherAddFrame;
 import gui.teacherFrames.TeachersEditFrame;
-import java.awt.Dimension;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +33,10 @@ import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static books.BookUtil.getSoldOutBooksFormated;
+import java.io.File;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class AdminMainFrame extends JFrame {
 
@@ -102,7 +104,7 @@ public class AdminMainFrame extends JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training Center");
+        titleLbl.setText(EVEREST_TITLE);
         titleLbl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titleLbl.setInheritsPopupMenu(false);
 
@@ -604,7 +606,9 @@ public class AdminMainFrame extends JFrame {
             try {
                 table.setModel(buildTableModel(getSoldOutBooksFormated()));
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
         }), booksSoldoutDisplayBtn);
     }//GEN-LAST:event_booksSoldoutDisplayBtnActionPerformed
@@ -626,7 +630,8 @@ public class AdminMainFrame extends JFrame {
                 printResultSet(getStudentsFormated(),
                         studentsDir + File.separator + "AllStudents.pdf");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
             try {
                 ResultSet rs = getStudentsId();
@@ -639,29 +644,34 @@ public class AdminMainFrame extends JFrame {
                         printResultSet(student.getBalance(),
                                 studentDir.getPath() + File.separator + "Balance.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     try {
                         printResultSet(student.getBooksFormated(),
                                 studentDir.getPath() + File.separator + "Books.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     try {
                         printResultSet(student.getExamsFormated(),
                                 studentDir.getPath() + File.separator + "Exams.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     try {
                         printResultSet(student.getCoursesIdAndName(),
                                 studentDir.getPath() + File.separator + "Courses.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
             // Courses
             File coursesDir = new File(mainDir.getPath() + File.separator + "Courses");
@@ -670,7 +680,8 @@ public class AdminMainFrame extends JFrame {
                 printResultSet(getCoursesFormated(),
                         coursesDir + File.separator + "AllCourses.pdf");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
             try {
                 ResultSet rs = getCoursesId();
@@ -683,11 +694,13 @@ public class AdminMainFrame extends JFrame {
                         printResultSet(course.getStudentsFormated(),
                                 courseDir.getPath() + File.separator + "CourseStudents.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
             // Exam
             File examsDir = new File(mainDir.getPath() + File.separator + "Exams");
@@ -695,7 +708,8 @@ public class AdminMainFrame extends JFrame {
             try {
                 printResultSet(getExamsFormated(), examsDir + File.separator + "AllExams.pdf");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
             try {
                 ResultSet rs = getExamsId();
@@ -708,11 +722,13 @@ public class AdminMainFrame extends JFrame {
                         printResultSet(exam.getStudentsIdAndName(),
                                 examDir.getPath() + File.separator + "ExamStudents.pdf");
                     } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                 }
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
 
             JOptionPane.showMessageDialog(rootPane, "Printed successfully");

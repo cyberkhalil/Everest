@@ -359,7 +359,9 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Everest Training center"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="EVEREST_TITLE" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

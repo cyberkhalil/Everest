@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import javax.naming.NoPermissionException;
 import javax.swing.JOptionPane;
 import static users.UserUtil.createUser;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class UserAddFrame extends javax.swing.JFrame {
 
@@ -44,7 +47,7 @@ public class UserAddFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -203,7 +206,10 @@ public class UserAddFrame extends javax.swing.JFrame {
                 createUser(Login.user, userName, userPassword, userPrivilege);
                 JOptionPane.showMessageDialog(rootPane,
                         "User has been added sucessfully");
-            } catch (SQLException | NoPermissionException ex) {
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
+            } catch (NoPermissionException ex) {
                 JOptionPane.showMessageDialog(rootPane, ex);
             }
         }

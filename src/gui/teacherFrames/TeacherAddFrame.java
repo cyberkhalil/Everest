@@ -3,6 +3,9 @@ package gui.teacherFrames;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import teachers.TeacherUtil;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class TeacherAddFrame extends javax.swing.JFrame {
 
@@ -36,7 +39,7 @@ public class TeacherAddFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training Center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -156,7 +159,8 @@ public class TeacherAddFrame extends javax.swing.JFrame {
                     teacherPhoneFtf.getText());
             JOptionPane.showMessageDialog(this, "New Teacher created successfully");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_addBtnActionPerformed
 

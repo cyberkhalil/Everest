@@ -7,7 +7,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import teachers.Teacher;
 import static teachers.TeacherUtil.getTeachersFormated;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
 import static utils.PublicStaticFinals.PHONE_FORMAT;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteFormatedTextField;
@@ -21,7 +24,8 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         try {
             this.teachersTbl.setModel(buildTableModel(getTeachersFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -206,7 +210,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -272,7 +276,7 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         }
         String teacherName = (String) JOptionPane.showInputDialog(rootPane, "New Teacher Name:",
                 "Set Teacher Name", JOptionPane.QUESTION_MESSAGE, null, null,
-                 selectedTeacher.getName());
+                selectedTeacher.getName());
 
         if (teacherName == null) {
             return;
@@ -284,8 +288,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
 
         try {
             selectedTeacher.setName(teacherName);
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -306,10 +311,11 @@ public class TeachersEditFrame extends javax.swing.JFrame {
                         updateTable();
                         JOptionPane.showMessageDialog(rootPane, "Phone number change successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 }), setPhoneBtn);
     }//GEN-LAST:event_setPhoneBtnActionPerformed
 
@@ -326,8 +332,9 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         try {
             selectedTeacher.delete();
             selectedTeacher = null;
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -365,7 +372,8 @@ public class TeachersEditFrame extends javax.swing.JFrame {
         try {
             this.teachersTbl.setModel(buildTableModel(getTeachersFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         if (selectedTeacher == null) {
             teacherIdTf.setText("");

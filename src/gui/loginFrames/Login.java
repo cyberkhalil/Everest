@@ -11,7 +11,10 @@ import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import static utils.ExceptionUtil.printEx;
 import static utils.PreRun.check_mysql;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class Login extends javax.swing.JFrame {
 
@@ -35,7 +38,6 @@ public class Login extends javax.swing.JFrame {
         passwordPf = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(null);
         setResizable(false);
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -46,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -198,7 +200,8 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, ex);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(this, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         this.passwordPf.setText(null);
     }
@@ -213,7 +216,8 @@ public class Login extends javax.swing.JFrame {
         try {
             DBConnection.establishConnection();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         try {
             UIManager.

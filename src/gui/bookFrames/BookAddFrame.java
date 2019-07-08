@@ -1,9 +1,15 @@
 package gui.bookFrames;
 
-import books.BookUtil;
+import static books.BookUtil.createBook;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EMPTY;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.PublicStaticFinals.BOOK_NAME_ERR_MSG;
+import static utils.PublicStaticFinals.BOOK_CREATED_SCS_MSG;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
 
 public class BookAddFrame extends javax.swing.JFrame {
 
@@ -41,7 +47,7 @@ public class BookAddFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training Center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -172,26 +178,22 @@ public class BookAddFrame extends javax.swing.JFrame {
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         if (bookNameTf.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Book MUST have a book name");
+            JOptionPane.showMessageDialog(rootPane, BOOK_NAME_ERR_MSG);
             return;
         }
         try {
             if (BookISBN_CB.isSelected()) {
-                BookUtil.createBook(
-                        bookNameTf.getText(),
-                        (double) bookPriceSp.getValue(),
-                        (int) bookQuantitySp.getValue(),
-                        bookISBN_Tf.getText());
+                createBook(bookNameTf.getText(), (double) bookPriceSp.getValue(),
+                        (int) bookQuantitySp.getValue(), bookISBN_Tf.getText());
             } else {
-                BookUtil.createBook(
-                        bookNameTf.getText(),
-                        (double) bookPriceSp.getValue(),
+                createBook(bookNameTf.getText(), (double) bookPriceSp.getValue(),
                         (int) bookQuantitySp.getValue());
             }
-            JOptionPane.showMessageDialog(this, "New book created successfully");
+            JOptionPane.showMessageDialog(this, BOOK_CREATED_SCS_MSG);
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(this, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_addBookBtnActionPerformed
 
@@ -199,7 +201,7 @@ public class BookAddFrame extends javax.swing.JFrame {
         if (BookISBN_CB.isSelected()) {
             bookISBN_Tf.setEnabled(true);
         } else {
-            bookISBN_Tf.setText("");
+            bookISBN_Tf.setText(EMPTY);
             bookISBN_Tf.setEnabled(false);
         }
     }//GEN-LAST:event_BookISBN_CBActionPerformed

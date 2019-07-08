@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteDatePicker;
@@ -23,7 +26,8 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         try {
             this.examsTbl.setModel(buildTableModel(getExamsFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -112,15 +116,14 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                         .addComponent(examNameLbl)
                         .addGap(18, 18, 18)
                         .addComponent(examNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examDataPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examDataPnlLayout.createSequentialGroup()
-                            .addComponent(examDateLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(18, 18, 18)
-                            .addComponent(examDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examDataPnlLayout.createSequentialGroup()
-                            .addComponent(examPriceLbl)
-                            .addGap(18, 18, 18)
-                            .addComponent(examPriceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examDataPnlLayout.createSequentialGroup()
+                        .addComponent(examDateLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(examDateTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, examDataPnlLayout.createSequentialGroup()
+                        .addComponent(examPriceLbl)
+                        .addGap(18, 18, 18)
+                        .addComponent(examPriceTf, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         examDataPnlLayout.setVerticalGroup(
@@ -233,7 +236,7 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -307,8 +310,9 @@ public class ExamsEditFrame extends javax.swing.JFrame {
 
         try {
             selectedExam.setName(examName);
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -345,8 +349,9 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         try {
             selectedExam.delete();
             selectedExam = null;
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteExamBtnActionPerformed
@@ -361,10 +366,11 @@ public class ExamsEditFrame extends javax.swing.JFrame {
                         selectedExam.setPrice(spinnerValue);
                         JOptionPane.showMessageDialog(rootPane, "Exam Price Updated Successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 }), setPriceBtn);
         updateTable();
     }//GEN-LAST:event_setPriceBtnActionPerformed
@@ -405,7 +411,8 @@ public class ExamsEditFrame extends javax.swing.JFrame {
         try {
             this.examsTbl.setModel(buildTableModel(getExamsFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         if (selectedExam == null) {
             examIdTf.setText("");

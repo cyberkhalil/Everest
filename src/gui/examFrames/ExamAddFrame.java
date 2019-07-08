@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class ExamAddFrame extends JFrame {
 
@@ -65,7 +68,7 @@ public class ExamAddFrame extends JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Everest Training center");
+        jLabel1.setText(EVEREST_TITLE);
 
         jLabel13.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 51, 153));
@@ -187,11 +190,11 @@ public class ExamAddFrame extends JFrame {
                     (double) examPriceSp.getValue(),
                     new Date(examDateDP.getDateInMillis()));
 
-            JOptionPane.showMessageDialog(this,
-                    "New Exam created successfully");
+            JOptionPane.showMessageDialog(this, "New Exam created successfully");
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_addExamBtnActionPerformed
 

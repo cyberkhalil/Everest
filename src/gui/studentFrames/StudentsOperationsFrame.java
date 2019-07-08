@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import students.Student;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
@@ -207,7 +210,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -261,12 +264,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student bought " + value + " from this book successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), buyBookBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_buyBookBtnActionPerformed
 
@@ -282,12 +287,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student enrolled to this course successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), enrollToCourseBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_enrollToCourseBtnActionPerformed
 
@@ -296,7 +303,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             try {
                 table.setModel(buildTableModel(selectedStudent.getCoursesIdAndName()));
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
         }), displayCoursesBtn);
     }//GEN-LAST:event_displayCoursesBtnActionPerformed
@@ -306,7 +314,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             try {
                 table.setModel(buildTableModel(selectedStudent.getBooksFormated()));
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
         }), displayBooksBtn);
     }//GEN-LAST:event_displayBooksBtnActionPerformed
@@ -316,7 +325,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             try {
                 table.setModel(buildTableModel(selectedStudent.getExamsFormated()));
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
         }), displayExamsBtn);
     }//GEN-LAST:event_displayExamsBtnActionPerformed
@@ -333,12 +343,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student removed from this course successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), removeFromCourseBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_removeFromCourseBtnActionPerformed
 
@@ -353,12 +365,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                             "Student added to this exam successfully");
                     return true;
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
+                    JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                    printEx(ex);
                 }
                 return false;
             }), addToExamBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_addToExamBtnActionPerformed
 
@@ -367,7 +381,8 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
             try {
                 table.setModel(buildTableModel(selectedStudent.getBalance()));
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(rootPane, ex);
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
             }
         }), displayBalanceBtn);
     }//GEN-LAST:event_displayBalanceBtnActionPerformed
@@ -380,8 +395,9 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Student Puchrase Done Successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     return false;
                 }), purchaseMoneyBtn);
@@ -399,12 +415,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student returned this book successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), removeFromBookBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_removeFromBookBtnActionPerformed
 
@@ -420,12 +438,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student removed from this exam successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), removeFromExamBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_removeFromExamBtnActionPerformed
 
@@ -441,12 +461,14 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                                     "Student purchase removed successfully");
                             return true;
                         } catch (SQLException ex) {
-                            JOptionPane.showMessageDialog(rootPane, ex);
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
                         }
                         return false;
                     }), removePurchaseBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_removePurchaseBtnActionPerformed
 

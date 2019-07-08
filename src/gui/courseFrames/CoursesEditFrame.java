@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import static utils.ExceptionUtil.printEx;
 import utils.PublicStaticFinals;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.TimeUtil.isValidDateOrder;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_2frames_to_button;
@@ -28,7 +31,8 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         try {
             this.coursesTbl.setModel(buildTableModel(getCoursesFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -294,7 +298,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -371,8 +375,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
 
         try {
             selectedCourse.setName(courseName);
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -396,8 +401,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                             updateTable();
                             return true;
                         }
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     return false;
                 });
@@ -416,8 +422,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                             updateTable();
                             return true;
                         }
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex.toString());
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     return false;
                 });
@@ -438,8 +445,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         try {
             selectedCourse.delete();
             selectedCourse = null;
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -456,8 +464,9 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                                 "Course Price Updated Successfully");
                         updateTable();
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
                     return false;
                 }), setPriceBtn);
@@ -474,10 +483,11 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "Course Days Updated Successfully");
                         updateTable();
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 }, selectedCourse.getDays()), setDaysBtn);
     }//GEN-LAST:event_setDaysBtnActionPerformed
 
@@ -500,10 +510,11 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                                     "Course start time MUST be after course end time");
                             return false;
                         }
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 });
         JFrame frame2 = promoteFormatedTextField("Change Course End Time",
                 "Course New End Time :", PublicStaticFinals.TIME_FORMAT, "Set End Time",
@@ -521,10 +532,11 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                                     "Course start time MUST be after course end time");
                             return false;
                         }
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 });
         frame2.setLocation(frame1.getWidth(), 0);
         link_2frames_to_button(frame1, frame2, setTimeBtn);
@@ -564,7 +576,8 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         try {
             this.coursesTbl.setModel(buildTableModel(getCoursesFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         if (selectedCourse == null) {
             courseIdTf.setText("");

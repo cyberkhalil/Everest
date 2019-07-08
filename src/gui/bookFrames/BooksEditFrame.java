@@ -6,11 +6,26 @@ import java.awt.HeadlessException;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
+import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.BOOK_DELETE_BTN;
+import static utils.PublicStaticFinals.BOOK_DELETE_CNFRM;
+import static utils.PublicStaticFinals.BOOK_NEW_NAME_BTN;
+import static utils.PublicStaticFinals.EMPTY;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteSpinner;
+import static utils.PublicStaticFinals.BOOK_NEW_NAME_LBL;
+import static utils.PublicStaticFinals.BOOK_EXIST_ERR_MSG;
+import static utils.PublicStaticFinals.BOOK_EMPTY_NAME_ERR_MSG;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.QUESTION_MRK;
+import static utils.PublicStaticFinals.SPACE;
 
 public class BooksEditFrame extends javax.swing.JFrame {
 
@@ -21,7 +36,8 @@ public class BooksEditFrame extends javax.swing.JFrame {
         try {
             this.booksTbl.setModel(buildTableModel(getBooksFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -249,7 +265,7 @@ public class BooksEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -302,7 +318,8 @@ public class BooksEditFrame extends javax.swing.JFrame {
         try {
             selectedBook = new Book(Integer.parseInt(tableModel.getValueAt(i, 0).toString()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Selected Book doesn't Exist !");
+            JOptionPane.showMessageDialog(rootPane, BOOK_EXIST_ERR_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_booksTblMouseClicked
@@ -311,19 +328,20 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        String newBookName = (String) JOptionPane.showInputDialog(rootPane, "New Book Name:",
-                "Set Book Name", JOptionPane.QUESTION_MESSAGE, null, null, selectedBook.getName());
+        String newBookName = (String) JOptionPane.showInputDialog(rootPane, BOOK_NEW_NAME_LBL,
+                BOOK_NEW_NAME_BTN, QUESTION_MESSAGE, null, null, selectedBook.getName());
 
         if (newBookName == null) {
             return;
         } else if (newBookName.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Book name can't be nothing");
+            JOptionPane.showMessageDialog(rootPane, BOOK_EMPTY_NAME_ERR_MSG);
             return;
         }
         try {
             selectedBook.setName(newBookName);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -332,17 +350,18 @@ public class BooksEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane,
-                "Are you sure you want to delete Book " + bookNameTf.getText() + " ?",
-                "Book Delete", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean deleteConfirmation = JOptionPane.showConfirmDialog(rootPane, BOOK_DELETE_CNFRM
+                + SPACE + bookNameTf.getText() + SPACE + QUESTION_MRK, BOOK_DELETE_BTN,
+                YES_NO_OPTION) == YES_OPTION;
         if (!deleteConfirmation) {
             return;
         }
         try {
             selectedBook.delete();
             selectedBook = null;
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBookBtnActionPerformed
@@ -366,8 +385,9 @@ public class BooksEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane,
                                 "Book Quantity Updated Successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                         return false;
                     }
                 }), setQuantityBtn);
@@ -384,8 +404,9 @@ public class BooksEditFrame extends javax.swing.JFrame {
                         selectedBook.setPrice((double) spinnerValue);
                         JOptionPane.showMessageDialog(rootPane, "Book Price Updated Successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                         return false;
                     }
                 }), setPriceBtn);
@@ -430,14 +451,15 @@ public class BooksEditFrame extends javax.swing.JFrame {
         try {
             this.booksTbl.setModel(buildTableModel(getBooksFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         if (selectedBook == null) {
-            bookIdTf.setText("");
-            bookNameTf.setText("");
-            bookPriceTf.setText("");
-            bookQuantityTf.setText("");
-            bookSoldTf.setText("");
+            bookIdTf.setText(EMPTY);
+            bookNameTf.setText(EMPTY);
+            bookPriceTf.setText(EMPTY);
+            bookQuantityTf.setText(EMPTY);
+            bookSoldTf.setText(EMPTY);
         } else {
             bookIdTf.setText(String.valueOf(selectedBook.getId()));
             bookNameTf.setText(selectedBook.getName());

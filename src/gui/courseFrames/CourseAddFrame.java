@@ -8,6 +8,9 @@ import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import teachers.Teacher;
 import static teachers.TeacherUtil.getTeachersIdAndName;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.TimeUtil.isValidDateOrder;
 import static utils.gui.GUI_Util.promoteTwoOrSpinners;
 import static utils.gui.GUI_Util.buildComboBoxModel;
@@ -19,7 +22,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
         try {
             courseTeacherCb.setModel(buildComboBoxModel(getTeachersIdAndName()));
         } catch (SQLException ex) {
-            JOptionPane.showConfirmDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -75,7 +79,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training Center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -359,7 +363,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
                                         ).getId(), first, value);
                                 return true;
                             } catch (SQLException ex) {
-                                JOptionPane.showMessageDialog(rootPane, ex);
+                                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                                printEx(ex);
                             }
                             return false;
                         });
@@ -375,7 +380,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "New Course created successfully");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_addCourseBtnActionPerformed
 

@@ -11,6 +11,9 @@ import static users.UserUtil.deleteUser;
 import static users.UserUtil.getUser;
 import static users.UserUtil.getUsersFromated;
 import static users.UserUtil.setUserPrivilege;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildTableModel;
 
 public final class UsersEditFrame extends javax.swing.JFrame {
@@ -21,7 +24,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         initComponents();
         try {
             this.usersTbl.setModel(buildTableModel(getUsersFromated(Login.user)));
-        } catch (SQLException | NoPermissionException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }
@@ -210,7 +216,7 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -264,7 +270,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
         TableModel tableModel = usersTbl.getModel();
         try {
             selectedUser = getUser(Login.user, tableModel.getValueAt(i, 1).toString());
-        } catch (SQLException | NoPermissionException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, "Selected User Doesn't Exist");
         }
         updateTable();
@@ -288,7 +297,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             selectedUser.setPassword(pass);
             JOptionPane.showMessageDialog(rootPane, "Password Changed Successfully");
             updateTable();
-        } catch (SQLException | IllegalStateException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_setPasswordBtnActionPerformed
@@ -310,7 +322,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             deleteUser(Login.user, selectedUser);
             updateTable();
             JOptionPane.showMessageDialog(rootPane, "User Deleted Successfully");
-        } catch (SQLException | NoPermissionException | IllegalStateException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (NoPermissionException | IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_deleteUserBtnActionPerformed
@@ -335,7 +350,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
             selectedUser.setUsername(username);
             JOptionPane.showMessageDialog(rootPane, "Username Changed Successfully");
             updateTable();
-        } catch (SQLException | IllegalStateException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (IllegalStateException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
             updateTable();
         }
@@ -359,7 +377,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
                 setUserPrivilege(Login.user, selectedUser, "Normal User");
             }
             updateTable();
-        } catch (SQLException | NoPermissionException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (NoPermissionException ex) {
             JOptionPane.showMessageDialog(this, ex);
             updateTable();
         }
@@ -388,7 +409,10 @@ public final class UsersEditFrame extends javax.swing.JFrame {
     private void updateTable() {
         try {
             this.usersTbl.setModel(buildTableModel(getUsersFromated(Login.user)));
-        } catch (SQLException | NoPermissionException ex) {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        } catch (NoPermissionException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
         if (selectedUser == null) {

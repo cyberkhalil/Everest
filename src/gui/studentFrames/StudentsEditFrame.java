@@ -14,6 +14,9 @@ import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.promoteFormatedTextField;
 import static utils.gui.GUI_Util.promoteComboBox;
 import static students.StudentUtil.getStudentsIdAndName;
+import static utils.ExceptionUtil.printEx;
+import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
 
@@ -24,7 +27,8 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         try {
             this.studentsTbl.setModel(buildTableModel(getStudentsFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }
 
@@ -234,7 +238,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         titleLbl.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         titleLbl.setForeground(new java.awt.Color(0, 51, 153));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLbl.setText("Everest Training center");
+        titleLbl.setText(EVEREST_TITLE);
 
         javax.swing.GroupLayout titlePnlLayout = new javax.swing.GroupLayout(titlePnl);
         titlePnl.setLayout(titlePnlLayout);
@@ -312,8 +316,9 @@ public class StudentsEditFrame extends javax.swing.JFrame {
 
         try {
             selectedStudent.setName(studentName);
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_setNameBtnActionPerformed
@@ -330,10 +335,11 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "Phone number"
                                 + " change successfully");
                         return true;
-                    } catch (SQLException | IllegalStateException ex) {
-                        JOptionPane.showMessageDialog(rootPane, ex);
-                        return false;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
                     }
+                    return false;
                 }), setPhoneBtn);
     }//GEN-LAST:event_setPhoneBtnActionPerformed
 
@@ -351,8 +357,9 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         try {
             selectedStudent.delete();
             selectedStudent = null;
-        } catch (SQLException | IllegalStateException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         updateTable();
     }//GEN-LAST:event_deleteBtnActionPerformed
@@ -370,13 +377,15 @@ public class StudentsEditFrame extends javax.swing.JFrame {
                     updateTable();
                     JOptionPane.showMessageDialog(rootPane, "Student AddedBy change successfully");
                     return true;
-                } catch (SQLException | IllegalStateException ex) {
-                    JOptionPane.showMessageDialog(rootPane, ex);
-                    return false;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                    printEx(ex);
                 }
+                return false;
             }), setAddedByBtn);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
     }//GEN-LAST:event_setAddedByBtnActionPerformed
 
@@ -416,7 +425,8 @@ public class StudentsEditFrame extends javax.swing.JFrame {
         try {
             this.studentsTbl.setModel(buildTableModel(getStudentsFormated()));
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, ex);
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
         }
         if (selectedStudent == null) {
             studentIdTf.setText("");
