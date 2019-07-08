@@ -1,10 +1,12 @@
 package utils.gui;
 
 import com.itextpdf.text.DocumentException;
+import java.awt.HeadlessException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import others.InvoiceToPdf;
+import utils.PDF_Util;
 import utils.gui.GUI_Util.UpdateTableOperation;
 
 class DisplayItemsInJTable extends javax.swing.JFrame {
@@ -152,9 +154,9 @@ class DisplayItemsInJTable extends javax.swing.JFrame {
             if (f.getSelectedFile() == null) {
                 return;
             }
-            InvoiceToPdf.printjTable(itemsTbl, f.getSelectedFile().getPath());
+            PDF_Util.printjTable(itemsTbl, f.getSelectedFile().getPath());
             JOptionPane.showMessageDialog(rootPane, "Printed successfully");
-        } catch (FileNotFoundException | DocumentException ex) {
+        } catch (DocumentException | HeadlessException | IOException ex) {
             JOptionPane.showMessageDialog(rootPane, ex);
         }
     }//GEN-LAST:event_printTableBtnActionPerformed
