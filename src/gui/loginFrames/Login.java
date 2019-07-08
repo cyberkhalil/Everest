@@ -13,8 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import static utils.ExceptionUtil.printEx;
 import static utils.PreRun.check_mysql;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 
 public class Login extends javax.swing.JFrame {
 

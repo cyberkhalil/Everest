@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import students.Student;
-import utils.PublicStaticFinals;
+import utils.Strings;
 import static students.StudentUtil.getStudentsFormated;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
@@ -15,8 +15,8 @@ import static utils.gui.GUI_Util.promoteFormatedTextField;
 import static utils.gui.GUI_Util.promoteComboBox;
 import static students.StudentUtil.getStudentsIdAndName;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 
 public class StudentsEditFrame extends javax.swing.JFrame {
 
@@ -328,7 +328,7 @@ public class StudentsEditFrame extends javax.swing.JFrame {
             return;
         }
         link_frame_to_button(promoteFormatedTextField("Change Student Phone", "Student New Phone :",
-                PublicStaticFinals.PHONE_FORMAT, "Set Student Phone", (phone) -> {
+                Strings.PHONE_FORMAT, "Set Student Phone", (phone) -> {
                     try {
                         selectedStudent.setPhone(phone);
                         updateTable();

@@ -1,6 +1,6 @@
 package utils;
 
-import static utils.PublicStaticFinals.NEW_LINE;
+import static utils.Strings.NEW_LINE;
 
 public class ExceptionUtil {
 

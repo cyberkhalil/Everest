@@ -6,8 +6,8 @@ import static students.StudentUtil.createStudent;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static students.StudentUtil.getStudentsIdAndName;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 
 public class StudentAddFrame extends javax.swing.JFrame {
 

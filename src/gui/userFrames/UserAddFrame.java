@@ -6,8 +6,8 @@ import javax.naming.NoPermissionException;
 import javax.swing.JOptionPane;
 import static users.UserUtil.createUser;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 
 public class UserAddFrame extends javax.swing.JFrame {
 

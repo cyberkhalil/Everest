@@ -1,6 +1,6 @@
 package utils;
 
-public final class PublicStaticFinals {
+public final class Strings {
 
     // Marks, formats & experssions
     public static final String PHONE_FORMAT = "###-###-####";

@@ -6,15 +6,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import teachers.Teacher;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
-import utils.gui.GUI_Util;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildComboBoxModel;
 import static utils.gui.GUI_Util.displayItemsInJTable;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
-import static utils.gui.GUI_Util.promoteComboBoxAndTwoOrSpinners;
+import static utils.gui.GUI_Util.promoteComboBoxAndSpinner;
 
 public class TeacherOperationsFrame extends javax.swing.JFrame {
 
@@ -155,15 +154,13 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
 
     private void addToCourseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCourseBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBoxAndTwoOrSpinners("Enroll to course",
+            link_frame_to_button(promoteComboBoxAndSpinner("Enroll to course",
                     "Choose course to enroll", buildComboBoxModel(getCoursesIdAndName()),
                     "Static teacher money", new SpinnerNumberModel(0, 0, 999.99, 1),
-                    "Percentage teacher money", new SpinnerNumberModel(0, 0, 100, 1),
-                    "Static teacher money", "Percentage teacher money", "Add to course",
-                    (choice, first, price) -> {
+                    "Add to course", (choice, price) -> {
                         try {
                             selectedTeacher.enrollToCourse(Integer.parseInt(choice.substring(
-                                    1, choice.indexOf(")"))), first, price);
+                                    1, choice.indexOf(")"))), true, price);
                             JOptionPane.showMessageDialog(rootPane,
                                     "Teacher enrolled to this course successfully");
                             return true;

@@ -35,8 +35,8 @@ import static utils.gui.GUI_Util.link_frame_to_button;
 import static books.BookUtil.getSoldOutBooksFormated;
 import java.io.File;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 
 public class AdminMainFrame extends JFrame {
 

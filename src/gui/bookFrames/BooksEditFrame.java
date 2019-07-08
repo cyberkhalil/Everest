@@ -12,20 +12,20 @@ import static javax.swing.JOptionPane.YES_OPTION;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.BOOK_DELETE_BTN;
-import static utils.PublicStaticFinals.BOOK_DELETE_CNFRM;
-import static utils.PublicStaticFinals.BOOK_NEW_NAME_BTN;
-import static utils.PublicStaticFinals.EMPTY;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.BOOK_DELETE_BTN;
+import static utils.Strings.BOOK_DELETE_CNFRM;
+import static utils.Strings.BOOK_NEW_NAME_BTN;
+import static utils.Strings.EMPTY;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteSpinner;
-import static utils.PublicStaticFinals.BOOK_NEW_NAME_LBL;
-import static utils.PublicStaticFinals.BOOK_EXIST_ERR_MSG;
-import static utils.PublicStaticFinals.BOOK_EMPTY_NAME_ERR_MSG;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.QUESTION_MRK;
-import static utils.PublicStaticFinals.SPACE;
+import static utils.Strings.BOOK_NEW_NAME_LBL;
+import static utils.Strings.BOOK_EXIST_ERR_MSG;
+import static utils.Strings.BOOK_EMPTY_NAME_ERR_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.QUESTION_MRK;
+import static utils.Strings.SPACE;
 
 public class BooksEditFrame extends javax.swing.JFrame {
 

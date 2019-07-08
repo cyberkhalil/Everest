@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EMPTY;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
-import static utils.PublicStaticFinals.BOOK_NAME_ERR_MSG;
-import static utils.PublicStaticFinals.BOOK_CREATED_SCS_MSG;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
+import static utils.Strings.EMPTY;
+import static utils.Strings.SQL_EXCEPTION_MSG;
+import static utils.Strings.BOOK_NAME_ERR_MSG;
+import static utils.Strings.BOOK_CREATED_SCS_MSG;
+import static utils.Strings.EVEREST_TITLE;
 
 public class BookAddFrame extends javax.swing.JFrame {
 

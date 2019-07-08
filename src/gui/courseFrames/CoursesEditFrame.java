@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableModel;
 import static utils.ExceptionUtil.printEx;
-import utils.PublicStaticFinals;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import utils.Strings;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 import static utils.TimeUtil.isValidDateOrder;
 import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_2frames_to_button;
@@ -495,9 +495,8 @@ public class CoursesEditFrame extends javax.swing.JFrame {
         if (isBadSelection()) {
             return;
         }
-        JFrame frame1 = promoteFormatedTextField(
-                "Change Course Start Time", "Course New Start Time :",
-                PublicStaticFinals.TIME_FORMAT, "Set Start Time", (formatedText) -> {
+        JFrame frame1 = promoteFormatedTextField("Change Course Start Time", "Course New Start Time :",
+                Strings.TIME_FORMAT, "Set Start Time", (formatedText) -> {
                     try {
                         if (isValidDateOrder(formatedText, selectedCourse.getEndDate())) {
                             selectedCourse.setTimeHourFrom(formatedText);
@@ -517,7 +516,7 @@ public class CoursesEditFrame extends javax.swing.JFrame {
                     return false;
                 });
         JFrame frame2 = promoteFormatedTextField("Change Course End Time",
-                "Course New End Time :", PublicStaticFinals.TIME_FORMAT, "Set End Time",
+                "Course New End Time :", Strings.TIME_FORMAT, "Set End Time",
                 (formatedText) -> {
                     try {
                         if (isValidDateOrder(selectedCourse.getStartDate(),

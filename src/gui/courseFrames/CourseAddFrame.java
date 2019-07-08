@@ -9,11 +9,11 @@ import javax.swing.SpinnerNumberModel;
 import teachers.Teacher;
 import static teachers.TeacherUtil.getTeachersIdAndName;
 import static utils.ExceptionUtil.printEx;
-import static utils.PublicStaticFinals.EVEREST_TITLE;
-import static utils.PublicStaticFinals.SQL_EXCEPTION_MSG;
+import static utils.Strings.EVEREST_TITLE;
+import static utils.Strings.SQL_EXCEPTION_MSG;
 import static utils.TimeUtil.isValidDateOrder;
-import static utils.gui.GUI_Util.promoteTwoOrSpinners;
 import static utils.gui.GUI_Util.buildComboBoxModel;
+import static utils.gui.GUI_Util.promoteSpinner;
 
 public class CourseAddFrame extends javax.swing.JFrame {
 
@@ -347,10 +347,8 @@ public class CourseAddFrame extends javax.swing.JFrame {
             if (courseTeacherTb.isSelected()) {
                 String teacher_item = courseTeacherCb.getSelectedItem().toString();
                 String teacher_id = teacher_item.substring(1, teacher_item.indexOf(")"));
-                promoteTwoOrSpinners("Add teacher to course", "Static teacher money",
-                        new SpinnerNumberModel(0, 0, 999.99, 1), "Percentage teacher money",
-                        new SpinnerNumberModel(0, 0, 100, 1), "Static teacher money",
-                        "Percentage teacher money", "Add to course", (first, value) -> {
+                promoteSpinner("Add teacher to course", "Static teacher money",
+                        new SpinnerNumberModel(0, 0, 100, 1), "Add to course", (value) -> {
                             try {
                                 new Teacher(Integer.parseInt(teacher_id)).enrollToCourse(
                                         createCourser(courseNameTf.getText(),
@@ -360,7 +358,7 @@ public class CourseAddFrame extends javax.swing.JFrame {
                                                 courseEndTimeFtf.getText(),
                                                 courseStartTimeFtf.getText(),
                                                 getDays()
-                                        ).getId(), first, value);
+                                        ).getId(), true, value);
                                 return true;
                             } catch (SQLException ex) {
                                 JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
