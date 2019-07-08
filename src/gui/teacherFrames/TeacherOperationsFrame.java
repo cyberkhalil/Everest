@@ -14,6 +14,7 @@ import static utils.gui.GUI_Util.buildTableModel;
 import static utils.gui.GUI_Util.link_frame_to_button;
 import static utils.gui.GUI_Util.promoteComboBox;
 import static utils.gui.GUI_Util.promoteComboBoxAndSpinner;
+import static utils.gui.GUI_Util.promoteSpinner;
 
 public class TeacherOperationsFrame extends javax.swing.JFrame {
 
@@ -32,6 +33,7 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         displayCoursesBtn = new javax.swing.JButton();
         addToCourseBtn = new javax.swing.JButton();
         removeFromCourseBtn = new javax.swing.JButton();
+        giveMoneyBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -67,13 +69,23 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        giveMoneyBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        giveMoneyBtn.setText("Give Money");
+        giveMoneyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giveMoneyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(addToCourseBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addToCourseBtn)
+                    .addComponent(giveMoneyBtn))
                 .addGap(20, 20, 20)
                 .addComponent(displayCoursesBtn)
                 .addGap(20, 20, 20)
@@ -83,12 +95,14 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         ButtonsPnlLayout.setVerticalGroup(
             ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ButtonsPnlLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(50, 50, 50)
                 .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToCourseBtn)
                     .addComponent(displayCoursesBtn)
                     .addComponent(removeFromCourseBtn))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(giveMoneyBtn)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         titlePnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -199,10 +213,27 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeFromCourseBtnActionPerformed
 
+    private void giveMoneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giveMoneyBtnActionPerformed
+        link_frame_to_button(promoteSpinner("Teacher Payment", "Payment Price :",
+                new SpinnerNumberModel(0, 0, 999.99, 10), "Add Payment", (double spinnerValue) -> {
+                    try {
+                        selectedTeacher.giveMoney(spinnerValue);
+                        JOptionPane.showMessageDialog(rootPane,
+                                "Teacher Payment Done Successfully");
+                        return true;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                        printEx(ex);
+                    }
+                    return false;
+                }), giveMoneyBtn);
+    }//GEN-LAST:event_giveMoneyBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton addToCourseBtn;
     private javax.swing.JButton displayCoursesBtn;
+    private javax.swing.JButton giveMoneyBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton removeFromCourseBtn;
     private javax.swing.JLabel titleLbl;

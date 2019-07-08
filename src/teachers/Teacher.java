@@ -118,6 +118,14 @@ public class Teacher {
         ps.executeUpdate();
     }
 
+    public void giveMoney(double price) throws SQLException {
+        String query = "Insert into teacher_purchases(teacher_id,purchase_price) values(?,?)";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, id);
+        ps.setDouble(2, -price);
+        ps.executeUpdate();
+    }
+
     public ResultSet getCoursesFormated() throws SQLException {
         String query = "Select CONCAT('(',c.course_id,') ',c.course_name) AS 'Course',"
                 + "CONCAT(tc.teach_date) as 'Date',"
