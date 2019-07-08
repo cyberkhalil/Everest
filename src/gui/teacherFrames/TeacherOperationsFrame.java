@@ -34,6 +34,8 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
         addToCourseBtn = new javax.swing.JButton();
         removeFromCourseBtn = new javax.swing.JButton();
         giveMoneyBtn = new javax.swing.JButton();
+        removeMoneyBtn = new javax.swing.JButton();
+        displayBalanceBtn = new javax.swing.JButton();
         titlePnl = new javax.swing.JPanel();
         imgLbl = new javax.swing.JLabel();
         titleLbl = new javax.swing.JLabel();
@@ -77,6 +79,22 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
             }
         });
 
+        removeMoneyBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        removeMoneyBtn.setText("Remove Money");
+        removeMoneyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMoneyBtnActionPerformed(evt);
+            }
+        });
+
+        displayBalanceBtn.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        displayBalanceBtn.setText("Display Balance");
+        displayBalanceBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayBalanceBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout ButtonsPnlLayout = new javax.swing.GroupLayout(ButtonsPnl);
         ButtonsPnl.setLayout(ButtonsPnlLayout);
         ButtonsPnlLayout.setHorizontalGroup(
@@ -87,9 +105,13 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
                     .addComponent(addToCourseBtn)
                     .addComponent(giveMoneyBtn))
                 .addGap(20, 20, 20)
-                .addComponent(displayCoursesBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(displayCoursesBtn)
+                    .addComponent(displayBalanceBtn))
                 .addGap(20, 20, 20)
-                .addComponent(removeFromCourseBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeFromCourseBtn)
+                    .addComponent(removeMoneyBtn))
                 .addGap(20, 20, 20))
         );
         ButtonsPnlLayout.setVerticalGroup(
@@ -101,7 +123,10 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
                     .addComponent(displayCoursesBtn)
                     .addComponent(removeFromCourseBtn))
                 .addGap(18, 18, 18)
-                .addComponent(giveMoneyBtn)
+                .addGroup(ButtonsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(giveMoneyBtn)
+                    .addComponent(removeMoneyBtn)
+                    .addComponent(displayBalanceBtn))
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
@@ -229,13 +254,49 @@ public class TeacherOperationsFrame extends javax.swing.JFrame {
                 }), giveMoneyBtn);
     }//GEN-LAST:event_giveMoneyBtnActionPerformed
 
+    private void removeMoneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMoneyBtnActionPerformed
+        try {
+            link_frame_to_button(promoteComboBox("Purchase Remove", "Choose purchase to remove",
+                    "Remove purchase", buildComboBoxModel(selectedTeacher.getPurchasesIdAndPrice()),
+                    (choice) -> {
+                        try {
+                            selectedTeacher.removeGivenMoney(Integer.parseInt(
+                                    choice.substring(4, choice.indexOf(")"))));
+                            JOptionPane.showMessageDialog(rootPane,
+                                    "Teacher purchase removed successfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
+                        }
+                        return false;
+                    }), removeMoneyBtn);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+            printEx(ex);
+        }
+    }//GEN-LAST:event_removeMoneyBtnActionPerformed
+
+    private void displayBalanceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBalanceBtnActionPerformed
+        link_frame_to_button(displayItemsInJTable((table) -> {
+            try {
+                table.setModel(buildTableModel(selectedTeacher.getBalance()));
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                printEx(ex);
+            }
+        }), displayBalanceBtn);
+    }//GEN-LAST:event_displayBalanceBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ButtonsPnl;
     private javax.swing.JButton addToCourseBtn;
+    private javax.swing.JButton displayBalanceBtn;
     private javax.swing.JButton displayCoursesBtn;
     private javax.swing.JButton giveMoneyBtn;
     private javax.swing.JLabel imgLbl;
     private javax.swing.JButton removeFromCourseBtn;
+    private javax.swing.JButton removeMoneyBtn;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables

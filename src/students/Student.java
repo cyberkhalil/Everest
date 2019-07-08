@@ -244,7 +244,8 @@ public class Student {
     }
 
     public ResultSet getPurchasesIdAndPrice() throws SQLException {
-        String query = "Select CONCAT('id:(',purchase_id,'), price:(',purchase_price,')') AS 'Purchase' "
+        String query = "Select CONCAT('id:(',purchase_id,'), price:(',purchase_price,')') AS "
+                + "'Purchase' "
                 + "from student_purchases where student_id=?";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
