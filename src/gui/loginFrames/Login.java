@@ -1,5 +1,6 @@
 package gui.loginFrames;
 
+import br.com.margel.weblaf.WebLookAndFeel;
 import gui.mainFrames.AdminMainFrame;
 import gui.mainFrames.SecretaryMainFrame;
 import users.User;
@@ -11,9 +12,7 @@ import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import static students.StudentUtil.getStudentsFormated;
 import static utils.ExceptionUtil.printEx;
-import static utils.PDF_Util.printResultSet;
 import static utils.PreRun.check_mysql;
 import static utils.Strings.EVEREST_TITLE;
 import static utils.Strings.SQL_EXCEPTION_MSG;
@@ -222,10 +221,10 @@ public class Login extends javax.swing.JFrame {
             printEx(ex);
         }
         try {
-            UIManager.
-                    setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-        } catch (ClassNotFoundException | IllegalAccessException
-                | InstantiationException | UnsupportedLookAndFeelException ex) {
+            UIManager.setLookAndFeel(new WebLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(null, "Can't run look and feel");
+            printEx(ex);
         }
 
         java.awt.EventQueue.invokeLater(() -> {
