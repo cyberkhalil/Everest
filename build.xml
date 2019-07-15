@@ -8,7 +8,7 @@
         <property name="temp.dir" value="temp"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
         <property name="libs" value="lib"/>
-        <echo level="info" message="Copying ${libs} into ${store.dir}"/>
+        <echo level="info" message="Copying libraries.."/>
         <copy todir="${store.dir}">
             <fileset dir="${libs}"/>
         </copy>

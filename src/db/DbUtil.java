@@ -14,7 +14,8 @@ import static utils.IO_Util.readFile;
 
 public final class DbUtil {
 
-    private static final File SCHEMA_FILE = new File("src/db/everest.sql");
+    private static final File SCHEMA_FILE = new File(new DbUtil().getClass()
+            .getResource("everest.sql").getFile());
     private static Connection conn;
 
     private DbUtil() {
