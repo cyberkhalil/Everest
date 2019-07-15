@@ -149,7 +149,6 @@ public class AdminMainFrame extends JFrame {
 
         content_jPanel.setBackground(new java.awt.Color(255, 255, 255));
         content_jPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 171, 112)));
-        content_jPanel.setToolTipText("");
         content_jPanel.setPreferredSize(new java.awt.Dimension(704, 405));
 
         studentsPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -258,7 +257,6 @@ public class AdminMainFrame extends JFrame {
         contentTitleLbl.setForeground(new java.awt.Color(0, 51, 153));
         contentTitleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contentTitleLbl.setText("Admin Main Page");
-        contentTitleLbl.setToolTipText("");
         contentTitleLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         usersPnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -512,6 +510,8 @@ public class AdminMainFrame extends JFrame {
                 .addComponent(content_jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
+
+        content_jPanel.getAccessibleContext().setAccessibleName(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
