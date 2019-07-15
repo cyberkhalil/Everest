@@ -32,13 +32,14 @@ public class StudentUtil {
     }
 
     public static ResultSet getStudentsFormated() throws SQLException {
-        String query = "Select CONCAT(s.student_id) as 'Student Id',"
+        String query = "select CONCAT(s.student_id) as 'Student Id',"
                 + "CONCAT(s.student_name) as 'Student Name',"
                 + "CONCAT(s.student_phone) as 'Student Phone',"
                 + "CONCAT(s.student_added_by) as 'Student Added By',"
-                + "SUM(sf.Money) as 'Balance'"
-                + "from student s,students_financials sf "
-                + "where s.student_id=sf.student_id";
+                + "CONVERT(ifnull((select SUM(sf.Money) "
+                + "from students_financials sf "
+                + "where s.student_id=sf.student_id),'0') using utf8) as 'Balance' "
+                + "from student s";
         PreparedStatement ps = DBConnection.getConnection().prepareStatement(query);
         return ps.executeQuery();
     }

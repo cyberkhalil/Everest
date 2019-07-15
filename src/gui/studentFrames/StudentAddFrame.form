@@ -127,7 +127,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="studentPhoneLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentAddedByLbl" min="-2" max="-2" attributes="0"/>
                       <Component id="studentNameLbl" min="-2" max="-2" attributes="0"/>
                       <Component id="studentPhoneLbl" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -173,7 +173,7 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="studentAddedByIdCb" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="studentPhoneLbl1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="studentAddedByLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="studentAddedByIdTb" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -244,12 +244,13 @@
                 <StringItem index="3" value="Item 4"/>
               </StringArray>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="studentPhoneLbl1">
+        <Component class="javax.swing.JLabel" name="studentAddedByLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>

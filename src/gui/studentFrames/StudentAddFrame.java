@@ -35,7 +35,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
         studentNameTf = new javax.swing.JTextField();
         studentPhoneLbl = new javax.swing.JLabel();
         studentAddedByIdCb = new javax.swing.JComboBox<>();
-        studentPhoneLbl1 = new javax.swing.JLabel();
+        studentAddedByLbl = new javax.swing.JLabel();
         studentAddedByIdTb = new javax.swing.JToggleButton();
         studentPhoneFtf = new javax.swing.JFormattedTextField();
 
@@ -96,10 +96,11 @@ public class StudentAddFrame extends javax.swing.JFrame {
         studentPhoneLbl.setText("Student Phone:");
 
         studentAddedByIdCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        studentAddedByIdCb.setEnabled(false);
 
-        studentPhoneLbl1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        studentPhoneLbl1.setForeground(new java.awt.Color(0, 51, 153));
-        studentPhoneLbl1.setText("Student Added By Id:");
+        studentAddedByLbl.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        studentAddedByLbl.setForeground(new java.awt.Color(0, 51, 153));
+        studentAddedByLbl.setText("Student Added By Id:");
 
         studentAddedByIdTb.setText("OFF");
         studentAddedByIdTb.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +124,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
             .addGroup(contentPnlLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(studentPhoneLbl1)
+                    .addComponent(studentAddedByLbl)
                     .addComponent(studentNameLbl)
                     .addComponent(studentPhoneLbl))
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +160,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(contentPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(studentAddedByIdCb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(studentPhoneLbl1)
+                    .addComponent(studentAddedByLbl)
                     .addComponent(studentAddedByIdTb, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(addBtn)
@@ -212,6 +213,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
 
     private void studentAddedByIdTbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAddedByIdTbActionPerformed
         studentAddedByIdTb.setText(studentAddedByIdTb.isSelected() ? "ON" : "OFF");
+        studentAddedByIdCb.setEnabled(studentAddedByIdTb.isSelected());
     }//GEN-LAST:event_studentAddedByIdTbActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,11 +223,11 @@ public class StudentAddFrame extends javax.swing.JFrame {
     private javax.swing.JLabel imgLbl;
     private javax.swing.JComboBox<String> studentAddedByIdCb;
     private javax.swing.JToggleButton studentAddedByIdTb;
+    private javax.swing.JLabel studentAddedByLbl;
     private javax.swing.JLabel studentNameLbl;
     private javax.swing.JTextField studentNameTf;
     private javax.swing.JFormattedTextField studentPhoneFtf;
     private javax.swing.JLabel studentPhoneLbl;
-    private javax.swing.JLabel studentPhoneLbl1;
     private javax.swing.JLabel titleLbl;
     private javax.swing.JPanel titlePnl;
     // End of variables declaration//GEN-END:variables
