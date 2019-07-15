@@ -7,7 +7,12 @@
         <property name="store.dir" value="dist"/>
         <property name="temp.dir" value="temp"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
-        <echo message="Packaging ${application.title} into a single JAR at ${store.jar}"/>
+        <property name="libs" value="lib"/>
+        <echo level="info" message="Copying ${libs} into ${store.dir}"/>
+        <copy todir="${store.dir}">
+            <fileset dir="${libs}"/>
+        </copy>
+        <echo level="info" message="Packaging ${application.title} into a single JAR at ${store.jar}"/>
         <delete dir="${temp.dir}"/>
         <mkdir dir="${temp.dir}"/>
         <jar destfile="${temp.dir}/temp_final.jar" filesetmanifest="skip">
