@@ -131,23 +131,24 @@ public class Student {
 
     public void buyBook(int bookId, int quanitity) throws SQLException {
         if (!hasBook(bookId)) {
-            String query = "Insert into student_books values(?,?,?)";
+            String query = "Insert into student_books(student_id,book_id,book_quantity) "
+                    + "values(?,?,?)";
             PreparedStatement ps = getConnection().prepareStatement(query);
             ps.setInt(1, id);
             ps.setInt(2, bookId);
             ps.setInt(3, quanitity);
             ps.executeUpdate();
-        } else {
-            int old_quantity = bookQuantity(bookId);
-            int new_quanitity = old_quantity + quanitity;
-            String query = "Update student_books set book_quantity=? "
-                    + "where student_id=? and book_id=?";
-            PreparedStatement ps = getConnection().prepareStatement(query);
-            ps.setInt(1, new_quanitity);
-            ps.setInt(2, id);
-            ps.setInt(3, bookId);
-            ps.executeUpdate();
+            return;
         }
+        int old_quantity = bookQuantity(bookId);
+        int new_quanitity = old_quantity + quanitity;
+        String query = "Update student_books set book_quantity=? "
+                + "where student_id=? and book_id=?";
+        PreparedStatement ps = getConnection().prepareStatement(query);
+        ps.setInt(1, new_quanitity);
+        ps.setInt(2, id);
+        ps.setInt(3, bookId);
+        ps.executeUpdate();
     }
 
     public void addToExam(int examId) throws SQLException {
