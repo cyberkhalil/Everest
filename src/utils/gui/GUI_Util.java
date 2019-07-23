@@ -47,9 +47,7 @@ public class GUI_Util {
         };
     }
 
-    public static DefaultComboBoxModel buildComboBoxModel(ResultSet rs)
-            throws SQLException {
-
+    public static DefaultComboBoxModel buildComboBoxModel(ResultSet rs) throws SQLException {
         ArrayList<String> arrayList = new ArrayList<>();
         while (rs.next()) {
             arrayList.add(rs.getString(1));

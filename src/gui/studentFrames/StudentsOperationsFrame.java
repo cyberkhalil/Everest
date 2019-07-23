@@ -256,7 +256,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
         try {
             link_frame_to_button(promoteComboBoxAndSpinner("Buy A Book", "Book Id :",
                     buildComboBoxModel(getBooksIdAndName()), "Book quantity",
-                    new SpinnerNumberModel(0, 0, 1000, 1), "Buy Book", (choice, value) -> {
+                    new SpinnerNumberModel(1, 1, 1000, 1), "Buy Book", (choice, value) -> {
                         try {
                             selectedStudent.buyBook(Integer.parseInt(choice.substring(1,
                                     choice.indexOf(")"))), (int) value);

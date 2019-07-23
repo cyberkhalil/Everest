@@ -81,7 +81,7 @@ public class Student {
     }
 
     public void enrollToCourse(int courseId) throws SQLException {
-        String query = "Insert into student_courses values(?,?)";
+        String query = "Insert into student_courses(student_id,course_id) values(?,?)";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         ps.setInt(2, courseId);
