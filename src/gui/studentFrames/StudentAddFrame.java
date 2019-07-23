@@ -196,7 +196,7 @@ public class StudentAddFrame extends javax.swing.JFrame {
         }
 
         try {
-            if (!studentAddedByIdTb.isSelected()) {
+            if (studentAddedByIdTb.isSelected()) {
                 String studentAddedById = studentAddedByIdCb.getSelectedObjects()[0].toString();
                 createStudent(studentNameTf.getText(), studentPhoneFtf.getText(),
                         Integer.parseInt(studentAddedById.substring(1,
