@@ -80,4 +80,9 @@ public class BookUtil {
         PreparedStatement ps = getConnection().prepareStatement(query);
         return ps.executeQuery();
     }
+
+    public static int getAvailableBooks(int bookId) throws SQLException {
+        Book b = new Book(bookId);
+        return b.getQuantity() - b.getSold();
+    }
 }

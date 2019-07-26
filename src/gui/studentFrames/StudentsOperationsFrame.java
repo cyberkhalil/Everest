@@ -266,6 +266,10 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
                         } catch (SQLException ex) {
                             JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
                             printEx(ex);
+                        } catch (UnsupportedOperationException ex) {
+                            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
+                            printEx(ex);
+
                         }
                         return false;
                     }), buyBookBtn);

@@ -1,5 +1,7 @@
 package students;
 
+import books.BookUtil;
+import static books.BookUtil.getAvailableBooks;
 import static db.DBConnection.getConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -129,7 +131,13 @@ public class Student {
         buyBook(bookId, 1);
     }
 
-    public void buyBook(int bookId, int quanitity) throws SQLException {
+    public void buyBook(int bookId, int quanitity) throws SQLException,
+            UnsupportedOperationException {
+        if (getAvailableBooks(bookId) < quanitity) {
+            throw new UnsupportedOperationException("Number of Available books ("
+                    + getAvailableBooks(bookId) + ") less than required quantity(" + quanitity
+                    + ")");
+        }
         if (!hasBook(bookId)) {
             String query = "Insert into student_books(student_id,book_id,book_quantity) "
                     + "values(?,?,?)";
