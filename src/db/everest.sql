@@ -8,11 +8,12 @@ create user if not exists test@localhost identified by 'test';
 USE everest;
 GRANT ALL PRIVILEGES ON * . * TO test@localhost;
 
-/*      This table used to know everest database version       */
-CREATE TABLE IF NOT EXISTS version(
+/*  This table used to know everest database version    */
+CREATE TABLE IF NOT EXISTS version (
     version DOUBLE NOT NULL
 );
 
+-- --------------------------------------------------------
 /*	This table created for login users	*/
 CREATE TABLE IF NOT EXISTS user (
     user_id INT NOT NULL AUTO_INCREMENT,
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS teacher (
 CREATE TABLE IF NOT EXISTS course (
     course_id INT NOT NULL AUTO_INCREMENT,
     course_name VARCHAR(50) NOT NULL,
-    course_status VARCHAR(6) NOT NULL Default 'opened',
+    course_status VARCHAR(6) NOT NULL DEFAULT 'opened',
     course_start_date VARCHAR(11) NOT NULL,
     course_end_date VARCHAR(11) NOT NULL,
     course_price INT NOT NULL,
@@ -130,7 +131,7 @@ CREATE TABLE IF NOT EXISTS teacher_courses (
     teacher_id INT,
     course_id INT,
     teach_price DOUBLE,
-    static_price_status BIT(1) default 1,
+    static_price_status BIT(1) DEFAULT 1,
     teach_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FOREIGN KEY (course_id)
         REFERENCES course (course_id)
@@ -163,44 +164,127 @@ CREATE TABLE IF NOT EXISTS teacher_purchases (
     PRIMARY KEY (purchase_id)
 )  AUTO_INCREMENT=1;
 
-CREATE VIEW students_financials AS 
-SELECT s.student_id,s.student_name,b.book_price * sb.book_quantity AS 'Money',
-sb.buy_date AS 'Date',
-CONCAT('Buying ',sb.book_quantity,' book from ','(',b.book_id,') ',b.book_name) As 'Description'
-FROM student s,student_books sb,book b
-WHERE s.student_id = sb.student_id AND sb.book_id = b.book_id
-UNION SELECT  s.student_id,s.student_name,c.course_price AS 'Money',sc.enroll_date AS 'Date',
-CONCAT('Enrolling to course ','(',c.course_id,') ',c.course_name) As 'Description'
-FROM student s,student_courses sc,course c
-WHERE s.student_id = sc.student_id AND sc.course_id = c.course_id
-UNION SELECT  s.student_id,s.student_name,e.exam_price AS 'Money',se.enroll_date AS 'Date',
-CONCAT('Enrolling to exam ','(',e.exam_id,') ',e.exam_name) As 'Description'
-FROM student s,student_exams se,exam e
-WHERE s.student_id = se.student_id AND se.exam_id = e.exam_id
-UNION SELECT  s.student_id,s.student_name,sp.purchase_price AS 'Money',
-sp.purchase_date AS 'Date','Paying money'
-FROM student s,student_purchases sp
-WHERE s.student_id = sp.student_id;
+CREATE VIEW students_financials AS
+    SELECT 
+        s.student_id,
+        s.student_name,
+        b.book_price * sb.book_quantity AS 'Money',
+        sb.buy_date AS 'Date',
+        CONCAT('Buying ',
+                sb.book_quantity,
+                ' book from ',
+                '(',
+                b.book_id,
+                ') ',
+                b.book_name) AS 'Description'
+    FROM
+        student s,
+        student_books sb,
+        book b
+    WHERE
+        s.student_id = sb.student_id
+            AND sb.book_id = b.book_id 
+    UNION SELECT 
+        s.student_id,
+        s.student_name,
+        c.course_price AS 'Money',
+        sc.enroll_date AS 'Date',
+        CONCAT('Enrolling to course ',
+                '(',
+                c.course_id,
+                ') ',
+                c.course_name) AS 'Description'
+    FROM
+        student s,
+        student_courses sc,
+        course c
+    WHERE
+        s.student_id = sc.student_id
+            AND sc.course_id = c.course_id 
+    UNION SELECT 
+        s.student_id,
+        s.student_name,
+        e.exam_price AS 'Money',
+        se.enroll_date AS 'Date',
+        CONCAT('Enrolling to exam ',
+                '(',
+                e.exam_id,
+                ') ',
+                e.exam_name) AS 'Description'
+    FROM
+        student s,
+        student_exams se,
+        exam e
+    WHERE
+        s.student_id = se.student_id
+            AND se.exam_id = e.exam_id 
+    UNION SELECT 
+        s.student_id,
+        s.student_name,
+        sp.purchase_price AS 'Money',
+        sp.purchase_date AS 'Date',
+        'Paying money'
+    FROM
+        student s,
+        student_purchases sp
+    WHERE
+        s.student_id = sp.student_id;
 
-CREATE VIEW teachers_financials AS 
-SELECT t.teacher_id,t.teacher_name,
-IF(tc.static_price_status=1,CONCAT(tc.teach_price),CONCAT(tc.teach_price,'%')) as 'Money',
-tc.teach_date AS 'Date','Teaching course' as 'Description'
-FROM teacher t,teacher_courses tc,course c
-WHERE t.teacher_id = tc.teacher_id AND tc.course_id = c.course_id
-UNION SELECT  t.teacher_id,t.teacher_name,tp.purchase_price AS 'Money',
-tp.purchase_date AS 'Date','Paying money'
-FROM teacher t,teacher_purchases tp
-WHERE t.teacher_id = tp.teacher_id;
+CREATE VIEW teachers_financials AS
+    SELECT 
+        t.teacher_id,
+        t.teacher_name,
+        IF(tc.static_price_status = 1,
+            CONCAT(tc.teach_price),
+            CONCAT(tc.teach_price, '%')) AS 'Money',
+        tc.teach_date AS 'Date',
+        'Teaching course' AS 'Description'
+    FROM
+        teacher t,
+        teacher_courses tc,
+        course c
+    WHERE
+        t.teacher_id = tc.teacher_id
+            AND tc.course_id = c.course_id 
+    UNION SELECT 
+        t.teacher_id,
+        t.teacher_name,
+        tp.purchase_price AS 'Money',
+        tp.purchase_date AS 'Date',
+        'Paying money'
+    FROM
+        teacher t,
+        teacher_purchases tp
+    WHERE
+        t.teacher_id = tp.teacher_id;
 
-CREATE VIEW students_financial AS 
-SELECT * from students_financials
-UNION SELECT student_id,student_name,SUM(Money),CURRENT_TIMESTAMP,'Total' from students_financials;
+CREATE VIEW students_financial AS
+    SELECT 
+        *
+    FROM
+        students_financials 
+    UNION SELECT 
+        student_id,
+        student_name,
+        SUM(Money),
+        CURRENT_TIMESTAMP,
+        'Total'
+    FROM
+        students_financials;
 
 CREATE VIEW teachers_financial AS
-SELECT * from teachers_financials
-UNION SELECT teacher_id,teacher_name,SUM(Money),CURRENT_TIMESTAMP,CONCAT('Total') as 'Description' 
-from teachers_financials;
+    SELECT 
+        *
+    FROM
+        teachers_financials 
+    UNION SELECT 
+        teacher_id,
+        teacher_name,
+        SUM(Money),
+        CURRENT_TIMESTAMP,
+        CONCAT('Total') AS 'Description'
+    FROM
+        teachers_financials;
 
 /* Dumping Data */
 -- Dumping data for table course
