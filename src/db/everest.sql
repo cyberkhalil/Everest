@@ -8,6 +8,11 @@ create user if not exists test@localhost identified by 'test';
 USE everest;
 GRANT ALL PRIVILEGES ON * . * TO test@localhost;
 
+/*      This table used to know everest database version       */
+CREATE TABLE IF NOT EXISTS version(
+    version DOUBLE NOT NULL
+);
+
 /*	This table created for login users	*/
 CREATE TABLE IF NOT EXISTS user (
     user_id INT NOT NULL AUTO_INCREMENT,
@@ -16,11 +21,6 @@ CREATE TABLE IF NOT EXISTS user (
     user_privilege VARCHAR(15) NOT NULL,
     PRIMARY KEY (user_id)
 )  AUTO_INCREMENT=1;
-
-
--- Dumping data for table user
-INSERT INTO user (user_id, user_name, user_password, user_privilege) 
-VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
 -- --------------------------------------------------------
 /*	This table is created for exams	*/
@@ -33,10 +33,6 @@ CREATE TABLE IF NOT EXISTS exam (
     UNIQUE (exam_name , exam_time)
 )  AUTO_INCREMENT=1;
 
--- Dumping data for table exam
-INSERT INTO exam (exam_id, exam_name, exam_price, exam_time) 
-VALUES(1, 'exam_1', 100, '2019-04-20');
-
 -- --------------------------------------------------------
 /*	This table is created for books */
 CREATE TABLE IF NOT EXISTS book (
@@ -48,11 +44,6 @@ CREATE TABLE IF NOT EXISTS book (
     PRIMARY KEY (book_id)
 )  AUTO_INCREMENT=1;
 
--- Dumping data for table book
-INSERT INTO book 
-(book_id,book_name,book_price,book_quantity,book_isbn)
-Values(1,'Book1',100,10,'some isbn');
-
 -- --------------------------------------------------------
 /*	This table is created for teachers */
 CREATE TABLE IF NOT EXISTS teacher (
@@ -61,9 +52,6 @@ CREATE TABLE IF NOT EXISTS teacher (
     teacher_phone VARCHAR(12) NOT NULL,
     PRIMARY KEY (teacher_id)
 )  AUTO_INCREMENT=1;
--- Dumping data for table teacher
-INSERT INTO teacher(teacher_id,teacher_name,teacher_phone)
-values(1,'Teacher 1','059-123-4567');
 
 -- --------------------------------------------------------
 /*	This table is created for course */
@@ -80,15 +68,6 @@ CREATE TABLE IF NOT EXISTS course (
     PRIMARY KEY (course_id)
 )  AUTO_INCREMENT=1;
 
--- Dumping data for table course
-INSERT INTO course 
-(course_id,course_name,course_start_date,course_end_date,
-course_price,course_time_hour_from,
-course_time_hour_to,course_days)value
-(1, 'course 1', '2018-01-01','2018-02-02', 500, '5:30', '10:30', 'Su,Tu,Th,  ,  ,  ,  '),
-(2, 'course 2', '2018-01-01','2018-02-02', 200, '10:00', '3:30', 'Sa,Su,Mo,  ,  ,  ,  ');
-
-
 -- --------------------------------------------------------
 /*	This table is created for student */
 CREATE TABLE IF NOT EXISTS student (
@@ -98,14 +77,6 @@ CREATE TABLE IF NOT EXISTS student (
     student_added_by INT REFERENCES student (student_id),
     PRIMARY KEY (student_id)
 )  AUTO_INCREMENT=1;
-
--- Dumping data for table student
-INSERT INTO student(student_id,student_name,student_phone)
-values(1,'Student 1','059-123-4567');
-
-INSERT INTO student
-(student_id,student_name,student_phone,student_added_by)
-values(2,'Student 2','059-123-4567',1);
 
 -- --------------------------------------------------------
 /*	This table is created for student books */
@@ -123,10 +94,6 @@ CREATE TABLE IF NOT EXISTS student_books (
     PRIMARY KEY (student_id , book_id)
 )  ENGINE=INNODB;
 
--- Dumping data for table student
-INSERT INTO student_books(student_id,book_id,book_quantity)
-values(1,1,1);
-
 -- --------------------------------------------------------
 /*	This table is created for student exams */
 CREATE TABLE IF NOT EXISTS student_exams (
@@ -142,10 +109,6 @@ CREATE TABLE IF NOT EXISTS student_exams (
     PRIMARY KEY (student_id , exam_id)
 )  ENGINE=INNODB;
 
--- Dumping data for table student
-INSERT INTO student_exams(student_id,exam_id)
-values(1,1);
-
 -- --------------------------------------------------------
 /*	This table is created for student courses */
 CREATE TABLE IF NOT EXISTS student_courses (
@@ -160,10 +123,6 @@ CREATE TABLE IF NOT EXISTS student_courses (
         ON DELETE RESTRICT,
     PRIMARY KEY (student_id , course_id)
 )  ENGINE=INNODB;
-
--- Dumping data for table student
-INSERT INTO student_courses(student_id,course_id)
-values(1,1);
 
 -- --------------------------------------------------------
 /*	This table is created for teacher courses */
@@ -181,10 +140,6 @@ CREATE TABLE IF NOT EXISTS teacher_courses (
         ON DELETE RESTRICT,
     PRIMARY KEY (teacher_id , course_id)
 )  ENGINE=INNODB;
-
--- Dumping data for table student
-INSERT INTO teacher_courses(teacher_id,course_id,teach_price)
-values(1,1,100);
 
 CREATE TABLE IF NOT EXISTS student_purchases (
     purchase_id INT NOT NULL AUTO_INCREMENT,
@@ -246,3 +201,55 @@ CREATE VIEW teachers_financial AS
 SELECT * from teachers_financials
 UNION SELECT teacher_id,teacher_name,SUM(Money),CURRENT_TIMESTAMP,CONCAT('Total') as 'Description' 
 from teachers_financials;
+
+/* Dumping Data */
+-- Dumping data for table course
+INSERT INTO course 
+(course_id,course_name,course_start_date,course_end_date,
+course_price,course_time_hour_from,
+course_time_hour_to,course_days)value
+(1, 'course 1', '2018-01-01','2018-02-02', 500, '5:30', '10:30', 'Su,Tu,Th,  ,  ,  ,  '),
+(2, 'course 2', '2018-01-01','2018-02-02', 200, '10:00', '3:30', 'Sa,Su,Mo,  ,  ,  ,  ');
+
+-- Dumping data for table exam
+INSERT INTO exam (exam_id, exam_name, exam_price, exam_time) 
+VALUES(1, 'exam_1', 100, '2019-04-20');
+
+-- Dumping data for table book
+INSERT INTO book 
+(book_id,book_name,book_price,book_quantity,book_isbn)
+Values(1,'Book1',100,10,'some isbn');
+
+-- Dumping data for table teacher
+INSERT INTO teacher(teacher_id,teacher_name,teacher_phone)
+values(1,'Teacher 1','059-123-4567');
+
+-- Dumping data for table student
+INSERT INTO student(student_id,student_name,student_phone)
+values(1,'Student 1','059-123-4567');
+
+INSERT INTO student
+(student_id,student_name,student_phone,student_added_by)
+values(2,'Student 2','059-123-4567',1);
+
+-- Dumping data for table student
+INSERT INTO student_books(student_id,book_id,book_quantity)
+values(1,1,1);
+
+-- Dumping data for table student
+INSERT INTO student_exams(student_id,exam_id)
+values(1,1);
+
+-- Dumping data for table student
+INSERT INTO student_courses(student_id,course_id)
+values(1,1);
+
+-- Dumping data for table student
+INSERT INTO teacher_courses(teacher_id,course_id,teach_price)
+values(1,1,100);
+
+-- Dumping data for table user
+INSERT INTO user (user_id, user_name, user_password, user_privilege) 
+VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
+
+INSERT INTO version values(1.0);

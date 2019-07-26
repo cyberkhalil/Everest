@@ -1,7 +1,7 @@
 package utils;
 
+import db.DBConnection;
 import static db.DbUtil.applySchema;
-import static db.DbUtil.checkSchema;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import static db.DbUtil.checkSchema;
+import static db.DbUtil.checkSchemaVersion;
+import static db.DbUtil.runDBscript;
 
 public class PreRun {
 
@@ -32,6 +35,10 @@ public class PreRun {
                     JOptionPane.showMessageDialog(null, "Sorry but you can't use this program"
                             + " without creating everest database");
                 }
+                return;
+            }
+            if (!checkSchemaVersion()) {
+                runDBscript();
             }
         }
     }

@@ -215,9 +215,11 @@ public class Login extends javax.swing.JFrame {
             return;
         }
         try {
-            DBConnection.establishConnection();
+            if (DBConnection.getConnection() == null) {
+                DBConnection.establishConnection();
+            }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, SQL_EXCEPTION_MSG);
+            JOptionPane.showMessageDialog(null, "Error : Can't connect to Database");
             printEx(ex);
         }
         try {
