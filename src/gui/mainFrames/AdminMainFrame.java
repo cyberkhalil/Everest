@@ -34,6 +34,7 @@ import static utils.gui.GUI_Util.link_frame_to_button;
 import static books.BookUtil.getSoldOutBooksFormated;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import static utils.ExceptionUtil.printEx;
 import static utils.Strings.EVEREST_TITLE;
 import static utils.Strings.SQL_EXCEPTION_MSG;
@@ -44,6 +45,10 @@ public class AdminMainFrame extends JFrame {
 
     public AdminMainFrame(JFrame root) {
         root.setVisible(false);
+        setIconImage(
+                new ImageIcon(AdminMainFrame.class.getClassLoader().
+                        getResource("Images/Everest_logo.jpg")).getImage()
+        );
         this.root = root;
         initComponents();
     }

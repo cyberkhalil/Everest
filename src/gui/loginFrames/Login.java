@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import sun.swing.ImageIconUIResource;
 import static utils.ExceptionUtil.printEx;
 import static utils.Strings.EVEREST_TITLE;
 import static utils.Strings.SQL_EXCEPTION_MSG;
@@ -23,6 +25,10 @@ public class Login extends javax.swing.JFrame {
     public static User user;
 
     public Login() {
+        setIconImage(
+                new ImageIcon(Login.class.getClassLoader().
+                        getResource("Images/Everest_logo.jpg")).getImage()
+        );
         initComponents();
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
