@@ -56,6 +56,15 @@ public final class DbUtil {
         }
     }
 
+    public static double getSchemaVersion() throws SQLException {
+        String query = "Select version from version";
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery(query);
+        rs.next();
+        double version = rs.getDouble("version");
+        return version;
+    }
+
     public static void runDBscript() throws SQLException, IOException {
         String universityDB = readFile(UPDATES_FILE.toString(), StandardCharsets.UTF_8);
 

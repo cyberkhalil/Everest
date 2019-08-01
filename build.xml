@@ -3,11 +3,12 @@
     <description>Builds, tests, and runs the project Everest.</description>
     <import file="nbproject/build-impl.xml"/>
     <target name="-post-jar">
-        <property name="store.jar.name" value="Everst"/>
+        <property name="store.jar.name" value="Everest"/>
         <property name="store.dir" value="dist"/>
         <property name="temp.dir" value="temp"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
         <property name="libs" value="lib"/>
+        <property name="Run" value="Run"/>
         <echo level="info" message="Copying libraries.."/>
         <copy todir="${store.dir}">
             <fileset dir="${libs}"/>
@@ -27,5 +28,9 @@
                         excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>
         </zip>
         <delete dir="${temp.dir}"/>
+        <echo level="info" message="First jar Completed SUCCESSFULLY"/>
+        <copy todir="${store.dir}">
+            <fileset dir="${Run}"/>
+        </copy>
     </target>
 </project>

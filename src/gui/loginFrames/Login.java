@@ -7,15 +7,16 @@ import users.User;
 import db.DBConnection;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import javax.security.auth.login.LoginException;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import static utils.ExceptionUtil.printEx;
-import static utils.PreRun.check_mysql;
 import static utils.Strings.EVEREST_TITLE;
 import static utils.Strings.SQL_EXCEPTION_MSG;
+import static utils.PreRun.prerun_check;
 
 public class Login extends javax.swing.JFrame {
 
@@ -209,8 +210,8 @@ public class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
-            check_mysql();
-        } catch (IOException | InterruptedException | SQLException ex) {
+            prerun_check();
+        } catch (IOException | InterruptedException | URISyntaxException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
             return;
         }
