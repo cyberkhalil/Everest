@@ -46,7 +46,7 @@ public final class DbUtil {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
             double version = rs.getDouble("version");
-            return version == 1.0;
+            return version == 1.1;
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1146) {
                 return false;
@@ -80,7 +80,6 @@ public final class DbUtil {
                 {
                     continue;
                 }
-                System.out.println(line);
                 throw ex;
             }
         }

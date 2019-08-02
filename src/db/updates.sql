@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS version (
     version DOUBLE NOT NULL
 );
-INSERT INTO version values(1.0);
+DELETE from version;
+INSERT INTO version values(1.1);

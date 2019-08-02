@@ -163,7 +163,7 @@ public class PreRun {
     }
 
     private static void updateJar() throws IOException {
-        String page = getHTML("https://jpst.it/1Nzae");
+        String page = getHTML("https://justpaste.it/4l27h");
         String allVersions = page.substring(
                 page.indexOf("Everest Program"), page.indexOf("End Versions!"));
         String lastVersionToEnd = allVersions.substring(allVersions.indexOf("lastVersion"));
@@ -180,6 +180,7 @@ public class PreRun {
             Files.copy(in, dist.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }
         JOptionPane.showMessageDialog(null, "open the program again to apply the update");
+        System.exit(0);
     }
 
     private static boolean isInternetConnected() {
