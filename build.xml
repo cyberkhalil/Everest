@@ -8,7 +8,7 @@
         <property name="temp.dir" value="temp"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
         <property name="libs" value="lib"/>
-        <property name="Run" value="Run"/>
+        <property name="Run" value="Run/dist"/>
         <echo level="info" message="Copying libraries.."/>
         <copy todir="${store.dir}">
             <fileset dir="${libs}"/>
