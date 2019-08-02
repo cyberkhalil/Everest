@@ -17,7 +17,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import static utils.ExceptionUtil.printEx;
 import static utils.Strings.EVEREST_TITLE;
 import static utils.Strings.SQL_EXCEPTION_MSG;
-import static utils.PreRun.mysqlCheck;
+import static utils.PreRun.PreRunCheck;
 
 public class Login extends javax.swing.JFrame {
 
@@ -215,7 +215,7 @@ public class Login extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         try {
-            mysqlCheck();
+            PreRunCheck();
         } catch (IOException | InterruptedException | URISyntaxException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
             return;

@@ -72,14 +72,14 @@ public class PreRun {
     private static boolean downloadRun(String lastVersionUrlToEnd) throws IOException, MalformedURLException {
         String runLink;
         try {
-            runLink = lastVersionUrlToEnd.substring(
-                    lastVersionUrlToEnd.indexOf("run:") + 4, lastVersionUrlToEnd.indexOf("}"));
+            String temp = lastVersionUrlToEnd.substring(lastVersionUrlToEnd.indexOf("run:") + 4);
+            runLink = temp.substring(0, temp.indexOf("}"));
         } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
         URL website = new URL(runLink);
-        File runDist = new File("C:\\Everest\\Everest.jar");
+        File runDist = new File("C:\\Everest\\Run.jar");
         try (InputStream in = website.openStream()) {
             Files.copy(in, runDist.toPath(), StandardCopyOption.REPLACE_EXISTING);
         }

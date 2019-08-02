@@ -17,10 +17,11 @@ import static db.DbUtil.checkSchemaVersion;
 import static db.DbUtil.runDBscript;
 import java.net.URISyntaxException;
 import java.net.URLConnection;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class PreRun {
 
-    public static void mysqlCheck() throws IOException, InterruptedException, SQLException,
+    public static void PreRunCheck() throws IOException, InterruptedException, SQLException,
             URISyntaxException {
         if (!new File("C:\\Everest\\Everest.jar").exists()) {
             final File runFile = new File("Run.jar");
@@ -31,10 +32,17 @@ public class PreRun {
                         .getLocation().toURI());
                 final File CopyDist = new File("C:\\Everest\\Everest.jar");
                 CopyDist.getParentFile().mkdir();
-                Files.copy(jarFile.toPath(), CopyDist.toPath());
+                Files.copy(jarFile.toPath(), CopyDist.toPath(), REPLACE_EXISTING);
                 final File symbolic = new File(
                         System.getProperty("user.home") + "/Desktop/Everest.jar");
-                Files.copy(runFile.toPath(), symbolic.toPath());
+                Files.copy(runFile.toPath(), symbolic.toPath(), REPLACE_EXISTING);
+            }
+        } else {
+            final File runFile = new File("Run.jar");
+            if (runFile.exists()) {
+                final File symbolic = new File(
+                        System.getProperty("user.home") + "/Desktop/Everest.jar");
+                Files.copy(runFile.toPath(), symbolic.toPath(), REPLACE_EXISTING);
             }
         }
 
