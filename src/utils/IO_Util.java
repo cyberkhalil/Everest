@@ -3,6 +3,7 @@ package utils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -23,6 +24,11 @@ public final class IO_Util {
     public static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
+    }
+
+    public static String readStream(InputStream is, Charset encoding) throws IOException {
+        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
     }
 
     public static String getHTML(String urlToRead) throws IOException {

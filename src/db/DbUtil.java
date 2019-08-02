@@ -11,13 +11,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import static utils.IO_Util.readFile;
+import static utils.IO_Util.readStream;
 
 public final class DbUtil {
 
     private static final File SCHEMA_FILE = new File(new DbUtil().getClass()
             .getResource("everest.sql").getFile());
-    private static final File UPDATES_FILE = new File(new DbUtil().getClass()
-            .getResource("updates.sql").getFile());
     private static Connection conn;
 
     private DbUtil() {
@@ -45,8 +44,7 @@ public final class DbUtil {
         try {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            double version = rs.getDouble("version");
-            return version == 1.4;
+            return rs.getDouble("version") >= 1.3;
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1146) {
                 return false;
@@ -66,7 +64,8 @@ public final class DbUtil {
     }
 
     public static void runDBscript() throws SQLException, IOException {
-        String universityDB = readFile(UPDATES_FILE.toString(), StandardCharsets.UTF_8);
+        String universityDB = readStream(DBConnection.class.getResourceAsStream("updates.sql"),
+                 StandardCharsets.UTF_8);
 
         for (String line : universityDB.split(";")) {
             if (line.isEmpty()) {
