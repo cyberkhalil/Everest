@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.swing.JOptionPane;
+import utils.gui.DisplayProgressBar;
 import static utils.gui.GUI_Util.displayProgressBar;
 
 public final class IO_Util {
@@ -49,28 +50,31 @@ public final class IO_Util {
         return result.toString();
     }
 
-    public static void saveUrl(String filename, String urlString)
+    public static boolean saveUrl(String filename, String urlString)
             throws MalformedURLException, IOException {
-        saveUrl(filename, urlString, false);
+        return saveUrl(filename, urlString, false);
     }
 
-    public static void saveUrl(String filename, String urlString, boolean gui_mode)
+    public static boolean saveUrl(String filename, String urlString, boolean gui_mode)
             throws MalformedURLException, IOException {
         Download download = new Download(new URL(urlString), new File(filename));
         if (gui_mode) {
-            displayProgressBar("Everest Downloader", "Downloading File" + filename + " ..",
+            DisplayProgressBar frame = displayProgressBar("Everest Downloader",
+                    "Downloading File (" + new File(filename).getName() + ") ..",
                     (progressBar, progressBarLbl) -> {
                         switch (download.getStatus()) {
                             case 2:
                                 progressBar.setValue(100);
-                                progressBarLbl.setText("100%");
+                                progressBarLbl.setText("Done (100%)");
                                 JOptionPane.showMessageDialog(null, "Download Completed");
                                 return true;
                             case 3:
+                                progressBarLbl.setText("Download Cancelled");
                                 JOptionPane.showMessageDialog(null, "Download Cancelled");
                                 return true;
                             case 4:
-                                System.out.println("Download Error");
+                                progressBarLbl.setText("Download Error");
+                                JOptionPane.showMessageDialog(null, "Download Error");
                                 return true;
                             default:
                                 progressBar.setValue((int) download.getProgress());
@@ -78,6 +82,17 @@ public final class IO_Util {
                                 return false;
                         }
                     });
+            while (true) {
+                switch (frame.jLabel2.getText()) {
+                    case "Done (100%)":
+                        return true;
+                    case "Download Cancelled":
+                        return false;
+                    case "Download Error":
+                        return false;
+                }
+            }
         }
+        return false;
     }
 }

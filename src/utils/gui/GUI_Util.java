@@ -150,11 +150,11 @@ public class GUI_Util {
         return displayFrame;
     }
 
-    public static JFrame displayProgressBar(String title, String labelTxt,
+    public static DisplayProgressBar displayProgressBar(String title, String labelTxt,
             UpdateProgressBarOperation upbo) {
         // title = Everest Updater
         // labelTxt = Downloading File ..
-        JFrame frame = new DisplayProgressBar(title, labelTxt, upbo);
+        DisplayProgressBar frame = new DisplayProgressBar(title, labelTxt, upbo);
         frame.setVisible(true);
         return frame;
     }

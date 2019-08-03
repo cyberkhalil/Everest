@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -44,8 +46,15 @@ public class Util {
         new Thread(() -> {
             JOptionPane.showMessageDialog(null, "Wait until Everest downloading finish ..");
         }).start();
-        if (downloadEverest(lastVersionUrlToEnd)) {
-            downloadRun(lastVersionUrlToEnd);
+
+        new Thread(() -> {
+            try {
+                downloadRun(lastVersionUrlToEnd);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }).start();
+        while (!downloadEverest(lastVersionUrlToEnd)) {
         }
     }
 
@@ -73,7 +82,7 @@ public class Util {
             runLink = temp.substring(0, temp.indexOf("}"));
         } catch (Exception ex) {
             System.out.println(ex);
-            return false;
+            return true;
         }
         File runDist = new File("C:\\Everest\\Run.jar");
         runDist.getParentFile().mkdir();
@@ -159,28 +168,31 @@ public class Util {
         return version;
     }
 
-    public static void saveUrl(String filename, String urlString)
+    public static boolean saveUrl(String filename, String urlString)
             throws MalformedURLException, IOException {
-        saveUrl(filename, urlString, false);
+        return saveUrl(filename, urlString, false);
     }
 
-    public static void saveUrl(String filename, String urlString, boolean gui_mode)
+    public static boolean saveUrl(String filename, String urlString, boolean gui_mode)
             throws MalformedURLException, IOException {
         Download download = new Download(new URL(urlString), new File(filename));
         if (gui_mode) {
-            displayProgressBar("Everest Downloader", "Downloading File" + filename + " ..",
+            DisplayProgressBar frame = displayProgressBar("Everest Downloader",
+                    "Downloading File (" + new File(filename).getName() + ") ..",
                     (progressBar, progressBarLbl) -> {
                         switch (download.getStatus()) {
                             case 2:
                                 progressBar.setValue(100);
-                                progressBarLbl.setText("100%");
+                                progressBarLbl.setText("Done (100%)");
                                 JOptionPane.showMessageDialog(null, "Download Completed");
                                 return true;
                             case 3:
+                                progressBarLbl.setText("Download Cancelled");
                                 JOptionPane.showMessageDialog(null, "Download Cancelled");
                                 return true;
                             case 4:
-                                System.out.println("Download Error");
+                                progressBarLbl.setText("Download Error");
+                                JOptionPane.showMessageDialog(null, "Download Error");
                                 return true;
                             default:
                                 progressBar.setValue((int) download.getProgress());
@@ -188,6 +200,17 @@ public class Util {
                                 return false;
                         }
                     });
+            while (true) {
+                switch (frame.jLabel2.getText()) {
+                    case "Done (100%)":
+                        return true;
+                    case "Download Cancelled":
+                        return false;
+                    case "Download Error":
+                        return false;
+                }
+            }
         }
+        return false;
     }
 }
