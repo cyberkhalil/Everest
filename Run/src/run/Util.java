@@ -196,7 +196,8 @@ public class Util {
                                 return true;
                             default:
                                 progressBar.setValue((int) download.getProgress());
-                                progressBarLbl.setText(download.getProgress() + "%");
+                                progressBarLbl.setText(
+                                        (download.getProgress() + "00000").substring(0, 5) + "%");
                                 return false;
                         }
                     });
