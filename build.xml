@@ -2,22 +2,22 @@
 <project name="Everest" default="default" basedir=".">
     <description>Builds, tests, and runs the project Everest.</description>
     <import file="nbproject/build-impl.xml"/>
-    
-    <echo level="info" message=""/>
-    <echo level="info" message=""/>
-    
+
     <target name="-build-run">
         <echo level="info" message="building Run jar"/>
         <ant antfile="build.xml" target="clean" dir="Run"/>
         <ant antfile="build.xml" target="compile" dir="Run"/>
         <ant antfile="build.xml" target="jar" dir="Run"/>
         <echo level="info" message="Run jar Build Completed SUCCESSFULLY"/>
+        
+        <echo level="info" message="."/>
+        <echo level="info" message="."/>
     </target>
     
-    <echo level="info" message=""/>
-    <echo level="info" message=""/>
+    <echo level="info" message="."/>
+    <echo level="info" message="."/>
     
-    <target name="-post-jar">
+    <target name="-post-jar" depends="-build-run">
         <property name="store.jar.name" value="Everest"/>
         <property name="store.dir" value="dist"/>
         <property name="temp.dir" value="temp"/>
