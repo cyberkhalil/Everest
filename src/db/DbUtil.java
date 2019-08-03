@@ -38,13 +38,13 @@ public final class DbUtil {
         return false;
     }
 
-    public static boolean checkSchemaVersion() throws SQLException {
+    public static boolean checkSchemaVersion(double version) throws SQLException {
         String query = "Select version from version";
         Statement statement = conn.createStatement();
         try {
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            return rs.getDouble("version") >= 1.3;
+            return rs.getDouble("version") >= version;
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1146) {
                 return false;
@@ -65,7 +65,7 @@ public final class DbUtil {
 
     public static void runDBscript() throws SQLException, IOException {
         String universityDB = readStream(DBConnection.class.getResourceAsStream("updates.sql"),
-                 StandardCharsets.UTF_8);
+                StandardCharsets.UTF_8);
 
         for (String line : universityDB.split(";")) {
             if (line.isEmpty()) {

@@ -18,10 +18,12 @@ import java.net.URLConnection;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class PreRun {
-    
+
     private static final String RUN_JAR = "Run.jar";
-    private static final String EVEREST_JAR_PATH = "C:\\Everest\\Everest.jar";
-    
+    private static final String EVEREST_PATH = "C:\\Everest\\";
+    private static final String EVEREST_JAR_PATH = EVEREST_PATH + "Everest.jar";
+    private static final String EVEREST_VERSION_PATH = EVEREST_PATH + "Version";
+
     public static void PreRunCheck() throws IOException, InterruptedException, SQLException,
             URISyntaxException {
         if (!new File(EVEREST_JAR_PATH).exists()) {
@@ -46,7 +48,7 @@ public class PreRun {
                 Files.copy(runFile.toPath(), symbolic.toPath(), REPLACE_EXISTING);
             }
         }
-        
+
         if (!mysqlServiceExists()) {
             if (isInternetConnected()) {
                 offer_install_mysql();
@@ -70,12 +72,20 @@ public class PreRun {
                 }
                 return;
             }
-            if (!checkSchemaVersion()) {
+            if (!checkSchemaVersion(getEverestVersion())) {
                 runDBscript();
             }
         }
     }
-    
+
+    public static double getEverestVersion() throws NumberFormatException {
+        try {
+            return Double.parseDouble(IO_Util.readFile(EVEREST_VERSION_PATH));
+        } catch (IOException ex) {
+            return -1;
+        }
+    }
+
     private static boolean mysqlServiceExists() throws IOException {
         Process p = Runtime.getRuntime().exec("sc query");
         BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -87,7 +97,7 @@ public class PreRun {
         }
         return false;
     }
-    
+
     private static boolean mysqlServiceRunning() throws IOException, InterruptedException {
         Process p = Runtime.getRuntime().exec("sc query");
         BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -114,14 +124,14 @@ public class PreRun {
         }
         return false;
     }
-    
+
     private static void offer_install_mysql() throws MalformedURLException, IOException {
         JOptionPane.showMessageDialog(
                 null,
                 "You don't have mysql on your system ! \n"
                 + " To run this program you have to provide a connection "
                 + "to mysql database or install mysql service");
-        
+
         int choice = JOptionPane.showOptionDialog(null, //Component parentComponent
                 "MySQL is required to use this program \n"
                 + " Do you agree to install MySQL ?",
@@ -137,7 +147,7 @@ public class PreRun {
             System.exit(0);
         }
     }
-    
+
     private static void download_mysql() throws MalformedURLException, IOException {
         final String link = "https://dev.mysql.com/get/Downloads/"
                 + "MySQLInstaller/mysql-installer-community-8.0.15.0.msi";
@@ -153,7 +163,7 @@ public class PreRun {
             JOptionPane.showMessageDialog(null, "Error in downloading MySql");
         }
     }
-    
+
     private static boolean isInternetConnected() {
         try {
             final URL url = new URL("https://www.facebook.com");

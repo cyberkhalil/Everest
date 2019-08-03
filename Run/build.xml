@@ -2,31 +2,4 @@
 <project name="Run" default="default" basedir=".">
     <description>Builds, tests, and runs the project Run.</description>
     <import file="nbproject/build-impl.xml"/>
-    <target name="-post-jar">
-        <property name="store.jar.name" value="Run"/>
-        <property name="store.dir" value="dist"/>
-        <property name="temp.dir" value="temp"/>
-        <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
-        <property name="libs" value="lib"/>
-        <echo level="info" message="Copying libraries.."/>
-        <copy todir="${store.dir}">
-            <fileset dir="${libs}"/>
-        </copy>
-        <echo level="info" message="Packaging ${application.title} into a single JAR at ${store.jar}"/>
-        <delete dir="${temp.dir}"/>
-        <mkdir dir="${temp.dir}"/>
-        <jar destfile="${temp.dir}/temp_final.jar" filesetmanifest="skip">
-            <zipgroupfileset dir="dist" includes="*.jar"/>
-            <manifest>
-                <attribute name="Main-Class" value="${main.class}"/>
-            </manifest>
-        </jar>
-        <delete dir="${store.dir}"/>
-        <zip destfile="${store.jar}">
-            <zipfileset src="${temp.dir}/temp_final.jar"
-                        excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>
-        </zip>
-        <delete dir="${temp.dir}"/>
-        <echo level="info" message="Building jar Completed SUCCESSFULLY"/>
-    </target>
 </project>

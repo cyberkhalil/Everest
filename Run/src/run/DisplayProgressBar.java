@@ -11,6 +11,7 @@ public class DisplayProgressBar extends javax.swing.JFrame {
         new Thread(() -> {
             while (!upbo.updateBar(jProgressBar1, jLabel2)) {
             }
+            this.dispose();
         }).start();
     }
 

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,9 +26,26 @@ public final class IO_Util {
         return new String(encoded, encoding);
     }
 
+    public static void writeFile(File file, String text, Charset encoding) throws IOException {
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.println(text);
+        }
+    }
+
+    public static void writeFile(String file, String text, Charset encoding) throws IOException {
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.println(text);
+        }
+    }
+
     public static String readFile(String path, Charset encoding) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, encoding);
+    }
+
+    public static String readFile(String path) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, "UTF-8");
     }
 
     public static String readStream(InputStream is, Charset encoding) throws IOException {

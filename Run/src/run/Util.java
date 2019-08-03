@@ -4,18 +4,17 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.net.URLConnection;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
@@ -23,7 +22,9 @@ public class Util {
 
     private static Connection conn;
     private static final String JUST_PASTE_IT_URL = "https://justpaste.it/4l27h";
-    private static final String EVEREST_JAR_PATH = "C:\\Everest\\Everest.jar";
+    private static final String EVEREST_PATH = "C:\\Everest\\";
+    private static final String EVEREST_JAR_PATH = EVEREST_PATH + "Everest.jar";
+    private static final String EVEREST_VERSION_PATH = EVEREST_PATH + "Version";
 
     public static void prerun_check() throws Exception {
         if (isInternetConnected()) {
@@ -37,16 +38,18 @@ public class Util {
     }
 
     private static void updateJar() throws IOException {
-        String page = getHTML(JUST_PASTE_IT_URL);
-        String allVersions = page.substring(
-                page.indexOf("Everest Program"), page.indexOf("End Versions!"));
-        String lastVersionToEnd = allVersions.substring(allVersions.indexOf("lastVersion"));
-        String lastVersion = lastVersionToEnd.substring(0, lastVersionToEnd.indexOf("]"));
-        String lastVersionUrlToEnd = lastVersion.substring(lastVersion.indexOf("https"));
-        new Thread(() -> {
-            JOptionPane.showMessageDialog(null, "Wait until Everest downloading finish ..");
-        }).start();
-
+        String lastVersionUrlToEnd;
+        String versionNmbr;
+        {
+            String page = getHTML(JUST_PASTE_IT_URL);
+            String allVersions = page.substring(
+                    page.indexOf("Everest Program"), page.indexOf("End Versions!"));
+            String lastVersionToEnd = allVersions.substring(allVersions.indexOf("lastVersion"));
+            String lastVersion = lastVersionToEnd.substring(0, lastVersionToEnd.indexOf("]"));
+            lastVersionUrlToEnd = lastVersion.substring(lastVersion.indexOf("https"));
+            String preVersion = lastVersionToEnd.substring(lastVersionToEnd.indexOf("version : "));
+            versionNmbr = preVersion.substring(10, preVersion.indexOf("}"));
+        }
         new Thread(() -> {
             try {
                 downloadRun(lastVersionUrlToEnd);
@@ -56,6 +59,7 @@ public class Util {
         }).start();
         while (!downloadEverest(lastVersionUrlToEnd)) {
         }
+        writeFile(EVEREST_VERSION_PATH, versionNmbr);
     }
 
     private static boolean downloadEverest(String lastVersionUrlToEnd)
@@ -94,7 +98,7 @@ public class Util {
         String page = getHTML(JUST_PASTE_IT_URL);
         String allVersions = page.substring(
                 page.indexOf("Everest Program"), page.indexOf("End Versions!"));
-        return allVersions.contains("Last Version : " + getSchemaVersion());
+        return allVersions.contains("Last Version : " + getEverestVersion());
     }
 
     private static boolean isInternetConnected() {
@@ -156,16 +160,12 @@ public class Util {
         return conn;
     }
 
-    public static double getSchemaVersion() throws SQLException {
-        if (conn == null) {
-            conn = establishConnection();
+    public static double getEverestVersion() throws NumberFormatException {
+        try {
+            return Double.parseDouble(readFile(EVEREST_VERSION_PATH));
+        } catch (IOException ex) {
+            return -1;
         }
-        String query = "Select version from version";
-        Statement statement = conn.createStatement();
-        ResultSet rs = statement.executeQuery(query);
-        rs.next();
-        double version = rs.getDouble("version");
-        return version;
     }
 
     public static boolean saveUrl(String filename, String urlString)
@@ -180,6 +180,11 @@ public class Util {
             DisplayProgressBar frame = displayProgressBar("Everest Downloader",
                     "Downloading File (" + new File(filename).getName() + ") ..",
                     (progressBar, progressBarLbl) -> {
+                        try {
+                            Thread.currentThread().sleep(1_000);
+                        } catch (InterruptedException ex) {
+                            System.out.println(ex);
+                        }
                         switch (download.getStatus()) {
                             case 2:
                                 progressBar.setValue(100);
@@ -202,6 +207,11 @@ public class Util {
                         }
                     });
             while (true) {
+                try {
+                    Thread.currentThread().sleep(1_000);
+                } catch (InterruptedException ex) {
+                    System.out.println(ex);
+                }
                 switch (frame.jLabel2.getText()) {
                     case "Done (100%)":
                         return true;
@@ -213,5 +223,18 @@ public class Util {
             }
         }
         return false;
+    }
+
+    public static String readFile(String path) throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, "UTF-8");
+    }
+
+    public static void writeFile(String file, String text) throws IOException {
+        byte ptext[] = text.getBytes();
+        text = new String(ptext, "UTF-8");
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.println(text);
+        }
     }
 }

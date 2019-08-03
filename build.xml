@@ -2,13 +2,29 @@
 <project name="Everest" default="default" basedir=".">
     <description>Builds, tests, and runs the project Everest.</description>
     <import file="nbproject/build-impl.xml"/>
+    
+    <echo level="info" message=""/>
+    <echo level="info" message=""/>
+    
+    <target name="-build-run">
+        <echo level="info" message="building Run jar"/>
+        <ant antfile="build.xml" target="clean" dir="Run"/>
+        <ant antfile="build.xml" target="compile" dir="Run"/>
+        <ant antfile="build.xml" target="jar" dir="Run"/>
+        <echo level="info" message="Run jar Build Completed SUCCESSFULLY"/>
+    </target>
+    
+    <echo level="info" message=""/>
+    <echo level="info" message=""/>
+    
     <target name="-post-jar">
         <property name="store.jar.name" value="Everest"/>
         <property name="store.dir" value="dist"/>
         <property name="temp.dir" value="temp"/>
         <property name="store.jar" value="${store.dir}/${store.jar.name}.jar"/>
         <property name="libs" value="lib"/>
-        <property name="Run" value="Run/dist"/>
+        <property name="Run.jar" value="Run/dist/Run.jar"/>
+
         <echo level="info" message="Copying libraries.."/>
         <copy todir="${store.dir}">
             <fileset dir="${libs}"/>
@@ -28,9 +44,7 @@
                         excludes="META-INF/*.SF, META-INF/*.DSA, META-INF/*.RSA"/>
         </zip>
         <delete dir="${temp.dir}"/>
-        <echo level="info" message="First jar Completed SUCCESSFULLY"/>
-        <copy todir="${store.dir}">
-            <fileset dir="${Run}"/>
-        </copy>
+        <copy todir="${store.dir}" file="${Run.jar}"/>
+        <echo level="info" message="-post-jar Completed SUCCESSFULLY"/>
     </target>
 </project>
