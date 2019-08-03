@@ -6,10 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import javax.swing.JOptionPane;
+import static utils.gui.GUI_Util.displayProgressBar;
 
 public final class IO_Util {
 
@@ -44,5 +47,37 @@ public final class IO_Util {
             }
         }
         return result.toString();
+    }
+
+    public static void saveUrl(String filename, String urlString)
+            throws MalformedURLException, IOException {
+        saveUrl(filename, urlString, false);
+    }
+
+    public static void saveUrl(String filename, String urlString, boolean gui_mode)
+            throws MalformedURLException, IOException {
+        Download download = new Download(new URL(urlString), new File(filename));
+        if (gui_mode) {
+            displayProgressBar("Everest Downloader", "Downloading File" + filename + " ..",
+                    (progressBar, progressBarLbl) -> {
+                        switch (download.getStatus()) {
+                            case 2:
+                                progressBar.setValue(100);
+                                progressBarLbl.setText("100%");
+                                JOptionPane.showMessageDialog(null, "Download Completed");
+                                return true;
+                            case 3:
+                                JOptionPane.showMessageDialog(null, "Download Cancelled");
+                                return true;
+                            case 4:
+                                System.out.println("Download Error");
+                                return true;
+                            default:
+                                progressBar.setValue((int) download.getProgress());
+                                progressBarLbl.setText(download.getProgress() + "%");
+                                return false;
+                        }
+                    });
+        }
     }
 }

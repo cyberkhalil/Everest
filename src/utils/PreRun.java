@@ -4,12 +4,10 @@ import static db.DbUtil.applySchema;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import static db.DbUtil.checkSchema;
@@ -21,16 +19,19 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class PreRun {
 
+    private static final String RUN_JAR = "Run.jar";
+    private static final String EVEREST_JAR_PATH = "C:\\Everest\\Everest.jar";
+
     public static void PreRunCheck() throws IOException, InterruptedException, SQLException,
             URISyntaxException {
-        if (!new File("C:\\Everest\\Everest.jar").exists()) {
-            final File runFile = new File("Run.jar");
+        if (!new File(EVEREST_JAR_PATH).exists()) {
+            final File runFile = new File(RUN_JAR);
             if (runFile.exists() && JOptionPane.showConfirmDialog(null, "Do you want to copy "
                     + "Everest app to C:\\Everest & create Desktop shortcut ?")
                     == JOptionPane.YES_OPTION) {
                 final File jarFile = new File(PreRun.class.getProtectionDomain().getCodeSource()
                         .getLocation().toURI());
-                final File CopyDist = new File("C:\\Everest\\Everest.jar");
+                final File CopyDist = new File(EVEREST_JAR_PATH);
                 CopyDist.getParentFile().mkdir();
                 Files.copy(jarFile.toPath(), CopyDist.toPath(), REPLACE_EXISTING);
                 final File symbolic = new File(
@@ -38,10 +39,10 @@ public class PreRun {
                 Files.copy(runFile.toPath(), symbolic.toPath(), REPLACE_EXISTING);
             }
         } else {
-            final File runFile = new File("Run.jar");
-            if (runFile.exists()) {
-                final File symbolic = new File(
-                        System.getProperty("user.home") + "/Desktop/Everest.jar");
+            final File runFile = new File(RUN_JAR);
+            final File symbolic = new File(
+                    System.getProperty("user.home") + "/Desktop/Everest.jar");
+            if (runFile.exists() && symbolic.exists()) {
                 Files.copy(runFile.toPath(), symbolic.toPath(), REPLACE_EXISTING);
             }
         }
@@ -143,12 +144,9 @@ public class PreRun {
         new Thread(() -> {
             JOptionPane.showMessageDialog(null, "Wait until mysql downloading finish ..");
         }).start();
-        URL website = new URL(link);
         File dist = new File("C:\\MySQL\\mysql-installer-community-8.msi");
         dist.getParentFile().mkdir();
-        try (InputStream in = website.openStream()) {
-            Files.copy(in, dist.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        }
+        IO_Util.saveUrl(dist.toString(), link, true);
         JOptionPane.showMessageDialog(null, "Go To C:\\MySQL and install mysql"
                 + "\n Use username : root and password : mysql");
     }

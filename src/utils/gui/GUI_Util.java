@@ -10,6 +10,8 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -148,6 +150,15 @@ public class GUI_Util {
         return displayFrame;
     }
 
+    public static JFrame displayProgressBar(String title, String labelTxt,
+            UpdateProgressBarOperation upbo) {
+        // title = Everest Updater
+        // labelTxt = Downloading File ..
+        JFrame frame = new DisplayProgressBar(title, labelTxt, upbo);
+        frame.setVisible(true);
+        return frame;
+    }
+
     public static JFrame promoteDays(String title, String labelTxt, String buttonTxt,
             DoSomethingWithDays dswd) {
         JFrame promoteFrame = new PromoteDays(title, labelTxt, buttonTxt, dswd);
@@ -255,5 +266,15 @@ public class GUI_Util {
          * @param table
          */
         abstract void updateTable(JTable table);
+    }
+
+    public static abstract interface UpdateProgressBarOperation {
+
+        /**
+         * @param progressBar
+         * @param progressBarLabel
+         * @return true to close or false to not close
+         */
+        abstract boolean updateBar(JProgressBar progressBar, JLabel progressBarLabel);
     }
 }

@@ -2,7 +2,6 @@ package utils.gui;
 
 import com.itextpdf.text.DocumentException;
 import java.awt.HeadlessException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;

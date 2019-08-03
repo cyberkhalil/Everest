@@ -4,7 +4,7 @@ public class Run {
 
     public static void main(String[] args) {
         try {
-            PreRun.prerun_check();
+            Util.prerun_check();
         } catch (Exception ex) {
             System.out.println(ex);
         }
