@@ -393,7 +393,7 @@ public class StudentsOperationsFrame extends javax.swing.JFrame {
 
     private void purchaseMoneyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purchaseMoneyBtnActionPerformed
         link_frame_to_button(promoteSpinner("Student Puchase", "Puchase Price :",
-                new SpinnerNumberModel(0, 0, 999.99, 10), "Add Purchase", (double spinnerValue) -> {
+                new SpinnerNumberModel(1, 1, 999.99, 10), "Add Purchase", (double spinnerValue) -> {
                     try {
                         selectedStudent.purchaseMoney(spinnerValue);
                         JOptionPane.showMessageDialog(rootPane,
