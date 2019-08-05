@@ -1,9 +1,14 @@
 package gui.examFrames;
 
 import exams.Exam;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import students.Student;
+import static students.StudentUtil.getStudentsId;
 import static students.StudentUtil.getStudentsIdAndName;
 import static utils.ExceptionUtil.printEx;
 import static utils.Strings.EVEREST_TITLE;
@@ -153,19 +158,28 @@ public class ExamOperationsFrame extends javax.swing.JFrame {
 
     private void addStudentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStudentsBtnActionPerformed
         try {
-            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
-                    buildComboBoxModel(getStudentsIdAndName()), (choice) -> {
-                try {
-                    new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
-                            addToExam(selectedExam.getId());
-                    JOptionPane.showMessageDialog(rootPane, "Student added to exam sucessfully");
-                    return true;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
-                    printEx(ex);
+            ResultSet rs = getStudentsId();
+            ArrayList<String> studentslist = new ArrayList<>();
+            while (rs.next()) {
+                Student s = new Student(rs.getInt("student_id"));
+                if (!s.hasExam(selectedExam.getId())) {
+                    studentslist.add("(" + s.getId() + ")" + s.getName());
                 }
-                return false;
-            }), addStudentsBtn);
+            }
+
+            link_frame_to_button(promoteComboBox("Add Student", "student id:", "Add to exam",
+                    new DefaultComboBoxModel(studentslist.toArray()), (choice) -> {
+                        try {
+                            new Student(Integer.parseInt(choice.substring(1, choice.indexOf(")")))).
+                                    addToExam(selectedExam.getId());
+                            JOptionPane.showMessageDialog(rootPane, "Student added to exam sucessfully");
+                            return true;
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
+                            printEx(ex);
+                        }
+                        return false;
+                    }), addStudentsBtn);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(rootPane, SQL_EXCEPTION_MSG);
             printEx(ex);

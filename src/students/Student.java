@@ -1,6 +1,5 @@
 package students;
 
-import books.BookUtil;
 import static books.BookUtil.getAvailableBooks;
 import static db.DBConnection.getConnection;
 import java.sql.PreparedStatement;
@@ -168,7 +167,7 @@ public class Student {
     }
 
     public ResultSet getExamsId() throws SQLException {
-        String query = "Select exam_name from student_exams where student_id=?";
+        String query = "Select exam_id from student_exams where student_id=?";
         PreparedStatement ps = getConnection().prepareStatement(query);
         ps.setInt(1, id);
         return ps.executeQuery();
@@ -267,5 +266,15 @@ public class Student {
         ps.setInt(1, id);
         ps.setInt(2, purchaseId);
         ps.executeUpdate();
+    }
+
+    public boolean hasExam(int examId) throws SQLException {
+        ResultSet rs = getExamsId();
+        while (rs.next()) {
+            if (rs.getInt("exam_id") == examId) {
+                return true;
+            }
+        }
+        return false;
     }
 }
