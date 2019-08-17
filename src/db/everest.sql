@@ -86,12 +86,12 @@ CREATE TABLE IF NOT EXISTS student_books (
     book_id INT,
     book_quantity INT NOT NULL,
     buy_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT FOREIGN KEY (book_id)
+    CONSTRAINT sb_book_id_fk FOREIGN KEY (book_id)
         REFERENCES book (book_id)
         ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id)
+    CONSTRAINT sb_student_id_fk FOREIGN KEY (student_id)
         REFERENCES student (student_id)
-        ON DELETE RESTRICT,
+        ON DELETE CASCADE,
     PRIMARY KEY (student_id , book_id)
 )  ENGINE=INNODB;
 
@@ -101,12 +101,12 @@ CREATE TABLE IF NOT EXISTS student_exams (
     student_id INT,
     exam_id INT,
     enroll_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT FOREIGN KEY (exam_id)
+    CONSTRAINT se_exam_id_fk FOREIGN KEY (exam_id)
         REFERENCES exam (exam_id)
         ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id)
+    CONSTRAINT se_student_id_fk FOREIGN KEY (student_id)
         REFERENCES student (student_id)
-        ON DELETE RESTRICT,
+        ON DELETE CASCADE,
     PRIMARY KEY (student_id , exam_id)
 )  ENGINE=INNODB;
 
@@ -116,14 +116,27 @@ CREATE TABLE IF NOT EXISTS student_courses (
     student_id INT,
     course_id INT,
     enroll_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT FOREIGN KEY (course_id)
+    CONSTRAINT sc_course_id_fk FOREIGN KEY (course_id)
         REFERENCES course (course_id)
         ON DELETE RESTRICT,
-    CONSTRAINT FOREIGN KEY (student_id)
+    CONSTRAINT sc_student_id_fk FOREIGN KEY (student_id)
         REFERENCES student (student_id)
-        ON DELETE RESTRICT,
+        ON DELETE CASCADE,
     PRIMARY KEY (student_id , course_id)
 )  ENGINE=INNODB;
+
+-- --------------------------------------------------------
+/*	This table is created for student purchases */
+CREATE TABLE IF NOT EXISTS student_purchases (
+    purchase_id INT NOT NULL AUTO_INCREMENT,
+    student_id INT NOT NULL,
+    purchase_price DOUBLE NOT NULL,
+    purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT sp_student_id_fk FOREIGN KEY (student_id)
+        REFERENCES student (student_id)
+        ON DELETE CASCADE,
+    PRIMARY KEY (purchase_id)
+)  AUTO_INCREMENT=1;
 
 -- --------------------------------------------------------
 /*	This table is created for teacher courses */
@@ -142,17 +155,8 @@ CREATE TABLE IF NOT EXISTS teacher_courses (
     PRIMARY KEY (teacher_id , course_id)
 )  ENGINE=INNODB;
 
-CREATE TABLE IF NOT EXISTS student_purchases (
-    purchase_id INT NOT NULL AUTO_INCREMENT,
-    student_id INT NOT NULL,
-    purchase_price DOUBLE NOT NULL,
-    purchase_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT FOREIGN KEY (student_id)
-        REFERENCES student (student_id)
-        ON DELETE RESTRICT,
-    PRIMARY KEY (purchase_id)
-)  AUTO_INCREMENT=1;
-
+-- --------------------------------------------------------
+/*	This table is created for teacher purchases */
 CREATE TABLE IF NOT EXISTS teacher_purchases (
     purchase_id INT NOT NULL AUTO_INCREMENT,
     teacher_id INT NOT NULL,
@@ -164,6 +168,8 @@ CREATE TABLE IF NOT EXISTS teacher_purchases (
     PRIMARY KEY (purchase_id)
 )  AUTO_INCREMENT=1;
 
+-- --------------------------------------------------------
+/*	The next section just contains views */
 CREATE VIEW students_financials AS
     SELECT 
         s.student_id,
@@ -286,7 +292,9 @@ CREATE VIEW teachers_financial AS
     FROM
         teachers_financials;
 
-/* Dumping Data */
+-- --------------------------------------------------------
+/*	The next section for Dumping Data */
+
 -- Dumping data for table course
 INSERT INTO course 
 (course_id,course_name,course_start_date,course_end_date,
@@ -336,4 +344,5 @@ values(1,1,100);
 INSERT INTO user (user_id, user_name, user_password, user_privilege) 
 VALUES(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Admin');
 
-INSERT INTO version values(1.0);
+-- adding version number
+INSERT INTO version values(1.5);

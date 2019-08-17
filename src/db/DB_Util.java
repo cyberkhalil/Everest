@@ -1,7 +1,7 @@
 package db;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,16 +10,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import static utils.IO_Util.readFile;
 import static utils.IO_Util.readStream;
 
-public final class DbUtil {
+public final class DB_Util {
 
-    private static final File SCHEMA_FILE = new File(new DbUtil().getClass()
-            .getResource("everest.sql").getFile());
+    private static final InputStream SCHEMA_FILE = new DB_Util().getClass()
+            .getResourceAsStream("everest.sql");
     private static Connection conn;
 
-    private DbUtil() {
+    private DB_Util() {
     }
 
     public static boolean checkSchema() throws SQLException {
@@ -63,7 +62,7 @@ public final class DbUtil {
         return version;
     }
 
-    public static void runDBscript() throws SQLException, IOException {
+    public static void runDB_UpdateScript() throws SQLException, IOException {
         String universityDB = readStream(DBConnection.class.getResourceAsStream("updates.sql"),
                 StandardCharsets.UTF_8);
 
@@ -85,7 +84,7 @@ public final class DbUtil {
     }
 
     public static void applySchema() throws IOException, SQLException {
-        String universityDB = readFile(SCHEMA_FILE.toString(), StandardCharsets.UTF_8);
+        String universityDB = readStream(SCHEMA_FILE, StandardCharsets.UTF_8);
 
         for (String line : universityDB.split(";")) {
             if (line.isEmpty()) {

@@ -8,19 +8,15 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 
 public class Util {
 
-    private static Connection conn;
     private static final String JUST_PASTE_IT_URL = "https://justpaste.it/4l27h";
     private static final String EVEREST_PATH = "C:\\Everest\\";
     private static final String EVEREST_JAR_PATH = EVEREST_PATH + "Everest.jar";
@@ -94,7 +90,7 @@ public class Util {
         return true;
     }
 
-    private static boolean isLastRelease() throws SQLException, IOException {
+    private static boolean isLastRelease() throws IOException {
         String page = getHTML(JUST_PASTE_IT_URL);
         String allVersions = page.substring(
                 page.indexOf("Everest Program"), page.indexOf("End Versions!"));
@@ -144,20 +140,6 @@ public class Util {
          * @return true to close or false to not close
          */
         abstract boolean updateBar(JProgressBar progressBar, JLabel progressBarLabel);
-    }
-
-    public static Connection establishConnection() throws SQLException {
-        String db = "everest";
-        String url = "jdbc:mysql://localhost:3306/";
-        String unicode = "?useUnicode=yes&characterEncoding=UTF-8";
-        String time = "&useLegacyDatetimeCode=false&serverTimezone=America/New_York";
-
-        try {
-            conn = DriverManager.getConnection(url + db + unicode + time, "test", "test");
-        } catch (SQLException exception) {
-            throw exception;
-        }
-        return conn;
     }
 
     public static double getEverestVersion() throws NumberFormatException {

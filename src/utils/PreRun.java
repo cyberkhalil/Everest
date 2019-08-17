@@ -1,6 +1,6 @@
 package utils;
 
-import static db.DbUtil.applySchema;
+import static db.DB_Util.applySchema;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -10,12 +10,12 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import static db.DbUtil.checkSchema;
-import static db.DbUtil.checkSchemaVersion;
-import static db.DbUtil.runDBscript;
+import static db.DB_Util.checkSchema;
+import static db.DB_Util.checkSchemaVersion;
 import java.net.URISyntaxException;
 import java.net.URLConnection;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
+import static db.DB_Util.runDB_UpdateScript;
 
 public class PreRun {
 
@@ -73,7 +73,7 @@ public class PreRun {
                 return;
             }
             if (!checkSchemaVersion(getEverestVersion())) {
-                runDBscript();
+                runDB_UpdateScript();
             }
         }
     }

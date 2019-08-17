@@ -218,6 +218,7 @@ public class Login extends javax.swing.JFrame {
             PreRunCheck();
         } catch (IOException | InterruptedException | URISyntaxException | SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
+            printEx(ex);
             return;
         }
         try {
